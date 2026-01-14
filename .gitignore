@@ -19,6 +19,16 @@ __pycache__/
 # claude local settings
 .claude/settings.local.json
 
+# next.js
+.next/
+
+# claude temp files
+tmpclaude-*-cwd
+
+# runtime data
+memorias/*.json
+
 # misc
 .tmp.driveupload/
 nul
+*.log
