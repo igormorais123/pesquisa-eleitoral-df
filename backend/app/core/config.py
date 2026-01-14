@@ -4,11 +4,18 @@ Configurações do Sistema
 Carrega variáveis de ambiente e define configurações globais.
 """
 
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Configuracoes(BaseSettings):
     """Configurações da aplicação carregadas do .env"""
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=True,
+        extra="ignore",
+    )
 
     # API Claude - NUNCA expor publicamente
     CLAUDE_API_KEY: str = ""
@@ -30,12 +37,6 @@ class Configuracoes(BaseSettings):
 
     # Caminhos de dados
     CAMINHO_DADOS: str = "./data"
-
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
-        case_sensitive = True
-        extra = "ignore"
 
 
 # Instância global de configurações

@@ -7,7 +7,7 @@ Modelos Pydantic para validação e serialização de dados de eleitores.
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 # ============================================
 # ENUMS
@@ -134,10 +134,9 @@ class EleitorUpdate(BaseModel):
 class EleitorResponse(EleitorBase):
     """Resposta com dados completos do eleitor"""
 
-    id: str
+    model_config = ConfigDict(from_attributes=True)
 
-    class Config:
-        from_attributes = True
+    id: str
 
 
 # ============================================
