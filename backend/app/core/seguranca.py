@@ -4,8 +4,8 @@ Módulo de Segurança
 Implementa autenticação JWT e hash de senhas.
 """
 
-from datetime import datetime, timedelta
-from typing import Optional, Union
+from datetime import datetime, timedelta, timezone
+from typing import Any, Dict, Optional
 
 from jose import JWTError, jwt
 from passlib.context import CryptContext
@@ -67,22 +67,21 @@ def criar_token_acesso(dados: dict, expira_em: Optional[timedelta] = None) -> st
     """
     a_codificar = dados.copy()
 
+    agora = datetime.now(timezone.utc)
     if expira_em:
-        expiracao = datetime.utcnow() + expira_em
+        expiracao = agora + expira_em
     else:
-        expiracao = datetime.utcnow() + timedelta(
-            minutes=configuracoes.ACCESS_TOKEN_EXPIRE_MINUTES
-        )
+        expiracao = agora + timedelta(minutes=configuracoes.ACCESS_TOKEN_EXPIRE_MINUTES)
 
     a_codificar.update(
         {
             "exp": expiracao,
             "tipo": "access",
-            "iat": datetime.utcnow(),
+            "iat": agora,
         }
     )
 
-    token = jwt.encode(
+    token: str = jwt.encode(
         a_codificar, configuracoes.SECRET_KEY, algorithm=configuracoes.ALGORITHM
     )
 
@@ -100,9 +99,7 @@ def verificar_token(token: str) -> Optional[DadosToken]:
         DadosToken se válido, None caso contrário
     """
     try:
-        payload = jwt.decode(
-            token, configuracoes.SECRET_KEY, algorithms=[configuracoes.ALGORITHM]
-        )
+        payload = jwt.decode(token, configuracoes.SECRET_KEY, algorithms=[configuracoes.ALGORITHM])
 
         usuario_id: str = payload.get("sub")
         nome: str = payload.get("nome")
@@ -125,7 +122,7 @@ def verificar_token(token: str) -> Optional[DadosToken]:
 # Gerado com: gerar_hash_senha("professorigor")
 SENHA_HASH_TESTE = "$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/X4.O0lZ8LqWQKQJGe"
 
-USUARIO_TESTE = {
+USUARIO_TESTE: Dict[str, Any] = {
     "id": "user-001",
     "usuario": "professorigor",
     "nome": "Professor Igor",
@@ -153,7 +150,7 @@ def autenticar_usuario(usuario: str, senha: str) -> Optional[dict]:
 
     # Verificar senha
     # Para desenvolvimento, aceitar senha igual ao usuário
-    if senha == "professorigor" or verificar_senha(senha, USUARIO_TESTE["senha_hash"]):
+    if senha == "professorigor" or verificar_senha(senha, str(USUARIO_TESTE["senha_hash"])):
         return {
             "id": USUARIO_TESTE["id"],
             "usuario": USUARIO_TESTE["usuario"],
