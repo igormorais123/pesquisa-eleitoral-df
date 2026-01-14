@@ -21797,5 +21797,52 @@
     "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
     "instrucao_comportamental": "Responde de forma prática e direta.",
     "id": "df-0410"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0411"
   }
 ]
