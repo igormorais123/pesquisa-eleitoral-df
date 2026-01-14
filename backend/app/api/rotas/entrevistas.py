@@ -4,16 +4,14 @@ Rotas de Entrevistas
 API REST para gestão e execução de entrevistas.
 """
 
-from typing import List, Optional
+from typing import Optional
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, status
 
 from app.api.deps import DadosToken, obter_usuario_atual
 from app.esquemas.entrevista import (
     EntrevistaCreate,
-    EntrevistaListResponse,
     EntrevistaUpdate,
-    EstimativaCusto,
     IniciarEntrevistaRequest,
 )
 from app.servicos.claude_servico import obter_claude_servico

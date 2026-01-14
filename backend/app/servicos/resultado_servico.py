@@ -20,12 +20,12 @@ from app.servicos.entrevista_servico import obter_entrevista_servico
 class ResultadoServico:
     """Serviço para análise de resultados"""
 
-    def __init__(self, caminho_dados: str = None):
+    def __init__(self, caminho_dados: Optional[str] = None):
         if caminho_dados is None:
             base_path = Path(__file__).parent.parent.parent.parent
-            caminho_dados = base_path / "memorias" / "resultados.json"
-
-        self.caminho_dados = Path(caminho_dados)
+            self.caminho_dados = base_path / "memorias" / "resultados.json"
+        else:
+            self.caminho_dados = Path(caminho_dados)
         self._resultados: List[Dict[str, Any]] = []
         self._carregar_dados()
 
@@ -96,14 +96,10 @@ class ResultadoServico:
             "q2": valores_sorted[q2_idx],
             "q3": valores_sorted[q3_idx],
             "amplitude": max(valores) - min(valores),
-            "coeficiente_variacao": (
-                round((desvio_padrao / media) * 100, 2) if media != 0 else 0
-            ),
+            "coeficiente_variacao": (round((desvio_padrao / media) * 100, 2) if media != 0 else 0),
         }
 
-    def _calcular_distribuicao(
-        self, valores: List[Any], total: int
-    ) -> List[Dict[str, Any]]:
+    def _calcular_distribuicao(self, valores: List[Any], total: int) -> List[Dict[str, Any]]:
         """Calcula distribuição de valores"""
         contagem = Counter(valores)
         return [
@@ -117,7 +113,7 @@ class ResultadoServico:
 
     def _calcular_correlacao(
         self, x: List[float], y: List[float], var1: str, var2: str
-    ) -> Dict[str, Any]:
+    ) -> Optional[Dict[str, Any]]:
         """Calcula correlação de Pearson"""
         if len(x) != len(y) or len(x) < 3:
             return None
@@ -310,9 +306,7 @@ class ResultadoServico:
             # Limpar texto
             texto_limpo = re.sub(r"[^\w\s]", "", texto.lower())
             palavras = texto_limpo.split()
-            palavras_filtradas = [
-                p for p in palavras if len(p) > 2 and p not in stopwords
-            ]
+            palavras_filtradas = [p for p in palavras if len(p) > 2 and p not in stopwords]
             todas_palavras.extend(palavras_filtradas)
 
         total = len(todas_palavras)
@@ -425,7 +419,7 @@ class ResultadoServico:
         votos_silenciosos = []
 
         for resp in respostas:
-            eleitor_id = resp.get("eleitor_id")
+            eleitor_id = str(resp.get("eleitor_id", ""))
             eleitor = eleitores.get(eleitor_id, {})
 
             if not eleitor:
@@ -436,8 +430,7 @@ class ResultadoServico:
 
             # Indicadores de voto silencioso
             concordancia_economia = any(
-                p in texto
-                for p in ["economia", "emprego", "dinheiro", "melhorou", "funcionou"]
+                p in texto for p in ["economia", "emprego", "dinheiro", "melhorou", "funcionou"]
             )
 
             rejeicao_costumes = any(
@@ -454,9 +447,7 @@ class ResultadoServico:
 
             # Verificar se há contradição entre resposta e valores
             sentimento = fluxo.get("emocional", {}).get("sentimento_dominante", "")
-            tem_conflito = (
-                sentimento in ["ameaca", "indiferenca"] and concordancia_economia
-            )
+            tem_conflito = sentimento in ["ameaca", "indiferenca"] and concordancia_economia
 
             if concordancia_economia and (rejeicao_costumes or tem_conflito):
                 votos_silenciosos.append(
@@ -469,9 +460,7 @@ class ResultadoServico:
                         "concorda_economia": concordancia_economia,
                         "rejeita_costumes": rejeicao_costumes,
                         "probabilidade_voto_escondido": 75 if rejeicao_costumes else 50,
-                        "citacao_reveladora": (
-                            texto[:200] + "..." if len(texto) > 200 else texto
-                        ),
+                        "citacao_reveladora": (texto[:200] + "..." if len(texto) > 200 else texto),
                         "contradicoes_detectadas": [],
                         "interpretacao": "Concorda com política econômica mas rejeita pautas de costumes",
                     }
@@ -498,7 +487,7 @@ class ResultadoServico:
         ]
 
         for resp in respostas:
-            eleitor_id = resp.get("eleitor_id")
+            eleitor_id = str(resp.get("eleitor_id", ""))
             eleitor = eleitores.get(eleitor_id, {})
 
             if not eleitor:
@@ -526,9 +515,7 @@ class ResultadoServico:
                             medos_ativados[0] if medos_ativados else "Não identificado"
                         ),
                         "probabilidade_ruptura": 60 if tem_gatilho else 40,
-                        "citacao_reveladora": (
-                            texto[:200] + "..." if len(texto) > 200 else texto
-                        ),
+                        "citacao_reveladora": (texto[:200] + "..." if len(texto) > 200 else texto),
                         "valores_em_conflito": eleitor.get("valores", [])[:3],
                         "vulnerabilidade": "alta" if tem_gatilho else "media",
                         "estrategia_persuasao": None,
@@ -548,11 +535,11 @@ class ResultadoServico:
         agrupar_por: str = "religiao",
     ) -> Dict[str, Any]:
         """Gera mapa de calor emocional"""
-        grupos = {}
+        grupos: Dict[str, Dict[str, List[Dict[str, Any]]]] = {}
         sentimentos = ["seguranca", "ameaca", "indiferenca", "raiva", "esperanca"]
 
         for resp in respostas:
-            eleitor_id = resp.get("eleitor_id")
+            eleitor_id = str(resp.get("eleitor_id", ""))
             eleitor = eleitores.get(eleitor_id, {})
             grupo = eleitor.get(agrupar_por, "Outros")
 
@@ -560,9 +547,7 @@ class ResultadoServico:
                 grupos[grupo] = {s: [] for s in sentimentos}
 
             fluxo = resp.get("fluxo_cognitivo", {})
-            sentimento = fluxo.get("emocional", {}).get(
-                "sentimento_dominante", "indiferenca"
-            )
+            sentimento = fluxo.get("emocional", {}).get("sentimento_dominante", "indiferenca")
             intensidade = fluxo.get("emocional", {}).get("intensidade", 5)
 
             if sentimento in sentimentos:
@@ -578,9 +563,7 @@ class ResultadoServico:
         for grupo, sentimentos_data in grupos.items():
             for sentimento, items in sentimentos_data.items():
                 if items:
-                    intensidade_media = sum(i["intensidade"] for i in items) / len(
-                        items
-                    )
+                    intensidade_media = sum(i["intensidade"] for i in items) / len(items)
                     dados.append(
                         {
                             "grupo": grupo,
@@ -684,13 +667,9 @@ class ResultadoServico:
         resultado = self._resultados
 
         if entrevista_id:
-            resultado = [
-                r for r in resultado if r.get("entrevista_id") == entrevista_id
-            ]
+            resultado = [r for r in resultado if r.get("entrevista_id") == entrevista_id]
 
-        resultado = sorted(
-            resultado, key=lambda x: x.get("criado_em", ""), reverse=True
-        )
+        resultado = sorted(resultado, key=lambda x: x.get("criado_em", ""), reverse=True)
 
         total = len(resultado)
         total_paginas = math.ceil(total / por_pagina) if total > 0 else 1
@@ -742,9 +721,7 @@ class ResultadoServico:
         eleitores = {e["id"]: e for e in eleitores_lista}
 
         # Extrair textos
-        textos = [
-            r.get("resposta_texto", "") for r in respostas if r.get("resposta_texto")
-        ]
+        textos = [r.get("resposta_texto", "") for r in respostas if r.get("resposta_texto")]
 
         # Executar análises
         resultado_id = self._gerar_id()
@@ -786,7 +763,7 @@ class ResultadoServico:
         pontos_ruptura = self._identificar_pontos_ruptura(respostas, eleitores)
 
         # Correlações (simplificadas)
-        correlacoes = []
+        correlacoes: List[Dict[str, Any]] = []
 
         # Insights
         estatisticas_gerais = {
@@ -809,9 +786,7 @@ class ResultadoServico:
             "tempo_execucao_segundos": (datetime.now() - inicio).total_seconds(),
             "criado_em": datetime.now().isoformat(),
             # Qualitativo
-            "sentimento_geral": (
-                sent_counts.most_common(1)[0][0] if sent_counts else "neutro"
-            ),
+            "sentimento_geral": (sent_counts.most_common(1)[0][0] if sent_counts else "neutro"),
             "proporcao_sentimentos": {
                 "positivo": round(sent_counts.get("positivo", 0) / total_sent * 100, 1),
                 "negativo": round(sent_counts.get("negativo", 0) / total_sent * 100, 1),

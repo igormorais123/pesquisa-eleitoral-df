@@ -8,6 +8,7 @@ Correções baseadas em auditoria detalhada:
 - Piso de renda por profissão de topo
 - Validações extras
 """
+
 import json
 import random
 
@@ -19,16 +20,16 @@ random.seed(42)
 # Agora: (RA, quantidade) - cluster será probabilístico
 # Soma original dava 384, ajustado +16 nas maiores RAs proporcionalmente
 RAS = [
-    ("Ceilândia", 41),       # +2
-    ("Samambaia", 32),       # +2
-    ("Plano Piloto", 29),    # +2
-    ("Taguatinga", 28),      # +2
-    ("Planaltina", 27),      # +2
-    ("Gama", 21),            # +2
-    ("Águas Claras", 19),    # +1
-    ("Guará", 17),           # +1
-    ("Santa Maria", 17),     # +1
-    ("Recanto das Emas", 17),# +1
+    ("Ceilândia", 41),  # +2
+    ("Samambaia", 32),  # +2
+    ("Plano Piloto", 29),  # +2
+    ("Taguatinga", 28),  # +2
+    ("Planaltina", 27),  # +2
+    ("Gama", 21),  # +2
+    ("Águas Claras", 19),  # +1
+    ("Guará", 17),  # +1
+    ("Santa Maria", 17),  # +1
+    ("Recanto das Emas", 17),  # +1
     ("Sol Nascente/Pôr do Sol", 14),
     ("São Sebastião", 13),
     ("Vicente Pires", 13),
@@ -66,20 +67,22 @@ CLUSTER_POR_RA = {
     "Park Way": {"G1_alta": 85, "G2_media_alta": 15},
     "Sudoeste/Octogonal": {"G1_alta": 80, "G2_media_alta": 20},
     "Jardim Botânico": {"G1_alta": 70, "G2_media_alta": 25, "G3_media_baixa": 5},
-
     # G1/G2 misto
     "Águas Claras": {"G1_alta": 45, "G2_media_alta": 45, "G3_media_baixa": 10},
-
     # G2_media_alta predominante
     "Guará": {"G1_alta": 15, "G2_media_alta": 60, "G3_media_baixa": 25},
-    "Taguatinga": {"G1_alta": 10, "G2_media_alta": 50, "G3_media_baixa": 35, "G4_baixa": 5},
+    "Taguatinga": {
+        "G1_alta": 10,
+        "G2_media_alta": 50,
+        "G3_media_baixa": 35,
+        "G4_baixa": 5,
+    },
     "Vicente Pires": {"G1_alta": 20, "G2_media_alta": 55, "G3_media_baixa": 25},
     "Cruzeiro": {"G1_alta": 20, "G2_media_alta": 60, "G3_media_baixa": 20},
     "Sobradinho": {"G2_media_alta": 50, "G3_media_baixa": 40, "G4_baixa": 10},
     "Núcleo Bandeirante": {"G2_media_alta": 45, "G3_media_baixa": 45, "G4_baixa": 10},
     "Candangolândia": {"G2_media_alta": 40, "G3_media_baixa": 50, "G4_baixa": 10},
     "Arniqueira": {"G2_media_alta": 45, "G3_media_baixa": 45, "G4_baixa": 10},
-
     # G3_media_baixa predominante
     "Ceilândia": {"G2_media_alta": 10, "G3_media_baixa": 55, "G4_baixa": 35},
     "Samambaia": {"G2_media_alta": 10, "G3_media_baixa": 55, "G4_baixa": 35},
@@ -87,7 +90,6 @@ CLUSTER_POR_RA = {
     "Santa Maria": {"G2_media_alta": 5, "G3_media_baixa": 50, "G4_baixa": 45},
     "Sobradinho II": {"G2_media_alta": 15, "G3_media_baixa": 55, "G4_baixa": 30},
     "Riacho Fundo": {"G2_media_alta": 15, "G3_media_baixa": 55, "G4_baixa": 30},
-
     # G4_baixa predominante
     "Planaltina": {"G2_media_alta": 5, "G3_media_baixa": 25, "G4_baixa": 70},
     "Recanto das Emas": {"G3_media_baixa": 30, "G4_baixa": 70},
@@ -100,10 +102,10 @@ CLUSTER_POR_RA = {
     "SCIA/Estrutural": {"G3_media_baixa": 15, "G4_baixa": 85},
     "Fercal": {"G3_media_baixa": 20, "G4_baixa": 80},
     "Varjão": {"G3_media_baixa": 25, "G4_baixa": 75},
-
     # SIA - caso atípico (trabalhador que mora em kitnet funcional)
     "SIA": {"G3_media_baixa": 50, "G4_baixa": 50},
 }
+
 
 def sortear_cluster(ra):
     """Sorteia cluster baseado nas probabilidades da RA"""
@@ -112,30 +114,95 @@ def sortear_cluster(ra):
     pesos = list(probs.values())
     return random.choices(clusters, weights=pesos)[0]
 
+
 # ========================================
 # COTAS GLOBAIS (para validação e rebalanceamento)
 # ========================================
-COTAS_CLUSTER = {"G1_alta": 76, "G2_media_alta": 85, "G3_media_baixa": 126, "G4_baixa": 113}
+COTAS_CLUSTER = {
+    "G1_alta": 76,
+    "G2_media_alta": 85,
+    "G3_media_baixa": 126,
+    "G4_baixa": 113,
+}
 
 CLUSTER_RENDA = {
     "G1_alta": {"mais_de_5_ate_10": 8, "mais_de_10_ate_20": 45, "mais_de_20": 23},
-    "G2_media_alta": {"mais_de_1_ate_2": 6, "mais_de_2_ate_5": 29, "mais_de_5_ate_10": 41, "mais_de_10_ate_20": 9},
-    "G3_media_baixa": {"ate_1": 10, "mais_de_1_ate_2": 36, "mais_de_2_ate_5": 70, "mais_de_5_ate_10": 10},
-    "G4_baixa": {"ate_1": 22, "mais_de_1_ate_2": 42, "mais_de_2_ate_5": 32, "mais_de_5_ate_10": 17},
+    "G2_media_alta": {
+        "mais_de_1_ate_2": 6,
+        "mais_de_2_ate_5": 29,
+        "mais_de_5_ate_10": 41,
+        "mais_de_10_ate_20": 9,
+    },
+    "G3_media_baixa": {
+        "ate_1": 10,
+        "mais_de_1_ate_2": 36,
+        "mais_de_2_ate_5": 70,
+        "mais_de_5_ate_10": 10,
+    },
+    "G4_baixa": {
+        "ate_1": 22,
+        "mais_de_1_ate_2": 42,
+        "mais_de_2_ate_5": 32,
+        "mais_de_5_ate_10": 17,
+    },
 }
 
 CLUSTER_ESCOLARIDADE = {
-    "G1_alta": {"superior_completo_ou_pos": 64, "medio_completo_ou_sup_incompleto": 12, "fundamental_ou_sem_instrucao": 0},
-    "G2_media_alta": {"superior_completo_ou_pos": 52, "medio_completo_ou_sup_incompleto": 31, "fundamental_ou_sem_instrucao": 2},
-    "G3_media_baixa": {"superior_completo_ou_pos": 24, "medio_completo_ou_sup_incompleto": 82, "fundamental_ou_sem_instrucao": 20},
-    "G4_baixa": {"superior_completo_ou_pos": 8, "medio_completo_ou_sup_incompleto": 56, "fundamental_ou_sem_instrucao": 49},
+    "G1_alta": {
+        "superior_completo_ou_pos": 64,
+        "medio_completo_ou_sup_incompleto": 12,
+        "fundamental_ou_sem_instrucao": 0,
+    },
+    "G2_media_alta": {
+        "superior_completo_ou_pos": 52,
+        "medio_completo_ou_sup_incompleto": 31,
+        "fundamental_ou_sem_instrucao": 2,
+    },
+    "G3_media_baixa": {
+        "superior_completo_ou_pos": 24,
+        "medio_completo_ou_sup_incompleto": 82,
+        "fundamental_ou_sem_instrucao": 20,
+    },
+    "G4_baixa": {
+        "superior_completo_ou_pos": 8,
+        "medio_completo_ou_sup_incompleto": 56,
+        "fundamental_ou_sem_instrucao": 49,
+    },
 }
 
 CLUSTER_RELIGIAO = {
-    "G1_alta": {"catolica": 28, "evangelica": 10, "sem_religiao": 18, "espirita": 6, "umbanda_candomble": 1, "outras_religioes": 13},
-    "G2_media_alta": {"catolica": 41, "evangelica": 20, "sem_religiao": 12, "espirita": 5, "umbanda_candomble": 1, "outras_religioes": 6},
-    "G3_media_baixa": {"catolica": 68, "evangelica": 47, "sem_religiao": 7, "espirita": 1, "umbanda_candomble": 1, "outras_religioes": 2},
-    "G4_baixa": {"catolica": 62, "evangelica": 40, "sem_religiao": 8, "espirita": 1, "umbanda_candomble": 1, "outras_religioes": 1},
+    "G1_alta": {
+        "catolica": 28,
+        "evangelica": 10,
+        "sem_religiao": 18,
+        "espirita": 6,
+        "umbanda_candomble": 1,
+        "outras_religioes": 13,
+    },
+    "G2_media_alta": {
+        "catolica": 41,
+        "evangelica": 20,
+        "sem_religiao": 12,
+        "espirita": 5,
+        "umbanda_candomble": 1,
+        "outras_religioes": 6,
+    },
+    "G3_media_baixa": {
+        "catolica": 68,
+        "evangelica": 47,
+        "sem_religiao": 7,
+        "espirita": 1,
+        "umbanda_candomble": 1,
+        "outras_religioes": 2,
+    },
+    "G4_baixa": {
+        "catolica": 62,
+        "evangelica": 40,
+        "sem_religiao": 8,
+        "espirita": 1,
+        "umbanda_candomble": 1,
+        "outras_religioes": 1,
+    },
 }
 
 COTAS_GENERO = {"feminino": 217, "masculino": 183}
@@ -147,33 +214,90 @@ COTA_ESCOLARIDADE_SUPERIOR = 148  # Meta: 37%
 # METRÔ E LOCAIS DE REFERÊNCIA
 # ========================================
 RAS_COM_METRO = {
-    "Águas Claras", "Taguatinga", "Ceilândia",
-    "Samambaia", "Guará", "Plano Piloto",
+    "Águas Claras",
+    "Taguatinga",
+    "Ceilândia",
+    "Samambaia",
+    "Guará",
+    "Plano Piloto",
 }
 
 LOCAIS_REFERENCIA = {
-    "Ceilândia": ["perto do P Sul", "na Guariroba", "no Setor O", "na QNM", "na QNN", "perto da Hélio Prates"],
-    "Samambaia": ["na QR", "perto da Feira", "no Setor de Mansões", "na QS", "perto do terminal"],
-    "Plano Piloto": ["nas quadras 400 Norte", "na W3 Sul", "perto do Parque da Cidade", "na Asa Norte", "na Asa Sul"],
-    "Taguatinga": ["no Centro", "na QSC", "perto do Taguaparque", "na QSD", "na Avenida Comercial"],
-    "Planaltina": ["no Setor Tradicional", "na Vila Buritis", "no Arapoanga", "perto da praça"],
+    "Ceilândia": [
+        "perto do P Sul",
+        "na Guariroba",
+        "no Setor O",
+        "na QNM",
+        "na QNN",
+        "perto da Hélio Prates",
+    ],
+    "Samambaia": [
+        "na QR",
+        "perto da Feira",
+        "no Setor de Mansões",
+        "na QS",
+        "perto do terminal",
+    ],
+    "Plano Piloto": [
+        "nas quadras 400 Norte",
+        "na W3 Sul",
+        "perto do Parque da Cidade",
+        "na Asa Norte",
+        "na Asa Sul",
+    ],
+    "Taguatinga": [
+        "no Centro",
+        "na QSC",
+        "perto do Taguaparque",
+        "na QSD",
+        "na Avenida Comercial",
+    ],
+    "Planaltina": [
+        "no Setor Tradicional",
+        "na Vila Buritis",
+        "no Arapoanga",
+        "perto da praça",
+    ],
     "Gama": ["no Setor Leste", "no Setor Oeste", "perto do DVO", "na Ponte Alta"],
-    "Águas Claras": ["perto do metrô", "na Avenida das Araucárias", "no Norte", "no Sul"],
+    "Águas Claras": [
+        "perto do metrô",
+        "na Avenida das Araucárias",
+        "no Norte",
+        "no Sul",
+    ],
     "Guará": ["no Guará I", "no Guará II", "perto do Park Shopping", "na QE"],
-    "Santa Maria": ["no Centro", "na QR", "perto do terminal", "no Condomínio Porto Rico"],
+    "Santa Maria": [
+        "no Centro",
+        "na QR",
+        "perto do terminal",
+        "no Condomínio Porto Rico",
+    ],
     "Recanto das Emas": ["na QR", "perto da feira", "no Vargem da Bênção"],
-    "Sol Nascente/Pôr do Sol": ["no Trecho 1", "no Trecho 2", "no Trecho 3", "perto da escola"],
+    "Sol Nascente/Pôr do Sol": [
+        "no Trecho 1",
+        "no Trecho 2",
+        "no Trecho 3",
+        "perto da escola",
+    ],
     "São Sebastião": ["no Centro", "no Bairro São José", "no Morro da Cruz"],
     "Vicente Pires": ["na Rua 3", "na Rua 8", "na Rua 12", "perto do Jóquei"],
     "Sobradinho II": ["perto da feira", "no AR 10", "na quadra central"],
-    "Jardim Botânico": ["nos condomínios", "perto do Jardim Botânico", "no São Bartolomeu"],
+    "Jardim Botânico": [
+        "nos condomínios",
+        "perto do Jardim Botânico",
+        "no São Bartolomeu",
+    ],
     "Sobradinho": ["no Centro", "perto da rodoviária", "na quadra 8"],
     "Riacho Fundo II": ["na QC", "na QN", "perto do terminal"],
     "Itapoã": ["na Del Lago", "no Itapoã I", "no Itapoã II"],
     "Paranoá": ["no Paranoá Velho", "no Paranoá Novo", "perto do lago"],
     "Brazlândia": ["no Centro", "no Setor Tradicional", "perto da Vila São José"],
     "Sudoeste/Octogonal": ["no Sudoeste", "na Octogonal", "perto do Parque da Cidade"],
-    "Arniqueira": ["perto do Pistão Sul", "na Colônia Agrícola", "no setor de chácaras"],
+    "Arniqueira": [
+        "perto do Pistão Sul",
+        "na Colônia Agrícola",
+        "no setor de chácaras",
+    ],
     "Riacho Fundo": ["no Centro", "perto do terminal", "na QN"],
     "SCIA/Estrutural": ["na Cidade Estrutural", "no SCIA", "perto do aterro"],
     "Lago Norte": ["no MI", "perto do Pontão", "na QL"],
@@ -191,29 +315,149 @@ LOCAIS_REFERENCIA = {
 # NOMES COM ACENTUAÇÃO CORRETA
 # ========================================
 NOMES_F = [
-    "Maria", "Ana", "Francisca", "Adriana", "Juliana", "Fernanda", "Patrícia", "Aline",
-    "Sandra", "Camila", "Amanda", "Bruna", "Jéssica", "Letícia", "Luciana", "Vanessa",
-    "Carla", "Renata", "Daniela", "Simone", "Cláudia", "Vera", "Rosa", "Rita", "Tereza",
-    "Lúcia", "Helena", "Marta", "Sílvia", "Ângela", "Beatriz", "Larissa", "Priscila",
-    "Rafaela", "Natália", "Carolina", "Gabriela", "Viviane", "Michele", "Débora", "Raquel",
-    "Flávia", "Paula", "Aparecida", "Joana", "Marlene", "Sônia", "Regina", "Gisele", "Mariana"
+    "Maria",
+    "Ana",
+    "Francisca",
+    "Adriana",
+    "Juliana",
+    "Fernanda",
+    "Patrícia",
+    "Aline",
+    "Sandra",
+    "Camila",
+    "Amanda",
+    "Bruna",
+    "Jéssica",
+    "Letícia",
+    "Luciana",
+    "Vanessa",
+    "Carla",
+    "Renata",
+    "Daniela",
+    "Simone",
+    "Cláudia",
+    "Vera",
+    "Rosa",
+    "Rita",
+    "Tereza",
+    "Lúcia",
+    "Helena",
+    "Marta",
+    "Sílvia",
+    "Ângela",
+    "Beatriz",
+    "Larissa",
+    "Priscila",
+    "Rafaela",
+    "Natália",
+    "Carolina",
+    "Gabriela",
+    "Viviane",
+    "Michele",
+    "Débora",
+    "Raquel",
+    "Flávia",
+    "Paula",
+    "Aparecida",
+    "Joana",
+    "Marlene",
+    "Sônia",
+    "Regina",
+    "Gisele",
+    "Mariana",
 ]
 
 NOMES_M = [
-    "José", "João", "Antônio", "Francisco", "Carlos", "Paulo", "Pedro", "Lucas",
-    "Luiz", "Marcos", "Gabriel", "Rafael", "Daniel", "Marcelo", "Bruno", "Eduardo",
-    "Felipe", "Rodrigo", "Geraldo", "Luís", "Jorge", "André", "Fernando", "Roberto",
-    "Sérgio", "Leandro", "Ricardo", "Fábio", "Alex", "Diego", "Thiago", "Mateus",
-    "Gustavo", "Leonardo", "Vinícius", "Anderson", "Henrique", "Wagner", "Willian",
-    "Wellington", "Rogério", "Gilberto", "Samuel", "Davi", "Caio", "Arthur", "Miguel"
+    "José",
+    "João",
+    "Antônio",
+    "Francisco",
+    "Carlos",
+    "Paulo",
+    "Pedro",
+    "Lucas",
+    "Luiz",
+    "Marcos",
+    "Gabriel",
+    "Rafael",
+    "Daniel",
+    "Marcelo",
+    "Bruno",
+    "Eduardo",
+    "Felipe",
+    "Rodrigo",
+    "Geraldo",
+    "Luís",
+    "Jorge",
+    "André",
+    "Fernando",
+    "Roberto",
+    "Sérgio",
+    "Leandro",
+    "Ricardo",
+    "Fábio",
+    "Alex",
+    "Diego",
+    "Thiago",
+    "Mateus",
+    "Gustavo",
+    "Leonardo",
+    "Vinícius",
+    "Anderson",
+    "Henrique",
+    "Wagner",
+    "Willian",
+    "Wellington",
+    "Rogério",
+    "Gilberto",
+    "Samuel",
+    "Davi",
+    "Caio",
+    "Arthur",
+    "Miguel",
 ]
 
 SOBRENOMES = [
-    "Silva", "Santos", "Oliveira", "Souza", "Rodrigues", "Ferreira", "Alves", "Pereira",
-    "Lima", "Gomes", "Costa", "Ribeiro", "Martins", "Carvalho", "Almeida", "Lopes",
-    "Soares", "Fernandes", "Vieira", "Barbosa", "Rocha", "Dias", "Nascimento", "Andrade",
-    "Moreira", "Nunes", "Marques", "Machado", "Mendes", "Freitas", "Cardoso", "Ramos",
-    "Gonçalves", "Santana", "Teixeira", "Araújo", "Pinto", "Correia", "Campos", "Borges"
+    "Silva",
+    "Santos",
+    "Oliveira",
+    "Souza",
+    "Rodrigues",
+    "Ferreira",
+    "Alves",
+    "Pereira",
+    "Lima",
+    "Gomes",
+    "Costa",
+    "Ribeiro",
+    "Martins",
+    "Carvalho",
+    "Almeida",
+    "Lopes",
+    "Soares",
+    "Fernandes",
+    "Vieira",
+    "Barbosa",
+    "Rocha",
+    "Dias",
+    "Nascimento",
+    "Andrade",
+    "Moreira",
+    "Nunes",
+    "Marques",
+    "Machado",
+    "Mendes",
+    "Freitas",
+    "Cardoso",
+    "Ramos",
+    "Gonçalves",
+    "Santana",
+    "Teixeira",
+    "Araújo",
+    "Pinto",
+    "Correia",
+    "Campos",
+    "Borges",
 ]
 
 # ========================================
@@ -234,7 +478,12 @@ PROFISSOES = {
             ("Economista", "clt", 24, "mais_de_5_ate_10"),
             ("Arquiteto(a)", "autonomo", 24, "mais_de_5_ate_10"),
             ("Analista Judiciário", "servidor_publico", 24, "mais_de_10_ate_20"),
-            ("Professor(a) Universitário(a)", "servidor_publico", 28, "mais_de_10_ate_20"),
+            (
+                "Professor(a) Universitário(a)",
+                "servidor_publico",
+                28,
+                "mais_de_10_ate_20",
+            ),
             ("Administrador(a) de Empresas", "clt", 24, "mais_de_5_ate_10"),
             ("Contador(a)", "autonomo", 24, "mais_de_5_ate_10"),
             ("Analista de Sistemas", "clt", 24, "mais_de_5_ate_10"),
@@ -250,7 +499,7 @@ PROFISSOES = {
             ("Estudante Universitário(a)", "estudante", 18, None),
             ("Assistente Administrativo", "clt", 19, None),
             ("Gerente Comercial", "clt", 25, "mais_de_5_ate_10"),
-        ]
+        ],
     },
     "G2_media_alta": {
         "superior_completo_ou_pos": [
@@ -285,7 +534,7 @@ PROFISSOES = {
         "fundamental_ou_sem_instrucao": [
             ("Porteiro(a)", "clt", 18, None),
             ("Zelador(a)", "clt", 18, None),
-        ]
+        ],
     },
     "G3_media_baixa": {
         "superior_completo_ou_pos": [
@@ -331,7 +580,7 @@ PROFISSOES = {
             ("Cuidador(a) de Idosos", "informal", 20, None),
             ("Empregado(a) Doméstico(a)", "clt", 18, None),
             ("Jardineiro(a)", "autonomo", 18, None),
-        ]
+        ],
     },
     "G4_baixa": {
         "superior_completo_ou_pos": [
@@ -377,8 +626,8 @@ PROFISSOES = {
             ("Feirante", "autonomo", 18, None),
             ("Gari", "clt", 18, None),
             ("Ajudante Geral", "informal", 16, None),
-        ]
-    }
+        ],
+    },
 }
 
 # ========================================
@@ -397,7 +646,7 @@ CRENCAS_POLITICAS = {
             "que 'bandido bom é bandido morto'",
             "que 'imposto é roubo'",
             "que 'o Brasil tá virando uma Venezuela'",
-        ]
+        ],
     },
     "centro-direita": {
         "moderadas": [
@@ -409,7 +658,7 @@ CRENCAS_POLITICAS = {
         "fortes": [
             "que servidor público ganha demais",
             "que sindicato só atrapalha",
-        ]
+        ],
     },
     "centro": {
         "moderadas": [
@@ -421,7 +670,7 @@ CRENCAS_POLITICAS = {
         "fortes": [
             "que extremismo dos dois lados é igual",
             "que brasileiro não sabe votar",
-        ]
+        ],
     },
     "centro-esquerda": {
         "moderadas": [
@@ -433,7 +682,7 @@ CRENCAS_POLITICAS = {
         "fortes": [
             "que a mídia manipula a opinião das pessoas",
             "que o sistema favorece os ricos",
-        ]
+        ],
     },
     "esquerda": {
         "moderadas": [
@@ -446,9 +695,10 @@ CRENCAS_POLITICAS = {
             "que a elite não quer ver o pobre subir",
             "que existe uma perseguição aos movimentos sociais",
             "que o golpe de 2016 destruiu o país",
-        ]
-    }
+        ],
+    },
 }
+
 
 def escolher_crenca(orientacao):
     """Escolhe crença: 75% moderada, 25% forte"""
@@ -456,6 +706,7 @@ def escolher_crenca(orientacao):
     if random.random() < 0.75:
         return random.choice(crencas["moderadas"])
     return random.choice(crencas["fortes"])
+
 
 # ========================================
 # EVENTOS FORMADORES CONDICIONAIS
@@ -498,7 +749,7 @@ EVENTOS_BASE = {
         "trabalhar na roça desde criança",
         "sobreviver de bicos desde sempre",
         "conseguir a casa pelo programa habitacional após anos de espera",
-    ]
+    ],
 }
 
 # Eventos que requerem condições específicas
@@ -506,6 +757,7 @@ EVENTO_CRIAR_FILHOS_SOZINHO = "criar os filhos sozinho(a) após separação"
 EVENTO_MIGRAR_NORDESTE = "migrar do Nordeste em busca de vida melhor"
 EVENTO_ANOS_80_90 = "ver os pais perderem tudo na hiperinflação dos anos 80"
 EVENTO_ANOS_90_FAMILIA = "chegar em Brasília com a família nos anos 90"
+
 
 def filtrar_eventos(cluster, idade, estado_civil, filhos, genero):
     """
@@ -517,7 +769,11 @@ def filtrar_eventos(cluster, idade, estado_civil, filhos, genero):
     # Adicionar eventos condicionais que fazem sentido
 
     # "Criar filhos sozinho(a)" só para: tem filhos + não casado + idade >= 25
-    if filhos > 0 and estado_civil in ["solteiro(a)", "divorciado(a)", "viuvo(a)"] and idade >= 25:
+    if (
+        filhos > 0
+        and estado_civil in ["solteiro(a)", "divorciado(a)", "viuvo(a)"]
+        and idade >= 25
+    ):
         eventos.append(EVENTO_CRIAR_FILHOS_SOZINHO)
 
     # "Migrar do Nordeste" mais comum em G3/G4, idade >= 25
@@ -532,6 +788,7 @@ def filtrar_eventos(cluster, idade, estado_civil, filhos, genero):
         eventos.append(EVENTO_ANOS_90_FAMILIA)
 
     return eventos
+
 
 # ========================================
 # ORIGEM CONDICIONAL POR IDADE
@@ -551,7 +808,7 @@ def escolher_origem(ra, cluster, idade, local_ref):
     elif idade < 40:
         opcoes = [
             f"mora em {ra} desde os anos 2000",
-            f"chegou ao DF no começo da vida adulta",
+            "chegou ao DF no começo da vida adulta",
             f"vive {local_ref} há mais de 10 anos",
             f"se estabeleceu em {ra} depois de casar",
             f"mora em {ra} desde que começou a trabalhar",
@@ -560,14 +817,14 @@ def escolher_origem(ra, cluster, idade, local_ref):
         opcoes = [
             f"mora em {ra} há mais de 15 anos",
             f"viu {ra} crescer e mudar com o tempo",
-            f"chegou em Brasília nos anos 90",
+            "chegou em Brasília nos anos 90",
             f"se mudou para {ra} quando casou",
             f"acompanhou a transformação de {ra}",
         ]
     else:
         opcoes = [
             f"mora em {ra} há mais de 20 anos",
-            f"chegou em Brasília com a família nos anos 80",
+            "chegou em Brasília com a família nos anos 80",
             f"viu {ra} nascer e crescer",
             f"é um dos moradores mais antigos de {ra}",
             f"acompanhou toda a história de {ra}",
@@ -579,12 +836,27 @@ def escolher_origem(ra, cluster, idade, local_ref):
 
     return random.choice(opcoes)
 
+
 # ========================================
 # GERAÇÃO DE HISTÓRIA NARRATIVA (CORRIGIDA)
 # ========================================
-def gerar_historia_narrativa(nome, idade, genero, ra, cluster, profissao, vinculo,
-                             escolaridade, religiao, orientacao, estado_civil, filhos,
-                             posicao_bolsonaro, renda, local_ref):
+def gerar_historia_narrativa(
+    nome,
+    idade,
+    genero,
+    ra,
+    cluster,
+    profissao,
+    vinculo,
+    escolaridade,
+    religiao,
+    orientacao,
+    estado_civil,
+    filhos,
+    posicao_bolsonaro,
+    renda,
+    local_ref,
+):
     """
     Gera história narrativa com validações para evitar contradições.
     """
@@ -638,11 +910,12 @@ def gerar_historia_narrativa(nome, idade, genero, ra, cluster, profissao, vincul
 
     # Nota sobre Bolsonaro se muito engajado
     if posicao_bolsonaro == "apoiador_forte":
-        historia += f" É eleitor(a) fiel de Bolsonaro."
+        historia += " É eleitor(a) fiel de Bolsonaro."
     elif posicao_bolsonaro == "critico_forte":
-        historia += f" É crítico(a) ferrenho(a) de Bolsonaro."
+        historia += " É crítico(a) ferrenho(a) de Bolsonaro."
 
     return historia
+
 
 # ========================================
 # SUSCEPTIBILIDADE
@@ -655,7 +928,15 @@ def calcular_susceptibilidade(escolaridade, fontes, idade, interesse_politico):
     elif escolaridade == "fundamental_ou_sem_instrucao":
         base += 2.0
 
-    fontes_serias = ["Folha", "Estadão", "G1", "Globo News", "Correio Braziliense", "Metrópoles", "CNN Brasil"]
+    fontes_serias = [
+        "Folha",
+        "Estadão",
+        "G1",
+        "Globo News",
+        "Correio Braziliense",
+        "Metrópoles",
+        "CNN Brasil",
+    ]
     fontes_risco = ["TikTok", "WhatsApp", "Kwai", "Facebook"]
 
     qtd_serias = sum(1 for f in fontes if any(s in f for s in fontes_serias))
@@ -674,18 +955,43 @@ def calcular_susceptibilidade(escolaridade, fontes, idade, interesse_politico):
 
     return min(10, max(1, round(base + random.uniform(-0.5, 0.5))))
 
+
 # ========================================
 # ORIENTAÇÃO POLÍTICA E BOLSONARO
 # ========================================
 def gerar_orientacao_politica(cluster, religiao):
     if cluster == "G1_alta":
-        pesos = {"esquerda": 12, "centro-esquerda": 18, "centro": 25, "centro-direita": 28, "direita": 17}
+        pesos = {
+            "esquerda": 12,
+            "centro-esquerda": 18,
+            "centro": 25,
+            "centro-direita": 28,
+            "direita": 17,
+        }
     elif cluster == "G2_media_alta":
-        pesos = {"esquerda": 10, "centro-esquerda": 18, "centro": 26, "centro-direita": 30, "direita": 16}
+        pesos = {
+            "esquerda": 10,
+            "centro-esquerda": 18,
+            "centro": 26,
+            "centro-direita": 30,
+            "direita": 16,
+        }
     elif cluster == "G3_media_baixa":
-        pesos = {"esquerda": 16, "centro-esquerda": 22, "centro": 24, "centro-direita": 22, "direita": 16}
+        pesos = {
+            "esquerda": 16,
+            "centro-esquerda": 22,
+            "centro": 24,
+            "centro-direita": 22,
+            "direita": 16,
+        }
     else:
-        pesos = {"esquerda": 18, "centro-esquerda": 22, "centro": 22, "centro-direita": 20, "direita": 18}
+        pesos = {
+            "esquerda": 18,
+            "centro-esquerda": 22,
+            "centro": 22,
+            "centro-direita": 20,
+            "direita": 18,
+        }
 
     if religiao == "evangelica":
         pesos["direita"] = int(pesos["direita"] * 1.6)
@@ -701,17 +1007,48 @@ def gerar_orientacao_politica(cluster, religiao):
     weights = [max(1, w) for w in pesos.values()]
     return random.choices(opcoes, weights=weights)[0]
 
+
 def gerar_posicao_bolsonaro(cluster, religiao, orientacao, idade):
     if orientacao == "direita":
-        pesos = {"apoiador_forte": 70, "apoiador_moderado": 25, "neutro": 4, "critico_moderado": 1, "critico_forte": 0}
+        pesos = {
+            "apoiador_forte": 70,
+            "apoiador_moderado": 25,
+            "neutro": 4,
+            "critico_moderado": 1,
+            "critico_forte": 0,
+        }
     elif orientacao == "centro-direita":
-        pesos = {"apoiador_forte": 30, "apoiador_moderado": 50, "neutro": 15, "critico_moderado": 4, "critico_forte": 1}
+        pesos = {
+            "apoiador_forte": 30,
+            "apoiador_moderado": 50,
+            "neutro": 15,
+            "critico_moderado": 4,
+            "critico_forte": 1,
+        }
     elif orientacao == "centro":
-        pesos = {"apoiador_forte": 12, "apoiador_moderado": 30, "neutro": 35, "critico_moderado": 18, "critico_forte": 5}
+        pesos = {
+            "apoiador_forte": 12,
+            "apoiador_moderado": 30,
+            "neutro": 35,
+            "critico_moderado": 18,
+            "critico_forte": 5,
+        }
     elif orientacao == "centro-esquerda":
-        pesos = {"apoiador_forte": 3, "apoiador_moderado": 10, "neutro": 22, "critico_moderado": 40, "critico_forte": 25}
+        pesos = {
+            "apoiador_forte": 3,
+            "apoiador_moderado": 10,
+            "neutro": 22,
+            "critico_moderado": 40,
+            "critico_forte": 25,
+        }
     else:
-        pesos = {"apoiador_forte": 1, "apoiador_moderado": 3, "neutro": 8, "critico_moderado": 28, "critico_forte": 60}
+        pesos = {
+            "apoiador_forte": 1,
+            "apoiador_moderado": 3,
+            "neutro": 8,
+            "critico_moderado": 28,
+            "critico_forte": 60,
+        }
 
     if religiao == "evangelica":
         pesos["apoiador_forte"] = int(pesos["apoiador_forte"] * 1.4)
@@ -722,24 +1059,98 @@ def gerar_posicao_bolsonaro(cluster, religiao, orientacao, idade):
     weights = [max(1, w) for w in pesos.values()]
     return random.choices(opcoes, weights=weights)[0]
 
+
 # ========================================
 # VALORES E PREOCUPAÇÕES
 # ========================================
 VALORES = {
-    "esquerda": ["Justiça social", "Igualdade", "Direitos trabalhistas", "Educação pública", "Saúde pública", "Diversidade", "Democracia"],
-    "centro-esquerda": ["Educação de qualidade", "Saúde universal", "Sustentabilidade", "Desenvolvimento social", "Democracia", "Ciência"],
-    "centro": ["Equilíbrio", "Estabilidade", "Eficiência", "Pragmatismo", "Ordem", "Responsabilidade fiscal"],
-    "centro-direita": ["Família", "Trabalho", "Livre iniciativa", "Segurança", "Meritocracia", "Empreendedorismo"],
-    "direita": ["Família tradicional", "Fé", "Liberdade econômica", "Pátria", "Propriedade", "Segurança", "Ordem"]
+    "esquerda": [
+        "Justiça social",
+        "Igualdade",
+        "Direitos trabalhistas",
+        "Educação pública",
+        "Saúde pública",
+        "Diversidade",
+        "Democracia",
+    ],
+    "centro-esquerda": [
+        "Educação de qualidade",
+        "Saúde universal",
+        "Sustentabilidade",
+        "Desenvolvimento social",
+        "Democracia",
+        "Ciência",
+    ],
+    "centro": [
+        "Equilíbrio",
+        "Estabilidade",
+        "Eficiência",
+        "Pragmatismo",
+        "Ordem",
+        "Responsabilidade fiscal",
+    ],
+    "centro-direita": [
+        "Família",
+        "Trabalho",
+        "Livre iniciativa",
+        "Segurança",
+        "Meritocracia",
+        "Empreendedorismo",
+    ],
+    "direita": [
+        "Família tradicional",
+        "Fé",
+        "Liberdade econômica",
+        "Pátria",
+        "Propriedade",
+        "Segurança",
+        "Ordem",
+    ],
 }
 
 PREOCUPACOES = {
-    "esquerda": ["Desigualdade social", "Desemprego", "Fome", "Acesso à saúde", "Precarização do trabalho", "Racismo"],
-    "centro-esquerda": ["Qualidade do ensino", "Filas na saúde", "Mobilidade urbana", "Corrupção", "Desigualdade"],
-    "centro": ["Inflação", "Custo de vida", "Segurança", "Saúde", "Educação", "Emprego", "Corrupção"],
-    "centro-direita": ["Segurança", "Impostos", "Burocracia", "Criminalidade", "Corrupção", "Ineficiência estatal"],
-    "direita": ["Criminalidade", "Corrupção", "Drogas", "Impostos", "Insegurança", "Degradação moral"]
+    "esquerda": [
+        "Desigualdade social",
+        "Desemprego",
+        "Fome",
+        "Acesso à saúde",
+        "Precarização do trabalho",
+        "Racismo",
+    ],
+    "centro-esquerda": [
+        "Qualidade do ensino",
+        "Filas na saúde",
+        "Mobilidade urbana",
+        "Corrupção",
+        "Desigualdade",
+    ],
+    "centro": [
+        "Inflação",
+        "Custo de vida",
+        "Segurança",
+        "Saúde",
+        "Educação",
+        "Emprego",
+        "Corrupção",
+    ],
+    "centro-direita": [
+        "Segurança",
+        "Impostos",
+        "Burocracia",
+        "Criminalidade",
+        "Corrupção",
+        "Ineficiência estatal",
+    ],
+    "direita": [
+        "Criminalidade",
+        "Corrupção",
+        "Drogas",
+        "Impostos",
+        "Insegurança",
+        "Degradação moral",
+    ],
 }
+
 
 # ========================================
 # MEDOS COERENTES COM VÍNCULO
@@ -747,8 +1158,17 @@ PREOCUPACOES = {
 def gerar_medos(cluster, orientacao, vinculo):
     medos_base = {
         "G1_alta": ["Violência urbana", "Crise econômica", "Instabilidade política"],
-        "G2_media_alta": ["Perder o emprego", "Violência", "Inflação", "Perder plano de saúde"],
-        "G3_media_baixa": ["Violência", "Doença sem atendimento", "Não conseguir pagar as contas"],
+        "G2_media_alta": [
+            "Perder o emprego",
+            "Violência",
+            "Inflação",
+            "Perder plano de saúde",
+        ],
+        "G3_media_baixa": [
+            "Violência",
+            "Doença sem atendimento",
+            "Não conseguir pagar as contas",
+        ],
         "G4_baixa": ["Fome", "Despejo", "Violência", "Ficar sem luz/água"],
     }
 
@@ -785,6 +1205,7 @@ def gerar_medos(cluster, orientacao, vinculo):
 
     return random.sample(list(set(medos)), min(3, len(medos)))
 
+
 # ========================================
 # FONTES DE INFORMAÇÃO
 # ========================================
@@ -792,17 +1213,35 @@ def gerar_fontes_informacao(cluster, idade, escolaridade):
     fontes = []
 
     if cluster in ["G1_alta", "G2_media_alta"]:
-        tv = random.choices(["Jornal Nacional", "Globo News", "CNN Brasil", "Jovem Pan News", "Band News"], weights=[30, 25, 15, 20, 10])[0]
+        tv = random.choices(
+            [
+                "Jornal Nacional",
+                "Globo News",
+                "CNN Brasil",
+                "Jovem Pan News",
+                "Band News",
+            ],
+            weights=[30, 25, 15, 20, 10],
+        )[0]
     else:
-        tv = random.choices(["Jornal Nacional", "Cidade Alerta", "Balanço Geral", "SBT Brasil", "DFTV"], weights=[25, 25, 20, 15, 15])[0]
+        tv = random.choices(
+            ["Jornal Nacional", "Cidade Alerta", "Balanço Geral", "SBT Brasil", "DFTV"],
+            weights=[25, 25, 20, 15, 15],
+        )[0]
     fontes.append(tv)
 
     if idade < 30:
-        rede = random.choices(["Instagram", "TikTok", "YouTube", "Twitter/X"], weights=[35, 30, 25, 10])[0]
+        rede = random.choices(
+            ["Instagram", "TikTok", "YouTube", "Twitter/X"], weights=[35, 30, 25, 10]
+        )[0]
     elif idade < 50:
-        rede = random.choices(["Instagram", "Facebook", "YouTube", "Twitter/X"], weights=[35, 25, 30, 10])[0]
+        rede = random.choices(
+            ["Instagram", "Facebook", "YouTube", "Twitter/X"], weights=[35, 25, 30, 10]
+        )[0]
     else:
-        rede = random.choices(["Facebook", "YouTube", "Instagram", "Nenhuma"], weights=[40, 30, 15, 15])[0]
+        rede = random.choices(
+            ["Facebook", "YouTube", "Instagram", "Nenhuma"], weights=[40, 30, 15, 15]
+        )[0]
     if rede != "Nenhuma":
         fontes.append(rede)
 
@@ -821,10 +1260,20 @@ def gerar_fontes_informacao(cluster, idade, escolaridade):
 
     return fontes
 
+
 # ========================================
 # VIESES COGNITIVOS
 # ========================================
-VIESES = ["confirmacao", "disponibilidade", "grupo", "autoridade", "aversao_perda", "tribalismo", "desconfianca_institucional"]
+VIESES = [
+    "confirmacao",
+    "disponibilidade",
+    "grupo",
+    "autoridade",
+    "aversao_perda",
+    "tribalismo",
+    "desconfianca_institucional",
+]
+
 
 def gerar_vieses(interesse_politico):
     if interesse_politico == "baixo":
@@ -835,20 +1284,29 @@ def gerar_vieses(interesse_politico):
         num = random.randint(2, 4)
 
     vieses = ["confirmacao"]
-    vieses.extend(random.sample([v for v in VIESES if v != "confirmacao"], min(num - 1, len(VIESES) - 1)))
+    vieses.extend(
+        random.sample(
+            [v for v in VIESES if v != "confirmacao"], min(num - 1, len(VIESES) - 1)
+        )
+    )
     return vieses[:num]
+
 
 # ========================================
 # INSTRUÇÃO COMPORTAMENTAL
 # ========================================
-def gerar_instrucao_comportamental(interesse_politico, tolerancia_nuance, estilo_decisao):
+def gerar_instrucao_comportamental(
+    interesse_politico, tolerancia_nuance, estilo_decisao
+):
     tom = random.choice(["formal", "coloquial", "direto", "emotivo", "reflexivo"])
     instrucoes = [f"Tom: {tom}."]
 
     if interesse_politico == "baixo":
         instrucoes.append("Pouco interesse em política, evita discussões.")
     elif interesse_politico == "medio":
-        instrucoes.append("Acompanha política por alto, forma opinião pelo que ouve ao redor.")
+        instrucoes.append(
+            "Acompanha política por alto, forma opinião pelo que ouve ao redor."
+        )
     else:
         instrucoes.append("Engajado politicamente, tem opiniões firmes.")
 
@@ -864,11 +1322,12 @@ def gerar_instrucao_comportamental(interesse_politico, tolerancia_nuance, estilo
         "pragmatico": "Vota pensando em resultados práticos.",
         "moral": "Vota baseado em valores e princípios.",
         "economico": "Vota pensando no bolso.",
-        "emocional": "Decide mais pela emoção do momento."
+        "emocional": "Decide mais pela emoção do momento.",
     }
     instrucoes.append(estilos.get(estilo_decisao, estilos["pragmatico"]))
 
     return " ".join(instrucoes)
+
 
 # ========================================
 # FUNÇÕES AUXILIARES
@@ -889,6 +1348,7 @@ def gerar_idade_para_faixa(faixa):
             return random.randint(70, 85)
         return random.randint(60, 69)
 
+
 def gerar_nome(genero):
     if genero == "feminino":
         nome = random.choice(NOMES_F)
@@ -896,10 +1356,12 @@ def gerar_nome(genero):
         nome = random.choice(NOMES_M)
     return f"{nome} {random.choice(SOBRENOMES)} {random.choice(SOBRENOMES)}"
 
+
 def ajustar_escolaridade_por_idade(escolaridade, idade):
     if idade < 22 and escolaridade == "superior_completo_ou_pos":
         return "medio_completo_ou_sup_incompleto"
     return escolaridade
+
 
 def gerar_profissao_vinculo(cluster, escolaridade, idade, genero, renda_atual=None):
     """Gera profissão com validação de piso de renda"""
@@ -912,7 +1374,12 @@ def gerar_profissao_vinculo(cluster, escolaridade, idade, genero, renda_atual=No
         return ("Aposentado(a)", "aposentado", None)
 
     # Taxa de desemprego por cluster
-    taxa_desemprego = {"G1_alta": 0.03, "G2_media_alta": 0.06, "G3_media_baixa": 0.10, "G4_baixa": 0.15}
+    taxa_desemprego = {
+        "G1_alta": 0.03,
+        "G2_media_alta": 0.06,
+        "G3_media_baixa": 0.10,
+        "G4_baixa": 0.15,
+    }
     if idade >= 18 and idade <= 60:
         if random.random() < taxa_desemprego.get(cluster, 0.08):
             return ("Desempregado(a)", "desempregado", None)
@@ -923,7 +1390,11 @@ def gerar_profissao_vinculo(cluster, escolaridade, idade, genero, renda_atual=No
 
     # Filtrar por idade e estudante se > 28
     if idade > 28:
-        opcoes_validas = [(p, v, im, rm) for p, v, im, rm in opcoes if idade >= im and "Estudante" not in p]
+        opcoes_validas = [
+            (p, v, im, rm)
+            for p, v, im, rm in opcoes
+            if idade >= im and "Estudante" not in p
+        ]
     else:
         opcoes_validas = [(p, v, im, rm) for p, v, im, rm in opcoes if idade >= im]
 
@@ -936,17 +1407,30 @@ def gerar_profissao_vinculo(cluster, escolaridade, idade, genero, renda_atual=No
     prof, vinc, _, renda_min = random.choice(opcoes_validas)
     return (prof, vinc, renda_min)
 
+
 def gerar_estado_civil(idade):
     if idade < 20:
         return random.choices(["solteiro(a)", "uniao_estavel"], weights=[92, 8])[0]
     elif idade < 30:
-        return random.choices(["solteiro(a)", "casado(a)", "uniao_estavel"], weights=[55, 25, 20])[0]
+        return random.choices(
+            ["solteiro(a)", "casado(a)", "uniao_estavel"], weights=[55, 25, 20]
+        )[0]
     elif idade < 45:
-        return random.choices(["solteiro(a)", "casado(a)", "uniao_estavel", "divorciado(a)"], weights=[18, 52, 18, 12])[0]
+        return random.choices(
+            ["solteiro(a)", "casado(a)", "uniao_estavel", "divorciado(a)"],
+            weights=[18, 52, 18, 12],
+        )[0]
     elif idade < 60:
-        return random.choices(["solteiro(a)", "casado(a)", "uniao_estavel", "divorciado(a)", "viuvo(a)"], weights=[10, 52, 15, 18, 5])[0]
+        return random.choices(
+            ["solteiro(a)", "casado(a)", "uniao_estavel", "divorciado(a)", "viuvo(a)"],
+            weights=[10, 52, 15, 18, 5],
+        )[0]
     else:
-        return random.choices(["solteiro(a)", "casado(a)", "divorciado(a)", "viuvo(a)"], weights=[8, 45, 17, 30])[0]
+        return random.choices(
+            ["solteiro(a)", "casado(a)", "divorciado(a)", "viuvo(a)"],
+            weights=[8, 45, 17, 30],
+        )[0]
+
 
 def gerar_filhos(idade, estado_civil):
     if idade < 20:
@@ -958,6 +1442,7 @@ def gerar_filhos(idade, estado_civil):
     else:
         return random.choices([0, 1, 2, 3, 4], weights=[12, 22, 35, 22, 9])[0]
 
+
 def gerar_transporte_deslocamento(cluster, vinculo, profissao, ra):
     if vinculo in ["aposentado", "desempregado"]:
         return ("nao_se_aplica", "nao_se_aplica")
@@ -968,18 +1453,33 @@ def gerar_transporte_deslocamento(cluster, vinculo, profissao, ra):
         if cluster in ["G1_alta", "G2_media_alta"]:
             if tem_metro and random.random() < 0.5:
                 return ("metro", random.choice(["15_30", "30_45"]))
-            return (random.choice(["carro_familia", "onibus"]), random.choice(["ate_15", "15_30"]))
+            return (
+                random.choice(["carro_familia", "onibus"]),
+                random.choice(["ate_15", "15_30"]),
+            )
         if tem_metro and random.random() < 0.35:
             return ("metro", random.choice(["30_45", "45_60"]))
-        return (random.choice(["onibus", "a_pe", "van_pirata"]), random.choice(["15_30", "30_45", "45_60"]))
+        return (
+            random.choice(["onibus", "a_pe", "van_pirata"]),
+            random.choice(["15_30", "30_45", "45_60"]),
+        )
 
-    if vinculo == "autonomo" and any(p in profissao.lower() for p in ["barbeiro", "cabeleireiro", "manicure", "comerciante"]):
-        return (random.choice(["moto", "a_pe", "carro"]), random.choice(["ate_15", "15_30"]))
+    if vinculo == "autonomo" and any(
+        p in profissao.lower()
+        for p in ["barbeiro", "cabeleireiro", "manicure", "comerciante"]
+    ):
+        return (
+            random.choice(["moto", "a_pe", "carro"]),
+            random.choice(["ate_15", "15_30"]),
+        )
 
     if cluster == "G1_alta":
         if tem_metro and random.random() < 0.25:
             return ("metro", random.choice(["15_30", "30_45"]))
-        return (random.choice(["carro", "app"]), random.choice(["ate_15", "15_30", "30_45"]))
+        return (
+            random.choice(["carro", "app"]),
+            random.choice(["ate_15", "15_30", "30_45"]),
+        )
 
     if cluster == "G2_media_alta":
         if tem_metro and random.random() < 0.55:
@@ -991,13 +1491,20 @@ def gerar_transporte_deslocamento(cluster, vinculo, profissao, ra):
             return ("metro", random.choice(["30_45", "45_60"]))
         opcoes = ["onibus", "van_pirata", "moto", "bicicleta"]
         pesos = [50, 25, 15, 10]
-        return (random.choices(opcoes, weights=pesos)[0], random.choice(["45_60", "60_75"]))
+        return (
+            random.choices(opcoes, weights=pesos)[0],
+            random.choice(["45_60", "60_75"]),
+        )
 
     if tem_metro and random.random() < 0.30:
         return ("metro", random.choice(["45_60", "60_75"]))
     opcoes = ["onibus", "van_pirata", "a_pe", "bicicleta", "moto"]
     pesos = [40, 25, 15, 10, 10]
-    return (random.choices(opcoes, weights=pesos)[0], random.choice(["45_60", "60_75", "75_90"]))
+    return (
+        random.choices(opcoes, weights=pesos)[0],
+        random.choice(["45_60", "60_75", "75_90"]),
+    )
+
 
 # ========================================
 # GERAÇÃO PRINCIPAL COM REBALANCEAMENTO
@@ -1012,8 +1519,18 @@ def gerar_eleitores():
     eleitores_data = []
 
     # PASSO 1: Primeiro, atribuir RA e cluster para cada um dos 400 eleitores
-    cluster_targets = {"G1_alta": 76, "G2_media_alta": 85, "G3_media_baixa": 126, "G4_baixa": 113}
-    cluster_assigned = {"G1_alta": 0, "G2_media_alta": 0, "G3_media_baixa": 0, "G4_baixa": 0}
+    cluster_targets = {
+        "G1_alta": 76,
+        "G2_media_alta": 85,
+        "G3_media_baixa": 126,
+        "G4_baixa": 113,
+    }
+    cluster_assigned = {
+        "G1_alta": 0,
+        "G2_media_alta": 0,
+        "G3_media_baixa": 0,
+        "G4_baixa": 0,
+    }
 
     ra_cluster_list = []
     for ra, qtd in RAS:
@@ -1024,10 +1541,16 @@ def gerar_eleitores():
             # Verificar se cluster ainda tem espaço
             if cluster_assigned[cluster] >= cluster_targets[cluster]:
                 # Escolher outro cluster que ainda tem espaço
-                available = [c for c in cluster_targets if cluster_assigned[c] < cluster_targets[c]]
+                available = [
+                    c
+                    for c in cluster_targets
+                    if cluster_assigned[c] < cluster_targets[c]
+                ]
                 if available:
                     # Preferir clusters compatíveis com a RA
-                    probs = CLUSTER_POR_RA.get(ra, {"G3_media_baixa": 50, "G4_baixa": 50})
+                    probs = CLUSTER_POR_RA.get(
+                        ra, {"G3_media_baixa": 50, "G4_baixa": 50}
+                    )
                     compatible = [c for c in available if c in probs]
                     if compatible:
                         cluster = random.choice(compatible)
@@ -1072,9 +1595,21 @@ def gerar_eleitores():
     for idx_global, (ra, cluster) in enumerate(ra_cluster_list):
         # Obter dados do pool do cluster
         idx_c = pool_idx[cluster]
-        renda = renda_pool[cluster][idx_c] if idx_c < len(renda_pool[cluster]) else "mais_de_1_ate_2"
-        escolaridade_raw = escolaridade_pool[cluster][idx_c] if idx_c < len(escolaridade_pool[cluster]) else "medio_completo_ou_sup_incompleto"
-        religiao = religiao_pool[cluster][idx_c] if idx_c < len(religiao_pool[cluster]) else "catolica"
+        renda = (
+            renda_pool[cluster][idx_c]
+            if idx_c < len(renda_pool[cluster])
+            else "mais_de_1_ate_2"
+        )
+        escolaridade_raw = (
+            escolaridade_pool[cluster][idx_c]
+            if idx_c < len(escolaridade_pool[cluster])
+            else "medio_completo_ou_sup_incompleto"
+        )
+        religiao = (
+            religiao_pool[cluster][idx_c]
+            if idx_c < len(religiao_pool[cluster])
+            else "catolica"
+        )
         pool_idx[cluster] += 1
 
         # Dados globais
@@ -1084,13 +1619,24 @@ def gerar_eleitores():
 
         idade = gerar_idade_para_faixa(idade_faixa)
         escolaridade = ajustar_escolaridade_por_idade(escolaridade_raw, idade)
-        profissao, vinculo, renda_minima = gerar_profissao_vinculo(cluster, escolaridade, idade, genero, renda)
+        profissao, vinculo, renda_minima = gerar_profissao_vinculo(
+            cluster, escolaridade, idade, genero, renda
+        )
 
         # Aplicar piso de renda se necessário
         if renda_minima:
-            ordem_renda = ["ate_1", "mais_de_1_ate_2", "mais_de_2_ate_5", "mais_de_5_ate_10", "mais_de_10_ate_20", "mais_de_20"]
+            ordem_renda = [
+                "ate_1",
+                "mais_de_1_ate_2",
+                "mais_de_2_ate_5",
+                "mais_de_5_ate_10",
+                "mais_de_10_ate_20",
+                "mais_de_20",
+            ]
             idx_atual = ordem_renda.index(renda) if renda in ordem_renda else 0
-            idx_minimo = ordem_renda.index(renda_minima) if renda_minima in ordem_renda else 0
+            idx_minimo = (
+                ordem_renda.index(renda_minima) if renda_minima in ordem_renda else 0
+            )
             if idx_atual < idx_minimo:
                 renda = renda_minima
 
@@ -1099,39 +1645,76 @@ def gerar_eleitores():
         filhos = gerar_filhos(idade, estado_civil)
 
         orientacao = gerar_orientacao_politica(cluster, religiao)
-        posicao_bolsonaro = gerar_posicao_bolsonaro(cluster, religiao, orientacao, idade)
+        posicao_bolsonaro = gerar_posicao_bolsonaro(
+            cluster, religiao, orientacao, idade
+        )
 
-        interesse_politico = random.choices(["baixo", "medio", "alto"], weights=[35, 45, 20])[0]
-        tolerancia_nuance = random.choices(["baixa", "media", "alta"], weights=[30, 50, 20])[0]
-        estilo_decisao = random.choice(["identitario", "pragmatico", "moral", "economico", "emocional"])
+        interesse_politico = random.choices(
+            ["baixo", "medio", "alto"], weights=[35, 45, 20]
+        )[0]
+        tolerancia_nuance = random.choices(
+            ["baixa", "media", "alta"], weights=[30, 50, 20]
+        )[0]
+        estilo_decisao = random.choice(
+            ["identitario", "pragmatico", "moral", "economico", "emocional"]
+        )
 
         # Local de referência
         locais_ra = LOCAIS_REFERENCIA.get(ra, ["no centro"])
         local_referencia = random.choice(locais_ra)
 
-        transporte, tempo = gerar_transporte_deslocamento(cluster, vinculo, profissao, ra)
+        transporte, tempo = gerar_transporte_deslocamento(
+            cluster, vinculo, profissao, ra
+        )
         fontes = gerar_fontes_informacao(cluster, idade, escolaridade)
-        susceptibilidade = calcular_susceptibilidade(escolaridade, fontes, idade, interesse_politico)
+        susceptibilidade = calcular_susceptibilidade(
+            escolaridade, fontes, idade, interesse_politico
+        )
         vieses = gerar_vieses(interesse_politico)
         medos = gerar_medos(cluster, orientacao, vinculo)
 
-        valores = random.sample(VALORES.get(orientacao, VALORES["centro"]), min(3, len(VALORES.get(orientacao, []))))
-        preocupacoes = random.sample(PREOCUPACOES.get(orientacao, PREOCUPACOES["centro"]), min(3, len(PREOCUPACOES.get(orientacao, []))))
-
-        historia = gerar_historia_narrativa(
-            nome, idade, genero, ra, cluster, profissao, vinculo,
-            escolaridade, religiao, orientacao, estado_civil, filhos,
-            posicao_bolsonaro, renda, local_referencia
+        valores = random.sample(
+            VALORES.get(orientacao, VALORES["centro"]),
+            min(3, len(VALORES.get(orientacao, []))),
+        )
+        preocupacoes = random.sample(
+            PREOCUPACOES.get(orientacao, PREOCUPACOES["centro"]),
+            min(3, len(PREOCUPACOES.get(orientacao, []))),
         )
 
-        instrucao = gerar_instrucao_comportamental(interesse_politico, tolerancia_nuance, estilo_decisao)
+        historia = gerar_historia_narrativa(
+            nome,
+            idade,
+            genero,
+            ra,
+            cluster,
+            profissao,
+            vinculo,
+            escolaridade,
+            religiao,
+            orientacao,
+            estado_civil,
+            filhos,
+            posicao_bolsonaro,
+            renda,
+            local_referencia,
+        )
+
+        instrucao = gerar_instrucao_comportamental(
+            interesse_politico, tolerancia_nuance, estilo_decisao
+        )
         voto_facultativo = idade < 18 or idade >= 70
 
         # Conflito identitário
-        conflito_identitario = (religiao == "evangelica" and orientacao in ["esquerda", "centro-esquerda"])
+        conflito_identitario = religiao == "evangelica" and orientacao in [
+            "esquerda",
+            "centro-esquerda",
+        ]
 
         # Campo observacao_territorial para SIA
-        obs_territorial = "Caso atípico: residente em área industrial" if ra == "SIA" else None
+        obs_territorial = (
+            "Caso atípico: residente em área industrial" if ra == "SIA" else None
+        )
 
         eleitor = {
             "id": f"df-{len(eleitores_data)+1:04d}",
@@ -1165,7 +1748,7 @@ def gerar_eleitores():
             "voto_facultativo": voto_facultativo,
             "conflito_identitario": conflito_identitario,
             "historia_resumida": historia,
-            "instrucao_comportamental": instrucao
+            "instrucao_comportamental": instrucao,
         }
 
         if obs_territorial:
@@ -1174,6 +1757,7 @@ def gerar_eleitores():
         eleitores_data.append(eleitor)
 
     return eleitores_data
+
 
 # ========================================
 # VALIDAÇÃO EXTENDIDA
@@ -1186,12 +1770,21 @@ def validar(eleitores):
         erros.append(f"Total: {len(eleitores)} (esperado 400)")
 
     # Jovens com superior
-    jovens_sup = [e for e in eleitores if e["idade"] < 22 and e["escolaridade"] == "superior_completo_ou_pos"]
+    jovens_sup = [
+        e
+        for e in eleitores
+        if e["idade"] < 22 and e["escolaridade"] == "superior_completo_ou_pos"
+    ]
     if jovens_sup:
         erros.append(f"Jovens <22 com superior: {len(jovens_sup)}")
 
     # Aposentados com deslocamento
-    apos = [e for e in eleitores if e["ocupacao_vinculo"] == "aposentado" and e["tempo_deslocamento_trabalho"] != "nao_se_aplica"]
+    apos = [
+        e
+        for e in eleitores
+        if e["ocupacao_vinculo"] == "aposentado"
+        and e["tempo_deslocamento_trabalho"] != "nao_se_aplica"
+    ]
     if apos:
         erros.append(f"Aposentados com deslocamento: {len(apos)}")
 
@@ -1213,17 +1806,24 @@ def validar(eleitores):
             if e["filhos"] == 0:
                 avisos.append(f"{e['id']}: 'criar filhos sozinho' sem filhos")
             if e["estado_civil"] in ["casado(a)", "uniao_estavel"]:
-                avisos.append(f"{e['id']}: 'criar filhos sozinho' mas {e['estado_civil']}")
+                avisos.append(
+                    f"{e['id']}: 'criar filhos sozinho' mas {e['estado_civil']}"
+                )
 
     # Cotas de idade
     idade_counts = {"16-24": 0, "25-34": 0, "35-44": 0, "45-59": 0, "60+": 0}
     for e in eleitores:
         i = e["idade"]
-        if i < 25: idade_counts["16-24"] += 1
-        elif i < 35: idade_counts["25-34"] += 1
-        elif i < 45: idade_counts["35-44"] += 1
-        elif i < 60: idade_counts["45-59"] += 1
-        else: idade_counts["60+"] += 1
+        if i < 25:
+            idade_counts["16-24"] += 1
+        elif i < 35:
+            idade_counts["25-34"] += 1
+        elif i < 45:
+            idade_counts["35-44"] += 1
+        elif i < 60:
+            idade_counts["45-59"] += 1
+        else:
+            idade_counts["60+"] += 1
 
     for faixa, esperado in COTAS_IDADE.items():
         real = idade_counts[faixa]
@@ -1231,6 +1831,7 @@ def validar(eleitores):
             erros.append(f"Idade {faixa}: {real} (esperado {esperado})")
 
     return erros, avisos
+
 
 # ========================================
 # MAIN
@@ -1278,12 +1879,22 @@ if __name__ == "__main__":
     for e in eleitores:
         es = e["escolaridade"]
         esc_counts[es] = esc_counts.get(es, 0) + 1
-    print(f"\nEscolaridade superior: {esc_counts.get('superior_completo_ou_pos', 0)} (meta: {COTA_ESCOLARIDADE_SUPERIOR})")
+    print(
+        f"\nEscolaridade superior: {esc_counts.get('superior_completo_ou_pos', 0)} (meta: {COTA_ESCOLARIDADE_SUPERIOR})"
+    )
 
     # Susceptibilidade
     print("\nSusceptibilidade media por escolaridade:")
-    for esc in ["superior_completo_ou_pos", "medio_completo_ou_sup_incompleto", "fundamental_ou_sem_instrucao"]:
-        vals = [e["susceptibilidade_desinformacao"] for e in eleitores if e["escolaridade"] == esc]
+    for esc in [
+        "superior_completo_ou_pos",
+        "medio_completo_ou_sup_incompleto",
+        "fundamental_ou_sem_instrucao",
+    ]:
+        vals = [
+            e["susceptibilidade_desinformacao"]
+            for e in eleitores
+            if e["escolaridade"] == esc
+        ]
         if vals:
             print(f"  {esc[:20]}: {sum(vals)/len(vals):.1f}")
 
@@ -1300,7 +1911,9 @@ if __name__ == "__main__":
     if sia:
         print(f"\nSIA: {len(sia)} eleitor(es)")
         for s in sia:
-            print(f"  {s['id']}: {s['profissao']}, {s.get('observacao_territorial', '')}")
+            print(
+                f"  {s['id']}: {s['profissao']}, {s.get('observacao_territorial', '')}"
+            )
 
     # Salvar
     with open("agentes/banco-eleitores-df.json", "w", encoding="utf-8") as f:
@@ -1311,6 +1924,8 @@ if __name__ == "__main__":
     # Amostra
     print("\n=== AMOSTRA DE HISTORIAS ===")
     for e in eleitores[50:53]:
-        print(f"{e['id']} ({e['profissao']}, {e['regiao_administrativa']}, {e['idade']} anos):")
+        print(
+            f"{e['id']} ({e['profissao']}, {e['regiao_administrativa']}, {e['idade']} anos):"
+        )
         print(f"  {e['historia_resumida']}")
         print()

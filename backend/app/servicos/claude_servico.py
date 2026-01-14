@@ -52,18 +52,13 @@ class ClaudeServico:
             return "claude-opus-4-5-20251101"
 
         # Opus para eleitores complexos
-        if (
-            eleitor.get("conflito_identitario")
-            and eleitor.get("tolerancia_nuance") == "alta"
-        ):
+        if eleitor.get("conflito_identitario") and eleitor.get("tolerancia_nuance") == "alta":
             return "claude-opus-4-5-20251101"
 
         # Sonnet para o resto
         return "claude-sonnet-4-20250514"
 
-    def calcular_custo(
-        self, tokens_entrada: int, tokens_saida: int, modelo: str
-    ) -> float:
+    def calcular_custo(self, tokens_entrada: int, tokens_saida: int, modelo: str) -> float:
         """
         Calcula custo em reais.
 
@@ -263,9 +258,7 @@ Responda APENAS com o JSON, sem texto adicional.
         modelo = forcar_modelo or self.selecionar_modelo(tipo_pergunta, eleitor)
 
         # Construir prompt
-        prompt = self.construir_prompt_cognitivo(
-            eleitor, pergunta, tipo_pergunta, opcoes
-        )
+        prompt = self.construir_prompt_cognitivo(eleitor, pergunta, tipo_pergunta, opcoes)
 
         # Medir tempo
         inicio = time.time()
@@ -319,9 +312,7 @@ Responda APENAS com o JSON, sem texto adicional.
         return {
             "eleitor_id": eleitor.get("id"),
             "eleitor_nome": eleitor.get("nome"),
-            "resposta_texto": resposta_json.get("decisao", {}).get(
-                "resposta_final", ""
-            ),
+            "resposta_texto": resposta_json.get("decisao", {}).get("resposta_final", ""),
             "fluxo_cognitivo": resposta_json,
             "modelo_usado": modelo,
             "tokens_entrada": tokens_entrada,
@@ -382,12 +373,8 @@ Responda APENAS com o JSON, sem texto adicional.
             "custo_minimo": custo_sonnet * 0.8,  # Só Sonnet, otimista
             "custo_maximo": custo_medio * 1.5,  # Margem de segurança
             "custo_medio": custo_medio,
-            "custo_por_eleitor": (
-                custo_medio / total_eleitores if total_eleitores > 0 else 0
-            ),
-            "custo_por_pergunta": (
-                custo_medio / total_perguntas if total_perguntas > 0 else 0
-            ),
+            "custo_por_eleitor": (custo_medio / total_eleitores if total_eleitores > 0 else 0),
+            "custo_por_pergunta": (custo_medio / total_perguntas if total_perguntas > 0 else 0),
         }
 
 

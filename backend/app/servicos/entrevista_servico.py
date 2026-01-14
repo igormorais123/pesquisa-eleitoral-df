@@ -13,12 +13,8 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from app.esquemas.entrevista import (
-    Entrevista,
     EntrevistaCreate,
     EntrevistaUpdate,
-    Pergunta,
-    ProgressoEntrevista,
-    RespostaEleitor,
     StatusEntrevista,
 )
 from app.servicos.claude_servico import obter_claude_servico
@@ -28,12 +24,12 @@ from app.servicos.eleitor_servico import obter_servico_eleitores
 class EntrevistaServico:
     """Serviço para gerenciamento de entrevistas"""
 
-    def __init__(self, caminho_dados: str = None):
+    def __init__(self, caminho_dados: Optional[str] = None):
         if caminho_dados is None:
             base_path = Path(__file__).parent.parent.parent.parent
-            caminho_dados = base_path / "memorias" / "entrevistas.json"
-
-        self.caminho_dados = Path(caminho_dados)
+            self.caminho_dados = base_path / "memorias" / "entrevistas.json"
+        else:
+            self.caminho_dados = Path(caminho_dados)
         self.caminho_respostas = self.caminho_dados.parent / "respostas.json"
         self._entrevistas: List[Dict[str, Any]] = []
         self._respostas: List[Dict[str, Any]] = []
@@ -86,9 +82,7 @@ class EntrevistaServico:
             resultado = [e for e in resultado if e.get("status") == status]
 
         # Ordenar por data (mais recente primeiro)
-        resultado = sorted(
-            resultado, key=lambda x: x.get("criado_em", ""), reverse=True
-        )
+        resultado = sorted(resultado, key=lambda x: x.get("criado_em", ""), reverse=True)
 
         total = len(resultado)
         total_paginas = math.ceil(total / por_pagina) if total > 0 else 1
@@ -169,9 +163,7 @@ class EntrevistaServico:
             if e.get("id") == entrevista_id:
                 # Também remover respostas
                 self._respostas = [
-                    r
-                    for r in self._respostas
-                    if r.get("entrevista_id") != entrevista_id
+                    r for r in self._respostas if r.get("entrevista_id") != entrevista_id
                 ]
                 del self._entrevistas[i]
                 self._salvar_dados()
@@ -248,14 +240,10 @@ class EntrevistaServico:
 
                     # Verificar limite de custo
                     if custo_total >= limite_custo * 0.8:
-                        print(
-                            f"⚠️ 80% do limite de custo atingido: R$ {custo_total:.2f}"
-                        )
+                        print(f"⚠️ 80% do limite de custo atingido: R$ {custo_total:.2f}")
 
                     if custo_total >= limite_custo:
-                        raise Exception(
-                            f"Limite de custo atingido: R$ {custo_total:.2f}"
-                        )
+                        raise Exception(f"Limite de custo atingido: R$ {custo_total:.2f}")
 
                     # Processar batch
                     batch = eleitores[i : i + batch_size]
@@ -271,26 +259,26 @@ class EntrevistaServico:
                         batch_tasks.append(task)
 
                     # Executar batch em paralelo
-                    resultados = await asyncio.gather(
-                        *batch_tasks, return_exceptions=True
-                    )
+                    resultados = await asyncio.gather(*batch_tasks, return_exceptions=True)
 
                     for resultado in resultados:
-                        if isinstance(resultado, Exception):
+                        if isinstance(resultado, BaseException):
                             print(f"Erro: {resultado}")
                             continue
 
+                        # resultado é Dict[str, Any] aqui
+                        resultado_dict: Dict[str, Any] = resultado
                         chamadas_feitas += 1
-                        custo_total += resultado["custo_reais"]
-                        tokens_entrada += resultado["tokens_entrada"]
-                        tokens_saida += resultado["tokens_saida"]
+                        custo_total += resultado_dict["custo_reais"]
+                        tokens_entrada += resultado_dict["tokens_entrada"]
+                        tokens_saida += resultado_dict["tokens_saida"]
 
                         # Salvar resposta
                         resposta = {
                             "id": f"{entrevista_id}-{uuid.uuid4().hex[:8]}",
                             "entrevista_id": entrevista_id,
                             "pergunta_id": pergunta["id"],
-                            **resultado,
+                            **resultado_dict,
                             "criado_em": datetime.now().isoformat(),
                         }
                         respostas_novas.append(resposta)
@@ -333,9 +321,7 @@ class EntrevistaServico:
                 "custo_total": custo_total,
                 "tokens_entrada": tokens_entrada,
                 "tokens_saida": tokens_saida,
-                "tempo_execucao_segundos": (
-                    datetime.now() - inicio_exec
-                ).total_seconds(),
+                "tempo_execucao_segundos": (datetime.now() - inicio_exec).total_seconds(),
             }
 
         except Exception as e:
@@ -422,9 +408,7 @@ class EntrevistaServico:
         eleitor_id: Optional[str] = None,
     ) -> List[Dict]:
         """Obtém respostas de uma entrevista"""
-        resultado = [
-            r for r in self._respostas if r.get("entrevista_id") == entrevista_id
-        ]
+        resultado = [r for r in self._respostas if r.get("entrevista_id") == entrevista_id]
 
         if pergunta_id:
             resultado = [r for r in resultado if r.get("pergunta_id") == pergunta_id]

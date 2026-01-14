@@ -2,6 +2,7 @@
 Simulador de Pesquisa Eleitoral - Governador DF 2026
 Usa o banco de eleitores sintéticos para simular intenção de voto
 """
+
 import json
 import random
 from collections import defaultdict
@@ -19,39 +20,40 @@ CANDIDATOS = {
     "celina_leao": {
         "nome": "Celina Leão (PP)",
         "espectro": "centro-direita",
-        "descricao": "Vice-governadora, base bolsonarista moderada"
+        "descricao": "Vice-governadora, base bolsonarista moderada",
     },
     "flavia_arruda": {
         "nome": "Flávia Arruda (PL)",
         "espectro": "direita",
-        "descricao": "Ex-deputada federal, bolsonarista"
+        "descricao": "Ex-deputada federal, bolsonarista",
     },
     "leandro_grass": {
         "nome": "Leandro Grass (PV)",
         "espectro": "centro-esquerda",
-        "descricao": "Ex-administrador do Plano Piloto, ambientalista"
+        "descricao": "Ex-administrador do Plano Piloto, ambientalista",
     },
     "candidato_pt": {
         "nome": "Candidato PT",
         "espectro": "esquerda",
-        "descricao": "Candidato do PT (a definir)"
+        "descricao": "Candidato do PT (a definir)",
     },
     "rafael_prudente": {
         "nome": "Rafael Prudente (MDB)",
         "espectro": "centro",
-        "descricao": "Presidente da Câmara Legislativa"
+        "descricao": "Presidente da Câmara Legislativa",
     },
     "indecisos": {
         "nome": "Indeciso/Não sabe",
         "espectro": None,
-        "descricao": "Ainda não decidiu"
+        "descricao": "Ainda não decidiu",
     },
     "branco_nulo": {
         "nome": "Branco/Nulo/Não vai votar",
         "espectro": None,
-        "descricao": "Rejeita todos"
-    }
+        "descricao": "Rejeita todos",
+    },
 }
+
 
 # ========================================
 # LÓGICA DE SIMULAÇÃO DE VOTO
@@ -66,28 +68,27 @@ def simular_voto(eleitor):
     interesse = eleitor["interesse_politico"]
     cluster = eleitor["cluster_socioeconomico"]
     religiao = eleitor["religiao"]
-    idade = eleitor["idade"]
 
     # Base de probabilidades por orientação política
     if orientacao == "direita":
         probs = {
-            "flavia_arruda": 45,      # Bolsonarista puro
-            "celina_leao": 30,        # Direita moderada
-            "rafael_prudente": 8,     # Centro
+            "flavia_arruda": 45,  # Bolsonarista puro
+            "celina_leao": 30,  # Direita moderada
+            "rafael_prudente": 8,  # Centro
             "leandro_grass": 2,
             "candidato_pt": 1,
             "indecisos": 8,
-            "branco_nulo": 6
+            "branco_nulo": 6,
         }
     elif orientacao == "centro-direita":
         probs = {
-            "celina_leao": 40,        # Preferência
+            "celina_leao": 40,  # Preferência
             "flavia_arruda": 20,
             "rafael_prudente": 18,
             "leandro_grass": 5,
             "candidato_pt": 2,
             "indecisos": 10,
-            "branco_nulo": 5
+            "branco_nulo": 5,
         }
     elif orientacao == "centro":
         probs = {
@@ -97,7 +98,7 @@ def simular_voto(eleitor):
             "leandro_grass": 12,
             "candidato_pt": 8,
             "indecisos": 15,
-            "branco_nulo": 8
+            "branco_nulo": 8,
         }
     elif orientacao == "centro-esquerda":
         probs = {
@@ -107,7 +108,7 @@ def simular_voto(eleitor):
             "celina_leao": 8,
             "flavia_arruda": 2,
             "indecisos": 12,
-            "branco_nulo": 6
+            "branco_nulo": 6,
         }
     else:  # esquerda
         probs = {
@@ -117,7 +118,7 @@ def simular_voto(eleitor):
             "celina_leao": 2,
             "flavia_arruda": 1,
             "indecisos": 10,
-            "branco_nulo": 7
+            "branco_nulo": 7,
         }
 
     # Ajustes por posição Bolsonaro
@@ -167,6 +168,7 @@ def simular_voto(eleitor):
     pesos = [max(1, p) for p in probs.values()]
     return random.choices(candidatos, weights=pesos)[0]
 
+
 # ========================================
 # EXECUTAR PESQUISA
 # ========================================
@@ -174,7 +176,7 @@ print("=" * 60)
 print("PESQUISA ELEITORAL - GOVERNADOR DO DF 2026")
 print("=" * 60)
 print(f"Amostra: {len(eleitores)} eleitores")
-print(f"Margem de erro: ~5 pontos percentuais")
+print("Margem de erro: ~5 pontos percentuais")
 print("=" * 60)
 
 # Simular votos
@@ -211,7 +213,10 @@ for eleitor in eleitores:
 print("\n>>> INTENÇÃO DE VOTO ESTIMULADA <<<\n")
 
 # Ordenar por votos (excluindo indecisos/branco)
-ordem = sorted(votos.items(), key=lambda x: -x[1] if x[0] not in ["indecisos", "branco_nulo"] else 0)
+ordem = sorted(
+    votos.items(),
+    key=lambda x: -x[1] if x[0] not in ["indecisos", "branco_nulo"] else 0,
+)
 
 total = len(eleitores)
 for candidato, qtd in ordem:
@@ -221,10 +226,14 @@ for candidato, qtd in ordem:
     print(f"{nome:35} {qtd:4} ({pct:5.1f}%) {barra}")
 
 # Votos válidos (sem indecisos e branco/nulo)
-votos_validos = sum(v for c, v in votos.items() if c not in ["indecisos", "branco_nulo"])
+votos_validos = sum(
+    v for c, v in votos.items() if c not in ["indecisos", "branco_nulo"]
+)
 print(f"\n{'-' * 60}")
 print(f"Votos válidos: {votos_validos} ({votos_validos/total*100:.1f}%)")
-print(f"Indecisos + Branco/Nulo: {votos['indecisos'] + votos['branco_nulo']} ({(votos['indecisos'] + votos['branco_nulo'])/total*100:.1f}%)")
+print(
+    f"Indecisos + Branco/Nulo: {votos['indecisos'] + votos['branco_nulo']} ({(votos['indecisos'] + votos['branco_nulo'])/total*100:.1f}%)"
+)
 
 # ========================================
 # CENÁRIO DE 2º TURNO
@@ -236,6 +245,7 @@ print("=" * 60)
 # Top 2 candidatos
 top2 = [c for c, v in ordem if c not in ["indecisos", "branco_nulo"]][:2]
 
+
 def simular_2turno(eleitor, cand1, cand2):
     """Simula voto no 2º turno entre dois candidatos"""
     orientacao = eleitor["orientacao_politica"]
@@ -246,11 +256,41 @@ def simular_2turno(eleitor, cand1, cand2):
 
     # Mapa de afinidade
     afinidade = {
-        "direita": {"direita": 5, "centro-direita": 4, "centro": 2, "centro-esquerda": 1, "esquerda": 0},
-        "centro-direita": {"direita": 3, "centro-direita": 5, "centro": 3, "centro-esquerda": 2, "esquerda": 1},
-        "centro": {"direita": 2, "centro-direita": 3, "centro": 5, "centro-esquerda": 3, "esquerda": 2},
-        "centro-esquerda": {"direita": 1, "centro-direita": 2, "centro": 3, "centro-esquerda": 5, "esquerda": 4},
-        "esquerda": {"direita": 0, "centro-direita": 1, "centro": 2, "centro-esquerda": 4, "esquerda": 5},
+        "direita": {
+            "direita": 5,
+            "centro-direita": 4,
+            "centro": 2,
+            "centro-esquerda": 1,
+            "esquerda": 0,
+        },
+        "centro-direita": {
+            "direita": 3,
+            "centro-direita": 5,
+            "centro": 3,
+            "centro-esquerda": 2,
+            "esquerda": 1,
+        },
+        "centro": {
+            "direita": 2,
+            "centro-direita": 3,
+            "centro": 5,
+            "centro-esquerda": 3,
+            "esquerda": 2,
+        },
+        "centro-esquerda": {
+            "direita": 1,
+            "centro-direita": 2,
+            "centro": 3,
+            "centro-esquerda": 5,
+            "esquerda": 4,
+        },
+        "esquerda": {
+            "direita": 0,
+            "centro-direita": 1,
+            "centro": 2,
+            "centro-esquerda": 4,
+            "esquerda": 5,
+        },
     }
 
     score1 = afinidade.get(orientacao, {}).get(esp1, 2)
@@ -279,6 +319,7 @@ def simular_2turno(eleitor, cand1, cand2):
         return cand2
     else:
         return random.choice([cand1, cand2])
+
 
 if len(top2) >= 2:
     c1, c2 = top2[0], top2[1]
@@ -311,7 +352,10 @@ for ra, votos_ra in ras_ordenadas:
     print(f"\n{ra} (n={total_ra})")
 
     # Top 3 candidatos na RA
-    ordem_ra = sorted(votos_ra.items(), key=lambda x: -x[1] if x[0] not in ["indecisos", "branco_nulo"] else 0)
+    ordem_ra = sorted(
+        votos_ra.items(),
+        key=lambda x: -x[1] if x[0] not in ["indecisos", "branco_nulo"] else 0,
+    )
 
     for candidato, qtd in ordem_ra[:5]:
         nome = CANDIDATOS[candidato]["nome"].split("(")[0].strip()
@@ -334,12 +378,15 @@ for cluster in ["G1_alta", "G2_media_alta", "G3_media_baixa", "G4_baixa"]:
         "G1_alta": "G1 - Alta renda",
         "G2_media_alta": "G2 - Média-alta",
         "G3_media_baixa": "G3 - Média-baixa",
-        "G4_baixa": "G4 - Baixa renda"
+        "G4_baixa": "G4 - Baixa renda",
     }
 
     print(f"\n{nomes_cluster[cluster]} (n={total_c})")
 
-    ordem_c = sorted(votos_c.items(), key=lambda x: -x[1] if x[0] not in ["indecisos", "branco_nulo"] else 0)
+    ordem_c = sorted(
+        votos_c.items(),
+        key=lambda x: -x[1] if x[0] not in ["indecisos", "branco_nulo"] else 0,
+    )
 
     for candidato, qtd in ordem_c[:5]:
         nome = CANDIDATOS[candidato]["nome"].split("(")[0].strip()
@@ -361,7 +408,7 @@ for religiao in ["catolica", "evangelica", "sem_religiao"]:
     nomes_rel = {
         "catolica": "Católicos",
         "evangelica": "Evangélicos",
-        "sem_religiao": "Sem religião"
+        "sem_religiao": "Sem religião",
     }
 
     if total_r < 10:
@@ -369,7 +416,10 @@ for religiao in ["catolica", "evangelica", "sem_religiao"]:
 
     print(f"\n{nomes_rel[religiao]} (n={total_r})")
 
-    ordem_r = sorted(votos_r.items(), key=lambda x: -x[1] if x[0] not in ["indecisos", "branco_nulo"] else 0)
+    ordem_r = sorted(
+        votos_r.items(),
+        key=lambda x: -x[1] if x[0] not in ["indecisos", "branco_nulo"] else 0,
+    )
 
     for candidato, qtd in ordem_r[:5]:
         nome = CANDIDATOS[candidato]["nome"].split("(")[0].strip()
@@ -390,7 +440,10 @@ for faixa in ["16-24", "25-34", "35-44", "45-59", "60+"]:
 
     print(f"\n{faixa} anos (n={total_f})")
 
-    ordem_f = sorted(votos_f.items(), key=lambda x: -x[1] if x[0] not in ["indecisos", "branco_nulo"] else 0)
+    ordem_f = sorted(
+        votos_f.items(),
+        key=lambda x: -x[1] if x[0] not in ["indecisos", "branco_nulo"] else 0,
+    )
 
     for candidato, qtd in ordem_f[:5]:
         nome = CANDIDATOS[candidato]["nome"].split("(")[0].strip()

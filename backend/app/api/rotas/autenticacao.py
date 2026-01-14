@@ -4,15 +4,13 @@ Rotas de Autenticação
 Endpoints para login, logout e verificação de token.
 """
 
-from typing import Optional
-
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel
 
 from app.api.deps import DadosToken, obter_usuario_atual
 from app.core.config import configuracoes
-from app.core.seguranca import Token, autenticar_usuario, criar_token_acesso
+from app.core.seguranca import autenticar_usuario, criar_token_acesso
 
 router = APIRouter()
 
@@ -118,10 +116,10 @@ async def obter_usuario_logado(
     Requer token JWT válido no header Authorization.
     """
     return UsuarioResponse(
-        id=usuario_atual.usuario_id,
-        usuario=usuario_atual.usuario_id,  # Por enquanto igual ao ID
-        nome=usuario_atual.nome,
-        papel=usuario_atual.papel,
+        id=usuario_atual.usuario_id or "",
+        usuario=usuario_atual.usuario_id or "",  # Por enquanto igual ao ID
+        nome=usuario_atual.nome or "",
+        papel=usuario_atual.papel or "",
     )
 
 

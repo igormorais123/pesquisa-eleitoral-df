@@ -4,9 +4,6 @@ Configurações do Sistema
 Carrega variáveis de ambiente e define configurações globais.
 """
 
-import os
-from typing import Optional
-
 from pydantic_settings import BaseSettings
 
 
@@ -22,9 +19,7 @@ class Configuracoes(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
 
     # Banco de dados
-    DATABASE_URL: str = (
-        "postgresql://postgres:postgres@localhost:5432/pesquisa_eleitoral"
-    )
+    DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/pesquisa_eleitoral"
 
     # URLs
     FRONTEND_URL: str = "http://localhost:3000"
@@ -56,9 +51,7 @@ def validar_configuracoes():
         erros.append("CLAUDE_API_KEY não está definida")
 
     if configuracoes.SECRET_KEY == "chave-secreta-padrao-desenvolvimento":
-        print(
-            "⚠️  AVISO: Usando SECRET_KEY padrão. Defina uma chave segura em produção."
-        )
+        print("⚠️  AVISO: Usando SECRET_KEY padrão. Defina uma chave segura em produção.")
 
     if erros:
         for erro in erros:

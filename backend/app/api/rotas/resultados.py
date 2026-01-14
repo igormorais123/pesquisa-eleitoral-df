@@ -37,9 +37,7 @@ async def listar_resultados(
 
     - **entrevista_id**: Filtrar por entrevista específica
     """
-    return servico.listar(
-        pagina=pagina, por_pagina=por_pagina, entrevista_id=entrevista_id
-    )
+    return servico.listar(pagina=pagina, por_pagina=por_pagina, entrevista_id=entrevista_id)
 
 
 @router.get("/{resultado_id}")
@@ -198,9 +196,7 @@ async def obter_votos_silenciosos(
     return {
         "resultado_id": resultado_id,
         "total": len(votos),
-        "percentual_amostra": round(
-            len(votos) / resultado.get("total_eleitores", 1) * 100, 1
-        ),
+        "percentual_amostra": round(len(votos) / resultado.get("total_eleitores", 1) * 100, 1),
         "votos_silenciosos": votos,
     }
 

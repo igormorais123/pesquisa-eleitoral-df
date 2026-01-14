@@ -6,18 +6,13 @@ Lógica de negócio para gestão de eleitores/agentes sintéticos.
 
 import json
 import math
-import os
-import uuid
 from collections import Counter
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from app.esquemas.eleitor import (
-    DistribuicaoItem,
     EleitorCreate,
-    EleitorResponse,
     EleitorUpdate,
-    EstatisticasEleitores,
     FiltrosEleitor,
     UploadResult,
 )
@@ -26,7 +21,7 @@ from app.esquemas.eleitor import (
 class EleitorServico:
     """Serviço para gerenciamento de eleitores"""
 
-    def __init__(self, caminho_dados: str = None):
+    def __init__(self, caminho_dados: Optional[str] = None):
         """
         Inicializa o serviço.
 
@@ -36,9 +31,9 @@ class EleitorServico:
         if caminho_dados is None:
             # Caminho padrão relativo ao projeto
             base_path = Path(__file__).parent.parent.parent.parent
-            caminho_dados = base_path / "agentes" / "banco-eleitores-df.json"
-
-        self.caminho_dados = Path(caminho_dados)
+            self.caminho_dados = base_path / "agentes" / "banco-eleitores-df.json"
+        else:
+            self.caminho_dados = Path(caminho_dados)
         self._eleitores: List[Dict[str, Any]] = []
         self._carregar_dados()
 
@@ -47,9 +42,7 @@ class EleitorServico:
         if self.caminho_dados.exists():
             with open(self.caminho_dados, "r", encoding="utf-8") as f:
                 self._eleitores = json.load(f)
-            print(
-                f"Carregados {len(self._eleitores)} eleitores de {self.caminho_dados}"
-            )
+            print(f"Carregados {len(self._eleitores)} eleitores de {self.caminho_dados}")
         else:
             print(f"Arquivo não encontrado: {self.caminho_dados}")
             self._eleitores = []
@@ -72,9 +65,7 @@ class EleitorServico:
                     pass
         return f"df-{max_num + 1:04d}"
 
-    def _aplicar_filtros(
-        self, eleitores: List[Dict], filtros: FiltrosEleitor
-    ) -> List[Dict]:
+    def _aplicar_filtros(self, eleitores: List[Dict], filtros: FiltrosEleitor) -> List[Dict]:
         """Aplica filtros a uma lista de eleitores"""
         resultado = eleitores
 
@@ -89,9 +80,7 @@ class EleitorServico:
             resultado = [e for e in resultado if e.get("genero") in filtros.generos]
 
         if filtros.cores_racas:
-            resultado = [
-                e for e in resultado if e.get("cor_raca") in filtros.cores_racas
-            ]
+            resultado = [e for e in resultado if e.get("cor_raca") in filtros.cores_racas]
 
         # Filtros geográficos
         if filtros.regioes_administrativas:
@@ -104,31 +93,21 @@ class EleitorServico:
         # Filtros socioeconômicos
         if filtros.clusters:
             resultado = [
-                e
-                for e in resultado
-                if e.get("cluster_socioeconomico") in filtros.clusters
+                e for e in resultado if e.get("cluster_socioeconomico") in filtros.clusters
             ]
 
         if filtros.escolaridades:
-            resultado = [
-                e for e in resultado if e.get("escolaridade") in filtros.escolaridades
-            ]
+            resultado = [e for e in resultado if e.get("escolaridade") in filtros.escolaridades]
 
         if filtros.profissoes:
-            resultado = [
-                e for e in resultado if e.get("profissao") in filtros.profissoes
-            ]
+            resultado = [e for e in resultado if e.get("profissao") in filtros.profissoes]
 
         if filtros.ocupacoes:
-            resultado = [
-                e for e in resultado if e.get("ocupacao_vinculo") in filtros.ocupacoes
-            ]
+            resultado = [e for e in resultado if e.get("ocupacao_vinculo") in filtros.ocupacoes]
 
         if filtros.faixas_renda:
             resultado = [
-                e
-                for e in resultado
-                if e.get("renda_salarios_minimos") in filtros.faixas_renda
+                e for e in resultado if e.get("renda_salarios_minimos") in filtros.faixas_renda
             ]
 
         # Filtros socioculturais
@@ -136,9 +115,7 @@ class EleitorServico:
             resultado = [e for e in resultado if e.get("religiao") in filtros.religioes]
 
         if filtros.estados_civis:
-            resultado = [
-                e for e in resultado if e.get("estado_civil") in filtros.estados_civis
-            ]
+            resultado = [e for e in resultado if e.get("estado_civil") in filtros.estados_civis]
 
         if filtros.tem_filhos is not None:
             if filtros.tem_filhos:
@@ -156,38 +133,24 @@ class EleitorServico:
 
         if filtros.posicoes_bolsonaro:
             resultado = [
-                e
-                for e in resultado
-                if e.get("posicao_bolsonaro") in filtros.posicoes_bolsonaro
+                e for e in resultado if e.get("posicao_bolsonaro") in filtros.posicoes_bolsonaro
             ]
 
         if filtros.interesses_politicos:
             resultado = [
-                e
-                for e in resultado
-                if e.get("interesse_politico") in filtros.interesses_politicos
+                e for e in resultado if e.get("interesse_politico") in filtros.interesses_politicos
             ]
 
         # Filtros comportamentais
         if filtros.estilos_decisao:
-            resultado = [
-                e
-                for e in resultado
-                if e.get("estilo_decisao") in filtros.estilos_decisao
-            ]
+            resultado = [e for e in resultado if e.get("estilo_decisao") in filtros.estilos_decisao]
 
         if filtros.tolerancias:
-            resultado = [
-                e
-                for e in resultado
-                if e.get("tolerancia_nuance") in filtros.tolerancias
-            ]
+            resultado = [e for e in resultado if e.get("tolerancia_nuance") in filtros.tolerancias]
 
         if filtros.voto_facultativo is not None:
             resultado = [
-                e
-                for e in resultado
-                if e.get("voto_facultativo") == filtros.voto_facultativo
+                e for e in resultado if e.get("voto_facultativo") == filtros.voto_facultativo
             ]
 
         if filtros.conflito_identitario is not None:
@@ -211,9 +174,7 @@ class EleitorServico:
 
         return resultado
 
-    def _ordenar(
-        self, eleitores: List[Dict], ordenar_por: str, ordem: str
-    ) -> List[Dict]:
+    def _ordenar(self, eleitores: List[Dict], ordenar_por: str, ordem: str) -> List[Dict]:
         """Ordena lista de eleitores"""
         reverso = ordem.lower() == "desc"
 
@@ -225,9 +186,7 @@ class EleitorServico:
 
         return sorted(eleitores, key=get_valor, reverse=reverso)
 
-    def _paginar(
-        self, eleitores: List[Dict], pagina: int, por_pagina: int
-    ) -> List[Dict]:
+    def _paginar(self, eleitores: List[Dict], pagina: int, por_pagina: int) -> List[Dict]:
         """Aplica paginação"""
         inicio = (pagina - 1) * por_pagina
         fim = inicio + por_pagina
@@ -433,23 +392,15 @@ class EleitorServico:
             "regioes_administrativas": sorted(
                 set(e.get("regiao_administrativa", "") for e in self._eleitores)
             ),
-            "clusters": sorted(
-                set(e.get("cluster_socioeconomico", "") for e in self._eleitores)
-            ),
-            "escolaridades": sorted(
-                set(e.get("escolaridade", "") for e in self._eleitores)
-            ),
+            "clusters": sorted(set(e.get("cluster_socioeconomico", "") for e in self._eleitores)),
+            "escolaridades": sorted(set(e.get("escolaridade", "") for e in self._eleitores)),
             "profissoes": sorted(set(e.get("profissao", "") for e in self._eleitores)),
-            "ocupacoes": sorted(
-                set(e.get("ocupacao_vinculo", "") for e in self._eleitores)
-            ),
+            "ocupacoes": sorted(set(e.get("ocupacao_vinculo", "") for e in self._eleitores)),
             "faixas_renda": sorted(
                 set(e.get("renda_salarios_minimos", "") for e in self._eleitores)
             ),
             "religioes": sorted(set(e.get("religiao", "") for e in self._eleitores)),
-            "estados_civis": sorted(
-                set(e.get("estado_civil", "") for e in self._eleitores)
-            ),
+            "estados_civis": sorted(set(e.get("estado_civil", "") for e in self._eleitores)),
             "orientacoes_politicas": sorted(
                 set(e.get("orientacao_politica", "") for e in self._eleitores)
             ),
@@ -459,12 +410,8 @@ class EleitorServico:
             "interesses_politicos": sorted(
                 set(e.get("interesse_politico", "") for e in self._eleitores)
             ),
-            "estilos_decisao": sorted(
-                set(e.get("estilo_decisao", "") for e in self._eleitores)
-            ),
-            "tolerancias": sorted(
-                set(e.get("tolerancia_nuance", "") for e in self._eleitores)
-            ),
+            "estilos_decisao": sorted(set(e.get("estilo_decisao", "") for e in self._eleitores)),
+            "tolerancias": sorted(set(e.get("tolerancia_nuance", "") for e in self._eleitores)),
         }
 
     def importar_json(self, dados_json: List[Dict]) -> UploadResult:
@@ -528,7 +475,7 @@ class EleitorServico:
         eleitores = self._eleitores
         if filtros:
             eleitores = self._aplicar_filtros(eleitores, filtros)
-        return [e.get("id") for e in eleitores]
+        return [e.get("id", "") for e in eleitores if e.get("id")]
 
     def obter_por_ids(self, ids: List[str]) -> List[Dict]:
         """

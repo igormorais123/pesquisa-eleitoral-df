@@ -12,10 +12,8 @@ from app.api.deps import DadosToken, obter_usuario_atual
 from app.esquemas.eleitor import (
     EleitorCreate,
     EleitorListResponse,
-    EleitorResponse,
     EleitorUpdate,
     FiltrosEleitor,
-    UploadResult,
 )
 from app.servicos.eleitor_servico import EleitorServico, obter_servico_eleitores
 
@@ -38,9 +36,7 @@ async def listar_eleitores(
     idade_min: Optional[int] = Query(None, ge=16),
     idade_max: Optional[int] = Query(None, le=120),
     generos: Optional[str] = Query(None, description="Gêneros separados por vírgula"),
-    cores_racas: Optional[str] = Query(
-        None, description="Cores/raças separadas por vírgula"
-    ),
+    cores_racas: Optional[str] = Query(None, description="Cores/raças separadas por vírgula"),
     # Geográficos
     regioes: Optional[str] = Query(None, description="RAs separadas por vírgula"),
     # Socioeconômicos
@@ -352,7 +348,5 @@ async def obter_eleitores_por_ids(
     return {
         "eleitores": eleitores,
         "total": len(eleitores),
-        "ids_nao_encontrados": [
-            id for id in ids if id not in [e["id"] for e in eleitores]
-        ],
+        "ids_nao_encontrados": [id for id in ids if id not in [e["id"] for e in eleitores]],
     }
