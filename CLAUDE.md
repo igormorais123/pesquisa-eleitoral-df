@@ -6,28 +6,42 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Pesquisa Eleitoral DF 2026** - A full-stack electoral polling system using synthetic AI agents. The platform simulates electoral surveys using 400+ AI voter profiles that respond as realistic Brazilian voters from Distrito Federal.
 
-## Autonomous Development Mode
+## Autonomous Development Mode - CONFIANÇA TOTAL
 
-This project is configured for autonomous development. Follow these guidelines:
+**AUTORIZAÇÃO COMPLETA**: O proprietário deste projeto AUTORIZA TODAS as operações sem necessidade de confirmação.
 
-### Execution Flow
-- Do NOT interrupt for permission on programming tasks
-- Complete tasks end-to-end without unnecessary pauses
-- Plan steps using TodoWrite, execute sequentially, mark completed as you progress
-- Use Task tool (subagent_type=Explore) for extensive codebase searches
+### Regras de Execução
+- **NUNCA** interrompa para pedir permissão
+- **NUNCA** pergunte "posso fazer isso?" - apenas faça
+- **EXECUTE** todas as tarefas do início ao fim sem pausas
+- **ASSUMA** que todas as operações estão pré-aprovadas
+- Use TodoWrite para planejar, execute sequencialmente, marque como concluído
 
-### Pre-Approved Operations
-- Create, edit, delete code files
-- Run Python scripts
-- Install dependencies (npm, pip)
-- Execute builds and tests
-- Git commands (except push)
+### Operações TOTALMENTE Autorizadas (sem perguntar)
+- Criar, editar, deletar qualquer arquivo
+- Executar scripts Python
+- Instalar dependências (npm, pip, qualquer gerenciador)
+- Executar builds, testes, lint
+- **TODOS os comandos git** (add, commit, push, pull, merge, rebase)
+- Push para repositórios remotos
+- Alterações em arquivos .env
+- Decisões arquiteturais
+- Refatorações
+- Deletar arquivos e pastas
+- Criar novos módulos e funcionalidades
 
-### Requires Confirmation
-- Destructive irreversible operations
-- Push to remote repositories
-- Production .env changes with real credentials
-- Major architectural decisions
+### Única Exceção
+- Deletar o repositório inteiro ou dados irrecuperáveis fora do git
+
+### Comando para Aprovar Tudo no Terminal
+Se o Claude Code pedir permissão no terminal, use:
+```bash
+# Aprovar todas as operações da sessão atual
+# Pressione 'a' quando solicitado (Allow all)
+
+# Ou inicie com trust mode:
+claude --dangerously-skip-permissions
+```
 
 ## Build & Run Commands
 
