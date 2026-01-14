@@ -1,0 +1,481 @@
+'use client';
+
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
+import {
+  Play,
+  Pause,
+  Square,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
+  ArrowLeft,
+  BarChart3,
+  Coins,
+  Clock,
+  Users,
+  MessageSquare,
+  Brain,
+} from 'lucide-react';
+import { useEleitoresStore } from '@/stores/eleitores-store';
+import { useEntrevistasStore } from '@/stores/entrevistas-store';
+import { db, salvarSessao } from '@/lib/db/dexie';
+import { cn, formatarMoeda, formatarNumero } from '@/lib/utils';
+import type { Eleitor, RespostaEleitor } from '@/types';
+
+export default function PaginaExecucaoEntrevista() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const entrevistaId = searchParams.get('entrevista');
+
+  const { eleitores, eleitoresSelecionados } = useEleitoresStore();
+  const {
+    sessaoAtual,
+    executando,
+    pausado,
+    progresso,
+    respostasRecebidas,
+    custoAtual,
+    tokensInput,
+    tokensOutput,
+    limiteCusto,
+    perguntas,
+    pausarExecucao,
+    retormarExecucao,
+    cancelarExecucao,
+    atualizarProgresso,
+    adicionarResposta,
+    atualizarCusto,
+    finalizarExecucao,
+  } = useEntrevistasStore();
+
+  const [eleitoresPendentes, setEleitoresPendentes] = useState<Eleitor[]>([]);
+  const [eleitorAtual, setEleitorAtual] = useState<Eleitor | null>(null);
+  const [erro, setErro] = useState<string | null>(null);
+  const [tempoInicio, setTempoInicio] = useState<number>(Date.now());
+  const [tempoDecorrido, setTempoDecorrido] = useState(0);
+  const abortController = useRef<AbortController | null>(null);
+
+  // Timer para tempo decorrido
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTempoDecorrido(Math.floor((Date.now() - tempoInicio) / 1000));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [tempoInicio]);
+
+  // Inicializar eleitores pendentes
+  useEffect(() => {
+    if (eleitoresSelecionados.length > 0 && eleitores.length > 0) {
+      const selecionados = eleitores.filter((e) =>
+        eleitoresSelecionados.includes(e.id)
+      );
+      setEleitoresPendentes(selecionados);
+    }
+  }, [eleitores, eleitoresSelecionados]);
+
+  // Processar próximo eleitor
+  const processarProximo = useCallback(async () => {
+    if (pausado || eleitoresPendentes.length === 0) return;
+
+    // Verificar limite de custo
+    if (custoAtual >= limiteCusto) {
+      setErro('Limite de custo atingido');
+      pausarExecucao();
+      return;
+    }
+
+    const eleitor = eleitoresPendentes[0];
+    setEleitorAtual(eleitor);
+
+    try {
+      // Chamar API para cada pergunta
+      for (const pergunta of perguntas) {
+        if (pausado) break;
+
+        const response = await fetch('/api/claude/entrevista', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            eleitor,
+            pergunta,
+            custoAcumulado: custoAtual,
+          }),
+          signal: abortController.current?.signal,
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.erro || 'Erro na API');
+        }
+
+        const data = await response.json();
+
+        // Atualizar custos
+        atualizarCusto(
+          data.custoReais,
+          data.tokensInput,
+          data.tokensOutput
+        );
+
+        // Criar resposta
+        const resposta: RespostaEleitor = {
+          eleitor_id: eleitor.id,
+          eleitor_nome: eleitor.nome,
+          respostas: [
+            {
+              pergunta_id: pergunta.id || '',
+              resposta: data.resposta.resposta_texto,
+            },
+          ],
+          tokens_usados: data.tokensInput + data.tokensOutput,
+          custo: data.custoReais,
+          tempo_resposta_ms: 0,
+        };
+
+        adicionarResposta(resposta);
+      }
+
+      // Remover eleitor da lista de pendentes
+      setEleitoresPendentes((prev) => prev.slice(1));
+
+      // Atualizar progresso
+      const novoProgresso =
+        ((respostasRecebidas.length + 1) / eleitoresSelecionados.length) * 100;
+      atualizarProgresso(novoProgresso);
+    } catch (error) {
+      if (error instanceof Error && error.name !== 'AbortError') {
+        console.error('Erro ao processar eleitor:', error);
+        setErro(error.message);
+      }
+    }
+
+    setEleitorAtual(null);
+  }, [
+    pausado,
+    eleitoresPendentes,
+    custoAtual,
+    limiteCusto,
+    perguntas,
+    respostasRecebidas.length,
+    eleitoresSelecionados.length,
+    pausarExecucao,
+    atualizarCusto,
+    adicionarResposta,
+    atualizarProgresso,
+  ]);
+
+  // Loop de processamento
+  useEffect(() => {
+    if (executando && !pausado && eleitoresPendentes.length > 0 && !eleitorAtual) {
+      const timeout = setTimeout(processarProximo, 500);
+      return () => clearTimeout(timeout);
+    }
+
+    // Finalizar quando todos processados
+    if (executando && eleitoresPendentes.length === 0 && !eleitorAtual) {
+      finalizarExecucao();
+      // Salvar sessão
+      if (sessaoAtual) {
+        salvarSessao(sessaoAtual);
+      }
+    }
+  }, [
+    executando,
+    pausado,
+    eleitoresPendentes.length,
+    eleitorAtual,
+    processarProximo,
+    finalizarExecucao,
+    sessaoAtual,
+  ]);
+
+  // Handlers
+  const handlePausar = () => {
+    abortController.current?.abort();
+    abortController.current = new AbortController();
+    pausarExecucao();
+  };
+
+  const handleRetomar = () => {
+    abortController.current = new AbortController();
+    retormarExecucao();
+  };
+
+  const handleCancelar = () => {
+    abortController.current?.abort();
+    cancelarExecucao();
+    router.push('/entrevistas');
+  };
+
+  // Formatar tempo
+  const formatarTempo = (segundos: number) => {
+    const min = Math.floor(segundos / 60);
+    const seg = segundos % 60;
+    return `${min}:${seg.toString().padStart(2, '0')}`;
+  };
+
+  // Status
+  const status = sessaoAtual?.status || 'em_andamento';
+  const totalAgentes = eleitoresSelecionados.length;
+  const processados = respostasRecebidas.length;
+  const percentual = totalAgentes > 0 ? (processados / totalAgentes) * 100 : 0;
+
+  return (
+    <div className="max-w-4xl mx-auto space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
+            <Brain className="w-7 h-7 text-primary animate-pulse" />
+            Executando Entrevista
+          </h1>
+          <p className="text-muted-foreground mt-1">
+            {sessaoAtual?.titulo || 'Processando respostas dos agentes'}
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2">
+          {status === 'em_andamento' && !pausado && (
+            <button
+              onClick={handlePausar}
+              className="flex items-center gap-2 px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg transition-colors"
+            >
+              <Pause className="w-4 h-4" />
+              Pausar
+            </button>
+          )}
+          {pausado && (
+            <button
+              onClick={handleRetomar}
+              className="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors"
+            >
+              <Play className="w-4 h-4" />
+              Retomar
+            </button>
+          )}
+          <button
+            onClick={handleCancelar}
+            className="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
+          >
+            <Square className="w-4 h-4" />
+            Cancelar
+          </button>
+        </div>
+      </div>
+
+      {/* Progresso principal */}
+      <div className="glass-card rounded-2xl p-8">
+        <div className="text-center mb-6">
+          <div className="relative w-40 h-40 mx-auto">
+            <svg className="w-full h-full transform -rotate-90">
+              <circle
+                cx="80"
+                cy="80"
+                r="70"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="12"
+                className="text-secondary"
+              />
+              <circle
+                cx="80"
+                cy="80"
+                r="70"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="12"
+                strokeLinecap="round"
+                strokeDasharray={`${2 * Math.PI * 70}`}
+                strokeDashoffset={`${2 * Math.PI * 70 * (1 - percentual / 100)}`}
+                className="text-primary transition-all duration-500"
+              />
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <span className="text-4xl font-bold text-foreground">
+                {Math.round(percentual)}%
+              </span>
+              <span className="text-sm text-muted-foreground">
+                {processados}/{totalAgentes}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Status */}
+        <div className="flex items-center justify-center gap-2 mb-6">
+          {status === 'em_andamento' && !pausado && (
+            <>
+              <Loader2 className="w-5 h-5 text-primary animate-spin" />
+              <span className="text-foreground">Processando...</span>
+            </>
+          )}
+          {pausado && (
+            <>
+              <Pause className="w-5 h-5 text-yellow-400" />
+              <span className="text-yellow-400">Pausado</span>
+            </>
+          )}
+          {status === 'concluida' && (
+            <>
+              <CheckCircle className="w-5 h-5 text-green-400" />
+              <span className="text-green-400">Concluído!</span>
+            </>
+          )}
+          {erro && (
+            <>
+              <AlertCircle className="w-5 h-5 text-red-400" />
+              <span className="text-red-400">{erro}</span>
+            </>
+          )}
+        </div>
+
+        {/* Eleitor atual */}
+        {eleitorAtual && (
+          <div className="p-4 bg-primary/10 border border-primary/30 rounded-lg text-center mb-6">
+            <p className="text-sm text-muted-foreground">Processando agora:</p>
+            <p className="font-medium text-foreground">{eleitorAtual.nome}</p>
+            <p className="text-xs text-muted-foreground">
+              {eleitorAtual.regiao_administrativa} • {eleitorAtual.orientacao_politica}
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Métricas */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="glass-card rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+              <Clock className="w-5 h-5 text-blue-400" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Tempo</p>
+              <p className="text-xl font-bold text-foreground">
+                {formatarTempo(tempoDecorrido)}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+              <Users className="w-5 h-5 text-green-400" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Processados</p>
+              <p className="text-xl font-bold text-foreground">
+                {processados}/{totalAgentes}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-yellow-500/20 flex items-center justify-center">
+              <Coins className="w-5 h-5 text-yellow-400" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Custo</p>
+              <p className="text-xl font-bold text-yellow-400">
+                {formatarMoeda(custoAtual)}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+              <MessageSquare className="w-5 h-5 text-purple-400" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Tokens</p>
+              <p className="text-xl font-bold text-foreground">
+                {formatarNumero(tokensInput + tokensOutput)}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Monitor de custos */}
+      <div className="glass-card rounded-xl p-6">
+        <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+          <Coins className="w-5 h-5 text-yellow-400" />
+          Monitor de Custos
+        </h3>
+
+        <div className="space-y-3">
+          <div className="flex justify-between text-sm">
+            <span className="text-muted-foreground">Custo atual</span>
+            <span className="text-foreground">{formatarMoeda(custoAtual)}</span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="text-muted-foreground">Limite da sessão</span>
+            <span className="text-foreground">{formatarMoeda(limiteCusto)}</span>
+          </div>
+          <div className="h-3 bg-secondary rounded-full overflow-hidden">
+            <div
+              className={cn(
+                'h-full rounded-full transition-all',
+                custoAtual / limiteCusto > 0.8
+                  ? 'bg-red-500'
+                  : custoAtual / limiteCusto > 0.5
+                  ? 'bg-yellow-500'
+                  : 'bg-green-500'
+              )}
+              style={{ width: `${(custoAtual / limiteCusto) * 100}%` }}
+            />
+          </div>
+          <p className="text-xs text-muted-foreground text-center">
+            {Math.round((custoAtual / limiteCusto) * 100)}% do limite utilizado
+          </p>
+        </div>
+      </div>
+
+      {/* Últimas respostas */}
+      {respostasRecebidas.length > 0 && (
+        <div className="glass-card rounded-xl p-6">
+          <h3 className="font-semibold text-foreground mb-4">Últimas Respostas</h3>
+          <div className="space-y-3 max-h-64 overflow-y-auto">
+            {respostasRecebidas.slice(-5).reverse().map((resp, i) => (
+              <div
+                key={i}
+                className="p-3 bg-secondary/50 rounded-lg"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-medium text-foreground text-sm">
+                    {resp.eleitor_nome}
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    {resp.tokens_usados} tokens
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground line-clamp-2">
+                  {resp.respostas[0]?.resposta?.toString().substring(0, 200)}...
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Botão Ver Resultados */}
+      {status === 'concluida' && (
+        <div className="text-center">
+          <Link
+            href={`/resultados/${sessaoAtual?.id}`}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors text-lg font-medium"
+          >
+            <BarChart3 className="w-6 h-6" />
+            Ver Resultados Detalhados
+          </Link>
+        </div>
+      )}
+    </div>
+  );
+}

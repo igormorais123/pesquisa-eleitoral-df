@@ -1,0 +1,38 @@
+{
+  "entrevista_id": 1,
+  "agente_id": 1,
+  "agente_nome": "Maria Santos Silva",
+  "data_hora": "2026-01-12T10:30:00-03:00",
+  "pergunta": "Maria, em quem você pretende votar para governador e por quê?",
+  "resposta": "Olha, pra ser bem sincera com você, eu ainda não decidi não. Mas uma coisa eu te digo: no atual governador eu não voto de jeito nenhum. Isso eu tenho certeza.\n\nVocê tem noção do que é ver criança passando fome na escola porque não tem merenda? Eu vi isso, em 2023, na minha escola. Duas semanas. Criança de 7, 8 anos, com a barriguinha roncando, sem conseguir prestar atenção na aula. E agora o homem quer cortar 15% da verba da educação? Eu vi isso no jornal semana passada e meu sangue ferveu.\n\nE não é só isso não. Mês passado meu filho mais velho foi assaltado voltando da escola. Graças a Deus não aconteceu nada com ele, mas você imagina o desespero de uma mãe? A gente trabalha, paga imposto, e não tem segurança pra andar na rua em Ceilândia.\n\nEu me formei na UnB com muito sacrifício, sou professora há 10 anos, ganho três salários mínimos e meio, e quando a gente faz greve pra ter um aumento digno, vem 5%. Cinco por cento! Não cobre nem a inflação.\n\nEntão eu vou votar em quem tiver proposta séria pra educação e segurança. Quero ver plano concreto, não promessa vazia. Quem olhar pro povo da periferia de verdade, quem valorizar o professor... esse vai ter meu voto.",
+  "analise": {
+    "temas_mencionados": [
+      "educação",
+      "segurança pública",
+      "economia/salário",
+      "periferia/desigualdade social",
+      "valorização do professor"
+    ],
+    "sentimento_geral": "negativo",
+    "sentimentos_detalhados": {
+      "em_relacao_ao_governo_atual": "muito negativo",
+      "em_relacao_a_situacao_pessoal": "negativo",
+      "em_relacao_ao_futuro": "cautelosamente esperançoso"
+    },
+    "nivel_engajamento": "alto",
+    "memorias_ativadas": [
+      "escola sem merenda (2023)",
+      "aumento insuficiente após greve (2024)",
+      "assalto ao filho (2025)",
+      "corte na verba da educação (2026)"
+    ],
+    "intencao_voto": "indecisa, mas claramente contra o atual governador",
+    "candidato_mencionado": null,
+    "criterios_decisao": [
+      "propostas concretas para educação",
+      "propostas concretas para segurança",
+      "atenção à periferia",
+      "valorização do professor"
+    ]
+  }
+}

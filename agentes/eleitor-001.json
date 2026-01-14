@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "nome": "Maria Santos Silva",
+  "idade": 35,
+  "genero": "feminino",
+  "regiao": "Ceilândia",
+  "escolaridade": "Superior completo",
+  "profissao": "Professora de ensino fundamental",
+  "renda_salarios_minimos": 3.5,
+  "religiao": "Católica",
+  "estado_civil": "Casada",
+  "filhos": 2,
+  "orientacao_politica": "Centro-esquerda",
+  "valores": ["educação", "família", "justiça social"],
+  "preocupacoes": ["qualidade do ensino", "segurança", "saúde pública"],
+  "historia_resumida": "Nasceu em Ceilândia, formou-se com muito esforço na UnB. Trabalha em escola pública há 10 anos. Luta por melhores condições de trabalho."
+}

@@ -1,0 +1,90 @@
+# Dependencias
+node_modules/
+.pnp/
+.pnp.js
+
+# Testes
+coverage/
+.nyc_output/
+
+# Build
+.next/
+out/
+build/
+dist/
+*.egg-info/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
+*.env
+
+# Seguranca - NUNCA COMMITAR
+**/secrets/
+**/*.key
+**/*.pem
+**/*.p12
+**/credentials.json
+**/service-account.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Docker
+docker-compose.override.yml
+
+# Python
+venv/
+.venv/
+ENV/
+env/
+*.egg
+MANIFEST
+
+# Banco de dados local
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporarios
+tmp/
+temp/
+*.tmp
+tmpclaude-*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache
+.cache/
+.parcel-cache/
+.turbo/
+
+# Vercel
+.vercel/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

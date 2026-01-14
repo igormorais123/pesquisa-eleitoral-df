@@ -1,0 +1,29 @@
+{
+  "agente_id": 1,
+  "memorias": [
+    {
+      "data": "2023-03",
+      "evento": "Minha escola ficou sem merenda por 2 semanas. Os alunos passavam fome.",
+      "impacto_emocional": "alto",
+      "tema": "educação"
+    },
+    {
+      "data": "2024-06",
+      "evento": "Consegui aumento de 5% depois de greve. Mal cobre a inflação.",
+      "impacto_emocional": "médio",
+      "tema": "economia"
+    },
+    {
+      "data": "2025-11",
+      "evento": "Meu filho foi assaltado voltando da escola. Graças a Deus não se machucou.",
+      "impacto_emocional": "muito alto",
+      "tema": "segurança"
+    },
+    {
+      "data": "2026-01",
+      "evento": "Vi no jornal que governador quer cortar verba da educação em 15%.",
+      "impacto_emocional": "alto",
+      "tema": "educação"
+    }
+  ]
+}
