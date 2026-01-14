@@ -131,4 +131,10 @@ BACKEND_URL=http://localhost:8000
 
 ## Language
 
-Project documentation and code comments are in Portuguese (Brasil). Variable names and technical terms mix Portuguese and English.
+**IMPORTANTE: Todas as conversas e interações com o usuário devem ser em Português do Brasil.**
+
+- Todas as respostas do Claude devem ser em português brasileiro
+- Documentação do projeto em português (Brasil)
+- Comentários no código em português
+- Nomes de variáveis e termos técnicos podem misturar português e inglês
+- Mensagens de commit e PRs em português
