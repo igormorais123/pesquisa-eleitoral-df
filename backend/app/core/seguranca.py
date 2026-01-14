@@ -6,12 +6,12 @@ Implementa autenticação JWT e hash de senhas.
 
 from datetime import datetime, timedelta
 from typing import Optional, Union
+
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 from pydantic import BaseModel
 
 from app.core.config import configuracoes
-
 
 # Contexto de hash de senhas
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -19,6 +19,7 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 class TokenPayload(BaseModel):
     """Payload do token JWT"""
+
     sub: str  # ID ou username do usuário
     nome: str
     papel: str
@@ -28,6 +29,7 @@ class TokenPayload(BaseModel):
 
 class Token(BaseModel):
     """Resposta de token"""
+
     access_token: str
     token_type: str = "bearer"
     expires_in: int
@@ -36,6 +38,7 @@ class Token(BaseModel):
 
 class DadosToken(BaseModel):
     """Dados extraídos do token"""
+
     usuario_id: Optional[str] = None
     nome: Optional[str] = None
     papel: Optional[str] = None
@@ -71,16 +74,16 @@ def criar_token_acesso(dados: dict, expira_em: Optional[timedelta] = None) -> st
             minutes=configuracoes.ACCESS_TOKEN_EXPIRE_MINUTES
         )
 
-    a_codificar.update({
-        "exp": expiracao,
-        "tipo": "access",
-        "iat": datetime.utcnow(),
-    })
+    a_codificar.update(
+        {
+            "exp": expiracao,
+            "tipo": "access",
+            "iat": datetime.utcnow(),
+        }
+    )
 
     token = jwt.encode(
-        a_codificar,
-        configuracoes.SECRET_KEY,
-        algorithm=configuracoes.ALGORITHM
+        a_codificar, configuracoes.SECRET_KEY, algorithm=configuracoes.ALGORITHM
     )
 
     return token
@@ -98,9 +101,7 @@ def verificar_token(token: str) -> Optional[DadosToken]:
     """
     try:
         payload = jwt.decode(
-            token,
-            configuracoes.SECRET_KEY,
-            algorithms=[configuracoes.ALGORITHM]
+            token, configuracoes.SECRET_KEY, algorithms=[configuracoes.ALGORITHM]
         )
 
         usuario_id: str = payload.get("sub")
@@ -110,11 +111,7 @@ def verificar_token(token: str) -> Optional[DadosToken]:
         if usuario_id is None:
             return None
 
-        return DadosToken(
-            usuario_id=usuario_id,
-            nome=nome,
-            papel=papel
-        )
+        return DadosToken(usuario_id=usuario_id, nome=nome, papel=papel)
 
     except JWTError:
         return None

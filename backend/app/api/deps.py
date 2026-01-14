@@ -5,11 +5,11 @@ Funções de dependência para injeção em rotas.
 """
 
 from typing import Optional
+
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
-from app.core.seguranca import verificar_token, DadosToken
-
+from app.core.seguranca import DadosToken, verificar_token
 
 # Esquema OAuth2
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
@@ -43,7 +43,7 @@ async def obter_usuario_atual(token: str = Depends(oauth2_scheme)) -> DadosToken
 
 
 async def obter_usuario_admin(
-    usuario: DadosToken = Depends(obter_usuario_atual)
+    usuario: DadosToken = Depends(obter_usuario_atual),
 ) -> DadosToken:
     """
     Verifica se o usuário atual é administrador.
@@ -67,7 +67,7 @@ async def obter_usuario_admin(
 
 
 async def obter_usuario_opcional(
-    token: Optional[str] = Depends(oauth2_scheme)
+    token: Optional[str] = Depends(oauth2_scheme),
 ) -> Optional[DadosToken]:
     """
     Obtém usuário opcionalmente (para rotas públicas que aceitam autenticação).

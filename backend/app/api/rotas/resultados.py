@@ -4,12 +4,12 @@ Rotas de Resultados
 API REST para análise de resultados de entrevistas.
 """
 
-from fastapi import APIRouter, Depends, HTTPException, status, Query, BackgroundTasks
 from typing import Optional
 
-from app.api.deps import obter_usuario_atual, DadosToken
-from app.servicos.resultado_servico import obter_resultado_servico, ResultadoServico
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, status
 
+from app.api.deps import DadosToken, obter_usuario_atual
+from app.servicos.resultado_servico import ResultadoServico, obter_resultado_servico
 
 router = APIRouter()
 
@@ -38,9 +38,7 @@ async def listar_resultados(
     - **entrevista_id**: Filtrar por entrevista específica
     """
     return servico.listar(
-        pagina=pagina,
-        por_pagina=por_pagina,
-        entrevista_id=entrevista_id
+        pagina=pagina, por_pagina=por_pagina, entrevista_id=entrevista_id
     )
 
 
@@ -57,7 +55,7 @@ async def obter_resultado(
     if not resultado:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Resultado {resultado_id} não encontrado"
+            detail=f"Resultado {resultado_id} não encontrado",
         )
     return resultado
 
@@ -91,18 +89,15 @@ async def analisar_entrevista(
                 "sentimento_geral": resultado["sentimento_geral"],
                 "total_insights": len(resultado.get("insights", [])),
                 "votos_silenciosos": len(resultado.get("votos_silenciosos", [])),
-                "pontos_ruptura": len(resultado.get("pontos_ruptura", []))
-            }
+                "pontos_ruptura": len(resultado.get("pontos_ruptura", [])),
+            },
         }
     except ValueError as e:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
-        )
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Erro ao analisar: {str(e)}"
+            detail=f"Erro ao analisar: {str(e)}",
         )
 
 
@@ -124,14 +119,14 @@ async def obter_estatisticas(
     if not resultado:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Resultado {resultado_id} não encontrado"
+            detail=f"Resultado {resultado_id} não encontrado",
         )
 
     return {
         "resultado_id": resultado_id,
         "estatisticas": resultado.get("estatisticas"),
         "distribuicoes": resultado.get("distribuicoes"),
-        "correlacoes": resultado.get("correlacoes")
+        "correlacoes": resultado.get("correlacoes"),
     }
 
 
@@ -148,7 +143,7 @@ async def obter_analise_sentimentos(
     if not resultado:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Resultado {resultado_id} não encontrado"
+            detail=f"Resultado {resultado_id} não encontrado",
         )
 
     return {
@@ -157,7 +152,7 @@ async def obter_analise_sentimentos(
         "proporcao_sentimentos": resultado.get("proporcao_sentimentos"),
         "palavras_frequentes": resultado.get("palavras_frequentes"),
         "temas_principais": resultado.get("temas_principais"),
-        "citacoes_representativas": resultado.get("citacoes_representativas")
+        "citacoes_representativas": resultado.get("citacoes_representativas"),
     }
 
 
@@ -174,7 +169,7 @@ async def obter_mapa_calor(
     if not resultado:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Resultado {resultado_id} não encontrado"
+            detail=f"Resultado {resultado_id} não encontrado",
         )
 
     return resultado.get("mapa_calor_emocional")
@@ -196,15 +191,17 @@ async def obter_votos_silenciosos(
     if not resultado:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Resultado {resultado_id} não encontrado"
+            detail=f"Resultado {resultado_id} não encontrado",
         )
 
     votos = resultado.get("votos_silenciosos", [])
     return {
         "resultado_id": resultado_id,
         "total": len(votos),
-        "percentual_amostra": round(len(votos) / resultado.get("total_eleitores", 1) * 100, 1),
-        "votos_silenciosos": votos
+        "percentual_amostra": round(
+            len(votos) / resultado.get("total_eleitores", 1) * 100, 1
+        ),
+        "votos_silenciosos": votos,
     }
 
 
@@ -223,14 +220,14 @@ async def obter_pontos_ruptura(
     if not resultado:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Resultado {resultado_id} não encontrado"
+            detail=f"Resultado {resultado_id} não encontrado",
         )
 
     pontos = resultado.get("pontos_ruptura", [])
     return {
         "resultado_id": resultado_id,
         "total": len(pontos),
-        "pontos_ruptura": pontos
+        "pontos_ruptura": pontos,
     }
 
 
@@ -247,14 +244,14 @@ async def obter_insights(
     if not resultado:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Resultado {resultado_id} não encontrado"
+            detail=f"Resultado {resultado_id} não encontrado",
         )
 
     return {
         "resultado_id": resultado_id,
         "insights": resultado.get("insights", []),
         "conclusoes": resultado.get("conclusoes", []),
-        "implicacoes_politicas": resultado.get("implicacoes_politicas", [])
+        "implicacoes_politicas": resultado.get("implicacoes_politicas", []),
     }
 
 
@@ -275,6 +272,6 @@ async def deletar_resultado(
     if not servico.deletar(resultado_id):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Resultado {resultado_id} não encontrado"
+            detail=f"Resultado {resultado_id} não encontrado",
         )
     return {"mensagem": f"Resultado {resultado_id} removido com sucesso"}

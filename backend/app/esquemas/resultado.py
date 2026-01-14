@@ -4,15 +4,16 @@ Esquemas de Resultado
 Modelos Pydantic para análises e resultados de entrevistas.
 """
 
-from pydantic import BaseModel, Field
-from typing import Optional, List, Dict, Any
-from enum import Enum
 from datetime import datetime
+from enum import Enum
+from typing import Any, Dict, List, Optional
 
+from pydantic import BaseModel, Field
 
 # ============================================
 # ENUMS
 # ============================================
+
 
 class TipoInsight(str, Enum):
     descoberta = "descoberta"
@@ -39,8 +40,10 @@ class Relevancia(str, Enum):
 # ESTATÍSTICAS
 # ============================================
 
+
 class Distribuicao(BaseModel):
     """Item de distribuição estatística"""
+
     categoria: str
     quantidade: int
     percentual: float
@@ -49,6 +52,7 @@ class Distribuicao(BaseModel):
 
 class EstatisticasDescritivas(BaseModel):
     """Estatísticas descritivas de uma variável"""
+
     variavel: str
     media: Optional[float] = None
     mediana: Optional[float] = None
@@ -66,6 +70,7 @@ class EstatisticasDescritivas(BaseModel):
 
 class Correlacao(BaseModel):
     """Correlação entre duas variáveis"""
+
     variavel1: str
     variavel2: str
     coeficiente_pearson: Optional[float] = None
@@ -81,8 +86,10 @@ class Correlacao(BaseModel):
 # ANÁLISE QUALITATIVA
 # ============================================
 
+
 class PalavraFrequente(BaseModel):
     """Palavra com frequência"""
+
     palavra: str
     frequencia: int
     percentual: float
@@ -91,6 +98,7 @@ class PalavraFrequente(BaseModel):
 
 class Tema(BaseModel):
     """Tema identificado nas respostas"""
+
     nome: str
     frequencia: int
     percentual: float
@@ -100,6 +108,7 @@ class Tema(BaseModel):
 
 class Citacao(BaseModel):
     """Citação representativa"""
+
     texto: str
     eleitor_id: str
     eleitor_nome: str
@@ -114,8 +123,10 @@ class Citacao(BaseModel):
 # MAPA DE CALOR EMOCIONAL
 # ============================================
 
+
 class ItemMapaCalor(BaseModel):
     """Item do mapa de calor emocional"""
+
     grupo: str
     sentimento: str
     intensidade: float  # 0-100
@@ -125,6 +136,7 @@ class ItemMapaCalor(BaseModel):
 
 class MapaCalorEmocional(BaseModel):
     """Mapa de calor emocional completo"""
+
     pergunta: str
     total_respostas: int
     dados: List[ItemMapaCalor]
@@ -134,8 +146,10 @@ class MapaCalorEmocional(BaseModel):
 # CAIXAS ESPECIAIS
 # ============================================
 
+
 class VotoSilencioso(BaseModel):
     """Eleitor com voto silencioso"""
+
     eleitor_id: str
     eleitor_nome: str
     perfil_resumido: str
@@ -157,6 +171,7 @@ class VotoSilencioso(BaseModel):
 
 class PontoRuptura(BaseModel):
     """Ponto de ruptura de um eleitor"""
+
     eleitor_id: str
     eleitor_nome: str
     perfil_resumido: str
@@ -180,8 +195,10 @@ class PontoRuptura(BaseModel):
 # INSIGHTS
 # ============================================
 
+
 class Insight(BaseModel):
     """Insight gerado pela análise"""
+
     tipo: TipoInsight
     titulo: str
     descricao: str
@@ -196,8 +213,10 @@ class Insight(BaseModel):
 # RESULTADO COMPLETO
 # ============================================
 
+
 class ResultadoAnalise(BaseModel):
     """Resultado completo de análise de entrevista"""
+
     id: str
     entrevista_id: str
     titulo_entrevista: str
@@ -239,6 +258,7 @@ class ResultadoAnalise(BaseModel):
 
 class ResultadoListResponse(BaseModel):
     """Resposta com lista de resultados"""
+
     resultados: List[ResultadoAnalise]
     total: int
     pagina: int

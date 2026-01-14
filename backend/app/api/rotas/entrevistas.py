@@ -4,20 +4,20 @@ Rotas de Entrevistas
 API REST para gestão e execução de entrevistas.
 """
 
-from fastapi import APIRouter, Depends, HTTPException, status, Query, BackgroundTasks
-from typing import Optional, List
+from typing import List, Optional
 
-from app.api.deps import obter_usuario_atual, DadosToken
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, status
+
+from app.api.deps import DadosToken, obter_usuario_atual
 from app.esquemas.entrevista import (
     EntrevistaCreate,
-    EntrevistaUpdate,
     EntrevistaListResponse,
-    IniciarEntrevistaRequest,
+    EntrevistaUpdate,
     EstimativaCusto,
+    IniciarEntrevistaRequest,
 )
-from app.servicos.entrevista_servico import obter_entrevista_servico, EntrevistaServico
 from app.servicos.claude_servico import obter_claude_servico
-
+from app.servicos.entrevista_servico import EntrevistaServico, obter_entrevista_servico
 
 router = APIRouter()
 
@@ -61,7 +61,7 @@ async def obter_entrevista(
     if not entrevista:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Entrevista {entrevista_id} não encontrada"
+            detail=f"Entrevista {entrevista_id} não encontrada",
         )
     return entrevista
 
@@ -83,10 +83,7 @@ async def criar_entrevista(
     try:
         return servico.criar(dados)
     except ValueError as e:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e)
-        )
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
 
 
 @router.put("/{entrevista_id}")
@@ -103,7 +100,7 @@ async def atualizar_entrevista(
     if not entrevista:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Entrevista {entrevista_id} não encontrada"
+            detail=f"Entrevista {entrevista_id} não encontrada",
         )
     return entrevista
 
@@ -120,7 +117,7 @@ async def deletar_entrevista(
     if not servico.deletar(entrevista_id):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Entrevista {entrevista_id} não encontrada"
+            detail=f"Entrevista {entrevista_id} não encontrada",
         )
     return {"mensagem": f"Entrevista {entrevista_id} removida com sucesso"}
 
@@ -147,13 +144,13 @@ async def iniciar_execucao(
     if not entrevista:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Entrevista {entrevista_id} não encontrada"
+            detail=f"Entrevista {entrevista_id} não encontrada",
         )
 
     if entrevista["status"] == "executando":
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Entrevista já está em execução"
+            detail="Entrevista já está em execução",
         )
 
     # Iniciar execução em background
@@ -163,7 +160,7 @@ async def iniciar_execucao(
                 entrevista_id=entrevista_id,
                 limite_custo=config.limite_custo_reais,
                 batch_size=config.batch_size,
-                delay_ms=config.delay_entre_batches_ms
+                delay_ms=config.delay_entre_batches_ms,
             )
         except Exception as e:
             print(f"Erro na execução: {e}")
@@ -173,7 +170,7 @@ async def iniciar_execucao(
     return {
         "mensagem": "Execução iniciada",
         "entrevista_id": entrevista_id,
-        "config": config.model_dump()
+        "config": config.model_dump(),
     }
 
 
@@ -190,7 +187,7 @@ async def pausar_execucao(
         return {"mensagem": "Execução pausada", "entrevista_id": entrevista_id}
     raise HTTPException(
         status_code=status.HTTP_400_BAD_REQUEST,
-        detail="Entrevista não está em execução"
+        detail="Entrevista não está em execução",
     )
 
 
@@ -206,8 +203,7 @@ async def retomar_execucao(
     if servico.retomar_execucao(entrevista_id):
         return {"mensagem": "Execução retomada", "entrevista_id": entrevista_id}
     raise HTTPException(
-        status_code=status.HTTP_400_BAD_REQUEST,
-        detail="Entrevista não está pausada"
+        status_code=status.HTTP_400_BAD_REQUEST, detail="Entrevista não está pausada"
     )
 
 
@@ -224,7 +220,7 @@ async def cancelar_execucao(
         return {"mensagem": "Execução cancelada", "entrevista_id": entrevista_id}
     raise HTTPException(
         status_code=status.HTTP_400_BAD_REQUEST,
-        detail="Entrevista não está em execução"
+        detail="Entrevista não está em execução",
     )
 
 
@@ -241,7 +237,7 @@ async def obter_progresso(
     if not progresso:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Entrevista {entrevista_id} não encontrada"
+            detail=f"Entrevista {entrevista_id} não encontrada",
         )
     return progresso
 
@@ -266,14 +262,9 @@ async def listar_respostas(
     - **eleitor_id**: Filtrar por eleitor específico
     """
     respostas = servico.obter_respostas(
-        entrevista_id=entrevista_id,
-        pergunta_id=pergunta_id,
-        eleitor_id=eleitor_id
+        entrevista_id=entrevista_id, pergunta_id=pergunta_id, eleitor_id=eleitor_id
     )
-    return {
-        "respostas": respostas,
-        "total": len(respostas)
-    }
+    return {"respostas": respostas, "total": len(respostas)}
 
 
 # ============================================
@@ -299,5 +290,5 @@ async def estimar_custo(
     return claude.estimar_custo(
         total_perguntas=total_perguntas,
         total_eleitores=total_eleitores,
-        proporcao_opus=proporcao_opus
+        proporcao_opus=proporcao_opus,
     )

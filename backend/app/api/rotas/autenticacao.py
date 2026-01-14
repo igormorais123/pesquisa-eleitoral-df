@@ -4,31 +4,29 @@ Rotas de Autenticação
 Endpoints para login, logout e verificação de token.
 """
 
+from typing import Optional
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel
-from typing import Optional
 
-from app.core.seguranca import (
-    criar_token_acesso,
-    autenticar_usuario,
-    Token,
-)
+from app.api.deps import DadosToken, obter_usuario_atual
 from app.core.config import configuracoes
-from app.api.deps import obter_usuario_atual, DadosToken
-
+from app.core.seguranca import Token, autenticar_usuario, criar_token_acesso
 
 router = APIRouter()
 
 
 class LoginRequest(BaseModel):
     """Requisição de login"""
+
     usuario: str
     senha: str
 
 
 class LoginResponse(BaseModel):
     """Resposta de login"""
+
     access_token: str
     token_type: str = "bearer"
     expires_in: int
@@ -37,6 +35,7 @@ class LoginResponse(BaseModel):
 
 class UsuarioResponse(BaseModel):
     """Resposta com dados do usuário"""
+
     id: str
     usuario: str
     nome: str
@@ -111,7 +110,7 @@ async def login_form(form_data: OAuth2PasswordRequestForm = Depends()):
 
 @router.get("/me", response_model=UsuarioResponse)
 async def obter_usuario_logado(
-    usuario_atual: DadosToken = Depends(obter_usuario_atual)
+    usuario_atual: DadosToken = Depends(obter_usuario_atual),
 ):
     """
     Retorna dados do usuário autenticado.
@@ -142,7 +141,7 @@ async def logout(usuario_atual: DadosToken = Depends(obter_usuario_atual)):
 
 @router.get("/verificar")
 async def verificar_token_valido(
-    usuario_atual: DadosToken = Depends(obter_usuario_atual)
+    usuario_atual: DadosToken = Depends(obter_usuario_atual),
 ):
     """
     Verifica se o token atual é válido.

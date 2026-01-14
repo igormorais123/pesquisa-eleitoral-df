@@ -7,11 +7,11 @@ Definições de modelos para validação de dados.
 from .eleitor import (
     EleitorBase,
     EleitorCreate,
-    EleitorUpdate,
-    EleitorResponse,
     EleitorListResponse,
-    FiltrosEleitor,
+    EleitorResponse,
+    EleitorUpdate,
     EstatisticasEleitores,
+    FiltrosEleitor,
 )
 
 __all__ = [

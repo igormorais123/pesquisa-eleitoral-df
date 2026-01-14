@@ -4,14 +4,15 @@ Esquemas de Eleitor
 Modelos Pydantic para validação e serialização de dados de eleitores.
 """
 
-from pydantic import BaseModel, Field
-from typing import Optional, List
 from enum import Enum
+from typing import List, Optional
 
+from pydantic import BaseModel, Field
 
 # ============================================
 # ENUMS
 # ============================================
+
 
 class GeneroEnum(str, Enum):
     masculino = "masculino"
@@ -40,6 +41,8 @@ class ToleranciaEnum(str, Enum):
 class PosicaoBolsonaroEnum(str, Enum):
     opositor_forte = "opositor_forte"
     opositor_moderado = "opositor_moderado"
+    critico_forte = "critico_forte"
+    critico_moderado = "critico_moderado"
     neutro = "neutro"
     apoiador_moderado = "apoiador_moderado"
     apoiador_forte = "apoiador_forte"
@@ -49,8 +52,10 @@ class PosicaoBolsonaroEnum(str, Enum):
 # ESQUEMAS BASE
 # ============================================
 
+
 class EleitorBase(BaseModel):
     """Dados básicos de um eleitor"""
+
     nome: str = Field(..., min_length=2, max_length=100)
     idade: int = Field(..., ge=16, le=120)
     genero: GeneroEnum
@@ -86,11 +91,13 @@ class EleitorBase(BaseModel):
 
 class EleitorCreate(EleitorBase):
     """Dados para criação de eleitor"""
+
     id: Optional[str] = None  # Pode ser gerado automaticamente
 
 
 class EleitorUpdate(BaseModel):
     """Dados para atualização parcial de eleitor"""
+
     nome: Optional[str] = None
     idade: Optional[int] = None
     genero: Optional[GeneroEnum] = None
@@ -126,6 +133,7 @@ class EleitorUpdate(BaseModel):
 
 class EleitorResponse(EleitorBase):
     """Resposta com dados completos do eleitor"""
+
     id: str
 
     class Config:
@@ -136,8 +144,10 @@ class EleitorResponse(EleitorBase):
 # FILTROS
 # ============================================
 
+
 class FiltrosEleitor(BaseModel):
     """Filtros para busca de eleitores"""
+
     # Demograficos
     idade_min: Optional[int] = None
     idade_max: Optional[int] = None
@@ -186,8 +196,10 @@ class FiltrosEleitor(BaseModel):
 # RESPOSTAS
 # ============================================
 
+
 class EleitorListResponse(BaseModel):
     """Resposta com lista paginada de eleitores"""
+
     eleitores: List[EleitorResponse]
     total: int
     pagina: int
@@ -198,6 +210,7 @@ class EleitorListResponse(BaseModel):
 
 class DistribuicaoItem(BaseModel):
     """Item de distribuição estatística"""
+
     categoria: str
     quantidade: int
     percentual: float
@@ -205,6 +218,7 @@ class DistribuicaoItem(BaseModel):
 
 class EstatisticasEleitores(BaseModel):
     """Estatísticas gerais dos eleitores"""
+
     total: int
 
     # Distribuições
@@ -225,6 +239,7 @@ class EstatisticasEleitores(BaseModel):
 
 class UploadResult(BaseModel):
     """Resultado de upload de eleitores"""
+
     sucesso: bool
     total_processados: int
     total_adicionados: int

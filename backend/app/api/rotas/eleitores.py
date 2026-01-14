@@ -4,20 +4,20 @@ Rotas de Eleitores
 API REST para gestão de eleitores/agentes sintéticos.
 """
 
-from fastapi import APIRouter, Depends, HTTPException, status, Query, Body
-from typing import Optional, List
+from typing import List, Optional
 
-from app.api.deps import obter_usuario_atual, DadosToken
+from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
+
+from app.api.deps import DadosToken, obter_usuario_atual
 from app.esquemas.eleitor import (
     EleitorCreate,
-    EleitorUpdate,
-    EleitorResponse,
     EleitorListResponse,
+    EleitorResponse,
+    EleitorUpdate,
     FiltrosEleitor,
     UploadResult,
 )
-from app.servicos.eleitor_servico import obter_servico_eleitores, EleitorServico
-
+from app.servicos.eleitor_servico import EleitorServico, obter_servico_eleitores
 
 router = APIRouter()
 
@@ -38,43 +38,37 @@ async def listar_eleitores(
     idade_min: Optional[int] = Query(None, ge=16),
     idade_max: Optional[int] = Query(None, le=120),
     generos: Optional[str] = Query(None, description="Gêneros separados por vírgula"),
-    cores_racas: Optional[str] = Query(None, description="Cores/raças separadas por vírgula"),
-
+    cores_racas: Optional[str] = Query(
+        None, description="Cores/raças separadas por vírgula"
+    ),
     # Geográficos
     regioes: Optional[str] = Query(None, description="RAs separadas por vírgula"),
-
     # Socioeconômicos
     clusters: Optional[str] = Query(None, description="Clusters separados por vírgula"),
     escolaridades: Optional[str] = Query(None),
     profissoes: Optional[str] = Query(None),
     ocupacoes: Optional[str] = Query(None),
     rendas: Optional[str] = Query(None),
-
     # Socioculturais
     religioes: Optional[str] = Query(None),
     estados_civis: Optional[str] = Query(None),
     tem_filhos: Optional[bool] = Query(None),
-
     # Políticos
     orientacoes: Optional[str] = Query(None),
     posicoes_bolsonaro: Optional[str] = Query(None),
     interesses: Optional[str] = Query(None),
-
     # Comportamentais
     estilos: Optional[str] = Query(None),
     tolerancias: Optional[str] = Query(None),
     voto_facultativo: Optional[bool] = Query(None),
     conflito_identitario: Optional[bool] = Query(None),
-
     # Busca
     busca: Optional[str] = Query(None, description="Busca por nome, profissão, região"),
-
     # Paginação e ordenação
     pagina: int = Query(1, ge=1),
     por_pagina: int = Query(50, ge=1, le=500),
     ordenar_por: str = Query("nome"),
     ordem: str = Query("asc", pattern="^(asc|desc)$"),
-
     servico: EleitorServico = Depends(get_servico),
     _: DadosToken = Depends(obter_usuario_atual),
 ):
@@ -128,7 +122,6 @@ async def obter_estatisticas(
     regioes: Optional[str] = Query(None),
     religioes: Optional[str] = Query(None),
     orientacoes: Optional[str] = Query(None),
-
     servico: EleitorServico = Depends(get_servico),
     _: DadosToken = Depends(obter_usuario_atual),
 ):
@@ -175,7 +168,6 @@ async def listar_ids(
     regioes: Optional[str] = Query(None),
     religioes: Optional[str] = Query(None),
     orientacoes: Optional[str] = Query(None),
-
     servico: EleitorServico = Depends(get_servico),
     _: DadosToken = Depends(obter_usuario_atual),
 ):
@@ -360,5 +352,7 @@ async def obter_eleitores_por_ids(
     return {
         "eleitores": eleitores,
         "total": len(eleitores),
-        "ids_nao_encontrados": [id for id in ids if id not in [e["id"] for e in eleitores]],
+        "ids_nao_encontrados": [
+            id for id in ids if id not in [e["id"] for e in eleitores]
+        ],
     }

@@ -4,25 +4,25 @@ Serviço de Entrevistas
 Lógica de negócio para gestão e execução de entrevistas.
 """
 
-import json
-import uuid
 import asyncio
-from typing import List, Optional, Dict, Any
-from pathlib import Path
-from datetime import datetime
+import json
 import math
+import uuid
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 from app.esquemas.entrevista import (
+    Entrevista,
     EntrevistaCreate,
     EntrevistaUpdate,
-    Entrevista,
     Pergunta,
-    StatusEntrevista,
-    RespostaEleitor,
     ProgressoEntrevista,
+    RespostaEleitor,
+    StatusEntrevista,
 )
-from app.servicos.eleitor_servico import obter_servico_eleitores
 from app.servicos.claude_servico import obter_claude_servico
+from app.servicos.eleitor_servico import obter_servico_eleitores
 
 
 class EntrevistaServico:
@@ -77,10 +77,7 @@ class EntrevistaServico:
     # ============================================
 
     def listar(
-        self,
-        pagina: int = 1,
-        por_pagina: int = 20,
-        status: Optional[str] = None
+        self, pagina: int = 1, por_pagina: int = 20, status: Optional[str] = None
     ) -> Dict[str, Any]:
         """Lista entrevistas com paginação"""
         resultado = self._entrevistas
@@ -90,9 +87,7 @@ class EntrevistaServico:
 
         # Ordenar por data (mais recente primeiro)
         resultado = sorted(
-            resultado,
-            key=lambda x: x.get("criado_em", ""),
-            reverse=True
+            resultado, key=lambda x: x.get("criado_em", ""), reverse=True
         )
 
         total = len(resultado)
@@ -107,7 +102,7 @@ class EntrevistaServico:
             "total": total,
             "pagina": pagina,
             "por_pagina": por_pagina,
-            "total_paginas": total_paginas
+            "total_paginas": total_paginas,
         }
 
     def obter_por_id(self, entrevista_id: str) -> Optional[Dict]:
@@ -124,16 +119,12 @@ class EntrevistaServico:
         # Processar perguntas
         perguntas = []
         for i, p in enumerate(dados.perguntas):
-            perguntas.append({
-                "id": f"{entrevista_id}-p{i+1:02d}",
-                **p.model_dump()
-            })
+            perguntas.append({"id": f"{entrevista_id}-p{i+1:02d}", **p.model_dump()})
 
         # Estimar custo
         claude = obter_claude_servico()
         estimativa = claude.estimar_custo(
-            total_perguntas=len(perguntas),
-            total_eleitores=len(dados.eleitores_ids)
+            total_perguntas=len(perguntas), total_eleitores=len(dados.eleitores_ids)
         )
 
         entrevista = {
@@ -178,7 +169,8 @@ class EntrevistaServico:
             if e.get("id") == entrevista_id:
                 # Também remover respostas
                 self._respostas = [
-                    r for r in self._respostas
+                    r
+                    for r in self._respostas
                     if r.get("entrevista_id") != entrevista_id
                 ]
                 del self._entrevistas[i]
@@ -197,7 +189,7 @@ class EntrevistaServico:
         limite_custo: float = 100.0,
         batch_size: int = 10,
         delay_ms: int = 500,
-        callback_progresso=None
+        callback_progresso=None,
     ) -> Dict[str, Any]:
         """
         Inicia execução de entrevista.
@@ -225,10 +217,7 @@ class EntrevistaServico:
         self._salvar_dados()
 
         # Inicializar estado de execução
-        self._execucao_ativa[entrevista_id] = {
-            "pausado": False,
-            "cancelado": False
-        }
+        self._execucao_ativa[entrevista_id] = {"pausado": False, "cancelado": False}
 
         # Obter eleitores e serviços
         eleitor_servico = obter_servico_eleitores()
@@ -259,13 +248,17 @@ class EntrevistaServico:
 
                     # Verificar limite de custo
                     if custo_total >= limite_custo * 0.8:
-                        print(f"⚠️ 80% do limite de custo atingido: R$ {custo_total:.2f}")
+                        print(
+                            f"⚠️ 80% do limite de custo atingido: R$ {custo_total:.2f}"
+                        )
 
                     if custo_total >= limite_custo:
-                        raise Exception(f"Limite de custo atingido: R$ {custo_total:.2f}")
+                        raise Exception(
+                            f"Limite de custo atingido: R$ {custo_total:.2f}"
+                        )
 
                     # Processar batch
-                    batch = eleitores[i:i + batch_size]
+                    batch = eleitores[i : i + batch_size]
                     batch_tasks = []
 
                     for eleitor in batch:
@@ -273,12 +266,14 @@ class EntrevistaServico:
                             eleitor=eleitor,
                             pergunta=pergunta["texto"],
                             tipo_pergunta=pergunta["tipo"],
-                            opcoes=pergunta.get("opcoes")
+                            opcoes=pergunta.get("opcoes"),
                         )
                         batch_tasks.append(task)
 
                     # Executar batch em paralelo
-                    resultados = await asyncio.gather(*batch_tasks, return_exceptions=True)
+                    resultados = await asyncio.gather(
+                        *batch_tasks, return_exceptions=True
+                    )
 
                     for resultado in resultados:
                         if isinstance(resultado, Exception):
@@ -296,7 +291,7 @@ class EntrevistaServico:
                             "entrevista_id": entrevista_id,
                             "pergunta_id": pergunta["id"],
                             **resultado,
-                            "criado_em": datetime.now().isoformat()
+                            "criado_em": datetime.now().isoformat(),
                         }
                         respostas_novas.append(resposta)
 
@@ -309,12 +304,14 @@ class EntrevistaServico:
                     self._salvar_dados()
 
                     if callback_progresso:
-                        await callback_progresso({
-                            "progresso": progresso,
-                            "custo_atual": custo_total,
-                            "chamadas_feitas": chamadas_feitas,
-                            "total_chamadas": total_chamadas
-                        })
+                        await callback_progresso(
+                            {
+                                "progresso": progresso,
+                                "custo_atual": custo_total,
+                                "chamadas_feitas": chamadas_feitas,
+                                "total_chamadas": total_chamadas,
+                            }
+                        )
 
                     # Delay entre batches
                     if i + batch_size < len(eleitores):
@@ -336,7 +333,9 @@ class EntrevistaServico:
                 "custo_total": custo_total,
                 "tokens_entrada": tokens_entrada,
                 "tokens_saida": tokens_saida,
-                "tempo_execucao_segundos": (datetime.now() - inicio_exec).total_seconds()
+                "tempo_execucao_segundos": (
+                    datetime.now() - inicio_exec
+                ).total_seconds(),
             }
 
         except Exception as e:
@@ -420,12 +419,11 @@ class EntrevistaServico:
         self,
         entrevista_id: str,
         pergunta_id: Optional[str] = None,
-        eleitor_id: Optional[str] = None
+        eleitor_id: Optional[str] = None,
     ) -> List[Dict]:
         """Obtém respostas de uma entrevista"""
         resultado = [
-            r for r in self._respostas
-            if r.get("entrevista_id") == entrevista_id
+            r for r in self._respostas if r.get("entrevista_id") == entrevista_id
         ]
 
         if pergunta_id:

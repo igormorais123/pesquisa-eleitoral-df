@@ -5,20 +5,20 @@ Lógica de negócio para gestão de eleitores/agentes sintéticos.
 """
 
 import json
+import math
 import os
 import uuid
-from typing import List, Optional, Dict, Any
-from pathlib import Path
 from collections import Counter
-import math
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 from app.esquemas.eleitor import (
-    EleitorCreate,
-    EleitorUpdate,
-    EleitorResponse,
-    FiltrosEleitor,
-    EstatisticasEleitores,
     DistribuicaoItem,
+    EleitorCreate,
+    EleitorResponse,
+    EleitorUpdate,
+    EstatisticasEleitores,
+    FiltrosEleitor,
     UploadResult,
 )
 
@@ -47,7 +47,9 @@ class EleitorServico:
         if self.caminho_dados.exists():
             with open(self.caminho_dados, "r", encoding="utf-8") as f:
                 self._eleitores = json.load(f)
-            print(f"Carregados {len(self._eleitores)} eleitores de {self.caminho_dados}")
+            print(
+                f"Carregados {len(self._eleitores)} eleitores de {self.caminho_dados}"
+            )
         else:
             print(f"Arquivo não encontrado: {self.caminho_dados}")
             self._eleitores = []
@@ -87,43 +89,45 @@ class EleitorServico:
             resultado = [e for e in resultado if e.get("genero") in filtros.generos]
 
         if filtros.cores_racas:
-            resultado = [e for e in resultado if e.get("cor_raca") in filtros.cores_racas]
+            resultado = [
+                e for e in resultado if e.get("cor_raca") in filtros.cores_racas
+            ]
 
         # Filtros geográficos
         if filtros.regioes_administrativas:
             resultado = [
-                e for e in resultado
+                e
+                for e in resultado
                 if e.get("regiao_administrativa") in filtros.regioes_administrativas
             ]
 
         # Filtros socioeconômicos
         if filtros.clusters:
             resultado = [
-                e for e in resultado
+                e
+                for e in resultado
                 if e.get("cluster_socioeconomico") in filtros.clusters
             ]
 
         if filtros.escolaridades:
             resultado = [
-                e for e in resultado
-                if e.get("escolaridade") in filtros.escolaridades
+                e for e in resultado if e.get("escolaridade") in filtros.escolaridades
             ]
 
         if filtros.profissoes:
             resultado = [
-                e for e in resultado
-                if e.get("profissao") in filtros.profissoes
+                e for e in resultado if e.get("profissao") in filtros.profissoes
             ]
 
         if filtros.ocupacoes:
             resultado = [
-                e for e in resultado
-                if e.get("ocupacao_vinculo") in filtros.ocupacoes
+                e for e in resultado if e.get("ocupacao_vinculo") in filtros.ocupacoes
             ]
 
         if filtros.faixas_renda:
             resultado = [
-                e for e in resultado
+                e
+                for e in resultado
                 if e.get("renda_salarios_minimos") in filtros.faixas_renda
             ]
 
@@ -133,8 +137,7 @@ class EleitorServico:
 
         if filtros.estados_civis:
             resultado = [
-                e for e in resultado
-                if e.get("estado_civil") in filtros.estados_civis
+                e for e in resultado if e.get("estado_civil") in filtros.estados_civis
             ]
 
         if filtros.tem_filhos is not None:
@@ -146,44 +149,51 @@ class EleitorServico:
         # Filtros políticos
         if filtros.orientacoes_politicas:
             resultado = [
-                e for e in resultado
+                e
+                for e in resultado
                 if e.get("orientacao_politica") in filtros.orientacoes_politicas
             ]
 
         if filtros.posicoes_bolsonaro:
             resultado = [
-                e for e in resultado
+                e
+                for e in resultado
                 if e.get("posicao_bolsonaro") in filtros.posicoes_bolsonaro
             ]
 
         if filtros.interesses_politicos:
             resultado = [
-                e for e in resultado
+                e
+                for e in resultado
                 if e.get("interesse_politico") in filtros.interesses_politicos
             ]
 
         # Filtros comportamentais
         if filtros.estilos_decisao:
             resultado = [
-                e for e in resultado
+                e
+                for e in resultado
                 if e.get("estilo_decisao") in filtros.estilos_decisao
             ]
 
         if filtros.tolerancias:
             resultado = [
-                e for e in resultado
+                e
+                for e in resultado
                 if e.get("tolerancia_nuance") in filtros.tolerancias
             ]
 
         if filtros.voto_facultativo is not None:
             resultado = [
-                e for e in resultado
+                e
+                for e in resultado
                 if e.get("voto_facultativo") == filtros.voto_facultativo
             ]
 
         if filtros.conflito_identitario is not None:
             resultado = [
-                e for e in resultado
+                e
+                for e in resultado
                 if e.get("conflito_identitario") == filtros.conflito_identitario
             ]
 
@@ -191,7 +201,8 @@ class EleitorServico:
         if filtros.busca_texto:
             termo = filtros.busca_texto.lower()
             resultado = [
-                e for e in resultado
+                e
+                for e in resultado
                 if termo in e.get("nome", "").lower()
                 or termo in e.get("profissao", "").lower()
                 or termo in e.get("regiao_administrativa", "").lower()

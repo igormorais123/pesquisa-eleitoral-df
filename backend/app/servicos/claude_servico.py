@@ -6,11 +6,11 @@ Processa entrevistas usando o modelo cognitivo de 4 etapas.
 
 import json
 import time
-from typing import Dict, Any, Optional, List
+from typing import Any, Dict, List, Optional
+
 from anthropic import Anthropic
 
 from app.core.config import configuracoes
-
 
 # Preços por milhão de tokens (USD) - Janeiro 2026
 PRECOS_MODELOS = {
@@ -36,11 +36,7 @@ class ClaudeServico:
         if not self.client:
             raise ValueError("API Key do Claude não configurada")
 
-    def selecionar_modelo(
-        self,
-        tipo_pergunta: str,
-        eleitor: Dict[str, Any]
-    ) -> str:
+    def selecionar_modelo(self, tipo_pergunta: str, eleitor: Dict[str, Any]) -> str:
         """
         Seleciona o modelo adequado baseado na complexidade.
 
@@ -56,18 +52,17 @@ class ClaudeServico:
             return "claude-opus-4-5-20251101"
 
         # Opus para eleitores complexos
-        if (eleitor.get("conflito_identitario") and
-            eleitor.get("tolerancia_nuance") == "alta"):
+        if (
+            eleitor.get("conflito_identitario")
+            and eleitor.get("tolerancia_nuance") == "alta"
+        ):
             return "claude-opus-4-5-20251101"
 
         # Sonnet para o resto
         return "claude-sonnet-4-20250514"
 
     def calcular_custo(
-        self,
-        tokens_entrada: int,
-        tokens_saida: int,
-        modelo: str
+        self, tokens_entrada: int, tokens_saida: int, modelo: str
     ) -> float:
         """
         Calcula custo em reais.
@@ -92,7 +87,7 @@ class ClaudeServico:
         eleitor: Dict[str, Any],
         pergunta: str,
         tipo_pergunta: str,
-        opcoes: Optional[List[str]] = None
+        opcoes: Optional[List[str]] = None,
     ) -> str:
         """
         Constrói o prompt com Chain of Thought de 4 etapas.
@@ -247,7 +242,7 @@ Responda APENAS com o JSON, sem texto adicional.
         pergunta: str,
         tipo_pergunta: str,
         opcoes: Optional[List[str]] = None,
-        forcar_modelo: Optional[str] = None
+        forcar_modelo: Optional[str] = None,
     ) -> Dict[str, Any]:
         """
         Processa uma resposta usando Chain of Thought.
@@ -268,7 +263,9 @@ Responda APENAS com o JSON, sem texto adicional.
         modelo = forcar_modelo or self.selecionar_modelo(tipo_pergunta, eleitor)
 
         # Construir prompt
-        prompt = self.construir_prompt_cognitivo(eleitor, pergunta, tipo_pergunta, opcoes)
+        prompt = self.construir_prompt_cognitivo(
+            eleitor, pergunta, tipo_pergunta, opcoes
+        )
 
         # Medir tempo
         inicio = time.time()
@@ -277,9 +274,7 @@ Responda APENAS com o JSON, sem texto adicional.
         response = self.client.messages.create(
             model=modelo,
             max_tokens=2000,
-            messages=[
-                {"role": "user", "content": prompt}
-            ]
+            messages=[{"role": "user", "content": prompt}],
         )
 
         tempo_ms = int((time.time() - inicio) * 1000)
@@ -298,38 +293,45 @@ Responda APENAS com o JSON, sem texto adicional.
         except json.JSONDecodeError:
             # Tentar extrair JSON do texto
             import re
-            json_match = re.search(r'\{.*\}', resposta_texto, re.DOTALL)
+
+            json_match = re.search(r"\{.*\}", resposta_texto, re.DOTALL)
             if json_match:
                 resposta_json = json.loads(json_match.group())
             else:
                 resposta_json = {
                     "atencao": {"prestaria_atencao": True, "motivo": ""},
-                    "vies": {"confirma_crencas": False, "ameaca_valores": False, "ativa_medos": []},
-                    "emocional": {"sentimento_dominante": "indiferenca", "intensidade": 5},
+                    "vies": {
+                        "confirma_crencas": False,
+                        "ameaca_valores": False,
+                        "ativa_medos": [],
+                    },
+                    "emocional": {
+                        "sentimento_dominante": "indiferenca",
+                        "intensidade": 5,
+                    },
                     "decisao": {
                         "muda_intencao_voto": False,
                         "aumenta_cinismo": False,
-                        "resposta_final": resposta_texto
-                    }
+                        "resposta_final": resposta_texto,
+                    },
                 }
 
         return {
             "eleitor_id": eleitor.get("id"),
             "eleitor_nome": eleitor.get("nome"),
-            "resposta_texto": resposta_json.get("decisao", {}).get("resposta_final", ""),
+            "resposta_texto": resposta_json.get("decisao", {}).get(
+                "resposta_final", ""
+            ),
             "fluxo_cognitivo": resposta_json,
             "modelo_usado": modelo,
             "tokens_entrada": tokens_entrada,
             "tokens_saida": tokens_saida,
             "custo_reais": custo,
-            "tempo_resposta_ms": tempo_ms
+            "tempo_resposta_ms": tempo_ms,
         }
 
     def estimar_custo(
-        self,
-        total_perguntas: int,
-        total_eleitores: int,
-        proporcao_opus: float = 0.2
+        self, total_perguntas: int, total_eleitores: int, proporcao_opus: float = 0.2
     ) -> Dict[str, Any]:
         """
         Estima custo de uma entrevista.
@@ -358,13 +360,13 @@ Responda APENAS com o JSON, sem texto adicional.
         custo_opus = self.calcular_custo(
             chamadas_opus * tokens_entrada_medio,
             chamadas_opus * tokens_saida_medio,
-            "claude-opus-4-5-20251101"
+            "claude-opus-4-5-20251101",
         )
 
         custo_sonnet = self.calcular_custo(
             chamadas_sonnet * tokens_entrada_medio,
             chamadas_sonnet * tokens_saida_medio,
-            "claude-sonnet-4-20250514"
+            "claude-sonnet-4-20250514",
         )
 
         custo_medio = custo_opus + custo_sonnet
@@ -378,10 +380,14 @@ Responda APENAS com o JSON, sem texto adicional.
             "tokens_entrada_estimados": tokens_entrada,
             "tokens_saida_estimados": tokens_saida,
             "custo_minimo": custo_sonnet * 0.8,  # Só Sonnet, otimista
-            "custo_maximo": custo_medio * 1.5,   # Margem de segurança
+            "custo_maximo": custo_medio * 1.5,  # Margem de segurança
             "custo_medio": custo_medio,
-            "custo_por_eleitor": custo_medio / total_eleitores if total_eleitores > 0 else 0,
-            "custo_por_pergunta": custo_medio / total_perguntas if total_perguntas > 0 else 0
+            "custo_por_eleitor": (
+                custo_medio / total_eleitores if total_eleitores > 0 else 0
+            ),
+            "custo_por_pergunta": (
+                custo_medio / total_perguntas if total_perguntas > 0 else 0
+            ),
         }
 
 

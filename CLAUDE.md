@@ -1,73 +1,134 @@
-# Instruções para Claude Code - Projeto Agentes
+# CLAUDE.md
 
-## Modo de Operação
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Este projeto está configurado para **desenvolvimento autônomo**. Siga estas diretrizes:
+## Project Overview
 
-### Permissões e Fluxo de Trabalho
+**Pesquisa Eleitoral DF 2026** - A full-stack electoral polling system using synthetic AI agents. The platform simulates electoral surveys using 400+ AI voter profiles that respond as realistic Brazilian voters from Distrito Federal.
 
-1. **Não interrompa para pedir permissão** - Execute as tarefas de programação diretamente sem solicitar autorização a cada passo.
+## Autonomous Development Mode
 
-2. **Programe até o final** - Complete cada tarefa do início ao fim, passo a passo, sem pausas desnecessárias.
+This project is configured for autonomous development. Follow these guidelines:
 
-3. **Execução contínua** - Ao receber uma tarefa de desenvolvimento:
-   - Analise o que precisa ser feito
-   - Planeje os passos usando TodoWrite
-   - Execute cada passo sequencialmente
-   - Marque como concluído conforme avança
-   - Continue até finalizar completamente
+### Execution Flow
+- Do NOT interrupt for permission on programming tasks
+- Complete tasks end-to-end without unnecessary pauses
+- Plan steps using TodoWrite, execute sequentially, mark completed as you progress
+- Use Task tool (subagent_type=Explore) for extensive codebase searches
 
-### Gestão de Contexto
+### Pre-Approved Operations
+- Create, edit, delete code files
+- Run Python scripts
+- Install dependencies (npm, pip)
+- Execute builds and tests
+- Git commands (except push)
 
-Para otimizar a janela de contexto:
+### Requires Confirmation
+- Destructive irreversible operations
+- Push to remote repositories
+- Production .env changes with real credentials
+- Major architectural decisions
 
-- **Use o Task tool** para pesquisas extensas no codebase (subagent_type=Explore)
-- **Delegue tarefas complexas** para agentes especializados quando apropriado
-- **Mantenha foco** - evite ler arquivos desnecessários
-- **Seja conciso** nas respostas, priorizando ação sobre explicação
+## Build & Run Commands
 
-### Permissões Pré-Aprovadas
-
-As seguintes operações estão autorizadas sem confirmação:
-- Criar, editar e excluir arquivos de código
-- Executar scripts Python
-- Instalar dependências (npm, pip)
-- Executar builds e testes
-- Comandos git (exceto push)
-- Criar e modificar configurações do projeto
-
-### Quando Perguntar
-
-Solicite confirmação apenas para:
-- Operações destrutivas irreversíveis
-- Push para repositórios remotos
-- Alterações em arquivos de produção (.env com credenciais reais)
-- Decisões de arquitetura que impactam significativamente o projeto
-
-## Estrutura do Projeto
-
-```
-C:\Agentes\
-├── .claude/          # Configurações do Claude Code
-├── agentes/          # Agentes de IA
-├── backend/          # Servidor backend
-├── frontend/         # Interface frontend
-├── memorias/         # Armazenamento de memórias
-├── resultados/       # Outputs e resultados
-└── docker-compose.yml
-```
-
-## Comandos Úteis
-
+### Frontend (Next.js 14 + TypeScript)
 ```bash
-# Backend
-cd backend && pip install -r requirements.txt
-python main.py
-
-# Frontend
-cd frontend && npm install
-npm run dev
-
-# Docker
-docker-compose up -d
+cd frontend
+npm install           # Install dependencies
+npm run dev          # Dev server at localhost:3000
+npm run build        # Production build
+npm run lint         # ESLint
 ```
+
+### Backend (FastAPI + Python)
+```bash
+cd backend
+pip install -r requirements.txt
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+### Docker (Full Stack)
+```bash
+docker-compose up -d
+# Services: db (PostgreSQL:5432), backend (FastAPI:8000), frontend (Next.js:3000)
+```
+
+### Data Generation Scripts
+```bash
+python gerar_eleitores_df_v4.py    # Generate synthetic voters
+python pesquisa_governador_2026.py # Run poll simulation
+```
+
+## Architecture
+
+### Tech Stack
+- **Frontend**: Next.js 14 (App Router), TypeScript, Tailwind CSS, shadcn/ui, Zustand, React Query, Recharts, Plotly.js
+- **Backend**: FastAPI, SQLAlchemy 2.0, Pydantic, asyncpg
+- **Database**: PostgreSQL 15
+- **AI**: Anthropic Claude API (Opus 4.5 for complex, Sonnet 4 for standard)
+- **Auth**: JWT + bcrypt
+
+### Key Directories
+```
+frontend/src/
+├── app/                    # Next.js App Router
+│   ├── (auth)/            # Login routes
+│   ├── (dashboard)/       # Protected pages (eleitores, entrevistas, resultados)
+│   └── api/               # API routes
+├── components/            # React components by domain
+├── lib/claude/            # Claude API client & prompts
+├── services/api.ts        # Axios client with interceptors
+├── stores/                # Zustand state (auth, data)
+└── types/                 # TypeScript interfaces
+
+backend/app/
+├── main.py                # FastAPI entry point
+├── core/
+│   ├── config.py          # Environment settings
+│   └── seguranca.py       # JWT + password hashing
+├── api/rotas/             # REST endpoints
+├── esquemas/              # Pydantic models
+└── servicos/              # Business logic layer
+```
+
+### API Endpoints (Base: /api/v1)
+| Route | Purpose |
+|-------|---------|
+| `/auth/login` | JWT authentication |
+| `/eleitores` | Voter CRUD + filtering |
+| `/eleitores/estatisticas` | Voter statistics |
+| `/entrevistas` | Survey management |
+| `/entrevistas/{id}/executar` | Execute AI interview |
+| `/resultados` | Analysis & aggregation |
+| `/memorias` | Conversation storage |
+| `/geracao` | AI-powered voter generation |
+
+### Voter Model (60+ attributes)
+The synthetic voter profiles in `agentes/banco-eleitores-df.json` include:
+- Demographics: nome, idade, genero, cor_raca, regiao_administrativa
+- Socioeconomic: cluster_socioeconomico, escolaridade, renda
+- Political: orientacao_politica, posicao_bolsonaro, interesse_politico
+- Psychological: vieses_cognitivos, medos, valores, preocupacoes
+- Behavioral: susceptibilidade_desinformacao, fontes_informacao
+
+### Data Flow
+1. Voters loaded from JSON → displayed in frontend with filtering/virtualization
+2. Surveys created with question templates → sent to backend
+3. Backend calls Claude API with voter persona → returns AI-generated responses
+4. Results aggregated → displayed with charts, heatmaps, word clouds
+5. Export available in XLSX, PDF, DOCX formats
+
+## Environment Variables
+
+Key variables in `.env`:
+```
+CLAUDE_API_KEY=sk-ant-...          # Anthropic API
+SECRET_KEY=...                      # JWT signing
+DATABASE_URL=postgresql://...       # PostgreSQL connection
+FRONTEND_URL=http://localhost:3000
+BACKEND_URL=http://localhost:8000
+```
+
+## Language
+
+Project documentation and code comments are in Portuguese (Brasil). Variable names and technical terms mix Portuguese and English.
