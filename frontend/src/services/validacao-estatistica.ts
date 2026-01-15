@@ -29,6 +29,7 @@ export interface DivergenciaEstatistica {
   direcao: 'acima' | 'abaixo' | 'igual';
   severidade: 'baixa' | 'media' | 'alta' | 'critica';
   contagemAmostra: number;   // Número absoluto na amostra
+  eleitoresParaCorrecao: number; // Quantos eleitores adicionar para corrigir
 }
 
 export interface ResumoValidacao {
@@ -174,6 +175,40 @@ function determinarSeveridade(diferencaAbsoluta: number): 'baixa' | 'media' | 'a
 }
 
 /**
+ * Calcula quantos eleitores precisam ser adicionados para corrigir a amostra
+ *
+ * Fórmula: Se a amostra está sub-representada em uma categoria, calculamos
+ * quantos eleitores dessa categoria precisam ser adicionados para que o
+ * percentual atinja o valor de referência.
+ *
+ * Matemática: (contagemAtual + x) / (totalAtual + x) = refPercent / 100
+ * Resolvendo: x = (refPercent * totalAtual - 100 * contagemAtual) / (100 - refPercent)
+ */
+function calcularEleitoresParaCorrecao(
+  totalEleitores: number,
+  contagemAmostra: number,
+  valorReferencia: number,
+  diferenca: number
+): number {
+  // Se a amostra está acima ou igual ao referência, não precisa adicionar
+  if (diferenca >= -0.5) return 0;
+
+  // Se o valor de referência é 100%, seria infinito (impossível)
+  if (valorReferencia >= 100) return 0;
+
+  // Se não há eleitores, não dá para calcular
+  if (totalEleitores <= 0) return 0;
+
+  // Calcula eleitores necessários
+  const refDecimal = valorReferencia / 100;
+  const eleitoresNecessarios =
+    (refDecimal * totalEleitores - contagemAmostra) / (1 - refDecimal);
+
+  // Retorna valor arredondado para cima (precisamos de pelo menos essa quantidade)
+  return Math.max(0, Math.ceil(eleitoresNecessarios));
+}
+
+/**
  * Determina o status geral baseado na média de desvio
  */
 function determinarStatusGeral(mediaDesvio: number): 'otimo' | 'bom' | 'atencao' | 'critico' {
@@ -313,6 +348,12 @@ export function calcularValidacaoEstatistica(eleitores: Eleitor[]): ValidacaoCom
         direcao: diferenca > 0.5 ? 'acima' : diferenca < -0.5 ? 'abaixo' : 'igual',
         severidade: determinarSeveridade(diferencaAbsoluta),
         contagemAmostra,
+        eleitoresParaCorrecao: calcularEleitoresParaCorrecao(
+          eleitores.length,
+          contagemAmostra,
+          valorReferencia,
+          diferenca
+        ),
       };
 
       divergencias.push(divergencia);

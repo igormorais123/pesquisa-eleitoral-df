@@ -5,11 +5,21 @@ import type { Eleitor, ClusterSocioeconomico } from '@/types';
 export const runtime = 'nodejs';
 export const maxDuration = 300;
 
+interface DivergenciaCorretiva {
+  variavel: string;
+  labelVariavel: string;
+  categoria: string;
+  labelCategoria: string;
+  quantidade: number;
+}
+
 interface RequestBody {
   quantidade: number;
   cluster?: ClusterSocioeconomico;
   regiao?: string;
   manterProporcoes?: boolean;
+  modoCorretivo?: boolean;
+  divergenciasParaCorrigir?: DivergenciaCorretiva[];
 }
 
 // Regiões administrativas do DF com proporções aproximadas
@@ -46,19 +56,11 @@ const REGIOES_DF = {
   'Arniqueira': 1,
 };
 
-export async function POST(request: NextRequest) {
-  try {
-    const body: RequestBody = await request.json();
-    const { quantidade, cluster, regiao, manterProporcoes = true } = body;
-
-    if (quantidade < 1 || quantidade > 50) {
-      return NextResponse.json(
-        { erro: 'Quantidade deve ser entre 1 e 50' },
-        { status: 400 }
-      );
-    }
-
-    const prompt = `
+/**
+ * Gera o prompt base para criação de eleitores
+ */
+function gerarPromptBase(quantidade: number, regiao?: string, cluster?: ClusterSocioeconomico): string {
+  return `
 Você é um gerador de perfis de eleitores sintéticos do Distrito Federal para pesquisa científica.
 
 GERE ${quantidade} ELEITORES ÚNICOS seguindo estas regras:
@@ -98,9 +100,107 @@ ${cluster ? `- FOCO NO CLUSTER: ${cluster}` : '- Variar entre G1_alta, G2_media_
 - História de vida coerente com background (2-3 frases)
 - Instrução comportamental (como ele fala/age)
 - Medos específicos relacionados à sua realidade
-- Susceptibilidade a desinformação (1-10) coerente com perfil
+- Susceptibilidade a desinformação (1-10) coerente com perfil`;
+}
 
-FORMATO: Retorne APENAS um array JSON de objetos com esta estrutura:
+/**
+ * Gera o prompt específico para modo corretivo
+ */
+function gerarPromptCorretivo(
+  quantidade: number,
+  divergencias: DivergenciaCorretiva[]
+): string {
+  const categoriasParaGerar = divergencias.map((d) => ({
+    variavel: d.variavel,
+    label: d.labelVariavel,
+    categoria: d.categoria,
+    labelCategoria: d.labelCategoria,
+    quantidade: d.quantidade,
+  }));
+
+  return `
+Você é Claude Opus 4.5, o modelo mais avançado da Anthropic. Sua tarefa é gerar eleitores sintéticos ESTRATÉGICOS para CORRIGIR vieses identificados em uma amostra de pesquisa eleitoral do Distrito Federal.
+
+═══════════════════════════════════════════════════════════════════════════════
+CONTEXTO DA CORREÇÃO
+═══════════════════════════════════════════════════════════════════════════════
+
+Uma análise de validação estatística identificou que a amostra atual está SUB-REPRESENTADA nas seguintes categorias. Você deve gerar eleitores que preencham essas lacunas:
+
+${categoriasParaGerar.map((c) => `
+▸ ${c.label}: "${c.labelCategoria}"
+  → Necessários: ~${c.quantidade} eleitores para equilibrar a amostra
+  → Campo no JSON: ${c.variavel} = "${c.categoria}"
+`).join('\n')}
+
+═══════════════════════════════════════════════════════════════════════════════
+INSTRUÇÕES DE GERAÇÃO CORRETIVA
+═══════════════════════════════════════════════════════════════════════════════
+
+GERE EXATAMENTE ${quantidade} ELEITORES que atendam às características sub-representadas acima.
+
+REGRAS CRÍTICAS:
+1. TODOS os eleitores devem ter pelo menos uma das características listadas acima
+2. Distribua proporcionalmente conforme a quantidade sugerida para cada categoria
+3. Mantenha a COERÊNCIA interna: um eleitor de 65+ anos provavelmente é aposentado
+4. Varie os outros atributos para manter diversidade (não criar clones)
+5. Histórias de vida devem explicar as características escolhidas
+
+CATEGORIAS ESPECÍFICAS E COMO MAPEAR:
+
+genero: "masculino" ou "feminino"
+cor_raca: "branca", "parda", "preta", "amarela", "indigena"
+faixa_etaria (use campo idade):
+  - "16-24": idade entre 16-24
+  - "25-34": idade entre 25-34
+  - "35-44": idade entre 35-44
+  - "45-54": idade entre 45-54
+  - "55-64": idade entre 55-64
+  - "65+": idade >= 65
+escolaridade: "fundamental_incompleto", "fundamental_completo", "medio_completo_ou_sup_incompleto", "superior_completo_ou_pos"
+renda_salarios_minimos: "ate_1", "mais_de_1_ate_2", "mais_de_2_ate_5", "mais_de_5_ate_10", "mais_de_10"
+religiao: "catolica", "evangelica", "espirita", "sem_religiao", "umbanda_candomble", "outras"
+estado_civil: "solteiro(a)", "casado(a)", "divorciado(a)", "viuvo(a)", "uniao_estavel"
+orientacao_politica: "esquerda", "centro-esquerda", "centro", "centro-direita", "direita"
+interesse_politico: "baixo", "medio", "alto"
+posicao_bolsonaro: "apoiador_forte", "apoiador_moderado", "neutro", "critico_moderado", "critico_forte"
+cluster_socioeconomico: "G1_alta", "G2_media_alta", "G3_media_baixa", "G4_baixa"
+ocupacao_vinculo: "clt", "servidor_publico", "autonomo", "empresario", "informal", "desempregado", "aposentado", "estudante"
+meio_transporte: "onibus", "carro", "moto", "bicicleta", "metro", "a_pe", "nao_se_aplica"
+estilo_decisao: "identitario", "pragmatico", "moral", "economico", "emocional"
+tolerancia_nuance: "baixa", "media", "alta"
+
+═══════════════════════════════════════════════════════════════════════════════
+EXEMPLO DE COERÊNCIA
+═══════════════════════════════════════════════════════════════════════════════
+
+Se precisamos de mais eleitores de faixa etária "65+" e religião "católica":
+→ Criar um aposentado de 68 anos, católico praticante, que mora em Taguatinga
+→ Sua história pode mencionar décadas de trabalho no serviço público
+→ Seus valores incluem "família", "tradição", "estabilidade"
+→ Provavelmente tem posição mais conservadora em costumes
+
+═══════════════════════════════════════════════════════════════════════════════
+REGIÕES ADMINISTRATIVAS DO DF (usar com coerência)
+═══════════════════════════════════════════════════════════════════════════════
+
+Alta renda (G1): Lago Sul, Lago Norte, Park Way, Sudoeste
+Média-alta (G2): Plano Piloto, Águas Claras, Guará
+Média-baixa (G3): Taguatinga, Gama, Sobradinho, Vicente Pires
+Baixa (G4): Ceilândia, Samambaia, Recanto das Emas, Santa Maria, Planaltina
+
+═══════════════════════════════════════════════════════════════════════════════
+VIESES COGNITIVOS (incluir 2-3 por eleitor)
+═══════════════════════════════════════════════════════════════════════════════
+confirmacao, disponibilidade, ancoragem, tribalismo, aversao_perda, efeito_halo, efeito_manada`;
+}
+
+/**
+ * Gera o formato JSON esperado
+ */
+const FORMATO_JSON = `
+
+FORMATO DE SAÍDA: Retorne APENAS um array JSON de objetos com esta estrutura:
 [
   {
     "id": "df-XXXX",
@@ -137,6 +237,33 @@ FORMATO: Retorne APENAS um array JSON de objetos com esta estrutura:
     "instrucao_comportamental": "Como o eleitor fala e se comporta..."
   }
 ]`;
+
+export async function POST(request: NextRequest) {
+  try {
+    const body: RequestBody = await request.json();
+    const {
+      quantidade,
+      cluster,
+      regiao,
+      manterProporcoes = true,
+      modoCorretivo = false,
+      divergenciasParaCorrigir = [],
+    } = body;
+
+    if (quantidade < 1 || quantidade > 50) {
+      return NextResponse.json(
+        { erro: 'Quantidade deve ser entre 1 e 50' },
+        { status: 400 }
+      );
+    }
+
+    // Gerar prompt apropriado baseado no modo
+    let prompt: string;
+    if (modoCorretivo && divergenciasParaCorrigir.length > 0) {
+      prompt = gerarPromptCorretivo(quantidade, divergenciasParaCorrigir) + FORMATO_JSON;
+    } else {
+      prompt = gerarPromptBase(quantidade, regiao, cluster) + FORMATO_JSON;
+    }
 
     const { conteudo, tokensInput, tokensOutput, custoReais } = await chamarClaudeComRetry(
       [{ role: 'user', content: prompt }],
@@ -177,6 +304,7 @@ FORMATO: Retorne APENAS um array JSON de objetos com esta estrutura:
       total: eleitoresCompletos.length,
       custoReais,
       tokensUsados: { input: tokensInput, output: tokensOutput },
+      modoCorretivo,
     });
   } catch (error) {
     console.error('Erro ao gerar agentes:', error);

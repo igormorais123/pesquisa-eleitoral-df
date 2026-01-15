@@ -164,10 +164,10 @@ export function ResumoValidacao({ eleitores }: ResumoValidacaoProps) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
               <Shield className="w-4 h-4 text-primary" />
-              <h3 className="font-semibold text-foreground text-sm">Validação Estatística</h3>
+              <h3 className="font-semibold text-foreground text-sm">Validade Estatística</h3>
             </div>
             <p className="text-[10px] text-muted-foreground mb-2">
-              Comparação com IBGE, CODEPLAN e outras fontes oficiais
+              IBGE · CODEPLAN · DataSenado · Datafolha
             </p>
             <div className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium ${statusGeral.bg} ${statusGeral.cor}`}>
               <CheckCircle2 className="w-3 h-3" />
@@ -230,9 +230,10 @@ export function ResumoValidacao({ eleitores }: ResumoValidacaoProps) {
           </p>
           <div className="space-y-1">
             {validacao.principaisVieses.slice(0, 3).map((vies) => (
-              <div
+              <Link
                 key={`${vies.variavel}-${vies.categoria}`}
-                className="flex items-center justify-between text-[11px] bg-muted/5 rounded px-2 py-1"
+                href={`/eleitores/gerar?corrigir=${vies.variavel}&categoria=${vies.categoria}&quantidade=${vies.eleitoresParaCorrecao}`}
+                className="flex items-center justify-between text-[11px] bg-muted/5 rounded px-2 py-1 hover:bg-muted/10 transition-colors"
               >
                 <span className="text-muted-foreground truncate flex-1">
                   {vies.labelVariavel}: <span className="text-foreground">{vies.labelCategoria}</span>
@@ -250,7 +251,7 @@ export function ResumoValidacao({ eleitores }: ResumoValidacaoProps) {
                   {vies.diferenca > 0 ? '+' : ''}
                   {vies.diferenca.toFixed(1)}%
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
