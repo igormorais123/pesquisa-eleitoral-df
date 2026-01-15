@@ -18,6 +18,9 @@ passlib[bcrypt]>=1.7.4
 bcrypt<6
 python-multipart>=0.0.6
 
+# Rate Limiting
+slowapi>=0.1.9
+
 # Cliente HTTP
 httpx>=0.26.0
 

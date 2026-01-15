@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import {
   PieChart,
   Pie,
@@ -33,10 +34,10 @@ import {
   Smartphone,
   MapPin,
   Activity,
+  GitBranch,
 } from 'lucide-react';
 import { PiramideEtaria, CorrelacaoHeatmap, TabelaCalorEmocional, SankeyComSeletor } from '@/components/charts';
 import { CorrelacoesAutomaticas } from '@/components/analysis';
-import { GitBranch } from 'lucide-react';
 
 interface AgentesChartsProps {
   estatisticas: {
@@ -174,7 +175,7 @@ const CORES = {
 export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
   const total = estatisticas.filtrados || 1;
 
-  // Função auxiliar para formatar dados
+  // Função auxiliar para formatar dados com memoização
   const formatarDados = (dados: Record<string, number>, labels?: Record<string, string>) => {
     return Object.entries(dados)
       .filter(([nome]) => nome !== 'undefined' && nome !== 'Não informado')
@@ -186,37 +187,60 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
       }));
   };
 
-  // Preparar todos os dados
-  const dadosGenero = formatarDados(estatisticas.porGenero);
-  const dadosCluster = formatarDados(estatisticas.porCluster, LABELS.cluster);
-  const dadosOrientacao = formatarDados(estatisticas.porOrientacao, LABELS.orientacao);
-  const dadosReligiao = formatarDados(estatisticas.porReligiao).slice(0, 6);
-  const dadosRegiao = formatarDados(estatisticas.porRegiao).slice(0, 10);
-  const dadosOcupacao = estatisticas.porOcupacao ? formatarDados(estatisticas.porOcupacao, LABELS.ocupacao) : [];
-  const dadosEscolaridade = estatisticas.porEscolaridade ? formatarDados(estatisticas.porEscolaridade, LABELS.escolaridade) : [];
-  const dadosRenda = estatisticas.porRenda ? formatarDados(estatisticas.porRenda, LABELS.renda) : [];
-  const dadosBolsonaro = estatisticas.porBolsonaro ? formatarDados(estatisticas.porBolsonaro, LABELS.bolsonaro) : [];
-  const dadosInteresse = estatisticas.porInteresse ? formatarDados(estatisticas.porInteresse, LABELS.interesse) : [];
-  const dadosDecisao = estatisticas.porEstiloDecisao ? formatarDados(estatisticas.porEstiloDecisao, LABELS.decisao) : [];
-  const dadosFontes = estatisticas.porFontes ? formatarDados(estatisticas.porFontes).slice(0, 8) : [];
-  const dadosSusceptibilidade = estatisticas.porSusceptibilidade ? formatarDados(estatisticas.porSusceptibilidade) : [];
+  // Preparar todos os dados com memoização
+  const dadosGenero = useMemo(() => formatarDados(estatisticas.porGenero), [estatisticas.porGenero, total]);
+  const dadosCluster = useMemo(() => formatarDados(estatisticas.porCluster, LABELS.cluster), [estatisticas.porCluster, total]);
+  const dadosOrientacao = useMemo(() => formatarDados(estatisticas.porOrientacao, LABELS.orientacao), [estatisticas.porOrientacao, total]);
+  const dadosReligiao = useMemo(() => formatarDados(estatisticas.porReligiao).slice(0, 6), [estatisticas.porReligiao, total]);
+  const dadosOcupacao = useMemo(() => estatisticas.porOcupacao ? formatarDados(estatisticas.porOcupacao, LABELS.ocupacao) : [], [estatisticas.porOcupacao, total]);
+  const dadosEscolaridade = useMemo(() => estatisticas.porEscolaridade ? formatarDados(estatisticas.porEscolaridade, LABELS.escolaridade) : [], [estatisticas.porEscolaridade, total]);
+  const dadosRenda = useMemo(() => estatisticas.porRenda ? formatarDados(estatisticas.porRenda, LABELS.renda) : [], [estatisticas.porRenda, total]);
+  const dadosBolsonaro = useMemo(() => estatisticas.porBolsonaro ? formatarDados(estatisticas.porBolsonaro, LABELS.bolsonaro) : [], [estatisticas.porBolsonaro, total]);
+  const dadosInteresse = useMemo(() => estatisticas.porInteresse ? formatarDados(estatisticas.porInteresse, LABELS.interesse) : [], [estatisticas.porInteresse, total]);
+  const dadosDecisao = useMemo(() => estatisticas.porEstiloDecisao ? formatarDados(estatisticas.porEstiloDecisao, LABELS.decisao) : [], [estatisticas.porEstiloDecisao, total]);
+  const dadosFontes = useMemo(() => estatisticas.porFontes ? formatarDados(estatisticas.porFontes).slice(0, 8) : [], [estatisticas.porFontes, total]);
+  const dadosSusceptibilidade = useMemo(() => estatisticas.porSusceptibilidade ? formatarDados(estatisticas.porSusceptibilidade) : [], [estatisticas.porSusceptibilidade, total]);
 
   // Dados de filhos
-  const dadosFilhos = [
+  const dadosFilhos = useMemo(() => [
     { nome: 'Com filhos', valor: estatisticas.comFilhos || 0, percentual: (((estatisticas.comFilhos || 0) / total) * 100).toFixed(1) },
     { nome: 'Sem filhos', valor: estatisticas.semFilhos || 0, percentual: (((estatisticas.semFilhos || 0) / total) * 100).toFixed(1) },
-  ];
+  ], [estatisticas.comFilhos, estatisticas.semFilhos, total]);
 
   // Vieses cognitivos para radar
-  const dadosVieses = estatisticas.porVieses ? [
+  const dadosVieses = useMemo(() => estatisticas.porVieses ? [
     { subject: 'Confirmação', A: estatisticas.porVieses['confirmacao'] || 0 },
     { subject: 'Disponibilidade', A: estatisticas.porVieses['disponibilidade'] || 0 },
     { subject: 'Aversão Perda', A: estatisticas.porVieses['aversao_perda'] || 0 },
     { subject: 'Tribalismo', A: estatisticas.porVieses['tribalismo'] || 0 },
-  ] : [];
+  ] : [], [estatisticas.porVieses]);
 
-  // Faixas etárias
-  const faixasEtarias = calcularFaixasEtarias(eleitores);
+  const dadosRegiao = useMemo(() =>
+    Object.entries(estatisticas.porRegiao)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([nome, valor]) => ({
+        nome,
+        valor,
+        percentual: ((valor / estatisticas.filtrados) * 100).toFixed(1),
+      })),
+    [estatisticas.porRegiao, estatisticas.filtrados]
+  );
+
+  const dadosGenero = useMemo(() =>
+    Object.entries(estatisticas.porGenero).map(([nome, valor]) => ({
+      nome: nome === 'masculino' ? 'Masculino' : 'Feminino',
+      valor,
+      percentual: ((valor / estatisticas.filtrados) * 100).toFixed(1),
+    })),
+    [estatisticas.porGenero, estatisticas.filtrados]
+  );
+
+  // Faixas etárias com memoização
+  const faixasEtarias = useMemo(() =>
+    calcularFaixasEtarias(eleitores),
+    [eleitores]
+  );
 
   // Tooltip comum
   const tooltipStyle = {

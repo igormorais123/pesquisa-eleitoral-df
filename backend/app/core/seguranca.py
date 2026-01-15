@@ -4,6 +4,7 @@ Módulo de Segurança
 Implementa autenticação JWT e hash de senhas.
 """
 
+import os
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, Optional
 
@@ -115,20 +116,20 @@ def verificar_token(token: str) -> Optional[DadosToken]:
 
 
 # ============================================
-# USUÁRIO DE TESTE
+# USUÁRIO DE TESTE (credenciais via variáveis de ambiente em produção)
 # ============================================
 
-# Hash da senha "professorigor"
-# Gerado com: gerar_hash_senha("professorigor")
-SENHA_HASH_TESTE = "$2b$12$J6KfB1mVkGLAXyksmR6w6eh.C3fQGRuSMOxsoDeYoVweShfhJy22y"
+# Em produção, usar variáveis de ambiente para credenciais
+# Hash da senha "professorigor" para desenvolvimento
+_SENHA_HASH_PADRAO = "$2b$12$J6KfB1mVkGLAXyksmR6w6eh.C3fQGRuSMOxsoDeYoVweShfhJy22y"
 
 USUARIO_TESTE: Dict[str, Any] = {
-    "id": "user-001",
-    "usuario": "professorigor",
-    "nome": "Professor Igor",
-    "email": "professorigor@exemplo.com",
+    "id": os.environ.get("ADMIN_USER_ID", "user-001"),
+    "usuario": os.environ.get("ADMIN_USERNAME", "admin"),
+    "nome": os.environ.get("ADMIN_NAME", "Administrador"),
+    "email": os.environ.get("ADMIN_EMAIL", "admin@exemplo.com"),
     "papel": "admin",
-    "senha_hash": SENHA_HASH_TESTE,
+    "senha_hash": os.environ.get("ADMIN_PASSWORD_HASH", _SENHA_HASH_PADRAO),
     "ativo": True,
 }
 
@@ -148,7 +149,7 @@ def autenticar_usuario(usuario: str, senha: str) -> Optional[dict]:
     if usuario != USUARIO_TESTE["usuario"]:
         return None
 
-    # Verificar senha usando hash bcrypt (nunca comparar senha em plaintext)
+    # Verificar senha usando hash bcrypt
     if verificar_senha(senha, str(USUARIO_TESTE["senha_hash"])):
         return {
             "id": USUARIO_TESTE["id"],
