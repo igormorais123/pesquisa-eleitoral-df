@@ -93,6 +93,7 @@ export interface FiltrosEleitor {
   posicoes_bolsonaro?: PosicaoBolsonaro[];
   escolaridades?: string[];
   profissoes?: string[];
+  ocupacoes_vinculos?: OcupacaoVinculo[];
   valores?: string[];
   preocupacoes?: string[];
   ordenar_por?: string;

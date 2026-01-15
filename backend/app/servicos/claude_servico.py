@@ -29,7 +29,7 @@ TAXA_CONVERSAO = 6.0
 
 # Modelos por tipo de tarefa
 MODELO_ENTREVISTAS = "claude-sonnet-4-5-20250929"  # Sonnet 4.5 para todas as entrevistas
-MODELO_INSIGHTS = "claude-opus-4-5-20251101"       # Opus 4.5 para insights e relatorios
+MODELO_INSIGHTS = "claude-opus-4-5-20251101"  # Opus 4.5 para insights e relatorios
 
 
 class ClaudeServico:
@@ -45,7 +45,9 @@ class ClaudeServico:
         if not self.client:
             raise ValueError("API Key do Claude não configurada")
 
-    def selecionar_modelo(self, tipo_pergunta: str, eleitor: Dict[str, Any], tarefa: str = "entrevista") -> str:
+    def selecionar_modelo(
+        self, tipo_pergunta: str, eleitor: Dict[str, Any], tarefa: str = "entrevista"
+    ) -> str:
         """
         Seleciona o modelo adequado baseado na tarefa.
 
@@ -327,9 +329,7 @@ Responda APENAS com o JSON, sem texto adicional.
             "tempo_resposta_ms": tempo_ms,
         }
 
-    def estimar_custo(
-        self, total_perguntas: int, total_eleitores: int
-    ) -> Dict[str, Any]:
+    def estimar_custo(self, total_perguntas: int, total_eleitores: int) -> Dict[str, Any]:
         """
         Estima custo de uma entrevista.
 
@@ -375,7 +375,7 @@ Responda APENAS com o JSON, sem texto adicional.
             "modelo_insights": MODELO_INSIGHTS,
             "tokens_entrada_estimados": tokens_entrada,
             "tokens_saida_estimados": tokens_saida,
-            "custo_estimado": custo_estimado,        # Estimativa alta (Opus 4.5)
+            "custo_estimado": custo_estimado,  # Estimativa alta (Opus 4.5)
             "custo_real_esperado": custo_real_esperado,  # Custo real (Sonnet 4.5)
             "economia_esperada": custo_estimado - custo_real_esperado,
             "custo_por_eleitor": (custo_estimado / total_eleitores if total_eleitores > 0 else 0),
