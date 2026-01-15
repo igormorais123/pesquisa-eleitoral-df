@@ -99,6 +99,7 @@ export function useDivergencias(eleitores: Eleitor[]): MapaDivergencias {
       { nome: 'estilo_decisao', campo: 'estilo_decisao' },
       { nome: 'tolerancia_nuance', campo: 'tolerancia_nuance' },
       { nome: 'meio_transporte', campo: 'meio_transporte' },
+      { nome: 'regiao_administrativa', campo: 'regiao_administrativa' },
     ];
 
     variaveis.forEach(({ nome, campo, calculoCustom }) => {

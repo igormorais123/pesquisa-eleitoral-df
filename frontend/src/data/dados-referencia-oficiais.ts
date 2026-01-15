@@ -435,6 +435,84 @@ export const dadosFilhos: DadoReferencia = {
 };
 
 // ============================================
+// DADOS DE REGIÕES ADMINISTRATIVAS DO DF
+// ============================================
+
+export const dadosRegiaoAdministrativa: DadoReferencia = {
+  variavel: 'regiao_administrativa',
+  categoria: 'Geográfico',
+  fonte: 'PDAD 2021 - CODEPLAN',
+  ano: 2021,
+  url: 'https://www.codeplan.df.gov.br/pdad-2021-3/',
+  ambito: 'DF',
+  metodologia: 'Pesquisa Distrital por Amostra de Domicílios 2021 - população estimada',
+  valores: {
+    // Grupo 1 - Renda Alta (> 10 SM per capita)
+    'Plano Piloto': 8.3,           // 253.874
+    'Lago Sul': 1.0,               // 31.206
+    'Lago Norte': 1.2,             // 36.394
+    'Sudoeste/Octogonal': 1.8,     // 56.026
+    'Park Way': 0.7,               // 21.371
+    'Jardim Botânico': 0.9,        // 29.062
+
+    // Grupo 2 - Renda Média-Alta (5-10 SM)
+    'Águas Claras': 5.1,           // 156.591
+    'Vicente Pires': 2.3,          // 70.429
+    'Guará': 4.3,                  // 132.685
+    'Cruzeiro': 1.0,               // 31.230
+    'Sobradinho II': 3.1,          // 96.831
+    'Arniqueira': 0.8,             // 26.048
+    'SIA': 0.1,                    // 2.403
+
+    // Grupo 3 - Renda Média-Baixa (2-5 SM)
+    'Taguatinga': 6.6,             // 203.319
+    'Ceilândia': 14.4,             // 443.061 - maior RA
+    'Samambaia': 8.3,              // 254.916
+    'Gama': 4.4,                   // 134.958
+    'Planaltina': 5.9,             // 181.651
+    'Santa Maria': 3.9,            // 119.444
+    'Sobradinho': 2.1,             // 65.763
+    'Brazlândia': 1.5,             // 47.374
+    'São Sebastião': 3.3,          // 100.659
+    'Riacho Fundo I': 1.2,         // 36.448
+    'Riacho Fundo II': 2.6,        // 80.133
+    'Núcleo Bandeirante': 0.7,     // 22.569
+    'Candangolândia': 0.5,         // 16.848
+    'Paranoá': 2.1,                // 65.095
+    'Itapoã': 2.0,                 // 61.158
+
+    // Grupo 4 - Renda Baixa (< 2 SM)
+    'Recanto das Emas': 4.4,       // 134.958
+    'SCIA/Estrutural': 1.1,        // 35.094
+    'Fercal': 0.3,                 // 8.288
+    'Sol Nascente/Pôr do Sol': 2.8, // 87.126 - população crescente
+    'Varjão': 0.3,                 // 9.029
+  },
+  observacoes: 'Ceilândia é a maior RA com 14,4% da população. Plano Piloto e Samambaia têm ~8,3% cada. Sol Nascente/Pôr do Sol é RA recente com crescimento acelerado.',
+  confiabilidade: 'alta',
+};
+
+// Dados de IDHM por Região Administrativa (para referência de desenvolvimento humano)
+export const dadosIDHMRegioes: DadoReferencia = {
+  variavel: 'idhm_regiao',
+  categoria: 'Desenvolvimento',
+  fonte: 'PNUD/IPEA - Atlas Brasil',
+  ano: 2010,
+  url: 'http://www.atlasbrasil.org.br/',
+  ambito: 'DF',
+  metodologia: 'IDHM calculado a partir de longevidade, educação e renda',
+  valores: {
+    // Regiões com IDHM muito alto (>0,80)
+    'alto': 45.0,       // Plano Piloto, Lago Sul, Lago Norte, Sudoeste, Águas Claras, etc.
+    'medio_alto': 25.0, // Guará, Taguatinga, Cruzeiro, Núcleo Bandeirante
+    'medio': 20.0,      // Ceilândia, Samambaia, Gama, Santa Maria
+    'baixo': 10.0,      // SCIA/Estrutural, Fercal, Varjão
+  },
+  observacoes: 'DF tem o maior IDHM do Brasil (0,824), mas com grande desigualdade entre RAs. Lago Sul (0,945) vs Estrutural (0,616).',
+  confiabilidade: 'media',
+};
+
+// ============================================
 // EXPORTAÇÃO CONSOLIDADA
 // ============================================
 
@@ -498,6 +576,8 @@ export const mapaDadosReferencia: Record<string, DadoReferencia> = {
   fontes_informacao: dadosFontesInformacao,
   susceptibilidade_desinformacao: dadosSusceptibilidadeDesinformacao,
   meio_transporte: dadosMeioTransporte,
+  regiao_administrativa: dadosRegiaoAdministrativa,
+  idhm_regiao: dadosIDHMRegioes,
 };
 
 // Labels amigáveis para as variáveis
@@ -521,6 +601,8 @@ export const labelsVariaveis: Record<string, string> = {
   fontes_informacao: 'Fontes de Informação',
   susceptibilidade_desinformacao: 'Susceptibilidade à Desinformação',
   meio_transporte: 'Meio de Transporte',
+  regiao_administrativa: 'Região Administrativa',
+  idhm_regiao: 'IDHM por Região',
 };
 
 // Labels para valores específicos
