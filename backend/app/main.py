@@ -56,13 +56,22 @@ app = FastAPI(
 )
 
 # Configurar CORS
+# Origens permitidas
+origens_permitidas = [
+    configuracoes.FRONTEND_URL,
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://pesquisa-eleitoral-df.vercel.app",
+    "https://pesquisa-eleitoral-df-git-main-igormorais123s-projects.vercel.app",
+]
+
+# Adicionar origens extras do ambiente se existirem
+if configuracoes.FRONTEND_URL and configuracoes.FRONTEND_URL not in origens_permitidas:
+    origens_permitidas.append(configuracoes.FRONTEND_URL)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        configuracoes.FRONTEND_URL,
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ],
+    allow_origins=origens_permitidas,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
