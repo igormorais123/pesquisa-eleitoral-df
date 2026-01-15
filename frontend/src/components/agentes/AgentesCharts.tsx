@@ -35,6 +35,7 @@ import {
   Activity,
 } from 'lucide-react';
 import { PiramideEtaria, CorrelacaoHeatmap, TabelaCalorEmocional } from '@/components/charts';
+import { CorrelacoesAutomaticas } from '@/components/analysis';
 
 interface AgentesChartsProps {
   estatisticas: {
@@ -556,6 +557,13 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
         <ChartCard titulo="Mapa de Calor Emocional por Região" icone={Heart} corIcone="bg-rose-500/20">
           <TabelaCalorEmocional eleitores={eleitores} altura={350} />
         </ChartCard>
+
+        {/* Correlações Automáticas - Ocupa 2 colunas */}
+        <div className="lg:col-span-2">
+          <ChartCard titulo="Análise de Correlações Automáticas (20+)" icone={Activity} corIcone="bg-purple-500/20">
+            <CorrelacoesAutomaticas eleitores={eleitores} minCorrelacao={0.1} />
+          </ChartCard>
+        </div>
       </div>
     </div>
   );
