@@ -334,6 +334,10 @@ export const PRECOS_MODELOS = {
     entrada: 15, // USD por 1M tokens
     saida: 75,
   },
+  'claude-sonnet-4-5-20250929': {
+    entrada: 3,
+    saida: 15,
+  },
   'claude-sonnet-4-20250514': {
     entrada: 3,
     saida: 15,
