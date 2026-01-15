@@ -21,9 +21,10 @@ import {
   XCircle,
   ExternalLink,
 } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { GlobalSearch } from '@/components/search/GlobalSearch';
 
 interface HeaderProps {
   titulo?: string;
@@ -54,6 +55,7 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
 
   const [menuAberto, setMenuAberto] = useState(false);
   const [buscaAberta, setBuscaAberta] = useState(false);
+  const [buscaGlobalAberta, setBuscaGlobalAberta] = useState(false);
   const notificacoesRef = useRef<HTMLDivElement>(null);
 
   // Fechar notificações ao clicar fora
@@ -72,6 +74,23 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
     document.documentElement.classList.remove('light', 'dark');
     document.documentElement.classList.add(theme);
   }, [theme]);
+
+  // Atalho de teclado Cmd+K / Ctrl+K
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+        event.preventDefault();
+        setBuscaGlobalAberta((prev) => !prev);
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const abrirBuscaGlobal = useCallback(() => {
+    setBuscaGlobalAberta(true);
+    setBuscaAberta(false);
+  }, []);
 
   return (
     <header className="sticky top-0 z-30 bg-card/80 backdrop-blur-xl border-b border-border">
@@ -102,18 +121,19 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
 
         {/* Centro - Busca */}
         <div className="hidden md:flex flex-1 max-w-md mx-4">
-          <div className="relative w-full">
+          <button
+            onClick={abrirBuscaGlobal}
+            className="relative w-full text-left"
+          >
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder="Buscar eleitores, entrevistas..."
-              className="w-full pl-10 pr-4 py-2 rounded-xl bg-secondary border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-sm text-foreground placeholder:text-muted-foreground"
-            />
+            <div className="w-full pl-10 pr-4 py-2 rounded-xl bg-secondary border border-border hover:border-primary/50 transition-all text-sm text-muted-foreground cursor-pointer">
+              Buscar eleitores, entrevistas...
+            </div>
             <kbd className="absolute right-3 top-1/2 -translate-y-1/2 hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs text-muted-foreground bg-background border border-border rounded">
               <span>⌘</span>
               <span>K</span>
             </kbd>
-          </div>
+          </button>
         </div>
 
         {/* Lado Direito - Ações */}
@@ -121,7 +141,7 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
           {/* Busca mobile */}
           <button
             className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
-            onClick={() => setBuscaAberta(!buscaAberta)}
+            onClick={abrirBuscaGlobal}
           >
             <Search className="w-5 h-5 text-muted-foreground" />
           </button>
@@ -318,20 +338,11 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
         </div>
       </div>
 
-      {/* Busca mobile expandida */}
-      {buscaAberta && (
-        <div className="md:hidden px-4 pb-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder="Buscar..."
-              className="w-full pl-10 pr-4 py-2 rounded-xl bg-secondary border border-border focus:border-primary outline-none text-sm text-foreground"
-              autoFocus
-            />
-          </div>
-        </div>
-      )}
+      {/* Modal de busca global */}
+      <GlobalSearch
+        isOpen={buscaGlobalAberta}
+        onClose={() => setBuscaGlobalAberta(false)}
+      />
     </header>
   );
 }
