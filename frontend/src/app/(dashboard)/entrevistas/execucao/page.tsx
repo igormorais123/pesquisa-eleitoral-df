@@ -20,16 +20,17 @@ import {
 } from 'lucide-react';
 import { useEleitoresStore } from '@/stores/eleitores-store';
 import { useEntrevistasStore } from '@/stores/entrevistas-store';
-import { db, salvarSessao } from '@/lib/db/dexie';
+import { db, salvarSessao, carregarEleitoresIniciais } from '@/lib/db/dexie';
 import { cn, formatarMoeda, formatarNumero } from '@/lib/utils';
 import type { Eleitor, RespostaEleitor } from '@/types';
+import eleitoresIniciais from '@/data/eleitores-df-400.json';
 
 export default function PaginaExecucaoEntrevista() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const entrevistaId = searchParams.get('entrevista');
 
-  const { eleitores, eleitoresSelecionados } = useEleitoresStore();
+  const { eleitoresSelecionados, setEleitores } = useEleitoresStore();
   const {
     sessaoAtual,
     executando,
@@ -55,7 +56,10 @@ export default function PaginaExecucaoEntrevista() {
   const [erro, setErro] = useState<string | null>(null);
   const [tempoInicio, setTempoInicio] = useState<number>(Date.now());
   const [tempoDecorrido, setTempoDecorrido] = useState(0);
+  const [carregandoEleitores, setCarregandoEleitores] = useState(true);
+  const [totalEleitoresSelecionados, setTotalEleitoresSelecionados] = useState(0);
   const abortController = useRef<AbortController | null>(null);
+  const eleitoresCarregadosRef = useRef(false);
 
   // Timer para tempo decorrido
   useEffect(() => {
@@ -65,15 +69,56 @@ export default function PaginaExecucaoEntrevista() {
     return () => clearInterval(interval);
   }, [tempoInicio]);
 
-  // Inicializar eleitores pendentes
+  // Carregar eleitores do IndexedDB ao montar o componente
   useEffect(() => {
-    if (eleitoresSelecionados.length > 0 && eleitores.length > 0) {
-      const selecionados = eleitores.filter((e) =>
-        eleitoresSelecionados.includes(e.id)
-      );
-      setEleitoresPendentes(selecionados);
+    if (eleitoresCarregadosRef.current) return;
+
+    async function carregarEleitores() {
+      try {
+        setCarregandoEleitores(true);
+
+        // Verificar se há eleitores no IndexedDB
+        let eleitoresDB = await db.eleitores.toArray();
+
+        // Se não houver, carregar do JSON inicial
+        if (eleitoresDB.length === 0) {
+          console.log('Carregando eleitores do JSON inicial...');
+          const eleitoresComTimestamp = (eleitoresIniciais as Eleitor[]).map((e) => ({
+            ...e,
+            criado_em: e.criado_em || new Date().toISOString(),
+            atualizado_em: e.atualizado_em || new Date().toISOString(),
+          }));
+          await carregarEleitoresIniciais(eleitoresComTimestamp);
+          eleitoresDB = await db.eleitores.toArray();
+        }
+
+        console.log(`${eleitoresDB.length} eleitores carregados do banco`);
+        console.log(`${eleitoresSelecionados.length} eleitores selecionados`);
+
+        // Atualizar a store também
+        setEleitores(eleitoresDB);
+
+        // Filtrar os eleitores selecionados
+        if (eleitoresSelecionados.length > 0) {
+          const selecionados = eleitoresDB.filter((e) =>
+            eleitoresSelecionados.includes(e.id)
+          );
+          console.log(`${selecionados.length} eleitores pendentes para processar`);
+          setEleitoresPendentes(selecionados);
+          setTotalEleitoresSelecionados(selecionados.length);
+        }
+
+        eleitoresCarregadosRef.current = true;
+      } catch (error) {
+        console.error('Erro ao carregar eleitores:', error);
+        setErro('Erro ao carregar eleitores do banco de dados');
+      } finally {
+        setCarregandoEleitores(false);
+      }
     }
-  }, [eleitores, eleitoresSelecionados]);
+
+    carregarEleitores();
+  }, [eleitoresSelecionados, setEleitores]);
 
   // Processar próximo eleitor
   const processarProximo = useCallback(async () => {
@@ -141,8 +186,8 @@ export default function PaginaExecucaoEntrevista() {
       setEleitoresPendentes((prev) => prev.slice(1));
 
       // Atualizar progresso
-      const novoProgresso =
-        ((respostasRecebidas.length + 1) / eleitoresSelecionados.length) * 100;
+      const total = totalEleitoresSelecionados || eleitoresSelecionados.length;
+      const novoProgresso = ((respostasRecebidas.length + 1) / total) * 100;
       atualizarProgresso(novoProgresso);
     } catch (error) {
       if (error instanceof Error && error.name !== 'AbortError') {
@@ -160,6 +205,7 @@ export default function PaginaExecucaoEntrevista() {
     perguntas,
     respostasRecebidas.length,
     eleitoresSelecionados.length,
+    totalEleitoresSelecionados,
     pausarExecucao,
     atualizarCusto,
     adicionarResposta,
@@ -168,13 +214,25 @@ export default function PaginaExecucaoEntrevista() {
 
   // Loop de processamento
   useEffect(() => {
+    // Não fazer nada enquanto estiver carregando
+    if (carregandoEleitores) return;
+
     if (executando && !pausado && eleitoresPendentes.length > 0 && !eleitorAtual) {
       const timeout = setTimeout(processarProximo, 500);
       return () => clearTimeout(timeout);
     }
 
-    // Finalizar quando todos processados
-    if (executando && eleitoresPendentes.length === 0 && !eleitorAtual) {
+    // Só finalizar quando:
+    // 1. Eleitores foram carregados (carregandoEleitores = false)
+    // 2. Havia eleitores para processar (totalEleitoresSelecionados > 0)
+    // 3. Todos foram processados (eleitoresPendentes.length === 0)
+    if (
+      executando &&
+      !carregandoEleitores &&
+      totalEleitoresSelecionados > 0 &&
+      eleitoresPendentes.length === 0 &&
+      !eleitorAtual
+    ) {
       finalizarExecucao();
       // Salvar sessão
       if (sessaoAtual) {
@@ -184,6 +242,8 @@ export default function PaginaExecucaoEntrevista() {
   }, [
     executando,
     pausado,
+    carregandoEleitores,
+    totalEleitoresSelecionados,
     eleitoresPendentes.length,
     eleitorAtual,
     processarProximo,
@@ -218,9 +278,24 @@ export default function PaginaExecucaoEntrevista() {
 
   // Status
   const status = sessaoAtual?.status || 'em_andamento';
-  const totalAgentes = eleitoresSelecionados.length;
+  const totalAgentes = totalEleitoresSelecionados || eleitoresSelecionados.length;
   const processados = respostasRecebidas.length;
   const percentual = totalAgentes > 0 ? (processados / totalAgentes) * 100 : 0;
+
+  // Tela de carregamento enquanto eleitores são carregados
+  if (carregandoEleitores) {
+    return (
+      <div className="max-w-4xl mx-auto flex items-center justify-center h-96">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto" />
+          <p className="mt-4 text-foreground font-medium">Carregando eleitores...</p>
+          <p className="text-sm text-muted-foreground mt-2">
+            Preparando {eleitoresSelecionados.length} agentes para entrevista
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
