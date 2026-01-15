@@ -361,99 +361,101 @@ export default function PaginaResultadoDetalhe() {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => router.back()}
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </button>
-          <div>
-            <h1 className="text-2xl font-bold text-foreground">
-              {sessao.titulo || 'Resultado da Pesquisa'}
-            </h1>
-            <p className="text-muted-foreground">
-              {formatarDataHora(sessao.finalizadaEm || sessao.iniciadaEm)}
-            </p>
+    <div className="space-y-4 sm:space-y-6 pb-4">
+      {/* Header - Mobile Optimized */}
+      <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-lg -mx-4 px-4 py-3 sm:relative sm:bg-transparent sm:backdrop-blur-none sm:mx-0 sm:px-0 sm:py-0">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+            <button
+              onClick={() => router.back()}
+              className="text-muted-foreground hover:text-foreground transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center -ml-2"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+            <div className="min-w-0">
+              <h1 className="text-lg sm:text-2xl font-bold text-foreground truncate">
+                {sessao.titulo || 'Resultado da Pesquisa'}
+              </h1>
+              <p className="text-xs sm:text-sm text-muted-foreground">
+                {formatarDataHora(sessao.finalizadaEm || sessao.iniciadaEm)}
+              </p>
+            </div>
           </div>
-        </div>
 
-        <button
-          onClick={() => {
-            const exportData = {
-              sessao,
-              relatorio,
-              metadados: metadadosRelatorio,
-            };
-            const blob = new Blob([JSON.stringify(exportData, null, 2)], {
-              type: 'application/json',
-            });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `resultado-completo-${sessao.id}.json`;
-            a.click();
-          }}
-          className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors"
-        >
-          <Download className="w-4 h-4" />
-          Exportar
-        </button>
+          <button
+            onClick={() => {
+              const exportData = {
+                sessao,
+                relatorio,
+                metadados: metadadosRelatorio,
+              };
+              const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+                type: 'application/json',
+              });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = `resultado-completo-${sessao.id}.json`;
+              a.click();
+            }}
+            className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors min-h-[44px] flex-shrink-0"
+          >
+            <Download className="w-4 h-4" />
+            <span className="hidden sm:inline">Exportar</span>
+          </button>
+        </div>
       </div>
 
-      {/* Cards de resumo */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="glass-card rounded-xl p-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
-              <Users className="w-5 h-5 text-blue-400" />
+      {/* Cards de resumo - Mobile: 2x2 grid compacto */}
+      <div className="grid grid-cols-2 gap-2 sm:gap-4 lg:grid-cols-4">
+        <div className="glass-card rounded-lg sm:rounded-xl p-3 sm:p-4">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+              <Users className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Respondentes</p>
-              <p className="text-2xl font-bold text-foreground">{sessao.respostas.length}</p>
+            <div className="min-w-0">
+              <p className="text-xs text-muted-foreground truncate">Respondentes</p>
+              <p className="text-lg sm:text-2xl font-bold text-foreground">{sessao.respostas.length}</p>
             </div>
           </div>
         </div>
 
-        <div className="glass-card rounded-xl p-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
-              <MessageSquare className="w-5 h-5 text-green-400" />
+        <div className="glass-card rounded-lg sm:rounded-xl p-3 sm:p-4">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+              <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" />
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Respostas</p>
-              <p className="text-2xl font-bold text-foreground">
+            <div className="min-w-0">
+              <p className="text-xs text-muted-foreground truncate">Respostas</p>
+              <p className="text-lg sm:text-2xl font-bold text-foreground">
                 {sessao.respostas.reduce((acc, r) => acc + r.respostas.length, 0)}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="glass-card rounded-xl p-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-yellow-500/20 flex items-center justify-center">
-              <Coins className="w-5 h-5 text-yellow-400" />
+        <div className="glass-card rounded-lg sm:rounded-xl p-3 sm:p-4">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-yellow-500/20 flex items-center justify-center flex-shrink-0">
+              <Coins className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Custo Total</p>
-              <p className="text-2xl font-bold text-yellow-400">
+            <div className="min-w-0">
+              <p className="text-xs text-muted-foreground truncate">Custo</p>
+              <p className="text-lg sm:text-2xl font-bold text-yellow-400">
                 {formatarMoeda(sessao.custoAtual)}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="glass-card rounded-xl p-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
-              <Brain className="w-5 h-5 text-purple-400" />
+        <div className="glass-card rounded-lg sm:rounded-xl p-3 sm:p-4">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+              <Brain className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" />
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Tokens</p>
-              <p className="text-2xl font-bold text-foreground">
+            <div className="min-w-0">
+              <p className="text-xs text-muted-foreground truncate">Tokens</p>
+              <p className="text-lg sm:text-2xl font-bold text-foreground">
                 {formatarNumero(sessao.tokensInput + sessao.tokensOutput)}
               </p>
             </div>
@@ -461,14 +463,14 @@ export default function PaginaResultadoDetalhe() {
         </div>
       </div>
 
-      {/* Abas */}
-      <div className="flex items-center gap-2 border-b border-border">
+      {/* Abas - Mobile: Scrollable horizontal */}
+      <div className="flex items-center gap-1 sm:gap-2 border-b border-border overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
         {(['geral', 'respostas', 'insights'] as const).map((aba) => (
           <button
             key={aba}
             onClick={() => setAbaAtiva(aba)}
             className={cn(
-              'px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors',
+              'px-3 sm:px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors whitespace-nowrap min-h-[44px]',
               abaAtiva === aba
                 ? 'border-primary text-primary'
                 : 'border-transparent text-muted-foreground hover:text-foreground'
@@ -481,22 +483,23 @@ export default function PaginaResultadoDetalhe() {
 
       {/* Conteúdo das abas */}
       {abaAtiva === 'geral' && stats && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           {/* Gráfico de Sentimentos */}
-          <div className="glass-card rounded-xl p-6">
-            <h3 className="font-semibold text-foreground mb-4">Análise de Sentimento</h3>
-            <ResponsiveContainer width="100%" height={250}>
+          <div className="glass-card rounded-lg sm:rounded-xl p-4 sm:p-6">
+            <h3 className="font-semibold text-foreground mb-3 sm:mb-4 text-sm sm:text-base">Análise de Sentimento</h3>
+            <ResponsiveContainer width="100%" height={200} className="sm:h-[250px]">
               <PieChart>
                 <Pie
                   data={dadosSentimentos}
                   cx="50%"
                   cy="50%"
-                  innerRadius={60}
-                  outerRadius={90}
+                  innerRadius={40}
+                  outerRadius={70}
                   paddingAngle={5}
                   dataKey="valor"
                   nameKey="nome"
-                  label={({ nome, valor }) => `${nome}: ${valor}`}
+                  label={({ nome, valor }) => `${valor}`}
+                  labelLine={false}
                 >
                   {dadosSentimentos.map((entry, index) => (
                     <Cell key={index} fill={entry.cor} />
@@ -507,42 +510,43 @@ export default function PaginaResultadoDetalhe() {
                     background: '#1f2937',
                     border: 'none',
                     borderRadius: '8px',
+                    fontSize: '12px',
                   }}
                 />
-                <Legend />
+                <Legend wrapperStyle={{ fontSize: '12px' }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
 
           {/* Métricas adicionais */}
-          <div className="glass-card rounded-xl p-6">
-            <h3 className="font-semibold text-foreground mb-4">Métricas Detalhadas</h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
-                <span className="text-muted-foreground">Taxa de Conclusão</span>
-                <span className="font-bold text-green-400">
+          <div className="glass-card rounded-lg sm:rounded-xl p-4 sm:p-6">
+            <h3 className="font-semibold text-foreground mb-3 sm:mb-4 text-sm sm:text-base">Métricas Detalhadas</h3>
+            <div className="space-y-2 sm:space-y-4">
+              <div className="flex items-center justify-between p-2 sm:p-3 bg-secondary/50 rounded-lg">
+                <span className="text-xs sm:text-sm text-muted-foreground">Taxa de Conclusão</span>
+                <span className="font-bold text-green-400 text-sm sm:text-base">
                   {Math.round((sessao.respostas.length / sessao.totalAgentes) * 100)}%
                 </span>
               </div>
-              <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
-                <span className="text-muted-foreground">Custo por Resposta</span>
-                <span className="font-bold text-foreground">
+              <div className="flex items-center justify-between p-2 sm:p-3 bg-secondary/50 rounded-lg">
+                <span className="text-xs sm:text-sm text-muted-foreground">Custo por Resposta</span>
+                <span className="font-bold text-foreground text-sm sm:text-base">
                   {formatarMoeda(sessao.custoAtual / sessao.respostas.length || 0)}
                 </span>
               </div>
-              <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
-                <span className="text-muted-foreground">Tokens por Resposta</span>
-                <span className="font-bold text-foreground">
+              <div className="flex items-center justify-between p-2 sm:p-3 bg-secondary/50 rounded-lg">
+                <span className="text-xs sm:text-sm text-muted-foreground">Tokens por Resposta</span>
+                <span className="font-bold text-foreground text-sm sm:text-base">
                   {Math.round(
                     (sessao.tokensInput + sessao.tokensOutput) / sessao.respostas.length || 0
                   )}
                 </span>
               </div>
-              <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
-                <span className="text-muted-foreground">Sentimento Predominante</span>
+              <div className="flex items-center justify-between p-2 sm:p-3 bg-secondary/50 rounded-lg">
+                <span className="text-xs sm:text-sm text-muted-foreground">Sentimento</span>
                 <span
                   className={cn(
-                    'font-bold',
+                    'font-bold text-sm sm:text-base',
                     stats.sentimentos.positivo > stats.sentimentos.negativo
                       ? 'text-green-400'
                       : stats.sentimentos.negativo > stats.sentimentos.positivo
@@ -563,18 +567,19 @@ export default function PaginaResultadoDetalhe() {
       )}
 
       {abaAtiva === 'respostas' && (
-        <div className="glass-card rounded-xl divide-y divide-border">
+        <div className="glass-card rounded-lg sm:rounded-xl divide-y divide-border">
           {sessao.respostas.map((resposta, i) => (
-            <div key={i} className="p-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-medium text-foreground">{resposta.eleitor_nome}</span>
-                <span className="text-xs text-muted-foreground">
-                  {resposta.tokens_usados} tokens • {formatarMoeda(resposta.custo)}
+            <div key={i} className="p-3 sm:p-4">
+              <div className="flex items-start sm:items-center justify-between gap-2 mb-2">
+                <span className="font-medium text-foreground text-sm sm:text-base truncate">{resposta.eleitor_nome}</span>
+                <span className="text-xs text-muted-foreground whitespace-nowrap flex-shrink-0">
+                  <span className="hidden sm:inline">{resposta.tokens_usados} tokens • </span>
+                  {formatarMoeda(resposta.custo)}
                 </span>
               </div>
               {resposta.respostas.map((r, j) => (
-                <div key={j} className="mt-2 p-3 bg-secondary/50 rounded-lg">
-                  <p className="text-sm text-muted-foreground whitespace-pre-wrap">
+                <div key={j} className="mt-2 p-2 sm:p-3 bg-secondary/50 rounded-lg">
+                  <p className="text-xs sm:text-sm text-muted-foreground whitespace-pre-wrap">
                     {String(r.resposta)}
                   </p>
                 </div>
@@ -585,25 +590,24 @@ export default function PaginaResultadoDetalhe() {
       )}
 
       {abaAtiva === 'insights' && (
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {/* Botão para gerar relatório */}
           {!relatorio && (
             <>
               {/* Caixa Voto Silencioso - Placeholder */}
-              <div className="glass-card rounded-xl p-6 border-l-4 border-purple-500">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-                    <EyeOff className="w-6 h-6 text-purple-400" />
+              <div className="glass-card rounded-lg sm:rounded-xl p-4 sm:p-6 border-l-4 border-purple-500">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                    <EyeOff className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Voto Silencioso</h3>
-                    <p className="text-muted-foreground text-sm mb-4">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-semibold text-foreground mb-1 sm:mb-2 text-sm sm:text-base">Voto Silencioso</h3>
+                    <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4">
                       Eleitores que podem votar de forma diferente do que declaram publicamente.
-                      Esta análise identifica contradições entre valores declarados e respostas.
                     </p>
-                    <div className="p-4 bg-secondary/50 rounded-lg">
-                      <p className="text-sm text-muted-foreground">
-                        Clique em &quot;Gerar Análise de Inteligência Política&quot; para ver os resultados.
+                    <div className="p-2 sm:p-4 bg-secondary/50 rounded-lg">
+                      <p className="text-xs sm:text-sm text-muted-foreground">
+                        Clique no botão abaixo para gerar análise.
                       </p>
                     </div>
                   </div>
@@ -611,20 +615,19 @@ export default function PaginaResultadoDetalhe() {
               </div>
 
               {/* Caixa Ponto de Ruptura - Placeholder */}
-              <div className="glass-card rounded-xl p-6 border-l-4 border-orange-500">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-orange-500/20 flex items-center justify-center flex-shrink-0">
-                    <AlertTriangle className="w-6 h-6 text-orange-400" />
+              <div className="glass-card rounded-lg sm:rounded-xl p-4 sm:p-6 border-l-4 border-orange-500">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-orange-500/20 flex items-center justify-center flex-shrink-0">
+                    <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Pontos de Ruptura</h3>
-                    <p className="text-muted-foreground text-sm mb-4">
-                      Eventos ou situações que podem fazer grupos de eleitores mudarem sua posição
-                      ou intenção de voto.
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-semibold text-foreground mb-1 sm:mb-2 text-sm sm:text-base">Pontos de Ruptura</h3>
+                    <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4">
+                      Eventos que podem mudar a intenção de voto.
                     </p>
-                    <div className="p-4 bg-secondary/50 rounded-lg">
-                      <p className="text-sm text-muted-foreground">
-                        Clique em &quot;Gerar Análise de Inteligência Política&quot; para ver os resultados.
+                    <div className="p-2 sm:p-4 bg-secondary/50 rounded-lg">
+                      <p className="text-xs sm:text-sm text-muted-foreground">
+                        Clique no botão abaixo para gerar análise.
                       </p>
                     </div>
                   </div>
@@ -632,17 +635,17 @@ export default function PaginaResultadoDetalhe() {
               </div>
 
               {/* Botão de geração */}
-              <div className="text-center">
+              <div className="text-center px-4 sm:px-0">
                 {erroRelatorio && (
-                  <div className="mb-4 p-4 bg-red-500/20 border border-red-500/30 rounded-lg">
-                    <p className="text-red-400 text-sm">{erroRelatorio}</p>
+                  <div className="mb-4 p-3 sm:p-4 bg-red-500/20 border border-red-500/30 rounded-lg">
+                    <p className="text-red-400 text-xs sm:text-sm">{erroRelatorio}</p>
                   </div>
                 )}
                 <button
                   onClick={gerarRelatorioInteligencia}
                   disabled={gerandoRelatorio}
                   className={cn(
-                    'inline-flex items-center gap-2 px-6 py-3 rounded-lg transition-colors',
+                    'inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 rounded-lg transition-colors w-full sm:w-auto min-h-[48px]',
                     gerandoRelatorio
                       ? 'bg-primary/50 cursor-not-allowed'
                       : 'bg-primary hover:bg-primary/90 text-primary-foreground'
@@ -651,17 +654,17 @@ export default function PaginaResultadoDetalhe() {
                   {gerandoRelatorio ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin" />
-                      Gerando Análise com IA (pode levar alguns minutos)...
+                      <span className="text-sm sm:text-base">Gerando...</span>
                     </>
                   ) : (
                     <>
                       <Sparkles className="w-5 h-5" />
-                      Gerar Análise de Inteligência Política com IA
+                      <span className="text-sm sm:text-base">Gerar Análise com IA</span>
                     </>
                   )}
                 </button>
                 <p className="text-xs text-muted-foreground mt-2">
-                  Usa Claude Opus 4.5 com Extended Thinking para análise profunda
+                  Claude Opus 4.5 com Extended Thinking
                 </p>
               </div>
             </>
@@ -669,26 +672,26 @@ export default function PaginaResultadoDetalhe() {
 
           {/* Relatório de Inteligência Completo */}
           {relatorio && (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* Header do Relatório */}
-              <div className="glass-card rounded-xl p-6 border-l-4 border-primary">
-                <div className="flex items-start justify-between">
+              <div className="glass-card rounded-lg sm:rounded-xl p-4 sm:p-6 border-l-4 border-primary">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                   <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <FileText className="w-6 h-6 text-primary" />
-                      <h2 className="text-xl font-bold text-foreground">
-                        Relatório de Inteligência Política
+                    <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                      <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                      <h2 className="text-base sm:text-xl font-bold text-foreground">
+                        Relatório de Inteligência
                       </h2>
                     </div>
-                    <p className="text-muted-foreground text-sm">
-                      Gerado em {formatarDataHora(relatorio.sumarioExecutivo.dataCriacao)}
+                    <p className="text-muted-foreground text-xs sm:text-sm">
+                      {formatarDataHora(relatorio.sumarioExecutivo.dataCriacao)}
                     </p>
                   </div>
                   <BadgeAlerta nivel={relatorio.sumarioExecutivo.nivelAlerta} />
                 </div>
 
                 {metadadosRelatorio && (
-                  <div className="mt-4 flex flex-wrap gap-4 text-xs text-muted-foreground">
+                  <div className="mt-3 sm:mt-4 flex flex-wrap gap-2 sm:gap-4 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">
                       <Brain className="w-3 h-3" />
                       {metadadosRelatorio.modelo}
@@ -697,86 +700,86 @@ export default function PaginaResultadoDetalhe() {
                       <Coins className="w-3 h-3" />
                       {formatarMoeda(metadadosRelatorio.custoReais)}
                     </span>
-                    <span>
+                    <span className="hidden sm:inline">
                       {formatarNumero(metadadosRelatorio.tokensInput + metadadosRelatorio.tokensOutput)} tokens
                     </span>
                     {metadadosRelatorio.usouExtendedThinking && (
-                      <span className="text-purple-400">Extended Thinking ativo</span>
+                      <span className="text-purple-400">Extended Thinking</span>
                     )}
                   </div>
                 )}
               </div>
 
               {/* Sumário Executivo */}
-              <div className="glass-card rounded-xl p-6 bg-gradient-to-r from-primary/10 to-transparent">
-                <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <Target className="w-5 h-5 text-primary" />
+              <div className="glass-card rounded-lg sm:rounded-xl p-4 sm:p-6 bg-gradient-to-r from-primary/10 to-transparent">
+                <h3 className="font-semibold text-foreground mb-2 sm:mb-4 flex items-center gap-2 text-sm sm:text-base">
+                  <Target className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   Sumário Executivo
                 </h3>
-                <p className="text-lg text-foreground leading-relaxed">
+                <p className="text-sm sm:text-lg text-foreground leading-relaxed">
                   {relatorio.sumarioExecutivo.conclusaoPrincipal}
                 </p>
               </div>
 
               {/* Análise Estratégica - SWOT */}
               <SecaoColapsavel
-                titulo="Análise Estratégica (SWOT)"
+                titulo="Análise SWOT"
                 icone={BarChart3}
                 corIcone="bg-blue-500/20 text-blue-400"
                 defaultAberto={true}
               >
-                <div className="space-y-4 mt-4">
-                  <p className="text-muted-foreground">{relatorio.analiseEstrategica.panoramaGeral}</p>
+                <div className="space-y-3 sm:space-y-4 mt-3 sm:mt-4">
+                  <p className="text-xs sm:text-sm text-muted-foreground">{relatorio.analiseEstrategica.panoramaGeral}</p>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                     {/* Fortalezas */}
-                    <div className="p-4 bg-green-500/10 rounded-lg border border-green-500/20">
-                      <h4 className="font-medium text-green-400 mb-2 flex items-center gap-2">
+                    <div className="p-3 sm:p-4 bg-green-500/10 rounded-lg border border-green-500/20">
+                      <h4 className="font-medium text-green-400 mb-1 sm:mb-2 flex items-center gap-2 text-sm">
                         <CheckCircle className="w-4 h-4" />
                         Fortalezas
                       </h4>
                       <ul className="space-y-1">
                         {relatorio.analiseEstrategica.fortalezas.map((f, i) => (
-                          <li key={i} className="text-sm text-muted-foreground">• {f}</li>
+                          <li key={i} className="text-xs sm:text-sm text-muted-foreground">• {f}</li>
                         ))}
                       </ul>
                     </div>
 
                     {/* Vulnerabilidades */}
-                    <div className="p-4 bg-red-500/10 rounded-lg border border-red-500/20">
-                      <h4 className="font-medium text-red-400 mb-2 flex items-center gap-2">
+                    <div className="p-3 sm:p-4 bg-red-500/10 rounded-lg border border-red-500/20">
+                      <h4 className="font-medium text-red-400 mb-1 sm:mb-2 flex items-center gap-2 text-sm">
                         <XCircle className="w-4 h-4" />
                         Vulnerabilidades
                       </h4>
                       <ul className="space-y-1">
                         {relatorio.analiseEstrategica.vulnerabilidades.map((v, i) => (
-                          <li key={i} className="text-sm text-muted-foreground">• {v}</li>
+                          <li key={i} className="text-xs sm:text-sm text-muted-foreground">• {v}</li>
                         ))}
                       </ul>
                     </div>
 
                     {/* Oportunidades */}
-                    <div className="p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
-                      <h4 className="font-medium text-blue-400 mb-2 flex items-center gap-2">
+                    <div className="p-3 sm:p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                      <h4 className="font-medium text-blue-400 mb-1 sm:mb-2 flex items-center gap-2 text-sm">
                         <TrendingUp className="w-4 h-4" />
                         Oportunidades
                       </h4>
                       <ul className="space-y-1">
                         {relatorio.analiseEstrategica.oportunidades.map((o, i) => (
-                          <li key={i} className="text-sm text-muted-foreground">• {o}</li>
+                          <li key={i} className="text-xs sm:text-sm text-muted-foreground">• {o}</li>
                         ))}
                       </ul>
                     </div>
 
                     {/* Ameaças */}
-                    <div className="p-4 bg-orange-500/10 rounded-lg border border-orange-500/20">
-                      <h4 className="font-medium text-orange-400 mb-2 flex items-center gap-2">
+                    <div className="p-3 sm:p-4 bg-orange-500/10 rounded-lg border border-orange-500/20">
+                      <h4 className="font-medium text-orange-400 mb-1 sm:mb-2 flex items-center gap-2 text-sm">
                         <AlertTriangle className="w-4 h-4" />
                         Ameaças
                       </h4>
                       <ul className="space-y-1">
                         {relatorio.analiseEstrategica.ameacas.map((a, i) => (
-                          <li key={i} className="text-sm text-muted-foreground">• {a}</li>
+                          <li key={i} className="text-xs sm:text-sm text-muted-foreground">• {a}</li>
                         ))}
                       </ul>
                     </div>
@@ -790,43 +793,43 @@ export default function PaginaResultadoDetalhe() {
                 icone={Users}
                 corIcone="bg-purple-500/20 text-purple-400"
               >
-                <div className="space-y-4 mt-4">
+                <div className="space-y-3 sm:space-y-4 mt-3 sm:mt-4">
                   {relatorio.perfisPsicograficos.map((perfil, i) => (
-                    <div key={i} className="p-4 bg-secondary/50 rounded-lg">
-                      <div className="flex items-center justify-between mb-3">
-                        <h4 className="font-medium text-foreground">{perfil.segmento}</h4>
+                    <div key={i} className="p-3 sm:p-4 bg-secondary/50 rounded-lg">
+                      <div className="flex items-center justify-between mb-2 sm:mb-3">
+                        <h4 className="font-medium text-foreground text-sm sm:text-base">{perfil.segmento}</h4>
                         <span className="text-sm text-primary font-bold">{perfil.percentual}%</span>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 text-xs sm:text-sm">
                         <div>
                           <p className="text-muted-foreground font-medium mb-1">Características:</p>
                           <ul className="text-muted-foreground">
-                            {perfil.caracteristicas.map((c, j) => (
+                            {perfil.caracteristicas.slice(0, 3).map((c, j) => (
                               <li key={j}>• {c}</li>
                             ))}
                           </ul>
                         </div>
                         <div>
-                          <p className="text-muted-foreground font-medium mb-1">Gatilhos Emocionais:</p>
+                          <p className="text-muted-foreground font-medium mb-1">Gatilhos:</p>
                           <ul className="text-muted-foreground">
-                            {perfil.gatilhosEmocionais.map((g, j) => (
+                            {perfil.gatilhosEmocionais.slice(0, 3).map((g, j) => (
                               <li key={j}>• {g}</li>
                             ))}
                           </ul>
                         </div>
                         <div>
-                          <p className="text-green-400 font-medium mb-1">Mensagens Eficazes:</p>
+                          <p className="text-green-400 font-medium mb-1">Mensagens:</p>
                           <ul className="text-muted-foreground">
-                            {perfil.mensagensEficazes.map((m, j) => (
+                            {perfil.mensagensEficazes.slice(0, 2).map((m, j) => (
                               <li key={j}>• {m}</li>
                             ))}
                           </ul>
                         </div>
                         <div>
-                          <p className="text-red-400 font-medium mb-1">Erros a Evitar:</p>
+                          <p className="text-red-400 font-medium mb-1">Evitar:</p>
                           <ul className="text-muted-foreground">
-                            {perfil.errosEvitar.map((e, j) => (
+                            {perfil.errosEvitar.slice(0, 2).map((e, j) => (
                               <li key={j}>• {e}</li>
                             ))}
                           </ul>
@@ -838,35 +841,35 @@ export default function PaginaResultadoDetalhe() {
               </SecaoColapsavel>
 
               {/* Voto Silencioso */}
-              <div className="glass-card rounded-xl p-6 border-l-4 border-purple-500">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-                    <EyeOff className="w-6 h-6 text-purple-400" />
+              <div className="glass-card rounded-lg sm:rounded-xl p-4 sm:p-6 border-l-4 border-purple-500">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                    <EyeOff className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400" />
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-semibold text-foreground">Voto Silencioso</h3>
-                      <span className="text-2xl font-bold text-purple-400">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <h3 className="font-semibold text-foreground text-sm sm:text-base">Voto Silencioso</h3>
+                      <span className="text-lg sm:text-2xl font-bold text-purple-400">
                         ~{relatorio.votoSilencioso.estimativaPercentual}%
                       </span>
                     </div>
-                    <p className="text-muted-foreground text-sm mb-4">
+                    <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4">
                       {relatorio.votoSilencioso.perfilTipico}
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       <div>
-                        <p className="text-sm font-medium text-foreground mb-2">Como Identificar:</p>
-                        <ul className="text-sm text-muted-foreground space-y-1">
-                          {relatorio.votoSilencioso.indicadoresIdentificacao.map((ind, i) => (
+                        <p className="text-xs sm:text-sm font-medium text-foreground mb-1 sm:mb-2">Identificar:</p>
+                        <ul className="text-xs sm:text-sm text-muted-foreground space-y-1">
+                          {relatorio.votoSilencioso.indicadoresIdentificacao.slice(0, 3).map((ind, i) => (
                             <li key={i}>• {ind}</li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-green-400 mb-2">Estratégias de Conversão:</p>
-                        <ul className="text-sm text-muted-foreground space-y-1">
-                          {relatorio.votoSilencioso.estrategiasConversao.map((est, i) => (
+                        <p className="text-xs sm:text-sm font-medium text-green-400 mb-1 sm:mb-2">Conversão:</p>
+                        <ul className="text-xs sm:text-sm text-muted-foreground space-y-1">
+                          {relatorio.votoSilencioso.estrategiasConversao.slice(0, 3).map((est, i) => (
                             <li key={i}>• {est}</li>
                           ))}
                         </ul>
@@ -874,10 +877,10 @@ export default function PaginaResultadoDetalhe() {
                     </div>
 
                     {relatorio.votoSilencioso.riscos.length > 0 && (
-                      <div className="mt-4 p-3 bg-red-500/10 rounded-lg border border-red-500/20">
-                        <p className="text-sm font-medium text-red-400 mb-1">Riscos:</p>
-                        <ul className="text-sm text-muted-foreground">
-                          {relatorio.votoSilencioso.riscos.map((r, i) => (
+                      <div className="mt-3 sm:mt-4 p-2 sm:p-3 bg-red-500/10 rounded-lg border border-red-500/20">
+                        <p className="text-xs sm:text-sm font-medium text-red-400 mb-1">Riscos:</p>
+                        <ul className="text-xs sm:text-sm text-muted-foreground">
+                          {relatorio.votoSilencioso.riscos.slice(0, 2).map((r, i) => (
                             <li key={i}>• {r}</li>
                           ))}
                         </ul>
@@ -888,22 +891,22 @@ export default function PaginaResultadoDetalhe() {
               </div>
 
               {/* Pontos de Ruptura */}
-              <div className="glass-card rounded-xl p-6 border-l-4 border-orange-500">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-orange-500/20 flex items-center justify-center flex-shrink-0">
-                    <AlertTriangle className="w-6 h-6 text-orange-400" />
+              <div className="glass-card rounded-lg sm:rounded-xl p-4 sm:p-6 border-l-4 border-orange-500">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-orange-500/20 flex items-center justify-center flex-shrink-0">
+                    <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-foreground mb-4">Pontos de Ruptura</h3>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-foreground mb-3 sm:mb-4 text-sm sm:text-base">Pontos de Ruptura</h3>
 
-                    <div className="space-y-4">
-                      {relatorio.pontosRuptura.map((ponto, i) => (
-                        <div key={i} className="p-4 bg-secondary/50 rounded-lg">
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="font-medium text-foreground">{ponto.grupo}</span>
+                    <div className="space-y-3 sm:space-y-4">
+                      {relatorio.pontosRuptura.slice(0, 3).map((ponto, i) => (
+                        <div key={i} className="p-3 sm:p-4 bg-secondary/50 rounded-lg">
+                          <div className="flex items-center justify-between gap-2 mb-2">
+                            <span className="font-medium text-foreground text-sm truncate">{ponto.grupo}</span>
                             <span
                               className={cn(
-                                'text-sm font-bold',
+                                'text-xs sm:text-sm font-bold whitespace-nowrap',
                                 ponto.probabilidadeMudanca >= 70
                                   ? 'text-red-400'
                                   : ponto.probabilidadeMudanca >= 40
@@ -911,20 +914,17 @@ export default function PaginaResultadoDetalhe() {
                                     : 'text-yellow-400'
                               )}
                             >
-                              {ponto.probabilidadeMudanca}% chance
+                              {ponto.probabilidadeMudanca}%
                             </span>
                           </div>
-                          <p className="text-sm text-muted-foreground mb-2">
+                          <p className="text-xs sm:text-sm text-muted-foreground mb-1 sm:mb-2">
                             <strong>Gatilho:</strong> {ponto.eventoGatilho}
                           </p>
-                          <p className="text-sm text-muted-foreground mb-2">
-                            <strong>Direção:</strong> {ponto.direcaoMudanca}
-                          </p>
-                          <div className="flex flex-wrap gap-2 mt-2">
-                            {ponto.sinaisAlerta.map((sinal, j) => (
+                          <div className="flex flex-wrap gap-1 sm:gap-2 mt-2">
+                            {ponto.sinaisAlerta.slice(0, 2).map((sinal, j) => (
                               <span
                                 key={j}
-                                className="text-xs px-2 py-1 bg-orange-500/20 text-orange-300 rounded-full"
+                                className="text-xs px-2 py-0.5 sm:py-1 bg-orange-500/20 text-orange-300 rounded-full"
                               >
                                 {sinal}
                               </span>
@@ -939,69 +939,69 @@ export default function PaginaResultadoDetalhe() {
 
               {/* Recomendações Estratégicas */}
               <SecaoColapsavel
-                titulo="Recomendações Estratégicas"
+                titulo="Recomendações"
                 icone={Lightbulb}
                 corIcone="bg-yellow-500/20 text-yellow-400"
                 defaultAberto={true}
               >
-                <div className="space-y-4 mt-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-3 sm:space-y-4 mt-3 sm:mt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                     {/* Curto Prazo */}
-                    <div className="p-4 bg-green-500/10 rounded-lg border border-green-500/20">
-                      <h4 className="font-medium text-green-400 mb-2 flex items-center gap-2">
+                    <div className="p-3 sm:p-4 bg-green-500/10 rounded-lg border border-green-500/20">
+                      <h4 className="font-medium text-green-400 mb-1 sm:mb-2 flex items-center gap-2 text-sm">
                         <Clock className="w-4 h-4" />
                         Curto Prazo
                       </h4>
                       <ul className="space-y-1">
-                        {relatorio.recomendacoesEstrategicas.curtoPrazo.map((r, i) => (
-                          <li key={i} className="text-sm text-muted-foreground">• {r}</li>
+                        {relatorio.recomendacoesEstrategicas.curtoPrazo.slice(0, 3).map((r, i) => (
+                          <li key={i} className="text-xs sm:text-sm text-muted-foreground">• {r}</li>
                         ))}
                       </ul>
                     </div>
 
                     {/* Médio Prazo */}
-                    <div className="p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
-                      <h4 className="font-medium text-blue-400 mb-2 flex items-center gap-2">
+                    <div className="p-3 sm:p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                      <h4 className="font-medium text-blue-400 mb-1 sm:mb-2 flex items-center gap-2 text-sm">
                         <TrendingUp className="w-4 h-4" />
                         Médio Prazo
                       </h4>
                       <ul className="space-y-1">
-                        {relatorio.recomendacoesEstrategicas.medioPrazo.map((r, i) => (
-                          <li key={i} className="text-sm text-muted-foreground">• {r}</li>
+                        {relatorio.recomendacoesEstrategicas.medioPrazo.slice(0, 3).map((r, i) => (
+                          <li key={i} className="text-xs sm:text-sm text-muted-foreground">• {r}</li>
                         ))}
                       </ul>
                     </div>
                   </div>
 
                   {/* Mensagens-Chave */}
-                  <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
-                    <h4 className="font-medium text-primary mb-2">Mensagens-Chave Recomendadas</h4>
+                  <div className="p-3 sm:p-4 bg-primary/10 rounded-lg border border-primary/20">
+                    <h4 className="font-medium text-primary mb-1 sm:mb-2 text-sm">Mensagens-Chave</h4>
                     <ul className="space-y-1">
-                      {relatorio.recomendacoesEstrategicas.mensagensChave.map((m, i) => (
-                        <li key={i} className="text-sm text-muted-foreground">&quot;{m}&quot;</li>
+                      {relatorio.recomendacoesEstrategicas.mensagensChave.slice(0, 3).map((m, i) => (
+                        <li key={i} className="text-xs sm:text-sm text-muted-foreground">&quot;{m}&quot;</li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                     {/* Temas a Evitar */}
-                    <div className="p-4 bg-red-500/10 rounded-lg border border-red-500/20">
-                      <h4 className="font-medium text-red-400 mb-2">Temas a EVITAR</h4>
+                    <div className="p-3 sm:p-4 bg-red-500/10 rounded-lg border border-red-500/20">
+                      <h4 className="font-medium text-red-400 mb-1 sm:mb-2 text-sm">Evitar</h4>
                       <ul className="space-y-1">
-                        {relatorio.recomendacoesEstrategicas.temasEvitar.map((t, i) => (
-                          <li key={i} className="text-sm text-muted-foreground">• {t}</li>
+                        {relatorio.recomendacoesEstrategicas.temasEvitar.slice(0, 3).map((t, i) => (
+                          <li key={i} className="text-xs sm:text-sm text-muted-foreground">• {t}</li>
                         ))}
                       </ul>
                     </div>
 
                     {/* Canais Recomendados */}
-                    <div className="p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
-                      <h4 className="font-medium text-purple-400 mb-2">Canais Recomendados</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {relatorio.recomendacoesEstrategicas.canaisRecomendados.map((c, i) => (
+                    <div className="p-3 sm:p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
+                      <h4 className="font-medium text-purple-400 mb-1 sm:mb-2 text-sm">Canais</h4>
+                      <div className="flex flex-wrap gap-1 sm:gap-2">
+                        {relatorio.recomendacoesEstrategicas.canaisRecomendados.slice(0, 4).map((c, i) => (
                           <span
                             key={i}
-                            className="text-xs px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full"
+                            className="text-xs px-2 py-0.5 sm:py-1 bg-purple-500/20 text-purple-300 rounded-full"
                           >
                             {c}
                           </span>
@@ -1014,18 +1014,19 @@ export default function PaginaResultadoDetalhe() {
 
               {/* Alertas de Inteligência */}
               <SecaoColapsavel
-                titulo="Alertas de Inteligência"
+                titulo="Alertas"
                 icone={AlertCircle}
                 corIcone="bg-red-500/20 text-red-400"
               >
-                <div className="space-y-3 mt-4">
+                <div className="space-y-2 sm:space-y-3 mt-3 sm:mt-4">
                   {relatorio.alertasInteligencia
                     .sort((a, b) => b.prioridade - a.prioridade)
+                    .slice(0, 5)
                     .map((alerta, i) => (
                       <div
                         key={i}
                         className={cn(
-                          'p-4 rounded-lg border',
+                          'p-3 sm:p-4 rounded-lg border',
                           alerta.tipo === 'urgente'
                             ? 'bg-red-500/10 border-red-500/30'
                             : alerta.tipo === 'risco'
@@ -1035,19 +1036,16 @@ export default function PaginaResultadoDetalhe() {
                                 : 'bg-blue-500/10 border-blue-500/30'
                         )}
                       >
-                        <div className="flex items-start gap-3">
+                        <div className="flex items-start gap-2 sm:gap-3">
                           <IconeAlertaTipo tipo={alerta.tipo} />
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between">
-                              <h4 className="font-medium text-foreground">{alerta.titulo}</h4>
-                              <span className="text-xs text-muted-foreground">
-                                Prioridade: {alerta.prioridade}/10
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-start sm:items-center justify-between gap-2">
+                              <h4 className="font-medium text-foreground text-sm truncate">{alerta.titulo}</h4>
+                              <span className="text-xs text-muted-foreground whitespace-nowrap">
+                                {alerta.prioridade}/10
                               </span>
                             </div>
-                            <p className="text-sm text-muted-foreground mt-1">{alerta.descricao}</p>
-                            <p className="text-sm text-primary mt-2">
-                              <strong>Ação:</strong> {alerta.acaoRecomendada}
-                            </p>
+                            <p className="text-xs sm:text-sm text-muted-foreground mt-1 line-clamp-2">{alerta.descricao}</p>
                           </div>
                         </div>
                       </div>
@@ -1056,12 +1054,12 @@ export default function PaginaResultadoDetalhe() {
               </SecaoColapsavel>
 
               {/* Conclusão Analítica */}
-              <div className="glass-card rounded-xl p-6 bg-gradient-to-r from-primary/5 to-transparent">
-                <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-primary" />
-                  Conclusão Analítica
+              <div className="glass-card rounded-lg sm:rounded-xl p-4 sm:p-6 bg-gradient-to-r from-primary/5 to-transparent">
+                <h3 className="font-semibold text-foreground mb-2 sm:mb-4 flex items-center gap-2 text-sm sm:text-base">
+                  <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                  Conclusão
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                   {relatorio.conclusaoAnalitica}
                 </p>
               </div>

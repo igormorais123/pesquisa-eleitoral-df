@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { Header } from '@/components/layout/Header';
+import { MobileNav } from '@/components/layout/MobileNav';
 import { useAuthStore } from '@/stores/auth-store';
 
 export default function DashboardLayout({
@@ -44,13 +45,21 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen bg-background bg-pattern">
-      <Sidebar />
+      {/* Sidebar - Oculta em mobile */}
+      <div className="hidden lg:block">
+        <Sidebar />
+      </div>
+
       <div className="lg:ml-64 transition-all duration-300">
         <Header />
-        <main className="p-6 bg-gradient-subtle min-h-[calc(100vh-4rem)]">
+        {/* Main content - Padding extra no bottom para mobile nav */}
+        <main className="p-4 sm:p-6 bg-gradient-subtle min-h-[calc(100vh-4rem)] pb-20 lg:pb-6">
           {children}
         </main>
       </div>
+
+      {/* Mobile Navigation - Visível apenas em mobile */}
+      <MobileNav />
     </div>
   );
 }
