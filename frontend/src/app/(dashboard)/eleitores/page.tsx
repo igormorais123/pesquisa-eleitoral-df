@@ -17,17 +17,20 @@ import {
   BarChart3,
   ChevronLeft,
   ChevronRight,
+  Lightbulb,
 } from 'lucide-react';
 import { useEleitores } from '@/hooks/useEleitores';
 import { AgenteCard } from '@/components/agentes/AgenteCard';
 import { AgentesFilters } from '@/components/agentes/AgentesFilters';
 import { AgentesCharts } from '@/components/agentes/AgentesCharts';
+import { AgentesInsights } from '@/components/agentes/AgentesInsights';
 import { cn, formatarNumero } from '@/lib/utils';
 
-type VisualizacaoTipo = 'cards' | 'lista' | 'graficos';
+type VisualizacaoTipo = 'cards' | 'lista' | 'graficos' | 'insights';
 
 export default function PaginaEleitores() {
   const {
+    eleitores,
     eleitoresFiltrados,
     eleitoresSelecionados,
     estatisticas,
@@ -216,6 +219,18 @@ export default function PaginaEleitores() {
             >
               <BarChart3 className="w-4 h-4" />
             </button>
+            <button
+              onClick={() => setVisualizacao('insights')}
+              className={cn(
+                'p-2 rounded-md transition-colors',
+                visualizacao === 'insights'
+                  ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+              title="Insights Inteligentes"
+            >
+              <Lightbulb className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </div>
@@ -235,10 +250,12 @@ export default function PaginaEleitores() {
           </div>
         )}
 
-        {/* Lista/Grid/Gráficos */}
+        {/* Lista/Grid/Gráficos/Insights */}
         <div className="flex-1 min-w-0">
           {visualizacao === 'graficos' ? (
             <AgentesCharts estatisticas={estatisticas} eleitores={eleitoresFiltrados} />
+          ) : visualizacao === 'insights' ? (
+            <AgentesInsights eleitores={eleitores} eleitoresFiltrados={eleitoresFiltrados} />
           ) : (
             <div
               ref={parentRef}
