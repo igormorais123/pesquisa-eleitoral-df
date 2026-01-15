@@ -13,14 +13,23 @@ from anthropic import Anthropic
 from app.core.config import configuracoes
 
 # Preços por milhão de tokens (USD) - Janeiro 2026
+# IMPORTANTE: Usamos preco do Opus 4.5 para TODAS as estimativas (margem de seguranca)
 PRECOS_MODELOS = {
     "claude-opus-4-5-20251101": {"entrada": 15.0, "saida": 75.0},
+    "claude-sonnet-4-5-20250514": {"entrada": 3.0, "saida": 15.0},
     "claude-sonnet-4-20250514": {"entrada": 3.0, "saida": 15.0},
     "claude-3-5-haiku-20241022": {"entrada": 0.25, "saida": 1.25},
 }
 
+# Preco base para estimativas (usa Opus 4.5 para seguranca)
+PRECO_ESTIMATIVA = PRECOS_MODELOS["claude-opus-4-5-20251101"]
+
 # Taxa de conversão USD -> BRL
 TAXA_CONVERSAO = 6.0
+
+# Modelos por tipo de tarefa
+MODELO_ENTREVISTAS = "claude-sonnet-4-5-20250514"  # Sonnet 4.5 para todas as entrevistas
+MODELO_INSIGHTS = "claude-opus-4-5-20251101"       # Opus 4.5 para insights e relatorios
 
 
 class ClaudeServico:
@@ -36,27 +45,24 @@ class ClaudeServico:
         if not self.client:
             raise ValueError("API Key do Claude não configurada")
 
-    def selecionar_modelo(self, tipo_pergunta: str, eleitor: Dict[str, Any]) -> str:
+    def selecionar_modelo(self, tipo_pergunta: str, eleitor: Dict[str, Any], tarefa: str = "entrevista") -> str:
         """
-        Seleciona o modelo adequado baseado na complexidade.
+        Seleciona o modelo adequado baseado na tarefa.
 
         Args:
             tipo_pergunta: Tipo da pergunta
             eleitor: Dados do eleitor
+            tarefa: Tipo de tarefa ("entrevista" ou "insights")
 
         Returns:
             Nome do modelo a usar
         """
-        # Opus para perguntas complexas
-        if tipo_pergunta in ["aberta_longa", "ranking"]:
-            return "claude-opus-4-5-20251101"
+        # Opus 4.5 APENAS para insights e relatorios
+        if tarefa == "insights":
+            return MODELO_INSIGHTS
 
-        # Opus para eleitores complexos
-        if eleitor.get("conflito_identitario") and eleitor.get("tolerancia_nuance") == "alta":
-            return "claude-opus-4-5-20251101"
-
-        # Sonnet para o resto
-        return "claude-sonnet-4-20250514"
+        # Sonnet 4.5 para TODAS as entrevistas (abertas, fechadas, longas, curtas)
+        return MODELO_ENTREVISTAS
 
     def calcular_custo(self, tokens_entrada: int, tokens_saida: int, modelo: str) -> float:
         """
@@ -322,23 +328,22 @@ Responda APENAS com o JSON, sem texto adicional.
         }
 
     def estimar_custo(
-        self, total_perguntas: int, total_eleitores: int, proporcao_opus: float = 0.2
+        self, total_perguntas: int, total_eleitores: int
     ) -> Dict[str, Any]:
         """
         Estima custo de uma entrevista.
 
+        IMPORTANTE: Usa preco do Opus 4.5 para TODAS as estimativas,
+        garantindo margem de seguranca (custo real sera menor).
+
         Args:
             total_perguntas: Número de perguntas
             total_eleitores: Número de eleitores
-            proporcao_opus: Proporção de chamadas que usarão Opus
 
         Returns:
-            Estimativa detalhada de custos
+            Estimativa detalhada de custos (conservadora)
         """
         total_chamadas = total_perguntas * total_eleitores
-
-        chamadas_opus = int(total_chamadas * proporcao_opus)
-        chamadas_sonnet = total_chamadas - chamadas_opus
 
         # Tokens médios estimados
         tokens_entrada_medio = 2000
@@ -347,34 +352,35 @@ Responda APENAS com o JSON, sem texto adicional.
         tokens_entrada = total_chamadas * tokens_entrada_medio
         tokens_saida = total_chamadas * tokens_saida_medio
 
-        # Custo por modelo
-        custo_opus = self.calcular_custo(
-            chamadas_opus * tokens_entrada_medio,
-            chamadas_opus * tokens_saida_medio,
-            "claude-opus-4-5-20251101",
+        # ESTIMATIVA CONSERVADORA: calcula tudo como se fosse Opus 4.5
+        # Custo real sera MENOR pois usamos Sonnet 4.5 nas entrevistas
+        custo_estimado = self.calcular_custo(
+            tokens_entrada,
+            tokens_saida,
+            "claude-opus-4-5-20251101",  # Usa Opus para estimativa maior
         )
 
-        custo_sonnet = self.calcular_custo(
-            chamadas_sonnet * tokens_entrada_medio,
-            chamadas_sonnet * tokens_saida_medio,
-            "claude-sonnet-4-20250514",
+        # Custo real esperado (com Sonnet 4.5)
+        custo_real_esperado = self.calcular_custo(
+            tokens_entrada,
+            tokens_saida,
+            MODELO_ENTREVISTAS,
         )
-
-        custo_medio = custo_opus + custo_sonnet
 
         return {
             "total_perguntas": total_perguntas,
             "total_eleitores": total_eleitores,
             "total_chamadas": total_chamadas,
-            "chamadas_opus": chamadas_opus,
-            "chamadas_sonnet": chamadas_sonnet,
+            "modelo_entrevistas": MODELO_ENTREVISTAS,
+            "modelo_insights": MODELO_INSIGHTS,
             "tokens_entrada_estimados": tokens_entrada,
             "tokens_saida_estimados": tokens_saida,
-            "custo_minimo": custo_sonnet * 0.8,  # Só Sonnet, otimista
-            "custo_maximo": custo_medio * 1.5,  # Margem de segurança
-            "custo_medio": custo_medio,
-            "custo_por_eleitor": (custo_medio / total_eleitores if total_eleitores > 0 else 0),
-            "custo_por_pergunta": (custo_medio / total_perguntas if total_perguntas > 0 else 0),
+            "custo_estimado": custo_estimado,        # Estimativa alta (Opus 4.5)
+            "custo_real_esperado": custo_real_esperado,  # Custo real (Sonnet 4.5)
+            "economia_esperada": custo_estimado - custo_real_esperado,
+            "custo_por_eleitor": (custo_estimado / total_eleitores if total_eleitores > 0 else 0),
+            "custo_por_pergunta": (custo_estimado / total_perguntas if total_perguntas > 0 else 0),
+            "nota": "Estimativa usa preco Opus 4.5 por seguranca. Custo real sera menor.",
         }
 
 
