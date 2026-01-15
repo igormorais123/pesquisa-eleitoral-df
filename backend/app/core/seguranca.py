@@ -149,7 +149,7 @@ def autenticar_usuario(usuario: str, senha: str) -> Optional[dict]:
     if usuario != USUARIO_TESTE["usuario"]:
         return None
 
-    # Verificar senha usando hash bcrypt (nunca comparar senha em plaintext)
+    # Verificar senha usando hash bcrypt
     if verificar_senha(senha, str(USUARIO_TESTE["senha_hash"])):
         return {
             "id": USUARIO_TESTE["id"],
