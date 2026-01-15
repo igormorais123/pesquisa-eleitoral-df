@@ -16,7 +16,7 @@ from app.core.config import configuracoes
 # IMPORTANTE: Usamos preco do Opus 4.5 para TODAS as estimativas (margem de seguranca)
 PRECOS_MODELOS = {
     "claude-opus-4-5-20251101": {"entrada": 15.0, "saida": 75.0},
-    "claude-sonnet-4-5-20250514": {"entrada": 3.0, "saida": 15.0},
+    "claude-sonnet-4-5-20250929": {"entrada": 3.0, "saida": 15.0},
     "claude-sonnet-4-20250514": {"entrada": 3.0, "saida": 15.0},
     "claude-3-5-haiku-20241022": {"entrada": 0.25, "saida": 1.25},
 }
@@ -28,7 +28,7 @@ PRECO_ESTIMATIVA = PRECOS_MODELOS["claude-opus-4-5-20251101"]
 TAXA_CONVERSAO = 6.0
 
 # Modelos por tipo de tarefa
-MODELO_ENTREVISTAS = "claude-sonnet-4-5-20250514"  # Sonnet 4.5 para todas as entrevistas
+MODELO_ENTREVISTAS = "claude-sonnet-4-5-20250929"  # Sonnet 4.5 para todas as entrevistas
 MODELO_INSIGHTS = "claude-opus-4-5-20251101"       # Opus 4.5 para insights e relatorios
 
 
