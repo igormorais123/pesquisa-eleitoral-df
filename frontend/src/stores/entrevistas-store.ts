@@ -95,7 +95,7 @@ export const useEntrevistasStore = create<EntrevistasState>()(
         set((state) => ({
           entrevistaAtual: state.entrevistaAtual
             ? { ...state.entrevistaAtual, titulo }
-            : null,
+            : { titulo, tipo: 'mista', perguntas: [], status: 'rascunho', criado_em: new Date().toISOString() },
         }));
       },
 

@@ -297,6 +297,48 @@ export default function PaginaExecucaoEntrevista() {
     );
   }
 
+  // Verificar se há perguntas configuradas
+  if (!carregandoEleitores && perguntas.length === 0) {
+    return (
+      <div className="max-w-4xl mx-auto flex items-center justify-center h-96">
+        <div className="text-center">
+          <AlertCircle className="w-12 h-12 text-red-400 mx-auto" />
+          <p className="mt-4 text-foreground font-medium">Nenhuma pergunta configurada</p>
+          <p className="text-sm text-muted-foreground mt-2">
+            Crie uma nova entrevista com perguntas antes de executar.
+          </p>
+          <button
+            onClick={() => router.push('/entrevistas/nova')}
+            className="mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-lg"
+          >
+            Criar Nova Entrevista
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Verificar se há eleitores selecionados
+  if (!carregandoEleitores && totalEleitoresSelecionados === 0) {
+    return (
+      <div className="max-w-4xl mx-auto flex items-center justify-center h-96">
+        <div className="text-center">
+          <AlertCircle className="w-12 h-12 text-red-400 mx-auto" />
+          <p className="mt-4 text-foreground font-medium">Nenhum eleitor selecionado</p>
+          <p className="text-sm text-muted-foreground mt-2">
+            Selecione eleitores antes de iniciar a entrevista.
+          </p>
+          <button
+            onClick={() => router.push('/eleitores')}
+            className="mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-lg"
+          >
+            Selecionar Eleitores
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Header */}
