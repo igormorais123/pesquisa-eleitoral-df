@@ -34,6 +34,7 @@ import {
   MapPin,
   Activity,
 } from 'lucide-react';
+import { PiramideEtaria, CorrelacaoHeatmap } from '@/components/charts';
 
 interface AgentesChartsProps {
   estatisticas: {
@@ -543,17 +544,12 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
 
         {/* Pirâmide Etária */}
         <ChartCard titulo="Pirâmide Etária" icone={Activity} corIcone="bg-green-500/20">
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={faixasEtarias} layout="vertical">
-              <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-              <XAxis type="number" stroke="#9ca3af" />
-              <YAxis dataKey="faixa" type="category" width={60} stroke="#9ca3af" />
-              <Tooltip {...tooltipStyle} />
-              <Legend />
-              <Bar dataKey="masculino" name="Masculino" fill="#3b82f6" stackId="a" />
-              <Bar dataKey="feminino" name="Feminino" fill="#ec4899" stackId="a" />
-            </BarChart>
-          </ResponsiveContainer>
+          <PiramideEtaria eleitores={eleitores} altura={300} />
+        </ChartCard>
+
+        {/* Heatmap de Correlações */}
+        <ChartCard titulo="Correlações entre Atributos" icone={Brain} corIcone="bg-indigo-500/20">
+          <CorrelacaoHeatmap eleitores={eleitores} altura={350} />
         </ChartCard>
       </div>
     </div>
