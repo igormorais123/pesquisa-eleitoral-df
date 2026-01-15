@@ -143,6 +143,27 @@ function calcularDistribuicaoSusceptibilidade(
 }
 
 /**
+ * Calcula a distribuição de filhos (com/sem)
+ */
+function calcularDistribuicaoFilhos(
+  eleitores: Eleitor[]
+): Record<string, { contagem: number; percentual: number }> {
+  const total = eleitores.length;
+  let comFilhos = 0;
+  let semFilhos = 0;
+
+  eleitores.forEach((e) => {
+    if (e.filhos && e.filhos > 0) comFilhos++;
+    else semFilhos++;
+  });
+
+  return {
+    'com_filhos': { contagem: comFilhos, percentual: (comFilhos / total) * 100 },
+    'sem_filhos': { contagem: semFilhos, percentual: (semFilhos / total) * 100 },
+  };
+}
+
+/**
  * Determina a severidade da divergência baseado no desvio
  */
 function determinarSeveridade(diferencaAbsoluta: number): 'baixa' | 'media' | 'alta' | 'critica' {
@@ -238,6 +259,26 @@ export function calcularValidacaoEstatistica(eleitores: Eleitor[]): ValidacaoCom
     {
       variavel: 'interesse_politico',
       calcularDistribuicao: () => calcularDistribuicao(eleitores, 'interesse_politico'),
+    },
+    {
+      variavel: 'posicao_bolsonaro',
+      calcularDistribuicao: () => calcularDistribuicao(eleitores, 'posicao_bolsonaro'),
+    },
+    {
+      variavel: 'estilo_decisao',
+      calcularDistribuicao: () => calcularDistribuicao(eleitores, 'estilo_decisao'),
+    },
+    {
+      variavel: 'tolerancia_nuance',
+      calcularDistribuicao: () => calcularDistribuicao(eleitores, 'tolerancia_nuance'),
+    },
+    {
+      variavel: 'filhos',
+      calcularDistribuicao: () => calcularDistribuicaoFilhos(eleitores),
+    },
+    {
+      variavel: 'meio_transporte',
+      calcularDistribuicao: () => calcularDistribuicao(eleitores, 'meio_transporte'),
     },
     {
       variavel: 'susceptibilidade_desinformacao',

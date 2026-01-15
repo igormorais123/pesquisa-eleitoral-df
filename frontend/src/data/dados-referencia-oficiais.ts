@@ -323,6 +323,118 @@ export const dadosEstadoCivil: DadoReferencia = {
 };
 
 // ============================================
+// DADOS DE POSIÇÃO SOBRE BOLSONARO
+// ============================================
+
+export const dadosPosicaoBolsonaro: DadoReferencia = {
+  variavel: 'posicao_bolsonaro',
+  categoria: 'Político',
+  fonte: 'Datafolha / CNN Brasil',
+  ano: 2024,
+  url: 'https://www.cnnbrasil.com.br/politica/no-fim-de-governo-bolsonaro-tem-aprovacao-de-39-e-reprovacao-de-37-diz-datafolha/',
+  ambito: 'Brasil',
+  metodologia: 'Pesquisa Datafolha - avaliação do ex-presidente e intenção de voto em candidatos apoiados',
+  valores: {
+    'apoiador_forte': 15.0,      // Votariam "com certeza" em candidato apoiado por Bolsonaro (26%)
+    'apoiador_moderado': 11.0,   // "Talvez" votariam (21%)
+    'neutro': 20.0,              // Indiferentes
+    'critico_moderado': 20.0,    // Reprovam mas não rejeitam totalmente
+    'critico_forte': 34.0,       // Não votariam em candidato apoiado (50%)
+  },
+  observacoes: 'Datafolha dez/2025: 50% não votariam em candidato de Bolsonaro, 26% votariam com certeza. Aprovação no fim do mandato: 39%.',
+  confiabilidade: 'media',
+};
+
+// ============================================
+// DADOS DE MOBILIDADE / TRANSPORTE
+// ============================================
+
+export const dadosMeioTransporte: DadoReferencia = {
+  variavel: 'meio_transporte',
+  categoria: 'Mobilidade',
+  fonte: 'Censo Demográfico 2022 - IBGE',
+  ano: 2022,
+  url: 'https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/44713-automovel-e-o-meio-de-transporte-mais-utilizado-no-deslocamento-para-o-trabalho',
+  ambito: 'Brasil',
+  metodologia: 'Censo 2022 - principal meio de transporte para trabalho',
+  valores: {
+    'carro': 32.3,          // Automóvel
+    'onibus': 21.4,         // Ônibus
+    'a_pe': 17.8,           // A pé
+    'moto': 16.4,           // Motocicleta
+    'bicicleta': 3.5,       // Bicicleta
+    'metro': 1.6,           // Metrô/Trem
+    'nao_se_aplica': 7.0,   // Trabalho remoto ou não trabalha
+  },
+  observacoes: 'Carro (32,3%) supera ônibus (21,4%). No Centro-Oeste, transporte individual chega a 58,8%. Metrô/trem só 1,6% (concentrado no Sudeste).',
+  confiabilidade: 'alta',
+};
+
+// ============================================
+// DADOS DE ESTILO DE DECISÃO ELEITORAL
+// ============================================
+
+export const dadosEstiloDecisao: DadoReferencia = {
+  variavel: 'estilo_decisao',
+  categoria: 'Comportamental',
+  fonte: 'Literatura em Comportamento Eleitoral / ESEB',
+  ano: 2023,
+  url: 'https://www.politize.com.br/comportamento-eleitoral-como-os-eleitores-decidem-seu-voto/',
+  ambito: 'Brasil',
+  metodologia: 'Estudos acadêmicos sobre tipologia de decisão do voto',
+  valores: {
+    'identitario': 25.0,    // Vota por identificação partidária/ideológica
+    'pragmatico': 20.0,     // Avalia propostas e histórico
+    'moral': 15.0,          // Prioriza valores morais/religiosos
+    'economico': 25.0,      // Decide baseado em economia pessoal
+    'emocional': 15.0,      // Vota por carisma/confiança no candidato
+  },
+  observacoes: 'Eleitor brasileiro é majoritariamente personalista - vota em quem "conhece e confia". Decisão econômica ("bolso") é muito relevante.',
+  confiabilidade: 'baixa',
+};
+
+// ============================================
+// DADOS DE TOLERÂNCIA À NUANCE
+// ============================================
+
+export const dadosToleranciaNumance: DadoReferencia = {
+  variavel: 'tolerancia_nuance',
+  categoria: 'Psicológico',
+  fonte: 'Estudos de Polarização Política / UFMG',
+  ano: 2023,
+  url: 'https://www.scielo.br/j/op/a/xc5Wcx4nSrWK7DyPDbWBY7R/',
+  ambito: 'Brasil',
+  metodologia: 'Pesquisas sobre polarização e pensamento maniqueísta',
+  valores: {
+    'baixa': 35.0,     // Pensamento binário, polarizado
+    'media': 40.0,     // Aceita algumas nuances
+    'alta': 25.0,      // Alta capacidade de nuance
+  },
+  observacoes: 'Polarização aumentou significativamente pós-2018. Brasileiros com baixa tolerância tendem ao pensamento "nós vs eles".',
+  confiabilidade: 'baixa',
+};
+
+// ============================================
+// DADOS SOBRE FILHOS
+// ============================================
+
+export const dadosFilhos: DadoReferencia = {
+  variavel: 'filhos',
+  categoria: 'Sociocultural',
+  fonte: 'Censo Demográfico 2022 - IBGE',
+  ano: 2022,
+  url: 'https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/44523-censo-2022-fecundidade-cai-para-1-75-filho-por-mulher-e-atinge-novo-minimo-historico',
+  ambito: 'Brasil',
+  metodologia: 'Censo 2022 - taxa de fecundidade e composição familiar',
+  valores: {
+    'sem_filhos': 35.0,
+    'com_filhos': 65.0,
+  },
+  observacoes: 'Taxa de fecundidade caiu para 1,75 filho por mulher (mínimo histórico). Famílias menores são tendência.',
+  confiabilidade: 'alta',
+};
+
+// ============================================
 // EXPORTAÇÃO CONSOLIDADA
 // ============================================
 
@@ -341,21 +453,27 @@ export const dadosReferenciaCompletos: CategoriaValidacao[] = [
   },
   {
     nome: 'Socioculturais',
-    descricao: 'Religião e estado civil',
+    descricao: 'Religião, estado civil e família',
     icone: 'Church',
-    variaveis: [dadosReligiao, dadosEstadoCivil],
+    variaveis: [dadosReligiao, dadosEstadoCivil, dadosFilhos],
   },
   {
     nome: 'Políticos',
-    descricao: 'Orientação ideológica e interesse',
+    descricao: 'Orientação ideológica, interesse e posicionamentos',
     icone: 'Vote',
-    variaveis: [dadosOrientacaoPolitica, dadosInteressePolitico],
+    variaveis: [dadosOrientacaoPolitica, dadosInteressePolitico, dadosPosicaoBolsonaro],
   },
   {
     nome: 'Comportamentais',
-    descricao: 'Fontes de informação e susceptibilidade',
+    descricao: 'Estilo de decisão, fontes de informação e susceptibilidade',
     icone: 'Brain',
-    variaveis: [dadosViesesCognitivos, dadosFontesInformacao, dadosSusceptibilidadeDesinformacao],
+    variaveis: [dadosEstiloDecisao, dadosViesesCognitivos, dadosFontesInformacao, dadosSusceptibilidadeDesinformacao, dadosToleranciaNumance],
+  },
+  {
+    nome: 'Mobilidade',
+    descricao: 'Transporte e deslocamento',
+    icone: 'Car',
+    variaveis: [dadosMeioTransporte],
   },
 ];
 
@@ -370,11 +488,16 @@ export const mapaDadosReferencia: Record<string, DadoReferencia> = {
   renda_salarios_minimos: dadosRenda,
   religiao: dadosReligiao,
   estado_civil: dadosEstadoCivil,
+  filhos: dadosFilhos,
   orientacao_politica: dadosOrientacaoPolitica,
   interesse_politico: dadosInteressePolitico,
+  posicao_bolsonaro: dadosPosicaoBolsonaro,
+  estilo_decisao: dadosEstiloDecisao,
+  tolerancia_nuance: dadosToleranciaNumance,
   vieses_cognitivos: dadosViesesCognitivos,
   fontes_informacao: dadosFontesInformacao,
   susceptibilidade_desinformacao: dadosSusceptibilidadeDesinformacao,
+  meio_transporte: dadosMeioTransporte,
 };
 
 // Labels amigáveis para as variáveis
@@ -388,11 +511,16 @@ export const labelsVariaveis: Record<string, string> = {
   renda_salarios_minimos: 'Faixa de Renda',
   religiao: 'Religião',
   estado_civil: 'Estado Civil',
+  filhos: 'Filhos',
   orientacao_politica: 'Orientação Política',
   interesse_politico: 'Interesse Político',
+  posicao_bolsonaro: 'Posição sobre Bolsonaro',
+  estilo_decisao: 'Estilo de Decisão',
+  tolerancia_nuance: 'Tolerância à Nuance',
   vieses_cognitivos: 'Vieses Cognitivos',
   fontes_informacao: 'Fontes de Informação',
   susceptibilidade_desinformacao: 'Susceptibilidade à Desinformação',
+  meio_transporte: 'Meio de Transporte',
 };
 
 // Labels para valores específicos
@@ -448,5 +576,39 @@ export const labelsValores: Record<string, Record<string, string>> = {
     'desempregado': 'Desempregado',
     'aposentado': 'Aposentado',
     'estudante': 'Estudante',
+  },
+  posicao_bolsonaro: {
+    'apoiador_forte': 'Apoiador Forte',
+    'apoiador_moderado': 'Apoiador Moderado',
+    'neutro': 'Neutro',
+    'critico_moderado': 'Crítico Moderado',
+    'critico_forte': 'Crítico Forte',
+    'opositor_moderado': 'Opositor Moderado',
+    'opositor_forte': 'Opositor Forte',
+  },
+  estilo_decisao: {
+    'identitario': 'Identitário',
+    'pragmatico': 'Pragmático',
+    'moral': 'Moral',
+    'economico': 'Econômico',
+    'emocional': 'Emocional',
+  },
+  tolerancia_nuance: {
+    'baixa': 'Baixa',
+    'media': 'Média',
+    'alta': 'Alta',
+  },
+  meio_transporte: {
+    'carro': 'Carro',
+    'onibus': 'Ônibus',
+    'a_pe': 'A pé',
+    'moto': 'Motocicleta',
+    'bicicleta': 'Bicicleta',
+    'metro': 'Metrô',
+    'nao_se_aplica': 'Não se aplica',
+  },
+  filhos: {
+    'sem_filhos': 'Sem filhos',
+    'com_filhos': 'Com filhos',
   },
 };
