@@ -16,6 +16,7 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
+  CheckSquare,
 } from 'lucide-react';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { useEffect } from 'react';
@@ -26,6 +27,12 @@ const menuItems = [
     href: '/',
     icone: Home,
     descricao: 'Visão geral do sistema',
+  },
+  {
+    titulo: 'Validação',
+    href: '/validacao',
+    icone: CheckSquare,
+    descricao: 'Validação estatística',
   },
   {
     titulo: 'Eleitores',

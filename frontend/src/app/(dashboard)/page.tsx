@@ -57,6 +57,7 @@ import { api } from '@/services/api';
 import { formatarNumero, formatarPercentual } from '@/lib/utils';
 import eleitoresData from '@/data/eleitores-df-400.json';
 import type { Eleitor } from '@/types';
+import { ResumoValidacao } from '@/components/validacao/ResumoValidacao';
 
 // Cores para gráficos
 const CORES = {
@@ -599,31 +600,37 @@ export default function PaginaInicial() {
         />
       </div>
 
-      {/* Ações Rápidas */}
-      <div>
-        <h2 className="text-xl font-semibold text-foreground mb-4">Ações Rápidas</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <CardAcaoRapida
-            titulo="Ver Eleitores"
-            descricao="Visualize e filtre os agentes sintéticos"
-            href="/eleitores"
-            icone={Users}
-            cor="bg-blue-500"
-          />
-          <CardAcaoRapida
-            titulo="Nova Entrevista"
-            descricao="Crie uma nova pesquisa ou questionário"
-            href="/entrevistas/nova"
-            icone={MessageSquare}
-            cor="bg-purple-500"
-          />
-          <CardAcaoRapida
-            titulo="Ver Resultados"
-            descricao="Analise os resultados das pesquisas"
-            href="/resultados"
-            icone={BarChart3}
-            cor="bg-green-500"
-          />
+      {/* Ações Rápidas e Validação */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <h2 className="text-xl font-semibold text-foreground mb-4">Ações Rápidas</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <CardAcaoRapida
+              titulo="Ver Eleitores"
+              descricao="Visualize e filtre os agentes sintéticos"
+              href="/eleitores"
+              icone={Users}
+              cor="bg-blue-500"
+            />
+            <CardAcaoRapida
+              titulo="Nova Entrevista"
+              descricao="Crie uma nova pesquisa ou questionário"
+              href="/entrevistas/nova"
+              icone={MessageSquare}
+              cor="bg-purple-500"
+            />
+            <CardAcaoRapida
+              titulo="Ver Resultados"
+              descricao="Analise os resultados das pesquisas"
+              href="/resultados"
+              icone={BarChart3}
+              cor="bg-green-500"
+            />
+          </div>
+        </div>
+        <div>
+          <h2 className="text-xl font-semibold text-foreground mb-4">Qualidade da Amostra</h2>
+          <ResumoValidacao eleitores={eleitores} />
         </div>
       </div>
 
