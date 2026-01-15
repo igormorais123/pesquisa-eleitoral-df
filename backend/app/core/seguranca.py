@@ -120,7 +120,7 @@ def verificar_token(token: str) -> Optional[DadosToken]:
 
 # Hash da senha "professorigor"
 # Gerado com: gerar_hash_senha("professorigor")
-SENHA_HASH_TESTE = "$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/X4.O0lZ8LqWQKQJGe"
+SENHA_HASH_TESTE = "$2b$12$J6KfB1mVkGLAXyksmR6w6eh.C3fQGRuSMOxsoDeYoVweShfhJy22y"
 
 USUARIO_TESTE: Dict[str, Any] = {
     "id": "user-001",
