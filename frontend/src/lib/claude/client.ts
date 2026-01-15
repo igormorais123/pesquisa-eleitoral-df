@@ -49,10 +49,14 @@ export interface RespostaAgente {
 
 // Modelos disponíveis
 export const MODELOS = {
-  opus: 'claude-opus-4-5-20251101',
-  sonnet: 'claude-sonnet-4-20250514',
+  opus: 'claude-opus-4-5-20251101',      // Apenas para insights/relatorios
+  sonnet: 'claude-sonnet-4-5-20250514',  // Sonnet 4.5 para entrevistas
   haiku: 'claude-3-5-haiku-20241022',
 } as const;
+
+// Modelo padrao para cada tipo de tarefa
+export const MODELO_ENTREVISTAS = 'sonnet';  // Sonnet 4.5 para TODAS as entrevistas
+export const MODELO_INSIGHTS = 'opus';       // Opus 4.5 para insights e relatorios
 
 // Custos por modelo (USD por 1M tokens)
 export const CUSTOS_MODELOS = {
@@ -60,6 +64,9 @@ export const CUSTOS_MODELOS = {
   sonnet: { input: 3.0, output: 15.0 },
   haiku: { input: 0.25, output: 1.25 },
 };
+
+// IMPORTANTE: Para estimativas usamos preco Opus (margem de seguranca)
+export const CUSTO_ESTIMATIVA = CUSTOS_MODELOS.opus;
 
 // Taxa de conversão USD -> BRL
 export const TAXA_USD_BRL = 6.0;
@@ -128,26 +135,24 @@ export async function chamarClaudeComRetry(
   throw new Error('Todas as tentativas falharam');
 }
 
-// Determinar modelo ideal para pergunta
-export function selecionarModeloPergunta(
-  tipoPergunta: string,
-  eleitorComplexo: boolean
+// Determinar modelo para tarefa
+export function selecionarModelo(
+  tarefa: 'entrevista' | 'insights' = 'entrevista'
 ): 'opus' | 'sonnet' | 'haiku' {
-  // Perguntas abertas longas precisam de Opus
-  if (tipoPergunta === 'aberta_longa' || tipoPergunta === 'aberta') {
-    return 'opus';
+  // Opus 4.5 APENAS para insights e relatorios
+  if (tarefa === 'insights') {
+    return MODELO_INSIGHTS;
   }
 
-  // Eleitores com conflito identitário ou alta tolerância a nuances
-  if (eleitorComplexo) {
-    return 'opus';
-  }
+  // Sonnet 4.5 para TODAS as entrevistas (abertas, fechadas, longas, curtas)
+  return MODELO_ENTREVISTAS;
+}
 
-  // Perguntas simples usam Sonnet
-  if (['escala', 'sim_nao', 'multipla_escolha'].includes(tipoPergunta)) {
-    return 'sonnet';
-  }
-
-  // Default: Sonnet (mais barato)
-  return 'sonnet';
+// Mantido para compatibilidade - sempre retorna Sonnet 4.5 para entrevistas
+export function selecionarModeloPergunta(
+  _tipoPergunta: string,
+  _eleitorComplexo: boolean
+): 'opus' | 'sonnet' | 'haiku' {
+  // Sonnet 4.5 para TODAS as entrevistas independente do tipo
+  return MODELO_ENTREVISTAS;
 }
