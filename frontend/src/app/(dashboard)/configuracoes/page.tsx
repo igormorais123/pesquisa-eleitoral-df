@@ -11,13 +11,26 @@ import {
   AlertTriangle,
   CheckCircle,
   Loader2,
+  Bell,
+  BellOff,
+  Cpu,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { db, exportarBanco, importarBanco, limparBanco } from '@/lib/db/dexie';
 import { cn } from '@/lib/utils';
+import { useConfiguracoesStore } from '@/stores/configuracoes-store';
+import { notify } from '@/stores/notifications-store';
 
 export default function PaginaConfiguracoes() {
-  const [limiteCusto, setLimiteCusto] = useState(100);
+  const {
+    limiteCustoPorSessao,
+    modeloPadrao,
+    notificacoesAtivas,
+    setLimiteCusto,
+    setModeloPadrao,
+    setNotificacoesAtivas,
+  } = useConfiguracoesStore();
+
   const [exportando, setExportando] = useState(false);
   const [importando, setImportando] = useState(false);
   const [limpando, setLimpando] = useState(false);
@@ -115,14 +128,100 @@ export default function PaginaConfiguracoes() {
                     min="10"
                     max="500"
                     step="10"
-                    value={limiteCusto}
+                    value={limiteCustoPorSessao}
                     onChange={(e) => setLimiteCusto(Number(e.target.value))}
-                    className="flex-1 h-2 bg-secondary rounded-lg appearance-none cursor-pointer"
+                    className="flex-1 h-2 bg-secondary rounded-lg appearance-none cursor-pointer accent-green-500"
                   />
                   <div className="text-right">
-                    <span className="text-2xl font-bold text-green-400">R$ {limiteCusto}</span>
+                    <span className="text-2xl font-bold text-green-400">R$ {limiteCustoPorSessao}</span>
                   </div>
                 </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Configuracao salva automaticamente
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Modelo de IA */}
+        <div className="glass-card rounded-xl p-6">
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+              <Cpu className="w-5 h-5 text-purple-400" />
+            </div>
+            <div className="flex-1">
+              <h2 className="text-lg font-semibold text-foreground">Modelo de IA Padrao</h2>
+              <p className="text-sm text-muted-foreground mt-1">
+                Selecione o modelo Claude para as entrevistas
+              </p>
+              <div className="mt-4 grid grid-cols-3 gap-3">
+                {[
+                  { id: 'haiku', nome: 'Haiku', desc: 'Rapido e economico', cor: 'cyan' },
+                  { id: 'sonnet', nome: 'Sonnet', desc: 'Equilibrado', cor: 'purple' },
+                  { id: 'opus', nome: 'Opus', desc: 'Mais inteligente', cor: 'amber' },
+                ].map((modelo) => (
+                  <button
+                    key={modelo.id}
+                    onClick={() => setModeloPadrao(modelo.id as 'opus' | 'sonnet' | 'haiku')}
+                    className={cn(
+                      'p-3 rounded-lg border-2 transition-all text-left',
+                      modeloPadrao === modelo.id
+                        ? `border-${modelo.cor}-500 bg-${modelo.cor}-500/10`
+                        : 'border-border hover:border-muted-foreground'
+                    )}
+                  >
+                    <p className={cn(
+                      'font-medium',
+                      modeloPadrao === modelo.id ? `text-${modelo.cor}-400` : 'text-foreground'
+                    )}>
+                      {modelo.nome}
+                    </p>
+                    <p className="text-xs text-muted-foreground">{modelo.desc}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Notificacoes */}
+        <div className="glass-card rounded-xl p-6">
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+              {notificacoesAtivas ? (
+                <Bell className="w-5 h-5 text-amber-400" />
+              ) : (
+                <BellOff className="w-5 h-5 text-muted-foreground" />
+              )}
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-lg font-semibold text-foreground">Notificacoes</h2>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Receba alertas sobre eventos do sistema
+                  </p>
+                </div>
+                <button
+                  onClick={() => {
+                    setNotificacoesAtivas(!notificacoesAtivas);
+                    if (!notificacoesAtivas) {
+                      notify.success('Notificacoes ativadas', 'Voce recebera alertas do sistema.');
+                    }
+                  }}
+                  className={cn(
+                    'relative w-14 h-7 rounded-full transition-colors',
+                    notificacoesAtivas ? 'bg-amber-500' : 'bg-secondary'
+                  )}
+                >
+                  <span
+                    className={cn(
+                      'absolute top-1 w-5 h-5 rounded-full bg-white transition-all',
+                      notificacoesAtivas ? 'left-8' : 'left-1'
+                    )}
+                  />
+                </button>
               </div>
             </div>
           </div>
