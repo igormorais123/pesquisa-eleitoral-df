@@ -50,7 +50,7 @@ export interface RespostaAgente {
 // Modelos disponíveis
 export const MODELOS = {
   opus: 'claude-opus-4-5-20251101',      // Apenas para insights/relatorios
-  sonnet: 'claude-sonnet-4-5-20250514',  // Sonnet 4.5 para entrevistas
+  sonnet: 'claude-sonnet-4-5-20250929',  // Sonnet 4.5 para entrevistas
   haiku: 'claude-3-5-haiku-20241022',
 } as const;
 

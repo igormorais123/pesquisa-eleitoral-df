@@ -132,7 +132,7 @@ class EntrevistaServico:
             "total_eleitores": len(dados.eleitores_ids),
             "status": StatusEntrevista.rascunho.value,
             "progresso": 0,
-            "custo_estimado": estimativa["custo_medio"],
+            "custo_estimado": estimativa["custo_estimado"],
             "custo_real": 0.0,
             "tokens_entrada_total": 0,
             "tokens_saida_total": 0,
