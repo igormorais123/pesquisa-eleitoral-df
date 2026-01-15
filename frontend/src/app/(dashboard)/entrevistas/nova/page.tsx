@@ -52,7 +52,7 @@ export default function PaginaNovaEntrevista() {
     limparFiltros,
   } = useEleitores();
 
-  const { iniciarExecucao } = useEntrevistasStore();
+  const { iniciarExecucao, setPerguntas: setStorePerguntas, setTitulo: setStoreTitulo } = useEntrevistasStore();
 
   // Adicionar pergunta
   const adicionarPergunta = () => {
@@ -86,6 +86,24 @@ export default function PaginaNovaEntrevista() {
   // Iniciar entrevista
   const iniciar = () => {
     const entrevistaId = `e-${Date.now()}`;
+
+    // Preparar perguntas com IDs
+    const perguntasComId: Pergunta[] = perguntas.map((p, index) => ({
+      id: `p-${Date.now()}-${index}`,
+      texto: p.texto || '',
+      tipo: p.tipo || 'aberta',
+      obrigatoria: p.obrigatoria ?? true,
+      opcoes: p.opcoes,
+      escala_min: p.escala_min,
+      escala_max: p.escala_max,
+      escala_rotulos: p.escala_rotulos,
+    }));
+
+    // Setar título e perguntas na store ANTES de iniciar
+    setStoreTitulo(titulo);
+    setStorePerguntas(perguntasComId);
+
+    // Iniciar execução
     iniciarExecucao(entrevistaId, eleitoresSelecionados);
     router.push(`/entrevistas/execucao?entrevista=${entrevistaId}`);
   };

@@ -37,6 +37,7 @@ interface EntrevistasState {
   removerPergunta: (id: string) => void;
   atualizarPergunta: (id: string, dados: Partial<Pergunta>) => void;
   reordenarPerguntas: (ids: string[]) => void;
+  setPerguntas: (perguntas: Pergunta[]) => void;
 
   // Ações - Execução
   iniciarExecucao: (entrevistaId: string, eleitoresIds: string[]) => void;
@@ -133,6 +134,10 @@ export const useEntrevistasStore = create<EntrevistasState>()(
           .map((id) => perguntas.find((p) => p.id === id))
           .filter(Boolean) as Pergunta[];
         set({ perguntas: perguntasReordenadas });
+      },
+
+      setPerguntas: (perguntas) => {
+        set({ perguntas });
       },
 
       // Execução
