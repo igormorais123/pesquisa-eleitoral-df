@@ -17,6 +17,10 @@ import {
   Play,
   Coins,
   AlertTriangle,
+  ChevronDown,
+  ChevronUp,
+  X,
+  Briefcase,
 } from 'lucide-react';
 import { useEleitores } from '@/hooks/useEleitores';
 import { useEntrevistasStore } from '@/stores/entrevistas-store';
@@ -32,6 +36,41 @@ const TIPOS_PERGUNTA: { tipo: TipoPergunta; rotulo: string; descricao: string }[
   { tipo: 'sim_nao', rotulo: 'Sim/Não', descricao: 'Resposta binária' },
 ];
 
+// Opções de ocupação/vínculo
+const OCUPACOES_VINCULOS = [
+  { valor: 'servidor_publico', rotulo: 'Funcionário Público', icone: '🏛️' },
+  { valor: 'clt', rotulo: 'CLT (Privado)', icone: '💼' },
+  { valor: 'autonomo', rotulo: 'Autônomo', icone: '🔧' },
+  { valor: 'empresario', rotulo: 'Empresário', icone: '🏢' },
+  { valor: 'informal', rotulo: 'Informal', icone: '🛒' },
+  { valor: 'desempregado', rotulo: 'Desempregado', icone: '📋' },
+  { valor: 'aposentado', rotulo: 'Aposentado', icone: '🏖️' },
+  { valor: 'estudante', rotulo: 'Estudante', icone: '📚' },
+] as const;
+
+// Opções de orientação política
+const ORIENTACOES_POLITICAS = [
+  { valor: 'esquerda', rotulo: 'Esquerda', cor: 'bg-red-500' },
+  { valor: 'centro-esquerda', rotulo: 'Centro-Esquerda', cor: 'bg-orange-500' },
+  { valor: 'centro', rotulo: 'Centro', cor: 'bg-gray-500' },
+  { valor: 'centro-direita', rotulo: 'Centro-Direita', cor: 'bg-blue-400' },
+  { valor: 'direita', rotulo: 'Direita', cor: 'bg-blue-600' },
+] as const;
+
+// Opções de gênero
+const GENEROS = [
+  { valor: 'masculino', rotulo: 'Masculino' },
+  { valor: 'feminino', rotulo: 'Feminino' },
+] as const;
+
+// Opções de cluster socioeconômico
+const CLUSTERS = [
+  { valor: 'G1_alta', rotulo: 'Alta Renda' },
+  { valor: 'G2_media_alta', rotulo: 'Média-Alta' },
+  { valor: 'G3_media_baixa', rotulo: 'Média-Baixa' },
+  { valor: 'G4_baixa', rotulo: 'Baixa Renda' },
+] as const;
+
 export default function PaginaNovaEntrevista() {
   const router = useRouter();
   const [etapa, setEtapa] = useState<Etapa>('perguntas');
@@ -39,6 +78,7 @@ export default function PaginaNovaEntrevista() {
   const [perguntas, setPerguntas] = useState<Partial<Pergunta>[]>([
     { texto: '', tipo: 'aberta', obrigatoria: true },
   ]);
+  const [mostrarFiltros, setMostrarFiltros] = useState(false);
 
   const {
     eleitoresFiltrados,
@@ -306,6 +346,157 @@ export default function PaginaNovaEntrevista() {
       {/* Etapa 2: Seleção */}
       {etapa === 'selecao' && (
         <div className="space-y-6">
+          {/* Painel de Filtros */}
+          <div className="glass-card rounded-xl overflow-hidden">
+            <button
+              onClick={() => setMostrarFiltros(!mostrarFiltros)}
+              className="w-full flex items-center justify-between p-4 hover:bg-secondary/50 transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <Filter className="w-5 h-5 text-primary" />
+                <span className="font-semibold text-foreground">Filtros de Seleção</span>
+                {(filtros.ocupacoes_vinculos?.length || filtros.orientacoes_politicas?.length || filtros.generos?.length || filtros.clusters?.length) && (
+                  <span className="px-2 py-0.5 bg-primary/20 text-primary text-xs rounded-full">
+                    Filtros ativos
+                  </span>
+                )}
+              </div>
+              {mostrarFiltros ? (
+                <ChevronUp className="w-5 h-5 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-muted-foreground" />
+              )}
+            </button>
+
+            {mostrarFiltros && (
+              <div className="p-4 border-t border-border space-y-6">
+                {/* Filtro por Ocupação/Vínculo - DESTAQUE */}
+                <div className="p-4 bg-primary/5 rounded-lg border border-primary/20">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Briefcase className="w-5 h-5 text-primary" />
+                    <h3 className="font-medium text-foreground">Ocupação / Vínculo Empregatício</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {OCUPACOES_VINCULOS.map((ocupacao) => (
+                      <button
+                        key={ocupacao.valor}
+                        onClick={() => {
+                          const atual = filtros.ocupacoes_vinculos || [];
+                          const novo = atual.includes(ocupacao.valor as any)
+                            ? atual.filter((o) => o !== ocupacao.valor)
+                            : [...atual, ocupacao.valor as any];
+                          setFiltros({ ocupacoes_vinculos: novo });
+                        }}
+                        className={cn(
+                          'px-3 py-2 rounded-lg text-sm font-medium transition-all',
+                          filtros.ocupacoes_vinculos?.includes(ocupacao.valor as any)
+                            ? 'bg-primary text-primary-foreground'
+                            : 'bg-secondary hover:bg-secondary/80 text-foreground'
+                        )}
+                      >
+                        <span className="mr-1">{ocupacao.icone}</span>
+                        {ocupacao.rotulo}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Filtro por Orientação Política */}
+                <div>
+                  <h3 className="font-medium text-foreground mb-3">Orientação Política</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {ORIENTACOES_POLITICAS.map((orientacao) => (
+                      <button
+                        key={orientacao.valor}
+                        onClick={() => {
+                          const atual = filtros.orientacoes_politicas || [];
+                          const novo = atual.includes(orientacao.valor as any)
+                            ? atual.filter((o) => o !== orientacao.valor)
+                            : [...atual, orientacao.valor as any];
+                          setFiltros({ orientacoes_politicas: novo });
+                        }}
+                        className={cn(
+                          'px-3 py-2 rounded-lg text-sm font-medium transition-all',
+                          filtros.orientacoes_politicas?.includes(orientacao.valor as any)
+                            ? `${orientacao.cor} text-white`
+                            : 'bg-secondary hover:bg-secondary/80 text-foreground'
+                        )}
+                      >
+                        {orientacao.rotulo}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Filtro por Gênero */}
+                <div>
+                  <h3 className="font-medium text-foreground mb-3">Gênero</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {GENEROS.map((genero) => (
+                      <button
+                        key={genero.valor}
+                        onClick={() => {
+                          const atual = filtros.generos || [];
+                          const novo = atual.includes(genero.valor as any)
+                            ? atual.filter((g) => g !== genero.valor)
+                            : [...atual, genero.valor as any];
+                          setFiltros({ generos: novo });
+                        }}
+                        className={cn(
+                          'px-3 py-2 rounded-lg text-sm font-medium transition-all',
+                          filtros.generos?.includes(genero.valor as any)
+                            ? 'bg-primary text-primary-foreground'
+                            : 'bg-secondary hover:bg-secondary/80 text-foreground'
+                        )}
+                      >
+                        {genero.rotulo}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Filtro por Cluster Socioeconômico */}
+                <div>
+                  <h3 className="font-medium text-foreground mb-3">Classe Socioeconômica</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {CLUSTERS.map((cluster) => (
+                      <button
+                        key={cluster.valor}
+                        onClick={() => {
+                          const atual = filtros.clusters || [];
+                          const novo = atual.includes(cluster.valor as any)
+                            ? atual.filter((c) => c !== cluster.valor)
+                            : [...atual, cluster.valor as any];
+                          setFiltros({ clusters: novo });
+                        }}
+                        className={cn(
+                          'px-3 py-2 rounded-lg text-sm font-medium transition-all',
+                          filtros.clusters?.includes(cluster.valor as any)
+                            ? 'bg-primary text-primary-foreground'
+                            : 'bg-secondary hover:bg-secondary/80 text-foreground'
+                        )}
+                      >
+                        {cluster.rotulo}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Botão Limpar Filtros */}
+                <div className="flex justify-end">
+                  <button
+                    onClick={limparFiltros}
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                    Limpar todos os filtros
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Seleção de Eleitores */}
           <div className="glass-card rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
@@ -337,6 +528,27 @@ export default function PaginaNovaEntrevista() {
                 </span>
                 eleitores selecionados de {eleitoresFiltrados.length} disponíveis
               </p>
+              {/* Tags de filtros ativos */}
+              {(filtros.ocupacoes_vinculos?.length || filtros.orientacoes_politicas?.length) && (
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {filtros.ocupacoes_vinculos?.map((o) => {
+                    const ocupacao = OCUPACOES_VINCULOS.find((oc) => oc.valor === o);
+                    return ocupacao ? (
+                      <span key={o} className="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">
+                        {ocupacao.icone} {ocupacao.rotulo}
+                      </span>
+                    ) : null;
+                  })}
+                  {filtros.orientacoes_politicas?.map((o) => {
+                    const orientacao = ORIENTACOES_POLITICAS.find((or) => or.valor === o);
+                    return orientacao ? (
+                      <span key={o} className={cn('px-2 py-1 text-white text-xs rounded-full', orientacao.cor)}>
+                        {orientacao.rotulo}
+                      </span>
+                    ) : null;
+                  })}
+                </div>
+              )}
             </div>
 
             {/* Lista simplificada de eleitores */}
@@ -360,8 +572,12 @@ export default function PaginaNovaEntrevista() {
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-foreground truncate">{eleitor.nome}</p>
                     <p className="text-xs text-muted-foreground truncate">
-                      {eleitor.idade} anos • {eleitor.regiao_administrativa} •{' '}
-                      {eleitor.orientacao_politica}
+                      {eleitor.idade} anos • {eleitor.regiao_administrativa} • {eleitor.profissao} •{' '}
+                      <span className={cn(
+                        eleitor.ocupacao_vinculo === 'servidor_publico' ? 'text-primary font-medium' : ''
+                      )}>
+                        {OCUPACOES_VINCULOS.find((o) => o.valor === eleitor.ocupacao_vinculo)?.rotulo || eleitor.ocupacao_vinculo}
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -369,6 +585,11 @@ export default function PaginaNovaEntrevista() {
               {eleitoresFiltrados.length > 50 && (
                 <p className="text-center text-sm text-muted-foreground py-4">
                   ... e mais {eleitoresFiltrados.length - 50} eleitores
+                </p>
+              )}
+              {eleitoresFiltrados.length === 0 && (
+                <p className="text-center text-sm text-muted-foreground py-8">
+                  Nenhum eleitor encontrado com os filtros selecionados.
                 </p>
               )}
             </div>

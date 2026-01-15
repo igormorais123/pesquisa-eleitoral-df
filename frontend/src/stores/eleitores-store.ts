@@ -44,6 +44,7 @@ const filtrosIniciais: FiltrosEleitor = {
   posicoes_bolsonaro: [],
   faixas_etarias: [],
   escolaridades: [],
+  ocupacoes_vinculos: [],
 };
 
 export const useEleitoresStore = create<EleitoresState>()(
@@ -163,6 +164,11 @@ export const useEleitoresStore = create<EleitoresState>()(
 
           // Filtro por escolaridade
           if (filtros.escolaridades?.length && !filtros.escolaridades.includes(e.escolaridade)) {
+            return false;
+          }
+
+          // Filtro por ocupação/vínculo (funcionário público, CLT, etc.)
+          if (filtros.ocupacoes_vinculos?.length && !filtros.ocupacoes_vinculos.includes(e.ocupacao_vinculo)) {
             return false;
           }
 
