@@ -24,6 +24,16 @@ Sistema de simulação de pesquisa eleitoral com agentes sintéticos de IA para 
 | [Exemplos de Código](api/exemplos.md) | cURL, Python, JavaScript |
 | [Sistema Cognitivo](cognicao/4-etapas-cognitivas.md) | Como os agentes "pensam" |
 | [Regras Anti-Convergência](cognicao/regras-anti-convergencia.md) | Por que evitar respostas genéricas |
+| [Customização de Agentes](agentes/README.md) | Criar e modificar eleitores |
+
+### Operações e Deploy
+
+| Documento | Descrição |
+|-----------|-----------|
+| [Guia de Deployment](deployment/README.md) | Docker, manual, produção |
+| [Variáveis de Ambiente](deployment/variaveis-ambiente.md) | Todas as configurações |
+| [Troubleshooting](deployment/troubleshooting.md) | Resolução de problemas |
+| [Backup e Restore](deployment/backup-restore.md) | Proteção de dados |
 
 ### Documentação Interativa
 
@@ -69,19 +79,26 @@ cd frontend && npm run dev
 
 ```
 docs/
-├── README.md                    # Este arquivo
-├── glossario.md                 # Termos técnicos
+├── README.md                    # Este arquivo (índice)
+├── glossario.md                 # Termos técnicos explicados
 ├── guia-usuario/                # Para não-programadores
-│   ├── 01-primeiros-passos.md
+│   ├── 01-primeiros-passos.md   # Tutorial inicial
 │   ├── 02-entendendo-eleitores.md
 │   ├── 03-criando-entrevistas.md
 │   └── 04-interpretando-resultados.md
 ├── api/                         # Referência técnica
-│   ├── README.md                # Visão geral da API
-│   └── exemplos.md              # Código de exemplo
-└── cognicao/                    # Sistema de agentes
-    ├── 4-etapas-cognitivas.md
-    └── regras-anti-convergencia.md
+│   ├── README.md                # Endpoints e schemas
+│   └── exemplos.md              # Código Python, JS, cURL
+├── cognicao/                    # Sistema de agentes
+│   ├── 4-etapas-cognitivas.md   # Chain of Thought
+│   └── regras-anti-convergencia.md
+├── agentes/                     # Customização
+│   └── README.md                # Schema e exemplos
+└── deployment/                  # Operações
+    ├── README.md                # Docker, manual, produção
+    ├── variaveis-ambiente.md    # Configurações
+    ├── troubleshooting.md       # Resolução de problemas
+    └── backup-restore.md        # Proteção de dados
 ```
 
 ---
