@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import {
   PieChart,
   Pie,
@@ -14,7 +15,6 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import type { Eleitor } from '@/types';
-import { CORES_CLUSTER, CORES_ORIENTACAO_POLITICA, CORES_GENERO, CORES_RELIGIAO } from '@/lib/utils';
 
 interface AgentesChartsProps {
   estatisticas: {
@@ -67,45 +67,63 @@ const CORES_GRAFICO_ORIENTACAO = ['#ef4444', '#f97316', '#a855f7', '#3b82f6', '#
 const CORES_GRAFICO_RELIGIAO = ['#eab308', '#8b5cf6', '#06b6d4', '#6b7280', '#10b981', '#78716c'];
 
 export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
-  // Converter dados para formato do Recharts
-  const dadosCluster = Object.entries(estatisticas.porCluster).map(([nome, valor]) => ({
-    nome: LABELS_CLUSTER[nome] || nome,
-    valor,
-    percentual: ((valor / estatisticas.filtrados) * 100).toFixed(1),
-  }));
-
-  const dadosOrientacao = Object.entries(estatisticas.porOrientacao).map(([nome, valor]) => ({
-    nome: LABELS_ORIENTACAO[nome] || nome,
-    valor,
-    percentual: ((valor / estatisticas.filtrados) * 100).toFixed(1),
-  }));
-
-  const dadosReligiao = Object.entries(estatisticas.porReligiao)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 6)
-    .map(([nome, valor]) => ({
-      nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/_/g, ' '),
+  // Converter dados para formato do Recharts com memoização para evitar recálculos
+  const dadosCluster = useMemo(() =>
+    Object.entries(estatisticas.porCluster).map(([nome, valor]) => ({
+      nome: LABELS_CLUSTER[nome] || nome,
       valor,
       percentual: ((valor / estatisticas.filtrados) * 100).toFixed(1),
-    }));
+    })),
+    [estatisticas.porCluster, estatisticas.filtrados]
+  );
 
-  const dadosRegiao = Object.entries(estatisticas.porRegiao)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 10)
-    .map(([nome, valor]) => ({
-      nome,
+  const dadosOrientacao = useMemo(() =>
+    Object.entries(estatisticas.porOrientacao).map(([nome, valor]) => ({
+      nome: LABELS_ORIENTACAO[nome] || nome,
       valor,
       percentual: ((valor / estatisticas.filtrados) * 100).toFixed(1),
-    }));
+    })),
+    [estatisticas.porOrientacao, estatisticas.filtrados]
+  );
 
-  const dadosGenero = Object.entries(estatisticas.porGenero).map(([nome, valor]) => ({
-    nome: nome === 'masculino' ? 'Masculino' : 'Feminino',
-    valor,
-    percentual: ((valor / estatisticas.filtrados) * 100).toFixed(1),
-  }));
+  const dadosReligiao = useMemo(() =>
+    Object.entries(estatisticas.porReligiao)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 6)
+      .map(([nome, valor]) => ({
+        nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/_/g, ' '),
+        valor,
+        percentual: ((valor / estatisticas.filtrados) * 100).toFixed(1),
+      })),
+    [estatisticas.porReligiao, estatisticas.filtrados]
+  );
 
-  // Faixas etárias
-  const faixasEtarias = calcularFaixasEtarias(eleitores);
+  const dadosRegiao = useMemo(() =>
+    Object.entries(estatisticas.porRegiao)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([nome, valor]) => ({
+        nome,
+        valor,
+        percentual: ((valor / estatisticas.filtrados) * 100).toFixed(1),
+      })),
+    [estatisticas.porRegiao, estatisticas.filtrados]
+  );
+
+  const dadosGenero = useMemo(() =>
+    Object.entries(estatisticas.porGenero).map(([nome, valor]) => ({
+      nome: nome === 'masculino' ? 'Masculino' : 'Feminino',
+      valor,
+      percentual: ((valor / estatisticas.filtrados) * 100).toFixed(1),
+    })),
+    [estatisticas.porGenero, estatisticas.filtrados]
+  );
+
+  // Faixas etárias com memoização
+  const faixasEtarias = useMemo(() =>
+    calcularFaixasEtarias(eleitores),
+    [eleitores]
+  );
 
   return (
     <div className="space-y-6 overflow-y-auto h-full pr-2">

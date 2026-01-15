@@ -61,6 +61,17 @@ export default function PaginaExecucaoEntrevista() {
   const abortController = useRef<AbortController | null>(null);
   const eleitoresCarregadosRef = useRef(false);
 
+  // Inicializar AbortController no mount e limpar no unmount
+  useEffect(() => {
+    abortController.current = new AbortController();
+
+    return () => {
+      // Cleanup: abortar requisições pendentes ao desmontar
+      abortController.current?.abort();
+      abortController.current = null;
+    };
+  }, []);
+
   // Timer para tempo decorrido
   useEffect(() => {
     const interval = setInterval(() => {

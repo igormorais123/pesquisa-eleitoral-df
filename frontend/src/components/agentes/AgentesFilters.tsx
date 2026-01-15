@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { cn } from '@/lib/utils';
+import { useState, useEffect, useCallback } from 'react';
 import {
   Filter,
   X,
@@ -10,7 +9,24 @@ import {
   RotateCcw,
   Search,
 } from 'lucide-react';
-import type { FiltrosEleitor } from '@/types';
+import type { FiltrosEleitor, Genero, ClusterSocioeconomico, OrientacaoPolitica, PosicaoBolsonaro } from '@/types';
+
+// Hook de debounce para otimizar buscas
+function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
 
 interface AgentesFiltersProps {
   filtros: FiltrosEleitor;
@@ -162,6 +178,26 @@ export function AgentesFilters({
   totalEleitores,
   totalFiltrados,
 }: AgentesFiltersProps) {
+  // Estado local para input de busca (atualiza imediatamente na UI)
+  const [buscaLocal, setBuscaLocal] = useState(filtros.busca || '');
+
+  // Debounce de 300ms para evitar filtrar a cada keystroke
+  const buscaDebounced = useDebounce(buscaLocal, 300);
+
+  // Aplica o filtro de busca apenas quando o valor debounced muda
+  useEffect(() => {
+    if (buscaDebounced !== filtros.busca) {
+      onFiltrosChange({ busca: buscaDebounced });
+    }
+  }, [buscaDebounced, filtros.busca, onFiltrosChange]);
+
+  // Sincroniza estado local quando filtros externos mudam (ex: limpar)
+  useEffect(() => {
+    if (filtros.busca !== buscaLocal && filtros.busca === '') {
+      setBuscaLocal('');
+    }
+  }, [filtros.busca]);
+
   const temFiltros =
     (filtros.busca?.length || 0) > 0 ||
     (filtros.generos?.length || 0) > 0 ||
@@ -197,19 +233,22 @@ export function AgentesFilters({
         <span className="text-foreground font-medium">{totalEleitores}</span> eleitores
       </div>
 
-      {/* Busca */}
+      {/* Busca com debounce */}
       <div className="relative">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <input
           type="text"
           placeholder="Buscar por nome, profissão..."
-          value={filtros.busca || ''}
-          onChange={(e) => onFiltrosChange({ busca: e.target.value })}
+          value={buscaLocal}
+          onChange={(e) => setBuscaLocal(e.target.value)}
           className="w-full pl-10 pr-4 py-2 text-sm bg-secondary border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
         />
-        {filtros.busca && (
+        {buscaLocal && (
           <button
-            onClick={() => onFiltrosChange({ busca: '' })}
+            onClick={() => {
+              setBuscaLocal('');
+              onFiltrosChange({ busca: '' });
+            }}
             className="absolute right-3 top-1/2 transform -translate-y-1/2"
           >
             <X className="w-4 h-4 text-muted-foreground hover:text-foreground" />
@@ -223,28 +262,28 @@ export function AgentesFilters({
           titulo="Gênero"
           opcoes={GENEROS}
           selecionados={filtros.generos || []}
-          onChange={(valores) => onFiltrosChange({ generos: valores as any })}
+          onChange={(valores) => onFiltrosChange({ generos: valores as Genero[] })}
         />
 
         <FiltroGrupo
           titulo="Classe Social"
           opcoes={CLUSTERS}
           selecionados={filtros.clusters || []}
-          onChange={(valores) => onFiltrosChange({ clusters: valores as any })}
+          onChange={(valores) => onFiltrosChange({ clusters: valores as ClusterSocioeconomico[] })}
         />
 
         <FiltroGrupo
           titulo="Orientação Política"
           opcoes={ORIENTACOES}
           selecionados={filtros.orientacoes_politicas || []}
-          onChange={(valores) => onFiltrosChange({ orientacoes_politicas: valores as any })}
+          onChange={(valores) => onFiltrosChange({ orientacoes_politicas: valores as OrientacaoPolitica[] })}
         />
 
         <FiltroGrupo
           titulo="Posição sobre Bolsonaro"
           opcoes={POSICOES_BOLSONARO}
           selecionados={filtros.posicoes_bolsonaro || []}
-          onChange={(valores) => onFiltrosChange({ posicoes_bolsonaro: valores as any })}
+          onChange={(valores) => onFiltrosChange({ posicoes_bolsonaro: valores as PosicaoBolsonaro[] })}
         />
 
         <FiltroGrupo
