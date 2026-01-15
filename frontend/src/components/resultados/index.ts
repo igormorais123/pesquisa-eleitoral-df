@@ -5,3 +5,5 @@
 
 export { CaixaVotoSilencioso } from './CaixaVotoSilencioso';
 export { CaixaPontoRuptura } from './CaixaPontoRuptura';
+export { InsightsPanel } from './InsightsPanel';
+export { CitacoesRepresentativas } from './CitacoesRepresentativas';

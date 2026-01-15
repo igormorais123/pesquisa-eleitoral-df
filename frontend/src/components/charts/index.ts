@@ -9,3 +9,7 @@ export { RadarChartPerfil, RadarChartComparacao } from './RadarChartPerfil';
 export { Heatmap, CorrelacaoHeatmap, RegiaoOrientacaoHeatmap } from './Heatmap';
 export { MapaCalorEmocional, TabelaCalorEmocional } from './MapaCalorEmocional';
 export { SankeyDiagram, SankeyComSeletor } from './SankeyDiagram';
+export { ViolinPlot } from './ViolinPlot';
+export { TreemapChart } from './TreemapChart';
+export { FunnelChart } from './FunnelChart';
+export { GaugeChart, MultiGauge } from './GaugeChart';
