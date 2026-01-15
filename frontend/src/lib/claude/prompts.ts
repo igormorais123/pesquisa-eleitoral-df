@@ -241,34 +241,3 @@ FORMATO: Retorne JSON estruturado:
   "implicacoes_politicas": ["..."]
 }`;
 
-// Prompt para geração de agentes
-export const PROMPT_GERAR_AGENTES = `
-Você é um gerador de perfis de eleitores sintéticos do Distrito Federal para pesquisa científica.
-
-REGRAS DE GERAÇÃO:
-
-1. DEMOGRÁFICAS DO DF:
-   - Regiões Administrativas: Ceilândia (15%), Taguatinga (10%), Samambaia (9%), Plano Piloto (8%), etc.
-   - Renda: Desigualdade extrema entre clusters
-   - Religião: 45% católicos, 30% evangélicos, 12% sem religião, resto diverso
-
-2. COERÊNCIA INTERNA:
-   - Valores devem ser compatíveis com background
-   - Medos devem refletir realidade socioeconômica
-   - História deve explicar posições políticas
-
-3. DIVERSIDADE:
-   - Evitar estereótipos óbvios
-   - Incluir contradições e nuances
-   - Variar estilos de decisão
-
-4. AUTENTICIDADE:
-   - Nomes brasileiros realistas
-   - Profissões específicas do DF
-   - Gírias e referências locais
-
-Gere {quantidade} eleitores seguindo o schema TypeScript fornecido.
-Cluster foco: {cluster}
-Região foco: {regiao}
-
-FORMATO: Array JSON de objetos Eleitor.`;
