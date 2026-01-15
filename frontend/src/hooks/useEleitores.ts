@@ -1,14 +1,16 @@
 'use client';
 
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEleitoresStore } from '@/stores/eleitores-store';
+import { notify } from '@/stores/notifications-store';
 import { db, carregarEleitoresIniciais, filtrarEleitores } from '@/lib/db/dexie';
 import type { Eleitor } from '@/types';
 import eleitoresIniciais from '@/data/eleitores-df-400.json';
 
 export function useEleitores() {
   const queryClient = useQueryClient();
+  const notifiedRef = useRef(false);
   const {
     eleitores,
     eleitoresFiltrados,
@@ -62,6 +64,16 @@ export function useEleitores() {
     if (data) {
       setEleitores(data);
       aplicarFiltros();
+
+      // Notificar apenas uma vez quando carregar
+      if (!notifiedRef.current && data.length > 0) {
+        notifiedRef.current = true;
+        notify.success(
+          'Eleitores carregados',
+          `${data.length} perfis de eleitores prontos para análise.`,
+          { label: 'Ver eleitores', href: '/eleitores' }
+        );
+      }
     }
   }, [data, setEleitores, aplicarFiltros]);
 
@@ -84,6 +96,16 @@ export function useEleitores() {
     onSuccess: (novosEleitores) => {
       adicionarEleitores(novosEleitores);
       queryClient.invalidateQueries({ queryKey: ['eleitores'] });
+      notify.success(
+        'Eleitores adicionados',
+        `${novosEleitores.length} novo${novosEleitores.length > 1 ? 's' : ''} eleitor${novosEleitores.length > 1 ? 'es' : ''} adicionado${novosEleitores.length > 1 ? 's' : ''} com sucesso.`
+      );
+    },
+    onError: () => {
+      notify.error(
+        'Erro ao adicionar',
+        'Não foi possível adicionar os eleitores. Tente novamente.'
+      );
     },
   });
 
@@ -96,6 +118,13 @@ export function useEleitores() {
     onSuccess: (id) => {
       removerEleitor(id);
       queryClient.invalidateQueries({ queryKey: ['eleitores'] });
+      notify.info('Eleitor removido', 'O eleitor foi removido da base de dados.');
+    },
+    onError: () => {
+      notify.error(
+        'Erro ao remover',
+        'Não foi possível remover o eleitor. Tente novamente.'
+      );
     },
   });
 

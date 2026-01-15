@@ -26,7 +26,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className="dark">
+    <html lang="pt-BR" className="dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var stored = localStorage.getItem('pesquisa-eleitoral-theme');
+                  var parsed = stored ? JSON.parse(stored) : null;
+                  var theme = parsed?.state?.theme || 'dark';
+                  document.documentElement.classList.remove('light', 'dark');
+                  document.documentElement.classList.add(theme);
+                } catch(e) {
+                  document.documentElement.classList.add('dark');
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className={`${inter.className} antialiased bg-background text-foreground`}>
         <Providers>
           {children}
@@ -34,7 +53,7 @@ export default function RootLayout({
             position="top-right"
             richColors
             closeButton
-            theme="dark"
+            theme="system"
           />
         </Providers>
       </body>
