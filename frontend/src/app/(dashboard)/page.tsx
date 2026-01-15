@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
   Users,
@@ -294,8 +294,8 @@ const LABELS: Record<string, Record<string, string>> = {
 export default function PaginaInicial() {
   const eleitores = eleitoresData as Eleitor[];
 
-  // Calcular todas as estatísticas
-  const stats = {
+  // Performance: Memoiza todas as estatísticas (calculado uma vez, não a cada render)
+  const stats = useMemo(() => ({
     total: eleitores.length,
     mediaIdade: eleitores.reduce((acc, e) => acc + e.idade, 0) / eleitores.length,
     genero: calcularDistribuicao(eleitores, 'genero'),
@@ -318,182 +318,242 @@ export default function PaginaInicial() {
     valores: calcularDistribuicaoArray(eleitores, 'valores'),
     preocupacoes: calcularDistribuicaoArray(eleitores, 'preocupacoes'),
     faixasEtarias: calcularFaixaEtaria(eleitores),
-  };
+  }), [eleitores]);
 
-  // Preparar dados para gráficos
-  const dadosGenero = Object.entries(stats.genero).map(([nome, valor]) => ({
-    nome: nome === 'masculino' ? 'Masculino' : 'Feminino',
-    valor,
-    percentual: ((valor / stats.total) * 100).toFixed(1),
-  }));
-
-  const dadosCluster = Object.entries(stats.cluster).map(([nome, valor]) => ({
-    nome: LABELS.cluster[nome] || nome,
-    valor,
-    percentual: ((valor / stats.total) * 100).toFixed(1),
-  }));
-
-  const dadosOrientacao = Object.entries(stats.orientacao).map(([nome, valor]) => ({
-    nome: LABELS.orientacao[nome] || nome,
-    valor,
-    percentual: ((valor / stats.total) * 100).toFixed(1),
-  }));
-
-  const dadosReligiao = Object.entries(stats.religiao)
-    .sort((a, b) => b[1] - a[1])
-    .map(([nome, valor]) => ({
-      nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/_/g, ' '),
+  // Performance: Memoiza todas as transformações de dados para gráficos
+  const dadosGraficos = useMemo(() => {
+    const dadosGenero = Object.entries(stats.genero).map(([nome, valor]) => ({
+      nome: nome === 'masculino' ? 'Masculino' : 'Feminino',
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
     }));
 
-  const dadosRegiao = Object.entries(stats.regiao)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 10)
-    .map(([nome, valor]) => ({
-      nome,
+    const dadosCluster = Object.entries(stats.cluster).map(([nome, valor]) => ({
+      nome: LABELS.cluster[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
     }));
 
-  const dadosCorRaca = Object.entries(stats.corRaca)
-    .sort((a, b) => b[1] - a[1])
-    .map(([nome, valor]) => ({
-      nome: nome.charAt(0).toUpperCase() + nome.slice(1),
+    const dadosOrientacao = Object.entries(stats.orientacao).map(([nome, valor]) => ({
+      nome: LABELS.orientacao[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
     }));
 
-  const dadosEscolaridade = Object.entries(stats.escolaridade)
-    .map(([nome, valor]) => ({
-      nome: LABELS.escolaridade[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosReligiao = Object.entries(stats.religiao)
+      .sort((a, b) => b[1] - a[1])
+      .map(([nome, valor]) => ({
+        nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/_/g, ' '),
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  const dadosOcupacao = Object.entries(stats.ocupacao)
-    .sort((a, b) => b[1] - a[1])
-    .map(([nome, valor]) => ({
-      nome: LABELS.ocupacao[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosRegiao = Object.entries(stats.regiao)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([nome, valor]) => ({
+        nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  const dadosRenda = Object.entries(stats.renda)
-    .map(([nome, valor]) => ({
-      nome: LABELS.renda[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosCorRaca = Object.entries(stats.corRaca)
+      .sort((a, b) => b[1] - a[1])
+      .map(([nome, valor]) => ({
+        nome: nome.charAt(0).toUpperCase() + nome.slice(1),
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  const dadosEstadoCivil = Object.entries(stats.estadoCivil)
-    .sort((a, b) => b[1] - a[1])
-    .map(([nome, valor]) => ({
-      nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/[()]/g, ''),
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosEscolaridade = Object.entries(stats.escolaridade)
+      .map(([nome, valor]) => ({
+        nome: LABELS.escolaridade[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  const dadosInteresse = Object.entries(stats.interesse)
-    .map(([nome, valor]) => ({
-      nome: LABELS.interesse[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-      fill: nome === 'baixo' ? CORES.interesse[0] : nome === 'medio' ? CORES.interesse[1] : CORES.interesse[2],
-    }));
+    const dadosOcupacao = Object.entries(stats.ocupacao)
+      .sort((a, b) => b[1] - a[1])
+      .map(([nome, valor]) => ({
+        nome: LABELS.ocupacao[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  const dadosDecisao = Object.entries(stats.estiloDecisao)
-    .filter(([nome]) => nome !== 'undefined')
-    .map(([nome, valor]) => ({
-      nome: LABELS.decisao[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosRenda = Object.entries(stats.renda)
+      .map(([nome, valor]) => ({
+        nome: LABELS.renda[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  const dadosTolerancia = Object.entries(stats.tolerancia)
-    .filter(([nome]) => nome !== 'undefined')
-    .map(([nome, valor]) => ({
-      nome: LABELS.tolerancia[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosEstadoCivil = Object.entries(stats.estadoCivil)
+      .sort((a, b) => b[1] - a[1])
+      .map(([nome, valor]) => ({
+        nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/[()]/g, ''),
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  const dadosBolsonaro = Object.entries(stats.bolsonaro)
-    .map(([nome, valor]) => ({
-      nome: LABELS.bolsonaro[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosInteresse = Object.entries(stats.interesse)
+      .map(([nome, valor]) => ({
+        nome: LABELS.interesse[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        fill: nome === 'baixo' ? CORES.interesse[0] : nome === 'medio' ? CORES.interesse[1] : CORES.interesse[2],
+      }));
 
-  const dadosTransporte = Object.entries(stats.transporte)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 8)
-    .map(([nome, valor]) => ({
-      nome: nome.replace(/_/g, ' ').charAt(0).toUpperCase() + nome.replace(/_/g, ' ').slice(1),
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosDecisao = Object.entries(stats.estiloDecisao)
+      .filter(([nome]) => nome !== 'undefined')
+      .map(([nome, valor]) => ({
+        nome: LABELS.decisao[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  const dadosFontes = Object.entries(stats.fontes)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 10)
-    .map(([nome, valor]) => ({
-      nome: nome.length > 20 ? nome.substring(0, 20) + '...' : nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosTolerancia = Object.entries(stats.tolerancia)
+      .filter(([nome]) => nome !== 'undefined')
+      .map(([nome, valor]) => ({
+        nome: LABELS.tolerancia[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  const dadosVieses = Object.entries(stats.vieses)
-    .map(([nome, valor]) => ({
-      nome: nome.replace(/_/g, ' ').charAt(0).toUpperCase() + nome.replace(/_/g, ' ').slice(1),
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-      fullMark: stats.total,
-    }));
+    const dadosBolsonaro = Object.entries(stats.bolsonaro)
+      .map(([nome, valor]) => ({
+        nome: LABELS.bolsonaro[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  const dadosValores = Object.entries(stats.valores)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 10)
-    .map(([nome, valor]) => ({
-      nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosTransporte = Object.entries(stats.transporte)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 8)
+      .map(([nome, valor]) => ({
+        nome: nome.replace(/_/g, ' ').charAt(0).toUpperCase() + nome.replace(/_/g, ' ').slice(1),
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  const dadosPreocupacoes = Object.entries(stats.preocupacoes)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 10)
-    .map(([nome, valor]) => ({
-      nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosFontes = Object.entries(stats.fontes)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([nome, valor]) => ({
+        nome: nome.length > 20 ? nome.substring(0, 20) + '...' : nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  // Dados para radar de perfil psicológico
-  const dadosRadarPsicologico = [
-    { subject: 'Confirmação', A: stats.vieses['confirmacao'] || 0 },
-    { subject: 'Disponibilidade', A: stats.vieses['disponibilidade'] || 0 },
-    { subject: 'Aversão Perda', A: stats.vieses['aversao_perda'] || 0 },
-    { subject: 'Tribalismo', A: stats.vieses['tribalismo'] || 0 },
-  ];
+    const dadosVieses = Object.entries(stats.vieses)
+      .map(([nome, valor]) => ({
+        nome: nome.replace(/_/g, ' ').charAt(0).toUpperCase() + nome.replace(/_/g, ' ').slice(1),
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        fullMark: stats.total,
+      }));
 
-  // Calcular estatísticas de filhos
-  const comFilhos = eleitores.filter((e) => e.filhos > 0).length;
-  const semFilhos = eleitores.filter((e) => e.filhos === 0).length;
-  const dadosFilhos = [
-    { nome: 'Com filhos', valor: comFilhos, percentual: ((comFilhos / stats.total) * 100).toFixed(1) },
-    { nome: 'Sem filhos', valor: semFilhos, percentual: ((semFilhos / stats.total) * 100).toFixed(1) },
-  ];
+    const dadosValores = Object.entries(stats.valores)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([nome, valor]) => ({
+        nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  // Susceptibilidade à desinformação
-  const susceptBaixa = eleitores.filter((e) => (e.susceptibilidade_desinformacao || 0) <= 3).length;
-  const susceptMedia = eleitores.filter((e) => (e.susceptibilidade_desinformacao || 0) > 3 && (e.susceptibilidade_desinformacao || 0) <= 6).length;
-  const susceptAlta = eleitores.filter((e) => (e.susceptibilidade_desinformacao || 0) > 6).length;
-  const dadosSuscept = [
-    { nome: 'Baixa (1-3)', valor: susceptBaixa, percentual: ((susceptBaixa / stats.total) * 100).toFixed(1), fill: '#22c55e' },
-    { nome: 'Média (4-6)', valor: susceptMedia, percentual: ((susceptMedia / stats.total) * 100).toFixed(1), fill: '#eab308' },
-    { nome: 'Alta (7-10)', valor: susceptAlta, percentual: ((susceptAlta / stats.total) * 100).toFixed(1), fill: '#ef4444' },
-  ];
+    const dadosPreocupacoes = Object.entries(stats.preocupacoes)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([nome, valor]) => ({
+        nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
+
+    // Dados para radar de perfil psicológico
+    const dadosRadarPsicologico = [
+      { subject: 'Confirmação', A: stats.vieses['confirmacao'] || 0 },
+      { subject: 'Disponibilidade', A: stats.vieses['disponibilidade'] || 0 },
+      { subject: 'Aversão Perda', A: stats.vieses['aversao_perda'] || 0 },
+      { subject: 'Tribalismo', A: stats.vieses['tribalismo'] || 0 },
+    ];
+
+    // Calcular estatísticas de filhos - otimizado: single-pass
+    let comFilhos = 0;
+    let susceptBaixa = 0;
+    let susceptMedia = 0;
+    let susceptAlta = 0;
+
+    for (const e of eleitores) {
+      if (e.filhos > 0) comFilhos++;
+      const suscept = e.susceptibilidade_desinformacao || 0;
+      if (suscept <= 3) susceptBaixa++;
+      else if (suscept <= 6) susceptMedia++;
+      else susceptAlta++;
+    }
+
+    const semFilhos = stats.total - comFilhos;
+    const dadosFilhos = [
+      { nome: 'Com filhos', valor: comFilhos, percentual: ((comFilhos / stats.total) * 100).toFixed(1) },
+      { nome: 'Sem filhos', valor: semFilhos, percentual: ((semFilhos / stats.total) * 100).toFixed(1) },
+    ];
+
+    const dadosSuscept = [
+      { nome: 'Baixa (1-3)', valor: susceptBaixa, percentual: ((susceptBaixa / stats.total) * 100).toFixed(1), fill: '#22c55e' },
+      { nome: 'Média (4-6)', valor: susceptMedia, percentual: ((susceptMedia / stats.total) * 100).toFixed(1), fill: '#eab308' },
+      { nome: 'Alta (7-10)', valor: susceptAlta, percentual: ((susceptAlta / stats.total) * 100).toFixed(1), fill: '#ef4444' },
+    ];
+
+    return {
+      dadosGenero,
+      dadosCluster,
+      dadosOrientacao,
+      dadosReligiao,
+      dadosRegiao,
+      dadosCorRaca,
+      dadosEscolaridade,
+      dadosOcupacao,
+      dadosRenda,
+      dadosEstadoCivil,
+      dadosInteresse,
+      dadosDecisao,
+      dadosTolerancia,
+      dadosBolsonaro,
+      dadosTransporte,
+      dadosFontes,
+      dadosVieses,
+      dadosValores,
+      dadosPreocupacoes,
+      dadosRadarPsicologico,
+      dadosFilhos,
+      dadosSuscept,
+    };
+  }, [stats, eleitores]);
+
+  // Desestrutura os dados memoizados
+  const {
+    dadosGenero,
+    dadosCluster,
+    dadosOrientacao,
+    dadosReligiao,
+    dadosRegiao,
+    dadosCorRaca,
+    dadosEscolaridade,
+    dadosOcupacao,
+    dadosRenda,
+    dadosEstadoCivil,
+    dadosInteresse,
+    dadosDecisao,
+    dadosTolerancia,
+    dadosBolsonaro,
+    dadosTransporte,
+    dadosFontes,
+    dadosValores,
+    dadosPreocupacoes,
+    dadosRadarPsicologico,
+    dadosFilhos,
+    dadosSuscept,
+  } = dadosGraficos;
 
   return (
     <div className="space-y-8 animate-fade-in">
