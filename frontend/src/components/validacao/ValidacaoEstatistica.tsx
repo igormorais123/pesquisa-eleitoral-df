@@ -1,6 +1,8 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   ArrowUpRight,
   ArrowDownRight,
@@ -20,6 +22,9 @@ import {
   MapPin,
   TrendingUp,
   TrendingDown,
+  UserPlus,
+  Sparkles,
+  Shield,
 } from 'lucide-react';
 import type { Eleitor } from '@/types';
 import {
@@ -247,6 +252,7 @@ function CardVariavel({ resumo }: { resumo: ResumoValidacao }) {
                       <th className="text-right py-2 px-2 text-muted-foreground">Referência</th>
                       <th className="text-right py-2 px-2 text-muted-foreground">Diferença</th>
                       <th className="text-center py-2 px-2 text-muted-foreground">Status</th>
+                      <th className="text-center py-2 px-2 text-muted-foreground">Correção</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -269,6 +275,20 @@ function CardVariavel({ resumo }: { resumo: ResumoValidacao }) {
                           <span className={`px-2 py-0.5 rounded text-xs ${corPorSeveridade(div.severidade)}`}>
                             {div.severidade}
                           </span>
+                        </td>
+                        <td className="py-2 px-2 text-center">
+                          {div.eleitoresParaCorrecao > 0 ? (
+                            <Link
+                              href={`/eleitores/gerar?corrigir=${div.variavel}&categoria=${div.categoria}&quantidade=${div.eleitoresParaCorrecao}`}
+                              className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs bg-orange-500/10 text-orange-400 hover:bg-orange-500/20 transition-colors"
+                              title={`Gerar ${div.eleitoresParaCorrecao} eleitores para corrigir`}
+                            >
+                              <UserPlus className="w-3 h-3" />
+                              +{div.eleitoresParaCorrecao}
+                            </Link>
+                          ) : (
+                            <span className="text-green-400">OK</span>
+                          )}
                         </td>
                       </tr>
                     ))}
@@ -302,12 +322,29 @@ export function ValidacaoEstatistica({ eleitores }: ValidacaoEstatisticaProps) {
       {/* Cabeçalho */}
       <div>
         <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-          <BarChart3 className="w-7 h-7 text-primary" />
-          Validação Estatística da Amostra
+          <Shield className="w-7 h-7 text-primary" />
+          Validade Estatística das Amostras
         </h2>
         <p className="text-muted-foreground mt-1">
-          Comparação dos {validacao.totalEleitores} eleitores sintéticos com dados oficiais de fontes como IBGE, CODEPLAN, PDAD e pesquisas acadêmicas.
+          Comparação dos {validacao.totalEleitores} eleitores sintéticos com dados oficiais do DF e Brasil.
         </p>
+        <div className="mt-2 flex flex-wrap gap-2 text-xs">
+          <span className="px-2 py-1 rounded bg-muted/20 text-muted-foreground">
+            IBGE Censo 2022
+          </span>
+          <span className="px-2 py-1 rounded bg-muted/20 text-muted-foreground">
+            CODEPLAN PDAD 2021
+          </span>
+          <span className="px-2 py-1 rounded bg-muted/20 text-muted-foreground">
+            DataSenado
+          </span>
+          <span className="px-2 py-1 rounded bg-muted/20 text-muted-foreground">
+            Datafolha
+          </span>
+          <span className="px-2 py-1 rounded bg-muted/20 text-muted-foreground">
+            Pesquisas Acadêmicas
+          </span>
+        </div>
       </div>
 
       {/* Cards de resumo */}
@@ -377,25 +414,41 @@ export function ValidacaoEstatistica({ eleitores }: ValidacaoEstatisticaProps) {
       {/* Principais vieses */}
       {validacao.principaisVieses.length > 0 && (
         <div className="glass-card rounded-xl p-4 border border-orange-500/30">
-          <h3 className="font-medium text-foreground flex items-center gap-2 mb-3">
-            <AlertTriangle className="w-5 h-5 text-orange-400" />
-            Principais Vieses Identificados
-          </h3>
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-medium text-foreground flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5 text-orange-400" />
+              Principais Vieses Identificados
+            </h3>
+            <Link
+              href="/eleitores/gerar?modo=corretivo"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors text-sm font-medium"
+            >
+              <Sparkles className="w-4 h-4" />
+              Gerar Eleitores Corretivos
+            </Link>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {validacao.principaisVieses.slice(0, 6).map((vies, index) => (
-              <div
+            {validacao.principaisVieses.slice(0, 6).map((vies) => (
+              <Link
                 key={`${vies.variavel}-${vies.categoria}`}
-                className="flex items-center justify-between p-3 bg-muted/10 rounded-lg"
+                href={`/eleitores/gerar?corrigir=${vies.variavel}&categoria=${vies.categoria}&quantidade=${vies.eleitoresParaCorrecao}`}
+                className="flex items-center justify-between p-3 bg-muted/10 rounded-lg hover:bg-muted/20 transition-colors cursor-pointer group"
               >
-                <div>
-                  <p className="text-sm font-medium text-foreground">
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                     {vies.labelVariavel}: {vies.labelCategoria}
                   </p>
                   <p className="text-xs text-muted-foreground">
                     Amostra: {vies.valorAmostra}% | Ref: {vies.valorReferencia}%
                   </p>
+                  {vies.eleitoresParaCorrecao > 0 && (
+                    <p className="text-xs text-orange-400 mt-1 flex items-center gap-1">
+                      <UserPlus className="w-3 h-3" />
+                      +{vies.eleitoresParaCorrecao} eleitores para corrigir
+                    </p>
+                  )}
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 ml-2">
                   {vies.direcao === 'acima' ? (
                     <TrendingUp className="w-5 h-5 text-green-400" />
                   ) : (
@@ -407,7 +460,7 @@ export function ValidacaoEstatistica({ eleitores }: ValidacaoEstatisticaProps) {
                     {vies.diferenca > 0 ? '+' : ''}{vies.diferenca.toFixed(1)}%
                   </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

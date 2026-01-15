@@ -29,6 +29,7 @@ export interface DivergenciaEstatistica {
   direcao: 'acima' | 'abaixo' | 'igual';
   severidade: 'baixa' | 'media' | 'alta' | 'critica';
   contagemAmostra: number;   // Número absoluto na amostra
+  eleitoresParaCorrecao: number; // Quantos eleitores adicionar para corrigir
 }
 
 export interface ResumoValidacao {
@@ -143,6 +144,27 @@ function calcularDistribuicaoSusceptibilidade(
 }
 
 /**
+ * Calcula a distribuição de filhos (com/sem)
+ */
+function calcularDistribuicaoFilhos(
+  eleitores: Eleitor[]
+): Record<string, { contagem: number; percentual: number }> {
+  const total = eleitores.length;
+  let comFilhos = 0;
+  let semFilhos = 0;
+
+  eleitores.forEach((e) => {
+    if (e.filhos && e.filhos > 0) comFilhos++;
+    else semFilhos++;
+  });
+
+  return {
+    'com_filhos': { contagem: comFilhos, percentual: (comFilhos / total) * 100 },
+    'sem_filhos': { contagem: semFilhos, percentual: (semFilhos / total) * 100 },
+  };
+}
+
+/**
  * Determina a severidade da divergência baseado no desvio
  */
 function determinarSeveridade(diferencaAbsoluta: number): 'baixa' | 'media' | 'alta' | 'critica' {
@@ -150,6 +172,40 @@ function determinarSeveridade(diferencaAbsoluta: number): 'baixa' | 'media' | 'a
   if (diferencaAbsoluta <= 7) return 'media';
   if (diferencaAbsoluta <= 15) return 'alta';
   return 'critica';
+}
+
+/**
+ * Calcula quantos eleitores precisam ser adicionados para corrigir a amostra
+ *
+ * Fórmula: Se a amostra está sub-representada em uma categoria, calculamos
+ * quantos eleitores dessa categoria precisam ser adicionados para que o
+ * percentual atinja o valor de referência.
+ *
+ * Matemática: (contagemAtual + x) / (totalAtual + x) = refPercent / 100
+ * Resolvendo: x = (refPercent * totalAtual - 100 * contagemAtual) / (100 - refPercent)
+ */
+function calcularEleitoresParaCorrecao(
+  totalEleitores: number,
+  contagemAmostra: number,
+  valorReferencia: number,
+  diferenca: number
+): number {
+  // Se a amostra está acima ou igual ao referência, não precisa adicionar
+  if (diferenca >= -0.5) return 0;
+
+  // Se o valor de referência é 100%, seria infinito (impossível)
+  if (valorReferencia >= 100) return 0;
+
+  // Se não há eleitores, não dá para calcular
+  if (totalEleitores <= 0) return 0;
+
+  // Calcula eleitores necessários
+  const refDecimal = valorReferencia / 100;
+  const eleitoresNecessarios =
+    (refDecimal * totalEleitores - contagemAmostra) / (1 - refDecimal);
+
+  // Retorna valor arredondado para cima (precisamos de pelo menos essa quantidade)
+  return Math.max(0, Math.ceil(eleitoresNecessarios));
 }
 
 /**
@@ -240,6 +296,26 @@ export function calcularValidacaoEstatistica(eleitores: Eleitor[]): ValidacaoCom
       calcularDistribuicao: () => calcularDistribuicao(eleitores, 'interesse_politico'),
     },
     {
+      variavel: 'posicao_bolsonaro',
+      calcularDistribuicao: () => calcularDistribuicao(eleitores, 'posicao_bolsonaro'),
+    },
+    {
+      variavel: 'estilo_decisao',
+      calcularDistribuicao: () => calcularDistribuicao(eleitores, 'estilo_decisao'),
+    },
+    {
+      variavel: 'tolerancia_nuance',
+      calcularDistribuicao: () => calcularDistribuicao(eleitores, 'tolerancia_nuance'),
+    },
+    {
+      variavel: 'filhos',
+      calcularDistribuicao: () => calcularDistribuicaoFilhos(eleitores),
+    },
+    {
+      variavel: 'meio_transporte',
+      calcularDistribuicao: () => calcularDistribuicao(eleitores, 'meio_transporte'),
+    },
+    {
       variavel: 'susceptibilidade_desinformacao',
       calcularDistribuicao: () => calcularDistribuicaoSusceptibilidade(eleitores),
     },
@@ -272,6 +348,12 @@ export function calcularValidacaoEstatistica(eleitores: Eleitor[]): ValidacaoCom
         direcao: diferenca > 0.5 ? 'acima' : diferenca < -0.5 ? 'abaixo' : 'igual',
         severidade: determinarSeveridade(diferencaAbsoluta),
         contagemAmostra,
+        eleitoresParaCorrecao: calcularEleitoresParaCorrecao(
+          eleitores.length,
+          contagemAmostra,
+          valorReferencia,
+          diferenca
+        ),
       };
 
       divergencias.push(divergencia);
