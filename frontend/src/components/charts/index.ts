@@ -8,3 +8,4 @@ export { PiramideEtaria } from './PiramideEtaria';
 export { RadarChartPerfil, RadarChartComparacao } from './RadarChartPerfil';
 export { Heatmap, CorrelacaoHeatmap, RegiaoOrientacaoHeatmap } from './Heatmap';
 export { MapaCalorEmocional, TabelaCalorEmocional } from './MapaCalorEmocional';
+export { SankeyDiagram, SankeyComSeletor } from './SankeyDiagram';
