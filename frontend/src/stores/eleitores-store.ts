@@ -328,3 +328,53 @@ function calcularFaixaEtaria(idade: number): string {
   if (idade < 65) return '55-64';
   return '65+';
 }
+
+// ============================================
+// SELETORES OTIMIZADOS
+// Performance: Usa seletores específicos para evitar re-renders
+// ============================================
+
+/** Retorna apenas os eleitores filtrados */
+export const useEleitoresFiltrados = () =>
+  useEleitoresStore((state) => state.eleitoresFiltrados);
+
+/** Retorna apenas os IDs selecionados */
+export const useEleitoresSelecionados = () =>
+  useEleitoresStore((state) => state.eleitoresSelecionados);
+
+/** Retorna apenas os filtros */
+export const useFiltros = () =>
+  useEleitoresStore((state) => state.filtros);
+
+/** Retorna apenas o estado de carregamento */
+export const useCarregando = () =>
+  useEleitoresStore((state) => state.carregando);
+
+/** Retorna apenas o erro */
+export const useErro = () =>
+  useEleitoresStore((state) => state.erro);
+
+/** Retorna apenas as ações de seleção (sem causar re-render por estado) */
+export const useSelecaoActions = () =>
+  useEleitoresStore((state) => ({
+    toggleSelecionarParaEntrevista: state.toggleSelecionarParaEntrevista,
+    selecionarTodos: state.selecionarTodos,
+    limparSelecao: state.limparSelecao,
+    selecionarPorFiltro: state.selecionarPorFiltro,
+  }));
+
+/** Retorna apenas as ações de filtro (sem causar re-render por estado) */
+export const useFiltrosActions = () =>
+  useEleitoresStore((state) => ({
+    setFiltros: state.setFiltros,
+    limparFiltros: state.limparFiltros,
+    toggleFiltros: state.toggleFiltros,
+  }));
+
+/** Retorna contagem de selecionados (número primitivo - otimiza re-renders) */
+export const useContagemSelecionados = () =>
+  useEleitoresStore((state) => state.eleitoresSelecionados.length);
+
+/** Retorna contagem de filtrados (número primitivo - otimiza re-renders) */
+export const useContagemFiltrados = () =>
+  useEleitoresStore((state) => state.eleitoresFiltrados.length);
