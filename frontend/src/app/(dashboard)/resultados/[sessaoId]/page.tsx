@@ -603,7 +603,7 @@ export default function PaginaResultadoDetalhe() {
                     </p>
                     <div className="p-4 bg-secondary/50 rounded-lg">
                       <p className="text-sm text-muted-foreground">
-                        Clique em "Gerar Análise de Inteligência Política" para ver os resultados.
+                        Clique em &quot;Gerar Análise de Inteligência Política&quot; para ver os resultados.
                       </p>
                     </div>
                   </div>
@@ -624,7 +624,7 @@ export default function PaginaResultadoDetalhe() {
                     </p>
                     <div className="p-4 bg-secondary/50 rounded-lg">
                       <p className="text-sm text-muted-foreground">
-                        Clique em "Gerar Análise de Inteligência Política" para ver os resultados.
+                        Clique em &quot;Gerar Análise de Inteligência Política&quot; para ver os resultados.
                       </p>
                     </div>
                   </div>
@@ -978,7 +978,7 @@ export default function PaginaResultadoDetalhe() {
                     <h4 className="font-medium text-primary mb-2">Mensagens-Chave Recomendadas</h4>
                     <ul className="space-y-1">
                       {relatorio.recomendacoesEstrategicas.mensagensChave.map((m, i) => (
-                        <li key={i} className="text-sm text-muted-foreground">"{m}"</li>
+                        <li key={i} className="text-sm text-muted-foreground">&quot;{m}&quot;</li>
                       ))}
                     </ul>
                   </div>
