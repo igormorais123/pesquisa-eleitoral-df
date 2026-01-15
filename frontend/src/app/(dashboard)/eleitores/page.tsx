@@ -264,10 +264,10 @@ export default function PaginaEleitores() {
       </div>
 
       {/* Conteúdo principal */}
-      <div className="flex-1 flex gap-6 min-h-0">
+      <div className="flex-1 flex flex-col lg:flex-row gap-4 lg:gap-6 min-h-0">
         {/* Painel de Filtros */}
         {painelFiltros && (
-          <div className="w-72 flex-shrink-0 glass-card rounded-xl p-4 overflow-y-auto">
+          <div className="w-full lg:w-72 flex-shrink-0 glass-card rounded-xl p-4 overflow-y-auto max-h-64 lg:max-h-none">
             <AgentesFilters
               filtros={filtros}
               onFiltrosChange={setFiltros}
