@@ -150,7 +150,7 @@ export default function PaginaEntrevistas() {
                       ? `/resultados/${sessao.id}`
                       : `/entrevistas/execucao?sessao=${sessao.id}`
                   }
-                  className="flex items-center gap-4 p-4 hover:bg-secondary/50 transition-colors"
+                  className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4 p-4 hover:bg-secondary/50 transition-colors"
                 >
                   {/* Status */}
                   <div
@@ -174,7 +174,7 @@ export default function PaginaEntrevistas() {
                   </div>
 
                   {/* Progresso */}
-                  <div className="w-32">
+                  <div className="w-full sm:w-32 order-last sm:order-none">
                     <div className="flex justify-between text-xs mb-1">
                       <span className="text-muted-foreground">Progresso</span>
                       <span className="text-foreground">
@@ -192,7 +192,7 @@ export default function PaginaEntrevistas() {
                   </div>
 
                   {/* Custo */}
-                  <div className="text-right">
+                  <div className="hidden sm:block text-right">
                     <p className="font-medium text-foreground">{formatarMoeda(sessao.custoAtual)}</p>
                     <p className="text-xs text-muted-foreground">
                       {sessao.tokensInput + sessao.tokensOutput} tokens

@@ -1,14 +1,16 @@
 'use client';
 
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEleitoresStore } from '@/stores/eleitores-store';
+import { notify } from '@/stores/notifications-store';
 import { db, carregarEleitoresIniciais, filtrarEleitores } from '@/lib/db/dexie';
 import type { Eleitor } from '@/types';
 import eleitoresIniciais from '@/data/eleitores-df-400.json';
 
 export function useEleitores() {
   const queryClient = useQueryClient();
+  const notifiedRef = useRef(false);
   const {
     eleitores,
     eleitoresFiltrados,
@@ -62,6 +64,16 @@ export function useEleitores() {
     if (data) {
       setEleitores(data);
       aplicarFiltros();
+
+      // Notificar apenas uma vez quando carregar
+      if (!notifiedRef.current && data.length > 0) {
+        notifiedRef.current = true;
+        notify.success(
+          'Eleitores carregados',
+          `${data.length} perfis de eleitores prontos para análise.`,
+          { label: 'Ver eleitores', href: '/eleitores' }
+        );
+      }
     }
   }, [data, setEleitores, aplicarFiltros]);
 
@@ -84,6 +96,16 @@ export function useEleitores() {
     onSuccess: (novosEleitores) => {
       adicionarEleitores(novosEleitores);
       queryClient.invalidateQueries({ queryKey: ['eleitores'] });
+      notify.success(
+        'Eleitores adicionados',
+        `${novosEleitores.length} novo${novosEleitores.length > 1 ? 's' : ''} eleitor${novosEleitores.length > 1 ? 'es' : ''} adicionado${novosEleitores.length > 1 ? 's' : ''} com sucesso.`
+      );
+    },
+    onError: () => {
+      notify.error(
+        'Erro ao adicionar',
+        'Não foi possível adicionar os eleitores. Tente novamente.'
+      );
     },
   });
 
@@ -96,6 +118,13 @@ export function useEleitores() {
     onSuccess: (id) => {
       removerEleitor(id);
       queryClient.invalidateQueries({ queryKey: ['eleitores'] });
+      notify.info('Eleitor removido', 'O eleitor foi removido da base de dados.');
+    },
+    onError: () => {
+      notify.error(
+        'Erro ao remover',
+        'Não foi possível remover o eleitor. Tente novamente.'
+      );
     },
   });
 
@@ -104,17 +133,48 @@ export function useEleitores() {
     return db.eleitores.get(id);
   }, []);
 
-  // Estatísticas
+  // Estatísticas completas
   const estatisticas = {
     total: eleitores.length,
     filtrados: eleitoresFiltrados.length,
     selecionados: eleitoresSelecionados.length,
-    porGenero: calcularDistribuicao(eleitoresFiltrados, 'genero'),
-    porCluster: calcularDistribuicao(eleitoresFiltrados, 'cluster_socioeconomico'),
-    porOrientacao: calcularDistribuicao(eleitoresFiltrados, 'orientacao_politica'),
-    porReligiao: calcularDistribuicao(eleitoresFiltrados, 'religiao'),
-    porRegiao: calcularDistribuicao(eleitoresFiltrados, 'regiao_administrativa'),
     mediaIdade: calcularMediaIdade(eleitoresFiltrados),
+
+    // Demográficos
+    porGenero: calcularDistribuicao(eleitoresFiltrados, 'genero'),
+    porCorRaca: calcularDistribuicao(eleitoresFiltrados, 'cor_raca'),
+    porRegiao: calcularDistribuicao(eleitoresFiltrados, 'regiao_administrativa'),
+
+    // Socioeconômicos
+    porCluster: calcularDistribuicao(eleitoresFiltrados, 'cluster_socioeconomico'),
+    porEscolaridade: calcularDistribuicao(eleitoresFiltrados, 'escolaridade'),
+    porOcupacao: calcularDistribuicao(eleitoresFiltrados, 'ocupacao_vinculo'),
+    porRenda: calcularDistribuicao(eleitoresFiltrados, 'renda_salarios_minimos'),
+    porTransporte: calcularDistribuicao(eleitoresFiltrados, 'meio_transporte'),
+
+    // Vida pessoal
+    porEstadoCivil: calcularDistribuicao(eleitoresFiltrados, 'estado_civil'),
+    porReligiao: calcularDistribuicao(eleitoresFiltrados, 'religiao'),
+    comFilhos: eleitoresFiltrados.filter((e) => e.filhos > 0).length,
+    semFilhos: eleitoresFiltrados.filter((e) => e.filhos === 0).length,
+
+    // Político
+    porOrientacao: calcularDistribuicao(eleitoresFiltrados, 'orientacao_politica'),
+    porBolsonaro: calcularDistribuicao(eleitoresFiltrados, 'posicao_bolsonaro'),
+    porInteresse: calcularDistribuicao(eleitoresFiltrados, 'interesse_politico'),
+
+    // Psicológico
+    porEstiloDecisao: calcularDistribuicao(eleitoresFiltrados, 'estilo_decisao'),
+    porTolerancia: calcularDistribuicao(eleitoresFiltrados, 'tolerancia_nuance'),
+    porVieses: calcularDistribuicaoArray(eleitoresFiltrados, 'vieses_cognitivos'),
+
+    // Informação
+    porFontes: calcularDistribuicaoArray(eleitoresFiltrados, 'fontes_informacao'),
+    porSusceptibilidade: calcularSusceptibilidade(eleitoresFiltrados),
+
+    // Valores e preocupações
+    porValores: calcularDistribuicaoArray(eleitoresFiltrados, 'valores'),
+    porPreocupacoes: calcularDistribuicaoArray(eleitoresFiltrados, 'preocupacoes'),
   };
 
   return {
@@ -168,8 +228,37 @@ function calcularDistribuicao(
   return distribuicao;
 }
 
+function calcularDistribuicaoArray(
+  eleitores: Eleitor[],
+  campo: keyof Eleitor
+): Record<string, number> {
+  const distribuicao: Record<string, number> = {};
+
+  eleitores.forEach((e) => {
+    const valores = e[campo] as string[] | undefined;
+    if (valores && Array.isArray(valores)) {
+      valores.forEach((v) => {
+        distribuicao[v] = (distribuicao[v] || 0) + 1;
+      });
+    }
+  });
+
+  return distribuicao;
+}
+
 function calcularMediaIdade(eleitores: Eleitor[]): number {
   if (eleitores.length === 0) return 0;
   const soma = eleitores.reduce((acc, e) => acc + e.idade, 0);
   return soma / eleitores.length;
+}
+
+function calcularSusceptibilidade(eleitores: Eleitor[]): Record<string, number> {
+  const baixa = eleitores.filter((e) => (e.susceptibilidade_desinformacao || 0) <= 3).length;
+  const media = eleitores.filter((e) => {
+    const s = e.susceptibilidade_desinformacao || 0;
+    return s > 3 && s <= 6;
+  }).length;
+  const alta = eleitores.filter((e) => (e.susceptibilidade_desinformacao || 0) > 6).length;
+
+  return { 'Baixa (1-3)': baixa, 'Média (4-6)': media, 'Alta (7-10)': alta };
 }
