@@ -79,14 +79,15 @@ export const dadosFaixaEtaria: DadoReferencia = {
   ambito: 'DF',
   metodologia: 'Censo Demográfico 2022 com dados por grupos de idade',
   valores: {
-    '16-24': 14.5,
+    '16-17': 2.5,
+    '18-24': 12.0,
     '25-34': 17.8,
     '35-44': 18.2,
-    '45-54': 15.5,
-    '55-64': 11.8,
+    '45-59': 27.3,
+    '60-64': 10.0,
     '65+': 12.2,
   },
-  observacoes: 'Grupo 40-44 anos é o mais representativo (9% da população). Jovens representam 27,3% da PIA.',
+  observacoes: 'Faixas ajustadas para corresponder ao banco de eleitores. Jovens representam 27,3% da PIA.',
   confiabilidade: 'media',
 };
 
@@ -208,11 +209,11 @@ export const dadosOrientacaoPolitica: DadoReferencia = {
   ambito: 'Brasil',
   metodologia: 'Pesquisa de opinião por autodeclaração ideológica',
   valores: {
-    'esquerda': 15.0,        // DataSenado 2024: 15%
-    'centro-esquerda': 7.0,  // Datafolha: 7% centro-esquerda
-    'centro': 11.0,          // DataSenado: 11%
-    'centro-direita': 11.0,  // Datafolha: 11% centro-direita
-    'direita': 29.0,         // DataSenado: 29%, Datafolha: 35%
+    'esquerda': 15.0,         // DataSenado 2024: 15%
+    'centro_esquerda': 7.0,   // Datafolha: 7% centro-esquerda
+    'centro': 11.0,           // DataSenado: 11%
+    'centro_direita': 11.0,   // Datafolha: 11% centro-direita
+    'direita': 29.0,          // DataSenado: 29%, Datafolha: 35%
     // 40% não se identificam com nenhuma posição
   },
   observacoes: '40% dos brasileiros não se identificam com nenhuma ideologia. Centro-Oeste tem 31,4% de evangélicos (maior direita). Datafolha dez/2024: 35% direita, 22% esquerda, 17% centro.',
@@ -427,8 +428,11 @@ export const dadosFilhos: DadoReferencia = {
   ambito: 'Brasil',
   metodologia: 'Censo 2022 - taxa de fecundidade e composição familiar',
   valores: {
-    'sem_filhos': 35.0,
-    'com_filhos': 65.0,
+    '0': 30.0,    // Sem filhos
+    '1': 27.0,    // 1 filho
+    '2': 28.0,    // 2 filhos
+    '3': 11.0,    // 3 filhos
+    '4': 4.0,     // 4+ filhos
   },
   observacoes: 'Taxa de fecundidade caiu para 1,75 filho por mulher (mínimo histórico). Famílias menores são tendência.',
   confiabilidade: 'alta',
@@ -631,9 +635,9 @@ export const labelsValores: Record<string, Record<string, string>> = {
   },
   orientacao_politica: {
     'esquerda': 'Esquerda',
-    'centro-esquerda': 'Centro-Esquerda',
+    'centro_esquerda': 'Centro-Esquerda',
     'centro': 'Centro',
-    'centro-direita': 'Centro-Direita',
+    'centro_direita': 'Centro-Direita',
     'direita': 'Direita',
   },
   interesse_politico: {
@@ -695,7 +699,19 @@ export const labelsValores: Record<string, Record<string, string>> = {
     'nao_se_aplica': 'Não se aplica',
   },
   filhos: {
-    'sem_filhos': 'Sem filhos',
-    'com_filhos': 'Com filhos',
+    '0': 'Sem filhos',
+    '1': '1 filho',
+    '2': '2 filhos',
+    '3': '3 filhos',
+    '4': '4+ filhos',
+  },
+  faixa_etaria: {
+    '16-17': '16-17 anos',
+    '18-24': '18-24 anos',
+    '25-34': '25-34 anos',
+    '35-44': '35-44 anos',
+    '45-59': '45-59 anos',
+    '60-64': '60-64 anos',
+    '65+': '65+ anos',
   },
 };

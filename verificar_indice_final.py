@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verificar índice de conformidade final"""
+"""Verificar índice de conformidade final - alinhado com frontend"""
 import json
 from collections import Counter
 
@@ -9,10 +9,11 @@ with open('agentes/banco-eleitores-df.json', 'r', encoding='utf-8') as f:
 n = len(eleitores)
 print(f'Total: {n} eleitores\n')
 
-# Definir todas as referências
+# Definir todas as referências (alinhadas com dados-referencia-oficiais.ts)
 referencias = {
     'genero': {'feminino': 52.2, 'masculino': 47.8},
     'cor_raca': {'parda': 45.0, 'branca': 40.6, 'preta': 13.5, 'amarela': 0.5, 'indigena': 0.4},
+    'faixa_etaria': {'16-17': 2.5, '18-24': 12.0, '25-34': 17.8, '35-44': 18.2, '45-59': 27.3, '60-64': 10.0, '65+': 12.2},
     'cluster_socioeconomico': {'G1_alta': 18.1, 'G2_media_alta': 20.8, 'G3_media_baixa': 32.9, 'G4_baixa': 28.2},
     'escolaridade': {'superior_completo_ou_pos': 37.0, 'medio_completo_ou_sup_incompleto': 43.8, 'fundamental_ou_sem_instrucao': 19.2},
     'renda_salarios_minimos': {'ate_1': 28.5, 'mais_de_1_ate_2': 25.8, 'mais_de_2_ate_5': 24.2, 'mais_de_5_ate_10': 12.5, 'mais_de_10_ate_20': 6.0, 'mais_de_20': 3.0},
@@ -25,6 +26,7 @@ referencias = {
     'meio_transporte': {'carro': 32.3, 'onibus': 21.4, 'a_pe': 17.8, 'motocicleta': 16.4, 'bicicleta': 3.5, 'metro': 1.6, 'nao_se_aplica': 7.0},
     'estado_civil': {'solteiro(a)': 40.0, 'casado(a)': 28.5, 'uniao_estavel': 20.0, 'divorciado(a)': 6.5, 'viuvo(a)': 5.0},
     'susceptibilidade_desinformacao': {'baixa': 25.0, 'media': 45.0, 'alta': 30.0},
+    'filhos': {0: 30.0, 1: 27.0, 2: 28.0, 3: 11.0, 4: 4.0},
 }
 
 # Calcular estatísticas para cada variável
