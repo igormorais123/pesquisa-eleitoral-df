@@ -43,8 +43,13 @@ class Configuracoes(BaseSettings):
     GOOGLE_CLIENT_SECRET: str = ""
     GOOGLE_REDIRECT_URI: str = "http://localhost:3000/api/auth/callback/google"
 
-    # Admin padrão (Professor Igor)
-    ADMIN_EMAIL: str = "professorigor@exemplo.com"
+    # Admin padrao (Professor Igor)
+    ADMIN_USER_ID: str = "user-001"
+    ADMIN_USERNAME: str = "professorigor"
+    ADMIN_NAME: str = "Professor Igor"
+    ADMIN_EMAIL: str = "admin@exemplo.com"
+    # Hash da senha padrao "professorigor"
+    ADMIN_PASSWORD_HASH: str = "$2b$12$J6KfB1mVkGLAXyksmR6w6eh.C3fQGRuSMOxsoDeYoVweShfhJy22y"
 
 
 # Instância global de configurações

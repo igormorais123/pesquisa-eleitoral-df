@@ -21,7 +21,8 @@ from app.api.rotas import (
     usuarios,
 )
 from app.core.config import configuracoes
-from app.db.database import init_db
+from app.db.base import Base
+from app.db.session import engine
 
 
 @asynccontextmanager
@@ -34,8 +35,14 @@ async def lifespan(app: FastAPI):
 
     # Inicializar banco de dados (criar tabelas se não existirem)
     try:
-        await init_db()
+        # Importar modelos para registrar no metadata
+        from app.modelos.usuario import Usuario  # noqa: F401
+        from app.modelos.eleitor import Eleitor  # noqa: F401
+
+        async with engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
         print("[DB] Banco de dados inicializado com sucesso")
+        print("[DB] Tabela 'eleitores' disponível")
     except Exception as e:
         print(f"[DB] Aviso: Não foi possível conectar ao banco - {e}")
         print("[DB] Sistema funcionará com autenticação de teste apenas")

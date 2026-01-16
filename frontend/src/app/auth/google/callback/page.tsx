@@ -1,13 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+// Prevenir pre-rendering estático
+export const dynamic = 'force-dynamic';
+
+import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 import { Loader2, Vote } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { api } from '@/services/api';
 
-export default function GoogleCallbackPage() {
+function GoogleCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [erro, setErro] = useState<string | null>(null);
@@ -91,5 +94,22 @@ export default function GoogleCallbackPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function GoogleCallbackPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-background bg-pattern">
+          <div className="glass-card rounded-2xl p-8 text-center max-w-md w-full mx-4">
+            <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-4" />
+            <p className="text-muted-foreground">Carregando...</p>
+          </div>
+        </div>
+      }
+    >
+      <GoogleCallbackContent />
+    </Suspense>
   );
 }

@@ -13,7 +13,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from app.servicos.eleitor_servico import obter_servico_eleitores
+from app.servicos.eleitor_helper import obter_eleitores_por_ids
 from app.servicos.entrevista_servico import obter_entrevista_servico
 
 
@@ -704,7 +704,6 @@ class ResultadoServico:
             Resultado da análise
         """
         entrevista_servico = obter_entrevista_servico()
-        eleitor_servico = obter_servico_eleitores()
 
         # Obter entrevista e respostas
         entrevista = entrevista_servico.obter_por_id(entrevista_id)
@@ -717,7 +716,7 @@ class ResultadoServico:
 
         # Obter eleitores
         eleitor_ids = list(set(r["eleitor_id"] for r in respostas))
-        eleitores_lista = eleitor_servico.obter_por_ids(eleitor_ids)
+        eleitores_lista = obter_eleitores_por_ids(eleitor_ids)
         eleitores = {e["id"]: e for e in eleitores_lista}
 
         # Extrair textos

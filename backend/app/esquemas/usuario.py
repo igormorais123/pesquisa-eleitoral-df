@@ -88,7 +88,7 @@ class UsuarioResponse(BaseModel):
     ativo: bool
     aprovado: bool
     avatar_url: Optional[str] = None
-    criado_em: datetime
+    criado_em: Optional[datetime] = None
     ultimo_login: Optional[datetime] = None
 
     model_config = {"from_attributes": True}
@@ -104,7 +104,7 @@ class UsuarioResumoResponse(BaseModel):
     aprovado: bool
     avatar_url: Optional[str] = None
     provedor_auth: str
-    criado_em: datetime
+    criado_em: Optional[datetime] = None
 
     model_config = {"from_attributes": True}
 

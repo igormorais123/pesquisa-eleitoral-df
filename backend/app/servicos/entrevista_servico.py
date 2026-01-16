@@ -18,7 +18,7 @@ from app.esquemas.entrevista import (
     StatusEntrevista,
 )
 from app.servicos.claude_servico import obter_claude_servico
-from app.servicos.eleitor_servico import obter_servico_eleitores
+from app.servicos.eleitor_helper import obter_eleitores_por_ids
 
 
 class EntrevistaServico:
@@ -212,10 +212,9 @@ class EntrevistaServico:
         self._execucao_ativa[entrevista_id] = {"pausado": False, "cancelado": False}
 
         # Obter eleitores e serviços
-        eleitor_servico = obter_servico_eleitores()
         claude = obter_claude_servico()
 
-        eleitores = eleitor_servico.obter_por_ids(entrevista["eleitores_ids"])
+        eleitores = obter_eleitores_por_ids(entrevista["eleitores_ids"])
         perguntas = entrevista["perguntas"]
 
         total_chamadas = len(eleitores) * len(perguntas)

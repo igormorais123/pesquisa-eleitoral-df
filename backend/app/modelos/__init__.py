@@ -14,6 +14,17 @@ Também exporta:
 
 from app.modelos.analise import Analise, TipoAnalise
 from app.modelos.base import Base, TimestampMixin
+from app.modelos.eleitor import (
+    Eleitor,
+    ClusterSocioeconomico,
+    EstiloDecisao,
+    Genero,
+    InteressePolitico,
+    OcupacaoVinculo,
+    OrientacaoPolitica,
+    PosicaoBolsonaro,
+    ToleranciaNuance,
+)
 from app.modelos.pergunta import PerguntaPesquisa, TipoPergunta
 from app.modelos.pesquisa import Pesquisa, StatusPesquisa, TipoPesquisa
 from app.modelos.resposta import Resposta
@@ -23,11 +34,21 @@ __all__ = [
     "Base",
     "TimestampMixin",
     # Modelos
+    "Eleitor",
     "Pesquisa",
     "PerguntaPesquisa",
     "Resposta",
     "Analise",
-    # Enums
+    # Enums - Eleitor
+    "ClusterSocioeconomico",
+    "EstiloDecisao",
+    "Genero",
+    "InteressePolitico",
+    "OcupacaoVinculo",
+    "OrientacaoPolitica",
+    "PosicaoBolsonaro",
+    "ToleranciaNuance",
+    # Enums - Pesquisa
     "TipoPesquisa",
     "StatusPesquisa",
     "TipoPergunta",

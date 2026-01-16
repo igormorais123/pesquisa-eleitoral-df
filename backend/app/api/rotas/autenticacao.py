@@ -11,7 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.api.deps import DadosToken, obter_usuario_atual
 from app.core.config import configuracoes
 from app.core.seguranca import autenticar_usuario_legado, criar_token_acesso
-from app.db.session import get_db
+from app.db.session import get_db, get_db_optional
 from app.esquemas.usuario import (
     GoogleAuthRequest,
     GoogleAuthUrlResponse,
@@ -103,11 +103,17 @@ async def registrar(
 )
 async def login(
     dados: LoginRequest,
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_db_optional),
 ):
     """Login com credenciais locais"""
-    # Tentar autenticar no banco de dados
-    usuario = await UsuarioServico.autenticar(db, dados.usuario, dados.senha)
+    # Tentar autenticar no banco de dados (se disponível)
+    usuario = None
+    try:
+        if db is not None:
+            usuario = await UsuarioServico.autenticar(db, dados.usuario, dados.senha)
+    except Exception as e:
+        # Banco não disponível, continua para fallback
+        print(f"[AUTH] Banco indisponível, usando fallback: {e}")
 
     if usuario:
         if not usuario.ativo:
@@ -118,7 +124,14 @@ async def login(
         return criar_token_response(usuario)
 
     # Fallback para usuário de teste (desenvolvimento)
+    from app.core.seguranca import get_usuario_teste
+    usuario_teste = get_usuario_teste()
+    print(f"[AUTH-DEBUG] Input user: {repr(dados.usuario)}")
+    print(f"[AUTH-DEBUG] Expected user: {repr(usuario_teste['usuario'])}")
+    print(f"[AUTH-DEBUG] Match: {dados.usuario == usuario_teste['usuario']}")
+
     usuario_legado = autenticar_usuario_legado(dados.usuario, dados.senha)
+    print(f"[AUTH-DEBUG] usuario_legado result: {usuario_legado}")
 
     if usuario_legado:
         # Criar token para usuário legado (admin de teste)

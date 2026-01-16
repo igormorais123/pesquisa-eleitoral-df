@@ -4,7 +4,6 @@ Módulo de Segurança
 Implementa autenticação JWT e hash de senhas.
 """
 
-import os
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, Optional
 
@@ -116,27 +115,29 @@ def verificar_token(token: str) -> Optional[DadosToken]:
 
 
 # ============================================
-# USUÁRIO DE TESTE (credenciais via variáveis de ambiente em produção)
+# USUÁRIO DE TESTE (credenciais via config)
 # ============================================
 
-# Em produção, usar variáveis de ambiente para credenciais
-# Hash da senha "professorigor" (gerado com: gerar_hash_senha("professorigor"))
-_SENHA_HASH_PADRAO = "$2b$12$J6KfB1mVkGLAXyksmR6w6eh.C3fQGRuSMOxsoDeYoVweShfhJy22y"
 
-USUARIO_TESTE: Dict[str, Any] = {
-    "id": os.environ.get("ADMIN_USER_ID", "user-001"),
-    "usuario": os.environ.get("ADMIN_USERNAME", "admin"),
-    "nome": os.environ.get("ADMIN_NAME", "Administrador"),
-    "email": os.environ.get("ADMIN_EMAIL", "admin@exemplo.com"),
-    "papel": "admin",
-    "senha_hash": os.environ.get("ADMIN_PASSWORD_HASH", _SENHA_HASH_PADRAO),
-    "ativo": True,
-}
+def get_usuario_teste() -> Dict[str, Any]:
+    """
+    Retorna dados do usuário de teste (admin).
+    Carrega credenciais das configurações do .env via pydantic_settings.
+    """
+    return {
+        "id": configuracoes.ADMIN_USER_ID,
+        "usuario": configuracoes.ADMIN_USERNAME,
+        "nome": configuracoes.ADMIN_NAME,
+        "email": configuracoes.ADMIN_EMAIL,
+        "papel": "admin",
+        "senha_hash": configuracoes.ADMIN_PASSWORD_HASH,
+        "ativo": True,
+    }
 
 
 def autenticar_usuario_legado(usuario: str, senha: str) -> Optional[dict]:
     """
-    Autentica usuário usando o usuário de teste hardcoded.
+    Autentica usuário usando o usuário de teste.
 
     NOTA: Esta função é um fallback para desenvolvimento.
     Em produção, use autenticação via banco de dados (UsuarioServico.autenticar).
@@ -148,17 +149,19 @@ def autenticar_usuario_legado(usuario: str, senha: str) -> Optional[dict]:
     Returns:
         Dados do usuário se autenticado, None caso contrário
     """
+    usuario_teste = get_usuario_teste()
+
     # Apenas usuário de teste (fallback para desenvolvimento)
-    if usuario != USUARIO_TESTE["usuario"]:
+    if usuario != usuario_teste["usuario"]:
         return None
 
-    # Verificar senha usando hash bcrypt
-    if verificar_senha(senha, str(USUARIO_TESTE["senha_hash"])):
+    # Verificar senha usando hash bcrypt (nunca comparar senha em plaintext)
+    if verificar_senha(senha, str(usuario_teste["senha_hash"])):
         return {
-            "id": USUARIO_TESTE["id"],
-            "usuario": USUARIO_TESTE["usuario"],
-            "nome": USUARIO_TESTE["nome"],
-            "papel": USUARIO_TESTE["papel"],
+            "id": usuario_teste["id"],
+            "usuario": usuario_teste["usuario"],
+            "nome": usuario_teste["nome"],
+            "papel": usuario_teste["papel"],
         }
 
     return None

@@ -7,6 +7,7 @@ Gerencia conexões e sessões assíncronas com PostgreSQL.
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
+from sqlalchemy import text
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     async_sessionmaker,
@@ -48,6 +49,34 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
         async def get_items(db: AsyncSession = Depends(get_db)):
             ...
     """
+    async with AsyncSessionLocal() as session:
+        try:
+            yield session
+            await session.commit()
+        except Exception:
+            await session.rollback()
+            raise
+        finally:
+            await session.close()
+
+
+async def get_db_optional() -> AsyncGenerator[AsyncSession | None, None]:
+    """
+    Dependency opcional - retorna None se o banco não estiver disponível.
+
+    Útil para rotas que têm fallback (ex: login com usuário de teste).
+    """
+    # Tenta conectar ao banco
+    try:
+        # Testa a conexão primeiro
+        async with engine.connect() as conn:
+            await conn.execute(text("SELECT 1"))
+    except Exception:
+        # Banco não disponível - retorna None para permitir fallback
+        yield None
+        return
+
+    # Se chegou aqui, banco está disponível
     async with AsyncSessionLocal() as session:
         try:
             yield session
