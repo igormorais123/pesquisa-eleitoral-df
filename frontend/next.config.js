@@ -35,6 +35,24 @@ const nextConfig = {
         source: '/api/v1/geracao/:path*',
         destination: `${backendUrl}/api/v1/geracao/:path*`,
       },
+      // Usuarios (admin)
+      {
+        source: '/api/v1/usuarios',
+        destination: `${backendUrl}/api/v1/usuarios`,
+      },
+      {
+        source: '/api/v1/usuarios/:path*',
+        destination: `${backendUrl}/api/v1/usuarios/:path*`,
+      },
+      // Dados usuarios Google
+      {
+        source: '/api/v1/dados-usuarios',
+        destination: `${backendUrl}/api/v1/dados-usuarios`,
+      },
+      {
+        source: '/api/v1/dados-usuarios/:path*',
+        destination: `${backendUrl}/api/v1/dados-usuarios/:path*`,
+      },
     ];
   },
 

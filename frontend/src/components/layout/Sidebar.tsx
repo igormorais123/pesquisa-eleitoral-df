@@ -33,6 +33,13 @@ const menuItems = [
     descricao: 'Visão geral do sistema',
   },
   {
+    titulo: 'Admin Usuários',
+    href: '/admin/usuarios',
+    icone: Shield,
+    descricao: 'Gerenciar e aprovar usuários',
+    adminOnly: true,
+  },
+  {
     titulo: 'Validação',
     href: '/validacao',
     icone: CheckSquare,
@@ -136,9 +143,12 @@ export function Sidebar() {
 
       {/* Menu Principal */}
       <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
-        {menuItems.map((item) => {
+        {menuItems
+          .filter((item) => !item.adminOnly || isAdmin)
+          .map((item) => {
           const ativo = pathname === item.href || pathname.startsWith(`${item.href}/`);
           const Icone = item.icone;
+          const isAdminItem = item.adminOnly;
 
           return (
             <Link
@@ -148,15 +158,21 @@ export function Sidebar() {
               className={cn(
                 'flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all group',
                 ativo
-                  ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
+                  ? isAdminItem
+                    ? 'bg-red-500/20 text-red-400 shadow-lg shadow-red-500/25'
+                    : 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
+                  : isAdminItem
+                    ? 'text-red-400/70 hover:text-red-400 hover:bg-red-500/10'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
               )}
               title={recolhido ? item.titulo : undefined}
             >
               <Icone
                 className={cn(
                   'w-5 h-5 flex-shrink-0',
-                  ativo ? 'text-primary-foreground' : 'group-hover:text-primary'
+                  ativo
+                    ? isAdminItem ? 'text-red-400' : 'text-primary-foreground'
+                    : isAdminItem ? 'text-red-400/70' : 'group-hover:text-primary'
                 )}
               />
               {!recolhido && (
@@ -165,7 +181,9 @@ export function Sidebar() {
                   <span
                     className={cn(
                       'block text-xs',
-                      ativo ? 'text-primary-foreground/70' : 'text-muted-foreground'
+                      ativo
+                        ? isAdminItem ? 'text-red-400/70' : 'text-primary-foreground/70'
+                        : 'text-muted-foreground'
                     )}
                   >
                     {item.descricao}
@@ -203,43 +221,6 @@ export function Sidebar() {
           </>
         )}
 
-        {/* Seção Admin - SEMPRE VISÍVEL para administradores */}
-        {isAdmin && (
-          <>
-            {!recolhido && (
-              <div className="pt-4 pb-2">
-                <span className="text-xs font-medium text-red-400 uppercase tracking-wider px-3">
-                  Administração
-                </span>
-              </div>
-            )}
-
-            <Link
-              href="/admin/usuarios"
-              onClick={fecharMobile}
-              className={cn(
-                'flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all group',
-                pathname.startsWith('/admin/usuarios')
-                  ? 'bg-red-500/20 text-red-400'
-                  : 'text-muted-foreground hover:text-red-400 hover:bg-red-500/10'
-              )}
-              title={recolhido ? 'Gerenciar Usuários' : undefined}
-            >
-              <Shield className={cn(
-                'w-5 h-5 flex-shrink-0',
-                pathname.startsWith('/admin/usuarios') ? 'text-red-400' : 'text-red-400/70'
-              )} />
-              {!recolhido && (
-                <div className="overflow-hidden">
-                  <span className="block text-sm font-medium">Gerenciar Usuários</span>
-                  <span className="block text-xs text-muted-foreground">
-                    Aprovar e controlar acessos
-                  </span>
-                </div>
-              )}
-            </Link>
-          </>
-        )}
       </nav>
 
       {/* Botão Recolher - apenas desktop */}

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { api } from '@/services/api';
+import { api, setAuthToken, clearAuthToken } from '@/services/api';
 import { notify } from './notifications-store';
 
 interface Usuario {
@@ -44,8 +44,9 @@ export const useAuthStore = create<AuthState>()(
 
           const { access_token, usuario: dadosUsuario } = response.data;
 
-          // Atualizar o header de autorização
+          // Atualizar o header de autorização e o cache
           api.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
+          setAuthToken(access_token);
 
           set({
             usuario: dadosUsuario,
@@ -71,8 +72,9 @@ export const useAuthStore = create<AuthState>()(
       },
 
       setAuth: (token: string, usuario: Usuario) => {
-        // Atualizar o header de autorização
+        // Atualizar o header de autorização e o cache
         api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        setAuthToken(token);
 
         set({
           usuario,
@@ -83,8 +85,9 @@ export const useAuthStore = create<AuthState>()(
       },
 
       logout: () => {
-        // Remover header de autorização
+        // Remover header de autorização e limpar cache
         delete api.defaults.headers.common['Authorization'];
+        clearAuthToken();
 
         set({
           usuario: null,
@@ -106,7 +109,10 @@ export const useAuthStore = create<AuthState>()(
         }
 
         try {
+          // Atualizar header e cache
           api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+          setAuthToken(token);
+
           const response = await api.get('/auth/me');
 
           set({
