@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -94,22 +94,18 @@ export default function PaginaNovaEntrevista() {
 
   const { iniciarExecucao, setPerguntas: setStorePerguntas, setTitulo: setStoreTitulo } = useEntrevistasStore();
 
-  // Adicionar pergunta
-  const adicionarPergunta = () => {
-    setPerguntas([...perguntas, { texto: '', tipo: 'aberta', obrigatoria: true }]);
-  };
+  // Performance: useCallback para handlers que são passados como props
+  const adicionarPergunta = useCallback(() => {
+    setPerguntas((prev) => [...prev, { texto: '', tipo: 'aberta', obrigatoria: true }]);
+  }, []);
 
-  // Remover pergunta
-  const removerPergunta = (index: number) => {
-    if (perguntas.length > 1) {
-      setPerguntas(perguntas.filter((_, i) => i !== index));
-    }
-  };
+  const removerPergunta = useCallback((index: number) => {
+    setPerguntas((prev) => (prev.length > 1 ? prev.filter((_, i) => i !== index) : prev));
+  }, []);
 
-  // Atualizar pergunta
-  const atualizarPergunta = (index: number, dados: Partial<Pergunta>) => {
-    setPerguntas(perguntas.map((p, i) => (i === index ? { ...p, ...dados } : p)));
-  };
+  const atualizarPergunta = useCallback((index: number, dados: Partial<Pergunta>) => {
+    setPerguntas((prev) => prev.map((p, i) => (i === index ? { ...p, ...dados } : p)));
+  }, []);
 
   // Calcular custo estimado
   const custoEstimado = eleitoresSelecionados.length * perguntas.length * 0.15; // R$ 0.15 por resposta (média)
