@@ -18,8 +18,12 @@ import {
   ChevronLeft,
   ChevronRight,
   Lightbulb,
+  FileSpreadsheet,
+  FileDown,
+  ChevronDown,
 } from 'lucide-react';
 import { useEleitores } from '@/hooks/useEleitores';
+import { exportarEleitoresExcel, exportarEleitoresPDF } from '@/lib/export';
 import { AgenteCard } from '@/components/agentes/AgenteCard';
 import { AgentesFilters } from '@/components/agentes/AgentesFilters';
 import { AgentesCharts } from '@/components/agentes/AgentesCharts';
@@ -117,7 +121,31 @@ export default function PaginaEleitores() {
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Ações rápidas */}
+            {/* Dropdown de Exportação */}
+            <div className="relative group">
+              <button className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors">
+                <Download className="w-4 h-4" />
+                Exportar
+                <ChevronDown className="w-4 h-4" />
+              </button>
+              <div className="absolute right-0 mt-2 w-48 bg-secondary/95 backdrop-blur border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                <button
+                  onClick={() => exportarEleitoresExcel(eleitoresFiltrados)}
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-t-lg transition-colors"
+                >
+                  <FileSpreadsheet className="w-4 h-4 text-green-400" />
+                  Excel ({eleitoresFiltrados.length})
+                </button>
+                <button
+                  onClick={() => exportarEleitoresPDF(eleitoresFiltrados)}
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-b-lg transition-colors"
+                >
+                  <FileDown className="w-4 h-4 text-red-400" />
+                  PDF ({eleitoresFiltrados.length})
+                </button>
+              </div>
+            </div>
+            {/* Upload */}
             <Link
               href="/eleitores/upload"
               className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors"

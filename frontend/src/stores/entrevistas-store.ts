@@ -268,6 +268,15 @@ export const useEntrevistasStore = create<EntrevistasState>()(
         entrevistaAtual: state.entrevistaAtual,
         perguntas: state.perguntas,
         limiteCusto: state.limiteCusto,
+        // Persistir sessão em andamento para recuperação em caso de refresh
+        sessaoAtual: state.sessaoAtual,
+        respostasRecebidas: state.respostasRecebidas,
+        executando: state.executando,
+        pausado: state.pausado,
+        progresso: state.progresso,
+        custoAtual: state.custoAtual,
+        tokensInput: state.tokensInput,
+        tokensOutput: state.tokensOutput,
       }),
     }
   )

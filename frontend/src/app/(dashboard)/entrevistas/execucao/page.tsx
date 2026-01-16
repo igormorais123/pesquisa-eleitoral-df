@@ -103,8 +103,13 @@ export default function PaginaExecucaoEntrevista() {
           const selecionados = eleitoresDB.filter((e) =>
             eleitoresSelecionados.includes(e.id)
           );
-          console.log(`${selecionados.length} eleitores pendentes para processar`);
-          setEleitoresPendentes(selecionados);
+
+          // Filtrar eleitores já processados (para recuperação em caso de refresh)
+          const idsJaProcessados = new Set(respostasRecebidas.map((r) => r.eleitor_id));
+          const pendentes = selecionados.filter((e) => !idsJaProcessados.has(e.id));
+
+          console.log(`${selecionados.length} eleitores selecionados, ${idsJaProcessados.size} já processados, ${pendentes.length} pendentes`);
+          setEleitoresPendentes(pendentes);
           setTotalEleitoresSelecionados(selecionados.length);
         }
 
@@ -118,6 +123,7 @@ export default function PaginaExecucaoEntrevista() {
     }
 
     carregarEleitores();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eleitoresSelecionados, setEleitores]);
 
   // Processar próximo eleitor
@@ -234,10 +240,6 @@ export default function PaginaExecucaoEntrevista() {
       !eleitorAtual
     ) {
       finalizarExecucao();
-      // Salvar sessão
-      if (sessaoAtual) {
-        salvarSessao(sessaoAtual);
-      }
     }
   }, [
     executando,
@@ -248,8 +250,27 @@ export default function PaginaExecucaoEntrevista() {
     eleitorAtual,
     processarProximo,
     finalizarExecucao,
-    sessaoAtual,
   ]);
+
+  // Salvar sessão quando finalizada (usando useEffect separado para capturar estado atualizado)
+  useEffect(() => {
+    if (sessaoAtual && sessaoAtual.status === 'concluida') {
+      console.log('Salvando sessão concluída com', sessaoAtual.respostas.length, 'respostas');
+      salvarSessao(sessaoAtual);
+    }
+  }, [sessaoAtual?.status, sessaoAtual?.respostas.length]);
+
+  // Salvar sessão periodicamente durante a execução (a cada resposta)
+  useEffect(() => {
+    if (sessaoAtual && executando && respostasRecebidas.length > 0) {
+      // Salvar a cada 3 respostas ou quando houver pelo menos 1
+      const saveInterval = respostasRecebidas.length % 3 === 0 || respostasRecebidas.length === 1;
+      if (saveInterval) {
+        console.log('Salvando progresso:', respostasRecebidas.length, 'respostas');
+        salvarSessao(sessaoAtual);
+      }
+    }
+  }, [sessaoAtual, executando, respostasRecebidas.length]);
 
   // Handlers
   const handlePausar = () => {
