@@ -1,6 +1,15 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Este arquivo fornece orientações ao Claude Code quando trabalhando neste repositório.
+
+## IDIOMA OBRIGATÓRIO - PORTUGUÊS DO BRASIL
+
+**REGRA FUNDAMENTAL**: TODAS as respostas, interações, comentários e comunicações do Claude DEVEM ser em **Português do Brasil**.
+
+- ✅ Sempre responda em português brasileiro
+- ✅ Use termos técnicos em português quando possível
+- ✅ Commits, PRs e documentação em português
+- ❌ NUNCA responda em inglês (exceto código/comandos)
 
 ## Project Overview
 
@@ -33,14 +42,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Única Exceção
 - Deletar o repositório inteiro ou dados irrecuperáveis fora do git
 
-### Comando para Aprovar Tudo no Terminal
-Se o Claude Code pedir permissão no terminal, use:
-```bash
-# Aprovar todas as operações da sessão atual
-# Pressione 'a' quando solicitado (Allow all)
+### Comandos para Permissões Totais
 
-# Ou inicie com trust mode:
+**Método 1 - Iniciar com permissões totais (RECOMENDADO):**
+```bash
 claude --dangerously-skip-permissions
+```
+
+**Método 2 - Aceitar tudo durante sessão:**
+- Pressione `a` quando solicitado (Allow all for this session)
+- Ou pressione `!` para aceitar permanentemente
+
+**Método 3 - Arquivo de configuração (já configurado):**
+O arquivo `.claude/settings.json` já contém `"Bash(*)"` que autoriza todos os comandos.
+
+**Alias útil (adicione ao seu .bashrc ou PowerShell profile):**
+```bash
+# Bash/Zsh
+alias claudedev='claude --dangerously-skip-permissions'
+
+# PowerShell (adicione ao $PROFILE)
+Set-Alias -Name claudedev -Value { claude --dangerously-skip-permissions }
 ```
 
 ## Build & Run Commands
