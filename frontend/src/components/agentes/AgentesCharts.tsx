@@ -175,7 +175,7 @@ const CORES = {
 export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
   const total = estatisticas.filtrados || 1;
 
-  // Função auxiliar para formatar dados
+  // Função auxiliar para formatar dados com memoização
   const formatarDados = useMemo(() => {
     return (dados: Record<string, number>, labels?: Record<string, string>) => {
       return Object.entries(dados)
