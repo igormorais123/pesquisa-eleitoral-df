@@ -20,6 +20,7 @@ import {
   X,
   CheckSquare,
   Shield,
+  Landmark,
 } from 'lucide-react';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { useAuthStore } from '@/stores/auth-store';
@@ -50,6 +51,12 @@ const menuItems = [
     href: '/eleitores',
     icone: Users,
     descricao: 'Gerenciar agentes sintéticos',
+  },
+  {
+    titulo: 'Parlamentares',
+    href: '/parlamentares',
+    icone: Landmark,
+    descricao: 'Deputados e senadores do DF',
   },
   {
     titulo: 'Entrevistas',

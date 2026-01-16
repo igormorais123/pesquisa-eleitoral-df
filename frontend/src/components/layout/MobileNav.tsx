@@ -15,6 +15,7 @@ import {
   Sparkles,
   FileText,
   Vote,
+  Landmark,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -28,6 +29,11 @@ const menuPrincipal = [
     titulo: 'Eleitores',
     href: '/eleitores',
     icone: Users,
+  },
+  {
+    titulo: 'Parlamentares',
+    href: '/parlamentares',
+    icone: Landmark,
   },
   {
     titulo: 'Entrevistas',
