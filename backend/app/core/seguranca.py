@@ -120,7 +120,7 @@ def verificar_token(token: str) -> Optional[DadosToken]:
 # ============================================
 
 # Em produção, usar variáveis de ambiente para credenciais
-# Hash da senha "professorigor" para desenvolvimento
+# Hash da senha "professorigor" (gerado com: gerar_hash_senha("professorigor"))
 _SENHA_HASH_PADRAO = "$2b$12$J6KfB1mVkGLAXyksmR6w6eh.C3fQGRuSMOxsoDeYoVweShfhJy22y"
 
 USUARIO_TESTE: Dict[str, Any] = {

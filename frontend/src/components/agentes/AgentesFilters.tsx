@@ -452,7 +452,7 @@ export function AgentesFilters({
           titulo="Gênero"
           opcoes={GENEROS}
           selecionados={filtros.generos || []}
-          onChange={(valores) => onFiltrosChange({ generos: valores as any })}
+          onChange={(valores) => onFiltrosChange({ generos: valores as Genero[] })}
           cor="bg-pink-500"
         />
 
