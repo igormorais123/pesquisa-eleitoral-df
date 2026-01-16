@@ -291,9 +291,9 @@ export const dadosSusceptibilidadeDesinformacao: DadoReferencia = {
   ambito: 'Brasil',
   metodologia: 'Pesquisa sobre exposição e crença em desinformação',
   valores: {
-    'baixa_1_3': 25.0,
-    'media_4_6': 45.0,
-    'alta_7_10': 30.0,
+    'baixa': 25.0,
+    'media': 45.0,
+    'alta': 30.0,
   },
   observacoes: 'Brasil está entre os países com maior preocupação com fake news. Correlação negativa com escolaridade.',
   confiabilidade: 'media',
@@ -361,7 +361,7 @@ export const dadosMeioTransporte: DadoReferencia = {
     'carro': 32.3,          // Automóvel
     'onibus': 21.4,         // Ônibus
     'a_pe': 17.8,           // A pé
-    'moto': 16.4,           // Motocicleta
+    'motocicleta': 16.4,    // Motocicleta
     'bicicleta': 3.5,       // Bicicleta
     'metro': 1.6,           // Metrô/Trem
     'nao_se_aplica': 7.0,   // Trabalho remoto ou não trabalha
@@ -680,11 +680,16 @@ export const labelsValores: Record<string, Record<string, string>> = {
     'media': 'Média',
     'alta': 'Alta',
   },
+  susceptibilidade_desinformacao: {
+    'baixa': 'Baixa',
+    'media': 'Média',
+    'alta': 'Alta',
+  },
   meio_transporte: {
     'carro': 'Carro',
     'onibus': 'Ônibus',
     'a_pe': 'A pé',
-    'moto': 'Motocicleta',
+    'motocicleta': 'Motocicleta',
     'bicicleta': 'Bicicleta',
     'metro': 'Metrô',
     'nao_se_aplica': 'Não se aplica',

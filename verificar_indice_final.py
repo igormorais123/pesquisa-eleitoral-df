@@ -17,14 +17,14 @@ referencias = {
     'escolaridade': {'superior_completo_ou_pos': 37.0, 'medio_completo_ou_sup_incompleto': 43.8, 'fundamental_ou_sem_instrucao': 19.2},
     'renda_salarios_minimos': {'ate_1': 28.5, 'mais_de_1_ate_2': 25.8, 'mais_de_2_ate_5': 24.2, 'mais_de_5_ate_10': 12.5, 'mais_de_10_ate_20': 6.0, 'mais_de_20': 3.0},
     'religiao': {'catolica': 49.7, 'evangelica': 29.2, 'sem_religiao': 11.3, 'espirita': 3.3, 'umbanda_candomble': 0.9, 'outras_religioes': 5.6},
-    'orientacao_politica': {'esquerda': 15.0, 'centro-esquerda': 7.0, 'centro': 11.0, 'centro-direita': 11.0, 'direita': 29.0},
+    'orientacao_politica': {'esquerda': 15.0, 'centro_esquerda': 7.0, 'centro': 11.0, 'centro_direita': 11.0, 'direita': 29.0},
     'interesse_politico': {'baixo': 45.0, 'medio': 35.0, 'alto': 20.0},
     'posicao_bolsonaro': {'apoiador_forte': 15.0, 'apoiador_moderado': 11.0, 'neutro': 20.0, 'critico_moderado': 20.0, 'critico_forte': 34.0},
     'estilo_decisao': {'identitario': 25.0, 'pragmatico': 20.0, 'moral': 15.0, 'economico': 25.0, 'emocional': 15.0},
     'tolerancia_nuance': {'baixa': 35.0, 'media': 40.0, 'alta': 25.0},
-    'meio_transporte': {'carro': 32.3, 'onibus': 21.4, 'a_pe': 17.8, 'moto': 16.4, 'bicicleta': 3.5, 'metro': 1.6, 'nao_se_aplica': 7.0},
+    'meio_transporte': {'carro': 32.3, 'onibus': 21.4, 'a_pe': 17.8, 'motocicleta': 16.4, 'bicicleta': 3.5, 'metro': 1.6, 'nao_se_aplica': 7.0},
     'estado_civil': {'solteiro(a)': 40.0, 'casado(a)': 28.5, 'uniao_estavel': 20.0, 'divorciado(a)': 6.5, 'viuvo(a)': 5.0},
-    'susceptibilidade_desinformacao': {'baixa_1_3': 25.0, 'media_4_6': 45.0, 'alta_7_10': 30.0},
+    'susceptibilidade_desinformacao': {'baixa': 25.0, 'media': 45.0, 'alta': 30.0},
 }
 
 # Calcular estatísticas para cada variável
