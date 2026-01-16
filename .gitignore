@@ -35,3 +35,6 @@ nul
 
 # arquivos temporários de deploy
 temp_deploys*.json
+
+# logs de sincronização
+logs/*.log
