@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
   Users,
@@ -24,8 +24,11 @@ import {
   Scale,
   Eye,
   ExternalLink,
+  MousePointerClick,
 } from 'lucide-react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import { useFilterNavigation, FilterType } from '@/hooks/useFilterNavigation';
 import {
   PieChart,
   Pie,
@@ -168,7 +171,7 @@ function CardAcaoRapida({
   );
 }
 
-// Componente de Card de Gráfico com suporte a fonte oficial
+// Componente de Card de Gráfico com suporte a clique e fonte oficial
 function GraficoCard({
   titulo,
   subtitulo,
@@ -176,6 +179,8 @@ function GraficoCard({
   corIcone,
   children,
   className = '',
+  isClickable = false,
+  filterHint,
   dadoReferencia,
   desvioMedio,
 }: {
@@ -185,11 +190,13 @@ function GraficoCard({
   corIcone: string;
   children: React.ReactNode;
   className?: string;
+  isClickable?: boolean;
+  filterHint?: string;
   dadoReferencia?: DadoReferencia;
   desvioMedio?: number;
 }) {
   return (
-    <div className={`glass-card rounded-xl p-6 ${className}`}>
+    <div className={`glass-card rounded-xl p-6 ${className} ${isClickable ? 'group' : ''}`}>
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className={`w-10 h-10 rounded-lg ${corIcone} flex items-center justify-center`}>
@@ -200,17 +207,25 @@ function GraficoCard({
             {subtitulo && <p className="text-xs text-muted-foreground">{subtitulo}</p>}
           </div>
         </div>
-        {/* Indicador de desvio médio */}
-        {desvioMedio !== undefined && (
-          <div className={`px-2 py-1 rounded text-xs font-medium ${
-            desvioMedio <= 3 ? 'bg-green-500/15 text-green-500' :
-            desvioMedio <= 7 ? 'bg-blue-500/15 text-blue-500' :
-            desvioMedio <= 12 ? 'bg-yellow-500/15 text-yellow-500' :
-            'bg-red-500/15 text-red-500'
-          }`}>
-            Δ {desvioMedio.toFixed(1)}%
-          </div>
-        )}
+        <div className="flex items-center gap-2">
+          {/* Indicador de desvio médio */}
+          {desvioMedio !== undefined && (
+            <div className={`px-2 py-1 rounded text-xs font-medium ${
+              desvioMedio <= 3 ? 'bg-green-500/15 text-green-500' :
+              desvioMedio <= 7 ? 'bg-blue-500/15 text-blue-500' :
+              desvioMedio <= 12 ? 'bg-yellow-500/15 text-yellow-500' :
+              'bg-red-500/15 text-red-500'
+            }`}>
+              Δ {desvioMedio.toFixed(1)}%
+            </div>
+          )}
+          {isClickable && (
+            <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+              <MousePointerClick className="w-3 h-3" />
+              <span>{filterHint || 'Clique para filtrar'}</span>
+            </div>
+          )}
+        </div>
       </div>
       {children}
       {/* Fonte oficial */}
@@ -350,6 +365,33 @@ function calcularDesvioMedio(divergencias: MapaDivergencias, variavel: string): 
 
 export default function PaginaInicial() {
   const eleitores = eleitoresData as Eleitor[];
+  const { navigateWithFilter } = useFilterNavigation();
+
+  // Handler genérico para clique em gráficos
+  const handleChartClick = useCallback(
+    (filterType: FilterType, value: string) => {
+      navigateWithFilter(filterType, value);
+    },
+    [navigateWithFilter]
+  );
+
+  // Wrapper para eventos de clique do Recharts
+  const createChartClickHandler = useCallback(
+    (filterType: FilterType, valueMapper?: (payload: any) => string) => {
+      return (data: any) => {
+        if (data?.activePayload?.[0]?.payload) {
+          const payload = data.activePayload[0].payload;
+          const value = valueMapper
+            ? valueMapper(payload)
+            : payload.valorOriginal || payload.nome || payload.name;
+          if (value) {
+            navigateWithFilter(filterType, value);
+          }
+        }
+      };
+    },
+    [navigateWithFilter]
+  );
 
   // Hook para calcular divergências
   const divergencias = useDivergencias(eleitores);
@@ -405,18 +447,21 @@ export default function PaginaInicial() {
       nome: nome === 'masculino' ? 'Masculino' : 'Feminino',
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
     const dadosCluster = Object.entries(stats.cluster).map(([nome, valor]) => ({
       nome: LABELS.cluster[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
     const dadosOrientacao = Object.entries(stats.orientacao).map(([nome, valor]) => ({
       nome: LABELS.orientacao[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
     const dadosReligiao = Object.entries(stats.religiao)
@@ -425,6 +470,7 @@ export default function PaginaInicial() {
         nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/_/g, ' '),
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosRegiao = Object.entries(stats.regiao)
@@ -434,6 +480,7 @@ export default function PaginaInicial() {
         nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosCorRaca = Object.entries(stats.corRaca)
@@ -442,6 +489,7 @@ export default function PaginaInicial() {
         nome: nome.charAt(0).toUpperCase() + nome.slice(1),
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosEscolaridade = Object.entries(stats.escolaridade)
@@ -449,6 +497,7 @@ export default function PaginaInicial() {
         nome: LABELS.escolaridade[nome] || nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosOcupacao = Object.entries(stats.ocupacao)
@@ -457,6 +506,7 @@ export default function PaginaInicial() {
         nome: LABELS.ocupacao[nome] || nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosRenda = Object.entries(stats.renda)
@@ -464,6 +514,7 @@ export default function PaginaInicial() {
         nome: LABELS.renda[nome] || nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosEstadoCivil = Object.entries(stats.estadoCivil)
@@ -472,6 +523,7 @@ export default function PaginaInicial() {
         nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/[()]/g, ''),
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosInteresse = Object.entries(stats.interesse)
@@ -480,6 +532,7 @@ export default function PaginaInicial() {
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
         fill: nome === 'baixo' ? CORES.interesse[0] : nome === 'medio' ? CORES.interesse[1] : CORES.interesse[2],
+        valorOriginal: nome,
       }));
 
     const dadosDecisao = Object.entries(stats.estiloDecisao)
@@ -488,6 +541,7 @@ export default function PaginaInicial() {
         nome: LABELS.decisao[nome] || nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosTolerancia = Object.entries(stats.tolerancia)
@@ -496,6 +550,7 @@ export default function PaginaInicial() {
         nome: LABELS.tolerancia[nome] || nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosBolsonaro = Object.entries(stats.bolsonaro)
@@ -503,6 +558,7 @@ export default function PaginaInicial() {
         nome: LABELS.bolsonaro[nome] || nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosTransporte = Object.entries(stats.transporte)
@@ -512,6 +568,7 @@ export default function PaginaInicial() {
         nome: nome.replace(/_/g, ' ').charAt(0).toUpperCase() + nome.replace(/_/g, ' ').slice(1),
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosFontes = Object.entries(stats.fontes)
@@ -737,11 +794,13 @@ export default function PaginaInicial() {
             titulo="Distribuição por Gênero"
             icone={Users}
             corIcone="bg-pink-500/20"
+            isClickable
+            filterHint="Filtrar por gênero"
             dadoReferencia={mapaDadosReferencia.genero}
             desvioMedio={desviosMedios.genero}
           >
             <ResponsiveContainer width="100%" height={220}>
-              <PieChart>
+              <PieChart onClick={createChartClickHandler('generos')}>
                 <Pie
                   data={dadosGenero}
                   cx="50%"
@@ -752,6 +811,7 @@ export default function PaginaInicial() {
                   dataKey="valor"
                   nameKey="nome"
                   label={({ nome, percentual }) => `${nome}: ${percentual}%`}
+                  style={{ cursor: 'pointer' }}
                 >
                   <Cell fill="#3b82f6" />
                   <Cell fill="#ec4899" />
@@ -774,11 +834,13 @@ export default function PaginaInicial() {
             titulo="Distribuição por Cor/Raça"
             icone={Users}
             corIcone="bg-amber-500/20"
+            isClickable
+            filterHint="Filtrar por cor/raça"
             dadoReferencia={mapaDadosReferencia.cor_raca}
             desvioMedio={desviosMedios.cor_raca}
           >
             <ResponsiveContainer width="100%" height={220}>
-              <BarChart data={dadosCorRaca} layout="vertical">
+              <BarChart data={dadosCorRaca} layout="vertical" onClick={createChartClickHandler('cores_racas')} style={{ cursor: 'pointer' }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis type="number" stroke="#9ca3af" />
                 <YAxis dataKey="nome" type="category" width={60} stroke="#9ca3af" tick={{ fontSize: 11 }} />
@@ -791,7 +853,7 @@ export default function PaginaInicial() {
                     />
                   )}
                 />
-                <Bar dataKey="valor" fill="#f59e0b" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="valor" fill="#f59e0b" radius={[0, 4, 4, 0]} style={{ cursor: 'pointer' }} />
               </BarChart>
             </ResponsiveContainer>
           </GraficoCard>
@@ -835,9 +897,11 @@ export default function PaginaInicial() {
           subtitulo="Concentração de eleitores por região do DF"
           icone={MapPin}
           corIcone="bg-cyan-500/20"
+          isClickable
+          filterHint="Filtrar por região"
         >
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={dadosRegiao}>
+            <BarChart data={dadosRegiao} onClick={createChartClickHandler('regioes')} style={{ cursor: 'pointer' }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
               <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 10 }} angle={-45} height={80} />
               <YAxis stroke="#9ca3af" />
@@ -846,7 +910,7 @@ export default function PaginaInicial() {
                 itemStyle={{ color: '#fff' }}
                 formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
               />
-              <Bar dataKey="valor" fill="#06b6d4" radius={[4, 4, 0, 0]}>
+              <Bar dataKey="valor" fill="#06b6d4" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
                 {dadosRegiao.map((entry, index) => (
                   <Cell key={index} fill={index === 0 ? '#0891b2' : index < 3 ? '#22d3ee' : '#67e8f9'} />
                 ))}
@@ -870,11 +934,13 @@ export default function PaginaInicial() {
             titulo="Classe Social (Cluster)"
             icone={TrendingUp}
             corIcone="bg-emerald-500/20"
+            isClickable
+            filterHint="Filtrar por classe"
             dadoReferencia={mapaDadosReferencia.cluster_socioeconomico}
             desvioMedio={desviosMedios.cluster_socioeconomico}
           >
             <ResponsiveContainer width="100%" height={250}>
-              <PieChart>
+              <PieChart onClick={createChartClickHandler('clusters')}>
                 <Pie
                   data={dadosCluster}
                   cx="50%"
@@ -885,6 +951,7 @@ export default function PaginaInicial() {
                   dataKey="valor"
                   nameKey="nome"
                   label={({ nome, percentual }) => `${percentual}%`}
+                  style={{ cursor: 'pointer' }}
                 >
                   {dadosCluster.map((_, index) => (
                     <Cell key={index} fill={CORES.cluster[index % CORES.cluster.length]} />

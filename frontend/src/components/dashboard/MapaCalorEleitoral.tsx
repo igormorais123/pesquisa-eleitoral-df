@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, memo, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   X,
@@ -18,8 +19,11 @@ import {
   Flame,
   Crown,
   Calendar,
+  ExternalLink,
+  UserSearch,
 } from 'lucide-react';
 import type { Eleitor } from '@/types';
+import { useFilterNavigation } from '@/hooks/useFilterNavigation';
 
 // ============================================
 // TIPOS
@@ -457,10 +461,16 @@ interface ModalDetalhesProps {
 }
 
 function ModalDetalhes({ detalhes, onClose }: ModalDetalhesProps) {
+  const { navigateWithFilter } = useFilterNavigation();
   const candidatoLider = CANDIDATOS.find((c) => c.id === detalhes.lider);
 
   const votacaoOrdenada = Object.entries(detalhes.votacao)
     .sort((a, b) => b[1].percentual - a[1].percentual);
+
+  const handleVerEleitores = () => {
+    navigateWithFilter('regioes', detalhes.regiao);
+    onClose();
+  };
 
   return (
     <motion.div
@@ -496,12 +506,22 @@ function ModalDetalhes({ detalhes, onClose }: ModalDetalhesProps) {
               </div>
             </div>
           </div>
-          <button
-            onClick={onClose}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors"
-          >
-            <X className="w-5 h-5 text-slate-400" />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleVerEleitores}
+              className="flex items-center gap-2 px-3 py-2 rounded-xl bg-primary/20 hover:bg-primary/30 text-primary transition-colors"
+            >
+              <UserSearch className="w-4 h-4" />
+              <span className="text-sm font-medium">Ver Eleitores</span>
+              <ExternalLink className="w-3 h-3" />
+            </button>
+            <button
+              onClick={onClose}
+              className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 transition-colors"
+            >
+              <X className="w-5 h-5 text-slate-400" />
+            </button>
+          </div>
         </div>
 
         {/* Líder destacado */}
@@ -629,6 +649,18 @@ function ModalDetalhes({ detalhes, onClose }: ModalDetalhesProps) {
             ))}
           </div>
         </div>
+
+        {/* Call-to-action */}
+        <button
+          onClick={handleVerEleitores}
+          className="w-full mt-6 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary/20 to-primary/10 hover:from-primary/30 hover:to-primary/20 rounded-xl border border-primary/30 transition-all group"
+        >
+          <Users className="w-5 h-5 text-primary" />
+          <span className="text-sm font-medium text-primary">
+            Explorar {detalhes.totalEleitores} eleitores de {detalhes.regiao}
+          </span>
+          <ExternalLink className="w-4 h-4 text-primary opacity-50 group-hover:opacity-100 transition-opacity" />
+        </button>
       </motion.div>
     </motion.div>
   );
