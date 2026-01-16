@@ -15,8 +15,8 @@ const ALGORITHM = 'HS256';
 const ACCESS_TOKEN_EXPIRE_MINUTES = parseInt(process.env.ACCESS_TOKEN_EXPIRE_MINUTES || '60', 10);
 
 // Usuario de teste (mesmo do backend)
-// Hash da senha "professorigor" - gerado com bcrypt.hash('professorigor', 12)
-const SENHA_HASH_TESTE = '$2b$12$5aNfU7uHm17yLqsT1ll89eWzptuUwyiIq/nrFgUvnfc6jXq9GFsii';
+// Hash da senha "professorigor" - deve ser igual ao backend
+const SENHA_HASH_TESTE = '$2b$12$J6KfB1mVkGLAXyksmR6w6eh.C3fQGRuSMOxsoDeYoVweShfhJy22y';
 
 const USUARIO_TESTE = {
   id: 'user-001',
