@@ -54,6 +54,11 @@ export function clearAuthToken(): void {
 // Interceptor para adicionar token (usa cache em memória)
 api.interceptors.request.use(
   (config) => {
+    // Se já tem Authorization header (setado pelo auth-store), não sobrescreve
+    if (config.headers.Authorization) {
+      return config;
+    }
+    // Senão, tenta pegar do cache/localStorage
     const token = getAuthToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
