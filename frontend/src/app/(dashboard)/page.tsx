@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
   Users,
@@ -24,8 +24,10 @@ import {
   Scale,
   Eye,
   ExternalLink,
+  MousePointerClick,
 } from 'lucide-react';
 import Link from 'next/link';
+import { useFilterNavigation, FilterType } from '@/hooks/useFilterNavigation';
 import {
   PieChart,
   Pie,
@@ -168,7 +170,7 @@ function CardAcaoRapida({
   );
 }
 
-// Componente de Card de Gráfico com suporte a fonte oficial
+// Componente de Card de Gráfico com suporte a fonte oficial e clicabilidade
 function GraficoCard({
   titulo,
   subtitulo,
@@ -178,6 +180,8 @@ function GraficoCard({
   className = '',
   dadoReferencia,
   desvioMedio,
+  isClickable = false,
+  filterHint,
 }: {
   titulo: string;
   subtitulo?: string;
@@ -187,9 +191,11 @@ function GraficoCard({
   className?: string;
   dadoReferencia?: DadoReferencia;
   desvioMedio?: number;
+  isClickable?: boolean;
+  filterHint?: string;
 }) {
   return (
-    <div className={`glass-card rounded-xl p-6 ${className}`}>
+    <div className={`glass-card rounded-xl p-6 ${className} ${isClickable ? 'group' : ''}`}>
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className={`w-10 h-10 rounded-lg ${corIcone} flex items-center justify-center`}>
@@ -200,17 +206,26 @@ function GraficoCard({
             {subtitulo && <p className="text-xs text-muted-foreground">{subtitulo}</p>}
           </div>
         </div>
-        {/* Indicador de desvio médio */}
-        {desvioMedio !== undefined && (
-          <div className={`px-2 py-1 rounded text-xs font-medium ${
-            desvioMedio <= 3 ? 'bg-green-500/15 text-green-500' :
-            desvioMedio <= 7 ? 'bg-blue-500/15 text-blue-500' :
-            desvioMedio <= 12 ? 'bg-yellow-500/15 text-yellow-500' :
-            'bg-red-500/15 text-red-500'
-          }`}>
-            Δ {desvioMedio.toFixed(1)}%
-          </div>
-        )}
+        <div className="flex items-center gap-2">
+          {/* Indicador de clicável */}
+          {isClickable && (
+            <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+              <MousePointerClick className="w-3 h-3" />
+              <span>{filterHint || 'Clique para filtrar'}</span>
+            </div>
+          )}
+          {/* Indicador de desvio médio */}
+          {desvioMedio !== undefined && (
+            <div className={`px-2 py-1 rounded text-xs font-medium ${
+              desvioMedio <= 3 ? 'bg-green-500/15 text-green-500' :
+              desvioMedio <= 7 ? 'bg-blue-500/15 text-blue-500' :
+              desvioMedio <= 12 ? 'bg-yellow-500/15 text-yellow-500' :
+              'bg-red-500/15 text-red-500'
+            }`}>
+              Δ {desvioMedio.toFixed(1)}%
+            </div>
+          )}
+        </div>
       </div>
       {children}
       {/* Fonte oficial */}
@@ -350,6 +365,25 @@ function calcularDesvioMedio(divergencias: MapaDivergencias, variavel: string): 
 
 export default function PaginaInicial() {
   const eleitores = eleitoresData as Eleitor[];
+  const { navigateWithFilter } = useFilterNavigation();
+
+  // Handler para clique em gráficos - navega para eleitores com filtro
+  const createChartClickHandler = useCallback(
+    (filterType: FilterType, valueMapper?: (payload: any) => string) => {
+      return (data: any) => {
+        if (data?.activePayload?.[0]?.payload) {
+          const payload = data.activePayload[0].payload;
+          const value = valueMapper
+            ? valueMapper(payload)
+            : payload.valorOriginal || payload.nome || payload.name;
+          if (value) {
+            navigateWithFilter(filterType, value);
+          }
+        }
+      };
+    },
+    [navigateWithFilter]
+  );
 
   // Hook para calcular divergências
   const divergencias = useDivergencias(eleitores);
