@@ -28,7 +28,15 @@ import {
   XCircle,
   Loader2,
   Sparkles,
+  FileSpreadsheet,
+  FileDown,
 } from 'lucide-react';
+import {
+  exportarResultadoExcel,
+  exportarResultadoPDF,
+  exportarRelatorioInteligenciaPDF,
+} from '@/lib/export';
+import { WordCloudRespostas } from '@/components/charts';
 import {
   PieChart,
   Pie,
@@ -381,31 +389,58 @@ export default function PaginaResultadoDetalhe() {
           </div>
         </div>
 
-        <button
-          onClick={() => {
-            const exportData = {
-              sessao,
-              relatorio,
-              metadados: metadadosRelatorio,
-            };
-            const blob = new Blob([JSON.stringify(exportData, null, 2)], {
-              type: 'application/json',
-            });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `resultado-completo-${sessao.id}.json`;
-            a.click();
-          }}
-          className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors"
-        >
-          <Download className="w-4 h-4" />
-          Exportar
-        </button>
+        {/* Dropdown de Exportação */}
+        <div className="relative group">
+          <button className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors">
+            <Download className="w-4 h-4" />
+            Exportar
+            <ChevronDown className="w-4 h-4" />
+          </button>
+          <div className="absolute right-0 mt-2 w-48 bg-secondary/95 backdrop-blur border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+            <button
+              onClick={() => exportarResultadoExcel(sessao)}
+              className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-t-lg transition-colors"
+            >
+              <FileSpreadsheet className="w-4 h-4 text-green-400" />
+              Exportar Excel
+            </button>
+            <button
+              onClick={() => exportarResultadoPDF(sessao)}
+              className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 transition-colors"
+            >
+              <FileDown className="w-4 h-4 text-red-400" />
+              Exportar PDF
+            </button>
+            {relatorio && (
+              <button
+                onClick={() => exportarRelatorioInteligenciaPDF(sessao, relatorio)}
+                className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 transition-colors"
+              >
+                <Brain className="w-4 h-4 text-purple-400" />
+                PDF Inteligência
+              </button>
+            )}
+            <button
+              onClick={() => {
+                const exportData = { sessao, relatorio, metadados: metadadosRelatorio };
+                const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `resultado-completo-${sessao.id}.json`;
+                a.click();
+              }}
+              className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-b-lg transition-colors"
+            >
+              <FileText className="w-4 h-4 text-blue-400" />
+              Exportar JSON
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Cards de resumo */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="glass-card rounded-xl p-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
@@ -558,6 +593,12 @@ export default function PaginaResultadoDetalhe() {
                 </span>
               </div>
             </div>
+          </div>
+
+          {/* Nuvem de Palavras */}
+          <div className="glass-card rounded-xl p-6 lg:col-span-2">
+            <h3 className="font-semibold text-foreground mb-4">Nuvem de Palavras das Respostas</h3>
+            <WordCloudRespostas respostas={sessao.respostas} altura={300} />
           </div>
         </div>
       )}

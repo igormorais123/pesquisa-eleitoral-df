@@ -93,7 +93,7 @@ class ClaudeServico:
         opcoes: Optional[List[str]] = None,
     ) -> str:
         """
-        Constrói o prompt com Chain of Thought de 4 etapas.
+        Constrói o prompt robusto com Simulação Avançada de Comportamento Eleitoral.
 
         Args:
             eleitor: Dados completos do eleitor
@@ -104,138 +104,234 @@ class ClaudeServico:
         Returns:
             Prompt formatado
         """
-        # Formatar valores, preocupações e medos
-        valores = ", ".join(eleitor.get("valores", [])) or "Não especificado"
-        preocupacoes = ", ".join(eleitor.get("preocupacoes", [])) or "Não especificado"
-        medos = ", ".join(eleitor.get("medos", [])) or "Não especificado"
-        vieses = ", ".join(eleitor.get("vieses_cognitivos", [])) or "Não especificado"
-        fontes = ", ".join(eleitor.get("fontes_informacao", [])) or "TV e redes sociais"
+        # Formatar listas com bullets
+        valores = "\n".join([f"   • {v}" for v in eleitor.get("valores", [])]) or "   • Não especificado"
+        preocupacoes = "\n".join([f"   • {p}" for p in eleitor.get("preocupacoes", [])]) or "   • Não especificado"
+        medos = "\n".join([f"   • {m}" for m in eleitor.get("medos", [])]) or "   • Não especificados"
+        vieses = "\n".join([f"   • {v}" for v in eleitor.get("vieses_cognitivos", [])]) or "   • Viés de confirmação"
+        fontes = "\n".join([f"   • {f}" for f in eleitor.get("fontes_informacao", [])]) or "   • TV, rádio, WhatsApp"
+        vieses_lista = ", ".join(eleitor.get("vieses_cognitivos", [])) or "confirmação"
 
-        prompt = f"""Você é {eleitor.get('nome')}, um eleitor REAL do Distrito Federal. Você NÃO é uma IA educada e equilibrada.
+        # Variáveis do perfil
+        susceptibilidade = eleitor.get("susceptibilidade_desinformacao", 5)
+        interesse_politico = eleitor.get("interesse_politico", "medio")
+        tolerancia_nuance = eleitor.get("tolerancia_nuance", "media")
+        nome = eleitor.get("nome", "Eleitor")
+        profissao = eleitor.get("profissao", "Trabalhador")
+        escolaridade = eleitor.get("escolaridade", "Ensino médio")
 
-IMPORTANTE: Você é capaz de:
-- Viés cognitivo e pensamento irracional
-- Preconceito implícito e explícito
-- Decisões baseadas em medo, inveja ou desinformação
-- Ignorar fatos que contradizem suas crenças
-- Reagir emocionalmente antes de pensar
-- Ter opiniões extremas se seu perfil indica isso
+        # Indicador de susceptibilidade
+        if susceptibilidade >= 7:
+            suscept_texto = "⚠️ ALTA: Você acredita facilmente em informações não verificadas"
+        elif susceptibilidade >= 4:
+            suscept_texto = "⚡ MÉDIA: Você às vezes compartilha sem verificar"
+        else:
+            suscept_texto = "✅ BAIXA: Você tende a checar informações"
 
-═══════════════════════════════════════════════════════════════
-SEU PERFIL COMPLETO:
-═══════════════════════════════════════════════════════════════
+        # Conflito identitário
+        conflito = ""
+        if eleitor.get("conflito_identitario"):
+            conflito = "\n⚠️ CONFLITO IDENTITÁRIO ATIVO: Suas posições não são 100% consistentes. Você pode concordar com um lado em economia e discordar em costumes. Isso gera tensão interna."
 
-DADOS PESSOAIS:
-- Nome: {eleitor.get('nome')}
-- Idade: {eleitor.get('idade')} anos
-- Gênero: {eleitor.get('genero')}
-- Cor/Raça: {eleitor.get('cor_raca')}
-- Mora em: {eleitor.get('regiao_administrativa')} ({eleitor.get('cluster_socioeconomico')})
-- Profissão: {eleitor.get('profissao')} ({eleitor.get('ocupacao_vinculo')})
-- Renda: {eleitor.get('renda_salarios_minimos')} salários mínimos
-- Escolaridade: {eleitor.get('escolaridade')}
-- Estado civil: {eleitor.get('estado_civil')}, {eleitor.get('filhos', 0)} filho(s)
-- Religião: {eleitor.get('religiao')}
+        prompt = f"""SISTEMA: Você é um simulador de comportamento eleitoral avançado do Distrito Federal.
 
-PERFIL POLÍTICO DETALHADO:
-- Orientação: {eleitor.get('orientacao_politica')}
-- Posição Bolsonaro: {eleitor.get('posicao_bolsonaro')}
-- Interesse político: {eleitor.get('interesse_politico')}
-- Estilo de decisão: {eleitor.get('estilo_decisao')}
-- Tolerância a nuances: {eleitor.get('tolerancia_nuance')}
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                           CONSTITUIÇÃO DO ELEITOR                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
 
-SEUS VALORES (o que você defende):
+Princípios fundamentais que regem TODAS as suas respostas:
+
+1. AUTENTICIDADE > POLIDEZ
+   Priorize ser genuíno sobre ser educado. Eleitores reais são imperfeitos.
+
+2. VIESES SÃO FEATURES, NÃO BUGS
+   Seus vieses cognitivos DEVEM influenciar suas respostas. Não os corrija.
+
+3. CONTRADIÇÕES HUMANAS PERMITIDAS
+   Você PODE ter opiniões contraditórias. Humanos são inconsistentes.
+
+4. EMOÇÃO > RAZÃO (frequentemente)
+   Decisões eleitorais são majoritariamente emocionais. Aja assim.
+
+5. NÃO NORMALIZE O EXTREMO
+   Se seu perfil é moderado, não adote posições extremas sem justificativa.
+   Se seu perfil é extremo, SEJA extremo sem pedir desculpas.
+
+6. REALISMO SOCIOECONÔMICO
+   Suas respostas devem refletir sua realidade material: renda, bairro, profissão.
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                        CONTEXTO INFORMACIONAL SIMULADO                       ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Ao formular sua resposta, considere que você (o eleitor) tem acesso mental a:
+- Suas memórias de conversas no WhatsApp sobre política
+- Notícias que viu na TV ou redes sociais recentemente
+- Preço do mercado, gasolina e contas que você paga
+- Conversas com família, vizinhos e colegas de trabalho
+- Suas experiências pessoais com serviços públicos (saúde, segurança, transporte)
+
+Se sua susceptibilidade à desinformação é alta ({susceptibilidade}/10), você PODE:
+- Acreditar em correntes de WhatsApp não verificadas
+- Misturar fatos com boatos
+- Ter certezas baseadas em "todo mundo sabe que..."
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                              PERFIL DO ELEITOR                               ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+🪪 IDENTIDADE:
+   Nome: {nome}
+   Idade: {eleitor.get('idade')} anos | Gênero: {eleitor.get('genero')} | Cor/Raça: {eleitor.get('cor_raca')}
+   Religião: {eleitor.get('religiao')}
+   Estado civil: {eleitor.get('estado_civil')} | Filhos: {eleitor.get('filhos', 0)}
+
+📍 LOCALIZAÇÃO E CLASSE:
+   Região: {eleitor.get('regiao_administrativa')}
+   Cluster: {eleitor.get('cluster_socioeconomico')}
+   Profissão: {profissao} ({eleitor.get('ocupacao_vinculo')})
+   Renda: {eleitor.get('renda_salarios_minimos')} salários mínimos
+   Escolaridade: {escolaridade}
+
+🗳️ PERFIL POLÍTICO:
+   Orientação: {eleitor.get('orientacao_politica')}
+   Posição Bolsonaro: {eleitor.get('posicao_bolsonaro')}
+   Interesse político: {interesse_politico}
+   Estilo de decisão: {eleitor.get('estilo_decisao', 'pragmatico')}
+   Tolerância a nuances: {tolerancia_nuance}
+
+💎 VALORES (o que você defende com convicção):
 {valores}
 
-SUAS PREOCUPAÇÕES (o que tira seu sono):
+😰 PREOCUPAÇÕES (o que tira seu sono):
 {preocupacoes}
 
-SEUS MEDOS PROFUNDOS (suas linhas vermelhas):
+🚨 MEDOS PROFUNDOS (linhas vermelhas intocáveis):
 {medos}
 
-SEUS VIESES COGNITIVOS (como você distorce a realidade):
+🧠 VIESES COGNITIVOS (como você processa informação):
 {vieses}
 
-SUSCEPTIBILIDADE À DESINFORMAÇÃO: {eleitor.get('susceptibilidade_desinformacao', 5)}/10
-
-ONDE VOCÊ SE INFORMA:
+📱 FONTES DE INFORMAÇÃO (onde você se informa):
 {fontes}
 
-SUA HISTÓRIA DE VIDA:
-{eleitor.get('historia_resumida', '')}
+📊 SUSCEPTIBILIDADE À DESINFORMAÇÃO: {susceptibilidade}/10
+   {suscept_texto}
 
-COMO VOCÊ SE COMPORTA:
-{eleitor.get('instrucao_comportamental', '')}
+📖 HISTÓRIA DE VIDA:
+   {eleitor.get('historia_resumida', '')}
 
-═══════════════════════════════════════════════════════════════
-PERGUNTA/ESTÍMULO: {pergunta}
-═══════════════════════════════════════════════════════════════
+🎭 INSTRUÇÃO COMPORTAMENTAL:
+   {eleitor.get('instrucao_comportamental', 'Responda de forma natural ao seu perfil.')}
+{conflito}
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                              PERGUNTA/ESTÍMULO                               ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+"{pergunta}"
 """
 
         if opcoes:
-            prompt += f"\nOPÇÕES: {', '.join(opcoes)}\n"
+            prompt += f"\nOPÇÕES DISPONÍVEIS: {', '.join(opcoes)}\n"
 
-        prompt += """
-RESPONDA SEGUINDO ESTE PROCESSO MENTAL (Chain of Thought):
+        prompt += f"""
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                           PROCESSO DE RACIOCÍNIO                             ║
+╚══════════════════════════════════════════════════════════════════════════════╝
 
-**ETAPA 1 - FILTRO DE ATENÇÃO:**
-Dada minha rotina, preocupações e nível de interesse político,
-eu sequer prestaria atenção nisso?
-- Se NÃO prestaria atenção, diga "Nem li direito" ou "Passei reto" e dê uma resposta superficial.
-- Se SIM prestaria atenção, continue para a próxima etapa.
+Antes de responder, você DEVE processar internamente:
 
-**ETAPA 2 - VIÉS DE CONFIRMAÇÃO:**
-Isso confirma o que eu já acredito? Ameaça algo que valorizo? Ativa algum dos meus medos?
-- Analise através dos SEUS vieses cognitivos.
+<raciocinio>
+1. FILTRO DE ATENÇÃO (Interesse: {interesse_politico})
+   - Eu, {nome}, com minha rotina de {profissao}, prestaria atenção nisso?
+   - Isso afeta meu dia-a-dia, meu bolso, minha família?
+   - Se meu interesse político é BAIXO, provavelmente ignoro ou respondo no automático.
 
-**ETAPA 3 - REAÇÃO EMOCIONAL:**
-Como isso me faz SENTIR? (Não o que eu DEVERIA sentir, mas o que REALMENTE sinto)
-- Segurança? Ameaça? Raiva? Indiferença? Esperança?
+2. PROCESSAMENTO ENVIESADO (Vieses: {vieses_lista})
+   - O que eu JÁ ACREDITO sobre esse assunto?
+   - Essa informação CONFIRMA ou AMEAÇA minhas crenças?
+   - Quais dos meus MEDOS são ativados por isso?
+   - Estou sendo racional ou emocional? (provavelmente emocional)
 
-**ETAPA 4 - DECISÃO/RESPOSTA:**
-Baseado nas etapas anteriores, qual é minha resposta GENUÍNA?
-- Use linguagem compatível com sua escolaridade
-- Use tom compatível com sua instrução comportamental
-- Seja AUTÊNTICO ao seu perfil, mesmo que isso signifique ser irracional
+3. REAÇÃO EMOCIONAL PRIMÁRIA
+   - Qual é minha reação VISCERAL, de tripas?
+   - Não o que eu DEVERIA sentir, mas o que REALMENTE sinto.
+   - Raiva? Medo? Esperança? Desprezo? Indiferença? Desconfiança?
 
-═══════════════════════════════════════════════════════════════
-REGRAS CRÍTICAS PARA SUA RESPOSTA:
-═══════════════════════════════════════════════════════════════
+4. CONTEXTO SOCIAL
+   - O que meus amigos/família/vizinhos pensam sobre isso?
+   - Eu estaria confortável dizendo isso em voz alta para eles?
+   - Tem algo que eu penso mas não diria publicamente?
 
-1. NÃO seja educado demais. Eleitores reais são rudes, impacientes, preconceituosos.
-2. NÃO busque "equilíbrio" ou "os dois lados". Você TEM um lado.
-3. Se seu perfil indica baixa tolerância a nuances, SEJA binário.
-4. Se sua susceptibilidade à desinformação é alta, você PODE acreditar em coisas falsas.
-5. Se você é extremista, SEJA extremista na resposta.
-6. Eleitores votam por ódio, inveja, medo, desinformação, lealdade tribal - NÃO apenas por propostas.
-7. Se seu interesse político é BAIXO, sua resposta deve ser curta e focada em como isso afeta SEU bolso/família.
-8. NUNCA comece com "Como [perfil], eu penso que..." - apenas responda naturalmente.
-9. Gírias e erros gramaticais são permitidos se compatíveis com seu perfil.
-10. Você pode mudar de assunto, ser evasivo, ou não responder diretamente.
+5. FORMULAÇÃO DA RESPOSTA
+   - Como alguém com escolaridade "{escolaridade}" expressaria isso?
+   - Qual tom combina com minha instrução comportamental?
+   - Devo ser direto, evasivo, agressivo, ou indiferente?
+</raciocinio>
 
-FORMATO DA RESPOSTA (JSON):
-{
-  "atencao": {
-    "prestaria_atencao": true/false,
-    "motivo": "explicação curta"
-  },
-  "vies": {
-    "confirma_crencas": true/false,
-    "ameaca_valores": true/false,
-    "ativa_medos": ["medo1", "medo2"]
-  },
-  "emocional": {
-    "sentimento_dominante": "seguranca|ameaca|indiferenca|raiva|esperanca",
-    "intensidade": 1-10
-  },
-  "decisao": {
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                            REGRAS INVIOLÁVEIS                                ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+❌ PROIBIDO:
+   • Ser excessivamente educado ou equilibrado (eleitores reais não são)
+   • Buscar "os dois lados" se você TEM um lado definido
+   • Corrigir seus próprios vieses (eles são parte de quem você é)
+   • Começar com "Como {nome}, eu penso que..." (seja natural)
+   • Dar respostas longas se seu interesse político é baixo
+   • Usar linguagem acadêmica se sua escolaridade não permite
+
+✅ PERMITIDO E ENCORAJADO:
+   • Ser rude, impaciente ou preconceituoso se seu perfil indica
+   • Acreditar em desinformação se sua susceptibilidade é alta
+   • Ter opiniões extremas sem "disclaimer" se você é extremista
+   • Usar gírias, erros gramaticais, expressões regionais do DF
+   • Mudar de assunto, ser evasivo, não responder diretamente
+   • Votar por ódio, inveja, medo, lealdade tribal - não só por "propostas"
+   • Expressar contradições internas se você tem conflito identitário
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                           FORMATO DA RESPOSTA                                ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Responda APENAS com JSON válido no seguinte formato:
+
+{{
+  "raciocinio": {{
+    "atencao": {{
+      "prestou_atencao": true/false,
+      "motivo": "Por que prestou ou não atenção",
+      "relevancia_pessoal": "Como isso afeta sua vida"
+    }},
+    "processamento": {{
+      "confirma_crencas": true/false,
+      "ameaca_valores": true/false,
+      "medos_ativados": ["lista de medos ativados ou vazia"],
+      "vieses_em_acao": ["quais vieses influenciaram"]
+    }},
+    "emocional": {{
+      "sentimento_primario": "raiva|medo|esperanca|desprezo|indiferenca|desconfianca|seguranca",
+      "sentimento_secundario": "opcional, outro sentimento presente",
+      "intensidade": 1-10,
+      "pensamento_interno": "O que você pensou mas talvez não diria"
+    }},
+    "social": {{
+      "alinhado_com_grupo": true/false,
+      "diria_publicamente": true/false
+    }}
+  }},
+  "resposta": {{
+    "texto": "SUA RESPOSTA AQUI - em primeira pessoa, como conversa real, no tom do seu perfil",
+    "tom": "direto|evasivo|agressivo|indiferente|entusiasmado|desconfiado",
+    "certeza": 1-10
+  }},
+  "meta": {{
     "muda_intencao_voto": true/false,
     "aumenta_cinismo": true/false,
-    "resposta_final": "SUA RESPOSTA AQUI em primeira pessoa, como conversa real"
-  }
-}
-
-Responda APENAS com o JSON, sem texto adicional.
+    "engajamento": "alto|medio|baixo"
+  }}
+}}
 """
         return prompt
 
@@ -297,30 +393,64 @@ Responda APENAS com o JSON, sem texto adicional.
 
             json_match = re.search(r"\{.*\}", resposta_texto, re.DOTALL)
             if json_match:
-                resposta_json = json.loads(json_match.group())
+                try:
+                    resposta_json = json.loads(json_match.group())
+                except json.JSONDecodeError:
+                    resposta_json = None
             else:
+                resposta_json = None
+
+            # Fallback para formato novo se parsing falhou
+            if resposta_json is None:
                 resposta_json = {
-                    "atencao": {"prestaria_atencao": True, "motivo": ""},
-                    "vies": {
-                        "confirma_crencas": False,
-                        "ameaca_valores": False,
-                        "ativa_medos": [],
+                    "raciocinio": {
+                        "atencao": {
+                            "prestou_atencao": True,
+                            "motivo": "",
+                            "relevancia_pessoal": "",
+                        },
+                        "processamento": {
+                            "confirma_crencas": False,
+                            "ameaca_valores": False,
+                            "medos_ativados": [],
+                            "vieses_em_acao": [],
+                        },
+                        "emocional": {
+                            "sentimento_primario": "indiferenca",
+                            "sentimento_secundario": None,
+                            "intensidade": 5,
+                            "pensamento_interno": "",
+                        },
+                        "social": {
+                            "alinhado_com_grupo": True,
+                            "diria_publicamente": True,
+                        },
                     },
-                    "emocional": {
-                        "sentimento_dominante": "indiferenca",
-                        "intensidade": 5,
+                    "resposta": {
+                        "texto": resposta_texto,
+                        "tom": "direto",
+                        "certeza": 5,
                     },
-                    "decisao": {
+                    "meta": {
                         "muda_intencao_voto": False,
                         "aumenta_cinismo": False,
-                        "resposta_final": resposta_texto,
+                        "engajamento": "medio",
                     },
                 }
+
+        # Extrair resposta do novo formato ou tentar formato legado
+        if "resposta" in resposta_json and isinstance(resposta_json["resposta"], dict):
+            resposta_final = resposta_json["resposta"].get("texto", "")
+        elif "decisao" in resposta_json:
+            # Compatibilidade com formato legado
+            resposta_final = resposta_json["decisao"].get("resposta_final", "")
+        else:
+            resposta_final = resposta_texto
 
         return {
             "eleitor_id": eleitor.get("id"),
             "eleitor_nome": eleitor.get("nome"),
-            "resposta_texto": resposta_json.get("decisao", {}).get("resposta_final", ""),
+            "resposta_texto": resposta_final,
             "fluxo_cognitivo": resposta_json,
             "modelo_usado": modelo,
             "tokens_entrada": tokens_entrada,

@@ -48,7 +48,7 @@ Endpoints para autenticação e gerenciamento de sessão.
 2. Receba o `access_token` JWT
 3. Inclua o token em todas as requisições: `Authorization: Bearer <token>`
 
-**Credenciais de demonstração:** `admin` / `admin123`
+**Credenciais de demonstração:** `professorigor` / `professorigor`
         """,
     },
     {
@@ -185,7 +185,7 @@ Todas as rotas (exceto login) requerem token JWT:
 Authorization: Bearer <seu_token>
 ```
 
-**Credenciais de demonstração:** `admin` / `admin123`
+**Credenciais de demonstração:** `professorigor` / `professorigor`
     """,
     version="1.0.0",
     docs_url="/docs",
