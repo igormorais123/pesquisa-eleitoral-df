@@ -387,7 +387,7 @@ export default function PaginaGerarEleitores() {
                   <Wallet className="w-4 h-4 inline mr-1" />
                   Cluster Socioeconomico (opcional)
                 </label>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {CLUSTERS.map((c) => (
                     <button
                       key={c.value}

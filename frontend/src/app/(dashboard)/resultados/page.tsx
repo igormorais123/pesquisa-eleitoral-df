@@ -147,7 +147,7 @@ export default function PaginaResultados() {
               <Link
                 key={sessao.id}
                 href={`/resultados/${sessao.id}`}
-                className="flex items-center gap-4 p-4 hover:bg-secondary/50 transition-colors"
+                className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4 p-4 hover:bg-secondary/50 transition-colors"
               >
                 {/* Ícone */}
                 <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center">
@@ -166,7 +166,7 @@ export default function PaginaResultados() {
                 </div>
 
                 {/* Métricas */}
-                <div className="flex items-center gap-6">
+                <div className="hidden sm:flex items-center gap-4 lg:gap-6">
                   <div className="text-right">
                     <p className="text-sm text-muted-foreground">Custo</p>
                     <p className="font-medium text-yellow-400">
