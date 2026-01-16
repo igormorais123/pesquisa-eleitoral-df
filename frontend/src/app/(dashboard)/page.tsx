@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useMemo, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
   Users,
@@ -23,10 +23,11 @@ import {
   UserCheck,
   Scale,
   Eye,
-  MousePointerClick,
   ExternalLink,
+  MousePointerClick,
 } from 'lucide-react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { useFilterNavigation, FilterType } from '@/hooks/useFilterNavigation';
 import {
   PieChart,
@@ -60,7 +61,12 @@ import { api } from '@/services/api';
 import { formatarNumero, formatarPercentual } from '@/lib/utils';
 import eleitoresData from '@/data/eleitores-df-400.json';
 import type { Eleitor } from '@/types';
-import dynamic from 'next/dynamic';
+import { ResumoValidacao, TooltipComFonte, BadgeDivergenciaGrafico } from '@/components/validacao';
+import {
+  mapaDadosReferencia,
+  type DadoReferencia,
+} from '@/data/dados-referencia-oficiais';
+import { useDivergencias, type MapaDivergencias } from '@/hooks/useDivergencias';
 
 // Importar mapa de calor dinamicamente para evitar SSR issues
 const MapaCalorEleitoral = dynamic(
@@ -164,7 +170,7 @@ function CardAcaoRapida({
   );
 }
 
-// Componente de Card de Gráfico (com suporte a clique)
+// Componente de Card de Gráfico com suporte a clique e fonte oficial
 function GraficoCard({
   titulo,
   subtitulo,
@@ -174,6 +180,8 @@ function GraficoCard({
   className = '',
   isClickable = false,
   filterHint,
+  dadoReferencia,
+  desvioMedio,
 }: {
   titulo: string;
   subtitulo?: string;
@@ -183,10 +191,12 @@ function GraficoCard({
   className?: string;
   isClickable?: boolean;
   filterHint?: string;
+  dadoReferencia?: DadoReferencia;
+  desvioMedio?: number;
 }) {
   return (
     <div className={`glass-card rounded-xl p-6 ${className} ${isClickable ? 'group' : ''}`}>
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className={`w-10 h-10 rounded-lg ${corIcone} flex items-center justify-center`}>
             <Icone className="w-5 h-5 text-white" />
@@ -196,14 +206,41 @@ function GraficoCard({
             {subtitulo && <p className="text-xs text-muted-foreground">{subtitulo}</p>}
           </div>
         </div>
-        {isClickable && (
-          <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
-            <MousePointerClick className="w-3 h-3" />
-            <span>{filterHint || 'Clique para filtrar'}</span>
-          </div>
-        )}
+        <div className="flex items-center gap-2">
+          {/* Indicador de desvio médio */}
+          {desvioMedio !== undefined && (
+            <div className={`px-2 py-1 rounded text-xs font-medium ${
+              desvioMedio <= 3 ? 'bg-green-500/15 text-green-500' :
+              desvioMedio <= 7 ? 'bg-blue-500/15 text-blue-500' :
+              desvioMedio <= 12 ? 'bg-yellow-500/15 text-yellow-500' :
+              'bg-red-500/15 text-red-500'
+            }`}>
+              Δ {desvioMedio.toFixed(1)}%
+            </div>
+          )}
+          {isClickable && (
+            <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+              <MousePointerClick className="w-3 h-3" />
+              <span>{filterHint || 'Clique para filtrar'}</span>
+            </div>
+          )}
+        </div>
       </div>
       {children}
+      {/* Fonte oficial */}
+      {dadoReferencia && (
+        <div className="mt-3 pt-2 border-t border-border flex items-center justify-between text-[10px] text-muted-foreground">
+          <span>Ref: {dadoReferencia.fonte} ({dadoReferencia.ano})</span>
+          <a
+            href={dadoReferencia.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline flex items-center gap-1"
+          >
+            Fonte <ExternalLink className="w-2.5 h-2.5" />
+          </a>
+        </div>
+      )}
     </div>
   );
 }
@@ -313,6 +350,18 @@ const LABELS: Record<string, Record<string, string>> = {
   },
 };
 
+/**
+ * Calcula o desvio médio para uma variável
+ */
+function calcularDesvioMedio(divergencias: MapaDivergencias, variavel: string): number {
+  const divs = divergencias[variavel];
+  if (!divs) return 0;
+  const valores = Object.values(divs);
+  if (valores.length === 0) return 0;
+  const soma = valores.reduce((acc, d) => acc + Math.abs(d.diferenca), 0);
+  return soma / valores.length;
+}
+
 export default function PaginaInicial() {
   const eleitores = eleitoresData as Eleitor[];
   const { navigateWithFilter } = useFilterNavigation();
@@ -343,8 +392,30 @@ export default function PaginaInicial() {
     [navigateWithFilter]
   );
 
-  // Calcular todas as estatísticas
-  const stats = {
+  // Hook para calcular divergências
+  const divergencias = useDivergencias(eleitores);
+
+  // Calcula desvios médios para cada variável
+  const desviosMedios = useMemo(() => ({
+    genero: calcularDesvioMedio(divergencias, 'genero'),
+    cor_raca: calcularDesvioMedio(divergencias, 'cor_raca'),
+    faixa_etaria: calcularDesvioMedio(divergencias, 'faixa_etaria'),
+    cluster_socioeconomico: calcularDesvioMedio(divergencias, 'cluster_socioeconomico'),
+    escolaridade: calcularDesvioMedio(divergencias, 'escolaridade'),
+    ocupacao_vinculo: calcularDesvioMedio(divergencias, 'ocupacao_vinculo'),
+    renda_salarios_minimos: calcularDesvioMedio(divergencias, 'renda_salarios_minimos'),
+    religiao: calcularDesvioMedio(divergencias, 'religiao'),
+    estado_civil: calcularDesvioMedio(divergencias, 'estado_civil'),
+    orientacao_politica: calcularDesvioMedio(divergencias, 'orientacao_politica'),
+    interesse_politico: calcularDesvioMedio(divergencias, 'interesse_politico'),
+    posicao_bolsonaro: calcularDesvioMedio(divergencias, 'posicao_bolsonaro'),
+    estilo_decisao: calcularDesvioMedio(divergencias, 'estilo_decisao'),
+    tolerancia_nuance: calcularDesvioMedio(divergencias, 'tolerancia_nuance'),
+    meio_transporte: calcularDesvioMedio(divergencias, 'meio_transporte'),
+  }), [divergencias]);
+
+  // Performance: Memoiza todas as estatísticas (calculado uma vez, não a cada render)
+  const stats = useMemo(() => ({
     total: eleitores.length,
     mediaIdade: eleitores.reduce((acc, e) => acc + e.idade, 0) / eleitores.length,
     genero: calcularDistribuicao(eleitores, 'genero'),
@@ -367,197 +438,257 @@ export default function PaginaInicial() {
     valores: calcularDistribuicaoArray(eleitores, 'valores'),
     preocupacoes: calcularDistribuicaoArray(eleitores, 'preocupacoes'),
     faixasEtarias: calcularFaixaEtaria(eleitores),
-  };
+  }), [eleitores]);
 
-  // Preparar dados para gráficos
-  const dadosGenero = Object.entries(stats.genero).map(([nome, valor]) => ({
-    nome: nome === 'masculino' ? 'Masculino' : 'Feminino',
-    valor,
-    percentual: ((valor / stats.total) * 100).toFixed(1),
-    valorOriginal: nome,
-  }));
-
-  const dadosCluster = Object.entries(stats.cluster).map(([nome, valor]) => ({
-    nome: LABELS.cluster[nome] || nome,
-    valor,
-    percentual: ((valor / stats.total) * 100).toFixed(1),
-    valorOriginal: nome,
-  }));
-
-  const dadosOrientacao = Object.entries(stats.orientacao).map(([nome, valor]) => ({
-    nome: LABELS.orientacao[nome] || nome,
-    valor,
-    percentual: ((valor / stats.total) * 100).toFixed(1),
-    valorOriginal: nome,
-  }));
-
-  const dadosReligiao = Object.entries(stats.religiao)
-    .sort((a, b) => b[1] - a[1])
-    .map(([nome, valor]) => ({
-      nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/_/g, ' '),
+  // Performance: Memoiza todas as transformações de dados para gráficos
+  const dadosGraficos = useMemo(() => {
+    const dadosGenero = Object.entries(stats.genero).map(([nome, valor]) => ({
+      nome: nome === 'masculino' ? 'Masculino' : 'Feminino',
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
       valorOriginal: nome,
     }));
 
-  const dadosRegiao = Object.entries(stats.regiao)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 10)
-    .map(([nome, valor]) => ({
-      nome,
+    const dadosCluster = Object.entries(stats.cluster).map(([nome, valor]) => ({
+      nome: LABELS.cluster[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
       valorOriginal: nome,
     }));
 
-  const dadosCorRaca = Object.entries(stats.corRaca)
-    .sort((a, b) => b[1] - a[1])
-    .map(([nome, valor]) => ({
-      nome: nome.charAt(0).toUpperCase() + nome.slice(1),
+    const dadosOrientacao = Object.entries(stats.orientacao).map(([nome, valor]) => ({
+      nome: LABELS.orientacao[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
       valorOriginal: nome,
     }));
 
-  const dadosEscolaridade = Object.entries(stats.escolaridade)
-    .map(([nome, valor]) => ({
-      nome: LABELS.escolaridade[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-      valorOriginal: nome,
-    }));
+    const dadosReligiao = Object.entries(stats.religiao)
+      .sort((a, b) => b[1] - a[1])
+      .map(([nome, valor]) => ({
+        nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/_/g, ' '),
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
+      }));
 
-  const dadosOcupacao = Object.entries(stats.ocupacao)
-    .sort((a, b) => b[1] - a[1])
-    .map(([nome, valor]) => ({
-      nome: LABELS.ocupacao[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-      valorOriginal: nome,
-    }));
+    const dadosRegiao = Object.entries(stats.regiao)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([nome, valor]) => ({
+        nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
+      }));
 
-  const dadosRenda = Object.entries(stats.renda)
-    .map(([nome, valor]) => ({
-      nome: LABELS.renda[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-      valorOriginal: nome,
-    }));
+    const dadosCorRaca = Object.entries(stats.corRaca)
+      .sort((a, b) => b[1] - a[1])
+      .map(([nome, valor]) => ({
+        nome: nome.charAt(0).toUpperCase() + nome.slice(1),
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
+      }));
 
-  const dadosEstadoCivil = Object.entries(stats.estadoCivil)
-    .sort((a, b) => b[1] - a[1])
-    .map(([nome, valor]) => ({
-      nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/[()]/g, ''),
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-      valorOriginal: nome,
-    }));
+    const dadosEscolaridade = Object.entries(stats.escolaridade)
+      .map(([nome, valor]) => ({
+        nome: LABELS.escolaridade[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
+      }));
 
-  const dadosInteresse = Object.entries(stats.interesse)
-    .map(([nome, valor]) => ({
-      nome: LABELS.interesse[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-      fill: nome === 'baixo' ? CORES.interesse[0] : nome === 'medio' ? CORES.interesse[1] : CORES.interesse[2],
-      valorOriginal: nome,
-    }));
+    const dadosOcupacao = Object.entries(stats.ocupacao)
+      .sort((a, b) => b[1] - a[1])
+      .map(([nome, valor]) => ({
+        nome: LABELS.ocupacao[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
+      }));
 
-  const dadosDecisao = Object.entries(stats.estiloDecisao)
-    .filter(([nome]) => nome !== 'undefined')
-    .map(([nome, valor]) => ({
-      nome: LABELS.decisao[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-      valorOriginal: nome,
-    }));
+    const dadosRenda = Object.entries(stats.renda)
+      .map(([nome, valor]) => ({
+        nome: LABELS.renda[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
+      }));
 
-  const dadosTolerancia = Object.entries(stats.tolerancia)
-    .filter(([nome]) => nome !== 'undefined')
-    .map(([nome, valor]) => ({
-      nome: LABELS.tolerancia[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-      valorOriginal: nome,
-    }));
+    const dadosEstadoCivil = Object.entries(stats.estadoCivil)
+      .sort((a, b) => b[1] - a[1])
+      .map(([nome, valor]) => ({
+        nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/[()]/g, ''),
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
+      }));
 
-  const dadosBolsonaro = Object.entries(stats.bolsonaro)
-    .map(([nome, valor]) => ({
-      nome: LABELS.bolsonaro[nome] || nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-      valorOriginal: nome,
-    }));
+    const dadosInteresse = Object.entries(stats.interesse)
+      .map(([nome, valor]) => ({
+        nome: LABELS.interesse[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        fill: nome === 'baixo' ? CORES.interesse[0] : nome === 'medio' ? CORES.interesse[1] : CORES.interesse[2],
+        valorOriginal: nome,
+      }));
 
-  const dadosTransporte = Object.entries(stats.transporte)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 8)
-    .map(([nome, valor]) => ({
-      nome: nome.replace(/_/g, ' ').charAt(0).toUpperCase() + nome.replace(/_/g, ' ').slice(1),
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-      valorOriginal: nome,
-    }));
+    const dadosDecisao = Object.entries(stats.estiloDecisao)
+      .filter(([nome]) => nome !== 'undefined')
+      .map(([nome, valor]) => ({
+        nome: LABELS.decisao[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
+      }));
 
-  const dadosFontes = Object.entries(stats.fontes)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 10)
-    .map(([nome, valor]) => ({
-      nome: nome.length > 20 ? nome.substring(0, 20) + '...' : nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosTolerancia = Object.entries(stats.tolerancia)
+      .filter(([nome]) => nome !== 'undefined')
+      .map(([nome, valor]) => ({
+        nome: LABELS.tolerancia[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
+      }));
 
-  const dadosVieses = Object.entries(stats.vieses)
-    .map(([nome, valor]) => ({
-      nome: nome.replace(/_/g, ' ').charAt(0).toUpperCase() + nome.replace(/_/g, ' ').slice(1),
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-      fullMark: stats.total,
-    }));
+    const dadosBolsonaro = Object.entries(stats.bolsonaro)
+      .map(([nome, valor]) => ({
+        nome: LABELS.bolsonaro[nome] || nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
+      }));
 
-  const dadosValores = Object.entries(stats.valores)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 10)
-    .map(([nome, valor]) => ({
-      nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosTransporte = Object.entries(stats.transporte)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 8)
+      .map(([nome, valor]) => ({
+        nome: nome.replace(/_/g, ' ').charAt(0).toUpperCase() + nome.replace(/_/g, ' ').slice(1),
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
+      }));
 
-  const dadosPreocupacoes = Object.entries(stats.preocupacoes)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 10)
-    .map(([nome, valor]) => ({
-      nome,
-      valor,
-      percentual: ((valor / stats.total) * 100).toFixed(1),
-    }));
+    const dadosFontes = Object.entries(stats.fontes)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([nome, valor]) => ({
+        nome: nome.length > 20 ? nome.substring(0, 20) + '...' : nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  // Dados para radar de perfil psicológico
-  const dadosRadarPsicologico = [
-    { subject: 'Confirmação', A: stats.vieses['confirmacao'] || 0 },
-    { subject: 'Disponibilidade', A: stats.vieses['disponibilidade'] || 0 },
-    { subject: 'Aversão Perda', A: stats.vieses['aversao_perda'] || 0 },
-    { subject: 'Tribalismo', A: stats.vieses['tribalismo'] || 0 },
-  ];
+    const dadosVieses = Object.entries(stats.vieses)
+      .map(([nome, valor]) => ({
+        nome: nome.replace(/_/g, ' ').charAt(0).toUpperCase() + nome.replace(/_/g, ' ').slice(1),
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+        fullMark: stats.total,
+      }));
 
-  // Calcular estatísticas de filhos
-  const comFilhos = eleitores.filter((e) => e.filhos > 0).length;
-  const semFilhos = eleitores.filter((e) => e.filhos === 0).length;
-  const dadosFilhos = [
-    { nome: 'Com filhos', valor: comFilhos, percentual: ((comFilhos / stats.total) * 100).toFixed(1) },
-    { nome: 'Sem filhos', valor: semFilhos, percentual: ((semFilhos / stats.total) * 100).toFixed(1) },
-  ];
+    const dadosValores = Object.entries(stats.valores)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([nome, valor]) => ({
+        nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
 
-  // Susceptibilidade à desinformação
-  const susceptBaixa = eleitores.filter((e) => (e.susceptibilidade_desinformacao || 0) <= 3).length;
-  const susceptMedia = eleitores.filter((e) => (e.susceptibilidade_desinformacao || 0) > 3 && (e.susceptibilidade_desinformacao || 0) <= 6).length;
-  const susceptAlta = eleitores.filter((e) => (e.susceptibilidade_desinformacao || 0) > 6).length;
-  const dadosSuscept = [
-    { nome: 'Baixa (1-3)', valor: susceptBaixa, percentual: ((susceptBaixa / stats.total) * 100).toFixed(1), fill: '#22c55e' },
-    { nome: 'Média (4-6)', valor: susceptMedia, percentual: ((susceptMedia / stats.total) * 100).toFixed(1), fill: '#eab308' },
-    { nome: 'Alta (7-10)', valor: susceptAlta, percentual: ((susceptAlta / stats.total) * 100).toFixed(1), fill: '#ef4444' },
-  ];
+    const dadosPreocupacoes = Object.entries(stats.preocupacoes)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([nome, valor]) => ({
+        nome,
+        valor,
+        percentual: ((valor / stats.total) * 100).toFixed(1),
+      }));
+
+    // Dados para radar de perfil psicológico
+    const dadosRadarPsicologico = [
+      { subject: 'Confirmação', A: stats.vieses['confirmacao'] || 0 },
+      { subject: 'Disponibilidade', A: stats.vieses['disponibilidade'] || 0 },
+      { subject: 'Aversão Perda', A: stats.vieses['aversao_perda'] || 0 },
+      { subject: 'Tribalismo', A: stats.vieses['tribalismo'] || 0 },
+    ];
+
+    // Calcular estatísticas de filhos - otimizado: single-pass
+    let comFilhos = 0;
+    let susceptBaixa = 0;
+    let susceptMedia = 0;
+    let susceptAlta = 0;
+
+    for (const e of eleitores) {
+      if (e.filhos > 0) comFilhos++;
+      const suscept = e.susceptibilidade_desinformacao || 0;
+      if (suscept <= 3) susceptBaixa++;
+      else if (suscept <= 6) susceptMedia++;
+      else susceptAlta++;
+    }
+
+    const semFilhos = stats.total - comFilhos;
+    const dadosFilhos = [
+      { nome: 'Com filhos', valor: comFilhos, percentual: ((comFilhos / stats.total) * 100).toFixed(1) },
+      { nome: 'Sem filhos', valor: semFilhos, percentual: ((semFilhos / stats.total) * 100).toFixed(1) },
+    ];
+
+    const dadosSuscept = [
+      { nome: 'Baixa (1-3)', valor: susceptBaixa, percentual: ((susceptBaixa / stats.total) * 100).toFixed(1), fill: '#22c55e' },
+      { nome: 'Média (4-6)', valor: susceptMedia, percentual: ((susceptMedia / stats.total) * 100).toFixed(1), fill: '#eab308' },
+      { nome: 'Alta (7-10)', valor: susceptAlta, percentual: ((susceptAlta / stats.total) * 100).toFixed(1), fill: '#ef4444' },
+    ];
+
+    return {
+      dadosGenero,
+      dadosCluster,
+      dadosOrientacao,
+      dadosReligiao,
+      dadosRegiao,
+      dadosCorRaca,
+      dadosEscolaridade,
+      dadosOcupacao,
+      dadosRenda,
+      dadosEstadoCivil,
+      dadosInteresse,
+      dadosDecisao,
+      dadosTolerancia,
+      dadosBolsonaro,
+      dadosTransporte,
+      dadosFontes,
+      dadosVieses,
+      dadosValores,
+      dadosPreocupacoes,
+      dadosRadarPsicologico,
+      dadosFilhos,
+      dadosSuscept,
+    };
+  }, [stats, eleitores]);
+
+  // Desestrutura os dados memoizados
+  const {
+    dadosGenero,
+    dadosCluster,
+    dadosOrientacao,
+    dadosReligiao,
+    dadosRegiao,
+    dadosCorRaca,
+    dadosEscolaridade,
+    dadosOcupacao,
+    dadosRenda,
+    dadosEstadoCivil,
+    dadosInteresse,
+    dadosDecisao,
+    dadosTolerancia,
+    dadosBolsonaro,
+    dadosTransporte,
+    dadosFontes,
+    dadosValores,
+    dadosPreocupacoes,
+    dadosRadarPsicologico,
+    dadosFilhos,
+    dadosSuscept,
+  } = dadosGraficos;
 
   return (
     <div className="space-y-8 animate-fade-in">
@@ -603,31 +734,37 @@ export default function PaginaInicial() {
         />
       </div>
 
-      {/* Ações Rápidas */}
-      <div>
-        <h2 className="text-xl font-semibold text-foreground mb-4">Ações Rápidas</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <CardAcaoRapida
-            titulo="Ver Eleitores"
-            descricao="Visualize e filtre os agentes sintéticos"
-            href="/eleitores"
-            icone={Users}
-            cor="bg-blue-500"
-          />
-          <CardAcaoRapida
-            titulo="Nova Entrevista"
-            descricao="Crie uma nova pesquisa ou questionário"
-            href="/entrevistas/nova"
-            icone={MessageSquare}
-            cor="bg-purple-500"
-          />
-          <CardAcaoRapida
-            titulo="Ver Resultados"
-            descricao="Analise os resultados das pesquisas"
-            href="/resultados"
-            icone={BarChart3}
-            cor="bg-green-500"
-          />
+      {/* Ações Rápidas e Validação */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <h2 className="text-xl font-semibold text-foreground mb-4">Ações Rápidas</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <CardAcaoRapida
+              titulo="Ver Eleitores"
+              descricao="Visualize e filtre os agentes sintéticos"
+              href="/eleitores"
+              icone={Users}
+              cor="bg-blue-500"
+            />
+            <CardAcaoRapida
+              titulo="Nova Entrevista"
+              descricao="Crie uma nova pesquisa ou questionário"
+              href="/entrevistas/nova"
+              icone={MessageSquare}
+              cor="bg-purple-500"
+            />
+            <CardAcaoRapida
+              titulo="Ver Resultados"
+              descricao="Analise os resultados das pesquisas"
+              href="/resultados"
+              icone={BarChart3}
+              cor="bg-green-500"
+            />
+          </div>
+        </div>
+        <div>
+          <h2 className="text-xl font-semibold text-foreground mb-4">Qualidade da Amostra</h2>
+          <ResumoValidacao eleitores={eleitores} />
         </div>
       </div>
 
@@ -652,7 +789,15 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Gênero - Donut */}
-          <GraficoCard titulo="Distribuição por Gênero" icone={Users} corIcone="bg-pink-500/20" isClickable filterHint="Filtrar por gênero">
+          <GraficoCard
+            titulo="Distribuição por Gênero"
+            icone={Users}
+            corIcone="bg-pink-500/20"
+            isClickable
+            filterHint="Filtrar por gênero"
+            dadoReferencia={mapaDadosReferencia.genero}
+            desvioMedio={desviosMedios.genero}
+          >
             <ResponsiveContainer width="100%" height={220}>
               <PieChart onClick={createChartClickHandler('generos')}>
                 <Pie
@@ -671,24 +816,41 @@ export default function PaginaInicial() {
                   <Cell fill="#ec4899" />
                 </Pie>
                 <Tooltip
-                  contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  itemStyle={{ color: '#fff' }}
+                  content={(props) => (
+                    <TooltipComFonte
+                      {...props}
+                      dadoReferencia={mapaDadosReferencia.genero}
+                      categoriaMap={{ Masculino: 'masculino', Feminino: 'feminino' }}
+                    />
+                  )}
                 />
               </PieChart>
             </ResponsiveContainer>
           </GraficoCard>
 
           {/* Cor/Raça - Barras Horizontais */}
-          <GraficoCard titulo="Distribuição por Cor/Raça" icone={Users} corIcone="bg-amber-500/20" isClickable filterHint="Filtrar por cor/raça">
+          <GraficoCard
+            titulo="Distribuição por Cor/Raça"
+            icone={Users}
+            corIcone="bg-amber-500/20"
+            isClickable
+            filterHint="Filtrar por cor/raça"
+            dadoReferencia={mapaDadosReferencia.cor_raca}
+            desvioMedio={desviosMedios.cor_raca}
+          >
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={dadosCorRaca} layout="vertical" onClick={createChartClickHandler('cores_racas')} style={{ cursor: 'pointer' }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis type="number" stroke="#9ca3af" />
                 <YAxis dataKey="nome" type="category" width={60} stroke="#9ca3af" tick={{ fontSize: 11 }} />
                 <Tooltip
-                  contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  itemStyle={{ color: '#fff' }}
-                  formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                  content={(props) => (
+                    <TooltipComFonte
+                      {...props}
+                      dadoReferencia={mapaDadosReferencia.cor_raca}
+                      categoriaMap={{ Branca: 'branca', Parda: 'parda', Preta: 'preta', Amarela: 'amarela', Indigena: 'indigena' }}
+                    />
+                  )}
                 />
                 <Bar dataKey="valor" fill="#f59e0b" radius={[0, 4, 4, 0]} style={{ cursor: 'pointer' }} />
               </BarChart>
@@ -696,7 +858,13 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Pirâmide Etária */}
-          <GraficoCard titulo="Pirâmide Etária" icone={Activity} corIcone="bg-green-500/20">
+          <GraficoCard
+            titulo="Pirâmide Etária"
+            icone={Activity}
+            corIcone="bg-green-500/20"
+            dadoReferencia={mapaDadosReferencia.faixa_etaria}
+            desvioMedio={desviosMedios.faixa_etaria}
+          >
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={stats.faixasEtarias} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -761,7 +929,15 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Classe Social - Donut */}
-          <GraficoCard titulo="Classe Social (Cluster)" icone={TrendingUp} corIcone="bg-emerald-500/20" isClickable filterHint="Filtrar por classe">
+          <GraficoCard
+            titulo="Classe Social (Cluster)"
+            icone={TrendingUp}
+            corIcone="bg-emerald-500/20"
+            isClickable
+            filterHint="Filtrar por classe"
+            dadoReferencia={mapaDadosReferencia.cluster_socioeconomico}
+            desvioMedio={desviosMedios.cluster_socioeconomico}
+          >
             <ResponsiveContainer width="100%" height={250}>
               <PieChart onClick={createChartClickHandler('clusters')}>
                 <Pie
@@ -781,8 +957,13 @@ export default function PaginaInicial() {
                   ))}
                 </Pie>
                 <Tooltip
-                  contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  itemStyle={{ color: '#fff' }}
+                  content={(props) => (
+                    <TooltipComFonte
+                      {...props}
+                      dadoReferencia={mapaDadosReferencia.cluster_socioeconomico}
+                      categoriaMap={{ Alta: 'G1_alta', 'Média-Alta': 'G2_media_alta', 'Média-Baixa': 'G3_media_baixa', Baixa: 'G4_baixa' }}
+                    />
+                  )}
                 />
                 <Legend />
               </PieChart>
@@ -790,26 +971,49 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Faixa de Renda - Area Chart */}
-          <GraficoCard titulo="Distribuição por Faixa de Renda" icone={Wallet} corIcone="bg-yellow-500/20" isClickable filterHint="Filtrar por renda">
+          <GraficoCard
+            titulo="Distribuição por Faixa de Renda"
+            icone={Wallet}
+            corIcone="bg-yellow-500/20"
+            dadoReferencia={mapaDadosReferencia.renda_salarios_minimos}
+            desvioMedio={desviosMedios.renda_salarios_minimos}
+          >
             <ResponsiveContainer width="100%" height={250}>
-              <AreaChart data={dadosRenda} onClick={createChartClickHandler('faixas_renda')} style={{ cursor: 'pointer' }}>
+              <AreaChart data={dadosRenda}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 10 }} />
                 <YAxis stroke="#9ca3af" />
                 <Tooltip
-                  contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  itemStyle={{ color: '#fff' }}
-                  formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                  content={(props) => (
+                    <TooltipComFonte
+                      {...props}
+                      dadoReferencia={mapaDadosReferencia.renda_salarios_minimos}
+                      categoriaMap={{
+                        'Até 1 SM': 'ate_1',
+                        '1-2 SM': 'mais_de_1_ate_2',
+                        '2-5 SM': 'mais_de_2_ate_5',
+                        '5-10 SM': 'mais_de_5_ate_10',
+                        '+10 SM': 'mais_de_10',
+                      }}
+                    />
+                  )}
                 />
-                <Area type="monotone" dataKey="valor" stroke="#eab308" fill="#eab308" fillOpacity={0.3} style={{ cursor: 'pointer' }} />
+                <Area type="monotone" dataKey="valor" stroke="#eab308" fill="#eab308" fillOpacity={0.3} />
               </AreaChart>
             </ResponsiveContainer>
           </GraficoCard>
 
-          {/* Ocupação/Vínculo - Treemap */}
-          <GraficoCard titulo="Ocupação / Vínculo Empregatício" subtitulo="Distribuição por tipo de vínculo" icone={Briefcase} corIcone="bg-violet-500/20" isClickable filterHint="Filtrar por ocupação">
+          {/* Ocupação/Vínculo */}
+          <GraficoCard
+            titulo="Ocupação / Vínculo Empregatício"
+            subtitulo="Distribuição por tipo de vínculo"
+            icone={Briefcase}
+            corIcone="bg-violet-500/20"
+            dadoReferencia={mapaDadosReferencia.ocupacao_vinculo}
+            desvioMedio={desviosMedios.ocupacao_vinculo}
+          >
             <ResponsiveContainer width="100%" height={280}>
-              <BarChart data={dadosOcupacao} layout="vertical" onClick={createChartClickHandler('ocupacoes_vinculos')} style={{ cursor: 'pointer' }}>
+              <BarChart data={dadosOcupacao} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis type="number" stroke="#9ca3af" />
                 <YAxis dataKey="nome" type="category" width={100} stroke="#9ca3af" tick={{ fontSize: 10 }} />
@@ -818,7 +1022,7 @@ export default function PaginaInicial() {
                   itemStyle={{ color: '#fff' }}
                   formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
                 />
-                <Bar dataKey="valor" radius={[0, 4, 4, 0]} style={{ cursor: 'pointer' }}>
+                <Bar dataKey="valor" radius={[0, 4, 4, 0]}>
                   {dadosOcupacao.map((_, index) => (
                     <Cell key={index} fill={CORES.primarias[index % CORES.primarias.length]} />
                   ))}
@@ -828,18 +1032,33 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Escolaridade - Barras */}
-          <GraficoCard titulo="Nível de Escolaridade" icone={GraduationCap} corIcone="bg-blue-500/20" isClickable filterHint="Filtrar por escolaridade">
+          <GraficoCard
+            titulo="Nível de Escolaridade"
+            icone={GraduationCap}
+            corIcone="bg-blue-500/20"
+            dadoReferencia={mapaDadosReferencia.escolaridade}
+            desvioMedio={desviosMedios.escolaridade}
+          >
             <ResponsiveContainer width="100%" height={280}>
-              <BarChart data={dadosEscolaridade} onClick={createChartClickHandler('escolaridades')} style={{ cursor: 'pointer' }}>
+              <BarChart data={dadosEscolaridade}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 9 }} angle={-15} />
                 <YAxis stroke="#9ca3af" />
                 <Tooltip
-                  contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  itemStyle={{ color: '#fff' }}
-                  formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                  content={(props) => (
+                    <TooltipComFonte
+                      {...props}
+                      dadoReferencia={mapaDadosReferencia.escolaridade}
+                      categoriaMap={{
+                        'Superior/Pós': 'superior_completo_ou_pos',
+                        'Médio/Sup. Inc.': 'medio_completo_ou_sup_incompleto',
+                        'Fund. Incompleto': 'fundamental_incompleto',
+                        'Fund. Completo': 'fundamental_completo',
+                      }}
+                    />
+                  )}
                 />
-                <Bar dataKey="valor" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
+                <Bar dataKey="valor" radius={[4, 4, 0, 0]}>
                   {dadosEscolaridade.map((_, index) => (
                     <Cell key={index} fill={CORES.escolaridade[index % CORES.escolaridade.length]} />
                   ))}
@@ -860,9 +1079,15 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Estado Civil */}
-          <GraficoCard titulo="Estado Civil" icone={Heart} corIcone="bg-rose-500/20" isClickable filterHint="Filtrar por estado civil">
+          <GraficoCard
+            titulo="Estado Civil"
+            icone={Heart}
+            corIcone="bg-rose-500/20"
+            dadoReferencia={mapaDadosReferencia.estado_civil}
+            desvioMedio={desviosMedios.estado_civil}
+          >
             <ResponsiveContainer width="100%" height={220}>
-              <PieChart onClick={createChartClickHandler('estados_civis')}>
+              <PieChart>
                 <Pie
                   data={dadosEstadoCivil}
                   cx="50%"
@@ -871,15 +1096,25 @@ export default function PaginaInicial() {
                   dataKey="valor"
                   nameKey="nome"
                   label={({ nome, percentual }) => `${percentual}%`}
-                  style={{ cursor: 'pointer' }}
                 >
                   {dadosEstadoCivil.map((_, index) => (
                     <Cell key={index} fill={CORES.primarias[index % CORES.primarias.length]} />
                   ))}
                 </Pie>
                 <Tooltip
-                  contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  itemStyle={{ color: '#fff' }}
+                  content={(props) => (
+                    <TooltipComFonte
+                      {...props}
+                      dadoReferencia={mapaDadosReferencia.estado_civil}
+                      categoriaMap={{
+                        'Solteiroa': 'solteiro(a)',
+                        'Casadoa': 'casado(a)',
+                        'Uniao estavel': 'uniao_estavel',
+                        'Divorciadoa': 'divorciado(a)',
+                        'Viuvoa': 'viuvo(a)',
+                      }}
+                    />
+                  )}
                 />
                 <Legend />
               </PieChart>
@@ -887,7 +1122,12 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Filhos */}
-          <GraficoCard titulo="Filhos" icone={Users} corIcone="bg-pink-500/20">
+          <GraficoCard
+            titulo="Filhos"
+            icone={Users}
+            corIcone="bg-pink-500/20"
+            dadoReferencia={mapaDadosReferencia.filhos}
+          >
             <ResponsiveContainer width="100%" height={220}>
               <PieChart>
                 <Pie
@@ -905,26 +1145,48 @@ export default function PaginaInicial() {
                   <Cell fill="#94a3b8" />
                 </Pie>
                 <Tooltip
-                  contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  itemStyle={{ color: '#fff' }}
+                  content={(props) => (
+                    <TooltipComFonte
+                      {...props}
+                      dadoReferencia={mapaDadosReferencia.filhos}
+                      categoriaMap={{ 'Com filhos': 'com_filhos', 'Sem filhos': 'sem_filhos' }}
+                    />
+                  )}
                 />
               </PieChart>
             </ResponsiveContainer>
           </GraficoCard>
 
           {/* Religião */}
-          <GraficoCard titulo="Religião" icone={Church} corIcone="bg-purple-500/20" isClickable filterHint="Filtrar por religião">
+          <GraficoCard
+            titulo="Religião"
+            icone={Church}
+            corIcone="bg-purple-500/20"
+            dadoReferencia={mapaDadosReferencia.religiao}
+            desvioMedio={desviosMedios.religiao}
+          >
             <ResponsiveContainer width="100%" height={220}>
-              <BarChart data={dadosReligiao} onClick={createChartClickHandler('religioes')} style={{ cursor: 'pointer' }}>
+              <BarChart data={dadosReligiao}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 9 }} />
                 <YAxis stroke="#9ca3af" />
                 <Tooltip
-                  contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  itemStyle={{ color: '#fff' }}
-                  formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                  content={(props) => (
+                    <TooltipComFonte
+                      {...props}
+                      dadoReferencia={mapaDadosReferencia.religiao}
+                      categoriaMap={{
+                        'Catolica': 'catolica',
+                        'Evangelica': 'evangelica',
+                        'Sem religiao': 'sem_religiao',
+                        'Espirita': 'espirita',
+                        'Umbanda candomble': 'umbanda_candomble',
+                        'Outras religioes': 'outras_religioes',
+                      }}
+                    />
+                  )}
                 />
-                <Bar dataKey="valor" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
+                <Bar dataKey="valor" radius={[4, 4, 0, 0]}>
                   {dadosReligiao.map((_, index) => (
                     <Cell key={index} fill={CORES.religiao[index % CORES.religiao.length]} />
                   ))}
@@ -945,18 +1207,35 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Espectro Político */}
-          <GraficoCard titulo="Espectro Político" subtitulo="Orientação ideológica dos eleitores" icone={Scale} corIcone="bg-red-500/20" isClickable filterHint="Filtrar por orientação">
+          <GraficoCard
+            titulo="Espectro Político"
+            subtitulo="Orientação ideológica dos eleitores"
+            icone={Scale}
+            corIcone="bg-red-500/20"
+            dadoReferencia={mapaDadosReferencia.orientacao_politica}
+            desvioMedio={desviosMedios.orientacao_politica}
+          >
             <ResponsiveContainer width="100%" height={250}>
-              <BarChart data={dadosOrientacao} layout="vertical" onClick={createChartClickHandler('orientacoes_politicas')} style={{ cursor: 'pointer' }}>
+              <BarChart data={dadosOrientacao} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis type="number" stroke="#9ca3af" />
                 <YAxis dataKey="nome" type="category" width={90} stroke="#9ca3af" />
                 <Tooltip
-                  contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  itemStyle={{ color: '#fff' }}
-                  formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                  content={(props) => (
+                    <TooltipComFonte
+                      {...props}
+                      dadoReferencia={mapaDadosReferencia.orientacao_politica}
+                      categoriaMap={{
+                        'Esquerda': 'esquerda',
+                        'Centro-Esq': 'centro-esquerda',
+                        'Centro': 'centro',
+                        'Centro-Dir': 'centro-direita',
+                        'Direita': 'direita',
+                      }}
+                    />
+                  )}
                 />
-                <Bar dataKey="valor" radius={[0, 4, 4, 0]} style={{ cursor: 'pointer' }}>
+                <Bar dataKey="valor" radius={[0, 4, 4, 0]}>
                   {dadosOrientacao.map((_, index) => (
                     <Cell key={index} fill={CORES.orientacao[index % CORES.orientacao.length]} />
                   ))}
@@ -966,18 +1245,34 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Posição Bolsonaro */}
-          <GraficoCard titulo="Posição sobre Bolsonaro" icone={UserCheck} corIcone="bg-yellow-500/20" isClickable filterHint="Filtrar por posição">
+          <GraficoCard
+            titulo="Posição sobre Bolsonaro"
+            icone={UserCheck}
+            corIcone="bg-yellow-500/20"
+            dadoReferencia={mapaDadosReferencia.posicao_bolsonaro}
+            desvioMedio={desviosMedios.posicao_bolsonaro}
+          >
             <ResponsiveContainer width="100%" height={250}>
-              <BarChart data={dadosBolsonaro} onClick={createChartClickHandler('posicoes_bolsonaro')} style={{ cursor: 'pointer' }}>
+              <BarChart data={dadosBolsonaro}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 9 }} />
                 <YAxis stroke="#9ca3af" />
                 <Tooltip
-                  contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  itemStyle={{ color: '#fff' }}
-                  formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                  content={(props) => (
+                    <TooltipComFonte
+                      {...props}
+                      dadoReferencia={mapaDadosReferencia.posicao_bolsonaro}
+                      categoriaMap={{
+                        'Apoiador Forte': 'apoiador_forte',
+                        'Apoiador Mod.': 'apoiador_moderado',
+                        'Neutro': 'neutro',
+                        'Crítico Mod.': 'critico_moderado',
+                        'Crítico Forte': 'critico_forte',
+                      }}
+                    />
+                  )}
                 />
-                <Bar dataKey="valor" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
+                <Bar dataKey="valor" radius={[4, 4, 0, 0]}>
                   {dadosBolsonaro.map((entry, index) => (
                     <Cell key={index} fill={
                       entry.nome.includes('Apoiador Forte') ? '#22c55e' :
@@ -992,7 +1287,13 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Interesse Político - Radial */}
-          <GraficoCard titulo="Interesse Político" icone={Activity} corIcone="bg-indigo-500/20" isClickable filterHint="Filtrar por interesse">
+          <GraficoCard
+            titulo="Interesse Político"
+            icone={Activity}
+            corIcone="bg-indigo-500/20"
+            dadoReferencia={mapaDadosReferencia.interesse_politico}
+            desvioMedio={desviosMedios.interesse_politico}
+          >
             <ResponsiveContainer width="100%" height={250}>
               <RadialBarChart
                 cx="50%"
@@ -1002,8 +1303,6 @@ export default function PaginaInicial() {
                 data={dadosInteresse}
                 startAngle={180}
                 endAngle={0}
-                onClick={createChartClickHandler('interesses_politicos')}
-                style={{ cursor: 'pointer' }}
               >
                 <RadialBar
                   label={{ position: 'insideStart', fill: '#fff', fontSize: 11 }}
@@ -1020,9 +1319,15 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Tolerância à Nuance */}
-          <GraficoCard titulo="Tolerância à Nuance Política" icone={Brain} corIcone="bg-sky-500/20" isClickable filterHint="Filtrar por tolerância">
+          <GraficoCard
+            titulo="Tolerância à Nuance Política"
+            icone={Brain}
+            corIcone="bg-sky-500/20"
+            dadoReferencia={mapaDadosReferencia.tolerancia_nuance}
+            desvioMedio={desviosMedios.tolerancia_nuance}
+          >
             <ResponsiveContainer width="100%" height={250}>
-              <PieChart onClick={createChartClickHandler('tolerancias_nuance')}>
+              <PieChart>
                 <Pie
                   data={dadosTolerancia}
                   cx="50%"
@@ -1033,15 +1338,19 @@ export default function PaginaInicial() {
                   dataKey="valor"
                   nameKey="nome"
                   label={({ nome, percentual }) => `${nome}: ${percentual}%`}
-                  style={{ cursor: 'pointer' }}
                 >
                   <Cell fill="#ef4444" />
                   <Cell fill="#eab308" />
                   <Cell fill="#22c55e" />
                 </Pie>
                 <Tooltip
-                  contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  itemStyle={{ color: '#fff' }}
+                  content={(props) => (
+                    <TooltipComFonte
+                      {...props}
+                      dadoReferencia={mapaDadosReferencia.tolerancia_nuance}
+                      categoriaMap={{ 'Baixa': 'baixa', 'Média': 'media', 'Alta': 'alta' }}
+                    />
+                  )}
                 />
               </PieChart>
             </ResponsiveContainer>
@@ -1059,9 +1368,16 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Estilo de Decisão */}
-          <GraficoCard titulo="Estilo de Decisão Eleitoral" subtitulo="Como os eleitores tomam decisões de voto" icone={Brain} corIcone="bg-fuchsia-500/20" isClickable filterHint="Filtrar por estilo">
+          <GraficoCard
+            titulo="Estilo de Decisão Eleitoral"
+            subtitulo="Como os eleitores tomam decisões de voto"
+            icone={Brain}
+            corIcone="bg-fuchsia-500/20"
+            dadoReferencia={mapaDadosReferencia.estilo_decisao}
+            desvioMedio={desviosMedios.estilo_decisao}
+          >
             <ResponsiveContainer width="100%" height={250}>
-              <PieChart onClick={createChartClickHandler('estilos_decisao')}>
+              <PieChart>
                 <Pie
                   data={dadosDecisao}
                   cx="50%"
@@ -1070,15 +1386,25 @@ export default function PaginaInicial() {
                   dataKey="valor"
                   nameKey="nome"
                   label={({ nome, percentual }) => `${nome}: ${percentual}%`}
-                  style={{ cursor: 'pointer' }}
                 >
                   {dadosDecisao.map((_, index) => (
                     <Cell key={index} fill={CORES.decisao[index % CORES.decisao.length]} />
                   ))}
                 </Pie>
                 <Tooltip
-                  contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  itemStyle={{ color: '#fff' }}
+                  content={(props) => (
+                    <TooltipComFonte
+                      {...props}
+                      dadoReferencia={mapaDadosReferencia.estilo_decisao}
+                      categoriaMap={{
+                        'Identitário': 'identitario',
+                        'Pragmático': 'pragmatico',
+                        'Moral': 'moral',
+                        'Econômico': 'economico',
+                        'Emocional': 'emocional',
+                      }}
+                    />
+                  )}
                 />
                 <Legend />
               </PieChart>
@@ -1194,18 +1520,36 @@ export default function PaginaInicial() {
           <Car className="w-5 h-5 text-slate-500" />
           Mobilidade Urbana
         </h2>
-        <GraficoCard titulo="Meio de Transporte Principal" subtitulo="Como os eleitores se locomovem" icone={Car} corIcone="bg-slate-500/20" isClickable filterHint="Filtrar por transporte">
+        <GraficoCard
+          titulo="Meio de Transporte Principal"
+          subtitulo="Como os eleitores se locomovem"
+          icone={Car}
+          corIcone="bg-slate-500/20"
+          dadoReferencia={mapaDadosReferencia.meio_transporte}
+          desvioMedio={desviosMedios.meio_transporte}
+        >
           <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={dadosTransporte} onClick={createChartClickHandler('meios_transporte')} style={{ cursor: 'pointer' }}>
+            <BarChart data={dadosTransporte}>
               <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
               <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 10 }} />
               <YAxis stroke="#9ca3af" />
               <Tooltip
-                contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                itemStyle={{ color: '#fff' }}
-                formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                content={(props) => (
+                  <TooltipComFonte
+                    {...props}
+                    dadoReferencia={mapaDadosReferencia.meio_transporte}
+                    categoriaMap={{
+                      'Carro': 'carro',
+                      'Onibus': 'onibus',
+                      'A pe': 'a_pe',
+                      'Moto': 'moto',
+                      'Metro': 'metro',
+                      'Bicicleta': 'bicicleta',
+                    }}
+                  />
+                )}
               />
-              <Bar dataKey="valor" fill="#64748b" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
+              <Bar dataKey="valor" fill="#64748b" radius={[4, 4, 0, 0]}>
                 {dadosTransporte.map((_, index) => (
                   <Cell key={index} fill={CORES.primarias[index % CORES.primarias.length]} />
                 ))}

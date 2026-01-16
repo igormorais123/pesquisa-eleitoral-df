@@ -1,6 +1,6 @@
 'use client';
 
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import Link from 'next/link';
 import { cn, gerarIniciais, gerarCorDoNome } from '@/lib/utils';
 import {
@@ -12,6 +12,8 @@ import {
   AlertTriangle,
   CheckSquare,
   Square,
+  ChevronRight,
+  MoreVertical,
 } from 'lucide-react';
 import type { Eleitor } from '@/types';
 
@@ -20,6 +22,7 @@ interface AgenteCardProps {
   selecionado?: boolean;
   onToggleSelecao?: (id: string) => void;
   compacto?: boolean;
+  mobileFriendly?: boolean;
 }
 
 const CORES_CLUSTER = {
@@ -49,15 +52,17 @@ export const AgenteCard = memo(function AgenteCard({
   selecionado = false,
   onToggleSelecao,
   compacto = false,
+  mobileFriendly = true,
 }: AgenteCardProps) {
   const iniciais = gerarIniciais(eleitor.nome);
   const corAvatar = gerarCorDoNome(eleitor.nome);
 
+  // Modo compacto para listas
   if (compacto) {
     return (
       <div
         className={cn(
-          'flex items-center gap-3 p-3 rounded-lg border transition-all cursor-pointer hover:bg-secondary/50',
+          'flex items-center gap-3 p-3 rounded-lg border transition-all cursor-pointer hover:bg-secondary/50 active:bg-secondary/70',
           selecionado ? 'bg-primary/10 border-primary' : 'border-border'
         )}
         onClick={() => onToggleSelecao?.(eleitor.id)}
@@ -80,14 +85,14 @@ export const AgenteCard = memo(function AgenteCard({
           </p>
         </div>
 
-        {/* Checkbox */}
-        {onToggleSelecao && (
+        {/* Checkbox ou Seta de navegação */}
+        {onToggleSelecao ? (
           <button
             onClick={(e) => {
               e.stopPropagation();
               onToggleSelecao(eleitor.id);
             }}
-            className="text-muted-foreground hover:text-primary"
+            className="text-muted-foreground hover:text-primary min-h-[44px] min-w-[44px] flex items-center justify-center -mr-2"
           >
             {selecionado ? (
               <CheckSquare className="w-5 h-5 text-primary" />
@@ -95,6 +100,13 @@ export const AgenteCard = memo(function AgenteCard({
               <Square className="w-5 h-5" />
             )}
           </button>
+        ) : (
+          <Link
+            href={`/eleitores/${eleitor.id}`}
+            className="text-muted-foreground hover:text-foreground min-h-[44px] min-w-[44px] flex items-center justify-center -mr-2"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </Link>
         )}
       </div>
     );
@@ -103,16 +115,16 @@ export const AgenteCard = memo(function AgenteCard({
   return (
     <div
       className={cn(
-        'glass-card rounded-xl p-4 hover:shadow-primary-glow/50 transition-all',
+        'glass-card rounded-xl p-3 sm:p-4 hover:shadow-primary-glow/50 transition-all',
         selecionado && 'ring-2 ring-primary'
       )}
     >
-      {/* Header */}
-      <div className="flex items-start gap-4">
-        {/* Avatar */}
+      {/* Header - Mobile optimized */}
+      <div className="flex items-start gap-3 sm:gap-4">
+        {/* Avatar - Menor em mobile */}
         <div
           className={cn(
-            'w-14 h-14 rounded-xl flex items-center justify-center text-lg font-bold text-white flex-shrink-0',
+            'w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl flex items-center justify-center text-base sm:text-lg font-bold text-white flex-shrink-0',
             corAvatar
           )}
         >
@@ -122,27 +134,28 @@ export const AgenteCard = memo(function AgenteCard({
         {/* Info básica */}
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
-            <div>
-              <h3 className="font-semibold text-foreground truncate">{eleitor.nome}</h3>
-              <p className="text-sm text-muted-foreground">
-                {eleitor.idade} anos • {eleitor.genero === 'masculino' ? 'Masculino' : 'Feminino'} •{' '}
-                {eleitor.cor_raca}
+            <div className="min-w-0">
+              <h3 className="font-semibold text-foreground text-sm sm:text-base truncate">{eleitor.nome}</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground">
+                {eleitor.idade} anos • {eleitor.genero === 'masculino' ? 'M' : 'F'}
+                <span className="hidden sm:inline"> • {eleitor.cor_raca}</span>
               </p>
             </div>
-            <span className="text-xs text-muted-foreground bg-secondary px-2 py-1 rounded">
+            {/* ID oculto em mobile para economizar espaço */}
+            <span className="hidden sm:inline text-xs text-muted-foreground bg-secondary px-2 py-1 rounded flex-shrink-0">
               {eleitor.id}
             </span>
           </div>
 
-          {/* Localização e Cluster */}
-          <div className="flex items-center gap-2 mt-2 flex-wrap">
-            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-              <MapPin className="w-3 h-3" />
-              <span>{eleitor.regiao_administrativa}</span>
+          {/* Localização e Cluster - Compacto em mobile */}
+          <div className="flex items-center gap-2 mt-1 sm:mt-2 flex-wrap">
+            <div className="flex items-center gap-1 text-xs sm:text-sm text-muted-foreground">
+              <MapPin className="w-3 h-3 flex-shrink-0" />
+              <span className="truncate max-w-[120px] sm:max-w-none">{eleitor.regiao_administrativa}</span>
             </div>
             <span
               className={cn(
-                'text-xs px-2 py-0.5 rounded-full border',
+                'text-xs px-1.5 sm:px-2 py-0.5 rounded-full border',
                 CORES_CLUSTER[eleitor.cluster_socioeconomico]
               )}
             >
@@ -153,49 +166,50 @@ export const AgenteCard = memo(function AgenteCard({
       </div>
 
       {/* Separador */}
-      <div className="border-t border-border my-3" />
+      <div className="border-t border-border my-2 sm:my-3" />
 
-      {/* Detalhes */}
-      <div className="space-y-2 text-sm">
+      {/* Detalhes - Mais compactos em mobile */}
+      <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
         <div className="flex items-center gap-2 text-muted-foreground">
-          <Briefcase className="w-4 h-4" />
+          <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
           <span className="truncate">
-            {eleitor.profissao} • {eleitor.renda_salarios_minimos.replace(/_/g, ' ')} SM
+            {eleitor.profissao}
+            <span className="hidden sm:inline"> • {eleitor.renda_salarios_minimos.replace(/_/g, ' ')} SM</span>
           </span>
         </div>
 
         <div className="flex items-center gap-2 text-muted-foreground">
-          <Church className="w-4 h-4" />
-          <span>{eleitor.religiao}</span>
+          <Church className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+          <span className="truncate">{eleitor.religiao}</span>
         </div>
 
         <div className="flex items-center gap-2">
-          <Vote className="w-4 h-4 text-muted-foreground" />
+          <Vote className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-muted-foreground flex-shrink-0" />
           <span
             className={cn(
-              'text-xs px-2 py-0.5 rounded',
+              'text-xs px-1.5 sm:px-2 py-0.5 rounded',
               CORES_ORIENTACAO[eleitor.orientacao_politica]
             )}
           >
             {eleitor.orientacao_politica}
           </span>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-xs text-muted-foreground truncate hidden sm:inline">
             • {eleitor.posicao_bolsonaro.replace(/_/g, ' ')}
           </span>
         </div>
       </div>
 
-      {/* Susceptibilidade */}
+      {/* Susceptibilidade - Simplificado em mobile */}
       {eleitor.susceptibilidade_desinformacao && (
-        <div className="mt-3">
+        <div className="mt-2 sm:mt-3">
           <div className="flex items-center justify-between text-xs mb-1">
             <span className="text-muted-foreground flex items-center gap-1">
               <AlertTriangle className="w-3 h-3" />
-              Susceptibilidade
+              <span className="hidden sm:inline">Susceptibilidade</span>
             </span>
             <span className="text-foreground">{eleitor.susceptibilidade_desinformacao}/10</span>
           </div>
-          <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
+          <div className="h-1 sm:h-1.5 bg-secondary rounded-full overflow-hidden">
             <div
               className={cn(
                 'h-full rounded-full transition-all',
@@ -211,18 +225,18 @@ export const AgenteCard = memo(function AgenteCard({
         </div>
       )}
 
-      {/* História */}
-      <div className="mt-3 p-3 bg-secondary/50 rounded-lg">
+      {/* História - Oculta em mobile pequeno */}
+      <div className="mt-2 sm:mt-3 p-2 sm:p-3 bg-secondary/50 rounded-lg hidden xs:block">
         <p className="text-xs text-muted-foreground line-clamp-2">
           {eleitor.historia_resumida}
         </p>
       </div>
 
-      {/* Ações */}
-      <div className="flex items-center gap-2 mt-4">
+      {/* Ações - Botões maiores para touch */}
+      <div className="flex items-center gap-2 mt-3 sm:mt-4">
         <Link
           href={`/eleitores/${eleitor.id}`}
-          className="flex-1 text-center text-sm py-2 px-3 rounded-lg bg-secondary hover:bg-secondary/80 text-foreground transition-colors"
+          className="flex-1 text-center text-xs sm:text-sm py-2.5 sm:py-2 px-3 rounded-lg bg-secondary hover:bg-secondary/80 active:bg-secondary/70 text-foreground transition-colors min-h-[40px] sm:min-h-[36px] flex items-center justify-center"
         >
           Ver Perfil
         </Link>
@@ -230,21 +244,21 @@ export const AgenteCard = memo(function AgenteCard({
           <button
             onClick={() => onToggleSelecao(eleitor.id)}
             className={cn(
-              'py-2 px-3 rounded-lg text-sm transition-colors flex items-center gap-2',
+              'py-2.5 sm:py-2 px-3 rounded-lg text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5 sm:gap-2 min-h-[40px] sm:min-h-[36px]',
               selecionado
                 ? 'bg-primary text-primary-foreground'
-                : 'bg-secondary hover:bg-secondary/80 text-foreground'
+                : 'bg-secondary hover:bg-secondary/80 active:bg-secondary/70 text-foreground'
             )}
           >
             {selecionado ? (
               <>
                 <CheckSquare className="w-4 h-4" />
-                Selecionado
+                <span className="hidden sm:inline">Selecionado</span>
               </>
             ) : (
               <>
                 <Square className="w-4 h-4" />
-                Selecionar
+                <span className="hidden sm:inline">Selecionar</span>
               </>
             )}
           </button>

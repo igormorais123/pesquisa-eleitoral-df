@@ -34,6 +34,9 @@ import {
   MapPin,
   Activity,
 } from 'lucide-react';
+import { PiramideEtaria, CorrelacaoHeatmap, TabelaCalorEmocional, SankeyComSeletor } from '@/components/charts';
+import { CorrelacoesAutomaticas } from '@/components/analysis';
+import { GitBranch } from 'lucide-react';
 
 interface AgentesChartsProps {
   estatisticas: {
@@ -543,18 +546,32 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
 
         {/* Pirâmide Etária */}
         <ChartCard titulo="Pirâmide Etária" icone={Activity} corIcone="bg-green-500/20">
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={faixasEtarias} layout="vertical">
-              <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-              <XAxis type="number" stroke="#9ca3af" />
-              <YAxis dataKey="faixa" type="category" width={60} stroke="#9ca3af" />
-              <Tooltip {...tooltipStyle} />
-              <Legend />
-              <Bar dataKey="masculino" name="Masculino" fill="#3b82f6" stackId="a" />
-              <Bar dataKey="feminino" name="Feminino" fill="#ec4899" stackId="a" />
-            </BarChart>
-          </ResponsiveContainer>
+          <PiramideEtaria eleitores={eleitores} altura={300} />
         </ChartCard>
+
+        {/* Heatmap de Correlações */}
+        <ChartCard titulo="Correlações entre Atributos" icone={Brain} corIcone="bg-indigo-500/20">
+          <CorrelacaoHeatmap eleitores={eleitores} altura={350} />
+        </ChartCard>
+
+        {/* Mapa de Calor Emocional */}
+        <ChartCard titulo="Mapa de Calor Emocional por Região" icone={Heart} corIcone="bg-rose-500/20">
+          <TabelaCalorEmocional eleitores={eleitores} altura={350} />
+        </ChartCard>
+
+        {/* Correlações Automáticas - Ocupa 2 colunas */}
+        <div className="lg:col-span-2">
+          <ChartCard titulo="Análise de Correlações Automáticas (20+)" icone={Activity} corIcone="bg-purple-500/20">
+            <CorrelacoesAutomaticas eleitores={eleitores} minCorrelacao={0.1} />
+          </ChartCard>
+        </div>
+
+        {/* Diagrama Sankey - Ocupa 2 colunas */}
+        <div className="lg:col-span-2">
+          <ChartCard titulo="Diagrama de Fluxo Sankey" icone={GitBranch} corIcone="bg-teal-500/20">
+            <SankeyComSeletor eleitores={eleitores} altura={450} />
+          </ChartCard>
+        </div>
       </div>
     </div>
   );
