@@ -36,3 +36,17 @@ export {
   agruparEMedia,
   crossTab,
 } from './statistics';
+
+// Análises especiais
+export {
+  detectarVotoSilencioso,
+  type VotoSilencioso,
+  type AnaliseVotoSilencioso,
+} from './voto-silencioso';
+
+export {
+  analisarPontosRuptura,
+  type PontoRuptura,
+  type AnalisePontoRuptura,
+  type LinhaVermelhaAgrupada,
+} from './ponto-ruptura';

@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, useMemo } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
 import {
@@ -13,12 +13,19 @@ import {
   Users,
   MapPin,
   Wallet,
+  AlertTriangle,
+  TrendingDown,
+  Shield,
+  BarChart3,
+  RefreshCw,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { db } from '@/lib/db/dexie';
 import { useEleitoresStore } from '@/stores/eleitores-store';
 import type { Eleitor, ClusterSocioeconomico } from '@/types';
 import { cn } from '@/lib/utils';
+import { calcularValidacaoEstatistica } from '@/services/validacao-estatistica';
+import { labelsVariaveis, labelsValores } from '@/data/dados-referencia-oficiais';
 
 const REGIOES_DF = [
   'Ceilandia',
@@ -49,18 +56,78 @@ const CLUSTERS = [
   { value: 'G4_baixa', label: 'Baixa (G4)', description: 'Renda ate 2 SM' },
 ];
 
+interface DivergenciaCorretiva {
+  variavel: string;
+  labelVariavel: string;
+  categoria: string;
+  labelCategoria: string;
+  quantidade: number;
+  diferenca: number;
+}
+
 export default function PaginaGerarEleitores() {
   const router = useRouter();
-  const { adicionarEleitores } = useEleitoresStore();
+  const searchParams = useSearchParams();
+  const { adicionarEleitores, eleitores: eleitoresAtuais } = useEleitoresStore();
 
-  const [quantidade, setQuantidade] = useState(10);
+  // Parâmetros de correção da URL
+  const modoCorretivo = searchParams.get('modo') === 'corretivo';
+  const corrigirVariavel = searchParams.get('corrigir');
+  const corrigirCategoria = searchParams.get('categoria');
+  const quantidadeSugerida = searchParams.get('quantidade');
+
+  const [quantidade, setQuantidade] = useState(quantidadeSugerida ? parseInt(quantidadeSugerida) : 10);
   const [regiao, setRegiao] = useState<string>('');
   const [cluster, setCluster] = useState<ClusterSocioeconomico | ''>('');
-  const [manterProporcoes, setManterProporcoes] = useState(true);
+  const [manterProporcoes, setManterProporcoes] = useState(!modoCorretivo && !corrigirVariavel);
+  const [usarModoCorretivo, setUsarModoCorretivo] = useState(modoCorretivo || !!corrigirVariavel);
+  const [divergenciasSelecionadas, setDivergenciasSelecionadas] = useState<DivergenciaCorretiva[]>([]);
   const [resultado, setResultado] = useState<{
     eleitores: Eleitor[];
     custoReais: number;
   } | null>(null);
+
+  // Calcular validação atual
+  const validacao = useMemo(
+    () => calcularValidacaoEstatistica(eleitoresAtuais),
+    [eleitoresAtuais]
+  );
+
+  // Divergências que precisam de correção (apenas sub-representadas)
+  const divergenciasParaCorrecao = useMemo(() => {
+    const divergencias: DivergenciaCorretiva[] = [];
+    validacao.resumos.forEach((resumo) => {
+      resumo.divergencias
+        .filter((d) => d.direcao === 'abaixo' && d.eleitoresParaCorrecao > 0)
+        .forEach((d) => {
+          divergencias.push({
+            variavel: d.variavel,
+            labelVariavel: d.labelVariavel,
+            categoria: d.categoria,
+            labelCategoria: d.labelCategoria,
+            quantidade: d.eleitoresParaCorrecao,
+            diferenca: d.diferenca,
+          });
+        });
+    });
+    return divergencias.sort((a, b) => b.quantidade - a.quantidade);
+  }, [validacao]);
+
+  // Inicializar divergência selecionada se veio da URL
+  useEffect(() => {
+    if (corrigirVariavel && corrigirCategoria && quantidadeSugerida) {
+      const labelVar = labelsVariaveis[corrigirVariavel] || corrigirVariavel;
+      const labelCat = labelsValores[corrigirVariavel]?.[corrigirCategoria] || corrigirCategoria;
+      setDivergenciasSelecionadas([{
+        variavel: corrigirVariavel,
+        labelVariavel: labelVar,
+        categoria: corrigirCategoria,
+        labelCategoria: labelCat,
+        quantidade: parseInt(quantidadeSugerida),
+        diferenca: 0,
+      }]);
+    }
+  }, [corrigirVariavel, corrigirCategoria, quantidadeSugerida]);
 
   // Mutation para gerar eleitores
   const mutationGerar = useMutation({
@@ -72,7 +139,9 @@ export default function PaginaGerarEleitores() {
           quantidade,
           cluster: cluster || undefined,
           regiao: regiao || undefined,
-          manterProporcoes,
+          manterProporcoes: !usarModoCorretivo && manterProporcoes,
+          modoCorretivo: usarModoCorretivo,
+          divergenciasParaCorrigir: usarModoCorretivo ? divergenciasSelecionadas : undefined,
         }),
       });
 
@@ -111,10 +180,13 @@ export default function PaginaGerarEleitores() {
     },
   });
 
-  const custoEstimado = quantidade * 0.15; // Estimativa aproximada
+  const custoEstimado = quantidade * 0.15;
+
+  // Total de eleitores corretivos selecionados
+  const totalCorretivo = divergenciasSelecionadas.reduce((acc, d) => acc + d.quantidade, 0);
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-4xl mx-auto">
       {/* Header */}
       <div className="flex items-center gap-4 mb-8">
         <Link
@@ -123,14 +195,148 @@ export default function PaginaGerarEleitores() {
         >
           <ArrowLeft className="w-5 h-5" />
         </Link>
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">Gerar Eleitores com IA</h1>
-          <p className="text-muted-foreground">Use Claude para criar novos perfis sinteticos</p>
+        <div className="flex-1">
+          <h1 className="text-2xl font-bold text-foreground">
+            {usarModoCorretivo ? 'Gerar Eleitores Corretivos' : 'Gerar Eleitores com IA'}
+          </h1>
+          <p className="text-muted-foreground">
+            {usarModoCorretivo
+              ? 'Gerar eleitores para corrigir vieses na amostra'
+              : 'Use Claude Opus 4.5 para criar novos perfis sinteticos'}
+          </p>
         </div>
+        {!resultado && (
+          <button
+            onClick={() => setUsarModoCorretivo(!usarModoCorretivo)}
+            className={cn(
+              'px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2',
+              usarModoCorretivo
+                ? 'bg-orange-500/10 text-orange-400 border border-orange-500/30'
+                : 'bg-secondary text-muted-foreground hover:text-foreground'
+            )}
+          >
+            <Shield className="w-4 h-4" />
+            {usarModoCorretivo ? 'Modo Corretivo Ativo' : 'Ativar Modo Corretivo'}
+          </button>
+        )}
       </div>
 
       {!resultado ? (
         <div className="space-y-6">
+          {/* Status da validação atual */}
+          {usarModoCorretivo && (
+            <div className="glass-card rounded-xl p-6 border border-orange-500/30">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-medium text-foreground flex items-center gap-2">
+                  <BarChart3 className="w-5 h-5 text-orange-400" />
+                  Status Atual da Amostra
+                </h3>
+                <Link
+                  href="/validacao"
+                  className="text-xs text-primary hover:underline"
+                >
+                  Ver validação completa
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-3 gap-4 mb-4">
+                <div className="text-center p-3 rounded-lg bg-muted/10">
+                  <p className="text-2xl font-bold text-foreground">{eleitoresAtuais.length}</p>
+                  <p className="text-xs text-muted-foreground">Eleitores Atuais</p>
+                </div>
+                <div className="text-center p-3 rounded-lg bg-muted/10">
+                  <p className={cn(
+                    'text-2xl font-bold',
+                    validacao.indiceConformidade >= 70 ? 'text-green-400' :
+                    validacao.indiceConformidade >= 50 ? 'text-yellow-400' : 'text-red-400'
+                  )}>
+                    {validacao.indiceConformidade.toFixed(0)}%
+                  </p>
+                  <p className="text-xs text-muted-foreground">Índice de Conformidade</p>
+                </div>
+                <div className="text-center p-3 rounded-lg bg-muted/10">
+                  <p className="text-2xl font-bold text-orange-400">{divergenciasParaCorrecao.length}</p>
+                  <p className="text-xs text-muted-foreground">Categorias Sub-representadas</p>
+                </div>
+              </div>
+
+              {/* Lista de divergências para selecionar */}
+              {divergenciasParaCorrecao.length > 0 ? (
+                <div>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Selecione as categorias sub-representadas que deseja corrigir:
+                  </p>
+                  <div className="max-h-48 overflow-y-auto space-y-1">
+                    {divergenciasParaCorrecao.slice(0, 15).map((d) => {
+                      const selecionada = divergenciasSelecionadas.some(
+                        (s) => s.variavel === d.variavel && s.categoria === d.categoria
+                      );
+                      return (
+                        <button
+                          key={`${d.variavel}-${d.categoria}`}
+                          onClick={() => {
+                            if (selecionada) {
+                              setDivergenciasSelecionadas(
+                                divergenciasSelecionadas.filter(
+                                  (s) => !(s.variavel === d.variavel && s.categoria === d.categoria)
+                                )
+                              );
+                            } else {
+                              setDivergenciasSelecionadas([...divergenciasSelecionadas, d]);
+                            }
+                          }}
+                          className={cn(
+                            'w-full flex items-center justify-between p-2 rounded-lg text-left transition-colors',
+                            selecionada
+                              ? 'bg-orange-500/20 border border-orange-500/30'
+                              : 'bg-muted/5 hover:bg-muted/10'
+                          )}
+                        >
+                          <div className="flex items-center gap-2">
+                            <TrendingDown className="w-4 h-4 text-red-400" />
+                            <span className="text-sm text-foreground">
+                              {d.labelVariavel}: <span className="text-muted-foreground">{d.labelCategoria}</span>
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs text-red-400">{d.diferenca.toFixed(1)}%</span>
+                            <span className="text-xs text-orange-400 font-medium">
+                              +{d.quantidade} eleitores
+                            </span>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {divergenciasSelecionadas.length > 0 && (
+                    <div className="mt-3 p-3 rounded-lg bg-primary/10 border border-primary/30">
+                      <p className="text-sm text-foreground">
+                        <span className="font-medium">Selecionadas: </span>
+                        {divergenciasSelecionadas.length} categorias |
+                        <span className="text-primary font-bold ml-1">
+                          Total: {totalCorretivo} eleitores
+                        </span>
+                      </p>
+                      <button
+                        onClick={() => setQuantidade(totalCorretivo)}
+                        className="mt-2 text-xs text-primary hover:underline"
+                      >
+                        Ajustar quantidade para {totalCorretivo}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="text-center py-4">
+                  <CheckCircle className="w-8 h-8 mx-auto text-green-400 mb-2" />
+                  <p className="text-sm text-muted-foreground">
+                    Nenhuma categoria significativamente sub-representada!
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Quantidade */}
           <div className="glass-card rounded-xl p-6">
             <label className="block text-sm font-medium text-foreground mb-2">
@@ -152,66 +358,68 @@ export default function PaginaGerarEleitores() {
             </p>
           </div>
 
-          {/* Filtros opcionais */}
-          <div className="glass-card rounded-xl p-6">
-            <h3 className="font-medium text-foreground mb-4">Filtros Opcionais</h3>
+          {/* Filtros opcionais (apenas em modo normal) */}
+          {!usarModoCorretivo && (
+            <div className="glass-card rounded-xl p-6">
+              <h3 className="font-medium text-foreground mb-4">Filtros Opcionais</h3>
 
-            {/* Regiao */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-foreground mb-2">
-                <MapPin className="w-4 h-4 inline mr-1" />
-                Regiao Administrativa (opcional)
-              </label>
-              <select
-                value={regiao}
-                onChange={(e) => setRegiao(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg bg-secondary border border-border focus:border-primary outline-none text-foreground"
-              >
-                <option value="">Todas as regioes</option>
-                {REGIOES_DF.map((r) => (
-                  <option key={r} value={r}>{r}</option>
-                ))}
-              </select>
-            </div>
-
-            {/* Cluster */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-foreground mb-2">
-                <Wallet className="w-4 h-4 inline mr-1" />
-                Cluster Socioeconomico (opcional)
-              </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {CLUSTERS.map((c) => (
-                  <button
-                    key={c.value}
-                    onClick={() => setCluster(cluster === c.value ? '' : c.value as ClusterSocioeconomico)}
-                    className={cn(
-                      'p-3 rounded-lg border text-left transition-all',
-                      cluster === c.value
-                        ? 'bg-primary/20 border-primary text-foreground'
-                        : 'bg-secondary border-border hover:border-primary/50 text-muted-foreground'
-                    )}
-                  >
-                    <p className="font-medium text-sm">{c.label}</p>
-                    <p className="text-xs opacity-70">{c.description}</p>
-                  </button>
-                ))}
+              {/* Regiao */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  <MapPin className="w-4 h-4 inline mr-1" />
+                  Regiao Administrativa (opcional)
+                </label>
+                <select
+                  value={regiao}
+                  onChange={(e) => setRegiao(e.target.value)}
+                  className="w-full px-4 py-2 rounded-lg bg-secondary border border-border focus:border-primary outline-none text-foreground"
+                >
+                  <option value="">Todas as regioes</option>
+                  {REGIOES_DF.map((r) => (
+                    <option key={r} value={r}>{r}</option>
+                  ))}
+                </select>
               </div>
-            </div>
 
-            {/* Manter proporcoes */}
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={manterProporcoes}
-                onChange={(e) => setManterProporcoes(e.target.checked)}
-                className="w-4 h-4 rounded border-border bg-secondary"
-              />
-              <span className="text-sm text-muted-foreground">
-                Manter proporcoes demograficas do DF
-              </span>
-            </label>
-          </div>
+              {/* Cluster */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  <Wallet className="w-4 h-4 inline mr-1" />
+                  Cluster Socioeconomico (opcional)
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {CLUSTERS.map((c) => (
+                    <button
+                      key={c.value}
+                      onClick={() => setCluster(cluster === c.value ? '' : c.value as ClusterSocioeconomico)}
+                      className={cn(
+                        'p-3 rounded-lg border text-left transition-all',
+                        cluster === c.value
+                          ? 'bg-primary/20 border-primary text-foreground'
+                          : 'bg-secondary border-border hover:border-primary/50 text-muted-foreground'
+                      )}
+                    >
+                      <p className="font-medium text-sm">{c.label}</p>
+                      <p className="text-xs opacity-70">{c.description}</p>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Manter proporcoes */}
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={manterProporcoes}
+                  onChange={(e) => setManterProporcoes(e.target.checked)}
+                  className="w-4 h-4 rounded border-border bg-secondary"
+                />
+                <span className="text-sm text-muted-foreground">
+                  Manter proporcoes demograficas do DF
+                </span>
+              </label>
+            </div>
+          )}
 
           {/* Custo estimado */}
           <div className="glass-card rounded-xl p-6 bg-yellow-500/10 border-yellow-500/30">
@@ -222,7 +430,7 @@ export default function PaginaGerarEleitores() {
                   Custo Estimado
                 </h3>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Usando Claude Opus para geracao de alta qualidade
+                  Usando Claude Opus 4.5 para geracao de alta qualidade
                 </p>
               </div>
               <div className="text-right">
@@ -237,13 +445,23 @@ export default function PaginaGerarEleitores() {
           {/* Botao gerar */}
           <button
             onClick={() => mutationGerar.mutate()}
-            disabled={mutationGerar.isPending}
-            className="w-full py-4 px-6 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-medium transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={mutationGerar.isPending || (usarModoCorretivo && divergenciasSelecionadas.length === 0)}
+            className={cn(
+              'w-full py-4 px-6 rounded-xl font-medium transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed',
+              usarModoCorretivo
+                ? 'bg-orange-500 hover:bg-orange-600 text-white'
+                : 'bg-primary hover:bg-primary/90 text-primary-foreground'
+            )}
           >
             {mutationGerar.isPending ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
                 Gerando {quantidade} eleitores...
+              </>
+            ) : usarModoCorretivo ? (
+              <>
+                <RefreshCw className="w-5 h-5" />
+                Gerar {quantidade} Eleitores Corretivos
               </>
             ) : (
               <>
@@ -264,6 +482,11 @@ export default function PaginaGerarEleitores() {
             <p className="text-muted-foreground">
               Custo total: R$ {resultado.custoReais.toFixed(2)}
             </p>
+            {usarModoCorretivo && (
+              <p className="text-sm text-orange-400 mt-2">
+                Eleitores gerados para corrigir vieses na amostra
+              </p>
+            )}
           </div>
 
           {/* Preview */}
