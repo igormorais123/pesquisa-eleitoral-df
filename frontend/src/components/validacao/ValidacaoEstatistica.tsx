@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import {
   ArrowUpRight,
   ArrowDownRight,
@@ -14,7 +13,6 @@ import {
   CheckCircle2,
   AlertCircle,
   XCircle,
-  BarChart3,
   Info,
   FileText,
   Link2,

@@ -59,9 +59,20 @@ const REGIOES_DF = {
 /**
  * Gera o prompt base para criação de eleitores
  */
-function gerarPromptBase(quantidade: number, regiao?: string, cluster?: ClusterSocioeconomico): string {
+function gerarPromptBase(
+  quantidade: number,
+  regiao?: string,
+  cluster?: ClusterSocioeconomico,
+  manterProporcoes = true
+): string {
+  const instrucaoProporcoes = manterProporcoes
+    ? `IMPORTANTE: Mantenha as proporções demográficas oficiais do DF conforme os dados abaixo.`
+    : `Você pode variar as proporções livremente, sem seguir rigidamente os dados oficiais.`;
+
   return `
 Você é um gerador de perfis de eleitores sintéticos do Distrito Federal para pesquisa científica.
+
+${instrucaoProporcoes}
 
 GERE ${quantidade} ELEITORES ÚNICOS seguindo estas regras:
 
@@ -262,7 +273,7 @@ export async function POST(request: NextRequest) {
     if (modoCorretivo && divergenciasParaCorrigir.length > 0) {
       prompt = gerarPromptCorretivo(quantidade, divergenciasParaCorrigir) + FORMATO_JSON;
     } else {
-      prompt = gerarPromptBase(quantidade, regiao, cluster) + FORMATO_JSON;
+      prompt = gerarPromptBase(quantidade, regiao, cluster, manterProporcoes) + FORMATO_JSON;
     }
 
     const { conteudo, tokensInput, tokensOutput, custoReais } = await chamarClaudeComRetry(

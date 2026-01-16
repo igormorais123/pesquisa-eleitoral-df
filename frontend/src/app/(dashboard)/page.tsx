@@ -178,10 +178,10 @@ function GraficoCard({
   corIcone,
   children,
   className = '',
-  isClickable = false,
-  filterHint,
   dadoReferencia,
   desvioMedio,
+  isClickable = false,
+  filterHint,
 }: {
   titulo: string;
   subtitulo?: string;
@@ -189,10 +189,10 @@ function GraficoCard({
   corIcone: string;
   children: React.ReactNode;
   className?: string;
-  isClickable?: boolean;
-  filterHint?: string;
   dadoReferencia?: DadoReferencia;
   desvioMedio?: number;
+  isClickable?: boolean;
+  filterHint?: string;
 }) {
   return (
     <div className={`glass-card rounded-xl p-6 ${className} ${isClickable ? 'group' : ''}`}>
@@ -207,6 +207,13 @@ function GraficoCard({
           </div>
         </div>
         <div className="flex items-center gap-2">
+          {/* Indicador de clicável */}
+          {isClickable && (
+            <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+              <MousePointerClick className="w-3 h-3" />
+              <span>{filterHint || 'Clique para filtrar'}</span>
+            </div>
+          )}
           {/* Indicador de desvio médio */}
           {desvioMedio !== undefined && (
             <div className={`px-2 py-1 rounded text-xs font-medium ${
@@ -216,12 +223,6 @@ function GraficoCard({
               'bg-red-500/15 text-red-500'
             }`}>
               Δ {desvioMedio.toFixed(1)}%
-            </div>
-          )}
-          {isClickable && (
-            <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
-              <MousePointerClick className="w-3 h-3" />
-              <span>{filterHint || 'Clique para filtrar'}</span>
             </div>
           )}
         </div>
@@ -366,15 +367,7 @@ export default function PaginaInicial() {
   const eleitores = eleitoresData as Eleitor[];
   const { navigateWithFilter } = useFilterNavigation();
 
-  // Handler genérico para clique em gráficos
-  const handleChartClick = useCallback(
-    (filterType: FilterType, value: string) => {
-      navigateWithFilter(filterType, value);
-    },
-    [navigateWithFilter]
-  );
-
-  // Wrapper para eventos de clique do Recharts
+  // Handler para clique em gráficos - navega para eleitores com filtro
   const createChartClickHandler = useCallback(
     (filterType: FilterType, valueMapper?: (payload: any) => string) => {
       return (data: any) => {
@@ -446,21 +439,18 @@ export default function PaginaInicial() {
       nome: nome === 'masculino' ? 'Masculino' : 'Feminino',
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
-      valorOriginal: nome,
     }));
 
     const dadosCluster = Object.entries(stats.cluster).map(([nome, valor]) => ({
       nome: LABELS.cluster[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
-      valorOriginal: nome,
     }));
 
     const dadosOrientacao = Object.entries(stats.orientacao).map(([nome, valor]) => ({
       nome: LABELS.orientacao[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
-      valorOriginal: nome,
     }));
 
     const dadosReligiao = Object.entries(stats.religiao)
@@ -799,7 +789,7 @@ export default function PaginaInicial() {
             desvioMedio={desviosMedios.genero}
           >
             <ResponsiveContainer width="100%" height={220}>
-              <PieChart onClick={createChartClickHandler('generos')}>
+              <PieChart>
                 <Pie
                   data={dadosGenero}
                   cx="50%"
@@ -810,7 +800,6 @@ export default function PaginaInicial() {
                   dataKey="valor"
                   nameKey="nome"
                   label={({ nome, percentual }) => `${nome}: ${percentual}%`}
-                  style={{ cursor: 'pointer' }}
                 >
                   <Cell fill="#3b82f6" />
                   <Cell fill="#ec4899" />
@@ -839,7 +828,7 @@ export default function PaginaInicial() {
             desvioMedio={desviosMedios.cor_raca}
           >
             <ResponsiveContainer width="100%" height={220}>
-              <BarChart data={dadosCorRaca} layout="vertical" onClick={createChartClickHandler('cores_racas')} style={{ cursor: 'pointer' }}>
+              <BarChart data={dadosCorRaca} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis type="number" stroke="#9ca3af" />
                 <YAxis dataKey="nome" type="category" width={60} stroke="#9ca3af" tick={{ fontSize: 11 }} />
@@ -852,7 +841,7 @@ export default function PaginaInicial() {
                     />
                   )}
                 />
-                <Bar dataKey="valor" fill="#f59e0b" radius={[0, 4, 4, 0]} style={{ cursor: 'pointer' }} />
+                <Bar dataKey="valor" fill="#f59e0b" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </GraficoCard>
@@ -896,11 +885,9 @@ export default function PaginaInicial() {
           subtitulo="Concentração de eleitores por região do DF"
           icone={MapPin}
           corIcone="bg-cyan-500/20"
-          isClickable
-          filterHint="Filtrar por região"
         >
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={dadosRegiao} onClick={createChartClickHandler('regioes')} style={{ cursor: 'pointer' }}>
+            <BarChart data={dadosRegiao}>
               <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
               <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 10 }} angle={-45} height={80} />
               <YAxis stroke="#9ca3af" />
@@ -909,7 +896,7 @@ export default function PaginaInicial() {
                 itemStyle={{ color: '#fff' }}
                 formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
               />
-              <Bar dataKey="valor" fill="#06b6d4" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
+              <Bar dataKey="valor" fill="#06b6d4" radius={[4, 4, 0, 0]}>
                 {dadosRegiao.map((entry, index) => (
                   <Cell key={index} fill={index === 0 ? '#0891b2' : index < 3 ? '#22d3ee' : '#67e8f9'} />
                 ))}
@@ -939,7 +926,7 @@ export default function PaginaInicial() {
             desvioMedio={desviosMedios.cluster_socioeconomico}
           >
             <ResponsiveContainer width="100%" height={250}>
-              <PieChart onClick={createChartClickHandler('clusters')}>
+              <PieChart>
                 <Pie
                   data={dadosCluster}
                   cx="50%"
@@ -950,7 +937,6 @@ export default function PaginaInicial() {
                   dataKey="valor"
                   nameKey="nome"
                   label={({ nome, percentual }) => `${percentual}%`}
-                  style={{ cursor: 'pointer' }}
                 >
                   {dadosCluster.map((_, index) => (
                     <Cell key={index} fill={CORES.cluster[index % CORES.cluster.length]} />

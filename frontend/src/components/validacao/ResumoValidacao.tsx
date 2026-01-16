@@ -4,13 +4,9 @@ import { useMemo } from 'react';
 import Link from 'next/link';
 import {
   CheckCircle2,
-  AlertCircle,
-  XCircle,
   ArrowRight,
   TrendingUp,
   TrendingDown,
-  BarChart3,
-  ExternalLink,
   Shield,
 } from 'lucide-react';
 import type { Eleitor } from '@/types';
