@@ -116,6 +116,8 @@ ${cluster ? `- FOCO NO CLUSTER: ${cluster}` : '- Variar entre G1_alta, G2_media_
 
 /**
  * Gera o prompt específico para modo corretivo
+ * Este prompt cria eleitores estratégicos para corrigir vieses estatísticos
+ * mantendo absoluta coerência interna entre todos os atributos
  */
 function gerarPromptCorretivo(
   quantidade: number,
@@ -129,81 +131,170 @@ function gerarPromptCorretivo(
     quantidade: d.quantidade,
   }));
 
+  // Calcula distribuição proporcional
+  const totalNecessario = categoriasParaGerar.reduce((acc, c) => acc + c.quantidade, 0);
+  const proporcoes = categoriasParaGerar.map((c) => ({
+    ...c,
+    proporcao: Math.max(1, Math.round((c.quantidade / totalNecessario) * quantidade)),
+  }));
+
   return `
-Você é Claude Opus 4.5, o modelo mais avançado da Anthropic. Sua tarefa é gerar eleitores sintéticos ESTRATÉGICOS para CORRIGIR vieses identificados em uma amostra de pesquisa eleitoral do Distrito Federal.
+Você é Claude Opus 4.5, o modelo mais avançado da Anthropic. Sua missão é gerar eleitores sintéticos ESTRATÉGICOS e COERENTES para corrigir vieses identificados em uma pesquisa eleitoral do Distrito Federal.
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                          CORREÇÃO DE VIESES AMOSTRAIS                          ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+A validação estatística identificou as seguintes categorias SUB-REPRESENTADAS:
+
+${proporcoes.map((c) => `
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 🎯 ${c.label}: "${c.labelCategoria}"
+│    → Gerar aproximadamente ${c.proporcao} eleitor(es) com ${c.variavel} = "${c.categoria}"
+│    → Importância: ${c.quantidade} eleitores faltantes no total
+└─────────────────────────────────────────────────────────────────────────────┘
+`).join('')}
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                    QUANTIDADE TOTAL: ${quantidade} ELEITORES                        ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
 
 ═══════════════════════════════════════════════════════════════════════════════
-CONTEXTO DA CORREÇÃO
+REGRAS DE COERÊNCIA INTERNA - CRÍTICO!
 ═══════════════════════════════════════════════════════════════════════════════
 
-Uma análise de validação estatística identificou que a amostra atual está SUB-REPRESENTADA nas seguintes categorias. Você deve gerar eleitores que preencham essas lacunas:
+Cada eleitor deve ser um PERSONAGEM SÓLIDO sem contradições. NUNCA crie eleitores com combinações impossíveis ou improváveis:
 
-${categoriasParaGerar.map((c) => `
-▸ ${c.label}: "${c.labelCategoria}"
-  → Necessários: ~${c.quantidade} eleitores para equilibrar a amostra
-  → Campo no JSON: ${c.variavel} = "${c.categoria}"
-`).join('\n')}
+🔴 PROIBIÇÕES ABSOLUTAS (combinações impossíveis):
+• Estudante de 65 anos com ocupacao_vinculo = "estudante" (improvável)
+• Aposentado de 25 anos (impossível a menos que seja militar/especial - explicar)
+• Renda "mais_de_10" com escolaridade "fundamental_incompleto" e ocupacao "informal"
+• Cluster G1_alta morando em Ceilândia/Samambaia (contradição geográfica)
+• Servidor público com renda "ate_1" (salários são maiores)
+• Desempregado com renda "mais_de_10"
 
-═══════════════════════════════════════════════════════════════════════════════
-INSTRUÇÕES DE GERAÇÃO CORRETIVA
-═══════════════════════════════════════════════════════════════════════════════
+🟢 COERÊNCIAS OBRIGATÓRIAS:
 
-GERE EXATAMENTE ${quantidade} ELEITORES que atendam às características sub-representadas acima.
+1. IDADE ↔ OCUPAÇÃO:
+   • 16-24: estudante, informal, desempregado, CLT início carreira
+   • 25-44: qualquer ocupação ativa
+   • 45-64: carreiras consolidadas, empresários, servidores sênior
+   • 65+: aposentado (80% dos casos), alguns autônomos ou empresários
 
-REGRAS CRÍTICAS:
-1. TODOS os eleitores devem ter pelo menos uma das características listadas acima
-2. Distribua proporcionalmente conforme a quantidade sugerida para cada categoria
-3. Mantenha a COERÊNCIA interna: um eleitor de 65+ anos provavelmente é aposentado
-4. Varie os outros atributos para manter diversidade (não criar clones)
-5. Histórias de vida devem explicar as características escolhidas
+2. RENDA ↔ ESCOLARIDADE ↔ OCUPAÇÃO:
+   • ate_1 / mais_de_1_ate_2: fundamental/médio, informal/desempregado/autônomo
+   • mais_de_2_ate_5: médio/superior incompleto, CLT/autônomo
+   • mais_de_5_ate_10: superior completo, servidor/empresário/profissional liberal
+   • mais_de_10: superior/pós, empresário/servidor alto escalão/profissional sênior
 
-CATEGORIAS ESPECÍFICAS E COMO MAPEAR:
+3. CLUSTER ↔ REGIÃO:
+   • G1_alta: APENAS Lago Sul, Lago Norte, Park Way, Sudoeste/Octogonal, Jardim Botânico
+   • G2_media_alta: Plano Piloto, Águas Claras, Guará, Cruzeiro, Noroeste
+   • G3_media_baixa: Taguatinga, Gama, Sobradinho, Vicente Pires, Núcleo Bandeirante
+   • G4_baixa: Ceilândia, Samambaia, Recanto das Emas, Santa Maria, Planaltina, São Sebastião, Paranoá, Itapoã, Sol Nascente, SCIA/Estrutural
 
-genero: "masculino" ou "feminino"
-cor_raca: "branca", "parda", "preta", "amarela", "indigena"
-faixa_etaria (use campo idade):
-  - "16-24": idade entre 16-24
-  - "25-34": idade entre 25-34
-  - "35-44": idade entre 35-44
-  - "45-54": idade entre 45-54
-  - "55-64": idade entre 55-64
-  - "65+": idade >= 65
-escolaridade: "fundamental_incompleto", "fundamental_completo", "medio_completo_ou_sup_incompleto", "superior_completo_ou_pos"
-renda_salarios_minimos: "ate_1", "mais_de_1_ate_2", "mais_de_2_ate_5", "mais_de_5_ate_10", "mais_de_10"
-religiao: "catolica", "evangelica", "espirita", "sem_religiao", "umbanda_candomble", "outras"
-estado_civil: "solteiro(a)", "casado(a)", "divorciado(a)", "viuvo(a)", "uniao_estavel"
-orientacao_politica: "esquerda", "centro-esquerda", "centro", "centro-direita", "direita"
-interesse_politico: "baixo", "medio", "alto"
-posicao_bolsonaro: "apoiador_forte", "apoiador_moderado", "neutro", "critico_moderado", "critico_forte"
-cluster_socioeconomico: "G1_alta", "G2_media_alta", "G3_media_baixa", "G4_baixa"
-ocupacao_vinculo: "clt", "servidor_publico", "autonomo", "empresario", "informal", "desempregado", "aposentado", "estudante"
-meio_transporte: "onibus", "carro", "moto", "bicicleta", "metro", "a_pe", "nao_se_aplica"
-estilo_decisao: "identitario", "pragmatico", "moral", "economico", "emocional"
-tolerancia_nuance: "baixa", "media", "alta"
+4. IDADE ↔ FILHOS:
+   • 16-24: 0-1 filhos (mais comum 0)
+   • 25-34: 0-2 filhos
+   • 35-54: 1-3 filhos
+   • 55+: 2-4 filhos (já adultos)
 
-═══════════════════════════════════════════════════════════════════════════════
-EXEMPLO DE COERÊNCIA
-═══════════════════════════════════════════════════════════════════════════════
+5. MEIO_TRANSPORTE ↔ CLUSTER:
+   • G1/G2: carro (predominante), metro
+   • G3: carro, moto, metro, onibus
+   • G4: onibus (predominante), moto, a_pe, bicicleta
 
-Se precisamos de mais eleitores de faixa etária "65+" e religião "católica":
-→ Criar um aposentado de 68 anos, católico praticante, que mora em Taguatinga
-→ Sua história pode mencionar décadas de trabalho no serviço público
-→ Seus valores incluem "família", "tradição", "estabilidade"
-→ Provavelmente tem posição mais conservadora em costumes
+6. POSIÇÃO POLÍTICA ↔ PERFIL:
+   • Evangélicos: tendência centro-direita/direita
+   • Universitários jovens: tendência centro-esquerda/esquerda
+   • Servidores públicos: distribuição variada
+   • Empresários: tendência centro-direita/direita
+   • Trabalhadores informais baixa renda: variado, muitos neutros
 
-═══════════════════════════════════════════════════════════════════════════════
-REGIÕES ADMINISTRATIVAS DO DF (usar com coerência)
-═══════════════════════════════════════════════════════════════════════════════
-
-Alta renda (G1): Lago Sul, Lago Norte, Park Way, Sudoeste
-Média-alta (G2): Plano Piloto, Águas Claras, Guará
-Média-baixa (G3): Taguatinga, Gama, Sobradinho, Vicente Pires
-Baixa (G4): Ceilândia, Samambaia, Recanto das Emas, Santa Maria, Planaltina
+7. SUSCEPTIBILIDADE_DESINFORMACAO ↔ PERFIL:
+   • Alta escolaridade: 1-4 (baixa susceptibilidade)
+   • Média escolaridade: 3-6
+   • Baixa escolaridade: 5-9
+   • Idosos: tendência maior (6-9)
+   • Jovens: variado, depende das fontes de informação
 
 ═══════════════════════════════════════════════════════════════════════════════
-VIESES COGNITIVOS (incluir 2-3 por eleitor)
+MAPEAMENTO EXATO DOS CAMPOS
 ═══════════════════════════════════════════════════════════════════════════════
-confirmacao, disponibilidade, ancoragem, tribalismo, aversao_perda, efeito_halo, efeito_manada`;
+
+genero: "masculino" | "feminino"
+cor_raca: "branca" | "parda" | "preta" | "amarela" | "indigena"
+
+faixa_etaria → campo "idade":
+  • "16-24": gerar idade entre 16-24
+  • "25-34": gerar idade entre 25-34
+  • "35-44": gerar idade entre 35-44
+  • "45-54": gerar idade entre 45-54
+  • "55-64": gerar idade entre 55-64
+  • "65+": gerar idade entre 65-85
+
+escolaridade: "fundamental_incompleto" | "fundamental_completo" | "medio_completo_ou_sup_incompleto" | "superior_completo_ou_pos"
+
+renda_salarios_minimos: "ate_1" | "mais_de_1_ate_2" | "mais_de_2_ate_5" | "mais_de_5_ate_10" | "mais_de_10"
+
+religiao: "catolica" | "evangelica" | "espirita" | "sem_religiao" | "umbanda_candomble" | "outras"
+
+estado_civil: "solteiro(a)" | "casado(a)" | "divorciado(a)" | "viuvo(a)" | "uniao_estavel"
+
+orientacao_politica: "esquerda" | "centro-esquerda" | "centro" | "centro-direita" | "direita"
+
+interesse_politico: "baixo" | "medio" | "alto"
+
+posicao_bolsonaro: "apoiador_forte" | "apoiador_moderado" | "neutro" | "critico_moderado" | "critico_forte"
+
+cluster_socioeconomico: "G1_alta" | "G2_media_alta" | "G3_media_baixa" | "G4_baixa"
+
+ocupacao_vinculo: "clt" | "servidor_publico" | "autonomo" | "empresario" | "informal" | "desempregado" | "aposentado" | "estudante"
+
+meio_transporte: "onibus" | "carro" | "moto" | "bicicleta" | "metro" | "a_pe" | "nao_se_aplica"
+
+estilo_decisao: "identitario" | "pragmatico" | "moral" | "economico" | "emocional"
+
+tolerancia_nuance: "baixa" | "media" | "alta"
+
+═══════════════════════════════════════════════════════════════════════════════
+ESTRUTURA DA HISTÓRIA DE VIDA
+═══════════════════════════════════════════════════════════════════════════════
+
+A historia_resumida deve:
+1. Explicar como chegou à situação atual (trabalho, moradia)
+2. Mencionar família/relações se relevante
+3. Justificar posição política/valores
+4. Ser específica do DF (nomes de lugares, referências locais)
+
+Exemplos de locais de referência por região:
+• Ceilândia: "perto do Centro Cultural", "próximo ao Sol Nascente"
+• Taguatinga: "perto do Taguatinga Shopping", "na QNA"
+• Plano Piloto: "na Asa Norte", "perto do Parque da Cidade"
+• Águas Claras: "próximo ao Parque Ecológico"
+• Samambaia: "perto da Feira do Produtor"
+
+═══════════════════════════════════════════════════════════════════════════════
+VIESES COGNITIVOS (2-3 por eleitor, coerentes com perfil)
+═══════════════════════════════════════════════════════════════════════════════
+
+• confirmacao: todos têm, mas forte em politizados
+• disponibilidade: mais forte em quem consome muita mídia
+• ancoragem: forte em pragmáticos/econômicos
+• tribalismo: forte em identitários e extremos políticos
+• aversao_perda: forte em idosos e conservadores
+• efeito_halo: forte em menos escolarizados
+• efeito_manada: forte em jovens e redes sociais
+
+═══════════════════════════════════════════════════════════════════════════════
+FONTES DE INFORMAÇÃO (coerentes com perfil)
+═══════════════════════════════════════════════════════════════════════════════
+
+• G1/G2 + alta escolaridade: jornais tradicionais, portais de notícias
+• G3/G4: TV aberta, WhatsApp, redes sociais
+• Jovens: Instagram, TikTok, YouTube
+• Idosos: TV aberta, rádio, WhatsApp família
+• Evangélicos: grupos de igreja, líderes religiosos`;
 }
 
 /**

@@ -277,7 +277,7 @@ function CardVariavel({ resumo }: { resumo: ResumoValidacao }) {
                         <td className="py-2 px-2 text-center">
                           {div.eleitoresParaCorrecao > 0 ? (
                             <Link
-                              href={`/eleitores/gerar?corrigir=${div.variavel}&categoria=${div.categoria}&quantidade=${div.eleitoresParaCorrecao}`}
+                              href={`/eleitores/gerar?modo=corretivo&corrigir=${div.variavel}&categoria=${div.categoria}&quantidade=${div.eleitoresParaCorrecao}`}
                               className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs bg-orange-500/10 text-orange-400 hover:bg-orange-500/20 transition-colors"
                               title={`Gerar ${div.eleitoresParaCorrecao} eleitores para corrigir`}
                             >
@@ -429,7 +429,7 @@ export function ValidacaoEstatistica({ eleitores }: ValidacaoEstatisticaProps) {
             {validacao.principaisVieses.slice(0, 6).map((vies) => (
               <Link
                 key={`${vies.variavel}-${vies.categoria}`}
-                href={`/eleitores/gerar?corrigir=${vies.variavel}&categoria=${vies.categoria}&quantidade=${vies.eleitoresParaCorrecao}`}
+                href={`/eleitores/gerar?modo=corretivo&corrigir=${vies.variavel}&categoria=${vies.categoria}&quantidade=${vies.eleitoresParaCorrecao}`}
                 className="flex items-center justify-between p-3 bg-muted/10 rounded-lg hover:bg-muted/20 transition-colors cursor-pointer group"
               >
                 <div className="flex-1">

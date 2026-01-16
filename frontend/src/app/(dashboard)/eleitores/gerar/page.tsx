@@ -164,15 +164,59 @@ export default function PaginaGerarEleitores() {
     },
   });
 
-  // Mutation para salvar eleitores
+  // Mutation para salvar eleitores (backend + local)
   const mutationSalvar = useMutation({
     mutationFn: async (eleitores: Eleitor[]) => {
+      // 1. Tentar salvar no backend primeiro
+      let backendSalvo = false;
+      try {
+        const token = localStorage.getItem('pesquisa-eleitoral-auth');
+        const authData = token ? JSON.parse(token) : null;
+        const accessToken = authData?.state?.token;
+
+        const response = await fetch('/api/v1/geracao/salvar', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(accessToken && { 'Authorization': `Bearer ${accessToken}` }),
+          },
+          body: JSON.stringify({
+            eleitores,
+            modo_corretivo: usarModoCorretivo,
+            divergencias_corrigidas: divergenciasSelecionadas.map(
+              (d) => `${d.variavel}:${d.categoria}`
+            ),
+          }),
+        });
+
+        if (response.ok) {
+          const resultado = await response.json();
+          backendSalvo = resultado.sucesso;
+          if (resultado.erros?.length > 0) {
+            console.warn('Avisos do backend:', resultado.erros);
+          }
+        } else {
+          const erro = await response.json();
+          console.warn('Backend nao disponivel:', erro);
+        }
+      } catch (err) {
+        console.warn('Erro ao salvar no backend, continuando com salvamento local:', err);
+      }
+
+      // 2. Salvar localmente no Dexie (IndexedDB)
       await db.eleitores.bulkAdd(eleitores);
-      return eleitores;
+
+      return { eleitores, backendSalvo };
     },
-    onSuccess: (eleitores) => {
+    onSuccess: ({ eleitores, backendSalvo }) => {
       adicionarEleitores(eleitores);
-      toast.success(`${eleitores.length} eleitores salvos no banco!`);
+      if (backendSalvo) {
+        toast.success(`${eleitores.length} eleitores salvos no banco (backend + local)!`);
+      } else {
+        toast.success(`${eleitores.length} eleitores salvos localmente!`, {
+          description: 'O backend nao estava disponivel, mas os dados foram salvos no navegador.',
+        });
+      }
       router.push('/eleitores');
     },
     onError: () => {
@@ -263,9 +307,26 @@ export default function PaginaGerarEleitores() {
               {/* Lista de divergências para selecionar */}
               {divergenciasParaCorrecao.length > 0 ? (
                 <div>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Selecione as categorias sub-representadas que deseja corrigir:
-                  </p>
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-sm text-muted-foreground">
+                      Selecione as categorias sub-representadas que deseja corrigir:
+                    </p>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => setDivergenciasSelecionadas(divergenciasParaCorrecao.slice(0, 15))}
+                        className="text-xs text-primary hover:underline"
+                      >
+                        Selecionar todas
+                      </button>
+                      <span className="text-muted-foreground">|</span>
+                      <button
+                        onClick={() => setDivergenciasSelecionadas([])}
+                        className="text-xs text-muted-foreground hover:text-foreground"
+                      >
+                        Limpar
+                      </button>
+                    </div>
+                  </div>
                   <div className="max-h-48 overflow-y-auto space-y-1">
                     {divergenciasParaCorrecao.slice(0, 15).map((d) => {
                       const selecionada = divergenciasSelecionadas.some(
