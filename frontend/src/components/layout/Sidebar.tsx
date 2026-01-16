@@ -176,7 +176,7 @@ export function Sidebar() {
           );
         })}
 
-        {/* Separador */}
+        {/* Separador - Ações Rápidas */}
         {!recolhido && (
           <>
             <div className="pt-4 pb-2">
@@ -200,36 +200,44 @@ export function Sidebar() {
                 </Link>
               );
             })}
+          </>
+        )}
 
-            {/* Seção Admin - apenas para administradores */}
-            {isAdmin && (
-              <>
-                <div className="pt-4 pb-2">
-                  <span className="text-xs font-medium text-red-400 uppercase tracking-wider px-3">
-                    Administração
+        {/* Seção Admin - SEMPRE VISÍVEL para administradores */}
+        {isAdmin && (
+          <>
+            {!recolhido && (
+              <div className="pt-4 pb-2">
+                <span className="text-xs font-medium text-red-400 uppercase tracking-wider px-3">
+                  Administração
+                </span>
+              </div>
+            )}
+
+            <Link
+              href="/admin/usuarios"
+              onClick={fecharMobile}
+              className={cn(
+                'flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all group',
+                pathname.startsWith('/admin/usuarios')
+                  ? 'bg-red-500/20 text-red-400'
+                  : 'text-muted-foreground hover:text-red-400 hover:bg-red-500/10'
+              )}
+              title={recolhido ? 'Gerenciar Usuários' : undefined}
+            >
+              <Shield className={cn(
+                'w-5 h-5 flex-shrink-0',
+                pathname.startsWith('/admin/usuarios') ? 'text-red-400' : 'text-red-400/70'
+              )} />
+              {!recolhido && (
+                <div className="overflow-hidden">
+                  <span className="block text-sm font-medium">Gerenciar Usuários</span>
+                  <span className="block text-xs text-muted-foreground">
+                    Aprovar e controlar acessos
                   </span>
                 </div>
-
-                <Link
-                  href="/admin/usuarios"
-                  onClick={fecharMobile}
-                  className={cn(
-                    'flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all group',
-                    pathname.startsWith('/admin/usuarios')
-                      ? 'bg-red-500/20 text-red-400'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
-                  )}
-                >
-                  <Shield className="w-5 h-5 flex-shrink-0" />
-                  <div className="overflow-hidden">
-                    <span className="block text-sm font-medium">Gerenciar Usuários</span>
-                    <span className="block text-xs text-muted-foreground">
-                      Aprovar e controlar acessos
-                    </span>
-                  </div>
-                </Link>
-              </>
-            )}
+              )}
+            </Link>
           </>
         )}
       </nav>

@@ -76,7 +76,7 @@ def _usuario_google_para_resumo(u: dict) -> dict:
 # ==========================================
 
 @router.get(
-    "/",
+    "",
     response_model=ListaUsuariosResponse,
     summary="Listar usuários",
     description="Lista todos os usuários com filtros e paginação. **Apenas admin.**",
