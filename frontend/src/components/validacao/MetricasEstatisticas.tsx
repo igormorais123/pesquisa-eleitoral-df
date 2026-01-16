@@ -48,19 +48,34 @@ function TooltipInfo({ titulo, explicacao }: TooltipInfoProps) {
       <button
         onClick={() => setAberto(!aberto)}
         className="text-muted-foreground hover:text-foreground transition-colors"
+        aria-label={`Ajuda: ${titulo}`}
       >
         <HelpCircle className="w-4 h-4" />
       </button>
       {aberto && (
-        <div className="absolute z-50 left-0 top-6 w-72 p-3 bg-card border border-border rounded-lg shadow-xl">
-          <div className="flex justify-between items-start mb-2">
-            <h4 className="font-medium text-foreground text-sm">{titulo}</h4>
-            <button onClick={() => setAberto(false)} className="text-muted-foreground">
-              <XCircle className="w-4 h-4" />
-            </button>
+        <>
+          {/* Overlay para fechar ao clicar fora */}
+          <div
+            className="fixed inset-0 z-40"
+            onClick={() => setAberto(false)}
+          />
+          {/* Tooltip centralizado como modal flutuante */}
+          <div className="fixed z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 max-w-[90vw] p-4 bg-card border border-border rounded-xl shadow-2xl">
+            <div className="flex justify-between items-start mb-3">
+              <div className="flex items-center gap-2">
+                <Info className="w-5 h-5 text-primary" />
+                <h4 className="font-semibold text-foreground">{titulo}</h4>
+              </div>
+              <button
+                onClick={() => setAberto(false)}
+                className="text-muted-foreground hover:text-foreground p-1 hover:bg-muted/50 rounded"
+              >
+                <XCircle className="w-5 h-5" />
+              </button>
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">{explicacao}</p>
           </div>
-          <p className="text-xs text-muted-foreground leading-relaxed">{explicacao}</p>
-        </div>
+        </>
       )}
     </div>
   );
