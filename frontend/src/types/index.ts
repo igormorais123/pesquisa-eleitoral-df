@@ -364,3 +364,213 @@ export interface ConfiguracoesSistema {
   valores_possiveis: string[];
   preocupacoes_possiveis: string[];
 }
+
+// ============================================
+// PARLAMENTARES
+// ============================================
+
+export type CasaLegislativa = 'camara_federal' | 'senado' | 'cldf';
+
+export type CargoParlamentar = 'deputado_federal' | 'deputada_federal' | 'senador' | 'senadora' | 'deputado_distrital' | 'deputada_distrital';
+
+export type RelacaoGoverno = 'base_aliada' | 'independente' | 'oposicao_moderada' | 'oposicao_forte';
+
+export type PosicaoLula = 'apoiador_forte' | 'apoiador_moderado' | 'neutro' | 'critico_moderado' | 'opositor_moderado' | 'opositor_forte';
+
+export type EstiloComunicacao = 'combativo' | 'articulado' | 'popular' | 'tecnico' | 'religioso' | 'emotivo' | 'institucional' | 'conservador' | 'pragmatico' | 'didatico' | 'militante' | 'sindicalista' | 'assertivo' | 'autoritario' | 'conciliador' | 'digital' | 'firme';
+
+export interface RedesSociais {
+  twitter?: string;
+  instagram?: string;
+  facebook?: string;
+  youtube?: string;
+  tiktok?: string;
+}
+
+export interface Parlamentar {
+  id: string;
+  nome: string;
+  nome_parlamentar: string;
+  idade: number;
+  data_nascimento: string;
+  genero: Genero;
+  cor_raca: string;
+  naturalidade: string;
+  uf_nascimento: string;
+  casa_legislativa: CasaLegislativa;
+  cargo: CargoParlamentar;
+  partido: string;
+  numero_partido: number;
+  mandato_inicio: string;
+  mandato_fim: string;
+  legislatura: number;
+  votos_eleicao: number;
+  foto_url: string;
+  formacao_academica: string[];
+  profissao_anterior: string;
+  carreira_profissional: string;
+  historico_politico: string[];
+  comissoes_atuais: string[];
+  liderancas?: string[];
+  frentes_parlamentares?: string[];
+  temas_atuacao: string[];
+  projetos_lei_destaque?: string[];
+  base_eleitoral: string;
+  religiao: string;
+  estado_civil: string;
+  filhos: number;
+  orientacao_politica: OrientacaoPolitica;
+  posicao_bolsonaro: PosicaoBolsonaro;
+  posicao_lula?: PosicaoLula;
+  interesse_politico: InteressePolitico;
+  tolerancia_nuance?: ToleranciaNuance;
+  estilo_decisao?: EstiloDecisao;
+  estilo_comunicacao: EstiloComunicacao;
+  valores: string[];
+  preocupacoes: string[];
+  medos?: string[];
+  vieses_cognitivos?: string[];
+  fontes_informacao?: string[];
+  aliancas_politicas?: string[];
+  relacao_governo_atual?: RelacaoGoverno;
+  email_contato?: string;
+  telefone_gabinete?: string;
+  gabinete_localizacao?: string;
+  redes_sociais?: RedesSociais;
+  historia_resumida: string;
+  instrucao_comportamental: string;
+  criado_em: string;
+  atualizado_em: string;
+}
+
+export interface ParlamentarResumo {
+  id: string;
+  nome: string;
+  nome_parlamentar: string;
+  idade: number;
+  genero: Genero;
+  casa_legislativa: CasaLegislativa;
+  cargo: CargoParlamentar;
+  partido: string;
+  foto_url: string;
+  orientacao_politica: OrientacaoPolitica;
+  base_eleitoral: string;
+}
+
+export interface FiltrosParlamentar {
+  pagina?: number;
+  por_pagina?: number;
+  busca?: string;
+  casas_legislativas?: CasaLegislativa[];
+  partidos?: string[];
+  generos?: Genero[];
+  orientacoes_politicas?: OrientacaoPolitica[];
+  posicoes_bolsonaro?: PosicaoBolsonaro[];
+  posicoes_lula?: PosicaoLula[];
+  religioes?: string[];
+  temas_atuacao?: string[];
+  relacoes_governo?: RelacaoGoverno[];
+  ordenar_por?: string;
+  ordem?: 'asc' | 'desc';
+}
+
+export interface EstatisticasParlamentares {
+  total: number;
+  por_casa: { casa: CasaLegislativa; contagem: number; percentual: number }[];
+  por_partido: { partido: string; contagem: number; percentual: number }[];
+  por_genero: { genero: Genero; contagem: number; percentual: number }[];
+  por_orientacao_politica: { orientacao: OrientacaoPolitica; contagem: number; percentual: number }[];
+  por_posicao_bolsonaro: { posicao: PosicaoBolsonaro; contagem: number; percentual: number }[];
+  por_relacao_governo: { relacao: RelacaoGoverno; contagem: number; percentual: number }[];
+  media_idade: number;
+  media_votos: number;
+}
+
+// ============================================
+// PESQUISA PARLAMENTAR
+// ============================================
+
+export type TipoPesquisaParlamentar = 'votacao' | 'opiniao' | 'posicionamento' | 'analise_comportamental';
+
+export interface PerguntaParlamentar {
+  id: string;
+  texto: string;
+  tipo: 'aberta' | 'escala' | 'multipla_escolha' | 'sim_nao' | 'ranking';
+  opcoes?: string[];
+  obrigatoria: boolean;
+  contexto_parlamentar?: string; // Contexto específico para o parlamentar responder
+  escala_min?: number;
+  escala_max?: number;
+  escala_rotulos?: string[];
+}
+
+export interface PesquisaParlamentar {
+  id: string;
+  titulo: string;
+  descricao?: string;
+  tipo: TipoPesquisaParlamentar;
+  perguntas: PerguntaParlamentar[];
+  filtros_aplicados: FiltrosParlamentar;
+  casa_legislativa?: CasaLegislativa; // Filtro específico por casa
+  total_parlamentares: number;
+  status: 'rascunho' | 'executando' | 'concluida' | 'erro';
+  custo_estimado: number;
+  custo_real?: number;
+  progresso?: number;
+  criado_em: string;
+  iniciado_em?: string;
+  finalizado_em?: string;
+}
+
+export interface RespostaParlamentar {
+  parlamentar_id: string;
+  parlamentar_nome: string;
+  partido: string;
+  casa_legislativa: CasaLegislativa;
+  respostas: {
+    pergunta_id: string;
+    resposta: string | number | string[];
+  }[];
+  justificativa?: string; // Justificativa do parlamentar para sua resposta
+  tokens_usados: number;
+  custo: number;
+  tempo_resposta_ms: number;
+}
+
+export interface ResultadoPesquisaParlamentar {
+  pesquisa_id: string;
+  total_respostas: number;
+  custo_total: number;
+
+  // Análise por casa legislativa
+  analise_por_casa?: {
+    casa: CasaLegislativa;
+    total: number;
+    distribuicao_respostas: Record<string, number>;
+  }[];
+
+  // Análise por partido
+  analise_por_partido?: {
+    partido: string;
+    total: number;
+    distribuicao_respostas: Record<string, number>;
+  }[];
+
+  // Análise por orientação política
+  analise_por_orientacao?: {
+    orientacao: OrientacaoPolitica;
+    total: number;
+    distribuicao_respostas: Record<string, number>;
+  }[];
+
+  // Respostas individuais
+  respostas: RespostaParlamentar[];
+
+  // Insights específicos para parlamentares
+  insights: {
+    tipo: 'consenso' | 'divisao' | 'tendencia' | 'anomalia';
+    titulo: string;
+    descricao: string;
+    relevancia: number;
+  }[];
+}
