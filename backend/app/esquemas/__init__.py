@@ -13,8 +13,20 @@ from .eleitor import (
     EstatisticasEleitores,
     FiltrosEleitor,
 )
+from .memoria import (
+    AnalyticsGlobais,
+    FiltrosMemoria,
+    HistoricoEleitor,
+    MemoriaCreate,
+    MemoriaListResponse,
+    MemoriaResponse,
+    MemoriaResumo,
+    TipoMemoriaEnum,
+    UsoAPIResponse,
+)
 
 __all__ = [
+    # Eleitor
     "EleitorBase",
     "EleitorCreate",
     "EleitorUpdate",
@@ -22,4 +34,14 @@ __all__ = [
     "EleitorListResponse",
     "FiltrosEleitor",
     "EstatisticasEleitores",
+    # Memória
+    "MemoriaCreate",
+    "MemoriaResponse",
+    "MemoriaResumo",
+    "MemoriaListResponse",
+    "FiltrosMemoria",
+    "HistoricoEleitor",
+    "AnalyticsGlobais",
+    "UsoAPIResponse",
+    "TipoMemoriaEnum",
 ]

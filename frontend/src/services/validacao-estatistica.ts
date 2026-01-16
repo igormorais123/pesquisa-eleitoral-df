@@ -273,6 +273,219 @@ function calcularDistribuicaoFilhos(
 }
 
 /**
+ * Calcula a distribuição de tempo de deslocamento para trabalho
+ */
+function calcularDistribuicaoTempoDeslocamento(
+  eleitores: Eleitor[]
+): Record<string, { contagem: number; percentual: number }> {
+  const total = eleitores.length;
+  const contagem: Record<string, number> = {};
+
+  eleitores.forEach((e) => {
+    const valor = String((e as unknown as Record<string, unknown>).tempo_deslocamento_trabalho || 'nao_se_aplica');
+    contagem[valor] = (contagem[valor] || 0) + 1;
+  });
+
+  const resultado: Record<string, { contagem: number; percentual: number }> = {};
+  Object.entries(contagem).forEach(([key, count]) => {
+    resultado[key] = {
+      contagem: count,
+      percentual: (count / total) * 100,
+    };
+  });
+
+  return resultado;
+}
+
+/**
+ * Calcula a distribuição de voto facultativo
+ * Baseado na idade: 16-17 anos e 70+ anos = facultativo, resto = obrigatório
+ */
+function calcularDistribuicaoVotoFacultativo(
+  eleitores: Eleitor[]
+): Record<string, { contagem: number; percentual: number }> {
+  const total = eleitores.length;
+  let facultativo = 0;
+  let obrigatorio = 0;
+
+  eleitores.forEach((e) => {
+    // Voto facultativo para menores de 18 e maiores de 70
+    const votoFacultativo = (e as unknown as Record<string, unknown>).voto_facultativo;
+    if (votoFacultativo === true || votoFacultativo === 'true') {
+      facultativo++;
+    } else if (votoFacultativo === false || votoFacultativo === 'false') {
+      obrigatorio++;
+    } else {
+      // Calcular baseado na idade se o campo não existir
+      const idade = e.idade || 35;
+      if (idade < 18 || idade >= 70) {
+        facultativo++;
+      } else {
+        obrigatorio++;
+      }
+    }
+  });
+
+  return {
+    'true': { contagem: facultativo, percentual: (facultativo / total) * 100 },
+    'false': { contagem: obrigatorio, percentual: (obrigatorio / total) * 100 },
+  };
+}
+
+/**
+ * Calcula a distribuição de conflito identitário
+ */
+function calcularDistribuicaoConflitoIdentitario(
+  eleitores: Eleitor[]
+): Record<string, { contagem: number; percentual: number }> {
+  const total = eleitores.length;
+  let comConflito = 0;
+  let semConflito = 0;
+
+  eleitores.forEach((e) => {
+    const conflito = (e as unknown as Record<string, unknown>).conflito_identitario;
+    if (conflito === true || conflito === 'true') {
+      comConflito++;
+    } else {
+      semConflito++;
+    }
+  });
+
+  return {
+    'true': { contagem: comConflito, percentual: (comConflito / total) * 100 },
+    'false': { contagem: semConflito, percentual: (semConflito / total) * 100 },
+  };
+}
+
+/**
+ * Calcula a distribuição de região administrativa
+ */
+function calcularDistribuicaoRegiaoAdministrativa(
+  eleitores: Eleitor[]
+): Record<string, { contagem: number; percentual: number }> {
+  const total = eleitores.length;
+  const contagem: Record<string, number> = {};
+
+  eleitores.forEach((e) => {
+    const valor = String((e as unknown as Record<string, unknown>).regiao_administrativa || 'Não informado');
+    contagem[valor] = (contagem[valor] || 0) + 1;
+  });
+
+  const resultado: Record<string, { contagem: number; percentual: number }> = {};
+  Object.entries(contagem).forEach(([key, count]) => {
+    resultado[key] = {
+      contagem: count,
+      percentual: (count / total) * 100,
+    };
+  });
+
+  return resultado;
+}
+
+/**
+ * Calcula a distribuição de preocupações principais (campo array)
+ * Conta a frequência de cada preocupação no total de menções
+ */
+function calcularDistribuicaoPreocupacoes(
+  eleitores: Eleitor[]
+): Record<string, { contagem: number; percentual: number }> {
+  const contagem: Record<string, number> = {};
+  let totalMencoes = 0;
+
+  eleitores.forEach((e) => {
+    const preocupacoes = (e as unknown as Record<string, unknown>).preocupacoes;
+    if (Array.isArray(preocupacoes)) {
+      preocupacoes.forEach((p: unknown) => {
+        const valor = String(p || 'outros').toLowerCase();
+        contagem[valor] = (contagem[valor] || 0) + 1;
+        totalMencoes++;
+      });
+    }
+  });
+
+  // Se não houver menções, usa total de eleitores como base
+  const divisor = totalMencoes > 0 ? totalMencoes : eleitores.length;
+
+  const resultado: Record<string, { contagem: number; percentual: number }> = {};
+  Object.entries(contagem).forEach(([key, count]) => {
+    resultado[key] = {
+      contagem: count,
+      percentual: (count / divisor) * 100,
+    };
+  });
+
+  return resultado;
+}
+
+/**
+ * Calcula a distribuição de valores principais (campo array)
+ * Conta a frequência de cada valor no total de menções
+ */
+function calcularDistribuicaoValores(
+  eleitores: Eleitor[]
+): Record<string, { contagem: number; percentual: number }> {
+  const contagem: Record<string, number> = {};
+  let totalMencoes = 0;
+
+  eleitores.forEach((e) => {
+    const valores = (e as unknown as Record<string, unknown>).valores;
+    if (Array.isArray(valores)) {
+      valores.forEach((v: unknown) => {
+        const valor = String(v || 'outros').toLowerCase();
+        contagem[valor] = (contagem[valor] || 0) + 1;
+        totalMencoes++;
+      });
+    }
+  });
+
+  const divisor = totalMencoes > 0 ? totalMencoes : eleitores.length;
+
+  const resultado: Record<string, { contagem: number; percentual: number }> = {};
+  Object.entries(contagem).forEach(([key, count]) => {
+    resultado[key] = {
+      contagem: count,
+      percentual: (count / divisor) * 100,
+    };
+  });
+
+  return resultado;
+}
+
+/**
+ * Calcula a distribuição de medos principais (campo array)
+ * Conta a frequência de cada medo no total de menções
+ */
+function calcularDistribuicaoMedos(
+  eleitores: Eleitor[]
+): Record<string, { contagem: number; percentual: number }> {
+  const contagem: Record<string, number> = {};
+  let totalMencoes = 0;
+
+  eleitores.forEach((e) => {
+    const medos = (e as unknown as Record<string, unknown>).medos;
+    if (Array.isArray(medos)) {
+      medos.forEach((m: unknown) => {
+        const valor = String(m || 'outros').toLowerCase();
+        contagem[valor] = (contagem[valor] || 0) + 1;
+        totalMencoes++;
+      });
+    }
+  });
+
+  const divisor = totalMencoes > 0 ? totalMencoes : eleitores.length;
+
+  const resultado: Record<string, { contagem: number; percentual: number }> = {};
+  Object.entries(contagem).forEach(([key, count]) => {
+    resultado[key] = {
+      contagem: count,
+      percentual: (count / divisor) * 100,
+    };
+  });
+
+  return resultado;
+}
+
+/**
  * Determina a severidade da divergência baseado no desvio
  */
 function determinarSeveridade(diferencaAbsoluta: number): 'baixa' | 'media' | 'alta' | 'critica' {
@@ -426,6 +639,34 @@ export function calcularValidacaoEstatistica(eleitores: Eleitor[]): ValidacaoCom
     {
       variavel: 'susceptibilidade_desinformacao',
       calcularDistribuicao: () => calcularDistribuicaoSusceptibilidade(eleitores),
+    },
+    {
+      variavel: 'tempo_deslocamento_trabalho',
+      calcularDistribuicao: () => calcularDistribuicaoTempoDeslocamento(eleitores),
+    },
+    {
+      variavel: 'voto_facultativo',
+      calcularDistribuicao: () => calcularDistribuicaoVotoFacultativo(eleitores),
+    },
+    {
+      variavel: 'conflito_identitario',
+      calcularDistribuicao: () => calcularDistribuicaoConflitoIdentitario(eleitores),
+    },
+    {
+      variavel: 'regiao_administrativa',
+      calcularDistribuicao: () => calcularDistribuicaoRegiaoAdministrativa(eleitores),
+    },
+    {
+      variavel: 'preocupacoes_principais',
+      calcularDistribuicao: () => calcularDistribuicaoPreocupacoes(eleitores),
+    },
+    {
+      variavel: 'valores_principais',
+      calcularDistribuicao: () => calcularDistribuicaoValores(eleitores),
+    },
+    {
+      variavel: 'medos_principais',
+      calcularDistribuicao: () => calcularDistribuicaoMedos(eleitores),
     },
   ];
 

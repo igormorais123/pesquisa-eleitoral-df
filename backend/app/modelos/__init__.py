@@ -25,6 +25,7 @@ from app.modelos.eleitor import (
     PosicaoBolsonaro,
     ToleranciaNuance,
 )
+from app.modelos.memoria import Memoria, TipoMemoria, UsoAPI
 from app.modelos.pergunta import PerguntaPesquisa, TipoPergunta
 from app.modelos.pesquisa import Pesquisa, StatusPesquisa, TipoPesquisa
 from app.modelos.resposta import Resposta
@@ -39,6 +40,8 @@ __all__ = [
     "PerguntaPesquisa",
     "Resposta",
     "Analise",
+    "Memoria",
+    "UsoAPI",
     # Enums - Eleitor
     "ClusterSocioeconomico",
     "EstiloDecisao",
@@ -53,4 +56,5 @@ __all__ = [
     "StatusPesquisa",
     "TipoPergunta",
     "TipoAnalise",
+    "TipoMemoria",
 ]

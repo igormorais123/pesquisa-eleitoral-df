@@ -495,6 +495,142 @@ export const dadosRegiaoAdministrativa: DadoReferencia = {
   confiabilidade: 'alta',
 };
 
+// ============================================
+// DADOS DE TEMPO DE DESLOCAMENTO PARA TRABALHO
+// ============================================
+
+export const dadosTempoDeslocamento: DadoReferencia = {
+  variavel: 'tempo_deslocamento_trabalho',
+  categoria: 'Mobilidade',
+  fonte: 'Censo Demográfico 2022 - IBGE',
+  ano: 2022,
+  url: 'https://censo2022.ibge.gov.br/panorama/',
+  ambito: 'DF',
+  metodologia: 'Censo 2022 - tempo habitual de deslocamento casa-trabalho para ocupados',
+  valores: {
+    'nao_se_aplica': 7.0,      // Trabalha em casa / não se desloca
+    'ate_15': 15.0,            // Até 15 minutos
+    '15_30': 25.0,             // De 15 a 30 minutos
+    '30_45': 22.0,             // De 30 a 45 minutos
+    '45_60': 18.0,             // De 45 a 60 minutos
+    '60_75': 13.0,             // Mais de 1 hora (agrupado)
+  },
+  observacoes: 'No DF, 77,6% dos trabalhadores que usam ônibus levam de 30 min a 2h. DF tem maior tempo médio de deslocamento entre metrópoles brasileiras para usuários de transporte público.',
+  confiabilidade: 'alta',
+};
+
+// ============================================
+// DADOS DE VOTO FACULTATIVO
+// ============================================
+
+export const dadosVotoFacultativo: DadoReferencia = {
+  variavel: 'voto_facultativo',
+  categoria: 'Político',
+  fonte: 'TSE - Tribunal Superior Eleitoral',
+  ano: 2024,
+  url: 'https://www.tse.jus.br/eleicoes/estatisticas/estatisticas-de-eleitorado/eleitorado',
+  ambito: 'Brasil',
+  metodologia: 'Estatísticas do eleitorado brasileiro - proporção de eleitores com voto facultativo (16-17 anos e 70+ anos)',
+  valores: {
+    'true': 11.0,    // ~1,18% jovens 16-17 + ~9,75% idosos 70+ = ~11%
+    'false': 89.0,   // Voto obrigatório (18-69 anos)
+  },
+  observacoes: 'Voto facultativo para: jovens 16-17 anos (1,18% do eleitorado), idosos 70+ anos (9,75%) e analfabetos. Total de ~20,5 milhões de eleitores com voto facultativo no Brasil.',
+  confiabilidade: 'alta',
+};
+
+// ============================================
+// DADOS DE CONFLITO IDENTITÁRIO
+// ============================================
+
+export const dadosConflitoIdentitario: DadoReferencia = {
+  variavel: 'conflito_identitario',
+  categoria: 'Psicológico',
+  fonte: 'Estudos de Psicologia Política / ESEB',
+  ano: 2023,
+  url: 'https://www.scielo.br/j/op/',
+  ambito: 'Brasil',
+  metodologia: 'Pesquisas sobre polarização e ambivalência política na população brasileira',
+  valores: {
+    'true': 25.0,    // Eleitores com conflito entre identidade e posição política
+    'false': 75.0,   // Eleitores sem conflito identitário significativo
+  },
+  observacoes: 'Conflito identitário ocorre quando o eleitor tem valores/crenças que conflitam com sua orientação política declarada. Aumentou significativamente com a polarização pós-2018.',
+  confiabilidade: 'baixa',
+};
+
+// ============================================
+// DADOS DE PRINCIPAIS PREOCUPAÇÕES
+// ============================================
+
+export const dadosPreocupacoesPrincipais: DadoReferencia = {
+  variavel: 'preocupacoes_principais',
+  categoria: 'Comportamental',
+  fonte: 'Datafolha / IBOPE / Latinobarómetro',
+  ano: 2024,
+  url: 'https://datafolha.folha.uol.com.br/',
+  ambito: 'Brasil',
+  metodologia: 'Pesquisas de opinião sobre principais problemas do país',
+  valores: {
+    'saude': 28.0,
+    'seguranca': 22.0,
+    'economia': 18.0,
+    'corrupcao': 12.0,
+    'educacao': 10.0,
+    'desemprego': 10.0,
+  },
+  observacoes: 'Saúde consistentemente aparece como principal preocupação desde a pandemia. Segurança e economia disputam segundo lugar dependendo da conjuntura.',
+  confiabilidade: 'media',
+};
+
+// ============================================
+// DADOS DE PRINCIPAIS VALORES
+// ============================================
+
+export const dadosValoresPrincipais: DadoReferencia = {
+  variavel: 'valores_principais',
+  categoria: 'Psicológico',
+  fonte: 'World Values Survey / Latinobarómetro',
+  ano: 2023,
+  url: 'https://www.worldvaluessurvey.org/',
+  ambito: 'Brasil',
+  metodologia: 'Pesquisa internacional sobre valores humanos e prioridades',
+  valores: {
+    'familia': 35.0,
+    'trabalho': 20.0,
+    'seguranca': 15.0,
+    'religiao': 12.0,
+    'liberdade': 10.0,
+    'igualdade': 8.0,
+  },
+  observacoes: 'Brasileiros valorizam fortemente família e trabalho. Religião tem peso significativo comparado a outros países da América Latina.',
+  confiabilidade: 'media',
+};
+
+// ============================================
+// DADOS DE PRINCIPAIS MEDOS
+// ============================================
+
+export const dadosMedosPrincipais: DadoReferencia = {
+  variavel: 'medos_principais',
+  categoria: 'Psicológico',
+  fonte: 'Pesquisas de Opinião Pública / FGV',
+  ano: 2024,
+  url: 'https://portal.fgv.br/',
+  ambito: 'Brasil',
+  metodologia: 'Pesquisas sobre medos e ansiedades da população brasileira',
+  valores: {
+    'violencia': 30.0,
+    'desemprego': 22.0,
+    'saude': 18.0,
+    'economia': 15.0,
+    'corrupcao': 10.0,
+    'instabilidade_politica': 5.0,
+  },
+  observacoes: 'Violência urbana é o medo predominante, especialmente em grandes centros. Desemprego e perda de renda são preocupações constantes para classes C e D.',
+  confiabilidade: 'media',
+};
+
 // Dados de IDHM por Região Administrativa (para referência de desenvolvimento humano)
 export const dadosIDHMRegioes: DadoReferencia = {
   variavel: 'idhm_regiao',
@@ -554,7 +690,13 @@ export const dadosReferenciaCompletos: CategoriaValidacao[] = [
     nome: 'Mobilidade',
     descricao: 'Transporte e deslocamento',
     icone: 'Car',
-    variaveis: [dadosMeioTransporte],
+    variaveis: [dadosMeioTransporte, dadosTempoDeslocamento],
+  },
+  {
+    nome: 'Geográficos',
+    descricao: 'Distribuição por região administrativa',
+    icone: 'Map',
+    variaveis: [dadosRegiaoAdministrativa],
   },
 ];
 
@@ -579,8 +721,14 @@ export const mapaDadosReferencia: Record<string, DadoReferencia> = {
   fontes_informacao: dadosFontesInformacao,
   susceptibilidade_desinformacao: dadosSusceptibilidadeDesinformacao,
   meio_transporte: dadosMeioTransporte,
+  tempo_deslocamento_trabalho: dadosTempoDeslocamento,
   regiao_administrativa: dadosRegiaoAdministrativa,
   idhm_regiao: dadosIDHMRegioes,
+  voto_facultativo: dadosVotoFacultativo,
+  conflito_identitario: dadosConflitoIdentitario,
+  preocupacoes_principais: dadosPreocupacoesPrincipais,
+  valores_principais: dadosValoresPrincipais,
+  medos_principais: dadosMedosPrincipais,
 };
 
 // Labels amigáveis para as variáveis
@@ -604,8 +752,14 @@ export const labelsVariaveis: Record<string, string> = {
   fontes_informacao: 'Fontes de Informação',
   susceptibilidade_desinformacao: 'Susceptibilidade à Desinformação',
   meio_transporte: 'Meio de Transporte',
+  tempo_deslocamento_trabalho: 'Tempo de Deslocamento',
   regiao_administrativa: 'Região Administrativa',
   idhm_regiao: 'IDHM por Região',
+  voto_facultativo: 'Voto Facultativo',
+  conflito_identitario: 'Conflito Identitário',
+  preocupacoes_principais: 'Preocupações Principais',
+  valores_principais: 'Valores Principais',
+  medos_principais: 'Medos Principais',
 };
 
 // Labels para valores específicos
@@ -711,5 +865,45 @@ export const labelsValores: Record<string, Record<string, string>> = {
     '45-54': '45-54 anos',
     '55-64': '55-64 anos',
     '65+': '65+ anos',
+  },
+  tempo_deslocamento_trabalho: {
+    'nao_se_aplica': 'Não se aplica',
+    'ate_15': 'Até 15 min',
+    '15_30': '15-30 min',
+    '30_45': '30-45 min',
+    '45_60': '45-60 min',
+    '60_75': '60+ min',
+  },
+  voto_facultativo: {
+    'true': 'Facultativo',
+    'false': 'Obrigatório',
+  },
+  conflito_identitario: {
+    'true': 'Com conflito',
+    'false': 'Sem conflito',
+  },
+  preocupacoes_principais: {
+    'saude': 'Saúde',
+    'seguranca': 'Segurança',
+    'economia': 'Economia',
+    'corrupcao': 'Corrupção',
+    'educacao': 'Educação',
+    'desemprego': 'Desemprego',
+  },
+  valores_principais: {
+    'familia': 'Família',
+    'trabalho': 'Trabalho',
+    'seguranca': 'Segurança',
+    'religiao': 'Religião',
+    'liberdade': 'Liberdade',
+    'igualdade': 'Igualdade',
+  },
+  medos_principais: {
+    'violencia': 'Violência',
+    'desemprego': 'Desemprego',
+    'saude': 'Saúde',
+    'economia': 'Economia',
+    'corrupcao': 'Corrupção',
+    'instabilidade_politica': 'Instabilidade Política',
   },
 };

@@ -1,7 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useMemo, useEffect, useState } from 'react';
 import {
   Users,
   MessageSquare,
@@ -23,6 +22,11 @@ import {
   UserCheck,
   Scale,
   Eye,
+  Filter,
+  X,
+  ChevronDown,
+  ChevronUp,
+  RotateCcw,
 } from 'lucide-react';
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
@@ -43,21 +47,15 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis,
   Radar,
-  Treemap,
   AreaChart,
   Area,
   RadialBarChart,
   RadialBar,
-  ComposedChart,
-  Line,
-  FunnelChart,
-  Funnel,
-  LabelList,
 } from 'recharts';
-import { api } from '@/services/api';
 import { formatarNumero, formatarPercentual } from '@/lib/utils';
 import eleitoresData from '@/data/eleitores-df-1000.json';
 import type { Eleitor } from '@/types';
+import { useEleitoresStore, useEleitoresFiltrados, useFiltros, useFiltrosActions } from '@/stores/eleitores-store';
 
 // Cores para gráficos
 const CORES = {
@@ -308,8 +306,161 @@ const LABELS: Record<string, Record<string, string>> = {
   },
 };
 
+// ============================================
+// OPÇÕES DE FILTRO PARA O DASHBOARD
+// ============================================
+
+const GENEROS = [
+  { valor: 'masculino', rotulo: 'Masculino' },
+  { valor: 'feminino', rotulo: 'Feminino' },
+];
+
+const CLUSTERS = [
+  { valor: 'G1_alta', rotulo: 'Alta Renda' },
+  { valor: 'G2_media_alta', rotulo: 'Média-Alta' },
+  { valor: 'G3_media_baixa', rotulo: 'Média-Baixa' },
+  { valor: 'G4_baixa', rotulo: 'Baixa Renda' },
+];
+
+const ORIENTACOES = [
+  { valor: 'esquerda', rotulo: 'Esquerda' },
+  { valor: 'centro-esquerda', rotulo: 'Centro-Esq' },
+  { valor: 'centro', rotulo: 'Centro' },
+  { valor: 'centro-direita', rotulo: 'Centro-Dir' },
+  { valor: 'direita', rotulo: 'Direita' },
+];
+
+const POSICOES_BOLSONARO = [
+  { valor: 'apoiador_forte', rotulo: 'Apoiador Forte' },
+  { valor: 'apoiador_moderado', rotulo: 'Apoiador Mod.' },
+  { valor: 'neutro', rotulo: 'Neutro' },
+  { valor: 'critico_moderado', rotulo: 'Crítico Mod.' },
+  { valor: 'critico_forte', rotulo: 'Crítico Forte' },
+];
+
+const FAIXAS_ETARIAS = [
+  { valor: '16-24', rotulo: '16-24' },
+  { valor: '25-34', rotulo: '25-34' },
+  { valor: '35-44', rotulo: '35-44' },
+  { valor: '45-54', rotulo: '45-54' },
+  { valor: '55-64', rotulo: '55-64' },
+  { valor: '65+', rotulo: '65+' },
+];
+
+const RELIGIOES = [
+  { valor: 'catolica', rotulo: 'Católica' },
+  { valor: 'evangelica', rotulo: 'Evangélica' },
+  { valor: 'espirita', rotulo: 'Espírita' },
+  { valor: 'sem_religiao', rotulo: 'Sem Religião' },
+];
+
+const INTERESSES_POLITICOS = [
+  { valor: 'baixo', rotulo: 'Baixo' },
+  { valor: 'medio', rotulo: 'Médio' },
+  { valor: 'alto', rotulo: 'Alto' },
+];
+
+// Componente de Filtro Rápido para o Dashboard
+function FiltroRapidoDashboard({
+  titulo,
+  opcoes,
+  selecionados,
+  onChange,
+  icone: Icone,
+}: {
+  titulo: string;
+  opcoes: { valor: string; rotulo: string }[];
+  selecionados: string[];
+  onChange: (valores: string[]) => void;
+  icone: React.ElementType;
+}) {
+  const [aberto, setAberto] = useState(false);
+
+  const toggleOpcao = (valor: string) => {
+    if (selecionados.includes(valor)) {
+      onChange(selecionados.filter((v) => v !== valor));
+    } else {
+      onChange([...selecionados, valor]);
+    }
+  };
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setAberto(!aberto)}
+        className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all ${
+          selecionados.length > 0
+            ? 'bg-primary text-white'
+            : 'bg-card border border-border hover:border-primary/50'
+        }`}
+      >
+        <Icone className="w-4 h-4" />
+        <span>{titulo}</span>
+        {selecionados.length > 0 && (
+          <span className="bg-white/20 px-1.5 py-0.5 rounded text-xs">
+            {selecionados.length}
+          </span>
+        )}
+        {aberto ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+      </button>
+
+      {aberto && (
+        <div className="absolute top-full left-0 mt-2 z-50 bg-card border border-border rounded-lg shadow-lg p-2 min-w-[180px]">
+          {opcoes.map((opcao) => (
+            <button
+              key={opcao.valor}
+              onClick={() => toggleOpcao(opcao.valor)}
+              className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
+                selecionados.includes(opcao.valor)
+                  ? 'bg-primary/20 text-primary'
+                  : 'hover:bg-muted'
+              }`}
+            >
+              {opcao.rotulo}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function PaginaInicial() {
-  const eleitores = eleitoresData as unknown as Eleitor[];
+  // Integração com o store de eleitores
+  const setEleitores = useEleitoresStore((state) => state.setEleitores);
+  const todosEleitores = useEleitoresStore((state) => state.eleitores);
+  const eleitoresFiltrados = useEleitoresFiltrados();
+  const filtros = useFiltros();
+  const { setFiltros, limparFiltros } = useFiltrosActions();
+  const [filtrosVisiveis, setFiltrosVisiveis] = useState(false);
+
+  // Carrega os eleitores no store quando o componente monta
+  useEffect(() => {
+    if (todosEleitores.length === 0) {
+      setEleitores(eleitoresData as unknown as Eleitor[]);
+    }
+  }, [setEleitores, todosEleitores.length]);
+
+  // Usa os eleitores filtrados se houver filtros aplicados, senão usa todos
+  const eleitores = eleitoresFiltrados.length > 0 || temFiltrosAtivos(filtros)
+    ? eleitoresFiltrados
+    : (todosEleitores.length > 0 ? todosEleitores : eleitoresData as unknown as Eleitor[]);
+
+  // Função para verificar se há filtros ativos
+  function temFiltrosAtivos(filtros: any): boolean {
+    return Object.values(filtros).some((v) => {
+      if (Array.isArray(v)) return v.length > 0;
+      if (typeof v === 'string') return v.length > 0;
+      return false;
+    });
+  }
+
+  // Contagem de filtros ativos
+  const totalFiltrosAtivos = Object.values(filtros).reduce((acc, v) => {
+    if (Array.isArray(v)) return acc + v.length;
+    if (typeof v === 'string' && v.length > 0) return acc + 1;
+    return acc;
+  }, 0);
 
   // Performance: Memoiza todas as estatísticas (calculado uma vez, não a cada render)
   const stats = useMemo(() => ({
@@ -572,6 +723,9 @@ export default function PaginaInicial() {
     dadosSuscept,
   } = dadosGraficos;
 
+  // Total de eleitores (todos, sem filtro)
+  const totalGeral = todosEleitores.length > 0 ? todosEleitores.length : (eleitoresData as unknown as Eleitor[]).length;
+
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Cabeçalho */}
@@ -580,8 +734,173 @@ export default function PaginaInicial() {
           Dashboard de Análise Eleitoral
         </h1>
         <p className="text-muted-foreground mt-2">
-          Visão completa do perfil dos {stats.total} eleitores sintéticos do Distrito Federal para as eleições de 2026.
+          {temFiltrosAtivos(filtros) ? (
+            <>
+              Analisando <span className="text-primary font-semibold">{stats.total}</span> de {totalGeral} eleitores ({((stats.total / totalGeral) * 100).toFixed(1)}% da amostra)
+            </>
+          ) : (
+            <>Visão completa do perfil dos {stats.total} eleitores sintéticos do Distrito Federal para as eleições de 2026.</>
+          )}
         </p>
+      </div>
+
+      {/* Painel de Filtros */}
+      <div className="glass-card rounded-xl p-4">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+              <Filter className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <h3 className="font-medium text-foreground">Filtrar Amostra</h3>
+              <p className="text-xs text-muted-foreground">
+                Selecione grupos para analisar segmentos específicos
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            {totalFiltrosAtivos > 0 && (
+              <span className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                {totalFiltrosAtivos} filtro{totalFiltrosAtivos > 1 ? 's' : ''} ativo{totalFiltrosAtivos > 1 ? 's' : ''}
+              </span>
+            )}
+            <button
+              onClick={() => setFiltrosVisiveis(!filtrosVisiveis)}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+            >
+              {filtrosVisiveis ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              {filtrosVisiveis ? 'Ocultar' : 'Mostrar'} Filtros
+            </button>
+            {totalFiltrosAtivos > 0 && (
+              <button
+                onClick={limparFiltros}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-colors"
+              >
+                <RotateCcw className="w-4 h-4" />
+                Limpar
+              </button>
+            )}
+          </div>
+        </div>
+
+        {filtrosVisiveis && (
+          <div className="border-t border-border pt-4">
+            <div className="flex flex-wrap gap-3">
+              <FiltroRapidoDashboard
+                titulo="Gênero"
+                opcoes={GENEROS}
+                selecionados={filtros.generos || []}
+                onChange={(valores) => setFiltros({ generos: valores as any })}
+                icone={Users}
+              />
+              <FiltroRapidoDashboard
+                titulo="Classe Social"
+                opcoes={CLUSTERS}
+                selecionados={filtros.clusters || []}
+                onChange={(valores) => setFiltros({ clusters: valores as any })}
+                icone={Wallet}
+              />
+              <FiltroRapidoDashboard
+                titulo="Faixa Etária"
+                opcoes={FAIXAS_ETARIAS}
+                selecionados={filtros.faixas_etarias || []}
+                onChange={(valores) => setFiltros({ faixas_etarias: valores })}
+                icone={Activity}
+              />
+              <FiltroRapidoDashboard
+                titulo="Orientação Política"
+                opcoes={ORIENTACOES}
+                selecionados={filtros.orientacoes_politicas || []}
+                onChange={(valores) => setFiltros({ orientacoes_politicas: valores as any })}
+                icone={Scale}
+              />
+              <FiltroRapidoDashboard
+                titulo="Posição Bolsonaro"
+                opcoes={POSICOES_BOLSONARO}
+                selecionados={filtros.posicoes_bolsonaro || []}
+                onChange={(valores) => setFiltros({ posicoes_bolsonaro: valores as any })}
+                icone={UserCheck}
+              />
+              <FiltroRapidoDashboard
+                titulo="Religião"
+                opcoes={RELIGIOES}
+                selecionados={filtros.religioes || []}
+                onChange={(valores) => setFiltros({ religioes: valores })}
+                icone={Church}
+              />
+              <FiltroRapidoDashboard
+                titulo="Interesse Político"
+                opcoes={INTERESSES_POLITICOS}
+                selecionados={(filtros as any).interesses_politicos || []}
+                onChange={(valores) => setFiltros({ interesses_politicos: valores } as any)}
+                icone={Vote}
+              />
+            </div>
+
+            {/* Filtros ativos como tags */}
+            {totalFiltrosAtivos > 0 && (
+              <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-border">
+                <span className="text-sm text-muted-foreground">Filtros ativos:</span>
+                {filtros.generos?.map((g) => (
+                  <span key={g} className="inline-flex items-center gap-1 px-2 py-1 bg-blue-500/20 text-blue-400 rounded text-xs">
+                    {g === 'masculino' ? 'Masculino' : 'Feminino'}
+                    <button onClick={() => setFiltros({ generos: filtros.generos?.filter((v) => v !== g) })} className="hover:text-white">
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                ))}
+                {filtros.clusters?.map((c) => (
+                  <span key={c} className="inline-flex items-center gap-1 px-2 py-1 bg-green-500/20 text-green-400 rounded text-xs">
+                    {CLUSTERS.find((cl) => cl.valor === c)?.rotulo}
+                    <button onClick={() => setFiltros({ clusters: filtros.clusters?.filter((v) => v !== c) })} className="hover:text-white">
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                ))}
+                {filtros.faixas_etarias?.map((f) => (
+                  <span key={f} className="inline-flex items-center gap-1 px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs">
+                    {f} anos
+                    <button onClick={() => setFiltros({ faixas_etarias: filtros.faixas_etarias?.filter((v) => v !== f) })} className="hover:text-white">
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                ))}
+                {filtros.orientacoes_politicas?.map((o) => (
+                  <span key={o} className="inline-flex items-center gap-1 px-2 py-1 bg-purple-500/20 text-purple-400 rounded text-xs">
+                    {ORIENTACOES.find((op) => op.valor === o)?.rotulo}
+                    <button onClick={() => setFiltros({ orientacoes_politicas: filtros.orientacoes_politicas?.filter((v) => v !== o) })} className="hover:text-white">
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                ))}
+                {filtros.posicoes_bolsonaro?.map((p) => (
+                  <span key={p} className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-500/20 text-yellow-400 rounded text-xs">
+                    {POSICOES_BOLSONARO.find((pb) => pb.valor === p)?.rotulo}
+                    <button onClick={() => setFiltros({ posicoes_bolsonaro: filtros.posicoes_bolsonaro?.filter((v) => v !== p) })} className="hover:text-white">
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                ))}
+                {filtros.religioes?.map((r) => (
+                  <span key={r} className="inline-flex items-center gap-1 px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">
+                    {RELIGIOES.find((re) => re.valor === r)?.rotulo}
+                    <button onClick={() => setFiltros({ religioes: filtros.religioes?.filter((v) => v !== r) })} className="hover:text-white">
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                ))}
+                {filtros.interesses_politicos?.map((i) => (
+                  <span key={i} className="inline-flex items-center gap-1 px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded text-xs">
+                    Interesse: {INTERESSES_POLITICOS.find((ip) => ip.valor === i)?.rotulo}
+                    <button onClick={() => setFiltros({ interesses_politicos: filtros.interesses_politicos?.filter((v) => v !== i) })} className="hover:text-white">
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Cards de Estatísticas Principais */}

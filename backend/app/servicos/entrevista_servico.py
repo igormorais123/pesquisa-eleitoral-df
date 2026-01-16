@@ -2,6 +2,7 @@
 Serviço de Entrevistas
 
 Lógica de negócio para gestão e execução de entrevistas.
+Integrado com sistema de memórias para persistência permanente.
 """
 
 import asyncio
@@ -19,6 +20,8 @@ from app.esquemas.entrevista import (
 )
 from app.servicos.claude_servico import obter_claude_servico
 from app.servicos.eleitor_helper import obter_eleitores_por_ids
+from app.db.session import get_db_context
+from app.servicos.memoria_servico import criar_memoria_servico
 
 
 class EntrevistaServico:
@@ -260,7 +263,7 @@ class EntrevistaServico:
                     # Executar batch em paralelo
                     resultados = await asyncio.gather(*batch_tasks, return_exceptions=True)
 
-                    for resultado in resultados:
+                    for idx, resultado in enumerate(resultados):
                         if isinstance(resultado, BaseException):
                             print(f"Erro: {resultado}")
                             continue
@@ -272,7 +275,10 @@ class EntrevistaServico:
                         tokens_entrada += resultado_dict["tokens_entrada"]
                         tokens_saida += resultado_dict["tokens_saida"]
 
-                        # Salvar resposta
+                        # Identificar eleitor do batch
+                        eleitor_atual = batch[idx] if idx < len(batch) else None
+
+                        # Salvar resposta no JSON
                         resposta = {
                             "id": f"{entrevista_id}-{uuid.uuid4().hex[:8]}",
                             "entrevista_id": entrevista_id,
@@ -281,6 +287,40 @@ class EntrevistaServico:
                             "criado_em": datetime.now().isoformat(),
                         }
                         respostas_novas.append(resposta)
+
+                        # === PERSISTIR MEMÓRIA NO BANCO DE DADOS ===
+                        try:
+                            async with get_db_context() as db:
+                                memoria_servico = criar_memoria_servico(db)
+                                await memoria_servico.salvar_resposta_entrevista(
+                                    pesquisa_id=None,  # JSON não tem pesquisa_id do banco
+                                    pergunta_id=None,  # JSON não tem pergunta_id do banco
+                                    resposta_id=None,
+                                    eleitor_id=resultado_dict.get("eleitor_id", ""),
+                                    eleitor_nome=resultado_dict.get("eleitor_nome"),
+                                    pergunta_texto=pergunta.get("texto"),
+                                    resposta_texto=resultado_dict.get("resposta_texto", ""),
+                                    resposta_valor=resultado_dict.get("resposta_valor"),
+                                    fluxo_cognitivo=resultado_dict.get("fluxo_cognitivo"),
+                                    modelo_usado=resultado_dict.get("modelo_usado", "claude-sonnet-4-5-20250929"),
+                                    tokens_entrada=resultado_dict.get("tokens_entrada", 0),
+                                    tokens_saida=resultado_dict.get("tokens_saida", 0),
+                                    custo=resultado_dict.get("custo_reais", 0.0),
+                                    tempo_resposta_ms=resultado_dict.get("tempo_resposta_ms", 0),
+                                    contexto={
+                                        "entrevista_id": entrevista_id,
+                                        "entrevista_titulo": entrevista.get("titulo"),
+                                        "pergunta_ordem": pergunta.get("ordem"),
+                                        "eleitor_perfil": eleitor_atual if eleitor_atual else None,
+                                    },
+                                    metadados={
+                                        "fonte": "entrevista_servico",
+                                        "versao": "1.0",
+                                    },
+                                )
+                        except Exception as mem_err:
+                            # Log do erro mas não interrompe a execução
+                            print(f"⚠️ Erro ao salvar memória (não crítico): {mem_err}")
 
                     # Atualizar progresso
                     progresso = int((chamadas_feitas / total_chamadas) * 100)

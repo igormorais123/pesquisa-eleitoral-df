@@ -1,5 +1,5 @@
 import Dexie, { type Table } from 'dexie';
-import type { Eleitor, Entrevista, RespostaEleitor, ResultadoEntrevista, Memoria } from '@/types';
+import type { Eleitor, Entrevista, RespostaEleitor, ResultadoEntrevista, Memoria, Parlamentar } from '@/types';
 
 // Interface para sessões de entrevista
 export interface SessaoEntrevista {
@@ -36,6 +36,7 @@ export class BancoEleitoral extends Dexie {
   entrevistas!: Table<Entrevista, string>;
   sessoes!: Table<SessaoEntrevista, string>;
   configuracoes!: Table<Configuracao, string>;
+  parlamentares!: Table<Parlamentar, string>;
 
   constructor() {
     super('PesquisaEleitoralDF');
@@ -55,6 +56,16 @@ export class BancoEleitoral extends Dexie {
       entrevistas: 'id, titulo, status, criado_em',
       sessoes: 'id, entrevistaId, status, iniciadaEm, usuarioId',
       configuracoes: 'chave',
+    });
+
+    // Versão 3: Adiciona tabela de parlamentares
+    this.version(3).stores({
+      eleitores: 'id, nome, regiao_administrativa, cluster_socioeconomico, orientacao_politica, genero, religiao, idade',
+      memorias: 'id, eleitor_id, data, tema',
+      entrevistas: 'id, titulo, status, criado_em',
+      sessoes: 'id, entrevistaId, status, iniciadaEm, usuarioId',
+      configuracoes: 'chave',
+      parlamentares: 'id, nome, nome_parlamentar, casa_legislativa, partido, orientacao_politica, genero, cargo',
     });
   }
 }
@@ -104,6 +115,91 @@ export async function limparBanco(): Promise<void> {
   await db.memorias.clear();
   await db.entrevistas.clear();
   await db.sessoes.clear();
+  await db.parlamentares.clear();
+}
+
+// ============================================
+// PARLAMENTARES
+// ============================================
+
+// Carregar parlamentares do JSON inicial
+export async function carregarParlamentaresIniciais(parlamentares: Parlamentar[]): Promise<void> {
+  const total = await db.parlamentares.count();
+  if (total === 0) {
+    await db.parlamentares.bulkAdd(parlamentares);
+    console.log(`${parlamentares.length} parlamentares carregados no banco local`);
+  }
+}
+
+// Salvar parlamentares (substitui todos)
+export async function salvarParlamentares(parlamentares: Parlamentar[]): Promise<void> {
+  await db.parlamentares.clear();
+  await db.parlamentares.bulkAdd(parlamentares);
+  console.log(`${parlamentares.length} parlamentares salvos no banco local`);
+}
+
+// Carregar todos os parlamentares
+export async function carregarParlamentares(): Promise<Parlamentar[]> {
+  return db.parlamentares.toArray();
+}
+
+// Obter parlamentar por ID
+export async function obterParlamentarPorId(id: string): Promise<Parlamentar | undefined> {
+  return db.parlamentares.get(id);
+}
+
+// Obter parlamentares por casa legislativa
+export async function obterParlamentaresPorCasa(casa: string): Promise<Parlamentar[]> {
+  return db.parlamentares.where('casa_legislativa').equals(casa).toArray();
+}
+
+// Adicionar parlamentares
+export async function adicionarParlamentares(parlamentares: Parlamentar[]): Promise<void> {
+  await db.parlamentares.bulkAdd(parlamentares);
+}
+
+// Atualizar parlamentar
+export async function atualizarParlamentar(id: string, dados: Partial<Parlamentar>): Promise<void> {
+  await db.parlamentares.update(id, dados);
+}
+
+// Remover parlamentar
+export async function removerParlamentar(id: string): Promise<void> {
+  await db.parlamentares.delete(id);
+}
+
+// Limpar apenas parlamentares
+export async function limparParlamentares(): Promise<void> {
+  await db.parlamentares.clear();
+}
+
+// Contar parlamentares
+export async function contarParlamentares(): Promise<number> {
+  return db.parlamentares.count();
+}
+
+// Filtrar parlamentares
+export async function filtrarParlamentares(filtros: {
+  casas?: string[];
+  partidos?: string[];
+  generos?: string[];
+  orientacoes?: string[];
+  busca?: string;
+}): Promise<Parlamentar[]> {
+  const parlamentares = await db.parlamentares.toArray();
+
+  return parlamentares.filter((p) => {
+    if (filtros.casas?.length && !filtros.casas.includes(p.casa_legislativa)) return false;
+    if (filtros.partidos?.length && !filtros.partidos.includes(p.partido)) return false;
+    if (filtros.generos?.length && !filtros.generos.includes(p.genero)) return false;
+    if (filtros.orientacoes?.length && !filtros.orientacoes.includes(p.orientacao_politica)) return false;
+    if (filtros.busca) {
+      const busca = filtros.busca.toLowerCase();
+      const campos = [p.nome, p.nome_parlamentar, p.partido, p.base_eleitoral].join(' ').toLowerCase();
+      if (!campos.includes(busca)) return false;
+    }
+    return true;
+  });
 }
 
 // Sessões
@@ -158,9 +254,10 @@ export async function exportarBanco(): Promise<object> {
   const entrevistas = await db.entrevistas.toArray();
   const sessoes = await db.sessoes.toArray();
   const configuracoes = await db.configuracoes.toArray();
+  const parlamentares = await db.parlamentares.toArray();
 
   return {
-    versao: 1,
+    versao: 3,
     exportadoEm: new Date().toISOString(),
     dados: {
       eleitores,
@@ -168,6 +265,7 @@ export async function exportarBanco(): Promise<object> {
       entrevistas,
       sessoes,
       configuracoes,
+      parlamentares,
     },
   };
 }
@@ -180,6 +278,7 @@ export async function importarBanco(backup: {
     entrevistas?: Entrevista[];
     sessoes?: SessaoEntrevista[];
     configuracoes?: Configuracao[];
+    parlamentares?: Parlamentar[];
   };
 }): Promise<void> {
   await limparBanco();
@@ -198,6 +297,9 @@ export async function importarBanco(backup: {
   }
   if (backup.dados.configuracoes?.length) {
     await db.configuracoes.bulkAdd(backup.dados.configuracoes);
+  }
+  if (backup.dados.parlamentares?.length) {
+    await db.parlamentares.bulkAdd(backup.dados.parlamentares);
   }
 }
 

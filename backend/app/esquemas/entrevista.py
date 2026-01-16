@@ -46,6 +46,12 @@ class SentimentoDominante(str, Enum):
     esperanca = "esperanca"
 
 
+class TipoRespondente(str, Enum):
+    """Tipo de respondente da entrevista"""
+    eleitor = "eleitor"
+    parlamentar = "parlamentar"
+
+
 # ============================================
 # PERGUNTA
 # ============================================
@@ -123,13 +129,25 @@ class FluxoCognitivo(BaseModel):
 
 
 class RespostaEleitor(BaseModel):
-    """Resposta de um eleitor a uma pergunta"""
+    """
+    Resposta de um respondente (eleitor ou parlamentar) a uma pergunta.
+
+    Mantém campos legados (eleitor_id, eleitor_nome) para compatibilidade,
+    mas também suporta campos genéricos (respondente_id, respondente_nome).
+    """
 
     id: str
     entrevista_id: str
     pergunta_id: str
-    eleitor_id: str
-    eleitor_nome: str
+
+    # Campos legados (compatibilidade)
+    eleitor_id: Optional[str] = None
+    eleitor_nome: Optional[str] = None
+
+    # Campos genéricos (novo)
+    tipo_respondente: TipoRespondente = TipoRespondente.eleitor
+    respondente_id: Optional[str] = None
+    respondente_nome: Optional[str] = None
 
     # Resposta
     resposta_texto: str
@@ -163,10 +181,25 @@ class EntrevistaBase(BaseModel):
 
 
 class EntrevistaCreate(EntrevistaBase):
-    """Criação de entrevista"""
+    """
+    Criação de entrevista
+
+    Suporta dois modos de definição de respondentes:
+    1. Modo legado: usar apenas eleitores_ids (compatibilidade)
+    2. Modo novo: usar tipo_respondente + respondentes_ids
+
+    Se tipo_respondente for definido, respondentes_ids será usado.
+    Se não, eleitores_ids será usado (compatibilidade).
+    """
 
     perguntas: List[PerguntaCreate]
-    eleitores_ids: List[str] = Field(..., min_length=1, max_length=500)
+
+    # Modo legado (compatibilidade)
+    eleitores_ids: Optional[List[str]] = Field(default=None, max_length=500)
+
+    # Modo novo (generalizado)
+    tipo_respondente: Optional[TipoRespondente] = None
+    respondentes_ids: Optional[List[str]] = Field(default=None, max_length=500)
 
 
 class EntrevistaUpdate(BaseModel):
@@ -182,8 +215,15 @@ class Entrevista(EntrevistaBase):
 
     id: str
     perguntas: List[Pergunta]
-    eleitores_ids: List[str]
-    total_eleitores: int
+
+    # Respondentes (modo legado + novo)
+    eleitores_ids: List[str] = Field(default_factory=list)
+    total_eleitores: int = 0
+
+    # Suporte a respondentes genéricos (parlamentares/eleitores)
+    tipo_respondente: TipoRespondente = TipoRespondente.eleitor
+    respondentes_ids: List[str] = Field(default_factory=list)
+    total_respondentes: int = 0
 
     # Status
     status: StatusEntrevista = StatusEntrevista.rascunho
