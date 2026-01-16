@@ -107,7 +107,7 @@
     "historia_resumida": "Mariana mora em Ceilândia desde os anos 2000. A experiência de passar por demissão e se reinventar moldou sua visão de mundo. Em uniao estavel e com 2 filho(s), A estabilidade como analista administrativo trouxe segurança. Acredita que educação é o caminho pra mudar o país.",
     "instrucao_comportamental": "Tom: reflexivo. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0003",
@@ -658,7 +658,7 @@
     "historia_resumida": "Gabriel veio do interior e se estabeleceu perto da Hélio Prates. A experiência de ver o bairro crescer junto com a cidade moldou sua visão de mundo. Cria 1 filho(s), Trabalha como vigilante. Acredita que saúde e educação têm que ser pra todos. É crítico(a) ferrenho(a) de Bolsonaro.",
     "instrucao_comportamental": "Tom: direto. Pouco interesse em política, evita discussões. Aceita algumas nuances, mas prefere clareza. Vota baseado em valores e princípios.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0013",
@@ -1376,7 +1376,7 @@
     "historia_resumida": "Gabriela veio do interior e se estabeleceu na Guariroba. A experiência de migrar do Nordeste em busca de vida melhor moldou sua visão de mundo. Casado(a) e com 3 filho(s), Como eletricista, depende da própria clientela. Acredita que tem que dividir melhor a riqueza.",
     "instrucao_comportamental": "Tom: direto. Pouco interesse em política, evita discussões. Pensa em termos de certo/errado, nós/eles. Vota baseado em valores e princípios.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0026",
@@ -1484,7 +1484,7 @@
     "historia_resumida": "Fernanda se estabeleceu em Ceilândia depois de casar. A experiência de abrir pequeno negócio com economia de anos moldou sua visão de mundo. Casado(a) e com 2 filho(s), A estabilidade como policial militar trouxe segurança. Acredita que a mídia manipula a opinião das pessoas.",
     "instrucao_comportamental": "Tom: reflexivo. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Decide mais pela emoção do momento.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0028",
@@ -1815,7 +1815,7 @@
     "historia_resumida": "Bruno veio do interior e se estabeleceu na QNN. A experiência de montar salão/barbearia no quintal de casa moldou sua visão de mundo. Cria 1 filho(s), Trabalha sem carteira assinada para sobreviver. Acredita que educação é o caminho pra mudar o país.",
     "instrucao_comportamental": "Tom: formal. Engajado politicamente, tem opiniões firmes. Aceita algumas nuances, mas prefere clareza. Decide mais pela emoção do momento.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0034",
@@ -1868,7 +1868,7 @@
     "historia_resumida": "Gabriel chegou em Brasília com a família nos anos 80. A experiência de perder parente para a violência moldou sua visão de mundo. Casado(a) e com 3 filho(s), Como feirante, depende da própria clientela. Acredita que existe uma perseguição aos movimentos sociais. É crítico(a) ferrenho(a) de Bolsonaro.",
     "instrucao_comportamental": "Tom: direto. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0035",
@@ -2367,7 +2367,7 @@
     "historia_resumida": "Samuel mora em Samambaia há mais de 20 anos. A experiência de ser demitido(a) e ter que se virar de qualquer jeito moldou sua visão de mundo. Casado(a) e com 3 filho(s), Trabalha como auxiliar administrativo. Acredita que tem muita gente que não valoriza o trabalho. É eleitor(a) fiel de Bolsonaro.",
     "instrucao_comportamental": "Tom: coloquial. Pouco interesse em política, evita discussões. Pensa em termos de certo/errado, nós/eles. Vota baseado em valores e princípios.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0044",
@@ -2923,7 +2923,7 @@
     "historia_resumida": "Sônia acompanhou toda a história de Samambaia. A experiência de perder emprego na crise e virar autônomo moldou sua visão de mundo. Trabalha como atendente de loja. Acredita que dá pra crescer respeitando o meio ambiente.",
     "instrucao_comportamental": "Tom: emotivo. Pouco interesse em política, evita discussões. Aceita algumas nuances, mas prefere clareza. Decide mais pela emoção do momento.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0054",
@@ -5754,7 +5754,7 @@
     "historia_resumida": "André mora em Taguatinga há mais de 20 anos. A experiência de conseguir financiar a casa própria com muito sacrifício moldou sua visão de mundo. Casado(a) e com 2 filho(s), A estabilidade como bombeiro militar trouxe segurança. Acredita que 'imposto é roubo'. É eleitor(a) fiel de Bolsonaro.",
     "instrucao_comportamental": "Tom: formal. Engajado politicamente, tem opiniões firmes. Pensa em termos de certo/errado, nós/eles. Vota pensando em resultados práticos.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0105",
@@ -7193,7 +7193,7 @@
     "historia_resumida": "Leonardo chegou em Brasília com a família nos anos 80. A experiência de montar salão/barbearia no quintal de casa moldou sua visão de mundo. Casado(a) e com 2 filho(s), Trabalha sem carteira assinada para sobreviver. Acredita que 'bandido bom é bandido morto'. É eleitor(a) fiel de Bolsonaro.",
     "instrucao_comportamental": "Tom: formal. Pouco interesse em política, evita discussões. Pensa em termos de certo/errado, nós/eles. Vota baseado em valores e princípios.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0131",
@@ -8137,7 +8137,7 @@
     "historia_resumida": "Ângela chegou ao DF no começo da vida adulta. A experiência de ser despejado(a) e ter que recomeçar do zero moldou sua visão de mundo. Casado(a) e com 3 filho(s), Trabalha sem carteira assinada para sobreviver. Acredita que tem que dividir melhor a riqueza. É crítico(a) ferrenho(a) de Bolsonaro.",
     "instrucao_comportamental": "Tom: formal. Acompanha política por alto, forma opinião pelo que ouve ao redor. Considera múltiplos pontos de vista. Vota baseado em valores e princípios.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0148",
@@ -8466,7 +8466,7 @@
     "historia_resumida": "Francisca chegou em Brasília nos anos 90. A experiência de chegar em Brasília com a família nos anos 90 moldou sua visão de mundo. Casado(a) e com 2 filho(s), Trabalha como garçom/garçonete. Acredita que segurança tem que ser prioridade. É eleitor(a) fiel de Bolsonaro.",
     "instrucao_comportamental": "Tom: formal. Pouco interesse em política, evita discussões. Aceita algumas nuances, mas prefere clareza. Vota pensando em resultados práticos.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0154",
@@ -8969,7 +8969,7 @@
     "historia_resumida": "Ricardo viu Gama nascer e crescer. A experiência de começar como ajudante e virar profissional moldou sua visão de mundo. Casado(a) e com 4 filho(s), Trabalha como balconista. Acredita que quem trabalha direito consegue vencer.",
     "instrucao_comportamental": "Tom: reflexivo. Engajado politicamente, tem opiniões firmes. Aceita algumas nuances, mas prefere clareza. Vota baseado em valores e princípios.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0163",
@@ -9081,7 +9081,7 @@
     "historia_resumida": "Carlos é um dos moradores mais antigos de Gama. A experiência de criar os filhos sozinho(a) após separação moldou sua visão de mundo. Cria 1 filho(s), Como eletricista, depende da própria clientela. Acredita que o trabalhador é quem faz o país funcionar.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha política por alto, forma opinião pelo que ouve ao redor. Considera múltiplos pontos de vista. Vota pensando em resultados práticos.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0165",
@@ -9525,7 +9525,7 @@
     "historia_resumida": "Gabriela viu Gama crescer e mudar com o tempo. A experiência de trabalhar desde cedo para ajudar em casa moldou sua visão de mundo. Em uniao estavel e com 3 filho(s), Trabalha como motorista. Acredita que não adianta ficar brigando por político. É eleitor(a) fiel de Bolsonaro.",
     "instrucao_comportamental": "Tom: reflexivo. Pouco interesse em política, evita discussões. Aceita algumas nuances, mas prefere clareza. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0173",
@@ -10523,7 +10523,7 @@
     "historia_resumida": "Regina é um dos moradores mais antigos de Águas Claras. A experiência de herdar o negócio da família e modernizá-lo moldou sua visão de mundo. Casado(a) e com 2 filho(s), Como consultor(a) empresarial, depende da própria clientela. Acredita que o mercado funciona melhor que o governo.",
     "instrucao_comportamental": "Tom: coloquial. Pouco interesse em política, evita discussões. Aceita algumas nuances, mas prefere clareza. Vota pensando em resultados práticos.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0191",
@@ -11790,7 +11790,7 @@
     "historia_resumida": "Francisco é um dos moradores mais antigos de Guará. A experiência de começar de baixo e subir de cargo em empresa moldou sua visão de mundo. Trabalha como contador(a). Acredita que o golpe de 2016 destruiu o país.",
     "instrucao_comportamental": "Tom: emotivo. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Vota pensando no bolso.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0214",
@@ -11844,7 +11844,7 @@
     "historia_resumida": "Juliana acompanhou toda a história de Guará. A experiência de entrar na carreira militar por vocação e estabilidade moldou sua visão de mundo. Cria 4 filho(s), Trabalha como zelador(a). Acredita que nenhum político presta de verdade.",
     "instrucao_comportamental": "Tom: coloquial. Pouco interesse em política, evita discussões. Pensa em termos de certo/errado, nós/eles. Vota por identificação com grupo/candidato.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0215",
@@ -12401,7 +12401,7 @@
     "historia_resumida": "Gabriel acompanhou toda a história de Santa Maria. A experiência de migrar do Nordeste em busca de vida melhor moldou sua visão de mundo. Cria 1 filho(s), Trabalha como gari. Acredita que brasileiro não sabe votar.",
     "instrucao_comportamental": "Tom: coloquial. Pouco interesse em política, evita discussões. Aceita algumas nuances, mas prefere clareza. Decide mais pela emoção do momento.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0225",
@@ -12838,7 +12838,7 @@
     "historia_resumida": "Leonardo viu Recanto das Emas crescer e mudar com o tempo. A experiência de perder emprego na crise e virar autônomo moldou sua visão de mundo. Casado(a) e com 3 filho(s), Trabalha como garçom/garçonete. Acredita que o Estado tem que dar oportunidade.",
     "instrucao_comportamental": "Tom: reflexivo. Pouco interesse em política, evita discussões. Aceita algumas nuances, mas prefere clareza. Vota baseado em valores e princípios.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0233",
@@ -13055,7 +13055,7 @@
     "historia_resumida": "Natália chegou em Brasília nos anos 90. A experiência de ser demitido(a) e ter que se virar de qualquer jeito moldou sua visão de mundo. Casado(a) e com 3 filho(s), Trabalha como cozinheiro(a). Acredita que nenhum político presta de verdade.",
     "instrucao_comportamental": "Tom: direto. Engajado politicamente, tem opiniões firmes. Aceita algumas nuances, mas prefere clareza. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0237",
@@ -14050,7 +14050,7 @@
     "historia_resumida": "Roberto é um dos moradores mais antigos de Sol Nascente/Pôr do Sol. A experiência de perder parente para a violência moldou sua visão de mundo. Trabalha como garçom/garçonete. Acredita que o mercado funciona melhor que o governo.",
     "instrucao_comportamental": "Tom: emotivo. Pouco interesse em política, evita discussões. Pensa em termos de certo/errado, nós/eles. Vota pensando no bolso.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0255",
@@ -14602,7 +14602,7 @@
     "historia_resumida": "Henrique viu São Sebastião nascer e crescer. A experiência de montar salão/barbearia no quintal de casa moldou sua visão de mundo. Casado(a) e com 3 filho(s), Como mecânico(a), depende da própria clientela. Acredita que não adianta ficar brigando por político.",
     "instrucao_comportamental": "Tom: reflexivo. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Vota pensando em resultados práticos.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0265",
@@ -15046,7 +15046,7 @@
     "historia_resumida": "Natália mora em São Sebastião há mais de 20 anos. A experiência de perder emprego na crise e virar autônomo moldou sua visão de mundo. Cria 2 filho(s), Trabalha como porteiro(a). Acredita que o mercado funciona melhor que o governo.",
     "instrucao_comportamental": "Tom: reflexivo. Engajado politicamente, tem opiniões firmes. Aceita algumas nuances, mas prefere clareza. Decide mais pela emoção do momento.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0273",
@@ -15102,7 +15102,7 @@
     "historia_resumida": "Jorge chegou em Brasília com a família nos anos 80. A experiência de passar dificuldade na infância moldou sua visão de mundo. Casado(a) e com 1 filho(s), Atualmente desempregado(a), busca recolocação. Acredita que o Estado tem que ser menor e eficiente.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Decide mais pela emoção do momento.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0274",
@@ -15545,7 +15545,7 @@
     "historia_resumida": "Juliana mora em Vicente Pires desde os anos 2000. A experiência de entrar na carreira militar por vocação e estabilidade moldou sua visão de mundo. Tem 1 filho(s), Trabalha como analista de rh. Acredita que quem trabalha direito consegue vencer.",
     "instrucao_comportamental": "Tom: emotivo. Acompanha política por alto, forma opinião pelo que ouve ao redor. Pensa em termos de certo/errado, nós/eles. Vota pensando em resultados práticos.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0282",
@@ -16262,7 +16262,7 @@
     "historia_resumida": "Caio se mudou para Sobradinho II quando casou. Critico(a) do bolsonarismo, preocupa-se com a democracia.",
     "instrucao_comportamental": "Tom: formal. Acompanha política por alto, forma opinião pelo que ouve ao redor. Pensa em termos de certo/errado, nós/eles. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0295",
@@ -16426,7 +16426,7 @@
     "historia_resumida": "Thiago se mudou para Sobradinho II quando casou. A experiência de perder emprego na crise e virar autônomo moldou sua visão de mundo. Casado(a) e com 1 filho(s), Como manicure, depende da própria clientela. Acredita que tem que dividir melhor a riqueza. É crítico(a) ferrenho(a) de Bolsonaro.",
     "instrucao_comportamental": "Tom: direto. Pouco interesse em política, evita discussões. Considera múltiplos pontos de vista. Vota baseado em valores e princípios.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0298",
@@ -16593,7 +16593,7 @@
     "historia_resumida": "Helena viu Jardim Botânico nascer e crescer. A experiência de conseguir bolsa de estudos e ser primeiro(a) da família a se formar moldou sua visão de mundo. Cria 2 filho(s), A estabilidade como servidor(a) público federal trouxe segurança. Acredita que servidor público ganha demais.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha política por alto, forma opinião pelo que ouve ao redor. Pensa em termos de certo/errado, nós/eles. Vota pensando em resultados práticos.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0301",
@@ -16981,7 +16981,7 @@
     "historia_resumida": "Juliana viu Jardim Botânico nascer e crescer. A experiência de construir carreira em empresa multinacional moldou sua visão de mundo. Cria 1 filho(s), A estabilidade como técnico(a) judiciário trouxe segurança. Acredita que brasileiro não sabe votar.",
     "instrucao_comportamental": "Tom: emotivo. Pouco interesse em política, evita discussões. Aceita algumas nuances, mas prefere clareza. Vota baseado em valores e princípios.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0308",
@@ -17257,7 +17257,7 @@
     "historia_resumida": "João é um dos moradores mais antigos de Sobradinho. A experiência de ser aprovado(a) em concurso após muita luta moldou sua visão de mundo. Tem 1 filho(s), A estabilidade como analista do inss trouxe segurança. Acredita que o trabalhador é quem faz o país funcionar.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Vota por identificação com grupo/candidato.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0313",
@@ -17753,7 +17753,7 @@
     "historia_resumida": "Sérgio mora em Riacho Fundo II há mais de 20 anos. A experiência de perder parente para a violência moldou sua visão de mundo. Casado(a) e com 2 filho(s), Como feirante, depende da própria clientela. Acredita que o Estado tem que ser menor e eficiente.",
     "instrucao_comportamental": "Tom: emotivo. Pouco interesse em política, evita discussões. Aceita algumas nuances, mas prefere clareza. Vota por identificação com grupo/candidato.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0322",
@@ -18136,7 +18136,7 @@
     "historia_resumida": "Larissa viu Riacho Fundo II crescer e mudar com o tempo. A experiência de conseguir a casa pelo programa habitacional após anos de espera moldou sua visão de mundo. Casado(a) e com 1 filho(s), Como cabeleireiro(a), depende da própria clientela. Acredita que não adianta ficar brigando por político.",
     "instrucao_comportamental": "Tom: direto. Engajado politicamente, tem opiniões firmes. Considera múltiplos pontos de vista. Vota baseado em valores e princípios.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0329",
@@ -18854,7 +18854,7 @@
     "historia_resumida": "Daniel chegou em Brasília com a família nos anos 80. A experiência de criar os filhos sozinho(a) após separação moldou sua visão de mundo. Tem 3 filho(s), Como vendedor(a) ambulante, depende da própria clientela. Acredita que o Brasil precisa de mais ordem. É eleitor(a) fiel de Bolsonaro.",
     "instrucao_comportamental": "Tom: coloquial. Engajado politicamente, tem opiniões firmes. Aceita algumas nuances, mas prefere clareza. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0342",
@@ -20526,7 +20526,7 @@
     "historia_resumida": "Anderson mora em Riacho Fundo há mais de 20 anos. A experiência de ser aprovado(a) em concurso após muita luta moldou sua visão de mundo. Casado(a) e com 3 filho(s), A estabilidade como professor(a) trouxe segurança. Acredita que empreender é o caminho.",
     "instrucao_comportamental": "Tom: reflexivo. Engajado politicamente, tem opiniões firmes. Aceita algumas nuances, mas prefere clareza. Vota baseado em valores e princípios.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0372",
@@ -20689,7 +20689,7 @@
     "historia_resumida": "Maria é um dos moradores mais antigos de SCIA/Estrutural. A experiência de passar por demissão e se reinventar moldou sua visão de mundo. Casado(a) e com 2 filho(s), A estabilidade como servidor(a) público federal trouxe segurança. Acredita que a família é a base de tudo.",
     "instrucao_comportamental": "Tom: coloquial. Pouco interesse em política, evita discussões. Aceita algumas nuances, mas prefere clareza. Decide mais pela emoção do momento.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0375",
@@ -20968,7 +20968,7 @@
     "historia_resumida": "Jorge viu Lago Norte nascer e crescer. A experiência de ser promovido(a) a cargo de chefia moldou sua visão de mundo. Casado(a) e com 4 filho(s), A estabilidade como promotor(a) de justiça trouxe segurança. Acredita que os direitos foram conquistados com muita luta. É crítico(a) ferrenho(a) de Bolsonaro.",
     "instrucao_comportamental": "Tom: reflexivo. Pouco interesse em política, evita discussões. Aceita algumas nuances, mas prefere clareza. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0380",
@@ -21466,7 +21466,7 @@
     "historia_resumida": "Eduardo se mudou para Cruzeiro quando casou. A experiência de herdar o negócio da família e modernizá-lo moldou sua visão de mundo. Tem 3 filho(s), Trabalha como assistente administrativo. Acredita que o importante é resolver os problemas.",
     "instrucao_comportamental": "Tom: reflexivo. Engajado politicamente, tem opiniões firmes. Aceita algumas nuances, mas prefere clareza. Decide mais pela emoção do momento.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0389",
@@ -21741,7 +21741,7 @@
     "historia_resumida": "Marcelo viu Núcleo Bandeirante nascer e crescer. A experiência de estudar fora do país e voltar com nova perspectiva moldou sua visão de mundo. Casado(a) e com 3 filho(s), A estabilidade como técnico(a) judiciário trouxe segurança. Acredita que empreender é o caminho.",
     "instrucao_comportamental": "Tom: direto. Acompanha política por alto, forma opinião pelo que ouve ao redor. Pensa em termos de certo/errado, nós/eles. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0394",
@@ -22016,7 +22016,7 @@
     "historia_resumida": "Francisca mora em Fercal há mais de 20 anos. A experiência de investir em imóveis e construir patrimônio moldou sua visão de mundo. Cria 2 filho(s), Trabalha como assistente administrativo. Acredita que segurança tem que ser prioridade. É eleitor(a) fiel de Bolsonaro.",
     "instrucao_comportamental": "Tom: direto. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Vota baseado em valores e princípios.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0399",
@@ -22184,7 +22184,7 @@
     "historia_resumida": "Davi sempre morou no DF, atualmente em Recanto das Emas. cresceu enfrentando dificuldades financeiras. Viúvo(a) e tem 1 filho. Trabalha por conta própria como Faxineira. É fortemente crítico a Bolsonaro e à direita radical. Davi é católico(a).",
     "instrucao_comportamental": "Tom: distante. Não acompanha política, vota por obrigação ou indicação. Pensa em termos de certo e errado, sem meio termo. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0402",
@@ -22859,7 +22859,7 @@
     "historia_resumida": "Heloísa veio de outro estado e se estabeleceu em Recanto das Emas. aprendeu a se virar com pouco desde cedo. Vive em união estável e tem 1 filho. Está em busca de emprego. É fortemente crítico a Bolsonaro e à direita radical. Heloísa é espírita.",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Aceita algumas nuances, mas prefere clareza. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0414",
@@ -22915,7 +22915,7 @@
     "historia_resumida": "Adriano veio de outro estado e se estabeleceu em Ceilândia. a vida ensinou que nada vem fácil. Casado(a) e tem 4 filho(s). Trabalha por conta própria como Pedreiro. É fortemente crítico a Bolsonaro e à direita radical. Adriano é católico(a).",
     "instrucao_comportamental": "Tom: coloquial. Acompanha política por alto, forma opinião pelo que ouve ao redor. Pensa em termos de certo e errado, sem meio termo. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0415",
@@ -23754,7 +23754,7 @@
     "historia_resumida": "Vanessa cresceu em outra cidade do DF e se mudou para Jardim Botânico. teve condições de fazer intercâmbio e ampliar horizontes. Casado(a) e tem 2 filho(s). Trabalha por conta própria como Dentista. É fortemente crítico a Bolsonaro e à direita radical. Vanessa segue outra religião.",
     "instrucao_comportamental": "Tom: analítico e bem informado. Acompanha política ativamente e forma opinião própria. Aceita algumas nuances, mas prefere clareza. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0430",
@@ -23867,7 +23867,7 @@
     "historia_resumida": "Miguel cresceu em outra cidade do DF e se mudou para Plano Piloto. a família sempre valorizou educação e cultura. Solteiro(a) e não tem filhos. Trabalha por conta própria como Advogado. É fortemente crítico a Bolsonaro e à direita radical. Miguel é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: analítico e bem informado. Acompanha política ativamente e forma opinião própria. Considera diferentes pontos de vista antes de opinar. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0432",
@@ -24318,7 +24318,7 @@
     "historia_resumida": "Márcio veio de outro estado e se estabeleceu em Plano Piloto. teve condições de fazer intercâmbio e ampliar horizontes. Casado(a) e tem 1 filho. É dono do próprio negócio. É fortemente crítico a Bolsonaro e à direita radical. Márcio é católico(a).",
     "instrucao_comportamental": "Tom: reflexivo. Acompanha política por alto, forma opinião pelo que ouve ao redor. Pensa em termos de certo e errado, sem meio termo. Avalia propostas e histórico antes de votar.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0440",
@@ -24486,7 +24486,7 @@
     "historia_resumida": "Laura nasceu e cresceu em Plano Piloto. teve condições de fazer intercâmbio e ampliar horizontes. Vive em união estável e não tem filhos. É Procurador e valoriza a estabilidade. É fortemente crítico a Bolsonaro e à direita radical. Laura é católico(a).",
     "instrucao_comportamental": "Tom: reflexivo. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Vota em quem transmite confiança e carisma.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0443",
@@ -25216,7 +25216,7 @@
     "historia_resumida": "Leonardo cresceu em outra cidade do DF e se mudou para Plano Piloto. estudou em boas escolas e teve acesso a oportunidades. Casado(a) e tem 1 filho. É Delegado Federal e valoriza a estabilidade. É fortemente crítico a Bolsonaro e à direita radical. Leonardo é católico(a).",
     "instrucao_comportamental": "Tom: reflexivo. Acompanha política por alto, forma opinião pelo que ouve ao redor. Considera diferentes pontos de vista antes de opinar. Avalia propostas e histórico antes de votar.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0456",
@@ -25494,7 +25494,7 @@
     "historia_resumida": "Rafael mora em Recanto das Emas desde a infância. a família sempre dependeu de ajuda do governo. Divorciado(a) e tem 2 filho(s). Está autonomo(a) e vive da aposentadoria. É fortemente crítico a Bolsonaro e à direita radical. Rafael é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Considera diferentes pontos de vista antes de opinar. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0461",
@@ -25720,7 +25720,7 @@
     "historia_resumida": "Fabiana veio de outro estado e se estabeleceu em Recanto das Emas. cresceu enfrentando dificuldades financeiras. Solteiro(a) e tem 2 filho(s). Está autonomo(a) e vive da aposentadoria. É fortemente crítico a Bolsonaro e à direita radical. Fabiana é católico(a).",
     "instrucao_comportamental": "Tom: apaixonado e vocal. Acompanha política ativamente e forma opinião própria. Considera diferentes pontos de vista antes de opinar. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0465",
@@ -26115,7 +26115,7 @@
     "historia_resumida": "Débora mora em Recanto das Emas desde a infância. sabe o que é passar necessidade. Solteiro(a) e não tem filhos. Trabalha como Porteiro com carteira assinada. É fortemente crítico a Bolsonaro e à direita radical. Débora é católico(a).",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Pensa em termos de certo e errado, sem meio termo. Vota pensando no bolso.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0472",
@@ -26515,7 +26515,7 @@
     "historia_resumida": "Victor sempre morou no DF, atualmente em Plano Piloto. a família sempre valorizou educação e cultura. Casado(a) e tem 1 filho. Trabalha como Diretor Financeiro com carteira assinada. É fortemente crítico a Bolsonaro e à direita radical. Victor não segue nenhuma religião.",
     "instrucao_comportamental": "Tom: reflexivo. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Vota em quem transmite confiança e carisma.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0479",
@@ -26626,7 +26626,7 @@
     "historia_resumida": "Paulo mora em Sol Nascente/Pôr do Sol desde a infância. aprendeu a se virar com pouco desde cedo. Vive em união estável e não tem filhos. Trabalha como Porteiro com carteira assinada. É fortemente crítico a Bolsonaro e à direita radical. Paulo é católico(a).",
     "instrucao_comportamental": "Tom: apaixonado e vocal. Acompanha política ativamente e forma opinião própria. Pensa em termos de certo e errado, sem meio termo. Avalia propostas e histórico antes de votar.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0481",
@@ -27015,7 +27015,7 @@
     "historia_resumida": "Giovanna veio de outro estado e se estabeleceu em Águas Claras. batalhou para ter o próprio negócio. Vive em união estável e tem 2 filho(s). É Analista do Ministério Público e valoriza a estabilidade. É fortemente crítico a Bolsonaro e à direita radical. Giovanna não segue nenhuma religião.",
     "instrucao_comportamental": "Tom: analítico e bem informado. Acompanha política ativamente e forma opinião própria. Considera diferentes pontos de vista antes de opinar. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0488",
@@ -27971,7 +27971,7 @@
     "historia_resumida": "Breno mora em Sudoeste/Octogonal desde a infância. cresceu em ambiente de empreendedorismo familiar. Casado(a) e tem 3 filho(s). É dono do próprio negócio. É fortemente crítico a Bolsonaro e à direita radical. Breno é católico(a).",
     "instrucao_comportamental": "Tom: reflexivo. Acompanha política por alto, forma opinião pelo que ouve ao redor. Considera diferentes pontos de vista antes de opinar. Prioriza valores morais e religiosos ao votar.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0505",
@@ -28195,7 +28195,7 @@
     "historia_resumida": "Joana nasceu e cresceu em Ceilândia. aprendeu desde cedo o valor do trabalho. Casado(a) e não tem filhos. Está autonomo(a) e vive da aposentadoria. É fortemente crítico a Bolsonaro e à direita radical. Joana é espírita.",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Pensa em termos de certo e errado, sem meio termo. Vota pensando no bolso.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0509",
@@ -28251,7 +28251,7 @@
     "historia_resumida": "Joana veio de outro estado e se estabeleceu em Samambaia. conhece bem a luta diária para pagar as contas. Viúvo(a) e tem 2 filho(s). Trabalha no informal, sem carteira. É fortemente crítico a Bolsonaro e à direita radical. Joana segue outra religião.",
     "instrucao_comportamental": "Tom: prático. Acompanha política por alto, forma opinião pelo que ouve ao redor. Pensa em termos de certo e errado, sem meio termo. Avalia propostas e histórico antes de votar.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0510",
@@ -28417,7 +28417,7 @@
     "historia_resumida": "Elaine cresceu em outra cidade do DF e se mudou para Recanto das Emas. aprendeu a se virar com pouco desde cedo. Viúvo(a) e tem 2 filho(s). Trabalha no informal, sem carteira. É fortemente crítico a Bolsonaro e à direita radical. Elaine é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Considera diferentes pontos de vista antes de opinar. Avalia propostas e histórico antes de votar.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0513",
@@ -29482,7 +29482,7 @@
     "historia_resumida": "Priscila nasceu e cresceu em Itapoã. viu a família batalhar para não faltar nada em casa. Casado(a) e tem 3 filho(s). Está em busca de emprego. É fortemente crítico a Bolsonaro e à direita radical. Priscila é católico(a).",
     "instrucao_comportamental": "Tom: apaixonado e vocal. Acompanha política ativamente e forma opinião própria. Pensa em termos de certo e errado, sem meio termo. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0532",
@@ -29816,7 +29816,7 @@
     "historia_resumida": "Marcelo cresceu em outra cidade do DF e se mudou para Plano Piloto. estudou em boas escolas e teve acesso a oportunidades. Solteiro(a) e não tem filhos. Trabalha como Coordenador de Projetos com carteira assinada. É fortemente crítico a Bolsonaro e à direita radical. Marcelo é católico(a).",
     "instrucao_comportamental": "Tom: desinteressado mas informado. Não acompanha política, vota por obrigação ou indicação. Pensa em termos de certo e errado, sem meio termo. Vota pensando no bolso.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0538",
@@ -30539,7 +30539,7 @@
     "historia_resumida": "Adriana cresceu em outra cidade do DF e se mudou para Sol Nascente/Pôr do Sol. a família sempre dependeu de ajuda do governo. Casado(a) e tem 3 filho(s). Está em busca de emprego. Simpatiza com o bolsonarismo mas tem algumas ressalvas. Adriana não segue nenhuma religião.",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Pensa em termos de certo e errado, sem meio termo. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0551",
@@ -30652,7 +30652,7 @@
     "historia_resumida": "Adriana cresceu em outra cidade do DF e se mudou para Sol Nascente/Pôr do Sol. aprendeu a se virar com pouco desde cedo. Casado(a) e tem 4 filho(s). Trabalha por conta própria como Catador de Recicláveis. Tem críticas ao bolsonarismo mas não é anti-Bolsonaro radical. Adriana não segue nenhuma religião.",
     "instrucao_comportamental": "Tom: distante. Não acompanha política, vota por obrigação ou indicação. Pensa em termos de certo e errado, sem meio termo. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0553",
@@ -31604,7 +31604,7 @@
     "historia_resumida": "Anderson cresceu em outra cidade do DF e se mudou para Recanto das Emas. a família sempre dependeu de ajuda do governo. Viúvo(a) e tem 3 filho(s). Está aposentado(a) e vive da aposentadoria. Tem críticas ao bolsonarismo mas não é anti-Bolsonaro radical. Anderson é católico(a).",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Pensa em termos de certo e errado, sem meio termo. Vota em quem transmite confiança e carisma.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0570",
@@ -32330,7 +32330,7 @@
     "historia_resumida": "Davi cresceu em outra cidade do DF e se mudou para Sol Nascente/Pôr do Sol. aprendeu a se virar com pouco desde cedo. Viúvo(a) e tem 2 filho(s). Trabalha por conta própria como Catador de Recicláveis. Simpatiza com o bolsonarismo mas tem algumas ressalvas. Davi é espírita.",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Aceita algumas nuances, mas prefere clareza. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0583",
@@ -32662,7 +32662,7 @@
     "historia_resumida": "Jorge nasceu e cresceu em Recanto das Emas. sabe o que é passar necessidade. Casado(a) e tem 1 filho. Está em busca de emprego. Não se identifica fortemente com nenhum lado político. Jorge é católico(a).",
     "instrucao_comportamental": "Tom: distante. Não acompanha política, vota por obrigação ou indicação. Considera diferentes pontos de vista antes de opinar. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0589",
@@ -33506,7 +33506,7 @@
     "historia_resumida": "Vinicius nasceu e cresceu em Recanto das Emas. sabe o que é passar necessidade. Solteiro(a) e não tem filhos. Trabalha como Servente com carteira assinada. É fortemente crítico a Bolsonaro e à direita radical. Vinicius é católico(a).",
     "instrucao_comportamental": "Tom: engajado e opinativo. Acompanha política ativamente e forma opinião própria. Considera diferentes pontos de vista antes de opinar. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0604",
@@ -33786,7 +33786,7 @@
     "historia_resumida": "Alex cresceu em outra cidade do DF e se mudou para Ceilândia. a vida ensinou que nada vem fácil. Solteiro(a) e tem 1 filho. Trabalha por conta própria como Mecânico. Apoia fortemente Bolsonaro e suas políticas. Alex é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: prático. Acompanha política por alto, forma opinião pelo que ouve ao redor. Considera diferentes pontos de vista antes de opinar. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0609",
@@ -33899,7 +33899,7 @@
     "historia_resumida": "Carla nasceu e cresceu em Samambaia. viu a família batalhar para não faltar nada em casa. Solteiro(a) e tem 2 filho(s). Trabalha por conta própria como Cabeleireiro(a). Não se identifica fortemente com nenhum lado político. Carla é católico(a).",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Aceita algumas nuances, mas prefere clareza. Avalia propostas e histórico antes de votar.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0611",
@@ -33955,7 +33955,7 @@
     "historia_resumida": "Leandro cresceu em outra cidade do DF e se mudou para Vicente Pires. batalhou para ter o próprio negócio. Solteiro(a) e tem 2 filho(s). Trabalha por conta própria como Personal Trainer. Apoia fortemente Bolsonaro e suas políticas. Leandro não segue nenhuma religião.",
     "instrucao_comportamental": "Tom: reflexivo. Acompanha política por alto, forma opinião pelo que ouve ao redor. Considera diferentes pontos de vista antes de opinar. Avalia propostas e histórico antes de votar.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0612",
@@ -34907,7 +34907,7 @@
     "historia_resumida": "Amanda nasceu e cresceu em Samambaia. a vida ensinou que nada vem fácil. Solteiro(a) e tem 2 filho(s). Trabalha por conta própria como Mecânico. Apoia fortemente Bolsonaro e suas políticas. Amanda é católico(a).",
     "instrucao_comportamental": "Tom: engajado e opinativo. Acompanha política ativamente e forma opinião própria. Pensa em termos de certo e errado, sem meio termo. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0629",
@@ -36863,7 +36863,7 @@
     "historia_resumida": "Letícia veio de outro estado e se estabeleceu em Planaltina. aprendeu desde cedo o valor do trabalho. Solteiro(a) e tem 2 filho(s). Trabalha por conta própria como Manicure. Tem críticas ao bolsonarismo mas não é anti-Bolsonaro radical. Letícia é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha política por alto, forma opinião pelo que ouve ao redor. Considera diferentes pontos de vista antes de opinar. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0664",
@@ -37031,7 +37031,7 @@
     "historia_resumida": "Lara veio de outro estado e se estabeleceu em Ceilândia. aprendeu desde cedo o valor do trabalho. Solteiro(a) e tem 1 filho. É estudante e está se preparando para o futuro. É fortemente crítico a Bolsonaro e à direita radical. Lara segue outra religião.",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Aceita algumas nuances, mas prefere clareza. Vota em quem transmite confiança e carisma.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0667",
@@ -37155,11 +37155,11 @@
     "cor_raca": "branca",
     "regiao_administrativa": "Ceilândia",
     "local_referencia": "no Centro",
-    "cluster_socioeconomico": "G2_media_alta",
+    "cluster_socioeconomico": "G1_alta",
     "escolaridade": "fundamental_ou_sem_instrucao",
     "profissao": "Estudante de Ensino Técnico",
     "ocupacao_vinculo": "estudante",
-    "renda_salarios_minimos": "mais_de_5_ate_10",
+    "renda_salarios_minimos": "mais_de_20",
     "religiao": "catolica",
     "estado_civil": "solteiro(a)",
     "filhos": 0,
@@ -37812,7 +37812,7 @@
     "historia_resumida": "Fábio mora em Sobradinho II desde a infância. batalhou para ter o próprio negócio. Solteiro(a) e não tem filhos. Trabalha por conta própria como Contador. É fortemente crítico a Bolsonaro e à direita radical. Fábio é católico(a).",
     "instrucao_comportamental": "Tom: reflexivo. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Avalia propostas e histórico antes de votar.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0681",
@@ -38710,7 +38710,7 @@
     "historia_resumida": "Giovanna mora em SCIA/Estrutural desde a infância. cresceu enfrentando dificuldades financeiras. Vive em união estável e não tem filhos. Trabalha como Ajudante de Pedreiro com carteira assinada. Simpatiza com o bolsonarismo mas tem algumas ressalvas. Giovanna é católico(a).",
     "instrucao_comportamental": "Tom: apaixonado e vocal. Acompanha política ativamente e forma opinião própria. Pensa em termos de certo e errado, sem meio termo. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0697",
@@ -38823,7 +38823,7 @@
     "historia_resumida": "Juliana nasceu e cresceu em Recanto das Emas. a família sempre dependeu de ajuda do governo. Vive em união estável e não tem filhos. Trabalha por conta própria como Catador de Recicláveis. É fortemente crítico a Bolsonaro e à direita radical. Juliana é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Vota pensando no bolso.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0699",
@@ -39328,7 +39328,7 @@
     "historia_resumida": "Eduardo sempre morou no DF, atualmente em Recanto das Emas. sabe o que é passar necessidade. Divorciado(a) e tem 2 filho(s). Trabalha por conta própria como Catador de Recicláveis. É fortemente crítico a Bolsonaro e à direita radical. Eduardo é católico(a).",
     "instrucao_comportamental": "Tom: distante. Não acompanha política, vota por obrigação ou indicação. Aceita algumas nuances, mas prefere clareza. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0708",
@@ -40048,7 +40048,7 @@
     "historia_resumida": "Otávio cresceu em outra cidade do DF e se mudou para Sol Nascente/Pôr do Sol. a família sempre dependeu de ajuda do governo. Solteiro(a) e não tem filhos. Trabalha por conta própria como Vendedor Ambulante. É fortemente crítico a Bolsonaro e à direita radical. Otávio é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Pensa em termos de certo e errado, sem meio termo. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0721",
@@ -40159,7 +40159,7 @@
     "historia_resumida": "Larissa cresceu em outra cidade do DF e se mudou para Recanto das Emas. aprendeu a se virar com pouco desde cedo. Vive em união estável e tem 1 filho. Trabalha por conta própria como Catador de Recicláveis. Tem críticas ao bolsonarismo mas não é anti-Bolsonaro radical. Larissa é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Prioriza valores morais e religiosos ao votar.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0723",
@@ -42470,7 +42470,7 @@
     "historia_resumida": "Matheus trabalha como Analista de Sistemas em Águas Claras. divorciadoo(a), tem 1 filho(s). Sempre foi progressista e se opõe às políticas conservadoras.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha por alto. Vota pensando no candidato.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0765",
@@ -44684,7 +44684,7 @@
     "historia_resumida": "Bruno trabalha como Médico(a) em São Sebastião. casadoo(a), tem 2 filho(s). Se decepcionou com o governo Bolsonaro e hoje faz oposição firme.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha por alto. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0806",
@@ -45548,7 +45548,7 @@
     "historia_resumida": "Marcelo trabalha como Analista Financeiro em Riacho Fundo. solteiro(a). Se decepcionou com o governo Bolsonaro e hoje faz oposição firme.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha por alto. Vota pensando no candidato.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0822",
@@ -46466,7 +46466,7 @@
     "historia_resumida": "Gabriel trabalha como Médico(a) em Recanto das Emas. uniao_estavel, tem 1 filho(s). Acompanha a política mas prefere não se posicionar fortemente.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha por alto. Vota pensando no candidato.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0839",
@@ -47006,7 +47006,7 @@
     "historia_resumida": "Daniel trabalha como Engenheiro(a) em Recanto das Emas. casadoo(a), tem 2 filho(s). Acompanha a política mas prefere não se posicionar fortemente.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha por alto. Vota pensando no candidato.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0849",
@@ -48518,7 +48518,7 @@
     "historia_resumida": "Bruno trabalha como Psicólogo(a) em Taguatinga. solteiro(a), tem 1 filho(s). Acompanha a política mas prefere não se posicionar fortemente.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha por alto. Vota pensando no candidato.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0877",
@@ -49112,7 +49112,7 @@
     "historia_resumida": "Fernanda trabalha como Analista Financeiro em Gama. solteiroa, tem 2 filho(s). Sempre foi progressista e se opõe às políticas conservadoras.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha por alto. Vota pensando no candidato.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0888",
@@ -49220,7 +49220,7 @@
     "historia_resumida": "José trabalha como Consultor(a) em Recanto das Emas. casadoo(a), tem 2 filho(s). Se decepcionou com o governo Bolsonaro e hoje faz oposição firme.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha por alto. Vota pensando na ideologia.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "45-59"
+    "faixa_etaria": "35-44"
   },
   {
     "id": "df-0890",
@@ -49274,7 +49274,7 @@
     "historia_resumida": "Igor trabalha como Recepcionista em São Sebastião. Critico(a) do bolsonarismo, preocupa-se com a democracia.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha por alto. Vota pensando no bolso.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0891",
@@ -49814,7 +49814,7 @@
     "historia_resumida": "Isabella trabalha como Auxiliar Administrativo em Vicente Pires. casadoa, tem 2 filho(s). Se decepcionou com o governo Bolsonaro e hoje faz oposição firme.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha por alto. Vota pensando no candidato.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "60-64"
   },
   {
     "id": "df-0901",
@@ -51056,7 +51056,7 @@
     "historia_resumida": "Carolina mora em Riacho Fundo e trabalha como Atendente. Critico(a) do bolsonarismo, ve como ameaca a democracia.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha politica por alto. Vota pensando no dia a dia.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0924",
@@ -51488,7 +51488,7 @@
     "historia_resumida": "Daniela mora em Recanto das Emas e trabalha como Tecnico(a). Critico(a) do bolsonarismo, ve como ameaca a democracia.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha politica por alto. Vota pensando no dia a dia.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0932",
@@ -54242,7 +54242,7 @@
     "historia_resumida": "Amanda mora em Sobradinho e trabalha como Atendente. Critico(a) do bolsonarismo, ve como ameaca a democracia.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha politica por alto. Vota pensando no dia a dia.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0983",
@@ -54404,7 +54404,7 @@
     "historia_resumida": "Fernanda mora em Taguatinga e trabalha como Tecnico(a). Tem criticas ao governo Bolsonaro, especialmente na pandemia.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha politica por alto. Vota pensando no dia a dia.",
     "filhos_cat": "com_filhos",
-    "faixa_etaria": "35-44"
+    "faixa_etaria": "25-34"
   },
   {
     "id": "df-0986",

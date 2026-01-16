@@ -1,0 +1,152 @@
+{
+  "resumo": {
+    "total_perfis": 1000,
+    "total_problemas": 22,
+    "eleitores_afetados": 22,
+    "erros_graves": 0,
+    "erros_medios": 0,
+    "erros_leves": 22,
+    "indice_qualidade": 99.9
+  },
+  "problemas_por_categoria": {
+    "Valores vs Orientação": 20,
+    "Idade vs Profissão": 1,
+    "Idade vs Filhos": 1
+  },
+  "erros_graves": [],
+  "erros_medios": [],
+  "erros_leves": [
+    {
+      "id": "df-0180",
+      "nome": "Simone Ferreira Barbosa",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação direita com múltiplos valores de esquerda: ['diversidade', 'justiça social'] (possível mas raro)"
+    },
+    {
+      "id": "df-0318",
+      "nome": "Camila Rodrigues Barbosa",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação direita com múltiplos valores de esquerda: ['igualdade social', 'direitos humanos'] (possível mas raro)"
+    },
+    {
+      "id": "df-0319",
+      "nome": "Larissa Oliveira Ramos",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação esquerda com múltiplos valores de direita: ['meritocracia', 'empreendedorismo'] (possível mas raro)"
+    },
+    {
+      "id": "df-0360",
+      "nome": "Ricardo Campos Borges",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação esquerda com múltiplos valores de direita: ['meritocracia', 'empreendedorismo'] (possível mas raro)"
+    },
+    {
+      "id": "df-0385",
+      "nome": "Davi Alves Vieira",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação esquerda com múltiplos valores de direita: ['empreendedorismo', 'livre iniciativa'] (possível mas raro)"
+    },
+    {
+      "id": "df-0405",
+      "nome": "Bernardo Ferreira Lima",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação esquerda com múltiplos valores de direita: ['empreendedorismo', 'meritocracia', 'livre iniciativa'] (possível mas raro)"
+    },
+    {
+      "id": "df-0412",
+      "nome": "Fernanda Pinto Andrade",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação direita com múltiplos valores de esquerda: ['diversidade', 'justiça social'] (possível mas raro)"
+    },
+    {
+      "id": "df-0433",
+      "nome": "Matheus Soares Nunes",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação esquerda com múltiplos valores de direita: ['empreendedorismo', 'livre iniciativa'] (possível mas raro)"
+    },
+    {
+      "id": "df-0493",
+      "nome": "Letícia Andrade Ramos",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação direita com múltiplos valores de esquerda: ['diversidade', 'justiça social'] (possível mas raro)"
+    },
+    {
+      "id": "df-0524",
+      "nome": "Fabiana Lopes Nascimento",
+      "categoria": "Idade vs Profissão",
+      "erro": "Profissão 'Contador' requer superior completo"
+    },
+    {
+      "id": "df-0556",
+      "nome": "Rogério Rocha Santos",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação direita com múltiplos valores de esquerda: ['diversidade', 'justiça social'] (possível mas raro)"
+    },
+    {
+      "id": "df-0563",
+      "nome": "Bernardo Santana Ramos",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação esquerda com múltiplos valores de direita: ['livre iniciativa', 'empreendedorismo'] (possível mas raro)"
+    },
+    {
+      "id": "df-0629",
+      "nome": "Gabriel Souza Moura",
+      "categoria": "Idade vs Filhos",
+      "erro": "Idade 18 com 2 filhos (improvável)"
+    },
+    {
+      "id": "df-0661",
+      "nome": "Renata Gomes Marques",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação esquerda com múltiplos valores de direita: ['empreendedorismo', 'livre iniciativa'] (possível mas raro)"
+    },
+    {
+      "id": "df-0698",
+      "nome": "Juliana Andrade Pinto",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação esquerda com múltiplos valores de direita: ['livre iniciativa', 'empreendedorismo'] (possível mas raro)"
+    },
+    {
+      "id": "df-0722",
+      "nome": "Larissa Moreira Lopes",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação esquerda com múltiplos valores de direita: ['meritocracia', 'empreendedorismo'] (possível mas raro)"
+    },
+    {
+      "id": "df-0754",
+      "nome": "Ana Carvalho Silva",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação direita com múltiplos valores de esquerda: ['igualdade social', 'direitos humanos'] (possível mas raro)"
+    },
+    {
+      "id": "df-0763",
+      "nome": "Igor Lima Martins",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação direita com múltiplos valores de esquerda: ['igualdade social', 'direitos humanos'] (possível mas raro)"
+    },
+    {
+      "id": "df-0791",
+      "nome": "Larissa Ferreira Costa",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação direita com múltiplos valores de esquerda: ['direitos humanos', 'igualdade social'] (possível mas raro)"
+    },
+    {
+      "id": "df-0813",
+      "nome": "Rodrigo Pereira Costa",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação direita com múltiplos valores de esquerda: ['direitos humanos', 'igualdade social'] (possível mas raro)"
+    },
+    {
+      "id": "df-0822",
+      "nome": "Ana Santos Santos",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação direita com múltiplos valores de esquerda: ['igualdade social', 'direitos humanos'] (possível mas raro)"
+    },
+    {
+      "id": "df-0900",
+      "nome": "Isabella Rodrigues Silva",
+      "categoria": "Valores vs Orientação",
+      "erro": "Orientação direita com múltiplos valores de esquerda: ['igualdade social', 'direitos humanos'] (possível mas raro)"
+    }
+  ]
+}
