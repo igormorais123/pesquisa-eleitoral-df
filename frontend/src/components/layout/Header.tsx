@@ -321,7 +321,7 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                     {usuario?.nome || 'Usuário'}
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    {usuario?.usuario || 'usuario'}
+                    {usuario?.email || 'email'}
                   </p>
                 </div>
 

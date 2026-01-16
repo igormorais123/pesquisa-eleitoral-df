@@ -5,9 +5,13 @@ import { notify } from './notifications-store';
 
 interface Usuario {
   id: string;
-  usuario: string;
+  email: string;
   nome: string;
-  papel: 'admin' | 'pesquisador' | 'visualizador';
+  papel: 'admin' | 'pesquisador' | 'visualizador' | 'leitor';
+  provedor_auth: 'local' | 'google';
+  ativo: boolean;
+  aprovado: boolean;
+  avatar_url?: string;
 }
 
 interface AuthState {
@@ -18,6 +22,7 @@ interface AuthState {
   login: (usuario: string, senha: string) => Promise<void>;
   logout: () => void;
   verificarToken: () => Promise<boolean>;
+  setAuth: (token: string, usuario: Usuario) => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -63,6 +68,18 @@ export const useAuthStore = create<AuthState>()(
           );
           throw error;
         }
+      },
+
+      setAuth: (token: string, usuario: Usuario) => {
+        // Atualizar o header de autorização
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+        set({
+          usuario,
+          token,
+          autenticado: true,
+          carregando: false,
+        });
       },
 
       logout: () => {
@@ -114,3 +131,19 @@ export const useAuthStore = create<AuthState>()(
     }
   )
 );
+
+// Helpers para verificar permissões
+export const useIsAdmin = () => {
+  const usuario = useAuthStore((state) => state.usuario);
+  return usuario?.papel === 'admin';
+};
+
+export const useCanUsarAPI = () => {
+  const usuario = useAuthStore((state) => state.usuario);
+  return usuario?.aprovado && usuario?.papel !== 'leitor';
+};
+
+export const usePapel = () => {
+  const usuario = useAuthStore((state) => state.usuario);
+  return usuario?.papel;
+};

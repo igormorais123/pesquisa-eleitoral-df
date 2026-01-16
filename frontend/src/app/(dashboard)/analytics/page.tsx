@@ -169,17 +169,17 @@ function TendenciasCard({ tendencias }: { tendencias: Tendencia[] }) {
                 <span className="font-medium text-gray-900 dark:text-white">
                   {t.periodo}
                 </span>
-                {t.sentimento_medio !== null && (
+                {t.sentimento_medio != null && (
                   <span
                     className={`text-sm font-medium ${
-                      t.sentimento_medio > 0.2
+                      (t.sentimento_medio || 0) > 0.2
                         ? 'text-green-600'
-                        : t.sentimento_medio < -0.2
+                        : (t.sentimento_medio || 0) < -0.2
                         ? 'text-red-600'
                         : 'text-gray-600'
                     }`}
                   >
-                    Sentimento: {t.sentimento_medio.toFixed(2)}
+                    Sentimento: {(t.sentimento_medio || 0).toFixed(2)}
                   </span>
                 )}
               </div>

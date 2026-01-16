@@ -654,7 +654,7 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Gênero - Donut */}
-          <GraficoCard titulo="Distribuição por Gênero" icone={Users} corIcone="bg-pink-500/20" href="/eleitores">
+          <GraficoCard titulo="Distribuição por Gênero" icone={Users} corIcone="bg-pink-500/20" href="/eleitores?filtro=generos&valor=masculino,feminino">
             <ResponsiveContainer width="100%" height={220}>
               <PieChart>
                 <Pie
@@ -680,7 +680,7 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Cor/Raça - Barras Horizontais */}
-          <GraficoCard titulo="Distribuição por Cor/Raça" icone={Users} corIcone="bg-amber-500/20" href="/eleitores">
+          <GraficoCard titulo="Distribuição por Cor/Raça" icone={Users} corIcone="bg-amber-500/20" href="/eleitores?filtro=cores_racas&valor=branca,parda,preta,amarela,indigena">
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={dadosCorRaca} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -697,7 +697,7 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Pirâmide Etária */}
-          <GraficoCard titulo="Pirâmide Etária" icone={Activity} corIcone="bg-green-500/20" href="/eleitores">
+          <GraficoCard titulo="Pirâmide Etária" icone={Activity} corIcone="bg-green-500/20" href="/eleitores?filtro=faixas_etarias&valor=16-24,25-34,35-44,45-54,55-64,65%2B">
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={stats.faixasEtarias} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -761,7 +761,7 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Classe Social - Donut */}
-          <GraficoCard titulo="Classe Social (Cluster)" icone={TrendingUp} corIcone="bg-emerald-500/20" href="/eleitores">
+          <GraficoCard titulo="Classe Social (Cluster)" icone={TrendingUp} corIcone="bg-emerald-500/20" href="/eleitores?filtro=clusters&valor=G1_alta,G2_media_alta,G3_media_baixa,G4_baixa">
             <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie
@@ -789,7 +789,7 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Faixa de Renda - Area Chart */}
-          <GraficoCard titulo="Distribuição por Faixa de Renda" icone={Wallet} corIcone="bg-yellow-500/20" href="/eleitores">
+          <GraficoCard titulo="Distribuição por Faixa de Renda" icone={Wallet} corIcone="bg-yellow-500/20" href="/eleitores?filtro=faixas_renda&valor=ate_1,mais_de_1_ate_2,mais_de_2_ate_5,mais_de_5_ate_10,mais_de_10">
             <ResponsiveContainer width="100%" height={250}>
               <AreaChart data={dadosRenda}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -806,7 +806,7 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Ocupação/Vínculo - Treemap */}
-          <GraficoCard titulo="Ocupação / Vínculo Empregatício" subtitulo="Distribuição por tipo de vínculo" icone={Briefcase} corIcone="bg-violet-500/20" href="/eleitores">
+          <GraficoCard titulo="Ocupação / Vínculo Empregatício" subtitulo="Distribuição por tipo de vínculo" icone={Briefcase} corIcone="bg-violet-500/20" href="/eleitores?filtro=ocupacoes_vinculos&valor=clt,servidor_publico,autonomo,empresario,informal,desempregado,aposentado,estudante">
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={dadosOcupacao} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -827,7 +827,7 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Escolaridade - Barras */}
-          <GraficoCard titulo="Nível de Escolaridade" icone={GraduationCap} corIcone="bg-blue-500/20" href="/eleitores">
+          <GraficoCard titulo="Nível de Escolaridade" icone={GraduationCap} corIcone="bg-blue-500/20" href="/eleitores?filtro=escolaridades&valor=fundamental_incompleto,fundamental_completo,medio_incompleto,medio_completo_ou_sup_incompleto,superior_completo_ou_pos">
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={dadosEscolaridade}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -859,7 +859,7 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Estado Civil */}
-          <GraficoCard titulo="Estado Civil" icone={Heart} corIcone="bg-rose-500/20" href="/eleitores">
+          <GraficoCard titulo="Estado Civil" icone={Heart} corIcone="bg-rose-500/20" href="/eleitores?filtro=estados_civis&valor=solteiro,casado,divorciado,viuvo,uniao_estavel">
             <ResponsiveContainer width="100%" height={220}>
               <PieChart>
                 <Pie
@@ -885,7 +885,7 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Filhos */}
-          <GraficoCard titulo="Filhos" icone={Users} corIcone="bg-pink-500/20" href="/eleitores">
+          <GraficoCard titulo="Filhos" icone={Users} corIcone="bg-pink-500/20" href="/eleitores?filtro=tem_filhos&valor=sim,nao">
             <ResponsiveContainer width="100%" height={220}>
               <PieChart>
                 <Pie
@@ -911,7 +911,7 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Religião */}
-          <GraficoCard titulo="Religião" icone={Church} corIcone="bg-purple-500/20" href="/eleitores">
+          <GraficoCard titulo="Religião" icone={Church} corIcone="bg-purple-500/20" href="/eleitores?filtro=religioes&valor=catolica,evangelica,espirita,sem_religiao,afro_brasileira,outras">
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={dadosReligiao}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -943,7 +943,7 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Espectro Político */}
-          <GraficoCard titulo="Espectro Político" subtitulo="Orientação ideológica dos eleitores" icone={Scale} corIcone="bg-red-500/20" href="/eleitores">
+          <GraficoCard titulo="Espectro Político" subtitulo="Orientação ideológica dos eleitores" icone={Scale} corIcone="bg-red-500/20" href="/eleitores?filtro=orientacoes_politicas&valor=esquerda,centro-esquerda,centro,centro-direita,direita">
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={dadosOrientacao} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -964,7 +964,7 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Posição Bolsonaro */}
-          <GraficoCard titulo="Posição sobre Bolsonaro" icone={UserCheck} corIcone="bg-yellow-500/20" href="/eleitores">
+          <GraficoCard titulo="Posição sobre Bolsonaro" icone={UserCheck} corIcone="bg-yellow-500/20" href="/eleitores?filtro=posicoes_bolsonaro&valor=apoiador_forte,apoiador_moderado,neutro,critico_moderado,critico_forte">
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={dadosBolsonaro}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -990,7 +990,7 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Interesse Político - Radial */}
-          <GraficoCard titulo="Interesse Político" icone={Activity} corIcone="bg-indigo-500/20" href="/eleitores">
+          <GraficoCard titulo="Interesse Político" icone={Activity} corIcone="bg-indigo-500/20" href="/eleitores?filtro=interesses_politicos&valor=baixo,medio,alto">
             <ResponsiveContainer width="100%" height={250}>
               <RadialBarChart
                 cx="50%"
@@ -1016,7 +1016,7 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Tolerância à Nuance */}
-          <GraficoCard titulo="Tolerância à Nuance Política" icone={Brain} corIcone="bg-sky-500/20" href="/eleitores">
+          <GraficoCard titulo="Tolerância à Nuance Política" icone={Brain} corIcone="bg-sky-500/20" href="/eleitores?filtro=tolerancias_nuance&valor=baixa,media,alta">
             <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie
@@ -1054,7 +1054,7 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Estilo de Decisão */}
-          <GraficoCard titulo="Estilo de Decisão Eleitoral" subtitulo="Como os eleitores tomam decisões de voto" icone={Brain} corIcone="bg-fuchsia-500/20" href="/eleitores">
+          <GraficoCard titulo="Estilo de Decisão Eleitoral" subtitulo="Como os eleitores tomam decisões de voto" icone={Brain} corIcone="bg-fuchsia-500/20" href="/eleitores?filtro=estilos_decisao&valor=identitario,pragmatico,moral,economico,emocional">
             <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie
@@ -1096,7 +1096,7 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Susceptibilidade à Desinformação */}
-          <GraficoCard titulo="Susceptibilidade à Desinformação" subtitulo="Nível de vulnerabilidade a fake news" icone={Eye} corIcone="bg-orange-500/20" href="/eleitores">
+          <GraficoCard titulo="Susceptibilidade à Desinformação" subtitulo="Nível de vulnerabilidade a fake news" icone={Eye} corIcone="bg-orange-500/20" href="/eleitores?filtro=susceptibilidade_desinformacao&valor=1-3,4-6,7-10">
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={dadosSuscept}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -1188,7 +1188,7 @@ export default function PaginaInicial() {
           <Car className="w-5 h-5 text-slate-500" />
           Mobilidade Urbana
         </h2>
-        <GraficoCard titulo="Meio de Transporte Principal" subtitulo="Como os eleitores se locomovem" icone={Car} corIcone="bg-slate-500/20" href="/eleitores">
+        <GraficoCard titulo="Meio de Transporte Principal" subtitulo="Como os eleitores se locomovem" icone={Car} corIcone="bg-slate-500/20" href="/eleitores?filtro=meios_transporte&valor=carro_proprio,transporte_publico,moto,bicicleta,a_pe,aplicativo">
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={dadosTransporte}>
               <CartesianGrid strokeDasharray="3 3" stroke="#374151" />

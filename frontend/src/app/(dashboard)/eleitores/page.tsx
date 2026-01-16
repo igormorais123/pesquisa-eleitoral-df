@@ -30,7 +30,7 @@ import { AgentesInsights } from '@/components/agentes/AgentesInsights';
 import { MiniDashboard } from '@/components/agentes/MiniDashboard';
 import { FiltrosAtivos } from '@/components/agentes/FiltrosAtivos';
 import { cn, formatarNumero } from '@/lib/utils';
-import { useUrlFilters, FILTER_LABELS, FilterType } from '@/hooks/useFilterNavigation';
+import { useUrlFilters } from '@/hooks/useFilterNavigation';
 
 type VisualizacaoTipo = 'cards' | 'lista' | 'graficos' | 'insights';
 
@@ -89,6 +89,20 @@ function EleitoresContent() {
     [toggleSelecionarParaEntrevista]
   );
 
+  // Handler para remover um filtro específico
+  const handleRemoverFiltro = useCallback(
+    (tipo: string, valor?: string) => {
+      const filtroAtual = filtros[tipo as keyof typeof filtros];
+      if (Array.isArray(filtroAtual) && valor) {
+        const novosFiltros = filtroAtual.filter((v: string) => v !== valor);
+        setFiltros({ [tipo]: novosFiltros } as any);
+      } else {
+        setFiltros({ [tipo]: [] } as any);
+      }
+    },
+    [filtros, setFiltros]
+  );
+
   // Loading state
   if (carregando) {
     return (
@@ -124,8 +138,13 @@ function EleitoresContent() {
               Eleitores Sintéticos
             </h1>
             <p className="text-muted-foreground mt-1">
-              {formatarNumero(estatisticas.total)} agentes cadastrados •{' '}
-              {formatarNumero(eleitoresSelecionados.length)} selecionados
+              <span className="font-semibold text-foreground">{formatarNumero(estatisticas.filtrados)}</span>
+              {' '}de {formatarNumero(estatisticas.total)} eleitores
+              {eleitoresSelecionados.length > 0 && (
+                <span className="ml-2 text-primary">
+                  • {formatarNumero(eleitoresSelecionados.length)} selecionados
+                </span>
+              )}
             </p>
           </div>
 
@@ -293,6 +312,19 @@ function EleitoresContent() {
             </button>
           </div>
         </div>
+
+        {/* Filtros Ativos - Badges elegantes */}
+        {filtrosAtivos.length > 0 && (
+          <div className="mt-4">
+            <FiltrosAtivos
+              filtros={filtros}
+              onRemoverFiltro={handleRemoverFiltro}
+              onLimparTodos={limparFiltros}
+              totalFiltrados={estatisticas.filtrados}
+              totalGeral={estatisticas.total}
+            />
+          </div>
+        )}
       </div>
 
       {/* Conteúdo principal */}

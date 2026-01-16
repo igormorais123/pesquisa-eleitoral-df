@@ -16,106 +16,135 @@ class PapelUsuario(str, Enum):
     ADMIN = "admin"
     PESQUISADOR = "pesquisador"
     VISUALIZADOR = "visualizador"
+    LEITOR = "leitor"
 
 
-class UsuarioBase(BaseModel):
-    """Campos base do usuário"""
-    usuario: str = Field(..., min_length=3, max_length=100, description="Nome de usuário único")
-    nome: str = Field(..., min_length=2, max_length=200, description="Nome completo")
+class ProvedorAuth(str, Enum):
+    """Provedores de autenticação"""
+    LOCAL = "local"
+    GOOGLE = "google"
+
+
+# ==========================================
+# Esquemas de Request
+# ==========================================
+
+class RegistroRequest(BaseModel):
+    """Requisição de registro de novo usuário"""
     email: EmailStr = Field(..., description="Email válido")
-    papel: PapelUsuario = Field(default=PapelUsuario.VISUALIZADOR, description="Papel no sistema")
-
-    @field_validator("usuario")
-    @classmethod
-    def usuario_sem_espacos(cls, v: str) -> str:
-        """Remove espaços e converte para minúsculas"""
-        return v.strip().lower().replace(" ", "")
-
-
-class UsuarioCriar(UsuarioBase):
-    """Esquema para criar novo usuário"""
+    nome: str = Field(..., min_length=2, max_length=200, description="Nome completo")
     senha: str = Field(..., min_length=6, max_length=100, description="Senha (mínimo 6 caracteres)")
-    ativo: bool = Field(default=True, description="Se o usuário está ativo")
-    descricao: Optional[str] = Field(None, max_length=500, description="Descrição do usuário")
 
-    @field_validator("senha")
+    @field_validator("nome")
     @classmethod
-    def senha_forte(cls, v: str) -> str:
-        """Valida força mínima da senha"""
-        if len(v) < 6:
-            raise ValueError("Senha deve ter no mínimo 6 caracteres")
-        return v
+    def nome_valido(cls, v: str) -> str:
+        return v.strip()
 
 
-class UsuarioAtualizar(BaseModel):
-    """Esquema para atualizar usuário (todos campos opcionais)"""
+class LoginRequest(BaseModel):
+    """Requisição de login"""
+    usuario: str = Field(..., description="Email ou nome de usuário")
+    senha: str = Field(..., description="Senha")
+
+
+class GoogleAuthRequest(BaseModel):
+    """Requisição de autenticação Google"""
+    code: str = Field(..., description="Código de autorização do Google")
+
+
+class AlterarSenhaRequest(BaseModel):
+    """Requisição para alterar senha"""
+    senha_atual: str = Field(..., description="Senha atual")
+    senha_nova: str = Field(..., min_length=6, description="Nova senha")
+
+
+class AtualizarPerfilRequest(BaseModel):
+    """Requisição para atualizar perfil"""
     nome: Optional[str] = Field(None, min_length=2, max_length=200)
-    email: Optional[EmailStr] = None
-    papel: Optional[PapelUsuario] = None
-    ativo: Optional[bool] = None
-    descricao: Optional[str] = Field(None, max_length=500)
     avatar_url: Optional[str] = Field(None, max_length=500)
 
 
-class UsuarioAtualizarSenha(BaseModel):
-    """Esquema para alterar senha"""
-    senha_atual: str = Field(..., description="Senha atual")
-    senha_nova: str = Field(..., min_length=6, max_length=100, description="Nova senha")
-
-    @field_validator("senha_nova")
-    @classmethod
-    def senha_forte(cls, v: str) -> str:
-        if len(v) < 6:
-            raise ValueError("Nova senha deve ter no mínimo 6 caracteres")
-        return v
+class AprovarUsuarioRequest(BaseModel):
+    """Requisição para aprovar usuário"""
+    papel: Optional[PapelUsuario] = Field(None, description="Papel a atribuir")
 
 
-class UsuarioResposta(BaseModel):
-    """Esquema de resposta (sem senha)"""
+class AtualizarPapelRequest(BaseModel):
+    """Requisição para atualizar papel"""
+    papel: PapelUsuario = Field(..., description="Novo papel")
+
+
+# ==========================================
+# Esquemas de Response
+# ==========================================
+
+class UsuarioResponse(BaseModel):
+    """Resposta com dados do usuário"""
     id: str
-    usuario: str
-    nome: str
     email: str
-    papel: PapelUsuario
-    ativo: bool
-    criado_em: datetime
-    atualizado_em: datetime
-    ultimo_login: Optional[datetime] = None
-    avatar_url: Optional[str] = None
-    descricao: Optional[str] = None
-
-    model_config = {"from_attributes": True}
-
-
-class UsuarioResumido(BaseModel):
-    """Esquema resumido para listagens"""
-    id: str
-    usuario: str
     nome: str
-    papel: PapelUsuario
+    papel: str
+    provedor_auth: str
     ativo: bool
+    aprovado: bool
+    avatar_url: Optional[str] = None
+    criado_em: datetime
+    ultimo_login: Optional[datetime] = None
 
     model_config = {"from_attributes": True}
 
 
-class ListaUsuariosResposta(BaseModel):
-    """Resposta paginada de listagem de usuários"""
-    usuarios: list[UsuarioResumido]
+class UsuarioResumoResponse(BaseModel):
+    """Resposta resumida do usuário (para listagens)"""
+    id: str
+    email: str
+    nome: str
+    papel: str
+    ativo: bool
+    aprovado: bool
+    avatar_url: Optional[str] = None
+    provedor_auth: str
+    criado_em: datetime
+
+    model_config = {"from_attributes": True}
+
+
+class TokenResponse(BaseModel):
+    """Resposta de autenticação com token"""
+    access_token: str
+    token_type: str = "bearer"
+    expires_in: int
+    usuario: UsuarioResponse
+
+
+class RegistroResponse(BaseModel):
+    """Resposta de registro"""
+    mensagem: str
+    usuario: UsuarioResponse
+
+
+class ListaUsuariosResponse(BaseModel):
+    """Resposta de listagem de usuários"""
+    usuarios: list[UsuarioResumoResponse]
     total: int
     pagina: int
     por_pagina: int
     total_paginas: int
 
 
-class UsuarioLogin(BaseModel):
-    """Esquema para login"""
-    usuario: str = Field(..., description="Nome de usuário ou email")
-    senha: str = Field(..., description="Senha")
+class GoogleAuthUrlResponse(BaseModel):
+    """Resposta com URL de autorização Google"""
+    url: str
 
 
-class TokenResposta(BaseModel):
-    """Resposta de autenticação"""
-    access_token: str
-    token_type: str = "bearer"
-    expires_in: int
-    usuario: UsuarioResumido
+class MensagemResponse(BaseModel):
+    """Resposta genérica com mensagem"""
+    mensagem: str
+
+
+class EstatisticasUsuariosResponse(BaseModel):
+    """Estatísticas de usuários para o admin"""
+    total: int
+    pendentes: int
+    ativos: int
+    por_papel: dict[str, int]

@@ -7,41 +7,51 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'sonner';
-import { Eye, EyeOff, LogIn, Vote, Users, BarChart3, Chrome } from 'lucide-react';
-import { useAuthStore } from '@/stores/auth-store';
+import { Eye, EyeOff, UserPlus, Vote, CheckCircle2, Clock, Shield } from 'lucide-react';
 import { api } from '@/services/api';
 
-const loginSchema = z.object({
-  usuario: z.string().min(1, 'Digite o email ou usuário'),
-  senha: z.string().min(1, 'Digite a senha'),
+const cadastroSchema = z.object({
+  nome: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
+  email: z.string().email('Email inválido'),
+  senha: z.string().min(6, 'Senha deve ter pelo menos 6 caracteres'),
+  confirmarSenha: z.string(),
+}).refine((data) => data.senha === data.confirmarSenha, {
+  message: 'As senhas não conferem',
+  path: ['confirmarSenha'],
 });
 
-type LoginForm = z.infer<typeof loginSchema>;
+type CadastroForm = z.infer<typeof cadastroSchema>;
 
-export default function LoginPage() {
+export default function CadastroPage() {
   const router = useRouter();
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [carregando, setCarregando] = useState(false);
+  const [sucesso, setSucesso] = useState(false);
   const [carregandoGoogle, setCarregandoGoogle] = useState(false);
-  const login = useAuthStore((state) => state.login);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginForm>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<CadastroForm>({
+    resolver: zodResolver(cadastroSchema),
   });
 
-  const onSubmit = async (data: LoginForm) => {
+  const onSubmit = async (data: CadastroForm) => {
     setCarregando(true);
 
     try {
-      await login(data.usuario, data.senha);
-      toast.success('Bem-vindo ao sistema!');
-      router.push('/');
-    } catch (error) {
-      toast.error('Email/usuário ou senha incorretos');
+      await api.post('/auth/registro', {
+        email: data.email,
+        nome: data.nome,
+        senha: data.senha,
+      });
+
+      setSucesso(true);
+      toast.success('Cadastro realizado com sucesso!');
+    } catch (error: any) {
+      const mensagem = error.response?.data?.detail || 'Erro ao realizar cadastro';
+      toast.error(mensagem);
     } finally {
       setCarregando(false);
     }
@@ -58,6 +68,45 @@ export default function LoginPage() {
     }
   };
 
+  if (sucesso) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background bg-pattern p-8">
+        <div className="w-full max-w-md">
+          <div className="glass-card rounded-2xl p-8 text-center">
+            <div className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-6">
+              <CheckCircle2 className="w-10 h-10 text-green-500" />
+            </div>
+
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              Cadastro Realizado!
+            </h2>
+
+            <p className="text-muted-foreground mb-6">
+              Sua conta foi criada com sucesso. Um administrador irá revisar sua solicitação em breve.
+            </p>
+
+            <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 mb-6">
+              <div className="flex items-center gap-3 text-amber-500">
+                <Clock className="w-5 h-5" />
+                <span className="text-sm font-medium">Aguardando aprovação</span>
+              </div>
+              <p className="text-sm text-muted-foreground mt-2">
+                Enquanto isso, você pode acessar o sistema em modo leitura após fazer login.
+              </p>
+            </div>
+
+            <Link
+              href="/login"
+              className="w-full py-3 px-4 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-medium transition-all flex items-center justify-center gap-2"
+            >
+              Ir para Login
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex bg-background bg-pattern">
       {/* Lado esquerdo - Decorativo */}
@@ -71,43 +120,43 @@ export default function LoginPage() {
               <Vote className="w-8 h-8 text-primary" />
             </div>
             <h1 className="text-4xl xl:text-5xl font-bold text-foreground mb-4">
-              Pesquisa Eleitoral
-              <span className="text-gradient block">DF 2026</span>
+              Junte-se ao
+              <span className="text-gradient block">Sistema</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-md">
-              Sistema avançado de simulação de pesquisa eleitoral com agentes sintéticos para as eleições de Governador do Distrito Federal.
+              Crie sua conta para explorar o sistema de pesquisa eleitoral com agentes sintéticos.
             </p>
           </div>
 
-          {/* Features */}
+          {/* Benefícios */}
           <div className="space-y-4">
             <div className="flex items-center gap-4 p-4 rounded-xl bg-card/50 backdrop-blur border border-border/50">
-              <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                <Users className="w-5 h-5 text-blue-400" />
-              </div>
-              <div>
-                <h3 className="font-medium text-foreground">400+ Eleitores Sintéticos</h3>
-                <p className="text-sm text-muted-foreground">Perfis realistas e diversificados</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 p-4 rounded-xl bg-card/50 backdrop-blur border border-border/50">
-              <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
-                <BarChart3 className="w-5 h-5 text-purple-400" />
-              </div>
-              <div>
-                <h3 className="font-medium text-foreground">Análises Avançadas</h3>
-                <p className="text-sm text-muted-foreground">Estatísticas e visualizações completas</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 p-4 rounded-xl bg-card/50 backdrop-blur border border-border/50">
               <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
-                <Vote className="w-5 h-5 text-green-400" />
+                <CheckCircle2 className="w-5 h-5 text-green-400" />
               </div>
               <div>
-                <h3 className="font-medium text-foreground">Simulação em Tempo Real</h3>
-                <p className="text-sm text-muted-foreground">Entrevistas com IA Claude</p>
+                <h3 className="font-medium text-foreground">Acesso Gratuito</h3>
+                <p className="text-sm text-muted-foreground">Explore o sistema sem custos</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 p-4 rounded-xl bg-card/50 backdrop-blur border border-border/50">
+              <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                <Shield className="w-5 h-5 text-blue-400" />
+              </div>
+              <div>
+                <h3 className="font-medium text-foreground">Dados Seguros</h3>
+                <p className="text-sm text-muted-foreground">Suas informações protegidas</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 p-4 rounded-xl bg-card/50 backdrop-blur border border-border/50">
+              <div className="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center">
+                <Clock className="w-5 h-5 text-amber-400" />
+              </div>
+              <div>
+                <h3 className="font-medium text-foreground">Aprovação Rápida</h3>
+                <p className="text-sm text-muted-foreground">Admin revisa em até 24h</p>
               </div>
             </div>
           </div>
@@ -127,15 +176,15 @@ export default function LoginPage() {
               <Vote className="w-8 h-8 text-primary" />
             </div>
             <h1 className="text-2xl font-bold text-foreground">
-              Pesquisa Eleitoral DF 2026
+              Criar Conta
             </h1>
           </div>
 
           <div className="glass-card rounded-2xl p-8">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-foreground">Entrar no Sistema</h2>
+              <h2 className="text-2xl font-bold text-foreground">Criar Conta</h2>
               <p className="text-muted-foreground mt-2">
-                Entre com suas credenciais ou use o Google
+                Preencha os dados para se cadastrar
               </p>
             </div>
 
@@ -156,7 +205,7 @@ export default function LoginPage() {
                   <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                 </svg>
               )}
-              Continuar com Google
+              Cadastrar com Google
             </button>
 
             <div className="relative mb-6">
@@ -164,24 +213,40 @@ export default function LoginPage() {
                 <div className="w-full border-t border-border"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-card text-muted-foreground">ou entre com email</span>
+                <span className="px-4 bg-card text-muted-foreground">ou preencha o formulário</span>
               </div>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               <div className="space-y-2">
-                <label htmlFor="usuario" className="text-sm font-medium text-foreground">
-                  Email ou Usuário
+                <label htmlFor="nome" className="text-sm font-medium text-foreground">
+                  Nome Completo
                 </label>
                 <input
-                  id="usuario"
+                  id="nome"
                   type="text"
-                  {...register('usuario')}
+                  {...register('nome')}
+                  className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-foreground placeholder:text-muted-foreground"
+                  placeholder="Seu nome completo"
+                />
+                {errors.nome && (
+                  <p className="text-sm text-destructive">{errors.nome.message}</p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium text-foreground">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  {...register('email')}
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-foreground placeholder:text-muted-foreground"
                   placeholder="seu@email.com"
                 />
-                {errors.usuario && (
-                  <p className="text-sm text-destructive">{errors.usuario.message}</p>
+                {errors.email && (
+                  <p className="text-sm text-destructive">{errors.email.message}</p>
                 )}
               </div>
 
@@ -195,7 +260,7 @@ export default function LoginPage() {
                     type={mostrarSenha ? 'text' : 'password'}
                     {...register('senha')}
                     className="w-full px-4 py-3 pr-12 rounded-xl bg-secondary border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-foreground placeholder:text-muted-foreground"
-                    placeholder="Digite sua senha"
+                    placeholder="Mínimo 6 caracteres"
                   />
                   <button
                     type="button"
@@ -210,6 +275,22 @@ export default function LoginPage() {
                 )}
               </div>
 
+              <div className="space-y-2">
+                <label htmlFor="confirmarSenha" className="text-sm font-medium text-foreground">
+                  Confirmar Senha
+                </label>
+                <input
+                  id="confirmarSenha"
+                  type={mostrarSenha ? 'text' : 'password'}
+                  {...register('confirmarSenha')}
+                  className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-foreground placeholder:text-muted-foreground"
+                  placeholder="Digite a senha novamente"
+                />
+                {errors.confirmarSenha && (
+                  <p className="text-sm text-destructive">{errors.confirmarSenha.message}</p>
+                )}
+              </div>
+
               <button
                 type="submit"
                 disabled={carregando}
@@ -218,12 +299,12 @@ export default function LoginPage() {
                 {carregando ? (
                   <>
                     <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                    Entrando...
+                    Criando conta...
                   </>
                 ) : (
                   <>
-                    <LogIn className="w-5 h-5" />
-                    Entrar
+                    <UserPlus className="w-5 h-5" />
+                    Criar Conta
                   </>
                 )}
               </button>
@@ -231,9 +312,9 @@ export default function LoginPage() {
 
             <div className="mt-6 pt-6 border-t border-border">
               <p className="text-center text-sm text-muted-foreground">
-                Não tem uma conta?{' '}
-                <Link href="/cadastro" className="text-primary hover:underline font-medium">
-                  Cadastre-se gratuitamente
+                Já tem uma conta?{' '}
+                <Link href="/login" className="text-primary hover:underline font-medium">
+                  Faça login
                 </Link>
               </p>
             </div>

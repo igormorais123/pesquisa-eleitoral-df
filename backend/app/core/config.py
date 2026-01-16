@@ -38,6 +38,14 @@ class Configuracoes(BaseSettings):
     # Caminhos de dados
     CAMINHO_DADOS: str = "./data"
 
+    # OAuth2 Google
+    GOOGLE_CLIENT_ID: str = ""
+    GOOGLE_CLIENT_SECRET: str = ""
+    GOOGLE_REDIRECT_URI: str = "http://localhost:3000/api/auth/callback/google"
+
+    # Admin padrão (Professor Igor)
+    ADMIN_EMAIL: str = "professorigor@exemplo.com"
+
 
 # Instância global de configurações
 configuracoes = Configuracoes()

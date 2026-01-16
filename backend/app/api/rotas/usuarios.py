@@ -1,165 +1,153 @@
 """
 Rotas de Gerenciamento de Usuários
 
-CRUD completo para usuários do sistema.
+CRUD e administração de usuários (painel admin do Professor Igor).
 """
 
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import obter_usuario_admin, obter_usuario_atual
 from app.core.seguranca import DadosToken
-from app.db.database import get_db
+from app.db.session import get_db
 from app.esquemas.usuario import (
-    ListaUsuariosResposta,
+    AprovarUsuarioRequest,
+    AtualizarPapelRequest,
+    EstatisticasUsuariosResponse,
+    ListaUsuariosResponse,
+    MensagemResponse,
     PapelUsuario,
-    UsuarioAtualizar,
-    UsuarioAtualizarSenha,
-    UsuarioCriar,
-    UsuarioResposta,
+    UsuarioResponse,
+    UsuarioResumoResponse,
 )
+from app.modelos.usuario import Usuario
 from app.servicos.usuario_servico import UsuarioServico
 
 router = APIRouter()
 
 
+# ==========================================
+# Listagem e Estatísticas (Admin)
+# ==========================================
+
 @router.get(
     "/",
-    response_model=ListaUsuariosResposta,
+    response_model=ListaUsuariosResponse,
     summary="Listar usuários",
-    description="Lista todos os usuários com filtros e paginação. Requer papel de admin.",
+    description="Lista todos os usuários com filtros e paginação. **Apenas admin.**",
 )
 async def listar_usuarios(
     _: DadosToken = Depends(obter_usuario_admin),
     db: AsyncSession = Depends(get_db),
     pagina: int = Query(1, ge=1, description="Número da página"),
     por_pagina: int = Query(20, ge=1, le=100, description="Itens por página"),
-    papel: Optional[PapelUsuario] = Query(None, description="Filtrar por papel"),
+    papel: Optional[str] = Query(None, description="Filtrar por papel"),
+    aprovado: Optional[bool] = Query(None, description="Filtrar por aprovação"),
     ativo: Optional[bool] = Query(None, description="Filtrar por status"),
-    busca: Optional[str] = Query(None, description="Buscar por nome/usuário/email"),
+    busca: Optional[str] = Query(None, description="Buscar por nome/email"),
 ):
     """Lista usuários com filtros"""
-    return await UsuarioServico.listar(
+    resultado = await UsuarioServico.listar(
         db=db,
         pagina=pagina,
         por_pagina=por_pagina,
         papel=papel,
+        aprovado=aprovado,
         ativo=ativo,
         busca=busca,
     )
 
+    return ListaUsuariosResponse(
+        usuarios=[UsuarioResumoResponse.model_validate(u) for u in resultado["usuarios"]],
+        total=resultado["total"],
+        pagina=resultado["pagina"],
+        por_pagina=resultado["por_pagina"],
+        total_paginas=resultado["total_paginas"],
+    )
 
-@router.post(
-    "/",
-    response_model=UsuarioResposta,
-    status_code=status.HTTP_201_CREATED,
-    summary="Criar usuário",
-    description="Cria um novo usuário no sistema. Requer papel de admin.",
+
+@router.get(
+    "/pendentes",
+    response_model=ListaUsuariosResponse,
+    summary="Listar usuários pendentes",
+    description="Lista usuários aguardando aprovação. **Apenas admin.**",
 )
-async def criar_usuario(
-    dados: UsuarioCriar,
+async def listar_pendentes(
+    _: DadosToken = Depends(obter_usuario_admin),
+    db: AsyncSession = Depends(get_db),
+    pagina: int = Query(1, ge=1),
+    por_pagina: int = Query(20, ge=1, le=100),
+):
+    """Lista usuários pendentes de aprovação"""
+    resultado = await UsuarioServico.listar(
+        db=db,
+        pagina=pagina,
+        por_pagina=por_pagina,
+        aprovado=False,
+        ativo=True,
+    )
+
+    return ListaUsuariosResponse(
+        usuarios=[UsuarioResumoResponse.model_validate(u) for u in resultado["usuarios"]],
+        total=resultado["total"],
+        pagina=resultado["pagina"],
+        por_pagina=resultado["por_pagina"],
+        total_paginas=resultado["total_paginas"],
+    )
+
+
+@router.get(
+    "/estatisticas",
+    response_model=EstatisticasUsuariosResponse,
+    summary="Estatísticas de usuários",
+    description="Retorna estatísticas gerais dos usuários. **Apenas admin.**",
+)
+async def estatisticas_usuarios(
     _: DadosToken = Depends(obter_usuario_admin),
     db: AsyncSession = Depends(get_db),
 ):
-    """Cria novo usuário"""
-    try:
-        usuario = await UsuarioServico.criar(db, dados)
-        return UsuarioResposta.model_validate(usuario)
-    except ValueError as e:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e),
+    """Estatísticas de usuários"""
+    # Total
+    total_result = await db.execute(select(func.count(Usuario.id)))
+    total = total_result.scalar() or 0
+
+    # Pendentes
+    pendentes = await UsuarioServico.contar_pendentes(db)
+
+    # Ativos
+    ativos_result = await db.execute(
+        select(func.count(Usuario.id)).where(Usuario.ativo == True)  # noqa: E712
+    )
+    ativos = ativos_result.scalar() or 0
+
+    # Por papel
+    por_papel = {}
+    for papel in PapelUsuario:
+        result = await db.execute(
+            select(func.count(Usuario.id)).where(Usuario.papel == papel.value)
         )
+        por_papel[papel.value] = result.scalar() or 0
 
-
-@router.get(
-    "/me",
-    response_model=UsuarioResposta,
-    summary="Meus dados",
-    description="Retorna os dados do usuário autenticado.",
-)
-async def obter_meus_dados(
-    usuario_atual: DadosToken = Depends(obter_usuario_atual),
-    db: AsyncSession = Depends(get_db),
-):
-    """Obtém dados do usuário logado"""
-    usuario = await UsuarioServico.obter_por_id(db, usuario_atual.usuario_id)
-    if not usuario:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Usuário não encontrado",
-        )
-    return UsuarioResposta.model_validate(usuario)
-
-
-@router.put(
-    "/me",
-    response_model=UsuarioResposta,
-    summary="Atualizar meus dados",
-    description="Atualiza os dados do usuário autenticado.",
-)
-async def atualizar_meus_dados(
-    dados: UsuarioAtualizar,
-    usuario_atual: DadosToken = Depends(obter_usuario_atual),
-    db: AsyncSession = Depends(get_db),
-):
-    """Atualiza dados do usuário logado"""
-    # Não permitir alterar papel próprio
-    if dados.papel is not None:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Não é possível alterar seu próprio papel",
-        )
-
-    try:
-        usuario = await UsuarioServico.atualizar(db, usuario_atual.usuario_id, dados)
-        if not usuario:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="Usuário não encontrado",
-            )
-        return UsuarioResposta.model_validate(usuario)
-    except ValueError as e:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e),
-        )
-
-
-@router.put(
-    "/me/senha",
-    summary="Alterar minha senha",
-    description="Altera a senha do usuário autenticado.",
-)
-async def alterar_minha_senha(
-    dados: UsuarioAtualizarSenha,
-    usuario_atual: DadosToken = Depends(obter_usuario_atual),
-    db: AsyncSession = Depends(get_db),
-):
-    """Altera senha do usuário logado"""
-    sucesso = await UsuarioServico.alterar_senha(
-        db=db,
-        usuario_id=usuario_atual.usuario_id,
-        senha_atual=dados.senha_atual,
-        senha_nova=dados.senha_nova,
+    return EstatisticasUsuariosResponse(
+        total=total,
+        pendentes=pendentes,
+        ativos=ativos,
+        por_papel=por_papel,
     )
 
-    if not sucesso:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Senha atual incorreta",
-        )
 
-    return {"mensagem": "Senha alterada com sucesso"}
-
+# ==========================================
+# Operações em Usuário Específico (Admin)
+# ==========================================
 
 @router.get(
     "/{usuario_id}",
-    response_model=UsuarioResposta,
+    response_model=UsuarioResponse,
     summary="Obter usuário",
-    description="Obtém dados de um usuário específico. Requer papel de admin.",
+    description="Obtém dados de um usuário específico. **Apenas admin.**",
 )
 async def obter_usuario(
     usuario_id: str,
@@ -173,63 +161,148 @@ async def obter_usuario(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Usuário não encontrado",
         )
-    return UsuarioResposta.model_validate(usuario)
-
-
-@router.put(
-    "/{usuario_id}",
-    response_model=UsuarioResposta,
-    summary="Atualizar usuário",
-    description="Atualiza dados de um usuário. Requer papel de admin.",
-)
-async def atualizar_usuario(
-    usuario_id: str,
-    dados: UsuarioAtualizar,
-    _: DadosToken = Depends(obter_usuario_admin),
-    db: AsyncSession = Depends(get_db),
-):
-    """Atualiza usuário"""
-    try:
-        usuario = await UsuarioServico.atualizar(db, usuario_id, dados)
-        if not usuario:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="Usuário não encontrado",
-            )
-        return UsuarioResposta.model_validate(usuario)
-    except ValueError as e:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(e),
-        )
+    return UsuarioResponse.model_validate(usuario)
 
 
 @router.post(
-    "/{usuario_id}/resetar-senha",
-    summary="Resetar senha",
-    description="Reseta a senha de um usuário. Requer papel de admin.",
+    "/{usuario_id}/aprovar",
+    response_model=UsuarioResponse,
+    summary="Aprovar usuário",
+    description="""
+Aprova um usuário e opcionalmente define seu papel.
+
+**Papéis disponíveis:**
+- `pesquisador`: Pode criar e executar pesquisas
+- `visualizador`: Pode visualizar resultados
+- `leitor`: Apenas visualiza (padrão, mantém sem API)
+
+**Apenas admin.**
+    """,
 )
-async def resetar_senha_usuario(
+async def aprovar_usuario(
     usuario_id: str,
-    nova_senha: str = Query(..., min_length=6, description="Nova senha"),
+    dados: AprovarUsuarioRequest,
     _: DadosToken = Depends(obter_usuario_admin),
     db: AsyncSession = Depends(get_db),
 ):
-    """Reseta senha de um usuário (admin)"""
-    sucesso = await UsuarioServico.resetar_senha(db, usuario_id, nova_senha)
-    if not sucesso:
+    """Aprova usuário"""
+    papel = dados.papel.value if dados.papel else None
+    usuario = await UsuarioServico.aprovar(db, usuario_id, papel)
+
+    if not usuario:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Usuário não encontrado",
         )
-    return {"mensagem": "Senha resetada com sucesso"}
+
+    return UsuarioResponse.model_validate(usuario)
+
+
+@router.post(
+    "/{usuario_id}/revogar",
+    response_model=UsuarioResponse,
+    summary="Revogar aprovação",
+    description="Revoga aprovação de um usuário (volta a ser leitor). **Apenas admin.**",
+)
+async def revogar_usuario(
+    usuario_id: str,
+    _: DadosToken = Depends(obter_usuario_admin),
+    db: AsyncSession = Depends(get_db),
+):
+    """Revoga aprovação"""
+    usuario = await UsuarioServico.revogar(db, usuario_id)
+
+    if not usuario:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Usuário não encontrado ou não pode ser revogado",
+        )
+
+    return UsuarioResponse.model_validate(usuario)
+
+
+@router.put(
+    "/{usuario_id}/papel",
+    response_model=UsuarioResponse,
+    summary="Alterar papel",
+    description="Altera o papel de um usuário. **Apenas admin.**",
+)
+async def alterar_papel(
+    usuario_id: str,
+    dados: AtualizarPapelRequest,
+    _: DadosToken = Depends(obter_usuario_admin),
+    db: AsyncSession = Depends(get_db),
+):
+    """Altera papel do usuário"""
+    usuario = await UsuarioServico.atualizar_papel(db, usuario_id, dados.papel.value)
+
+    if not usuario:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Usuário não encontrado",
+        )
+
+    return UsuarioResponse.model_validate(usuario)
+
+
+@router.post(
+    "/{usuario_id}/ativar",
+    response_model=UsuarioResponse,
+    summary="Ativar usuário",
+    description="Ativa um usuário desativado. **Apenas admin.**",
+)
+async def ativar_usuario(
+    usuario_id: str,
+    _: DadosToken = Depends(obter_usuario_admin),
+    db: AsyncSession = Depends(get_db),
+):
+    """Ativa usuário"""
+    usuario = await UsuarioServico.ativar(db, usuario_id)
+
+    if not usuario:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Usuário não encontrado",
+        )
+
+    return UsuarioResponse.model_validate(usuario)
+
+
+@router.post(
+    "/{usuario_id}/desativar",
+    response_model=UsuarioResponse,
+    summary="Desativar usuário",
+    description="Desativa um usuário (não pode mais fazer login). **Apenas admin.**",
+)
+async def desativar_usuario(
+    usuario_id: str,
+    admin: DadosToken = Depends(obter_usuario_admin),
+    db: AsyncSession = Depends(get_db),
+):
+    """Desativa usuário"""
+    # Não pode desativar a si mesmo
+    if usuario_id == admin.usuario_id:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Não é possível desativar seu próprio usuário",
+        )
+
+    usuario = await UsuarioServico.desativar(db, usuario_id)
+
+    if not usuario:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Usuário não encontrado",
+        )
+
+    return UsuarioResponse.model_validate(usuario)
 
 
 @router.delete(
     "/{usuario_id}",
-    status_code=status.HTTP_204_NO_CONTENT,
+    response_model=MensagemResponse,
     summary="Deletar usuário",
-    description="Remove um usuário do sistema. Requer papel de admin.",
+    description="Remove um usuário permanentemente. **Apenas admin.**",
 )
 async def deletar_usuario(
     usuario_id: str,
@@ -237,7 +310,7 @@ async def deletar_usuario(
     db: AsyncSession = Depends(get_db),
 ):
     """Deleta usuário"""
-    # Não permitir deletar a si mesmo
+    # Não pode deletar a si mesmo
     if usuario_id == admin.usuario_id:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -245,8 +318,11 @@ async def deletar_usuario(
         )
 
     sucesso = await UsuarioServico.deletar(db, usuario_id)
+
     if not sucesso:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Usuário não encontrado",
         )
+
+    return MensagemResponse(mensagem="Usuário removido com sucesso")
