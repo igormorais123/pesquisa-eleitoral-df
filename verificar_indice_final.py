@@ -86,16 +86,16 @@ indice = total_pontos / len(resultados)
 print('\n' + '=' * 60)
 print('RESUMO')
 print('=' * 60)
-print(f'Ótimas:   {otimos:2} (desvio ≤ 3%)')
+print(f'Otimas:   {otimos:2} (desvio <= 3%)')
 print(f'Boas:     {bons:2} (desvio 3-7%)')
-print(f'Atenção:  {atencao:2} (desvio 7-12%)')
-print(f'Críticas: {criticos:2} (desvio > 12%)')
-print(f'\nÍNDICE DE CONFORMIDADE: {indice:.0f}%')
+print(f'Atencao:  {atencao:2} (desvio 7-12%)')
+print(f'Criticas: {criticos:2} (desvio > 12%)')
+print(f'\nINDICE DE CONFORMIDADE: {indice:.0f}%')
 print('=' * 60)
 
 # Detalhes das variáveis problemáticas
 if atencao + criticos > 0:
-    print('\nDETALHES DAS VARIÁVEIS PROBLEMÁTICAS:')
+    print('\nDETALHES DAS VARIAVEIS PROBLEMATICAS:')
     for r in resultados:
         if r['status'] in ['ATENCAO', 'CRITICO']:
             var = r['variavel']
