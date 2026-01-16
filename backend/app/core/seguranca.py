@@ -119,10 +119,9 @@ def verificar_token(token: str) -> Optional[DadosToken]:
 # USUÁRIO DE TESTE (credenciais via variáveis de ambiente em produção)
 # ============================================
 
-# Hash da senha "professorigor"
-# Gerado com: gerar_hash_senha("professorigor")
 # Em produção, usar variáveis de ambiente para credenciais
-SENHA_HASH_TESTE = "$2b$12$J6KfB1mVkGLAXyksmR6w6eh.C3fQGRuSMOxsoDeYoVweShfhJy22y"
+# Hash da senha "professorigor" (gerado com: gerar_hash_senha("professorigor"))
+_SENHA_HASH_PADRAO = "$2b$12$J6KfB1mVkGLAXyksmR6w6eh.C3fQGRuSMOxsoDeYoVweShfhJy22y"
 
 USUARIO_TESTE: Dict[str, Any] = {
     "id": os.environ.get("ADMIN_USER_ID", "user-001"),
@@ -130,7 +129,7 @@ USUARIO_TESTE: Dict[str, Any] = {
     "nome": os.environ.get("ADMIN_NAME", "Administrador"),
     "email": os.environ.get("ADMIN_EMAIL", "admin@exemplo.com"),
     "papel": "admin",
-    "senha_hash": os.environ.get("ADMIN_PASSWORD_HASH", SENHA_HASH_TESTE),
+    "senha_hash": os.environ.get("ADMIN_PASSWORD_HASH", _SENHA_HASH_PADRAO),
     "ativo": True,
 }
 
@@ -150,7 +149,7 @@ def autenticar_usuario(usuario: str, senha: str) -> Optional[dict]:
     if usuario != USUARIO_TESTE["usuario"]:
         return None
 
-    # Verificar senha usando hash bcrypt (nunca comparar senha em plaintext)
+    # Verificar senha usando hash bcrypt
     if verificar_senha(senha, str(USUARIO_TESTE["senha_hash"])):
         return {
             "id": USUARIO_TESTE["id"],

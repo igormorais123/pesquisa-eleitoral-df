@@ -356,7 +356,7 @@ export function AgentesFilters({
   }, [filtros.busca]);
 
   // Calcular total de filtros ativos
-  const contarFiltrosAtivos = () => {
+  const contarFiltrosAtivos = useCallback(() => {
     let total = 0;
     if (filtros.busca?.length) total++;
     if (filtros.generos?.length) total += filtros.generos.length;
@@ -382,7 +382,7 @@ export function AgentesFilters({
     if ((filtros as any).conflito_identitario?.length) total += (filtros as any).conflito_identitario.length;
     if ((filtros as any).meios_transporte?.length) total += (filtros as any).meios_transporte.length;
     return total;
-  };
+  }, [filtros]);
 
   const totalFiltrosAtivos = contarFiltrosAtivos();
 

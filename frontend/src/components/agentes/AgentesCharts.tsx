@@ -34,10 +34,10 @@ import {
   Smartphone,
   MapPin,
   Activity,
+  GitBranch,
 } from 'lucide-react';
 import { PiramideEtaria, CorrelacaoHeatmap, TabelaCalorEmocional, SankeyComSeletor } from '@/components/charts';
 import { CorrelacoesAutomaticas } from '@/components/analysis';
-import { GitBranch } from 'lucide-react';
 
 interface AgentesChartsProps {
   estatisticas: {
