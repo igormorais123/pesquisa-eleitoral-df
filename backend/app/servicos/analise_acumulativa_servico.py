@@ -1,23 +1,28 @@
 """
-Serviço de Análise Acumulativa.
+Serviço de Análise Acumulativa
 
-Análises agregadas de longo prazo para descobrir padrões,
-tendências e insights em múltiplas pesquisas.
+Realiza análises de correlação, tendências temporais e descobertas
+em dados acumulados de múltiplas pesquisas.
 """
 
 import logging
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta
-from typing import Any, Optional
+from typing import Any, Dict, List, Optional
 
-from sqlalchemy import func, select
+from sqlalchemy import desc, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.modelos import (
-    Analise,
+from app.db.modelos.pesquisa import (
+    AnalisePesquisa,
     Pesquisa,
-    Resposta,
-    StatusPesquisa,
+    RespostaPesquisa,
+)
+from app.esquemas.pesquisa import (
+    CorrelacaoGlobal,
+    InsightGlobal,
+    SegmentoAnalise,
+    TendenciaTemporal,
 )
 
 logger = logging.getLogger(__name__)
@@ -25,7 +30,7 @@ logger = logging.getLogger(__name__)
 
 class AnaliseAcumulativaServico:
     """
-    Serviço para análises acumulativas de pesquisas.
+    Serviço para análises avançadas de dados acumulados.
 
     Fornece métodos para:
     - Correlações globais entre variáveis
@@ -36,243 +41,377 @@ class AnaliseAcumulativaServico:
     - Exportação de datasets
     """
 
-    def __init__(self, sessao: AsyncSession):
+    def __init__(self, db: AsyncSession):
         """
         Inicializa o serviço com uma sessão do banco.
 
         Args:
-            sessao: Sessão assíncrona do SQLAlchemy
+            db: Sessão assíncrona do SQLAlchemy
         """
-        self.sessao = sessao
+        self.db = db
 
-    # ==========================================
-    # Correlações Globais
-    # ==========================================
+    # ============================================
+    # CORRELAÇÕES
+    # ============================================
 
     async def calcular_correlacoes_globais(
         self,
-        variaveis: Optional[list[str]] = None,
-        pesquisa_ids: Optional[list[int]] = None,
-    ) -> dict[str, Any]:
+        variaveis: Optional[List[str]] = None,
+        pesquisa_ids: Optional[List[str]] = None,
+    ) -> List[CorrelacaoGlobal]:
         """
-        Calcula correlações entre variáveis em todas as pesquisas.
+        Calcula correlações entre variáveis de perfil e sentimentos.
 
         Args:
-            variaveis: Lista de variáveis para correlacionar
+            variaveis: Lista de variáveis a correlacionar (opcional)
             pesquisa_ids: Filtrar por pesquisas específicas
 
         Returns:
-            Dicionário com matriz de correlações e correlações significativas
+            Lista de correlações encontradas
         """
-        # Obter respostas
-        query = select(Resposta)
+        # Buscar todas as respostas com perfil
+        query = select(RespostaPesquisa).where(
+            RespostaPesquisa.eleitor_perfil.isnot(None),
+            RespostaPesquisa.sentimento.isnot(None),
+        )
         if pesquisa_ids:
-            query = query.where(Resposta.pesquisa_id.in_(pesquisa_ids))
+            query = query.where(RespostaPesquisa.pesquisa_id.in_(pesquisa_ids))
 
-        result = await self.sessao.execute(query)
-        respostas = result.scalars().all()
+        result = await self.db.execute(query)
+        respostas = list(result.scalars().all())
 
-        if not respostas:
-            return {"matriz": [], "variaveis": [], "significativas": []}
+        if len(respostas) < 10:
+            return []
 
-        # Agrupar por eleitor
-        por_eleitor: dict[str, list[Resposta]] = defaultdict(list)
-        for r in respostas:
-            por_eleitor[r.eleitor_id].append(r)
+        # Variáveis padrão para análise
+        if not variaveis:
+            variaveis = [
+                "cluster_socioeconomico",
+                "orientacao_politica",
+                "religiao",
+                "escolaridade",
+                "regiao_administrativa",
+                "genero",
+                "faixa_etaria",
+            ]
 
-        # Extrair características do fluxo cognitivo
-        dados_eleitores = []
-        for eleitor_id, resps in por_eleitor.items():
-            features = self._extrair_features_eleitor(resps)
-            if features:
-                dados_eleitores.append(features)
+        correlacoes = []
 
-        if len(dados_eleitores) < 3:
-            return {"matriz": [], "variaveis": [], "significativas": []}
-
-        # Variáveis disponíveis
-        todas_variaveis = [
-            "intensidade_media",
-            "mudanca_voto",
-            "sentimento_positivo",
-            "sentimento_negativo",
-            "tokens_media",
-            "tempo_resposta_media",
-        ]
-        variaveis_usar = variaveis or todas_variaveis
-
-        # Calcular correlações (simplificado)
-        correlacoes = self._calcular_matriz_correlacao(dados_eleitores, variaveis_usar)
-
-        # Identificar correlações significativas (|r| > 0.3)
-        significativas = []
-        for i, v1 in enumerate(variaveis_usar):
-            for j, v2 in enumerate(variaveis_usar):
-                if i < j:
-                    coef = correlacoes[i][j]
-                    if abs(coef) > 0.3:
-                        significativas.append({
-                            "variavel_1": v1,
-                            "variavel_2": v2,
-                            "coeficiente": round(coef, 3),
-                            "forca": "forte" if abs(coef) > 0.7 else "moderada",
-                        })
-
-        return {
-            "matriz": correlacoes,
-            "variaveis": variaveis_usar,
-            "significativas": sorted(
-                significativas,
-                key=lambda x: abs(x["coeficiente"]),
-                reverse=True,
-            ),
+        # Mapear sentimentos para valores numéricos
+        sentimento_map = {
+            "positivo": 1,
+            "neutro": 0,
+            "negativo": -1,
+            "misto": 0,
         }
 
-    # ==========================================
-    # Tendências Temporais
-    # ==========================================
+        # Calcular correlações
+        for var in variaveis:
+            dados_var = []
+            dados_sent = []
 
-    async def identificar_tendencias_temporais(
-        self,
-        periodo_dias: int = 30,
-        metricas: Optional[list[str]] = None,
-    ) -> dict[str, Any]:
+            for r in respostas:
+                if r.eleitor_perfil and var in r.eleitor_perfil:
+                    valor_var = r.eleitor_perfil.get(var)
+                    valor_sent = sentimento_map.get(r.sentimento, 0)
+
+                    if valor_var is not None:
+                        dados_var.append(str(valor_var))
+                        dados_sent.append(valor_sent)
+
+            if len(dados_var) < 10:
+                continue
+
+            # Agrupar por categoria
+            categorias = defaultdict(list)
+            for v, s in zip(dados_var, dados_sent):
+                categorias[v].append(s)
+
+            # Calcular média de sentimento por categoria
+            medias = {}
+            for cat, sentimentos in categorias.items():
+                if len(sentimentos) >= 3:
+                    medias[cat] = sum(sentimentos) / len(sentimentos)
+
+            if len(medias) < 2:
+                continue
+
+            # Calcular variância entre grupos (ANOVA simplificada)
+            media_geral = sum(dados_sent) / len(dados_sent)
+            variancia_entre = sum(
+                len(categorias[c]) * (m - media_geral) ** 2
+                for c, m in medias.items()
+            ) / (len(medias) - 1)
+
+            # Interpretar resultado
+            if variancia_entre > 0.3:
+                significancia = "alta"
+                interpretacao = f"Forte relação entre {var} e sentimento nas respostas"
+            elif variancia_entre > 0.1:
+                significancia = "media"
+                interpretacao = f"Relação moderada entre {var} e sentimento"
+            else:
+                significancia = "baixa"
+                interpretacao = f"Relação fraca entre {var} e sentimento"
+
+            # Encontrar categoria com maior/menor sentimento
+            cat_max = max(medias.items(), key=lambda x: x[1])
+            cat_min = min(medias.items(), key=lambda x: x[1])
+
+            interpretacao += f". {cat_max[0]} mais positivo, {cat_min[0]} mais negativo."
+
+            correlacoes.append(CorrelacaoGlobal(
+                variavel_x=var,
+                variavel_y="sentimento",
+                coeficiente=round(variancia_entre, 4),
+                p_valor=round(1.0 - variancia_entre, 4),  # Aproximação simplificada
+                significancia=significancia,
+                amostra=len(dados_var),
+                interpretacao=interpretacao,
+            ))
+
+        # Ordenar por significância
+        ordem = {"alta": 0, "media": 1, "baixa": 2}
+        correlacoes.sort(key=lambda x: (ordem[x.significancia], -x.coeficiente))
+
+        return correlacoes
+
+    # ============================================
+    # TENDÊNCIAS TEMPORAIS
+    # ============================================
+
+    async def calcular_tendencias_temporais(
+        self, periodo: str = "mensal", meses: int = 12
+    ) -> List[TendenciaTemporal]:
         """
-        Identifica tendências ao longo do tempo.
+        Calcula tendências ao longo do tempo.
 
         Args:
-            periodo_dias: Período para análise
-            metricas: Métricas a analisar
+            periodo: "diario", "semanal" ou "mensal"
+            meses: Quantidade de meses para analisar
 
         Returns:
-            Tendências por período
+            Lista de tendências por período
         """
-        data_inicio = datetime.now() - timedelta(days=periodo_dias)
+        data_inicio = datetime.now() - timedelta(days=meses * 30)
 
-        # Pesquisas no período
-        query_pesquisas = (
+        # Buscar pesquisas no período
+        result = await self.db.execute(
             select(Pesquisa)
             .where(Pesquisa.criado_em >= data_inicio)
-            .where(Pesquisa.status == StatusPesquisa.concluida)
+            .where(Pesquisa.status == "concluida")
             .order_by(Pesquisa.criado_em)
         )
-        result = await self.sessao.execute(query_pesquisas)
-        pesquisas = result.scalars().all()
+        pesquisas = list(result.scalars().all())
 
         if not pesquisas:
-            return {"periodos": [], "tendencias": {}}
+            return []
 
-        # Agrupar por semana
-        por_semana: dict[str, list[Pesquisa]] = defaultdict(list)
-        for p in pesquisas:
-            semana = p.criado_em.strftime("%Y-W%W")
-            por_semana[semana].append(p)
-
-        # Calcular métricas por semana
-        metricas_usar = metricas or [
-            "total_pesquisas",
-            "total_respostas",
-            "custo_medio",
-            "tempo_medio_execucao",
-        ]
-
-        periodos = []
-        for semana in sorted(por_semana.keys()):
-            pesqs = por_semana[semana]
-            periodo_data = {
-                "periodo": semana,
-                "total_pesquisas": len(pesqs),
-                "total_respostas": sum(p.eleitores_processados for p in pesqs),
-                "custo_total": sum(p.custo_total for p in pesqs),
-                "custo_medio": sum(p.custo_total for p in pesqs) / len(pesqs) if pesqs else 0,
-                "tokens_total": sum(p.tokens_total for p in pesqs),
+        # Agrupar por período
+        tendencias_map: Dict[str, Dict[str, Any]] = defaultdict(
+            lambda: {
+                "pesquisas": 0,
+                "respostas": 0,
+                "custo": 0.0,
+                "sentimentos": [],
             }
-            periodos.append(periodo_data)
+        )
 
-        # Calcular tendências (variação percentual)
-        tendencias = {}
-        if len(periodos) >= 2:
-            primeiro = periodos[0]
-            ultimo = periodos[-1]
-            for metrica in ["total_pesquisas", "total_respostas", "custo_medio"]:
-                valor_inicial = primeiro.get(metrica, 0) or 1
-                valor_final = ultimo.get(metrica, 0)
-                variacao = ((valor_final - valor_inicial) / valor_inicial) * 100
-                tendencias[metrica] = {
-                    "valor_inicial": valor_inicial,
-                    "valor_final": valor_final,
-                    "variacao_percentual": round(variacao, 2),
-                    "direcao": "alta" if variacao > 0 else "baixa" if variacao < 0 else "estavel",
-                }
+        for p in pesquisas:
+            if periodo == "diario":
+                chave = p.criado_em.strftime("%Y-%m-%d")
+            elif periodo == "semanal":
+                # Semana do ano
+                chave = p.criado_em.strftime("%Y-W%W")
+            else:  # mensal
+                chave = p.criado_em.strftime("%Y-%m")
 
-        return {
-            "periodos": periodos,
-            "tendencias": tendencias,
-            "periodo_analise": f"Últimos {periodo_dias} dias",
-        }
+            tendencias_map[chave]["pesquisas"] += 1
+            tendencias_map[chave]["respostas"] += p.total_respostas
+            tendencias_map[chave]["custo"] += p.custo_real
 
-    # ==========================================
-    # Agrupamento por Perfil
-    # ==========================================
+        # Buscar sentimentos por período
+        result = await self.db.execute(
+            select(RespostaPesquisa.criado_em, RespostaPesquisa.sentimento)
+            .where(RespostaPesquisa.criado_em >= data_inicio)
+            .where(RespostaPesquisa.sentimento.isnot(None))
+        )
 
-    async def agrupar_por_perfil_eleitor(
+        sentimento_map = {"positivo": 1, "neutro": 0, "negativo": -1}
+
+        for row in result:
+            data, sentimento = row
+            if periodo == "diario":
+                chave = data.strftime("%Y-%m-%d")
+            elif periodo == "semanal":
+                chave = data.strftime("%Y-W%W")
+            else:
+                chave = data.strftime("%Y-%m")
+
+            if chave in tendencias_map:
+                valor = sentimento_map.get(sentimento, 0)
+                tendencias_map[chave]["sentimentos"].append(valor)
+
+        # Converter para lista de tendências
+        tendencias = []
+        for periodo_str, dados in sorted(tendencias_map.items()):
+            sentimento_medio = None
+            if dados["sentimentos"]:
+                sentimento_medio = round(
+                    sum(dados["sentimentos"]) / len(dados["sentimentos"]), 3
+                )
+
+            tendencias.append(TendenciaTemporal(
+                periodo=periodo_str,
+                pesquisas_realizadas=dados["pesquisas"],
+                respostas_coletadas=dados["respostas"],
+                custo_total=round(dados["custo"], 2),
+                sentimento_medio=sentimento_medio,
+            ))
+
+        return tendencias
+
+    # ============================================
+    # ANÁLISE POR SEGMENTO
+    # ============================================
+
+    async def analisar_segmento(
         self,
-        campo_agrupamento: str = "cluster_socioeconomico",
-        pesquisa_ids: Optional[list[int]] = None,
-    ) -> dict[str, Any]:
+        tipo_segmento: str,
+        pesquisa_ids: Optional[List[str]] = None,
+    ) -> List[SegmentoAnalise]:
         """
-        Agrupa comportamento por perfil de eleitor.
+        Analisa respostas agrupadas por segmento de eleitores.
 
         Args:
-            campo_agrupamento: Campo do metadados para agrupar
-            pesquisa_ids: Filtrar por pesquisas
+            tipo_segmento: cluster, regiao, orientacao, religiao, etc.
+            pesquisa_ids: Filtrar por pesquisas específicas
 
         Returns:
-            Métricas por grupo
+            Lista de análises por valor do segmento
         """
-        query = select(Resposta)
-        if pesquisa_ids:
-            query = query.where(Resposta.pesquisa_id.in_(pesquisa_ids))
-
-        result = await self.sessao.execute(query)
-        respostas = result.scalars().all()
-
-        # Agrupar por campo do metadados
-        grupos: dict[str, list[Resposta]] = defaultdict(list)
-        for r in respostas:
-            grupo = "Não informado"
-            if r.metadados and campo_agrupamento in r.metadados:
-                grupo = r.metadados[campo_agrupamento]
-            grupos[grupo].append(r)
-
-        # Calcular métricas por grupo
-        resultado = {}
-        for grupo, resps in grupos.items():
-            sentimentos = self._contabilizar_sentimentos(resps)
-            resultado[grupo] = {
-                "total_respostas": len(resps),
-                "eleitores_unicos": len(set(r.eleitor_id for r in resps)),
-                "sentimentos": sentimentos,
-                "intensidade_media": self._media_intensidade(resps),
-                "taxa_mudanca_voto": self._taxa_mudanca_voto(resps),
-                "tokens_media": sum(r.tokens_entrada + r.tokens_saida for r in resps) / len(resps) if resps else 0,
-            }
-
-        return {
-            "campo_agrupamento": campo_agrupamento,
-            "grupos": resultado,
-            "total_grupos": len(resultado),
+        # Mapear nome do segmento para campo no perfil
+        campo_mapa = {
+            "cluster": "cluster_socioeconomico",
+            "regiao": "regiao_administrativa",
+            "orientacao": "orientacao_politica",
+            "religiao": "religiao",
+            "genero": "genero",
+            "escolaridade": "escolaridade",
+            "faixa_etaria": "faixa_etaria",
         }
 
-    # ==========================================
-    # Detecção de Outliers
-    # ==========================================
+        campo = campo_mapa.get(tipo_segmento, tipo_segmento)
+
+        # Buscar respostas com perfil
+        query = select(RespostaPesquisa).where(
+            RespostaPesquisa.eleitor_perfil.isnot(None)
+        )
+        if pesquisa_ids:
+            query = query.where(RespostaPesquisa.pesquisa_id.in_(pesquisa_ids))
+
+        result = await self.db.execute(query)
+        respostas = list(result.scalars().all())
+
+        if not respostas:
+            return []
+
+        # Agrupar por valor do segmento
+        segmentos: Dict[str, Dict[str, Any]] = defaultdict(
+            lambda: {
+                "participacoes": 0,
+                "sentimentos": [],
+                "textos": [],
+            }
+        )
+
+        for r in respostas:
+            if r.eleitor_perfil and campo in r.eleitor_perfil:
+                valor = str(r.eleitor_perfil[campo])
+                segmentos[valor]["participacoes"] += 1
+
+                if r.sentimento:
+                    segmentos[valor]["sentimentos"].append(r.sentimento)
+
+                if r.resposta_texto:
+                    segmentos[valor]["textos"].append(r.resposta_texto)
+
+        # Converter para lista de análises
+        analises = []
+        for valor, dados in segmentos.items():
+            # Sentimento predominante
+            sentimento_predominante = None
+            if dados["sentimentos"]:
+                contagem = Counter(dados["sentimentos"])
+                sentimento_predominante = contagem.most_common(1)[0][0]
+
+            # Extrair temas (palavras frequentes)
+            temas = self._extrair_temas(dados["textos"])
+
+            # Citação exemplo (mais longa)
+            citacao = None
+            if dados["textos"]:
+                textos_ordenados = sorted(dados["textos"], key=len, reverse=True)
+                citacao = textos_ordenados[0][:300] if textos_ordenados else None
+
+            analises.append(SegmentoAnalise(
+                segmento=tipo_segmento,
+                valor=valor,
+                total_participacoes=dados["participacoes"],
+                sentimento_predominante=sentimento_predominante,
+                temas_recorrentes=temas[:5] if temas else None,
+                citacao_exemplo=citacao,
+            ))
+
+        # Ordenar por participações
+        analises.sort(key=lambda x: x.total_participacoes, reverse=True)
+        return analises
+
+    def _extrair_temas(self, textos: List[str], top_n: int = 10) -> List[str]:
+        """Extrai palavras/temas mais frequentes dos textos."""
+        # Stopwords em português
+        stopwords = {
+            "de", "a", "o", "que", "e", "do", "da", "em", "um", "para",
+            "é", "com", "não", "uma", "os", "no", "se", "na", "por",
+            "mais", "as", "dos", "como", "mas", "foi", "ao", "ele",
+            "das", "tem", "à", "seu", "sua", "ou", "ser", "quando",
+            "muito", "há", "nos", "já", "está", "eu", "também", "só",
+            "pelo", "pela", "até", "isso", "ela", "entre", "era",
+            "depois", "sem", "mesmo", "aos", "ter", "seus", "quem",
+            "nas", "me", "esse", "eles", "estão", "você", "tinha",
+            "foram", "essa", "num", "nem", "suas", "meu", "às",
+            "minha", "têm", "numa", "pelos", "elas", "havia", "seja",
+            "qual", "será", "nós", "tenho", "lhe", "deles", "essas",
+            "esses", "pelas", "este", "fosse", "dele", "tu", "te",
+            "vocês", "vos", "lhes", "meus", "minhas", "teu", "tua",
+            "teus", "tuas", "nosso", "nossa", "nossos", "nossas",
+            "dela", "delas", "esta", "estes", "estas", "aquele",
+            "aquela", "aqueles", "aquelas", "isto", "aquilo", "estou",
+            "está", "estamos", "estão", "estive", "esteve", "estivemos",
+            "estiveram", "estava", "estávamos", "estavam",
+        }
+
+        # Contar palavras
+        contador = Counter()
+        for texto in textos:
+            palavras = texto.lower().split()
+            for palavra in palavras:
+                # Limpar pontuação
+                palavra = "".join(c for c in palavra if c.isalnum())
+                if len(palavra) > 3 and palavra not in stopwords:
+                    contador[palavra] += 1
+
+        return [palavra for palavra, _ in contador.most_common(top_n)]
+
+    # ============================================
+    # DETECÇÃO DE OUTLIERS
+    # ============================================
 
     async def detectar_outliers(
         self,
-        pesquisa_id: Optional[int] = None,
+        pesquisa_id: Optional[str] = None,
         limite_desvios: float = 2.0,
-    ) -> dict[str, Any]:
+    ) -> Dict[str, Any]:
         """
         Detecta respostas atípicas.
 
@@ -283,12 +422,12 @@ class AnaliseAcumulativaServico:
         Returns:
             Lista de outliers detectados
         """
-        query = select(Resposta)
+        query = select(RespostaPesquisa)
         if pesquisa_id:
-            query = query.where(Resposta.pesquisa_id == pesquisa_id)
+            query = query.where(RespostaPesquisa.pesquisa_id == pesquisa_id)
 
-        result = await self.sessao.execute(query)
-        respostas = result.scalars().all()
+        result = await self.db.execute(query)
+        respostas = list(result.scalars().all())
 
         if len(respostas) < 10:
             return {"outliers": [], "mensagem": "Dados insuficientes para análise"}
@@ -308,17 +447,17 @@ class AnaliseAcumulativaServico:
             motivos = []
 
             # Tempo de resposta muito alto ou baixo
-            if r.tempo_resposta_ms > 0:
-                z_score = (r.tempo_resposta_ms - media_tempo) / desvio_padrao if desvio_padrao > 0 else 0
+            if r.tempo_resposta_ms > 0 and desvio_padrao > 0:
+                z_score = (r.tempo_resposta_ms - media_tempo) / desvio_padrao
                 if abs(z_score) > limite_desvios:
                     motivos.append(f"Tempo de resposta atípico (z={z_score:.2f})")
 
             # Resposta muito curta
-            if len(r.resposta_texto) < 10:
+            if r.resposta_texto and len(r.resposta_texto) < 10:
                 motivos.append("Resposta muito curta")
 
             # Resposta muito longa
-            if len(r.resposta_texto) > 5000:
+            if r.resposta_texto and len(r.resposta_texto) > 5000:
                 motivos.append("Resposta muito longa")
 
             if motivos:
@@ -328,7 +467,7 @@ class AnaliseAcumulativaServico:
                     "eleitor_id": r.eleitor_id,
                     "motivos": motivos,
                     "tempo_resposta_ms": r.tempo_resposta_ms,
-                    "tamanho_resposta": len(r.resposta_texto),
+                    "tamanho_resposta": len(r.resposta_texto) if r.resposta_texto else 0,
                 })
 
         return {
@@ -341,16 +480,15 @@ class AnaliseAcumulativaServico:
             },
         }
 
-    # ==========================================
-    # Insights Cumulativos
-    # ==========================================
+    # ============================================
+    # INSIGHTS AUTOMÁTICOS
+    # ============================================
 
-    async def gerar_insights_cumulativos(
-        self,
-        limite_insights: int = 10,
-    ) -> dict[str, Any]:
+    async def gerar_insights_globais(
+        self, limite_insights: int = 10
+    ) -> List[InsightGlobal]:
         """
-        Gera insights de longo prazo baseados em todas as pesquisas.
+        Gera insights automáticos a partir dos dados acumulados.
 
         Args:
             limite_insights: Máximo de insights a retornar
@@ -359,126 +497,193 @@ class AnaliseAcumulativaServico:
             Lista de insights descobertos
         """
         insights = []
+        agora = datetime.now()
 
         # 1. Análise de volume
-        query_pesquisas = select(func.count(Pesquisa.id))
-        result = await self.sessao.execute(query_pesquisas)
+        result = await self.db.execute(select(func.count(Pesquisa.id)))
         total_pesquisas = result.scalar() or 0
 
         if total_pesquisas > 0:
-            insights.append({
-                "tipo": "volume",
-                "titulo": "Base de dados estabelecida",
-                "descricao": f"Sistema conta com {total_pesquisas} pesquisa(s) realizadas",
-                "relevancia": "informativo",
-                "dados": {"total_pesquisas": total_pesquisas},
-            })
+            insights.append(InsightGlobal(
+                tipo="volume",
+                titulo="Base de dados estabelecida",
+                descricao=f"Sistema conta com {total_pesquisas} pesquisa(s) realizadas",
+                relevancia="baixa",
+                dados_suporte={"total_pesquisas": total_pesquisas},
+                criado_em=agora,
+            ))
 
-        # 2. Análise de sentimentos globais
-        query_respostas = select(Resposta)
-        result = await self.sessao.execute(query_respostas)
-        respostas = result.scalars().all()
+        # 2. Correlações significativas
+        correlacoes = await self.calcular_correlacoes_globais()
+        for corr in correlacoes[:3]:  # Top 3
+            if corr.significancia == "alta":
+                insights.append(InsightGlobal(
+                    tipo="correlacao",
+                    titulo=f"Correlação forte: {corr.variavel_x}",
+                    descricao=corr.interpretacao,
+                    relevancia="alta",
+                    dados_suporte={
+                        "coeficiente": corr.coeficiente,
+                        "amostra": corr.amostra,
+                    },
+                    criado_em=agora,
+                ))
 
-        if respostas:
-            sentimentos = self._contabilizar_sentimentos(respostas)
-            predominante = max(sentimentos, key=sentimentos.get) if sentimentos else None
-            if predominante:
-                insights.append({
-                    "tipo": "sentimento",
-                    "titulo": f"Sentimento predominante: {predominante}",
-                    "descricao": f"Nas pesquisas realizadas, o sentimento mais frequente é '{predominante}' ({sentimentos[predominante]} ocorrências)",
-                    "relevancia": "importante",
-                    "dados": sentimentos,
-                })
+        # 3. Tendências recentes
+        tendencias = await self.calcular_tendencias_temporais("mensal", 3)
+        if len(tendencias) >= 2:
+            ultima = tendencias[-1]
+            penultima = tendencias[-2]
 
-        # 3. Taxa de mudança de voto
-        if respostas:
-            taxa = self._taxa_mudanca_voto(respostas)
-            if taxa > 0:
-                insights.append({
-                    "tipo": "comportamento",
-                    "titulo": f"Taxa de persuasão: {taxa:.1%}",
-                    "descricao": f"Aproximadamente {taxa:.1%} das respostas indicam potencial mudança de intenção de voto",
-                    "relevancia": "critico" if taxa > 0.2 else "importante",
-                    "dados": {"taxa_mudanca_voto": taxa},
-                })
+            # Variação de sentimento
+            if ultima.sentimento_medio and penultima.sentimento_medio:
+                variacao = ultima.sentimento_medio - penultima.sentimento_medio
 
-        # 4. Custo por resposta
-        query_metricas = select(
-            func.sum(Pesquisa.custo_total),
-            func.sum(Pesquisa.eleitores_processados),
-        ).where(Pesquisa.status == StatusPesquisa.concluida)
-        result = await self.sessao.execute(query_metricas)
-        row = result.one()
-        custo_total = float(row[0] or 0)
-        total_eleitores = int(row[1] or 0)
+                if abs(variacao) > 0.2:
+                    direcao = "positiva" if variacao > 0 else "negativa"
+                    insights.append(InsightGlobal(
+                        tipo="tendencia",
+                        titulo=f"Mudança {direcao} no sentimento",
+                        descricao=f"O sentimento médio mudou {variacao:.2f} pontos entre {penultima.periodo} e {ultima.periodo}.",
+                        relevancia="alta" if abs(variacao) > 0.3 else "media",
+                        dados_suporte={
+                            "periodo_anterior": penultima.periodo,
+                            "periodo_atual": ultima.periodo,
+                            "variacao": variacao,
+                        },
+                        criado_em=agora,
+                    ))
 
-        if total_eleitores > 0:
-            custo_por_eleitor = custo_total / total_eleitores
-            insights.append({
-                "tipo": "custo",
-                "titulo": f"Custo médio por eleitor: R$ {custo_por_eleitor:.2f}",
-                "descricao": f"Investimento total de R$ {custo_total:.2f} para {total_eleitores} eleitores processados",
-                "relevancia": "informativo",
-                "dados": {
-                    "custo_total": custo_total,
-                    "total_eleitores": total_eleitores,
-                    "custo_por_eleitor": custo_por_eleitor,
+            # Variação de volume
+            if ultima.pesquisas_realizadas != penultima.pesquisas_realizadas:
+                variacao_pct = (
+                    (ultima.pesquisas_realizadas - penultima.pesquisas_realizadas)
+                    / max(penultima.pesquisas_realizadas, 1)
+                ) * 100
+
+                if abs(variacao_pct) > 50:
+                    direcao = "aumento" if variacao_pct > 0 else "queda"
+                    insights.append(InsightGlobal(
+                        tipo="tendencia",
+                        titulo=f"{direcao.capitalize()} no volume de pesquisas",
+                        descricao=f"Houve {direcao} de {abs(variacao_pct):.0f}% no número de pesquisas realizadas.",
+                        relevancia="media",
+                        dados_suporte={
+                            "variacao_percentual": variacao_pct,
+                        },
+                        criado_em=agora,
+                    ))
+
+        # 4. Segmentos com comportamento distinto
+        for tipo in ["cluster", "orientacao", "religiao"]:
+            segmentos = await self.analisar_segmento(tipo)
+            if len(segmentos) >= 2:
+                # Comparar primeiro e último
+                maior = segmentos[0]
+                for seg in segmentos:
+                    if (
+                        seg.sentimento_predominante == "negativo"
+                        and maior.sentimento_predominante == "positivo"
+                    ):
+                        insights.append(InsightGlobal(
+                            tipo="descoberta",
+                            titulo=f"Contraste em {tipo}: {maior.valor} vs {seg.valor}",
+                            descricao=f"O grupo '{maior.valor}' tende a ser mais positivo, enquanto '{seg.valor}' é mais negativo.",
+                            relevancia="media",
+                            dados_suporte={
+                                "segmento_positivo": maior.valor,
+                                "segmento_negativo": seg.valor,
+                            },
+                            criado_em=agora,
+                        ))
+                        break
+
+        # 5. Eleitores com muitas participações
+        result = await self.db.execute(
+            select(
+                RespostaPesquisa.eleitor_id,
+                RespostaPesquisa.eleitor_nome,
+                func.count(func.distinct(RespostaPesquisa.pesquisa_id)).label("participacoes"),
+            )
+            .group_by(RespostaPesquisa.eleitor_id, RespostaPesquisa.eleitor_nome)
+            .having(func.count(func.distinct(RespostaPesquisa.pesquisa_id)) >= 3)
+            .order_by(desc("participacoes"))
+            .limit(5)
+        )
+
+        frequentes = list(result)
+        if frequentes:
+            nomes = [r[1] for r in frequentes[:3]]
+            insights.append(InsightGlobal(
+                tipo="descoberta",
+                titulo="Eleitores com múltiplas participações",
+                descricao=f"Eleitores que participaram de 3+ pesquisas: {', '.join(nomes)}. Perfis ideais para análise longitudinal.",
+                relevancia="baixa",
+                dados_suporte={
+                    "eleitores": [
+                        {"id": r[0], "nome": r[1], "participacoes": r[2]}
+                        for r in frequentes
+                    ]
                 },
-            })
+                criado_em=agora,
+            ))
 
-        return {
-            "insights": insights[:limite_insights],
-            "total_insights": len(insights),
-            "gerado_em": datetime.now().isoformat(),
-        }
+        # Ordenar por relevância
+        ordem = {"alta": 0, "media": 1, "baixa": 2}
+        insights.sort(key=lambda x: ordem.get(x.relevancia, 2))
 
-    # ==========================================
-    # Exportação de Dataset
-    # ==========================================
+        return insights[:limite_insights]
+
+    # ============================================
+    # EXPORTAÇÃO DE DATASET
+    # ============================================
 
     async def exportar_dataset_completo(
         self,
         formato: str = "dict",
-        pesquisa_ids: Optional[list[int]] = None,
-    ) -> dict[str, Any]:
+        pesquisa_ids: Optional[List[str]] = None,
+    ) -> Dict[str, Any]:
         """
-        Exporta dataset completo para análise externa.
+        Exporta todos os dados em formato estruturado.
 
         Args:
             formato: Formato de saída ("dict", "csv", "json")
-            pesquisa_ids: Filtrar por pesquisas
+            pesquisa_ids: Filtrar por pesquisas específicas
 
         Returns:
-            Dataset com todas as respostas e metadados
+            Dicionário com todos os dados para exportação
         """
-        # Buscar pesquisas
-        query_pesquisas = select(Pesquisa)
+        # Pesquisas
+        query_pesquisas = select(Pesquisa).order_by(Pesquisa.criado_em)
         if pesquisa_ids:
             query_pesquisas = query_pesquisas.where(Pesquisa.id.in_(pesquisa_ids))
-        result = await self.sessao.execute(query_pesquisas)
-        pesquisas = result.scalars().all()
+        result = await self.db.execute(query_pesquisas)
+        pesquisas = list(result.scalars().all())
 
-        # Buscar respostas
-        query_respostas = select(Resposta)
+        # Respostas
+        query_respostas = select(RespostaPesquisa).order_by(RespostaPesquisa.criado_em)
         if pesquisa_ids:
-            query_respostas = query_respostas.where(Resposta.pesquisa_id.in_(pesquisa_ids))
-        result = await self.sessao.execute(query_respostas)
-        respostas = result.scalars().all()
+            query_respostas = query_respostas.where(
+                RespostaPesquisa.pesquisa_id.in_(pesquisa_ids)
+            )
+        result = await self.db.execute(query_respostas)
+        respostas = list(result.scalars().all())
 
-        # Montar dataset
-        dataset = {
+        return {
+            "exportado_em": datetime.now().isoformat(),
+            "total_pesquisas": len(pesquisas),
+            "total_respostas": len(respostas),
             "pesquisas": [
                 {
                     "id": p.id,
                     "titulo": p.titulo,
-                    "tipo": p.tipo.value,
-                    "status": p.status.value,
-                    "criado_em": p.criado_em.isoformat() if p.criado_em else None,
-                    "finalizado_em": p.finalizado_em.isoformat() if p.finalizado_em else None,
+                    "tipo": p.tipo,
+                    "status": p.status,
                     "total_eleitores": p.total_eleitores,
-                    "custo_total": p.custo_total,
-                    "tokens_total": p.tokens_total,
+                    "total_respostas": p.total_respostas,
+                    "custo_real": p.custo_real,
+                    "criado_em": p.criado_em.isoformat() if p.criado_em else None,
+                    "concluido_em": p.concluido_em.isoformat() if p.concluido_em else None,
                 }
                 for p in pesquisas
             ],
@@ -488,37 +693,26 @@ class AnaliseAcumulativaServico:
                     "pesquisa_id": r.pesquisa_id,
                     "pergunta_id": r.pergunta_id,
                     "eleitor_id": r.eleitor_id,
+                    "eleitor_nome": r.eleitor_nome,
                     "resposta_texto": r.resposta_texto,
-                    "resposta_valor": r.resposta_valor,
-                    "sentimento": r.sentimento_dominante,
-                    "intensidade": r.intensidade_emocional,
-                    "mudaria_voto": r.mudaria_voto,
-                    "tokens_entrada": r.tokens_entrada,
-                    "tokens_saida": r.tokens_saida,
-                    "custo": r.custo,
-                    "tempo_resposta_ms": r.tempo_resposta_ms,
+                    "sentimento": r.sentimento,
+                    "custo_reais": r.custo_reais,
                     "criado_em": r.criado_em.isoformat() if r.criado_em else None,
                 }
                 for r in respostas
             ],
             "metadados": {
-                "total_pesquisas": len(pesquisas),
-                "total_respostas": len(respostas),
-                "exportado_em": datetime.now().isoformat(),
                 "formato": formato,
             },
         }
 
-        return dataset
-
-    # ==========================================
-    # Histórico de Eleitor
-    # ==========================================
+    # ============================================
+    # HISTÓRICO DE ELEITOR
+    # ============================================
 
     async def obter_historico_eleitor(
-        self,
-        eleitor_id: str,
-    ) -> dict[str, Any]:
+        self, eleitor_id: str
+    ) -> Dict[str, Any]:
         """
         Obtém histórico completo de participação de um eleitor.
 
@@ -529,30 +723,33 @@ class AnaliseAcumulativaServico:
             Histórico de participações e respostas
         """
         query = (
-            select(Resposta)
-            .where(Resposta.eleitor_id == eleitor_id)
-            .order_by(Resposta.criado_em)
+            select(RespostaPesquisa)
+            .where(RespostaPesquisa.eleitor_id == eleitor_id)
+            .order_by(RespostaPesquisa.criado_em)
         )
-        result = await self.sessao.execute(query)
-        respostas = result.scalars().all()
+        result = await self.db.execute(query)
+        respostas = list(result.scalars().all())
 
         if not respostas:
             return {"eleitor_id": eleitor_id, "participacoes": []}
 
         # Agrupar por pesquisa
-        por_pesquisa: dict[int, list[Resposta]] = defaultdict(list)
+        por_pesquisa: Dict[str, List] = defaultdict(list)
         for r in respostas:
             por_pesquisa[r.pesquisa_id].append(r)
 
         participacoes = []
         for pesquisa_id, resps in por_pesquisa.items():
+            # Contabilizar sentimentos
+            sentimentos = Counter(r.sentimento for r in resps if r.sentimento)
+
             participacoes.append({
                 "pesquisa_id": pesquisa_id,
                 "total_respostas": len(resps),
                 "primeira_resposta": min(r.criado_em for r in resps).isoformat() if resps else None,
                 "ultima_resposta": max(r.criado_em for r in resps).isoformat() if resps else None,
-                "sentimentos": self._contabilizar_sentimentos(resps),
-                "custo_total": sum(r.custo for r in resps),
+                "sentimentos": dict(sentimentos),
+                "custo_total": sum(r.custo_reais for r in resps if r.custo_reais),
             })
 
         return {
@@ -562,122 +759,16 @@ class AnaliseAcumulativaServico:
             "participacoes": participacoes,
         }
 
-    # ==========================================
-    # Métodos Auxiliares Privados
-    # ==========================================
-
-    def _extrair_features_eleitor(self, respostas: list[Resposta]) -> Optional[dict]:
-        """Extrai features numéricas de respostas de um eleitor."""
-        if not respostas:
-            return None
-
-        intensidades = []
-        mudancas = 0
-        sentimentos_pos = 0
-        sentimentos_neg = 0
-        tokens = []
-        tempos = []
-
-        for r in respostas:
-            if r.fluxo_cognitivo and "emocional" in r.fluxo_cognitivo:
-                emocional = r.fluxo_cognitivo["emocional"]
-                if "intensidade" in emocional:
-                    intensidades.append(emocional["intensidade"])
-                sentimento = emocional.get("sentimento_dominante", "")
-                if sentimento in ("esperanca", "seguranca"):
-                    sentimentos_pos += 1
-                elif sentimento in ("raiva", "ameaca"):
-                    sentimentos_neg += 1
-
-            if r.fluxo_cognitivo and "decisao" in r.fluxo_cognitivo:
-                if r.fluxo_cognitivo["decisao"].get("muda_intencao_voto"):
-                    mudancas += 1
-
-            tokens.append(r.tokens_entrada + r.tokens_saida)
-            if r.tempo_resposta_ms > 0:
-                tempos.append(r.tempo_resposta_ms)
-
-        total = len(respostas)
-        return {
-            "intensidade_media": sum(intensidades) / len(intensidades) if intensidades else 5,
-            "mudanca_voto": mudancas / total if total > 0 else 0,
-            "sentimento_positivo": sentimentos_pos / total if total > 0 else 0,
-            "sentimento_negativo": sentimentos_neg / total if total > 0 else 0,
-            "tokens_media": sum(tokens) / len(tokens) if tokens else 0,
-            "tempo_resposta_media": sum(tempos) / len(tempos) if tempos else 0,
-        }
-
-    def _calcular_matriz_correlacao(
-        self,
-        dados: list[dict],
-        variaveis: list[str],
-    ) -> list[list[float]]:
-        """Calcula matriz de correlação simplificada."""
-        n = len(variaveis)
-        matriz = [[1.0 if i == j else 0.0 for j in range(n)] for i in range(n)]
-
-        for i, v1 in enumerate(variaveis):
-            for j, v2 in enumerate(variaveis):
-                if i < j:
-                    valores1 = [d.get(v1, 0) for d in dados]
-                    valores2 = [d.get(v2, 0) for d in dados]
-                    corr = self._correlacao_pearson(valores1, valores2)
-                    matriz[i][j] = corr
-                    matriz[j][i] = corr
-
-        return matriz
-
-    def _correlacao_pearson(self, x: list[float], y: list[float]) -> float:
-        """Calcula correlação de Pearson simplificada."""
-        n = len(x)
-        if n < 3:
-            return 0.0
-
-        media_x = sum(x) / n
-        media_y = sum(y) / n
-
-        numerador = sum((x[i] - media_x) * (y[i] - media_y) for i in range(n))
-        denom_x = sum((x[i] - media_x) ** 2 for i in range(n)) ** 0.5
-        denom_y = sum((y[i] - media_y) ** 2 for i in range(n)) ** 0.5
-
-        if denom_x == 0 or denom_y == 0:
-            return 0.0
-
-        return numerador / (denom_x * denom_y)
-
-    def _contabilizar_sentimentos(self, respostas: list[Resposta]) -> dict[str, int]:
-        """Contabiliza sentimentos das respostas."""
-        sentimentos: Counter = Counter()
-        for r in respostas:
-            sentimento = r.sentimento_dominante
-            if sentimento:
-                sentimentos[sentimento] += 1
-        return dict(sentimentos)
-
-    def _media_intensidade(self, respostas: list[Resposta]) -> float:
-        """Calcula média de intensidade emocional."""
-        intensidades = []
-        for r in respostas:
-            intensidade = r.intensidade_emocional
-            if intensidade is not None:
-                intensidades.append(intensidade)
-        return sum(intensidades) / len(intensidades) if intensidades else 5.0
-
-    def _taxa_mudanca_voto(self, respostas: list[Resposta]) -> float:
-        """Calcula taxa de mudança de voto."""
-        mudancas = sum(1 for r in respostas if r.mudaria_voto is True)
-        return mudancas / len(respostas) if respostas else 0.0
-
 
 # Factory para criar instância do serviço
-def obter_servico_analise_acumulativa(sessao: AsyncSession) -> AnaliseAcumulativaServico:
+def obter_servico_analise_acumulativa(db: AsyncSession) -> AnaliseAcumulativaServico:
     """
     Obtém uma instância do serviço de análise acumulativa.
 
     Args:
-        sessao: Sessão do banco de dados
+        db: Sessão do banco de dados
 
     Returns:
         Instância do serviço
     """
-    return AnaliseAcumulativaServico(sessao)
+    return AnaliseAcumulativaServico(db)

@@ -12,7 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 
 from app.api.rotas import (
-    analise_global,
+    analytics,
     autenticacao,
     eleitores,
     entrevistas,
@@ -23,6 +23,8 @@ from app.api.rotas import (
     resultados,
 )
 from app.core.config import configuracoes
+from app.db.session import engine
+from app.db.base import Base
 
 
 @asynccontextmanager
@@ -33,10 +35,22 @@ async def lifespan(app: FastAPI):
     print(f"📊 Ambiente: {configuracoes.AMBIENTE}")
     print(f"🔗 Frontend URL: {configuracoes.FRONTEND_URL}")
 
+    # Criar tabelas do banco de dados (se não existirem)
+    try:
+        async with engine.begin() as conn:
+            # Importar modelos para registrar nas metadata
+            from app.db.modelos import pesquisa  # noqa
+            await conn.run_sync(Base.metadata.create_all)
+            print("✅ Banco de dados inicializado")
+    except Exception as e:
+        print(f"⚠️ Aviso: Não foi possível conectar ao banco de dados: {e}")
+        print("   O sistema funcionará sem persistência no PostgreSQL")
+
     yield
 
     # Shutdown
     print("👋 Encerrando aplicação...")
+    await engine.dispose()
 
 
 # Metadata para tags do Swagger
@@ -285,21 +299,21 @@ app.include_router(
     tags=["Geração"],
 )
 
-# Novas rotas de persistência
+# Rotas de persistência e análise
 app.include_router(
     pesquisas.router,
-    prefix="/api/v1",
+    prefix="/api/v1/pesquisas",
     tags=["Pesquisas Persistidas"],
 )
 
 app.include_router(
-    analise_global.router,
-    prefix="/api/v1",
-    tags=["Análise Global"],
+    analytics.router,
+    prefix="/api/v1/analytics",
+    tags=["Analytics e Análise Global"],
 )
 
 app.include_router(
     historico.router,
-    prefix="/api/v1",
+    prefix="/api/v1/historico",
     tags=["Histórico"],
 )

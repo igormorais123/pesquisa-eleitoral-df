@@ -19,10 +19,10 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Importa modelos e configurações
 from app.core.config import configuracoes
-from app.modelos.base import Base
+from app.db.base import Base
 
 # Importa todos os modelos para registrar no metadata
-from app.modelos import Analise, Pesquisa, PerguntaPesquisa, Resposta  # noqa: F401
+from app.db.modelos import *  # noqa - Importa todos os modelos
 
 # Objeto de configuração do Alembic
 config = context.config

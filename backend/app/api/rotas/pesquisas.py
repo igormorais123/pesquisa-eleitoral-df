@@ -1,17 +1,18 @@
 """
-Rotas de API para Pesquisas Persistidas.
+Rotas de Pesquisas Persistidas
 
-Endpoints para CRUD de pesquisas eleitorais no PostgreSQL.
+Endpoints para gerenciamento e consulta de pesquisas no banco de dados.
 """
 
+from datetime import datetime
 import logging
+import math
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.api.deps import obter_usuario_atual
-from app.core.database import obter_sessao
+from app.db.session import get_db
 from app.esquemas.pesquisa import (
     FiltrosPesquisa,
     IniciarPesquisaRequest,
@@ -19,20 +20,20 @@ from app.esquemas.pesquisa import (
     PesquisaCreate,
     PesquisaListResponse,
     PesquisaResponse,
+    PesquisaResumo,
     PesquisaUpdate,
-    RespostaCreate,
     RespostaListResponse,
-    RespostaResponse,
-    StatusPesquisaEnum,
+    RespostaPesquisaCreate,
+    RespostaPesquisaResponse,
+    StatusPesquisa,
     StatusResponse,
-    TipoPesquisaEnum,
+    TipoPesquisa,
 )
-from app.modelos import StatusPesquisa, TipoPesquisa
-from app.servicos.pesquisa_persistencia_servico import obter_servico_persistencia
+from app.servicos.pesquisa_servico import PesquisaServico
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(prefix="/pesquisas", tags=["Pesquisas Persistidas"])
+router = APIRouter()
 
 
 # ============================================
@@ -40,101 +41,122 @@ router = APIRouter(prefix="/pesquisas", tags=["Pesquisas Persistidas"])
 # ============================================
 
 
-@router.get("", response_model=PesquisaListResponse)
+@router.get("/", response_model=PesquisaListResponse)
 async def listar_pesquisas(
-    status: Optional[StatusPesquisaEnum] = None,
-    tipo: Optional[TipoPesquisaEnum] = None,
+    status: Optional[StatusPesquisa] = None,
+    tipo: Optional[TipoPesquisa] = None,
+    data_inicio: Optional[datetime] = None,
+    data_fim: Optional[datetime] = None,
     busca: Optional[str] = None,
-    pagina: int = Query(default=1, ge=1),
-    por_pagina: int = Query(default=20, ge=1, le=100),
+    pagina: int = Query(1, ge=1),
+    por_pagina: int = Query(20, ge=1, le=100),
     ordenar_por: str = "criado_em",
     ordem_desc: bool = True,
-    db: AsyncSession = Depends(obter_sessao),
-    _usuario: dict = Depends(obter_usuario_atual),
+    db: AsyncSession = Depends(get_db),
 ):
     """
     Lista todas as pesquisas com filtros e paginação.
 
-    - **status**: Filtrar por status (rascunho, executando, concluida, etc.)
+    - **status**: Filtrar por status (rascunho, executando, pausada, concluida, erro)
     - **tipo**: Filtrar por tipo (quantitativa, qualitativa, mista)
-    - **busca**: Buscar no título e descrição
-    - **pagina**: Número da página
-    - **por_pagina**: Itens por página
+    - **data_inicio**: Filtrar por data de criação inicial
+    - **data_fim**: Filtrar por data de criação final
+    - **busca**: Buscar por título ou descrição
+    - **pagina**: Página atual (padrão: 1)
+    - **por_pagina**: Itens por página (padrão: 20, máx: 100)
     """
-    servico = obter_servico_persistencia(db)
+    servico = PesquisaServico(db)
 
-    # Converter enums
-    status_db = StatusPesquisa(status.value) if status else None
-    tipo_db = TipoPesquisa(tipo.value) if tipo else None
-
-    pesquisas, total = await servico.listar_pesquisas(
-        status=status_db,
-        tipo=tipo_db,
+    filtros = FiltrosPesquisa(
+        status=status,
+        tipo=tipo,
+        data_inicio=data_inicio,
+        data_fim=data_fim,
         busca=busca,
-        limite=por_pagina,
-        offset=(pagina - 1) * por_pagina,
-        ordenar_por=ordenar_por,
-        ordem_desc=ordem_desc,
     )
 
-    total_paginas = (total + por_pagina - 1) // por_pagina
+    pesquisas, total = await servico.listar_pesquisas(filtros, pagina, por_pagina)
 
     return PesquisaListResponse(
-        pesquisas=pesquisas,
+        pesquisas=[
+            PesquisaResumo(
+                id=p.id,
+                titulo=p.titulo,
+                tipo=TipoPesquisa(p.tipo),
+                status=StatusPesquisa(p.status),
+                progresso=p.progresso,
+                total_eleitores=p.total_eleitores,
+                total_perguntas=p.total_perguntas,
+                total_respostas=p.total_respostas,
+                custo_real=p.custo_real,
+                criado_em=p.criado_em,
+                concluido_em=p.concluido_em,
+            )
+            for p in pesquisas
+        ],
         total=total,
         pagina=pagina,
         por_pagina=por_pagina,
-        total_paginas=total_paginas,
+        total_paginas=math.ceil(total / por_pagina) if total > 0 else 1,
     )
 
 
-@router.post("", response_model=PesquisaResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/", response_model=PesquisaResponse, status_code=status.HTTP_201_CREATED)
 async def criar_pesquisa(
     dados: PesquisaCreate,
-    db: AsyncSession = Depends(obter_sessao),
-    _usuario: dict = Depends(obter_usuario_atual),
+    db: AsyncSession = Depends(get_db),
 ):
     """
-    Cria uma nova pesquisa com suas perguntas.
+    Cria uma nova pesquisa eleitoral.
 
+    Recebe título, descrição, perguntas e lista de IDs dos eleitores.
     A pesquisa é criada com status 'rascunho'.
     """
-    servico = obter_servico_persistencia(db)
-
-    # Converter perguntas para dicts
-    perguntas = [p.model_dump() for p in dados.perguntas]
-
-    pesquisa = await servico.criar_pesquisa(
-        titulo=dados.titulo,
-        descricao=dados.descricao,
-        tipo=TipoPesquisa(dados.tipo.value),
-        instrucao_geral=dados.instrucao_geral,
-        perguntas=perguntas,
-        eleitores_ids=dados.eleitores_ids,
-        limite_custo=dados.limite_custo,
-    )
+    servico = PesquisaServico(db)
+    pesquisa = await servico.criar_pesquisa(dados)
 
     logger.info(f"Pesquisa criada: id={pesquisa.id}")
-    return pesquisa
+
+    return PesquisaResponse(
+        id=pesquisa.id,
+        titulo=pesquisa.titulo,
+        descricao=pesquisa.descricao,
+        tipo=TipoPesquisa(pesquisa.tipo),
+        instrucao_geral=pesquisa.instrucao_geral,
+        status=StatusPesquisa(pesquisa.status),
+        progresso=pesquisa.progresso,
+        erro_mensagem=pesquisa.erro_mensagem,
+        total_eleitores=pesquisa.total_eleitores,
+        total_perguntas=pesquisa.total_perguntas,
+        total_respostas=pesquisa.total_respostas,
+        eleitores_processados=pesquisa.eleitores_processados,
+        eleitores_ids=pesquisa.eleitores_ids,
+        custo_estimado=pesquisa.custo_estimado,
+        custo_real=pesquisa.custo_real,
+        tokens_entrada_total=pesquisa.tokens_entrada_total,
+        tokens_saida_total=pesquisa.tokens_saida_total,
+        limite_custo=pesquisa.limite_custo,
+        usar_opus_complexas=pesquisa.usar_opus_complexas,
+        batch_size=pesquisa.batch_size,
+        criado_em=pesquisa.criado_em,
+        atualizado_em=pesquisa.atualizado_em,
+        iniciado_em=pesquisa.iniciado_em,
+        pausado_em=pesquisa.pausado_em,
+        concluido_em=pesquisa.concluido_em,
+        perguntas=[],
+    )
 
 
-@router.get("/{pesquisa_id}", response_model=PesquisaCompleta)
+@router.get("/{pesquisa_id}", response_model=PesquisaResponse)
 async def obter_pesquisa(
-    pesquisa_id: int,
-    db: AsyncSession = Depends(obter_sessao),
-    _usuario: dict = Depends(obter_usuario_atual),
+    pesquisa_id: str,
+    db: AsyncSession = Depends(get_db),
 ):
     """
     Obtém detalhes de uma pesquisa específica.
-
-    Inclui lista de perguntas.
     """
-    servico = obter_servico_persistencia(db)
-
-    pesquisa = await servico.obter_pesquisa(
-        pesquisa_id,
-        incluir_perguntas=True,
-    )
+    servico = PesquisaServico(db)
+    pesquisa = await servico.obter_pesquisa(pesquisa_id)
 
     if not pesquisa:
         raise HTTPException(
@@ -142,31 +164,120 @@ async def obter_pesquisa(
             detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
-    return pesquisa
+    return PesquisaResponse(
+        id=pesquisa.id,
+        titulo=pesquisa.titulo,
+        descricao=pesquisa.descricao,
+        tipo=TipoPesquisa(pesquisa.tipo),
+        instrucao_geral=pesquisa.instrucao_geral,
+        status=StatusPesquisa(pesquisa.status),
+        progresso=pesquisa.progresso,
+        erro_mensagem=pesquisa.erro_mensagem,
+        total_eleitores=pesquisa.total_eleitores,
+        total_perguntas=pesquisa.total_perguntas,
+        total_respostas=pesquisa.total_respostas,
+        eleitores_processados=pesquisa.eleitores_processados,
+        eleitores_ids=pesquisa.eleitores_ids,
+        custo_estimado=pesquisa.custo_estimado,
+        custo_real=pesquisa.custo_real,
+        tokens_entrada_total=pesquisa.tokens_entrada_total,
+        tokens_saida_total=pesquisa.tokens_saida_total,
+        limite_custo=pesquisa.limite_custo,
+        usar_opus_complexas=pesquisa.usar_opus_complexas,
+        batch_size=pesquisa.batch_size,
+        criado_em=pesquisa.criado_em,
+        atualizado_em=pesquisa.atualizado_em,
+        iniciado_em=pesquisa.iniciado_em,
+        pausado_em=pesquisa.pausado_em,
+        concluido_em=pesquisa.concluido_em,
+        perguntas=[],
+    )
+
+
+@router.get("/{pesquisa_id}/completa", response_model=PesquisaCompleta)
+async def obter_pesquisa_completa(
+    pesquisa_id: str,
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Obtém pesquisa com todas as respostas.
+
+    Use com cautela - pode retornar muitos dados.
+    """
+    servico = PesquisaServico(db)
+    pesquisa = await servico.obter_pesquisa(pesquisa_id, incluir_respostas=True)
+
+    if not pesquisa:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
+        )
+
+    return PesquisaCompleta(
+        id=pesquisa.id,
+        titulo=pesquisa.titulo,
+        descricao=pesquisa.descricao,
+        tipo=TipoPesquisa(pesquisa.tipo),
+        instrucao_geral=pesquisa.instrucao_geral,
+        status=StatusPesquisa(pesquisa.status),
+        progresso=pesquisa.progresso,
+        erro_mensagem=pesquisa.erro_mensagem,
+        total_eleitores=pesquisa.total_eleitores,
+        total_perguntas=pesquisa.total_perguntas,
+        total_respostas=pesquisa.total_respostas,
+        eleitores_processados=pesquisa.eleitores_processados,
+        eleitores_ids=pesquisa.eleitores_ids,
+        custo_estimado=pesquisa.custo_estimado,
+        custo_real=pesquisa.custo_real,
+        tokens_entrada_total=pesquisa.tokens_entrada_total,
+        tokens_saida_total=pesquisa.tokens_saida_total,
+        limite_custo=pesquisa.limite_custo,
+        usar_opus_complexas=pesquisa.usar_opus_complexas,
+        batch_size=pesquisa.batch_size,
+        criado_em=pesquisa.criado_em,
+        atualizado_em=pesquisa.atualizado_em,
+        iniciado_em=pesquisa.iniciado_em,
+        pausado_em=pesquisa.pausado_em,
+        concluido_em=pesquisa.concluido_em,
+        perguntas=[],
+        respostas=[
+            RespostaPesquisaResponse(
+                id=r.id,
+                pesquisa_id=r.pesquisa_id,
+                pergunta_id=r.pergunta_id,
+                eleitor_id=r.eleitor_id,
+                eleitor_nome=r.eleitor_nome,
+                eleitor_perfil=r.eleitor_perfil,
+                resposta_texto=r.resposta_texto,
+                resposta_valor=r.resposta_valor,
+                fluxo_cognitivo=r.fluxo_cognitivo,
+                sentimento=r.sentimento,
+                intensidade_sentimento=r.intensidade_sentimento,
+                modelo_usado=r.modelo_usado,
+                tokens_entrada=r.tokens_entrada,
+                tokens_saida=r.tokens_saida,
+                custo_reais=r.custo_reais,
+                tempo_resposta_ms=r.tempo_resposta_ms,
+                criado_em=r.criado_em,
+            )
+            for r in pesquisa.respostas
+        ],
+    )
 
 
 @router.put("/{pesquisa_id}", response_model=PesquisaResponse)
 async def atualizar_pesquisa(
-    pesquisa_id: int,
+    pesquisa_id: str,
     dados: PesquisaUpdate,
-    db: AsyncSession = Depends(obter_sessao),
-    _usuario: dict = Depends(obter_usuario_atual),
+    db: AsyncSession = Depends(get_db),
 ):
     """
     Atualiza uma pesquisa existente.
 
     Apenas campos fornecidos são atualizados.
     """
-    servico = obter_servico_persistencia(db)
-
-    # Filtrar apenas campos não nulos
-    campos = {k: v for k, v in dados.model_dump().items() if v is not None}
-
-    # Converter enum de status
-    if "status" in campos:
-        campos["status"] = StatusPesquisa(campos["status"])
-
-    pesquisa = await servico.atualizar_pesquisa(pesquisa_id, **campos)
+    servico = PesquisaServico(db)
+    pesquisa = await servico.atualizar_pesquisa(pesquisa_id, dados)
 
     if not pesquisa:
         raise HTTPException(
@@ -174,25 +285,50 @@ async def atualizar_pesquisa(
             detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
-    return pesquisa
+    return PesquisaResponse(
+        id=pesquisa.id,
+        titulo=pesquisa.titulo,
+        descricao=pesquisa.descricao,
+        tipo=TipoPesquisa(pesquisa.tipo),
+        instrucao_geral=pesquisa.instrucao_geral,
+        status=StatusPesquisa(pesquisa.status),
+        progresso=pesquisa.progresso,
+        erro_mensagem=pesquisa.erro_mensagem,
+        total_eleitores=pesquisa.total_eleitores,
+        total_perguntas=pesquisa.total_perguntas,
+        total_respostas=pesquisa.total_respostas,
+        eleitores_processados=pesquisa.eleitores_processados,
+        eleitores_ids=pesquisa.eleitores_ids,
+        custo_estimado=pesquisa.custo_estimado,
+        custo_real=pesquisa.custo_real,
+        tokens_entrada_total=pesquisa.tokens_entrada_total,
+        tokens_saida_total=pesquisa.tokens_saida_total,
+        limite_custo=pesquisa.limite_custo,
+        usar_opus_complexas=pesquisa.usar_opus_complexas,
+        batch_size=pesquisa.batch_size,
+        criado_em=pesquisa.criado_em,
+        atualizado_em=pesquisa.atualizado_em,
+        iniciado_em=pesquisa.iniciado_em,
+        pausado_em=pesquisa.pausado_em,
+        concluido_em=pesquisa.concluido_em,
+        perguntas=[],
+    )
 
 
 @router.delete("/{pesquisa_id}", response_model=StatusResponse)
 async def deletar_pesquisa(
-    pesquisa_id: int,
-    db: AsyncSession = Depends(obter_sessao),
-    _usuario: dict = Depends(obter_usuario_atual),
+    pesquisa_id: str,
+    db: AsyncSession = Depends(get_db),
 ):
     """
     Deleta uma pesquisa e todos os dados relacionados.
 
     Esta ação é irreversível.
     """
-    servico = obter_servico_persistencia(db)
+    servico = PesquisaServico(db)
+    deletado = await servico.deletar_pesquisa(pesquisa_id)
 
-    sucesso = await servico.deletar_pesquisa(pesquisa_id)
-
-    if not sucesso:
+    if not deletado:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Pesquisa {pesquisa_id} não encontrada",
@@ -209,21 +345,19 @@ async def deletar_pesquisa(
 # ============================================
 
 
-@router.post("/{pesquisa_id}/iniciar", response_model=PesquisaResponse)
-async def iniciar_pesquisa(
-    pesquisa_id: int,
+@router.post("/{pesquisa_id}/iniciar", response_model=StatusResponse)
+async def iniciar_execucao(
+    pesquisa_id: str,
     config: Optional[IniciarPesquisaRequest] = None,
-    db: AsyncSession = Depends(obter_sessao),
-    _usuario: dict = Depends(obter_usuario_atual),
+    db: AsyncSession = Depends(get_db),
 ):
     """
-    Inicia a execução de uma pesquisa.
+    Marca a pesquisa como em execução.
 
     Muda o status para 'executando'.
     """
-    servico = obter_servico_persistencia(db)
-
-    pesquisa = await servico.iniciar_pesquisa(pesquisa_id)
+    servico = PesquisaServico(db)
+    pesquisa = await servico.iniciar_execucao(pesquisa_id)
 
     if not pesquisa:
         raise HTTPException(
@@ -232,25 +366,30 @@ async def iniciar_pesquisa(
         )
 
     if config and config.limite_custo:
-        await servico.atualizar_pesquisa(pesquisa_id, limite_custo=config.limite_custo)
+        await servico.atualizar_pesquisa(
+            pesquisa_id,
+            PesquisaUpdate(limite_custo=config.limite_custo),
+        )
 
-    return pesquisa
+    return StatusResponse(
+        sucesso=True,
+        mensagem="Execução iniciada",
+        dados={"pesquisa_id": pesquisa.id},
+    )
 
 
-@router.post("/{pesquisa_id}/pausar", response_model=PesquisaResponse)
-async def pausar_pesquisa(
-    pesquisa_id: int,
-    db: AsyncSession = Depends(obter_sessao),
-    _usuario: dict = Depends(obter_usuario_atual),
+@router.post("/{pesquisa_id}/pausar", response_model=StatusResponse)
+async def pausar_execucao(
+    pesquisa_id: str,
+    db: AsyncSession = Depends(get_db),
 ):
     """
     Pausa a execução de uma pesquisa.
 
     A pesquisa pode ser retomada posteriormente.
     """
-    servico = obter_servico_persistencia(db)
-
-    pesquisa = await servico.pausar_pesquisa(pesquisa_id)
+    servico = PesquisaServico(db)
+    pesquisa = await servico.pausar_execucao(pesquisa_id)
 
     if not pesquisa:
         raise HTTPException(
@@ -258,23 +397,50 @@ async def pausar_pesquisa(
             detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
-    return pesquisa
+    return StatusResponse(
+        sucesso=True,
+        mensagem="Execução pausada",
+        dados={"pesquisa_id": pesquisa.id},
+    )
 
 
-@router.post("/{pesquisa_id}/finalizar", response_model=PesquisaResponse)
-async def finalizar_pesquisa(
-    pesquisa_id: int,
-    db: AsyncSession = Depends(obter_sessao),
-    _usuario: dict = Depends(obter_usuario_atual),
+@router.post("/{pesquisa_id}/retomar", response_model=StatusResponse)
+async def retomar_execucao(
+    pesquisa_id: str,
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Retoma uma pesquisa pausada.
+    """
+    servico = PesquisaServico(db)
+    pesquisa = await servico.retomar_execucao(pesquisa_id)
+
+    if not pesquisa:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
+        )
+
+    return StatusResponse(
+        sucesso=True,
+        mensagem="Execução retomada",
+        dados={"pesquisa_id": pesquisa.id},
+    )
+
+
+@router.post("/{pesquisa_id}/finalizar", response_model=StatusResponse)
+async def finalizar_execucao(
+    pesquisa_id: str,
+    erro: Optional[str] = None,
+    db: AsyncSession = Depends(get_db),
 ):
     """
     Finaliza a execução de uma pesquisa.
 
-    Muda o status para 'concluida'.
+    - **erro**: Mensagem de erro se houve falha (opcional)
     """
-    servico = obter_servico_persistencia(db)
-
-    pesquisa = await servico.finalizar_pesquisa(pesquisa_id)
+    servico = PesquisaServico(db)
+    pesquisa = await servico.finalizar_execucao(pesquisa_id, erro)
 
     if not pesquisa:
         raise HTTPException(
@@ -282,7 +448,27 @@ async def finalizar_pesquisa(
             detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
-    return pesquisa
+    status_msg = "com erro" if erro else "com sucesso"
+    return StatusResponse(
+        sucesso=True,
+        mensagem=f"Execução finalizada {status_msg}",
+        dados={"pesquisa_id": pesquisa.id},
+    )
+
+
+@router.put("/{pesquisa_id}/progresso")
+async def atualizar_progresso(
+    pesquisa_id: str,
+    progresso: int = Query(..., ge=0, le=100),
+    eleitores_processados: int = Query(..., ge=0),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Atualiza o progresso de execução.
+    """
+    servico = PesquisaServico(db)
+    await servico.atualizar_progresso(pesquisa_id, progresso, eleitores_processados)
+    return {"message": "Progresso atualizado", "progresso": progresso}
 
 
 # ============================================
@@ -292,75 +478,94 @@ async def finalizar_pesquisa(
 
 @router.get("/{pesquisa_id}/respostas", response_model=RespostaListResponse)
 async def listar_respostas(
-    pesquisa_id: int,
-    pergunta_id: Optional[int] = None,
+    pesquisa_id: str,
+    pergunta_id: Optional[str] = None,
     eleitor_id: Optional[str] = None,
-    pagina: int = Query(default=1, ge=1),
-    por_pagina: int = Query(default=50, ge=1, le=200),
-    db: AsyncSession = Depends(obter_sessao),
-    _usuario: dict = Depends(obter_usuario_atual),
+    pagina: int = Query(1, ge=1),
+    por_pagina: int = Query(50, ge=1, le=500),
+    db: AsyncSession = Depends(get_db),
 ):
     """
-    Lista respostas de uma pesquisa.
+    Lista respostas de uma pesquisa com filtros.
 
     - **pergunta_id**: Filtrar por pergunta específica
     - **eleitor_id**: Filtrar por eleitor específico
     """
-    servico = obter_servico_persistencia(db)
-
-    respostas = await servico.obter_respostas_pesquisa(
-        pesquisa_id=pesquisa_id,
-        pergunta_id=pergunta_id,
-        eleitor_id=eleitor_id,
-        limite=por_pagina,
-        offset=(pagina - 1) * por_pagina,
+    servico = PesquisaServico(db)
+    respostas, total = await servico.listar_respostas(
+        pesquisa_id, pergunta_id, eleitor_id, pagina, por_pagina
     )
 
-    total = await servico.contar_respostas(pesquisa_id, pergunta_id)
-
     return RespostaListResponse(
-        respostas=respostas,
+        respostas=[
+            RespostaPesquisaResponse(
+                id=r.id,
+                pesquisa_id=r.pesquisa_id,
+                pergunta_id=r.pergunta_id,
+                eleitor_id=r.eleitor_id,
+                eleitor_nome=r.eleitor_nome,
+                eleitor_perfil=r.eleitor_perfil,
+                resposta_texto=r.resposta_texto,
+                resposta_valor=r.resposta_valor,
+                fluxo_cognitivo=r.fluxo_cognitivo,
+                sentimento=r.sentimento,
+                intensidade_sentimento=r.intensidade_sentimento,
+                modelo_usado=r.modelo_usado,
+                tokens_entrada=r.tokens_entrada,
+                tokens_saida=r.tokens_saida,
+                custo_reais=r.custo_reais,
+                tempo_resposta_ms=r.tempo_resposta_ms,
+                criado_em=r.criado_em,
+            )
+            for r in respostas
+        ],
         total=total,
         pagina=pagina,
         por_pagina=por_pagina,
+        total_paginas=math.ceil(total / por_pagina) if total > 0 else 1,
     )
 
 
 @router.post(
     "/{pesquisa_id}/respostas",
-    response_model=RespostaResponse,
+    response_model=RespostaPesquisaResponse,
     status_code=status.HTTP_201_CREATED,
 )
 async def registrar_resposta(
-    pesquisa_id: int,
-    dados: RespostaCreate,
-    db: AsyncSession = Depends(obter_sessao),
-    _usuario: dict = Depends(obter_usuario_atual),
+    pesquisa_id: str,
+    dados: RespostaPesquisaCreate,
+    db: AsyncSession = Depends(get_db),
 ):
     """
     Registra uma nova resposta de eleitor.
 
     Usado durante a execução da pesquisa para salvar cada resposta.
     """
-    servico = obter_servico_persistencia(db)
+    # Garantir que o pesquisa_id está correto
+    dados.pesquisa_id = pesquisa_id
 
-    resposta = await servico.registrar_resposta(
-        pesquisa_id=pesquisa_id,
-        pergunta_id=dados.pergunta_id,
-        eleitor_id=dados.eleitor_id,
-        resposta_texto=dados.resposta_texto,
-        resposta_valor=dados.resposta_valor,
-        fluxo_cognitivo=dados.fluxo_cognitivo,
-        modelo_usado=dados.modelo_usado,
-        tokens_entrada=dados.tokens_entrada,
-        tokens_saida=dados.tokens_saida,
-        custo=dados.custo,
-        tempo_resposta_ms=dados.tempo_resposta_ms,
-        eleitor_nome=dados.eleitor_nome,
-        metadados=dados.metadados,
+    servico = PesquisaServico(db)
+    resposta = await servico.registrar_resposta(dados)
+
+    return RespostaPesquisaResponse(
+        id=resposta.id,
+        pesquisa_id=resposta.pesquisa_id,
+        pergunta_id=resposta.pergunta_id,
+        eleitor_id=resposta.eleitor_id,
+        eleitor_nome=resposta.eleitor_nome,
+        eleitor_perfil=resposta.eleitor_perfil,
+        resposta_texto=resposta.resposta_texto,
+        resposta_valor=resposta.resposta_valor,
+        fluxo_cognitivo=resposta.fluxo_cognitivo,
+        sentimento=resposta.sentimento,
+        intensidade_sentimento=resposta.intensidade_sentimento,
+        modelo_usado=resposta.modelo_usado,
+        tokens_entrada=resposta.tokens_entrada,
+        tokens_saida=resposta.tokens_saida,
+        custo_reais=resposta.custo_reais,
+        tempo_resposta_ms=resposta.tempo_resposta_ms,
+        criado_em=resposta.criado_em,
     )
-
-    return resposta
 
 
 # ============================================
@@ -370,16 +575,13 @@ async def registrar_resposta(
 
 @router.get("/estatisticas/globais")
 async def obter_estatisticas_globais(
-    db: AsyncSession = Depends(obter_sessao),
-    _usuario: dict = Depends(obter_usuario_atual),
+    db: AsyncSession = Depends(get_db),
 ):
     """
     Obtém estatísticas globais de todas as pesquisas.
 
     Retorna totais, médias e métricas agregadas.
     """
-    servico = obter_servico_persistencia(db)
-
+    servico = PesquisaServico(db)
     estatisticas = await servico.obter_estatisticas_globais()
-
     return estatisticas
