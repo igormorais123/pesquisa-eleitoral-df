@@ -176,30 +176,33 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
   const total = estatisticas.filtrados || 1;
 
   // Função auxiliar para formatar dados com memoização
-  const formatarDados = (dados: Record<string, number>, labels?: Record<string, string>) => {
-    return Object.entries(dados)
-      .filter(([nome]) => nome !== 'undefined' && nome !== 'Não informado')
-      .sort((a, b) => b[1] - a[1])
-      .map(([nome, valor]) => ({
-        nome: labels?.[nome] || nome.charAt(0).toUpperCase() + nome.slice(1).replace(/_/g, ' '),
-        valor,
-        percentual: ((valor / total) * 100).toFixed(1),
-      }));
-  };
+  const formatarDados = useMemo(() => {
+    return (dados: Record<string, number>, labels?: Record<string, string>) => {
+      return Object.entries(dados)
+        .filter(([nome]) => nome !== 'undefined' && nome !== 'Não informado')
+        .sort((a, b) => b[1] - a[1])
+        .map(([nome, valor]) => ({
+          nome: labels?.[nome] || nome.charAt(0).toUpperCase() + nome.slice(1).replace(/_/g, ' '),
+          valor,
+          percentual: ((valor / total) * 100).toFixed(1),
+        }));
+    };
+  }, [total]);
 
   // Preparar todos os dados com memoização
-  const dadosGenero = useMemo(() => formatarDados(estatisticas.porGenero), [estatisticas.porGenero, total]);
-  const dadosCluster = useMemo(() => formatarDados(estatisticas.porCluster, LABELS.cluster), [estatisticas.porCluster, total]);
-  const dadosOrientacao = useMemo(() => formatarDados(estatisticas.porOrientacao, LABELS.orientacao), [estatisticas.porOrientacao, total]);
-  const dadosReligiao = useMemo(() => formatarDados(estatisticas.porReligiao).slice(0, 6), [estatisticas.porReligiao, total]);
-  const dadosOcupacao = useMemo(() => estatisticas.porOcupacao ? formatarDados(estatisticas.porOcupacao, LABELS.ocupacao) : [], [estatisticas.porOcupacao, total]);
-  const dadosEscolaridade = useMemo(() => estatisticas.porEscolaridade ? formatarDados(estatisticas.porEscolaridade, LABELS.escolaridade) : [], [estatisticas.porEscolaridade, total]);
-  const dadosRenda = useMemo(() => estatisticas.porRenda ? formatarDados(estatisticas.porRenda, LABELS.renda) : [], [estatisticas.porRenda, total]);
-  const dadosBolsonaro = useMemo(() => estatisticas.porBolsonaro ? formatarDados(estatisticas.porBolsonaro, LABELS.bolsonaro) : [], [estatisticas.porBolsonaro, total]);
-  const dadosInteresse = useMemo(() => estatisticas.porInteresse ? formatarDados(estatisticas.porInteresse, LABELS.interesse) : [], [estatisticas.porInteresse, total]);
-  const dadosDecisao = useMemo(() => estatisticas.porEstiloDecisao ? formatarDados(estatisticas.porEstiloDecisao, LABELS.decisao) : [], [estatisticas.porEstiloDecisao, total]);
-  const dadosFontes = useMemo(() => estatisticas.porFontes ? formatarDados(estatisticas.porFontes).slice(0, 8) : [], [estatisticas.porFontes, total]);
-  const dadosSusceptibilidade = useMemo(() => estatisticas.porSusceptibilidade ? formatarDados(estatisticas.porSusceptibilidade) : [], [estatisticas.porSusceptibilidade, total]);
+  const dadosGenero = useMemo(() => formatarDados(estatisticas.porGenero), [formatarDados, estatisticas.porGenero]);
+  const dadosCluster = useMemo(() => formatarDados(estatisticas.porCluster, LABELS.cluster), [formatarDados, estatisticas.porCluster]);
+  const dadosOrientacao = useMemo(() => formatarDados(estatisticas.porOrientacao, LABELS.orientacao), [formatarDados, estatisticas.porOrientacao]);
+  const dadosReligiao = useMemo(() => formatarDados(estatisticas.porReligiao).slice(0, 6), [formatarDados, estatisticas.porReligiao]);
+  const dadosRegiao = useMemo(() => formatarDados(estatisticas.porRegiao).slice(0, 10), [formatarDados, estatisticas.porRegiao]);
+  const dadosOcupacao = useMemo(() => estatisticas.porOcupacao ? formatarDados(estatisticas.porOcupacao, LABELS.ocupacao) : [], [formatarDados, estatisticas.porOcupacao]);
+  const dadosEscolaridade = useMemo(() => estatisticas.porEscolaridade ? formatarDados(estatisticas.porEscolaridade, LABELS.escolaridade) : [], [formatarDados, estatisticas.porEscolaridade]);
+  const dadosRenda = useMemo(() => estatisticas.porRenda ? formatarDados(estatisticas.porRenda, LABELS.renda) : [], [formatarDados, estatisticas.porRenda]);
+  const dadosBolsonaro = useMemo(() => estatisticas.porBolsonaro ? formatarDados(estatisticas.porBolsonaro, LABELS.bolsonaro) : [], [formatarDados, estatisticas.porBolsonaro]);
+  const dadosInteresse = useMemo(() => estatisticas.porInteresse ? formatarDados(estatisticas.porInteresse, LABELS.interesse) : [], [formatarDados, estatisticas.porInteresse]);
+  const dadosDecisao = useMemo(() => estatisticas.porEstiloDecisao ? formatarDados(estatisticas.porEstiloDecisao, LABELS.decisao) : [], [formatarDados, estatisticas.porEstiloDecisao]);
+  const dadosFontes = useMemo(() => estatisticas.porFontes ? formatarDados(estatisticas.porFontes).slice(0, 8) : [], [formatarDados, estatisticas.porFontes]);
+  const dadosSusceptibilidade = useMemo(() => estatisticas.porSusceptibilidade ? formatarDados(estatisticas.porSusceptibilidade) : [], [formatarDados, estatisticas.porSusceptibilidade]);
 
   // Dados de filhos
   const dadosFilhos = useMemo(() => [
@@ -214,8 +217,6 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
     { subject: 'Aversão Perda', A: estatisticas.porVieses['aversao_perda'] || 0 },
     { subject: 'Tribalismo', A: estatisticas.porVieses['tribalismo'] || 0 },
   ] : [], [estatisticas.porVieses]);
-
-  const dadosRegiao = useMemo(() => formatarDados(estatisticas.porRegiao).slice(0, 10), [estatisticas.porRegiao, total]);
 
   // Faixas etárias com memoização
   const faixasEtarias = useMemo(() =>
