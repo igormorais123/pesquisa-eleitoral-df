@@ -17,8 +17,11 @@ import {
   ChevronRight,
   TrendingUp,
   History,
+  X,
+  CheckSquare,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useSidebarStore } from '@/stores/sidebar-store';
+import { useEffect } from 'react';
 
 const menuItems = [
   {
@@ -26,6 +29,12 @@ const menuItems = [
     href: '/',
     icone: Home,
     descricao: 'Visão geral do sistema',
+  },
+  {
+    titulo: 'Validação',
+    href: '/validacao',
+    icone: CheckSquare,
+    descricao: 'Validação estatística',
   },
   {
     titulo: 'Eleitores',
@@ -85,18 +94,30 @@ const acoesRapidas = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const [recolhido, setRecolhido] = useState(false);
+  const { mobileAberto, recolhido, fecharMobile, toggleRecolhido } = useSidebarStore();
 
-  return (
-    <aside
-      className={cn(
-        'fixed left-0 top-0 z-40 h-screen bg-card border-r border-border transition-all duration-300 flex flex-col',
-        recolhido ? 'w-20' : 'w-64'
-      )}
-    >
+  // Fechar sidebar mobile ao navegar
+  useEffect(() => {
+    fecharMobile();
+  }, [pathname, fecharMobile]);
+
+  // Fechar sidebar mobile ao redimensionar para desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        fecharMobile();
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [fecharMobile]);
+
+  // Conteúdo da sidebar (reutilizado em desktop e mobile)
+  const sidebarContent = (
+    <>
       {/* Logo */}
       <div className="p-4 border-b border-border">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3" onClick={fecharMobile}>
           <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
             <Vote className="w-5 h-5 text-primary" />
           </div>
@@ -119,6 +140,7 @@ export function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={fecharMobile}
               className={cn(
                 'flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all group',
                 ativo
@@ -166,6 +188,7 @@ export function Sidebar() {
                 <Link
                   key={acao.href}
                   href={acao.href}
+                  onClick={fecharMobile}
                   className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-all group"
                 >
                   <Icone className="w-4 h-4 flex-shrink-0 group-hover:text-primary" />
@@ -177,10 +200,10 @@ export function Sidebar() {
         )}
       </nav>
 
-      {/* Botão Recolher */}
-      <div className="p-4 border-t border-border">
+      {/* Botão Recolher - apenas desktop */}
+      <div className="hidden lg:block p-4 border-t border-border">
         <button
-          onClick={() => setRecolhido(!recolhido)}
+          onClick={toggleRecolhido}
           className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-all"
         >
           {recolhido ? (
@@ -193,6 +216,47 @@ export function Sidebar() {
           )}
         </button>
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Sidebar Desktop - fixa, escondida em mobile */}
+      <aside
+        className={cn(
+          'hidden lg:flex fixed left-0 top-0 z-40 h-screen bg-card border-r border-border transition-all duration-300 flex-col',
+          recolhido ? 'w-20' : 'w-64'
+        )}
+      >
+        {sidebarContent}
+      </aside>
+
+      {/* Overlay mobile - escurece o fundo */}
+      {mobileAberto && (
+        <div
+          className="lg:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity"
+          onClick={fecharMobile}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Sidebar Mobile - drawer lateral */}
+      <aside
+        className={cn(
+          'lg:hidden fixed left-0 top-0 z-50 h-screen w-72 bg-card border-r border-border flex flex-col transition-transform duration-300 ease-in-out',
+          mobileAberto ? 'translate-x-0' : '-translate-x-full'
+        )}
+      >
+        {/* Botão fechar mobile */}
+        <button
+          onClick={fecharMobile}
+          className="absolute top-4 right-4 p-2 rounded-lg hover:bg-secondary transition-colors lg:hidden"
+          aria-label="Fechar menu"
+        >
+          <X className="w-5 h-5 text-muted-foreground" />
+        </button>
+        {sidebarContent}
+      </aside>
+    </>
   );
 }
