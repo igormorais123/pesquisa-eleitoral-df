@@ -14,10 +14,16 @@ function GoogleCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [erro, setErro] = useState<string | null>(null);
+  const [processando, setProcessando] = useState(false);
   const setAuth = useAuthStore((state) => state.setAuth);
 
   useEffect(() => {
+    // Prevenir execução duplicada (React StrictMode)
+    if (processando) return;
+
     const processarCallback = async () => {
+      setProcessando(true);
+
       const code = searchParams.get('code');
       const error = searchParams.get('error');
 
@@ -52,7 +58,8 @@ function GoogleCallbackContent() {
           toast.info('Sua conta está aguardando aprovação do administrador');
         }
 
-        router.push('/');
+        // Pequeno delay para garantir que o estado foi salvo
+        setTimeout(() => router.push('/'), 100);
       } catch (error: any) {
         const mensagem = error.response?.data?.detail || 'Erro na autenticação';
         setErro(mensagem);
@@ -62,7 +69,7 @@ function GoogleCallbackContent() {
     };
 
     processarCallback();
-  }, [searchParams, router, setAuth]);
+  }, [searchParams, router, setAuth, processando]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background bg-pattern">

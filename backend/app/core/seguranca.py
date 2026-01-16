@@ -42,6 +42,8 @@ class DadosToken(BaseModel):
     usuario_id: Optional[str] = None
     nome: Optional[str] = None
     papel: Optional[str] = None
+    email: Optional[str] = None
+    aprovado: Optional[bool] = None
 
 
 def verificar_senha(senha_plana: str, senha_hash: str) -> bool:
@@ -104,11 +106,19 @@ def verificar_token(token: str) -> Optional[DadosToken]:
         usuario_id: str = payload.get("sub")
         nome: str = payload.get("nome")
         papel: str = payload.get("papel")
+        email: str = payload.get("email")
+        aprovado: bool = payload.get("aprovado")
 
         if usuario_id is None:
             return None
 
-        return DadosToken(usuario_id=usuario_id, nome=nome, papel=papel)
+        return DadosToken(
+            usuario_id=usuario_id,
+            nome=nome,
+            papel=papel,
+            email=email,
+            aprovado=aprovado,
+        )
 
     except JWTError:
         return None

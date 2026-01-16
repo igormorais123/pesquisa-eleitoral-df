@@ -13,6 +13,7 @@ from fastapi.openapi.utils import get_openapi
 
 from app.api.rotas import (
     autenticacao,
+    dados_usuarios,
     eleitores,
     entrevistas,
     geracao,
@@ -172,6 +173,21 @@ Gerenciamento de usuários do sistema.
 - Atualizar perfil próprio
         """,
     },
+    {
+        "name": "Dados Usuários Google",
+        "description": """
+Acesso aos dados coletados de usuários que logaram via Google.
+
+**Dados disponíveis:**
+- Informações básicas (nome, email, foto)
+- Dados demográficos (idade, gênero, aniversário)
+- Contatos (telefones, endereços)
+- Profissional (ocupações, organizações)
+- Interesses e habilidades
+
+**Uso:** Para criar eleitores digitais sintéticos baseados em dados reais.
+        """,
+    },
 ]
 
 # Criar aplicação FastAPI
@@ -320,4 +336,10 @@ app.include_router(
     usuarios.router,
     prefix="/api/v1/usuarios",
     tags=["Usuários"],
+)
+
+app.include_router(
+    dados_usuarios.router,
+    prefix="/api/v1/dados-usuarios",
+    tags=["Dados Usuários Google"],
 )

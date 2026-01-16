@@ -211,7 +211,7 @@ Processa callback do Google OAuth2.
 )
 async def google_callback(
     dados: GoogleAuthRequest,
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_db_optional),
 ):
     """Processa callback do Google OAuth"""
     if not configuracoes.GOOGLE_CLIENT_ID:
@@ -229,22 +229,57 @@ async def google_callback(
             detail="Falha na autenticação com Google",
         )
 
-    # Criar ou autenticar usuário
-    usuario = await UsuarioServico.autenticar_ou_criar_google(
-        db=db,
-        google_id=google_user["google_id"],
-        email=google_user["email"],
-        nome=google_user["nome"],
-        avatar_url=google_user.get("avatar_url"),
+    # Tentar criar ou autenticar usuário no banco
+    usuario = None
+    if db is not None:
+        try:
+            usuario = await UsuarioServico.autenticar_ou_criar_google(
+                db=db,
+                google_id=google_user["google_id"],
+                email=google_user["email"],
+                nome=google_user["nome"],
+                avatar_url=google_user.get("avatar_url"),
+            )
+        except Exception:
+            # Banco indisponível
+            pass
+
+    if usuario:
+        if not usuario.ativo:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Conta desativada. Entre em contato com o administrador.",
+            )
+        return criar_token_response(usuario)
+
+    # Fallback: criar token para usuário Google sem persistência
+    # Usuário terá papel "leitor" e não será aprovado até admin aprovar
+    token = criar_token_acesso(
+        dados={
+            "sub": f"google-{google_user['google_id']}",
+            "nome": google_user["nome"],
+            "papel": "leitor",
+            "email": google_user["email"],
+            "aprovado": False,
+        }
     )
 
-    if not usuario.ativo:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Conta desativada. Entre em contato com o administrador.",
-        )
-
-    return criar_token_response(usuario)
+    return TokenResponse(
+        access_token=token,
+        token_type="bearer",
+        expires_in=configuracoes.ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+        usuario=UsuarioResponse(
+            id=f"google-{google_user['google_id']}",
+            email=google_user["email"],
+            nome=google_user["nome"],
+            papel="leitor",
+            provedor_auth="google",
+            ativo=True,
+            aprovado=False,
+            avatar_url=google_user.get("avatar_url"),
+            criado_em=None,
+        ),
+    )
 
 
 # ==========================================
@@ -274,15 +309,17 @@ async def obter_usuario_logado(
     if usuario:
         return UsuarioResponse.model_validate(usuario)
 
-    # Fallback para usuário legado
+    # Fallback - detecta se é usuário Google ou local
+    is_google = usuario_atual.usuario_id and usuario_atual.usuario_id.startswith("google-")
+
     return UsuarioResponse(
         id=usuario_atual.usuario_id or "",
-        email=getattr(usuario_atual, "email", "admin@exemplo.com"),
+        email=usuario_atual.email or "admin@exemplo.com",
         nome=usuario_atual.nome or "",
         papel=usuario_atual.papel or "admin",
-        provedor_auth="local",
+        provedor_auth="google" if is_google else "local",
         ativo=True,
-        aprovado=True,
+        aprovado=usuario_atual.aprovado if usuario_atual.aprovado is not None else True,
         criado_em=None,
     )
 

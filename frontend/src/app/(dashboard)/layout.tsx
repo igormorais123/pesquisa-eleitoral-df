@@ -15,21 +15,33 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { autenticado, verificarToken } = useAuthStore();
+  const { autenticado, token, verificarToken } = useAuthStore();
   const { recolhido } = useSidebarStore();
   const [verificando, setVerificando] = useState(true);
 
   useEffect(() => {
     const verificar = async () => {
-      const valido = await verificarToken();
-      if (!valido) {
+      // Se já está autenticado e tem token, não precisa verificar API
+      if (autenticado && token) {
+        setVerificando(false);
+        return;
+      }
+
+      // Se tem token mas não está marcado como autenticado, verifica
+      if (token) {
+        const valido = await verificarToken();
+        if (!valido) {
+          router.push('/login');
+        }
+      } else {
+        // Sem token, redireciona para login
         router.push('/login');
       }
       setVerificando(false);
     };
 
     verificar();
-  }, [verificarToken, router]);
+  }, [autenticado, token, verificarToken, router]);
 
   if (verificando) {
     return (

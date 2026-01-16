@@ -8,14 +8,14 @@ const nextConfig = {
   async rewrites() {
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
 
-    // Se nao houver backend externo configurado, nao faz rewrites
-    if (!backendUrl || backendUrl === 'http://localhost:8000') {
-      return [];
-    }
-
     return [
+      // Auth routes - sempre proxy para o backend
       {
-        // Rewrite para rotas que NAO sao auth (auth eh tratado localmente)
+        source: '/api/v1/auth/:path*',
+        destination: `${backendUrl}/api/v1/auth/:path*`,
+      },
+      // Outras rotas da API
+      {
         source: '/api/v1/eleitores/:path*',
         destination: `${backendUrl}/api/v1/eleitores/:path*`,
       },
@@ -45,10 +45,6 @@ const nextConfig = {
   },
 
   // Server Actions agora são estáveis no Next.js 14
-
-  // Output standalone apenas para Docker (não usar no Vercel)
-  // Vercel detecta automaticamente e usa seu próprio sistema de build
-  ...(process.env.VERCEL ? {} : { output: 'standalone' }),
 };
 
 module.exports = nextConfig;
