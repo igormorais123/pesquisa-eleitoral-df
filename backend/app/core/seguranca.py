@@ -120,8 +120,8 @@ def verificar_token(token: str) -> Optional[DadosToken]:
 # ============================================
 
 # Em produção, usar variáveis de ambiente para credenciais
-# Hash da senha padrão para desenvolvimento
-_SENHA_HASH_PADRAO = "$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/X4.O0lZ8LqWQKQJGe"
+# Hash da senha "professorigor" (gerado com: gerar_hash_senha("professorigor"))
+_SENHA_HASH_PADRAO = "$2b$12$J6KfB1mVkGLAXyksmR6w6eh.C3fQGRuSMOxsoDeYoVweShfhJy22y"
 
 USUARIO_TESTE: Dict[str, Any] = {
     "id": os.environ.get("ADMIN_USER_ID", "user-001"),
@@ -149,7 +149,7 @@ def autenticar_usuario(usuario: str, senha: str) -> Optional[dict]:
     if usuario != USUARIO_TESTE["usuario"]:
         return None
 
-    # Verificar senha usando hash bcrypt
+    # Verificar senha usando hash bcrypt (nunca comparar senha em plaintext)
     if verificar_senha(senha, str(USUARIO_TESTE["senha_hash"])):
         return {
             "id": USUARIO_TESTE["id"],

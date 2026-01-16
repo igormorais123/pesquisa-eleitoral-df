@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { api } from '@/services/api';
+import { notify } from './notifications-store';
 
 interface Usuario {
   id: string;
@@ -47,8 +48,19 @@ export const useAuthStore = create<AuthState>()(
             autenticado: true,
             carregando: false,
           });
+
+          // Notificar login bem-sucedido
+          notify.success(
+            `Bem-vindo, ${dadosUsuario.nome}!`,
+            'Login realizado com sucesso. Você está pronto para começar.',
+            { label: 'Ver dashboard', href: '/' }
+          );
         } catch (error) {
           set({ carregando: false });
+          notify.error(
+            'Erro no login',
+            'Credenciais inválidas. Verifique seu usuário e senha.'
+          );
           throw error;
         }
       },
