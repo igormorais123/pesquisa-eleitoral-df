@@ -572,19 +572,22 @@ Responda APENAS com JSON válido no seguinte formato:
             "tempo_resposta_ms": tempo_ms,
         }
 
-    def estimar_custo(self, total_perguntas: int, total_eleitores: int) -> Dict[str, Any]:
+    def estimar_custo(
+        self,
+        total_perguntas: int,
+        total_eleitores: int,
+        proporcao_opus: float = 0.0,
+    ) -> Dict[str, Any]:
         """
         Estima custo de uma entrevista.
-
-        IMPORTANTE: Usa preco do Opus 4.5 para TODAS as estimativas,
-        garantindo margem de seguranca (custo real sera menor).
 
         Args:
             total_perguntas: Número de perguntas
             total_eleitores: Número de eleitores
+            proporcao_opus: Proporção de chamadas que usarão Opus (0-1)
 
         Returns:
-            Estimativa detalhada de custos (conservadora)
+            Estimativa detalhada de custos
         """
         total_chamadas = total_perguntas * total_eleitores
 
@@ -595,35 +598,49 @@ Responda APENAS com JSON válido no seguinte formato:
         tokens_entrada = total_chamadas * tokens_entrada_medio
         tokens_saida = total_chamadas * tokens_saida_medio
 
-        # ESTIMATIVA CONSERVADORA: calcula tudo como se fosse Opus 4.5
-        # Custo real sera MENOR pois usamos Sonnet 4.5 nas entrevistas
-        custo_estimado = self.calcular_custo(
-            tokens_entrada,
-            tokens_saida,
-            "claude-opus-4-5-20251101",  # Usa Opus para estimativa maior
-        )
+        # Calcular custo baseado na proporção de modelos
+        chamadas_opus = int(total_chamadas * proporcao_opus)
+        chamadas_sonnet = total_chamadas - chamadas_opus
 
-        # Custo real esperado (com Sonnet 4.5)
-        custo_real_esperado = self.calcular_custo(
+        # Custo com Opus
+        custo_opus = self.calcular_custo(
+            chamadas_opus * tokens_entrada_medio,
+            chamadas_opus * tokens_saida_medio,
+            "claude-opus-4-5-20251101",
+        ) if chamadas_opus > 0 else 0
+
+        # Custo com Sonnet
+        custo_sonnet = self.calcular_custo(
+            chamadas_sonnet * tokens_entrada_medio,
+            chamadas_sonnet * tokens_saida_medio,
+            MODELO_ENTREVISTAS,
+        ) if chamadas_sonnet > 0 else 0
+
+        custo_estimado = custo_opus + custo_sonnet
+
+        # Custo se fosse tudo Opus (para comparação)
+        custo_tudo_opus = self.calcular_custo(
             tokens_entrada,
             tokens_saida,
-            MODELO_ENTREVISTAS,
+            "claude-opus-4-5-20251101",
         )
 
         return {
             "total_perguntas": total_perguntas,
             "total_eleitores": total_eleitores,
             "total_chamadas": total_chamadas,
+            "proporcao_opus": proporcao_opus,
+            "chamadas_opus": chamadas_opus,
+            "chamadas_sonnet": chamadas_sonnet,
             "modelo_entrevistas": MODELO_ENTREVISTAS,
             "modelo_insights": MODELO_INSIGHTS,
             "tokens_entrada_estimados": tokens_entrada,
             "tokens_saida_estimados": tokens_saida,
-            "custo_estimado": custo_estimado,  # Estimativa alta (Opus 4.5)
-            "custo_real_esperado": custo_real_esperado,  # Custo real (Sonnet 4.5)
-            "economia_esperada": custo_estimado - custo_real_esperado,
+            "custo_estimado": custo_estimado,
+            "custo_maximo_opus": custo_tudo_opus,
+            "economia_vs_opus": custo_tudo_opus - custo_estimado,
             "custo_por_eleitor": (custo_estimado / total_eleitores if total_eleitores > 0 else 0),
             "custo_por_pergunta": (custo_estimado / total_perguntas if total_perguntas > 0 else 0),
-            "nota": "Estimativa usa preco Opus 4.5 por seguranca. Custo real sera menor.",
         }
 
 

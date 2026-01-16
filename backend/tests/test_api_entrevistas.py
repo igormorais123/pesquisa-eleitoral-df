@@ -139,9 +139,8 @@ class TestEstimativaCusto:
         )
         assert response.status_code == 200
         data = response.json()
-        assert "custo_minimo" in data
-        assert "custo_maximo" in data
-        assert "custo_medio" in data
+        assert "custo_estimado" in data
+        assert "custo_maximo_opus" in data
         assert "total_chamadas" in data
         assert data["total_perguntas"] == 5
         assert data["total_eleitores"] == 100
