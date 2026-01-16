@@ -19,6 +19,7 @@ from app.api.rotas import (
     geracao,
     memorias,
     resultados,
+    rls,
     usuarios,
     pesquisas_parlamentares,
 )
@@ -244,6 +245,30 @@ Os parlamentares respondem usando prompts específicos que consideram:
 - Base eleitoral
         """,
     },
+    {
+        "name": "RLS - Segurança",
+        "description": """
+Administração do Row Level Security (RLS) do PostgreSQL.
+
+**O que é RLS?**
+Row Level Security é uma camada de segurança a nível de banco de dados
+que garante que usuários só vejam os dados que têm permissão.
+
+**Funcionalidades:**
+- Verificar status do RLS em todas as tabelas
+- Listar políticas de segurança ativas
+- Testar isolamento de dados
+- Verificar contexto da sessão atual
+
+**Tabelas protegidas:**
+- `usuarios`: Cada usuário vê apenas seu próprio registro
+- `memorias`: Usuário vê apenas suas memórias
+- `uso_api`: Usuário vê apenas seu uso de API
+- `pesquisas`, `respostas`, `analises`: Dados compartilhados (usuários autenticados)
+
+**Requer:** Administrador
+        """,
+    },
 ]
 
 # Criar aplicação FastAPI
@@ -410,4 +435,10 @@ app.include_router(
     pesquisas_parlamentares.router,
     prefix="/api/v1/pesquisas-parlamentares",
     tags=["Pesquisas Parlamentares"],
+)
+
+app.include_router(
+    rls.router,
+    prefix="/api/v1/admin",
+    tags=["RLS - Segurança"],
 )
