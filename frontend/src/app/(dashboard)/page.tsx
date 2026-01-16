@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
   Users,
@@ -23,8 +23,11 @@ import {
   UserCheck,
   Scale,
   Eye,
+  MousePointerClick,
+  ExternalLink,
 } from 'lucide-react';
 import Link from 'next/link';
+import { useFilterNavigation, FilterType } from '@/hooks/useFilterNavigation';
 import {
   PieChart,
   Pie,
@@ -161,7 +164,7 @@ function CardAcaoRapida({
   );
 }
 
-// Componente de Card de Gráfico
+// Componente de Card de Gráfico (com suporte a clique)
 function GraficoCard({
   titulo,
   subtitulo,
@@ -169,6 +172,8 @@ function GraficoCard({
   corIcone,
   children,
   className = '',
+  isClickable = false,
+  filterHint,
 }: {
   titulo: string;
   subtitulo?: string;
@@ -176,17 +181,27 @@ function GraficoCard({
   corIcone: string;
   children: React.ReactNode;
   className?: string;
+  isClickable?: boolean;
+  filterHint?: string;
 }) {
   return (
-    <div className={`glass-card rounded-xl p-6 ${className}`}>
-      <div className="flex items-center gap-3 mb-4">
-        <div className={`w-10 h-10 rounded-lg ${corIcone} flex items-center justify-center`}>
-          <Icone className="w-5 h-5 text-white" />
+    <div className={`glass-card rounded-xl p-6 ${className} ${isClickable ? 'group' : ''}`}>
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div className={`w-10 h-10 rounded-lg ${corIcone} flex items-center justify-center`}>
+            <Icone className="w-5 h-5 text-white" />
+          </div>
+          <div>
+            <h3 className="font-medium text-foreground">{titulo}</h3>
+            {subtitulo && <p className="text-xs text-muted-foreground">{subtitulo}</p>}
+          </div>
         </div>
-        <div>
-          <h3 className="font-medium text-foreground">{titulo}</h3>
-          {subtitulo && <p className="text-xs text-muted-foreground">{subtitulo}</p>}
-        </div>
+        {isClickable && (
+          <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+            <MousePointerClick className="w-3 h-3" />
+            <span>{filterHint || 'Clique para filtrar'}</span>
+          </div>
+        )}
       </div>
       {children}
     </div>
@@ -300,6 +315,33 @@ const LABELS: Record<string, Record<string, string>> = {
 
 export default function PaginaInicial() {
   const eleitores = eleitoresData as Eleitor[];
+  const { navigateWithFilter } = useFilterNavigation();
+
+  // Handler genérico para clique em gráficos
+  const handleChartClick = useCallback(
+    (filterType: FilterType, value: string) => {
+      navigateWithFilter(filterType, value);
+    },
+    [navigateWithFilter]
+  );
+
+  // Wrapper para eventos de clique do Recharts
+  const createChartClickHandler = useCallback(
+    (filterType: FilterType, valueMapper?: (payload: any) => string) => {
+      return (data: any) => {
+        if (data?.activePayload?.[0]?.payload) {
+          const payload = data.activePayload[0].payload;
+          const value = valueMapper
+            ? valueMapper(payload)
+            : payload.valorOriginal || payload.nome || payload.name;
+          if (value) {
+            navigateWithFilter(filterType, value);
+          }
+        }
+      };
+    },
+    [navigateWithFilter]
+  );
 
   // Calcular todas as estatísticas
   const stats = {
@@ -332,18 +374,21 @@ export default function PaginaInicial() {
     nome: nome === 'masculino' ? 'Masculino' : 'Feminino',
     valor,
     percentual: ((valor / stats.total) * 100).toFixed(1),
+    valorOriginal: nome,
   }));
 
   const dadosCluster = Object.entries(stats.cluster).map(([nome, valor]) => ({
     nome: LABELS.cluster[nome] || nome,
     valor,
     percentual: ((valor / stats.total) * 100).toFixed(1),
+    valorOriginal: nome,
   }));
 
   const dadosOrientacao = Object.entries(stats.orientacao).map(([nome, valor]) => ({
     nome: LABELS.orientacao[nome] || nome,
     valor,
     percentual: ((valor / stats.total) * 100).toFixed(1),
+    valorOriginal: nome,
   }));
 
   const dadosReligiao = Object.entries(stats.religiao)
@@ -352,6 +397,7 @@ export default function PaginaInicial() {
       nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/_/g, ' '),
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
   const dadosRegiao = Object.entries(stats.regiao)
@@ -361,6 +407,7 @@ export default function PaginaInicial() {
       nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
   const dadosCorRaca = Object.entries(stats.corRaca)
@@ -369,6 +416,7 @@ export default function PaginaInicial() {
       nome: nome.charAt(0).toUpperCase() + nome.slice(1),
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
   const dadosEscolaridade = Object.entries(stats.escolaridade)
@@ -376,6 +424,7 @@ export default function PaginaInicial() {
       nome: LABELS.escolaridade[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
   const dadosOcupacao = Object.entries(stats.ocupacao)
@@ -384,6 +433,7 @@ export default function PaginaInicial() {
       nome: LABELS.ocupacao[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
   const dadosRenda = Object.entries(stats.renda)
@@ -391,6 +441,7 @@ export default function PaginaInicial() {
       nome: LABELS.renda[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
   const dadosEstadoCivil = Object.entries(stats.estadoCivil)
@@ -399,6 +450,7 @@ export default function PaginaInicial() {
       nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/[()]/g, ''),
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
   const dadosInteresse = Object.entries(stats.interesse)
@@ -407,6 +459,7 @@ export default function PaginaInicial() {
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
       fill: nome === 'baixo' ? CORES.interesse[0] : nome === 'medio' ? CORES.interesse[1] : CORES.interesse[2],
+      valorOriginal: nome,
     }));
 
   const dadosDecisao = Object.entries(stats.estiloDecisao)
@@ -415,6 +468,7 @@ export default function PaginaInicial() {
       nome: LABELS.decisao[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
   const dadosTolerancia = Object.entries(stats.tolerancia)
@@ -423,6 +477,7 @@ export default function PaginaInicial() {
       nome: LABELS.tolerancia[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
   const dadosBolsonaro = Object.entries(stats.bolsonaro)
@@ -430,6 +485,7 @@ export default function PaginaInicial() {
       nome: LABELS.bolsonaro[nome] || nome,
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
   const dadosTransporte = Object.entries(stats.transporte)
@@ -439,6 +495,7 @@ export default function PaginaInicial() {
       nome: nome.replace(/_/g, ' ').charAt(0).toUpperCase() + nome.replace(/_/g, ' ').slice(1),
       valor,
       percentual: ((valor / stats.total) * 100).toFixed(1),
+      valorOriginal: nome,
     }));
 
   const dadosFontes = Object.entries(stats.fontes)
@@ -595,9 +652,9 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Gênero - Donut */}
-          <GraficoCard titulo="Distribuição por Gênero" icone={Users} corIcone="bg-pink-500/20">
+          <GraficoCard titulo="Distribuição por Gênero" icone={Users} corIcone="bg-pink-500/20" isClickable filterHint="Filtrar por gênero">
             <ResponsiveContainer width="100%" height={220}>
-              <PieChart>
+              <PieChart onClick={createChartClickHandler('generos')}>
                 <Pie
                   data={dadosGenero}
                   cx="50%"
@@ -608,6 +665,7 @@ export default function PaginaInicial() {
                   dataKey="valor"
                   nameKey="nome"
                   label={({ nome, percentual }) => `${nome}: ${percentual}%`}
+                  style={{ cursor: 'pointer' }}
                 >
                   <Cell fill="#3b82f6" />
                   <Cell fill="#ec4899" />
@@ -621,9 +679,9 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Cor/Raça - Barras Horizontais */}
-          <GraficoCard titulo="Distribuição por Cor/Raça" icone={Users} corIcone="bg-amber-500/20">
+          <GraficoCard titulo="Distribuição por Cor/Raça" icone={Users} corIcone="bg-amber-500/20" isClickable filterHint="Filtrar por cor/raça">
             <ResponsiveContainer width="100%" height={220}>
-              <BarChart data={dadosCorRaca} layout="vertical">
+              <BarChart data={dadosCorRaca} layout="vertical" onClick={createChartClickHandler('cores_racas')} style={{ cursor: 'pointer' }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis type="number" stroke="#9ca3af" />
                 <YAxis dataKey="nome" type="category" width={60} stroke="#9ca3af" tick={{ fontSize: 11 }} />
@@ -632,7 +690,7 @@ export default function PaginaInicial() {
                   itemStyle={{ color: '#fff' }}
                   formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
                 />
-                <Bar dataKey="valor" fill="#f59e0b" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="valor" fill="#f59e0b" radius={[0, 4, 4, 0]} style={{ cursor: 'pointer' }} />
               </BarChart>
             </ResponsiveContainer>
           </GraficoCard>
@@ -670,9 +728,11 @@ export default function PaginaInicial() {
           subtitulo="Concentração de eleitores por região do DF"
           icone={MapPin}
           corIcone="bg-cyan-500/20"
+          isClickable
+          filterHint="Filtrar por região"
         >
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={dadosRegiao}>
+            <BarChart data={dadosRegiao} onClick={createChartClickHandler('regioes')} style={{ cursor: 'pointer' }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
               <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 10 }} angle={-45} height={80} />
               <YAxis stroke="#9ca3af" />
@@ -681,7 +741,7 @@ export default function PaginaInicial() {
                 itemStyle={{ color: '#fff' }}
                 formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
               />
-              <Bar dataKey="valor" fill="#06b6d4" radius={[4, 4, 0, 0]}>
+              <Bar dataKey="valor" fill="#06b6d4" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
                 {dadosRegiao.map((entry, index) => (
                   <Cell key={index} fill={index === 0 ? '#0891b2' : index < 3 ? '#22d3ee' : '#67e8f9'} />
                 ))}
@@ -701,9 +761,9 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Classe Social - Donut */}
-          <GraficoCard titulo="Classe Social (Cluster)" icone={TrendingUp} corIcone="bg-emerald-500/20">
+          <GraficoCard titulo="Classe Social (Cluster)" icone={TrendingUp} corIcone="bg-emerald-500/20" isClickable filterHint="Filtrar por classe">
             <ResponsiveContainer width="100%" height={250}>
-              <PieChart>
+              <PieChart onClick={createChartClickHandler('clusters')}>
                 <Pie
                   data={dadosCluster}
                   cx="50%"
@@ -714,6 +774,7 @@ export default function PaginaInicial() {
                   dataKey="valor"
                   nameKey="nome"
                   label={({ nome, percentual }) => `${percentual}%`}
+                  style={{ cursor: 'pointer' }}
                 >
                   {dadosCluster.map((_, index) => (
                     <Cell key={index} fill={CORES.cluster[index % CORES.cluster.length]} />
@@ -729,9 +790,9 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Faixa de Renda - Area Chart */}
-          <GraficoCard titulo="Distribuição por Faixa de Renda" icone={Wallet} corIcone="bg-yellow-500/20">
+          <GraficoCard titulo="Distribuição por Faixa de Renda" icone={Wallet} corIcone="bg-yellow-500/20" isClickable filterHint="Filtrar por renda">
             <ResponsiveContainer width="100%" height={250}>
-              <AreaChart data={dadosRenda}>
+              <AreaChart data={dadosRenda} onClick={createChartClickHandler('faixas_renda')} style={{ cursor: 'pointer' }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 10 }} />
                 <YAxis stroke="#9ca3af" />
@@ -740,15 +801,15 @@ export default function PaginaInicial() {
                   itemStyle={{ color: '#fff' }}
                   formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
                 />
-                <Area type="monotone" dataKey="valor" stroke="#eab308" fill="#eab308" fillOpacity={0.3} />
+                <Area type="monotone" dataKey="valor" stroke="#eab308" fill="#eab308" fillOpacity={0.3} style={{ cursor: 'pointer' }} />
               </AreaChart>
             </ResponsiveContainer>
           </GraficoCard>
 
           {/* Ocupação/Vínculo - Treemap */}
-          <GraficoCard titulo="Ocupação / Vínculo Empregatício" subtitulo="Distribuição por tipo de vínculo" icone={Briefcase} corIcone="bg-violet-500/20">
+          <GraficoCard titulo="Ocupação / Vínculo Empregatício" subtitulo="Distribuição por tipo de vínculo" icone={Briefcase} corIcone="bg-violet-500/20" isClickable filterHint="Filtrar por ocupação">
             <ResponsiveContainer width="100%" height={280}>
-              <BarChart data={dadosOcupacao} layout="vertical">
+              <BarChart data={dadosOcupacao} layout="vertical" onClick={createChartClickHandler('ocupacoes_vinculos')} style={{ cursor: 'pointer' }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis type="number" stroke="#9ca3af" />
                 <YAxis dataKey="nome" type="category" width={100} stroke="#9ca3af" tick={{ fontSize: 10 }} />
@@ -757,7 +818,7 @@ export default function PaginaInicial() {
                   itemStyle={{ color: '#fff' }}
                   formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
                 />
-                <Bar dataKey="valor" radius={[0, 4, 4, 0]}>
+                <Bar dataKey="valor" radius={[0, 4, 4, 0]} style={{ cursor: 'pointer' }}>
                   {dadosOcupacao.map((_, index) => (
                     <Cell key={index} fill={CORES.primarias[index % CORES.primarias.length]} />
                   ))}
@@ -767,9 +828,9 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Escolaridade - Barras */}
-          <GraficoCard titulo="Nível de Escolaridade" icone={GraduationCap} corIcone="bg-blue-500/20">
+          <GraficoCard titulo="Nível de Escolaridade" icone={GraduationCap} corIcone="bg-blue-500/20" isClickable filterHint="Filtrar por escolaridade">
             <ResponsiveContainer width="100%" height={280}>
-              <BarChart data={dadosEscolaridade}>
+              <BarChart data={dadosEscolaridade} onClick={createChartClickHandler('escolaridades')} style={{ cursor: 'pointer' }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 9 }} angle={-15} />
                 <YAxis stroke="#9ca3af" />
@@ -778,7 +839,7 @@ export default function PaginaInicial() {
                   itemStyle={{ color: '#fff' }}
                   formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
                 />
-                <Bar dataKey="valor" radius={[4, 4, 0, 0]}>
+                <Bar dataKey="valor" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
                   {dadosEscolaridade.map((_, index) => (
                     <Cell key={index} fill={CORES.escolaridade[index % CORES.escolaridade.length]} />
                   ))}
@@ -799,9 +860,9 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Estado Civil */}
-          <GraficoCard titulo="Estado Civil" icone={Heart} corIcone="bg-rose-500/20">
+          <GraficoCard titulo="Estado Civil" icone={Heart} corIcone="bg-rose-500/20" isClickable filterHint="Filtrar por estado civil">
             <ResponsiveContainer width="100%" height={220}>
-              <PieChart>
+              <PieChart onClick={createChartClickHandler('estados_civis')}>
                 <Pie
                   data={dadosEstadoCivil}
                   cx="50%"
@@ -810,6 +871,7 @@ export default function PaginaInicial() {
                   dataKey="valor"
                   nameKey="nome"
                   label={({ nome, percentual }) => `${percentual}%`}
+                  style={{ cursor: 'pointer' }}
                 >
                   {dadosEstadoCivil.map((_, index) => (
                     <Cell key={index} fill={CORES.primarias[index % CORES.primarias.length]} />
@@ -851,9 +913,9 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Religião */}
-          <GraficoCard titulo="Religião" icone={Church} corIcone="bg-purple-500/20">
+          <GraficoCard titulo="Religião" icone={Church} corIcone="bg-purple-500/20" isClickable filterHint="Filtrar por religião">
             <ResponsiveContainer width="100%" height={220}>
-              <BarChart data={dadosReligiao}>
+              <BarChart data={dadosReligiao} onClick={createChartClickHandler('religioes')} style={{ cursor: 'pointer' }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 9 }} />
                 <YAxis stroke="#9ca3af" />
@@ -862,7 +924,7 @@ export default function PaginaInicial() {
                   itemStyle={{ color: '#fff' }}
                   formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
                 />
-                <Bar dataKey="valor" radius={[4, 4, 0, 0]}>
+                <Bar dataKey="valor" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
                   {dadosReligiao.map((_, index) => (
                     <Cell key={index} fill={CORES.religiao[index % CORES.religiao.length]} />
                   ))}
@@ -883,9 +945,9 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Espectro Político */}
-          <GraficoCard titulo="Espectro Político" subtitulo="Orientação ideológica dos eleitores" icone={Scale} corIcone="bg-red-500/20">
+          <GraficoCard titulo="Espectro Político" subtitulo="Orientação ideológica dos eleitores" icone={Scale} corIcone="bg-red-500/20" isClickable filterHint="Filtrar por orientação">
             <ResponsiveContainer width="100%" height={250}>
-              <BarChart data={dadosOrientacao} layout="vertical">
+              <BarChart data={dadosOrientacao} layout="vertical" onClick={createChartClickHandler('orientacoes_politicas')} style={{ cursor: 'pointer' }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis type="number" stroke="#9ca3af" />
                 <YAxis dataKey="nome" type="category" width={90} stroke="#9ca3af" />
@@ -894,7 +956,7 @@ export default function PaginaInicial() {
                   itemStyle={{ color: '#fff' }}
                   formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
                 />
-                <Bar dataKey="valor" radius={[0, 4, 4, 0]}>
+                <Bar dataKey="valor" radius={[0, 4, 4, 0]} style={{ cursor: 'pointer' }}>
                   {dadosOrientacao.map((_, index) => (
                     <Cell key={index} fill={CORES.orientacao[index % CORES.orientacao.length]} />
                   ))}
@@ -904,9 +966,9 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Posição Bolsonaro */}
-          <GraficoCard titulo="Posição sobre Bolsonaro" icone={UserCheck} corIcone="bg-yellow-500/20">
+          <GraficoCard titulo="Posição sobre Bolsonaro" icone={UserCheck} corIcone="bg-yellow-500/20" isClickable filterHint="Filtrar por posição">
             <ResponsiveContainer width="100%" height={250}>
-              <BarChart data={dadosBolsonaro}>
+              <BarChart data={dadosBolsonaro} onClick={createChartClickHandler('posicoes_bolsonaro')} style={{ cursor: 'pointer' }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 9 }} />
                 <YAxis stroke="#9ca3af" />
@@ -915,7 +977,7 @@ export default function PaginaInicial() {
                   itemStyle={{ color: '#fff' }}
                   formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
                 />
-                <Bar dataKey="valor" radius={[4, 4, 0, 0]}>
+                <Bar dataKey="valor" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
                   {dadosBolsonaro.map((entry, index) => (
                     <Cell key={index} fill={
                       entry.nome.includes('Apoiador Forte') ? '#22c55e' :
@@ -930,7 +992,7 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Interesse Político - Radial */}
-          <GraficoCard titulo="Interesse Político" icone={Activity} corIcone="bg-indigo-500/20">
+          <GraficoCard titulo="Interesse Político" icone={Activity} corIcone="bg-indigo-500/20" isClickable filterHint="Filtrar por interesse">
             <ResponsiveContainer width="100%" height={250}>
               <RadialBarChart
                 cx="50%"
@@ -940,6 +1002,8 @@ export default function PaginaInicial() {
                 data={dadosInteresse}
                 startAngle={180}
                 endAngle={0}
+                onClick={createChartClickHandler('interesses_politicos')}
+                style={{ cursor: 'pointer' }}
               >
                 <RadialBar
                   label={{ position: 'insideStart', fill: '#fff', fontSize: 11 }}
@@ -956,9 +1020,9 @@ export default function PaginaInicial() {
           </GraficoCard>
 
           {/* Tolerância à Nuance */}
-          <GraficoCard titulo="Tolerância à Nuance Política" icone={Brain} corIcone="bg-sky-500/20">
+          <GraficoCard titulo="Tolerância à Nuance Política" icone={Brain} corIcone="bg-sky-500/20" isClickable filterHint="Filtrar por tolerância">
             <ResponsiveContainer width="100%" height={250}>
-              <PieChart>
+              <PieChart onClick={createChartClickHandler('tolerancias_nuance')}>
                 <Pie
                   data={dadosTolerancia}
                   cx="50%"
@@ -969,6 +1033,7 @@ export default function PaginaInicial() {
                   dataKey="valor"
                   nameKey="nome"
                   label={({ nome, percentual }) => `${nome}: ${percentual}%`}
+                  style={{ cursor: 'pointer' }}
                 >
                   <Cell fill="#ef4444" />
                   <Cell fill="#eab308" />
@@ -994,9 +1059,9 @@ export default function PaginaInicial() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Estilo de Decisão */}
-          <GraficoCard titulo="Estilo de Decisão Eleitoral" subtitulo="Como os eleitores tomam decisões de voto" icone={Brain} corIcone="bg-fuchsia-500/20">
+          <GraficoCard titulo="Estilo de Decisão Eleitoral" subtitulo="Como os eleitores tomam decisões de voto" icone={Brain} corIcone="bg-fuchsia-500/20" isClickable filterHint="Filtrar por estilo">
             <ResponsiveContainer width="100%" height={250}>
-              <PieChart>
+              <PieChart onClick={createChartClickHandler('estilos_decisao')}>
                 <Pie
                   data={dadosDecisao}
                   cx="50%"
@@ -1005,6 +1070,7 @@ export default function PaginaInicial() {
                   dataKey="valor"
                   nameKey="nome"
                   label={({ nome, percentual }) => `${nome}: ${percentual}%`}
+                  style={{ cursor: 'pointer' }}
                 >
                   {dadosDecisao.map((_, index) => (
                     <Cell key={index} fill={CORES.decisao[index % CORES.decisao.length]} />
@@ -1128,9 +1194,9 @@ export default function PaginaInicial() {
           <Car className="w-5 h-5 text-slate-500" />
           Mobilidade Urbana
         </h2>
-        <GraficoCard titulo="Meio de Transporte Principal" subtitulo="Como os eleitores se locomovem" icone={Car} corIcone="bg-slate-500/20">
+        <GraficoCard titulo="Meio de Transporte Principal" subtitulo="Como os eleitores se locomovem" icone={Car} corIcone="bg-slate-500/20" isClickable filterHint="Filtrar por transporte">
           <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={dadosTransporte}>
+            <BarChart data={dadosTransporte} onClick={createChartClickHandler('meios_transporte')} style={{ cursor: 'pointer' }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
               <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 10 }} />
               <YAxis stroke="#9ca3af" />
@@ -1139,7 +1205,7 @@ export default function PaginaInicial() {
                 itemStyle={{ color: '#fff' }}
                 formatter={(value: number, name: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
               />
-              <Bar dataKey="valor" fill="#64748b" radius={[4, 4, 0, 0]}>
+              <Bar dataKey="valor" fill="#64748b" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
                 {dadosTransporte.map((_, index) => (
                   <Cell key={index} fill={CORES.primarias[index % CORES.primarias.length]} />
                 ))}
