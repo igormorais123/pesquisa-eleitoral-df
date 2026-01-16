@@ -387,17 +387,19 @@ def upgrade() -> None:
     op.execute("""
         CREATE OR REPLACE VIEW rls_status AS
         SELECT
-            schemaname,
-            tablename,
-            rowsecurity as rls_enabled,
-            forcerowsecurity as rls_forced
-        FROM pg_tables
-        WHERE schemaname = 'public'
-        AND tablename IN (
+            n.nspname as schemaname,
+            c.relname as tablename,
+            c.relrowsecurity as rls_enabled,
+            c.relforcerowsecurity as rls_forced
+        FROM pg_class c
+        JOIN pg_namespace n ON n.oid = c.relnamespace
+        WHERE n.nspname = 'public'
+        AND c.relkind = 'r'
+        AND c.relname IN (
             'usuarios', 'memorias', 'uso_api',
             'pesquisas', 'perguntas_pesquisa', 'respostas', 'analises'
         )
-        ORDER BY tablename;
+        ORDER BY c.relname;
     """)
 
     # View para listar políticas

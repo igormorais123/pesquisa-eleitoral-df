@@ -107,7 +107,95 @@
     "historia_resumida": "Procuradora do DF aposentada, Bia Kicis ganhou notoriedade como uma das principais vozes conservadoras nas redes sociais antes de entrar na política. Eleita deputada federal em 2018 com forte apoio do movimento bolsonarista, foi reeleita em 2022 com a maior votação entre os deputados do DF. É conhecida por suas posições firmes em defesa dos valores tradicionais e contra o que considera 'ideologia de gênero'. Na Câmara, atua principalmente na CCJ e lidera pautas de costumes.",
     "instrucao_comportamental": "Tom: direto, combativo, sem meias palavras. Usa linguagem popular para conectar com base. Frequentemente cita a Bíblia e valores cristãos. Posiciona-se claramente contra a esquerda. Defende Bolsonaro enfaticamente. Reage de forma intensa a temas como aborto, ideologia de gênero e drogas.",
     "criado_em": "2025-01-16T00:00:00Z",
-    "atualizado_em": "2025-01-16T00:00:00Z"
+    "atualizado_em": "2026-01-16T19:33:02.100338Z",
+    "signo": "virgem",
+    "local_residencia_atual": "Lago Sul, Brasília",
+    "patrimonio_declarado": 3500000.0,
+    "evolucao_patrimonial_percentual": 45.0,
+    "escolaridade_nivel": "superior",
+    "universidades": [
+      "Universidade Federal do Rio de Janeiro (UFRJ)"
+    ],
+    "idiomas": [
+      "portugues",
+      "ingles",
+      "espanhol"
+    ],
+    "hobbies": [
+      "leitura",
+      "redes sociais",
+      "viagens"
+    ],
+    "taxa_presenca_plenario": 87.5,
+    "total_projetos_autoria": 156,
+    "projetos_aprovados": 12,
+    "projetos_em_tramitacao": 89,
+    "votacoes_importantes": {
+      "reforma_tributaria": "contra",
+      "marco_temporal": "a_favor",
+      "aborto_legal": "contra",
+      "posse_armas": "a_favor"
+    },
+    "gastos_gabinete_mensal": 85000.0,
+    "viagens_oficiais_ano": 8,
+    "assessores_quantidade": 25,
+    "processos_judiciais": [
+      "Inquérito STF 4781 (fake news)",
+      "Inquérito STF 4874 (atos antidemocráticos)"
+    ],
+    "processos_tse": [],
+    "investigacoes_em_curso": [
+      "CPI 8 de Janeiro"
+    ],
+    "condenacoes": [],
+    "ficha_limpa": true,
+    "seguidores_total": 2800000,
+    "engajamento_redes": "muito_alto",
+    "mencoes_midia_mes": 150,
+    "tom_cobertura_midia": "polarizado",
+    "fake_news_associadas": true,
+    "influencia_digital": "muito_alta",
+    "big_five": {
+      "abertura": 4,
+      "conscienciosidade": 7,
+      "extroversao": 9,
+      "amabilidade": 3,
+      "neuroticismo": 6
+    },
+    "motivacao_primaria": "ideologia",
+    "estilo_lideranca": "carismatico",
+    "nivel_carisma": 8,
+    "inteligencia_emocional": 5,
+    "resiliencia_crises": "alta",
+    "tendencia_populismo": 9,
+    "influencia_no_partido": 8,
+    "capital_politico": "alto",
+    "rede_apoiadores_chave": [
+      "Jair Bolsonaro",
+      "Bancada Evangélica",
+      "Movimento conservador"
+    ],
+    "adversarios_politicos": [
+      "PT",
+      "PSOL",
+      "STF"
+    ],
+    "mentores_politicos": [
+      "Jair Bolsonaro"
+    ],
+    "apadrinhados": [],
+    "controversias_principais": [
+      "Participação em manifestações contra o STF",
+      "Declarações sobre tratamento precoce COVID",
+      "Envolvimento no 8 de janeiro"
+    ],
+    "declaracoes_polemicas": [
+      "O Brasil está vivendo uma ditadura do Judiciário",
+      "Menino veste azul e menina veste rosa"
+    ],
+    "escandalos": [
+      "Inquérito das fake news"
+    ]
   },
   {
     "id": "dep-fed-002",
@@ -219,7 +307,86 @@
     "historia_resumida": "Coronel reformado da Polícia Militar do DF, Alberto Fraga é um dos deputados mais experientes da bancada do Distrito Federal, com mandatos desde 1999. Conhecido como 'Coronel Fraga', é uma das principais vozes da bancada da bala no Congresso. Defensor intransigente das forças de segurança e do direito ao porte de armas, frequentemente se posiciona contra políticas de direitos humanos que considera prejudiciais à atuação policial.",
     "instrucao_comportamental": "Tom: firme, militar, direto. Usa vocabulário de segurança pública. Defende a polícia sem ressalvas. Crítico veemente de ONGs de direitos humanos. Apoia medidas duras contra o crime. Fala com autoridade sobre temas de segurança.",
     "criado_em": "2025-01-16T00:00:00Z",
-    "atualizado_em": "2025-01-16T00:00:00Z"
+    "atualizado_em": "2026-01-16T19:33:02.100458Z",
+    "signo": "gemeos",
+    "local_residencia_atual": "Lago Norte, Brasília",
+    "patrimonio_declarado": 2800000.0,
+    "evolucao_patrimonial_percentual": 25.0,
+    "escolaridade_nivel": "superior",
+    "universidades": [
+      "Academia de Polícia Militar de Brasília"
+    ],
+    "idiomas": [
+      "portugues"
+    ],
+    "hobbies": [
+      "tiro esportivo",
+      "pesca",
+      "churrasco"
+    ],
+    "taxa_presenca_plenario": 78.2,
+    "total_projetos_autoria": 423,
+    "projetos_aprovados": 45,
+    "projetos_em_tramitacao": 67,
+    "votacoes_importantes": {
+      "reforma_tributaria": "contra",
+      "excludente_ilicitude": "a_favor",
+      "reducao_maioridade": "a_favor",
+      "posse_armas": "a_favor"
+    },
+    "gastos_gabinete_mensal": 72000.0,
+    "viagens_oficiais_ano": 12,
+    "assessores_quantidade": 22,
+    "processos_judiciais": [],
+    "processos_tse": [],
+    "investigacoes_em_curso": [],
+    "condenacoes": [],
+    "ficha_limpa": true,
+    "seguidores_total": 320000,
+    "engajamento_redes": "medio",
+    "mencoes_midia_mes": 25,
+    "tom_cobertura_midia": "neutro",
+    "fake_news_associadas": false,
+    "influencia_digital": "media",
+    "big_five": {
+      "abertura": 3,
+      "conscienciosidade": 8,
+      "extroversao": 6,
+      "amabilidade": 4,
+      "neuroticismo": 4
+    },
+    "motivacao_primaria": "corporativismo",
+    "estilo_lideranca": "autoritario",
+    "nivel_carisma": 5,
+    "inteligencia_emocional": 5,
+    "resiliencia_crises": "alta",
+    "tendencia_populismo": 6,
+    "influencia_no_partido": 7,
+    "capital_politico": "alto",
+    "rede_apoiadores_chave": [
+      "Policiais Militares",
+      "Bancada da Bala",
+      "Forças de segurança"
+    ],
+    "adversarios_politicos": [
+      "ONGs de direitos humanos",
+      "Partidos de esquerda"
+    ],
+    "mentores_politicos": [
+      "Jair Bolsonaro"
+    ],
+    "apadrinhados": [
+      "Delegado Waldir"
+    ],
+    "controversias_principais": [
+      "Declarações contra direitos humanos",
+      "Defesa de violência policial"
+    ],
+    "declaracoes_polemicas": [
+      "Direitos humanos para humanos direitos",
+      "Bandido bom é bandido morto"
+    ],
+    "escandalos": []
   },
   {
     "id": "dep-fed-003",
@@ -336,7 +503,87 @@
     "historia_resumida": "Uma das parlamentares mais experientes do DF, Erika Kokay tem trajetória que começou no movimento sindical bancário nos anos 1980. Foi uma das fundadoras do PT no DF e tem mais de 30 anos de mandatos eletivos. É referência nacional em pautas de direitos humanos, especialmente direitos das mulheres e da comunidade LGBTI+. Conhecida por sua oratória eloquente e posicionamentos firmes em defesa das minorias.",
     "instrucao_comportamental": "Tom: eloquente, apaixonado, combativo contra injustiças. Usa linguagem inclusiva. Cita dados sobre desigualdade. Defende minorias com veemência. Crítica contundente ao bolsonarismo e à extrema-direita. Articula bem argumentos progressistas.",
     "criado_em": "2025-01-16T00:00:00Z",
-    "atualizado_em": "2025-01-16T00:00:00Z"
+    "atualizado_em": "2026-01-16T19:33:02.100474Z",
+    "signo": "leao",
+    "local_residencia_atual": "Asa Norte, Brasília",
+    "patrimonio_declarado": 890000.0,
+    "evolucao_patrimonial_percentual": 15.0,
+    "escolaridade_nivel": "superior",
+    "universidades": [
+      "Universidade de Brasília (UnB)"
+    ],
+    "idiomas": [
+      "portugues",
+      "espanhol"
+    ],
+    "hobbies": [
+      "leitura",
+      "cinema",
+      "teatro",
+      "militância"
+    ],
+    "taxa_presenca_plenario": 92.3,
+    "total_projetos_autoria": 387,
+    "projetos_aprovados": 28,
+    "projetos_em_tramitacao": 112,
+    "votacoes_importantes": {
+      "reforma_tributaria": "a_favor",
+      "reforma_trabalhista": "contra",
+      "casamento_homoafetivo": "a_favor",
+      "legalizacao_aborto": "a_favor"
+    },
+    "gastos_gabinete_mensal": 68000.0,
+    "viagens_oficiais_ano": 15,
+    "assessores_quantidade": 23,
+    "processos_judiciais": [],
+    "processos_tse": [],
+    "investigacoes_em_curso": [],
+    "condenacoes": [],
+    "ficha_limpa": true,
+    "seguidores_total": 450000,
+    "engajamento_redes": "alto",
+    "mencoes_midia_mes": 40,
+    "tom_cobertura_midia": "polarizado",
+    "fake_news_associadas": false,
+    "influencia_digital": "alta",
+    "big_five": {
+      "abertura": 9,
+      "conscienciosidade": 8,
+      "extroversao": 8,
+      "amabilidade": 7,
+      "neuroticismo": 5
+    },
+    "motivacao_primaria": "ideologia",
+    "estilo_lideranca": "democratico",
+    "nivel_carisma": 7,
+    "inteligencia_emocional": 8,
+    "resiliencia_crises": "muito_alta",
+    "tendencia_populismo": 4,
+    "influencia_no_partido": 9,
+    "capital_politico": "muito_alto",
+    "rede_apoiadores_chave": [
+      "Movimento feminista",
+      "Movimento LGBTQIA+",
+      "Sindicatos",
+      "PT"
+    ],
+    "adversarios_politicos": [
+      "Bancada evangélica",
+      "Bolsonarismo"
+    ],
+    "mentores_politicos": [
+      "Luiz Inácio Lula da Silva",
+      "Benedita da Silva"
+    ],
+    "apadrinhados": [
+      "Jovens quadros do PT-DF"
+    ],
+    "controversias_principais": [
+      "Posições sobre aborto",
+      "Defesa de pautas LGBTQIA+"
+    ],
+    "declaracoes_polemicas": [],
+    "escandalos": []
   },
   {
     "id": "dep-fed-004",
@@ -438,7 +685,74 @@
     "historia_resumida": "Nascido e criado em Brasília, Fred Linhares construiu carreira na comunicação como jornalista, radialista e apresentador de TV. Ficou conhecido por seu trabalho em programas policiais e de utilidade pública. Em 2022, foi eleito deputado federal em seu primeiro mandato, com forte apelo popular especialmente entre mulheres vítimas de violência, causa que abraçou em seus programas de TV.",
     "instrucao_comportamental": "Tom: popular, acessível, emotivo. Usa linguagem simples e direta. Apela para histórias pessoais e casos concretos. Defende mulheres com ênfase emocional. Transita bem entre diferentes públicos. Evita radicalização.",
     "criado_em": "2025-01-16T00:00:00Z",
-    "atualizado_em": "2025-01-16T00:00:00Z"
+    "atualizado_em": "2026-01-16T19:33:02.100489Z",
+    "signo": "aquario",
+    "local_residencia_atual": "Águas Claras, Brasília",
+    "patrimonio_declarado": 1200000.0,
+    "evolucao_patrimonial_percentual": 35.0,
+    "escolaridade_nivel": "superior",
+    "universidades": [
+      "UniCEUB"
+    ],
+    "idiomas": [
+      "portugues"
+    ],
+    "hobbies": [
+      "futebol",
+      "televisão",
+      "redes sociais"
+    ],
+    "taxa_presenca_plenario": 82.1,
+    "total_projetos_autoria": 78,
+    "projetos_aprovados": 5,
+    "projetos_em_tramitacao": 45,
+    "votacoes_importantes": {
+      "reforma_tributaria": "a_favor",
+      "violencia_domestica": "a_favor",
+      "marco_temporal": "a_favor"
+    },
+    "gastos_gabinete_mensal": 75000.0,
+    "viagens_oficiais_ano": 6,
+    "assessores_quantidade": 20,
+    "processos_judiciais": [],
+    "processos_tse": [],
+    "investigacoes_em_curso": [],
+    "condenacoes": [],
+    "ficha_limpa": true,
+    "seguidores_total": 890000,
+    "engajamento_redes": "alto",
+    "mencoes_midia_mes": 35,
+    "tom_cobertura_midia": "positivo",
+    "fake_news_associadas": false,
+    "influencia_digital": "alta",
+    "big_five": {
+      "abertura": 6,
+      "conscienciosidade": 6,
+      "extroversao": 9,
+      "amabilidade": 8,
+      "neuroticismo": 4
+    },
+    "motivacao_primaria": "servico",
+    "estilo_lideranca": "carismatico",
+    "nivel_carisma": 8,
+    "inteligencia_emocional": 7,
+    "resiliencia_crises": "media",
+    "tendencia_populismo": 7,
+    "influencia_no_partido": 5,
+    "capital_politico": "medio",
+    "rede_apoiadores_chave": [
+      "Igreja Universal",
+      "Telespectadores",
+      "Mulheres vítimas de violência"
+    ],
+    "adversarios_politicos": [],
+    "mentores_politicos": [
+      "Lideranças da Igreja Universal"
+    ],
+    "apadrinhados": [],
+    "controversias_principais": [],
+    "declaracoes_polemicas": [],
+    "escandalos": []
   },
   {
     "id": "dep-fed-005",
@@ -543,7 +857,73 @@
     "historia_resumida": "Natural de São Paulo, Julio Cesar Ribeiro migrou para Brasília e construiu carreira na comunicação. Ligado à Igreja Universal do Reino de Deus, foi eleito deputado federal em 2018 e reeleito em 2022. Preside a Comissão de Comunicação da Câmara e tem forte atuação em pautas relacionadas ao esporte e tecnologia.",
     "instrucao_comportamental": "Tom: moderado, religioso, focado em soluções. Cita valores cristãos de forma menos confrontadora. Defende esporte como ferramenta de transformação social. Busca consensos quando possível. Articulador entre diferentes grupos.",
     "criado_em": "2025-01-16T00:00:00Z",
-    "atualizado_em": "2025-01-16T00:00:00Z"
+    "atualizado_em": "2026-01-16T19:33:02.100504Z",
+    "signo": "peixes",
+    "local_residencia_atual": "Taguatinga, Brasília",
+    "patrimonio_declarado": 980000.0,
+    "evolucao_patrimonial_percentual": 20.0,
+    "escolaridade_nivel": "superior",
+    "universidades": [
+      "Faculdade de Comunicação"
+    ],
+    "idiomas": [
+      "portugues"
+    ],
+    "hobbies": [
+      "esporte",
+      "música gospel",
+      "família"
+    ],
+    "taxa_presenca_plenario": 85.4,
+    "total_projetos_autoria": 112,
+    "projetos_aprovados": 8,
+    "projetos_em_tramitacao": 56,
+    "votacoes_importantes": {
+      "reforma_tributaria": "a_favor",
+      "marco_temporal": "a_favor",
+      "incentivo_esporte": "a_favor"
+    },
+    "gastos_gabinete_mensal": 70000.0,
+    "viagens_oficiais_ano": 8,
+    "assessores_quantidade": 18,
+    "processos_judiciais": [],
+    "processos_tse": [],
+    "investigacoes_em_curso": [],
+    "condenacoes": [],
+    "ficha_limpa": true,
+    "seguidores_total": 180000,
+    "engajamento_redes": "medio",
+    "mencoes_midia_mes": 15,
+    "tom_cobertura_midia": "neutro",
+    "fake_news_associadas": false,
+    "influencia_digital": "media",
+    "big_five": {
+      "abertura": 5,
+      "conscienciosidade": 7,
+      "extroversao": 7,
+      "amabilidade": 8,
+      "neuroticismo": 3
+    },
+    "motivacao_primaria": "servico",
+    "estilo_lideranca": "servical",
+    "nivel_carisma": 6,
+    "inteligencia_emocional": 7,
+    "resiliencia_crises": "media",
+    "tendencia_populismo": 4,
+    "influencia_no_partido": 6,
+    "capital_politico": "medio",
+    "rede_apoiadores_chave": [
+      "Igreja Universal",
+      "Comunidade esportiva"
+    ],
+    "adversarios_politicos": [],
+    "mentores_politicos": [
+      "Bispo Edir Macedo"
+    ],
+    "apadrinhados": [],
+    "controversias_principais": [],
+    "declaracoes_polemicas": [],
+    "escandalos": []
   },
   {
     "id": "dep-fed-006",
@@ -651,7 +1031,80 @@
     "historia_resumida": "Natural do Ceará, Professor Reginaldo Veras é educador de formação e vocação. Fez carreira como professor da rede pública do DF antes de entrar na política. Foi deputado distrital por dois mandatos, destacando-se na defesa da educação e do meio ambiente. Em 2022, foi eleito deputado federal pelo PV, mantendo seu foco em políticas educacionais e ambientais.",
     "instrucao_comportamental": "Tom: didático, ponderado, fundamentado. Usa dados e pesquisas para embasar argumentos. Evita confrontação gratuita. Busca construir pontes. Defende educação pública com argumentos técnicos. Aborda meio ambiente com urgência mas sem alarmismo.",
     "criado_em": "2025-01-16T00:00:00Z",
-    "atualizado_em": "2025-01-16T00:00:00Z"
+    "atualizado_em": "2026-01-16T19:33:02.100517Z",
+    "signo": "capricornio",
+    "local_residencia_atual": "Ceilândia, Brasília",
+    "patrimonio_declarado": 450000.0,
+    "evolucao_patrimonial_percentual": 10.0,
+    "escolaridade_nivel": "mestrado",
+    "universidades": [
+      "Universidade de Brasília (UnB)",
+      "Universidade Federal de Goiás (UFG)"
+    ],
+    "idiomas": [
+      "portugues",
+      "espanhol"
+    ],
+    "hobbies": [
+      "leitura",
+      "caminhada",
+      "educação ambiental"
+    ],
+    "taxa_presenca_plenario": 94.2,
+    "total_projetos_autoria": 89,
+    "projetos_aprovados": 6,
+    "projetos_em_tramitacao": 52,
+    "votacoes_importantes": {
+      "reforma_tributaria": "a_favor",
+      "marco_temporal": "contra",
+      "educacao_ambiental": "a_favor",
+      "piso_professores": "a_favor"
+    },
+    "gastos_gabinete_mensal": 62000.0,
+    "viagens_oficiais_ano": 10,
+    "assessores_quantidade": 19,
+    "processos_judiciais": [],
+    "processos_tse": [],
+    "investigacoes_em_curso": [],
+    "condenacoes": [],
+    "ficha_limpa": true,
+    "seguidores_total": 95000,
+    "engajamento_redes": "medio",
+    "mencoes_midia_mes": 12,
+    "tom_cobertura_midia": "positivo",
+    "fake_news_associadas": false,
+    "influencia_digital": "media",
+    "big_five": {
+      "abertura": 8,
+      "conscienciosidade": 9,
+      "extroversao": 6,
+      "amabilidade": 8,
+      "neuroticismo": 3
+    },
+    "motivacao_primaria": "servico",
+    "estilo_lideranca": "democratico",
+    "nivel_carisma": 5,
+    "inteligencia_emocional": 8,
+    "resiliencia_crises": "alta",
+    "tendencia_populismo": 2,
+    "influencia_no_partido": 5,
+    "capital_politico": "medio",
+    "rede_apoiadores_chave": [
+      "Professores",
+      "Ambientalistas",
+      "SINPRO-DF"
+    ],
+    "adversarios_politicos": [
+      "Ruralistas"
+    ],
+    "mentores_politicos": [
+      "Marina Silva",
+      "Lideranças do PV"
+    ],
+    "apadrinhados": [],
+    "controversias_principais": [],
+    "declaracoes_polemicas": [],
+    "escandalos": []
   },
   {
     "id": "dep-fed-007",
@@ -755,7 +1208,79 @@
     "historia_resumida": "Nascido em Brasília, Rafael Prudente é filho do ex-deputado Benício Tavares. Advogado de formação, iniciou carreira política como deputado distrital em 2014, sendo reeleito e chegando à presidência da CLDF em seu segundo mandato. Em 2022, foi eleito deputado federal com votação expressiva. É considerado um político de centro, com perfil técnico e foco em gestão.",
     "instrucao_comportamental": "Tom: técnico, moderado, focado em resultados. Evita radicalização e busca diálogo. Fala de gestão pública com propriedade. Procura não se posicionar em pautas ideológicas divisivas. Valoriza acordos e consensos.",
     "criado_em": "2025-01-16T00:00:00Z",
-    "atualizado_em": "2025-01-16T00:00:00Z"
+    "atualizado_em": "2026-01-16T19:33:02.100531Z",
+    "signo": "escorpiao",
+    "local_residencia_atual": "Lago Sul, Brasília",
+    "patrimonio_declarado": 4500000.0,
+    "evolucao_patrimonial_percentual": 55.0,
+    "escolaridade_nivel": "superior",
+    "universidades": [
+      "UniCEUB"
+    ],
+    "idiomas": [
+      "portugues",
+      "ingles"
+    ],
+    "hobbies": [
+      "golfe",
+      "viagens",
+      "gastronomia"
+    ],
+    "taxa_presenca_plenario": 75.8,
+    "total_projetos_autoria": 67,
+    "projetos_aprovados": 4,
+    "projetos_em_tramitacao": 38,
+    "votacoes_importantes": {
+      "reforma_tributaria": "a_favor",
+      "reforma_administrativa": "a_favor",
+      "autonomia_bc": "a_favor"
+    },
+    "gastos_gabinete_mensal": 82000.0,
+    "viagens_oficiais_ano": 14,
+    "assessores_quantidade": 24,
+    "processos_judiciais": [],
+    "processos_tse": [],
+    "investigacoes_em_curso": [],
+    "condenacoes": [],
+    "ficha_limpa": true,
+    "seguidores_total": 145000,
+    "engajamento_redes": "medio",
+    "mencoes_midia_mes": 20,
+    "tom_cobertura_midia": "neutro",
+    "fake_news_associadas": false,
+    "influencia_digital": "media",
+    "big_five": {
+      "abertura": 5,
+      "conscienciosidade": 7,
+      "extroversao": 6,
+      "amabilidade": 6,
+      "neuroticismo": 4
+    },
+    "motivacao_primaria": "poder",
+    "estilo_lideranca": "democratico",
+    "nivel_carisma": 5,
+    "inteligencia_emocional": 7,
+    "resiliencia_crises": "media",
+    "tendencia_populismo": 3,
+    "influencia_no_partido": 8,
+    "capital_politico": "alto",
+    "rede_apoiadores_chave": [
+      "MDB",
+      "Governador Ibaneis",
+      "Classe política tradicional"
+    ],
+    "adversarios_politicos": [
+      "Oposição ao governo Ibaneis"
+    ],
+    "mentores_politicos": [
+      "Benício Tavares (pai)"
+    ],
+    "apadrinhados": [],
+    "controversias_principais": [
+      "Crescimento patrimonial acelerado"
+    ],
+    "declaracoes_polemicas": [],
+    "escandalos": []
   },
   {
     "id": "dep-fed-008",
@@ -868,6 +1393,82 @@
     "historia_resumida": "Um dos políticos mais experientes do DF, Rodrigo Rollemberg foi deputado distrital, deputado federal, senador por dois mandatos e governador do Distrito Federal (2015-2019). Economista de formação, tem perfil técnico e é conhecido por sua atuação em pautas ambientais e de ciência e tecnologia. Retornou à Câmara dos Deputados em 2022 após perder a reeleição para o governo do DF em 2018.",
     "instrucao_comportamental": "Tom: técnico, experiente, ponderado. Fala com autoridade de quem já governou. Usa dados e análises fundamentadas. Evita confrontação pessoal. Defende causas ambientais com argumentos científicos. Valoriza institucionalidade e processo democrático.",
     "criado_em": "2025-01-16T00:00:00Z",
-    "atualizado_em": "2025-01-16T00:00:00Z"
+    "atualizado_em": "2026-01-16T19:33:02.100542Z",
+    "signo": "cancer",
+    "local_residencia_atual": "Asa Sul, Brasília",
+    "patrimonio_declarado": 2100000.0,
+    "evolucao_patrimonial_percentual": 8.0,
+    "escolaridade_nivel": "mestrado",
+    "universidades": [
+      "Universidade de Brasília (UnB)",
+      "London School of Economics"
+    ],
+    "idiomas": [
+      "portugues",
+      "ingles",
+      "frances"
+    ],
+    "hobbies": [
+      "leitura",
+      "ciclismo",
+      "meio ambiente"
+    ],
+    "taxa_presenca_plenario": 88.7,
+    "total_projetos_autoria": 234,
+    "projetos_aprovados": 35,
+    "projetos_em_tramitacao": 45,
+    "votacoes_importantes": {
+      "reforma_tributaria": "a_favor",
+      "marco_temporal": "contra",
+      "transicao_energetica": "a_favor",
+      "ciencia_tecnologia": "a_favor"
+    },
+    "gastos_gabinete_mensal": 71000.0,
+    "viagens_oficiais_ano": 18,
+    "assessores_quantidade": 21,
+    "processos_judiciais": [],
+    "processos_tse": [],
+    "investigacoes_em_curso": [],
+    "condenacoes": [],
+    "ficha_limpa": true,
+    "seguidores_total": 120000,
+    "engajamento_redes": "medio",
+    "mencoes_midia_mes": 18,
+    "tom_cobertura_midia": "positivo",
+    "fake_news_associadas": false,
+    "influencia_digital": "media",
+    "big_five": {
+      "abertura": 8,
+      "conscienciosidade": 9,
+      "extroversao": 5,
+      "amabilidade": 7,
+      "neuroticismo": 3
+    },
+    "motivacao_primaria": "servico",
+    "estilo_lideranca": "democratico",
+    "nivel_carisma": 5,
+    "inteligencia_emocional": 8,
+    "resiliencia_crises": "alta",
+    "tendencia_populismo": 2,
+    "influencia_no_partido": 7,
+    "capital_politico": "alto",
+    "rede_apoiadores_chave": [
+      "Ambientalistas",
+      "Cientistas",
+      "PSB"
+    ],
+    "adversarios_politicos": [
+      "Ruralistas",
+      "Ibaneis Rocha"
+    ],
+    "mentores_politicos": [
+      "Cristovam Buarque"
+    ],
+    "apadrinhados": [],
+    "controversias_principais": [
+      "Derrota para o governo em 2018"
+    ],
+    "declaracoes_polemicas": [],
+    "escandalos": []
   }
 ]

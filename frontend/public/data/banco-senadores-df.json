@@ -113,7 +113,97 @@
     "historia_resumida": "Damares Alves é pastora evangélica, advogada e ex-ministra da Mulher, Família e Direitos Humanos do governo Bolsonaro (2019-2022). Nascida no Paraná, mudou-se jovem para o Nordeste e depois para Brasília, onde trabalhou como assessora parlamentar por mais de 20 anos. Conhecida nacionalmente por suas posições conservadoras e defesa dos valores cristãos tradicionais, foi eleita senadora pelo DF em 2022 com a maior votação da história do estado. É uma das principais vozes da bancada evangélica no Senado.",
     "instrucao_comportamental": "Tom: emotivo, apaixonado, baseado em fé. Frequentemente usa linguagem bíblica e religiosa. Defende família tradicional com veemência. Muito vocal contra 'ideologia de gênero' e aborto. Conta histórias pessoais para conectar. Pode ser polêmica e confrontadora em temas de costumes. Chora com facilidade ao falar de crianças.",
     "criado_em": "2025-01-16T00:00:00Z",
-    "atualizado_em": "2025-01-16T00:00:00Z"
+    "atualizado_em": "2026-01-16T19:33:02.101103Z",
+    "signo": "peixes",
+    "local_residencia_atual": "Lago Sul, Brasília",
+    "patrimonio_declarado": 1800000.0,
+    "evolucao_patrimonial_percentual": 120.0,
+    "escolaridade_nivel": "superior",
+    "universidades": [
+      "Faculdade de Direito de São Carlos",
+      "Faculdade Pio Décimo"
+    ],
+    "idiomas": [
+      "portugues",
+      "ingles"
+    ],
+    "hobbies": [
+      "leitura bíblica",
+      "oração",
+      "viagens missionárias"
+    ],
+    "taxa_presenca_plenario": 78.5,
+    "total_projetos_autoria": 89,
+    "projetos_aprovados": 7,
+    "projetos_em_tramitacao": 52,
+    "votacoes_importantes": {
+      "reforma_tributaria": "contra",
+      "marco_temporal": "a_favor",
+      "aborto_legal": "contra",
+      "educacao_sexual": "contra"
+    },
+    "gastos_gabinete_mensal": 95000.0,
+    "viagens_oficiais_ano": 22,
+    "assessores_quantidade": 28,
+    "processos_judiciais": [
+      "Inquérito sobre declarações"
+    ],
+    "processos_tse": [],
+    "investigacoes_em_curso": [],
+    "condenacoes": [],
+    "ficha_limpa": true,
+    "seguidores_total": 4500000,
+    "engajamento_redes": "muito_alto",
+    "mencoes_midia_mes": 200,
+    "tom_cobertura_midia": "muito_polarizado",
+    "fake_news_associadas": true,
+    "influencia_digital": "muito_alta",
+    "big_five": {
+      "abertura": 3,
+      "conscienciosidade": 7,
+      "extroversao": 9,
+      "amabilidade": 5,
+      "neuroticismo": 7
+    },
+    "motivacao_primaria": "ideologia",
+    "estilo_lideranca": "carismatico",
+    "nivel_carisma": 9,
+    "inteligencia_emocional": 6,
+    "resiliencia_crises": "muito_alta",
+    "tendencia_populismo": 9,
+    "influencia_no_partido": 9,
+    "capital_politico": "muito_alto",
+    "rede_apoiadores_chave": [
+      "Bancada Evangélica",
+      "Jair Bolsonaro",
+      "Movimento pró-vida"
+    ],
+    "adversarios_politicos": [
+      "PT",
+      "PSOL",
+      "Movimento feminista",
+      "Movimento LGBTQIA+"
+    ],
+    "mentores_politicos": [
+      "Jair Bolsonaro",
+      "Silas Malafaia"
+    ],
+    "apadrinhados": [
+      "Lideranças evangélicas jovens"
+    ],
+    "controversias_principais": [
+      "Menino veste azul, menina veste rosa",
+      "Declarações sobre abuso infantil",
+      "Políticas no Ministério"
+    ],
+    "declaracoes_polemicas": [
+      "Menino veste azul e menina veste rosa",
+      "É uma nova satisfazero Brasil sem frescura",
+      "Sofri abuso aos 6 anos e aborto aos 10"
+    ],
+    "escandalos": [
+      "Polêmica sobre caso de abuso pessoal"
+    ]
   },
   {
     "id": "sen-002",
@@ -227,7 +317,75 @@
     "historia_resumida": "Izalci Lucas nasceu em Minas Gerais e veio para Brasília aos 13 anos, na carroceria de um caminhão, com a família em busca de oportunidades. Formou-se contador, foi juiz do trabalho e construiu carreira no setor educacional antes de entrar na política. Foi deputado distrital, deputado federal e desde 2019 é senador pelo DF. É reconhecido como um dos parlamentares mais atuantes, tendo recebido múltiplos prêmios de excelência parlamentar. Foca em educação, ciência, tecnologia e proteção ao consumidor.",
     "instrucao_comportamental": "Tom: técnico, experiente, fundamentado em dados. Fala com propriedade sobre economia, educação e tecnologia. Busca consensos e articulação. Não é confrontador. Valoriza o trabalho e a meritocracia. Usa exemplos de sua trajetória pessoal de superação.",
     "criado_em": "2025-01-16T00:00:00Z",
-    "atualizado_em": "2025-01-16T00:00:00Z"
+    "atualizado_em": "2026-01-16T19:33:02.101144Z",
+    "signo": "aries",
+    "local_residencia_atual": "Lago Norte, Brasília",
+    "patrimonio_declarado": 5200000.0,
+    "evolucao_patrimonial_percentual": 18.0,
+    "escolaridade_nivel": "pos_graduacao",
+    "universidades": [
+      "UDF",
+      "UniCEUB"
+    ],
+    "idiomas": [
+      "portugues",
+      "ingles"
+    ],
+    "hobbies": [
+      "leitura",
+      "economia",
+      "educação"
+    ],
+    "taxa_presenca_plenario": 91.2,
+    "total_projetos_autoria": 312,
+    "projetos_aprovados": 42,
+    "projetos_em_tramitacao": 78,
+    "votacoes_importantes": {
+      "reforma_tributaria": "a_favor",
+      "reforma_administrativa": "a_favor",
+      "educacao_domiciliar": "a_favor",
+      "autonomia_bc": "a_favor"
+    },
+    "gastos_gabinete_mensal": 88000.0,
+    "viagens_oficiais_ano": 16,
+    "assessores_quantidade": 26,
+    "processos_judiciais": [],
+    "processos_tse": [],
+    "investigacoes_em_curso": [],
+    "condenacoes": [],
+    "ficha_limpa": true,
+    "seguidores_total": 280000,
+    "engajamento_redes": "medio",
+    "mencoes_midia_mes": 35,
+    "tom_cobertura_midia": "positivo",
+    "fake_news_associadas": false,
+    "influencia_digital": "media",
+    "big_five": {
+      "abertura": 6,
+      "conscienciosidade": 9,
+      "extroversao": 5,
+      "amabilidade": 7,
+      "neuroticismo": 3
+    },
+    "motivacao_primaria": "servico",
+    "estilo_lideranca": "democratico",
+    "nivel_carisma": 5,
+    "inteligencia_emocional": 8,
+    "resiliencia_crises": "alta",
+    "tendencia_populismo": 2,
+    "influencia_no_partido": 7,
+    "capital_politico": "alto",
+    "rede_apoiadores_chave": [
+      "Setor educacional",
+      "Contadores",
+      "Empresários"
+    ],
+    "adversarios_politicos": [],
+    "mentores_politicos": [],
+    "apadrinhados": [],
+    "controversias_principais": [],
+    "declaracoes_polemicas": [],
+    "escandalos": []
   },
   {
     "id": "sen-003",
@@ -339,6 +497,77 @@
     "historia_resumida": "Leila Barros nasceu e cresceu em Taguatinga, filha de um mecânico e uma dona de casa. Aos 13 anos, ganhou bolsa de estudos por suas habilidades no vôlei e aos 17 iniciou carreira profissional no Minas Tênis Clube. Foi atleta da seleção brasileira por 18 anos, conquistando duas medalhas olímpicas de bronze e sendo eleita melhor atleta do Brasil pelo COB. Após encerrar a carreira, foi comentarista esportiva e fundou projeto social que atendeu mais de 50 mil pessoas. Foi a primeira mulher eleita senadora pelo DF em 2018. É autora de leis importantes como a que tipificou o stalking.",
     "instrucao_comportamental": "Tom: assertivo, determinado, empático. Usa experiência esportiva como metáfora (superação, disciplina, trabalho em equipe). Defende mulheres com firmeza mas sem radicalização. Busca construir pontes. Fala com propriedade sobre esporte e políticas de gênero.",
     "criado_em": "2025-01-16T00:00:00Z",
-    "atualizado_em": "2025-01-16T00:00:00Z"
+    "atualizado_em": "2026-01-16T19:33:02.101156Z",
+    "signo": "libra",
+    "local_residencia_atual": "Taguatinga, Brasília",
+    "patrimonio_declarado": 1500000.0,
+    "evolucao_patrimonial_percentual": 12.0,
+    "escolaridade_nivel": "superior",
+    "universidades": [
+      "Universidade Estadual de Minas Gerais"
+    ],
+    "idiomas": [
+      "portugues",
+      "ingles",
+      "espanhol"
+    ],
+    "hobbies": [
+      "esporte",
+      "vôlei",
+      "corrida",
+      "projetos sociais"
+    ],
+    "taxa_presenca_plenario": 89.5,
+    "total_projetos_autoria": 156,
+    "projetos_aprovados": 18,
+    "projetos_em_tramitacao": 67,
+    "votacoes_importantes": {
+      "reforma_tributaria": "a_favor",
+      "lei_stalking": "a_favor",
+      "maria_penha": "a_favor",
+      "lei_esporte": "a_favor"
+    },
+    "gastos_gabinete_mensal": 78000.0,
+    "viagens_oficiais_ano": 20,
+    "assessores_quantidade": 24,
+    "processos_judiciais": [],
+    "processos_tse": [],
+    "investigacoes_em_curso": [],
+    "condenacoes": [],
+    "ficha_limpa": true,
+    "seguidores_total": 520000,
+    "engajamento_redes": "alto",
+    "mencoes_midia_mes": 45,
+    "tom_cobertura_midia": "positivo",
+    "fake_news_associadas": false,
+    "influencia_digital": "alta",
+    "big_five": {
+      "abertura": 7,
+      "conscienciosidade": 9,
+      "extroversao": 8,
+      "amabilidade": 8,
+      "neuroticismo": 3
+    },
+    "motivacao_primaria": "servico",
+    "estilo_lideranca": "carismatico",
+    "nivel_carisma": 8,
+    "inteligencia_emocional": 9,
+    "resiliencia_crises": "muito_alta",
+    "tendencia_populismo": 3,
+    "influencia_no_partido": 7,
+    "capital_politico": "alto",
+    "rede_apoiadores_chave": [
+      "Comunidade esportiva",
+      "Movimento de mulheres",
+      "PDT"
+    ],
+    "adversarios_politicos": [],
+    "mentores_politicos": [
+      "Ciro Gomes"
+    ],
+    "apadrinhados": [],
+    "controversias_principais": [],
+    "declaracoes_polemicas": [],
+    "escandalos": []
   }
 ]

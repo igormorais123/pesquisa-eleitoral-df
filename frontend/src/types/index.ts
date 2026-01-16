@@ -387,6 +387,42 @@ export interface RedesSociais {
   tiktok?: string;
 }
 
+// Big Five Personality Model
+export interface BigFivePersonality {
+  abertura: number;        // 1-10: Abertura a experiências
+  conscienciosidade: number; // 1-10: Conscienciosidade/Organização
+  extroversao: number;     // 1-10: Extroversão
+  amabilidade: number;     // 1-10: Amabilidade/Agradabilidade
+  neuroticismo: number;    // 1-10: Neuroticismo/Instabilidade emocional
+}
+
+export type MotivacaoPrimaria = 'ideologia' | 'poder' | 'servico' | 'fama' | 'dinheiro' | 'corporativismo';
+
+export type EstiloLideranca = 'autoritario' | 'democratico' | 'laissez_faire' | 'carismatico' | 'servical' | 'pragmatico';
+
+export type NivelEngajamento = 'muito_baixo' | 'baixo' | 'medio' | 'alto' | 'muito_alto';
+
+export type NivelInfluencia = 'muito_baixa' | 'baixa' | 'media' | 'alta' | 'muito_alta';
+
+export type TomMidia = 'muito_positivo' | 'positivo' | 'neutro' | 'negativo' | 'muito_negativo' | 'polarizado' | 'muito_polarizado';
+
+export type NivelResiliencia = 'baixa' | 'media' | 'alta' | 'muito_alta';
+
+export interface VotacoesImportantes {
+  reforma_tributaria?: 'a_favor' | 'contra' | 'abstencao';
+  marco_temporal?: 'a_favor' | 'contra' | 'abstencao';
+  aborto_legal?: 'a_favor' | 'contra' | 'abstencao';
+  posse_armas?: 'a_favor' | 'contra' | 'abstencao';
+  reforma_trabalhista?: 'a_favor' | 'contra' | 'abstencao';
+  reforma_administrativa?: 'a_favor' | 'contra' | 'abstencao';
+  casamento_homoafetivo?: 'a_favor' | 'contra' | 'abstencao';
+  legalizacao_aborto?: 'a_favor' | 'contra' | 'abstencao';
+  excludente_ilicitude?: 'a_favor' | 'contra' | 'abstencao';
+  reducao_maioridade?: 'a_favor' | 'contra' | 'abstencao';
+  autonomia_bc?: 'a_favor' | 'contra' | 'abstencao';
+  [key: string]: 'a_favor' | 'contra' | 'abstencao' | undefined;
+}
+
 export interface Parlamentar {
   id: string;
   nome: string;
@@ -441,6 +477,77 @@ export interface Parlamentar {
   instrucao_comportamental: string;
   criado_em: string;
   atualizado_em: string;
+
+  // ============================================
+  // NOVOS CAMPOS - DADOS BIOGRÁFICOS EXPANDIDOS
+  // ============================================
+  signo?: string;
+  local_residencia_atual?: string;
+  patrimonio_declarado?: number;
+  evolucao_patrimonial_percentual?: number;
+  escolaridade_nivel?: 'medio' | 'superior' | 'pos_graduacao' | 'mestrado' | 'doutorado';
+  universidades?: string[];
+  idiomas?: string[];
+  hobbies?: string[];
+
+  // ============================================
+  // ATUAÇÃO PARLAMENTAR
+  // ============================================
+  taxa_presenca_plenario?: number;
+  total_projetos_autoria?: number;
+  projetos_aprovados?: number;
+  projetos_em_tramitacao?: number;
+  votacoes_importantes?: VotacoesImportantes;
+  gastos_gabinete_mensal?: number;
+  viagens_oficiais_ano?: number;
+  assessores_quantidade?: number;
+
+  // ============================================
+  // PROCESSOS E INTEGRIDADE
+  // ============================================
+  processos_judiciais?: string[];
+  processos_tse?: string[];
+  investigacoes_em_curso?: string[];
+  condenacoes?: string[];
+  ficha_limpa?: boolean;
+
+  // ============================================
+  // PERFIL DIGITAL E MÍDIA
+  // ============================================
+  seguidores_total?: number;
+  engajamento_redes?: NivelEngajamento;
+  mencoes_midia_mes?: number;
+  tom_cobertura_midia?: TomMidia;
+  fake_news_associadas?: boolean;
+  influencia_digital?: NivelInfluencia;
+
+  // ============================================
+  // PERFIL PSICOLÓGICO (INFERIDO)
+  // ============================================
+  big_five?: BigFivePersonality;
+  motivacao_primaria?: MotivacaoPrimaria;
+  estilo_lideranca?: EstiloLideranca;
+  nivel_carisma?: number; // 1-10
+  inteligencia_emocional?: number; // 1-10
+  resiliencia_crises?: NivelResiliencia;
+  tendencia_populismo?: number; // 1-10
+
+  // ============================================
+  // RELAÇÕES E INFLUÊNCIA
+  // ============================================
+  influencia_no_partido?: number; // 1-10
+  capital_politico?: 'baixo' | 'medio' | 'alto' | 'muito_alto';
+  rede_apoiadores_chave?: string[];
+  adversarios_politicos?: string[];
+  mentores_politicos?: string[];
+  apadrinhados?: string[];
+
+  // ============================================
+  // CONTROVÉRSIAS
+  // ============================================
+  controversias_principais?: string[];
+  declaracoes_polemicas?: string[];
+  escandalos?: string[];
 }
 
 export interface ParlamentarResumo {

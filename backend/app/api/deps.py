@@ -94,6 +94,12 @@ async def obter_usuario_opcional(
 # ========================================
 
 
+def _escape_string(value: str) -> str:
+    """Escapa string para uso seguro em SQL (remove caracteres perigosos)."""
+    # Remove caracteres que podem causar SQL injection
+    return value.replace("'", "''").replace("\\", "").replace(";", "").replace("--", "")
+
+
 async def _set_rls_context(
     session: AsyncSession,
     user_id: str = "",
@@ -101,18 +107,15 @@ async def _set_rls_context(
     bypass: bool = False,
 ) -> None:
     """Configura variáveis de sessão PostgreSQL para RLS."""
-    await session.execute(
-        text("SET LOCAL app.current_user_id = :user_id"),
-        {"user_id": user_id},
-    )
-    await session.execute(
-        text("SET LOCAL app.current_user_role = :user_role"),
-        {"user_role": user_role},
-    )
-    await session.execute(
-        text("SET LOCAL app.bypass_rls = :bypass"),
-        {"bypass": "true" if bypass else "false"},
-    )
+    # Escapar valores para evitar SQL injection
+    safe_user_id = _escape_string(user_id)
+    safe_user_role = _escape_string(user_role)
+    bypass_str = "true" if bypass else "false"
+
+    # SET LOCAL não suporta parâmetros em asyncpg, usar strings escapadas
+    await session.execute(text(f"SET LOCAL app.current_user_id = '{safe_user_id}'"))
+    await session.execute(text(f"SET LOCAL app.current_user_role = '{safe_user_role}'"))
+    await session.execute(text(f"SET LOCAL app.bypass_rls = '{bypass_str}'"))
 
 
 async def get_db_rls(
@@ -136,7 +139,7 @@ async def get_db_rls(
             # Configurar contexto RLS
             await _set_rls_context(
                 session,
-                user_id=str(usuario.sub),
+                user_id=str(usuario.usuario_id),
                 user_role=usuario.papel,
                 bypass=False,
             )
@@ -172,7 +175,7 @@ async def get_db_rls_optional(
             if usuario:
                 await _set_rls_context(
                     session,
-                    user_id=str(usuario.sub),
+                    user_id=str(usuario.usuario_id),
                     user_role=usuario.papel,
                     bypass=False,
                 )
@@ -210,7 +213,7 @@ async def get_db_admin(
         try:
             await _set_rls_context(
                 session,
-                user_id=str(usuario.sub),
+                user_id=str(usuario.usuario_id),
                 user_role="admin",
                 bypass=False,
             )
