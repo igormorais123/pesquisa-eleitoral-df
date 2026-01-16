@@ -1,7 +1,6 @@
 # Script de sincronizacao automatica com GitHub (PowerShell)
 # Pesquisa Eleitoral DF 2026
 
-$ErrorActionPreference = "Stop"
 $ProjectPath = "C:\Agentes"
 $LogFile = "$ProjectPath\logs\git-sync.log"
 
@@ -18,37 +17,36 @@ function Write-Log {
     Add-Content -Path $LogFile -Value $logMessage
 }
 
-try {
-    Set-Location $ProjectPath
+Set-Location $ProjectPath
 
-    Write-Log "Iniciando sincronizacao..."
+Write-Log "Iniciando sincronizacao..."
 
-    # Puxa as ultimas mudancas
-    Write-Log "Puxando atualizacoes do remoto..."
-    git pull origin main --rebase 2>&1 | ForEach-Object { Write-Log $_ }
+# Puxa as ultimas mudancas
+Write-Log "Puxando atualizacoes do remoto..."
+$pullResult = git pull origin main --rebase 2>&1
+Write-Log "$pullResult"
 
-    # Adiciona todas as mudancas
-    git add -A
+# Adiciona todas as mudancas
+git add -A 2>&1 | Out-Null
 
-    # Verifica se ha mudancas para commitar
-    $changes = git diff --staged --name-only
+# Verifica se ha mudancas para commitar
+$changes = git diff --staged --name-only 2>&1
 
-    if ($changes) {
-        $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
-        $commitMsg = "sync: atualizacao automatica [$timestamp]"
+if ($changes) {
+    $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+    $commitMsg = "sync: atualizacao automatica [$timestamp]"
 
-        Write-Log "Commitando mudancas..."
-        git commit -m $commitMsg 2>&1 | ForEach-Object { Write-Log $_ }
+    Write-Log "Commitando mudancas..."
+    $commitResult = git commit -m $commitMsg 2>&1
+    Write-Log "$commitResult"
 
-        Write-Log "Enviando para GitHub..."
-        git push origin main 2>&1 | ForEach-Object { Write-Log $_ }
+    Write-Log "Enviando para GitHub..."
+    $pushResult = git push origin main 2>&1
+    Write-Log "$pushResult"
 
-        Write-Log "Sincronizacao concluida com sucesso!"
-    } else {
-        Write-Log "Nenhuma mudanca para sincronizar"
-    }
-
-} catch {
-    Write-Log "ERRO: $_"
-    exit 1
+    Write-Log "Sincronizacao concluida com sucesso!"
+} else {
+    Write-Log "Nenhuma mudanca para sincronizar"
 }
+
+Write-Log "---"
