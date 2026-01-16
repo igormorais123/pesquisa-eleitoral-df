@@ -15,6 +15,8 @@ import {
   Sparkles,
   ChevronLeft,
   ChevronRight,
+  TrendingUp,
+  History,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -42,6 +44,18 @@ const menuItems = [
     href: '/resultados',
     icone: BarChart3,
     descricao: 'Análises e visualizações',
+  },
+  {
+    titulo: 'Analytics',
+    href: '/analytics',
+    icone: TrendingUp,
+    descricao: 'Análises globais e correlações',
+  },
+  {
+    titulo: 'Histórico',
+    href: '/historico',
+    icone: History,
+    descricao: 'Pesquisas anteriores',
   },
   {
     titulo: 'Configurações',

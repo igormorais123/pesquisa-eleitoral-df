@@ -11,14 +11,18 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.rotas import (
+    analytics,
     autenticacao,
     eleitores,
     entrevistas,
     geracao,
     memorias,
+    pesquisas,
     resultados,
 )
 from app.core.config import configuracoes
+from app.db.session import engine
+from app.db.base import Base
 
 
 @asynccontextmanager
@@ -29,10 +33,22 @@ async def lifespan(app: FastAPI):
     print(f"📊 Ambiente: {configuracoes.AMBIENTE}")
     print(f"🔗 Frontend URL: {configuracoes.FRONTEND_URL}")
 
+    # Criar tabelas do banco de dados (se não existirem)
+    try:
+        async with engine.begin() as conn:
+            # Importar modelos para registrar nas metadata
+            from app.db.modelos import pesquisa  # noqa
+            await conn.run_sync(Base.metadata.create_all)
+            print("✅ Banco de dados inicializado")
+    except Exception as e:
+        print(f"⚠️ Aviso: Não foi possível conectar ao banco de dados: {e}")
+        print("   O sistema funcionará sem persistência no PostgreSQL")
+
     yield
 
     # Shutdown
     print("👋 Encerrando aplicação...")
+    await engine.dispose()
 
 
 # Criar aplicação FastAPI
@@ -133,4 +149,16 @@ app.include_router(
     geracao.router,
     prefix="/api/v1/geracao",
     tags=["Geração"],
+)
+
+app.include_router(
+    pesquisas.router,
+    prefix="/api/v1/pesquisas",
+    tags=["Pesquisas Persistidas"],
+)
+
+app.include_router(
+    analytics.router,
+    prefix="/api/v1/analytics",
+    tags=["Analytics e Histórico"],
 )
