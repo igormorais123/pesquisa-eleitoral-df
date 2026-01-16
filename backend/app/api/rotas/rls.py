@@ -36,16 +36,18 @@ async def obter_status_rls(
     result = await db.execute(
         text("""
             SELECT
-                tablename,
-                rowsecurity as rls_enabled,
-                forcerowsecurity as rls_forced
-            FROM pg_tables
-            WHERE schemaname = 'public'
-            AND tablename IN (
+                c.relname as tablename,
+                c.relrowsecurity as rls_enabled,
+                c.relforcerowsecurity as rls_forced
+            FROM pg_class c
+            JOIN pg_namespace n ON n.oid = c.relnamespace
+            WHERE n.nspname = 'public'
+            AND c.relkind = 'r'
+            AND c.relname IN (
                 'usuarios', 'memorias', 'uso_api',
                 'pesquisas', 'perguntas_pesquisa', 'respostas', 'analises'
             )
-            ORDER BY tablename
+            ORDER BY c.relname
         """)
     )
     rows = result.fetchall()
@@ -161,12 +163,12 @@ async def verificar_contexto_rls(
             "bypass_rls": row.bypass_rls == "true",
         },
         "usuario_autenticado": {
-            "id": usuario.sub,
+            "id": usuario.usuario_id,
             "papel": usuario.papel,
             "email": usuario.email,
         },
         "verificacao": {
-            "contexto_correto": str(usuario.sub) == row.user_id,
+            "contexto_correto": str(usuario.usuario_id) == row.user_id,
             "papel_correto": usuario.papel == row.user_role,
         },
     }
@@ -217,7 +219,7 @@ async def testar_isolamento_rls(
 
     return {
         "usuario_teste": {
-            "id": usuario.sub,
+            "id": usuario.usuario_id,
             "papel": usuario.papel,
         },
         "resultados": resultados,
