@@ -1,12 +1,12 @@
 # Pesquisa Eleitoral DF 2026
 
-Sistema de simulação de pesquisas eleitorais usando **400+ agentes de IA** que representam perfis sintéticos de eleitores do Distrito Federal.
+Sistema de simulação de pesquisas eleitorais usando **1000+ agentes de IA** que representam perfis sintéticos de eleitores do Distrito Federal.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Funcionalidades
 
-- **400+ Eleitores Sintéticos**: Perfis realistas com 60+ atributos cada
+- **1000+ Eleitores Sintéticos**: Perfis realistas com 60+ atributos cada
 - **Sistema Cognitivo**: Agentes respondem usando processo de 4 etapas
 - **20+ Filtros**: Segmente por região, idade, renda, orientação política
 - **Múltiplos Tipos de Pergunta**: Escala, múltipla escolha, aberta, sim/não

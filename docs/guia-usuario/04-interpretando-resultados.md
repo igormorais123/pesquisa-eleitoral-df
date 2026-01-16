@@ -386,7 +386,7 @@ Antes de tirar conclusões:
 
 ### 2. Ignorar Margem de Erro
 
-Com 400 eleitores, margem é ~5%.
+Com 1000 eleitores, margem é ~3%.
 
 ```
 ❌ "Candidato A tem 47% e B tem 45%, A vence"

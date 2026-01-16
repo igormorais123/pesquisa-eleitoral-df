@@ -257,7 +257,7 @@ P4 (Aberta): "Conte uma experiência pessoal com esse problema."
 
 ### 5. Teste com Amostra Pequena
 
-Antes de rodar com 400 eleitores:
+Antes de rodar com 1000 eleitores:
 
 1. Rode com 10-20 eleitores
 2. Analise as respostas
@@ -270,7 +270,7 @@ Antes de rodar com 400 eleitores:
 
 ### Amostra Representativa (Todos)
 
-Selecione todos os 400 eleitores para resultados que representam o eleitorado geral do DF.
+Selecione todos os 1000 eleitores para resultados que representam o eleitorado geral do DF.
 
 **Use quando:**
 - Quer projetar intenção de voto
@@ -321,7 +321,8 @@ A execução para automaticamente ao atingir o limite.
 **Recomendações:**
 - Piloto (10 eleitores): R$ 5
 - Amostra pequena (50): R$ 20
-- Amostra completa (400): R$ 100
+- Amostra média (500): R$ 125
+- Amostra completa (1000): R$ 250
 
 ---
 
@@ -367,8 +368,9 @@ Custo = Perguntas × Eleitores × Custo_por_interação
 |---------|-----------|-----------|------------|
 | Piloto | 5 | 20 | R$ 2-5 |
 | Padrão | 10 | 100 | R$ 20-50 |
-| Completo | 10 | 400 | R$ 80-200 |
-| Grande | 20 | 400 | R$ 160-400 |
+| Médio | 10 | 500 | R$ 100-250 |
+| Completo | 10 | 1000 | R$ 200-500 |
+| Grande | 20 | 1000 | R$ 400-1000 |
 
 ---
 

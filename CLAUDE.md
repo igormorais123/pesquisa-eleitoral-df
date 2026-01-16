@@ -13,7 +13,7 @@ Este arquivo fornece orientações ao Claude Code quando trabalhando neste repos
 
 ## Project Overview
 
-**Pesquisa Eleitoral DF 2026** - A full-stack electoral polling system using synthetic AI agents. The platform simulates electoral surveys using 400+ AI voter profiles that respond as realistic Brazilian voters from Distrito Federal.
+**Pesquisa Eleitoral DF 2026** - A full-stack electoral polling system using synthetic AI agents. The platform simulates electoral surveys using 1000+ AI voter profiles that respond as realistic Brazilian voters from Distrito Federal.
 
 ## Autonomous Development Mode - CONFIANÇA TOTAL
 

@@ -6,7 +6,7 @@ import { useEleitoresStore } from '@/stores/eleitores-store';
 import { notify } from '@/stores/notifications-store';
 import { db, carregarEleitoresIniciais, filtrarEleitores } from '@/lib/db/dexie';
 import type { Eleitor } from '@/types';
-import eleitoresIniciais from '@/data/eleitores-df-400.json';
+import eleitoresIniciais from '@/data/eleitores-df-1000.json';
 
 export function useEleitores() {
   const queryClient = useQueryClient();

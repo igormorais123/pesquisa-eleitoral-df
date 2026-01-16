@@ -1,6 +1,6 @@
 # Entendendo os Eleitores
 
-Conheça os 400 agentes sintéticos que respondem às pesquisas.
+Conheça os 1000 agentes sintéticos que respondem às pesquisas.
 
 ---
 
@@ -10,7 +10,7 @@ Os **agentes sintéticos** são perfis de eleitores gerados por inteligência ar
 
 ### Características
 
-- **400 perfis únicos**: Nenhum é igual ao outro
+- **1000 perfis únicos**: Nenhum é igual ao outro
 - **60+ atributos cada**: Desde idade até vieses cognitivos
 - **Baseados em dados reais**: Distribuições demográficas do IBGE/TSE
 - **Comportamento autêntico**: Respondem como eleitores reais, com vieses e emoções

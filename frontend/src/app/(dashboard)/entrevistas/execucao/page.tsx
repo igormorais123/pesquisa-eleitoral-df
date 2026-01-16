@@ -23,7 +23,7 @@ import { useEntrevistasStore } from '@/stores/entrevistas-store';
 import { db, salvarSessao, carregarEleitoresIniciais } from '@/lib/db/dexie';
 import { cn, formatarMoeda, formatarNumero } from '@/lib/utils';
 import type { Eleitor, RespostaEleitor } from '@/types';
-import eleitoresIniciais from '@/data/eleitores-df-400.json';
+import eleitoresIniciais from '@/data/eleitores-df-1000.json';
 
 export default function PaginaExecucaoEntrevista() {
   const searchParams = useSearchParams();

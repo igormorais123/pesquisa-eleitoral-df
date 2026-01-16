@@ -5,7 +5,7 @@ import { BarChart3, Table, FileDown } from 'lucide-react';
 import { ValidacaoEstatistica } from '@/components/validacao/ValidacaoEstatistica';
 import { GraficosComparativos } from '@/components/validacao/GraficosComparativos';
 import { ExportarRelatorio } from '@/components/validacao/ExportarRelatorio';
-import eleitoresData from '@/data/eleitores-df-400.json';
+import eleitoresData from '@/data/eleitores-df-1000.json';
 import type { Eleitor } from '@/types';
 
 type Visualizacao = 'tabela' | 'graficos';

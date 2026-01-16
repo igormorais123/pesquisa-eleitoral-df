@@ -8,7 +8,7 @@ Respostas para as dúvidas mais comuns sobre o sistema.
 
 ### O que é este sistema?
 
-O **Pesquisa Eleitoral DF 2026** é uma plataforma que simula pesquisas de opinião usando **400 eleitores virtuais** (agentes de IA). Cada agente tem um perfil realista baseado em dados demográficos do Distrito Federal.
+O **Pesquisa Eleitoral DF 2026** é uma plataforma que simula pesquisas de opinião usando **1000 eleitores virtuais** (agentes de IA). Cada agente tem um perfil realista baseado em dados demográficos do Distrito Federal.
 
 ### Para quem é destinado?
 
@@ -28,7 +28,7 @@ O sistema em si é gratuito. Os custos vêm da **API Claude da Anthropic**:
 
 | Operação | Custo Estimado |
 |----------|----------------|
-| 1 pergunta × 400 eleitores | R$ 5-15 |
+| 1 pergunta × 1000 eleitores | R$ 12-35 |
 | Pesquisa completa (5 perguntas) | R$ 25-75 |
 | Geração de insights | R$ 2-10 |
 
@@ -40,7 +40,7 @@ Você precisa ter uma chave de API da Anthropic.
 
 ### Quantos eleitores existem no sistema?
 
-O sistema vem com **400 eleitores** pré-configurados, representando a diversidade do Distrito Federal em termos de:
+O sistema vem com **1000 eleitores** pré-configurados, representando a diversidade do Distrito Federal em termos de:
 - Regiões administrativas (33 RAs)
 - Classes sociais (G1 a G4)
 - Orientações políticas (esquerda a direita)
@@ -114,8 +114,9 @@ Depende do número de eleitores e perguntas:
 | Eleitores × Perguntas | Tempo Estimado |
 |----------------------|----------------|
 | 100 × 3 | ~5 minutos |
-| 400 × 3 | ~20 minutos |
-| 400 × 5 | ~35 minutos |
+| 500 × 3 | ~25 minutos |
+| 1000 × 3 | ~50 minutos |
+| 1000 × 5 | ~90 minutos |
 
 ### Posso pausar uma pesquisa em andamento?
 

@@ -11,7 +11,7 @@ Sistema de simulação de pesquisa eleitoral com agentes sintéticos de IA para 
 | Documento | Descrição |
 |-----------|-----------|
 | [Guia de Primeiros Passos](guia-usuario/01-primeiros-passos.md) | Como começar a usar o sistema |
-| [Entendendo os Eleitores](guia-usuario/02-entendendo-eleitores.md) | Os 400 agentes sintéticos |
+| [Entendendo os Eleitores](guia-usuario/02-entendendo-eleitores.md) | Os 1000 agentes sintéticos |
 | [Criando Entrevistas](guia-usuario/03-criando-entrevistas.md) | Passo a passo para criar pesquisas |
 | [Interpretando Resultados](guia-usuario/04-interpretando-resultados.md) | Como ler gráficos e insights |
 | [Glossário](glossario.md) | Termos técnicos explicados |
@@ -117,7 +117,7 @@ docs/
 
 ## Sobre o Projeto
 
-O **Pesquisa Eleitoral DF 2026** simula pesquisas eleitorais usando 400+ agentes de IA que representam eleitores realistas do Distrito Federal. Cada agente tem um perfil completo com 60+ atributos incluindo:
+O **Pesquisa Eleitoral DF 2026** simula pesquisas eleitorais usando 1000+ agentes de IA que representam eleitores realistas do Distrito Federal. Cada agente tem um perfil completo com 60+ atributos incluindo:
 
 - Dados demográficos e socioeconômicos
 - Orientação política e posicionamento

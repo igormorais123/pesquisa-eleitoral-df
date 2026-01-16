@@ -6,7 +6,7 @@ Aprenda a usar o Sistema de Pesquisa Eleitoral DF 2026 em 10 minutos.
 
 ## O Que é Este Sistema?
 
-O **Pesquisa Eleitoral DF 2026** é uma plataforma que simula pesquisas de opinião usando **400 eleitores virtuais** (agentes de IA). Cada eleitor tem um perfil completo baseado em dados reais do Distrito Federal.
+O **Pesquisa Eleitoral DF 2026** é uma plataforma que simula pesquisas de opinião usando **1000 eleitores virtuais** (agentes de IA). Cada eleitor tem um perfil completo baseado em dados reais do Distrito Federal.
 
 ### Para Quem é?
 
@@ -17,7 +17,7 @@ O **Pesquisa Eleitoral DF 2026** é uma plataforma que simula pesquisas de opini
 
 ### O Que Você Pode Fazer?
 
-1. **Explorar Eleitores**: Visualizar e filtrar os 400 perfis
+1. **Explorar Eleitores**: Visualizar e filtrar os 1000 perfis
 2. **Criar Entrevistas**: Formular perguntas de pesquisa
 3. **Executar Pesquisas**: Os agentes de IA respondem como eleitores reais
 4. **Analisar Resultados**: Gráficos, correlações e insights automáticos
@@ -57,7 +57,7 @@ No menu lateral, clique em **"Eleitores"**.
 
 ### 2.2 Visualize os Perfis
 
-Você verá cards com os 400 eleitores. Cada card mostra:
+Você verá cards com os 1000 eleitores. Cada card mostra:
 
 - Nome e foto
 - Idade, região e profissão
@@ -137,7 +137,7 @@ Tipo: Aberta
 
 Use os filtros para selecionar quem responderá:
 
-- **Amostra representativa**: Selecione todos (400)
+- **Amostra representativa**: Selecione todos (1000)
 - **Segmento específico**: Filtre por região, renda, etc.
 
 ### 3.5 Salve a Entrevista
@@ -158,8 +158,8 @@ O sistema mostrará uma estimativa de custo em reais:
 
 ```
 Estimativa:
-- 3 perguntas × 400 eleitores = 1.200 interações
-- Custo estimado: R$ 15,00 - R$ 25,00
+- 3 perguntas × 1000 eleitores = 3.000 interações
+- Custo estimado: R$ 35,00 - R$ 75,00
 ```
 
 ### 4.3 Inicie a Execução
@@ -250,7 +250,7 @@ Clique em **"Exportar"** para baixar:
 
 1. **Correlações não são causas**: Se X correlaciona com Y, não significa que X causa Y.
 
-2. **Margem de erro**: Com 400 eleitores, considere margem de ~5%.
+2. **Margem de erro**: Com 1000 eleitores, considere margem de ~3%.
 
 3. **Contexto importa**: Leia as respostas abertas para entender o "porquê".
 
@@ -260,7 +260,7 @@ Clique em **"Exportar"** para baixar:
 
 Agora que você completou o básico, explore:
 
-1. [Entendendo os Eleitores](02-entendendo-eleitores.md) - Detalhes sobre os 400 perfis
+1. [Entendendo os Eleitores](02-entendendo-eleitores.md) - Detalhes sobre os 1000 perfis
 2. [Criando Entrevistas Avançadas](03-criando-entrevistas.md) - Tipos de pergunta e estratégias
 3. [Interpretando Resultados](04-interpretando-resultados.md) - Como ler gráficos e insights
 4. [Glossário](../glossario.md) - Termos técnicos explicados

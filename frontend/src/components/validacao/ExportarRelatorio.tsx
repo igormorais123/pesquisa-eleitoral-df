@@ -132,7 +132,7 @@ Esta validação compara a distribuição das variáveis na amostra de ${validac
 
 1. Algumas variáveis utilizam dados nacionais por falta de dados específicos do DF
 2. Variáveis psicológicas baseiam-se em literatura acadêmica internacional
-3. A amostra de 400 eleitores tem margem de erro estatística inerente
+3. A amostra de 1000 eleitores tem margem de erro estatística inerente
 
 ---
 

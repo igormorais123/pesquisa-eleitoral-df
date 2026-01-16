@@ -86,7 +86,7 @@ export default function LoginPage() {
                 <Users className="w-5 h-5 text-blue-400" />
               </div>
               <div>
-                <h3 className="font-medium text-foreground">400+ Eleitores Sintéticos</h3>
+                <h3 className="font-medium text-foreground">1000+ Eleitores Sintéticos</h3>
                 <p className="text-sm text-muted-foreground">Perfis realistas e diversificados</p>
               </div>
             </div>

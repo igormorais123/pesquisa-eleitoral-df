@@ -56,7 +56,7 @@ import {
 } from 'recharts';
 import { api } from '@/services/api';
 import { formatarNumero, formatarPercentual } from '@/lib/utils';
-import eleitoresData from '@/data/eleitores-df-400.json';
+import eleitoresData from '@/data/eleitores-df-1000.json';
 import type { Eleitor } from '@/types';
 
 // Cores para gráficos

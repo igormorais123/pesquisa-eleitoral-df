@@ -72,7 +72,7 @@ Endpoints para autenticação e gerenciamento de sessão.
     {
         "name": "Eleitores",
         "description": """
-Gerenciamento dos 400+ agentes sintéticos (eleitores virtuais).
+Gerenciamento dos 1000+ agentes sintéticos (eleitores virtuais).
 
 **Funcionalidades:**
 - Listar com 20+ filtros simultâneos
@@ -197,14 +197,14 @@ app = FastAPI(
     description="""
 ## Sistema de Simulação de Pesquisa Eleitoral
 
-Plataforma que simula pesquisas de opinião usando **400+ agentes de IA** que representam
+Plataforma que simula pesquisas de opinião usando **1000+ agentes de IA** que representam
 eleitores realistas do Distrito Federal para as eleições de 2026.
 
 ### Principais Funcionalidades
 
 | Módulo | Descrição |
 |--------|-----------|
-| **Eleitores** | 400+ perfis com 60+ atributos cada |
+| **Eleitores** | 1000+ perfis com 60+ atributos cada |
 | **Entrevistas** | Criar e executar pesquisas |
 | **Resultados** | Estatísticas, correlações, insights |
 | **Geração** | Criar novos eleitores com IA |
