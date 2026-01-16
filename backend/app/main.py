@@ -21,6 +21,7 @@ from app.api.rotas import (
     resultados,
     usuarios,
 )
+from app.parlamentares.routes import router as parlamentares_router
 from app.core.config import configuracoes
 from app.db.base import Base
 from app.db.session import engine
@@ -188,6 +189,33 @@ Acesso aos dados coletados de usuários que logaram via Google.
 **Uso:** Para criar eleitores digitais sintéticos baseados em dados reais.
         """,
     },
+    {
+        "name": "Parlamentares",
+        "description": """
+Gerenciamento de parlamentares do Distrito Federal.
+
+**Casas legislativas:**
+- Câmara Federal (deputados federais)
+- Senado (senadores)
+- CLDF (deputados distritais)
+
+**Arquitetura de dados (camadas de verdade):**
+- **Fatos**: Dados verificáveis de fontes oficiais
+- **Derivados**: Métricas calculadas automaticamente
+- **Hipóteses**: Inferências com nível de confiança
+
+**Funcionalidades:**
+- Listar e filtrar parlamentares
+- Obter perfil completo com todas as camadas
+- Adaptar para motor de entrevista
+- Estatísticas e contagem por casa
+
+**Fontes de dados:**
+- API Dados Abertos da Câmara
+- API Dados Abertos do Senado
+- Portal da CLDF
+        """,
+    },
 ]
 
 # Criar aplicação FastAPI
@@ -342,4 +370,10 @@ app.include_router(
     dados_usuarios.router,
     prefix="/api/v1/dados-usuarios",
     tags=["Dados Usuários Google"],
+)
+
+app.include_router(
+    parlamentares_router,
+    prefix="/api/v1/parlamentares",
+    tags=["Parlamentares"],
 )

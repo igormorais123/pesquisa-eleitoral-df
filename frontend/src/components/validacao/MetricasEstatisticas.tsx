@@ -471,13 +471,13 @@ export function MetricasEstatisticas({ eleitores }: MetricasEstatisticasProps) {
 }
 
 // Função auxiliar para calcular faixa etária
+// Faixas: 16-24, 25-34, 35-44, 45-54, 55-64, 65+
 function calcularFaixaEtaria(idade: number): string {
-  if (idade <= 17) return '16-17';
-  if (idade <= 24) return '18-24';
+  if (idade <= 24) return '16-24';
   if (idade <= 34) return '25-34';
   if (idade <= 44) return '35-44';
-  if (idade <= 59) return '45-59';
-  if (idade <= 64) return '60-64';
+  if (idade <= 54) return '45-54';
+  if (idade <= 64) return '55-64';
   return '65+';
 }
 

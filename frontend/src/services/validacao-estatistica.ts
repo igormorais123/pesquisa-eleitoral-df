@@ -119,20 +119,20 @@ function calcularDistribuicaoFaixaEtaria(
 
 /**
  * Calcula a faixa etária baseado na idade (fallback)
+ * Faixas: 16-24, 25-34, 35-44, 45-54, 55-64, 65+
  */
 function calcularFaixaEtaria(idade: number): string {
-  if (idade <= 17) return '16-17';
-  if (idade <= 24) return '18-24';
+  if (idade <= 24) return '16-24';
   if (idade <= 34) return '25-34';
   if (idade <= 44) return '35-44';
-  if (idade <= 59) return '45-59';
-  if (idade <= 64) return '60-64';
+  if (idade <= 54) return '45-54';
+  if (idade <= 64) return '55-64';
   return '65+';
 }
 
 /**
  * Calcula a distribuição de susceptibilidade à desinformação
- * Usa o campo susceptibilidade_desinformacao como string ('baixa', 'media', 'alta')
+ * Mapeia os valores do formato "baixa_1_3", "media_4_6", "alta_7_10" para 'baixa', 'media', 'alta'
  */
 function calcularDistribuicaoSusceptibilidade(
   eleitores: Eleitor[]
@@ -142,9 +142,17 @@ function calcularDistribuicaoSusceptibilidade(
 
   eleitores.forEach((e) => {
     const valor = e.susceptibilidade_desinformacao;
-    // Se for string, usa diretamente
     if (typeof valor === 'string') {
-      contagem[valor] = (contagem[valor] || 0) + 1;
+      // Mapear valores do formato "baixa_1_3", "media_4_6", "alta_7_10"
+      if (valor.startsWith('baixa') || valor === 'baixa') {
+        contagem['baixa']++;
+      } else if (valor.startsWith('media') || valor === 'media') {
+        contagem['media']++;
+      } else if (valor.startsWith('alta') || valor === 'alta') {
+        contagem['alta']++;
+      } else {
+        contagem['media']++; // Valor padrão
+      }
     } else if (typeof valor === 'number') {
       // Fallback para números (compatibilidade)
       if (valor <= 3) contagem['baixa']++;

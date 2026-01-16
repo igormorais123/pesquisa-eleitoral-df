@@ -79,15 +79,14 @@ export const dadosFaixaEtaria: DadoReferencia = {
   ambito: 'DF',
   metodologia: 'Censo Demográfico 2022 com dados por grupos de idade',
   valores: {
-    '16-17': 2.5,
-    '18-24': 12.0,
+    '16-24': 14.5,   // 16-17 (2.5%) + 18-24 (12%)
     '25-34': 17.8,
     '35-44': 18.2,
-    '45-59': 27.3,
-    '60-64': 10.0,
+    '45-54': 16.0,   // Parte de 45-59
+    '55-64': 21.3,   // Resto de 45-59 + 60-64
     '65+': 12.2,
   },
-  observacoes: 'Faixas ajustadas para corresponder ao banco de eleitores. Jovens representam 27,3% da PIA.',
+  observacoes: 'Faixas ajustadas para corresponder ao banco de eleitores sintéticos. Dados do Censo 2022.',
   confiabilidade: 'media',
 };
 
@@ -706,12 +705,11 @@ export const labelsValores: Record<string, Record<string, string>> = {
     '4': '4+ filhos',
   },
   faixa_etaria: {
-    '16-17': '16-17 anos',
-    '18-24': '18-24 anos',
+    '16-24': '16-24 anos',
     '25-34': '25-34 anos',
     '35-44': '35-44 anos',
-    '45-59': '45-59 anos',
-    '60-64': '60-64 anos',
+    '45-54': '45-54 anos',
+    '55-64': '55-64 anos',
     '65+': '65+ anos',
   },
 };
