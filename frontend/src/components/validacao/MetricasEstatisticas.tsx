@@ -119,9 +119,9 @@ export function MetricasEstatisticas({ eleitores }: MetricasEstatisticasProps) {
       eleitores.forEach((e) => {
         let valor: string;
         if (variavel === 'faixa_etaria') {
-          valor = (e as Record<string, unknown>).faixa_etaria as string || calcularFaixaEtaria(e.idade);
+          valor = (e as unknown as Record<string, unknown>).faixa_etaria as string || calcularFaixaEtaria(e.idade);
         } else {
-          valor = String((e as Record<string, unknown>)[variavel] || 'nao_informado');
+          valor = String((e as unknown as Record<string, unknown>)[variavel] || 'nao_informado');
         }
         contagem[valor] = (contagem[valor] || 0) + 1;
       });
@@ -349,7 +349,9 @@ export function MetricasEstatisticas({ eleitores }: MetricasEstatisticasProps) {
                         {teste.testeQui2.significativo ? (
                           <span className="text-yellow-400" title="Diferença significativa">*</span>
                         ) : (
-                          <CheckCircle2 className="w-4 h-4 text-green-400 inline" title="Sem diferença significativa" />
+                          <span title="Sem diferença significativa">
+                            <CheckCircle2 className="w-4 h-4 text-green-400 inline" />
+                          </span>
                         )}
                       </td>
                       <td className="py-2 px-3 text-right">

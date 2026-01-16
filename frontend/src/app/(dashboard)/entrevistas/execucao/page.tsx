@@ -94,7 +94,7 @@ export default function PaginaExecucaoEntrevista() {
         // Se não houver, carregar do JSON inicial
         if (eleitoresDB.length === 0) {
           console.log('Carregando eleitores do JSON inicial...');
-          const eleitoresComTimestamp = (eleitoresIniciais as Eleitor[]).map((e) => ({
+          const eleitoresComTimestamp = (eleitoresIniciais as unknown as Eleitor[]).map((e) => ({
             ...e,
             criado_em: e.criado_em || new Date().toISOString(),
             atualizado_em: e.atualizado_em || new Date().toISOString(),

@@ -11,7 +11,7 @@ import type { Eleitor } from '@/types';
 type Visualizacao = 'tabela' | 'graficos';
 
 export default function PaginaValidacao() {
-  const eleitores = eleitoresData as Eleitor[];
+  const eleitores = eleitoresData as unknown as Eleitor[];
   const [visualizacao, setVisualizacao] = useState<Visualizacao>('tabela');
 
   return (

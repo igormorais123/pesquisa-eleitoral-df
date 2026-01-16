@@ -309,7 +309,7 @@ const LABELS: Record<string, Record<string, string>> = {
 };
 
 export default function PaginaInicial() {
-  const eleitores = eleitoresData as Eleitor[];
+  const eleitores = eleitoresData as unknown as Eleitor[];
 
   // Performance: Memoiza todas as estatísticas (calculado uma vez, não a cada render)
   const stats = useMemo(() => ({

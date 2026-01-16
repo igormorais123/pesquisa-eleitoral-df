@@ -102,7 +102,7 @@ function calcularDistribuicaoFaixaEtaria(
 
   eleitores.forEach((e) => {
     // Usa o campo faixa_etaria se existir, senão calcula
-    const faixa = (e as Record<string, unknown>).faixa_etaria as string || calcularFaixaEtaria(e.idade);
+    const faixa = (e as unknown as Record<string, unknown>).faixa_etaria as string || calcularFaixaEtaria(e.idade);
     contagem[faixa] = (contagem[faixa] || 0) + 1;
   });
 

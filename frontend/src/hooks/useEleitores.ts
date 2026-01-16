@@ -45,7 +45,7 @@ export function useEleitores() {
 
       if (total === 0) {
         // Carregar eleitores iniciais do JSON
-        const eleitoresComTimestamp = (eleitoresIniciais as Eleitor[]).map((e) => ({
+        const eleitoresComTimestamp = (eleitoresIniciais as unknown as Eleitor[]).map((e) => ({
           ...e,
           criado_em: e.criado_em || new Date().toISOString(),
           atualizado_em: e.atualizado_em || new Date().toISOString(),
