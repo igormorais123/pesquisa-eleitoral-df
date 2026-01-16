@@ -3,10 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
 
   // Configuracao para API externa
+  // Usa NEXT_PUBLIC_BACKEND_URL (apenas o host, sem /api/v1) para evitar duplicação de path
   // Nota: rotas de auth (/api/v1/auth/*) sao tratadas localmente pelo Next.js
-  // Outras rotas podem ser redirecionadas para backend externo se configurado
   async rewrites() {
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
 
     // Se nao houver backend externo configurado, nao faz rewrites
     if (!backendUrl || backendUrl === 'http://localhost:8000') {
@@ -15,7 +15,7 @@ const nextConfig = {
 
     return [
       {
-        // Rewrite apenas para rotas que NAO sao auth (auth eh tratado localmente)
+        // Rewrite para rotas que NAO sao auth (auth eh tratado localmente)
         source: '/api/v1/eleitores/:path*',
         destination: `${backendUrl}/api/v1/eleitores/:path*`,
       },
