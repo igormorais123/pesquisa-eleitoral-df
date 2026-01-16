@@ -11,16 +11,22 @@ import {
   Play,
   BarChart3,
   Coins,
+  User,
 } from 'lucide-react';
 import { db } from '@/lib/db/dexie';
 import { formatarDataHora, formatarMoeda, cn } from '@/lib/utils';
+import { useAuthStore } from '@/stores/auth-store';
 
 export default function PaginaEntrevistas() {
-  // Buscar sessões do banco
+  const { usuario } = useAuthStore();
+
+  // Buscar sessões do banco - filtrar por usuário logado
   const { data: sessoes, isLoading } = useQuery({
-    queryKey: ['sessoes'],
+    queryKey: ['sessoes', usuario?.id],
     queryFn: async () => {
-      return db.sessoes.orderBy('iniciadaEm').reverse().toArray();
+      const todas = await db.sessoes.orderBy('iniciadaEm').reverse().toArray();
+      // Filtrar por usuário logado (mostrar também sessões antigas sem usuário)
+      return todas.filter((s) => !s.usuarioId || s.usuarioId === usuario?.id);
     },
   });
 
@@ -150,7 +156,7 @@ export default function PaginaEntrevistas() {
                       ? `/resultados/${sessao.id}`
                       : `/entrevistas/execucao?sessao=${sessao.id}`
                   }
-                  className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4 p-4 hover:bg-secondary/50 transition-colors"
+                  className="flex items-center gap-4 p-4 hover:bg-secondary/50 transition-colors"
                 >
                   {/* Status */}
                   <div
@@ -167,32 +173,46 @@ export default function PaginaEntrevistas() {
                     <p className="font-medium text-foreground truncate">
                       {sessao.titulo || 'Sem título'}
                     </p>
-                    <p className="text-sm text-muted-foreground">
-                      {formatarDataHora(sessao.iniciadaEm)} •{' '}
-                      {sessao.respostas.length}/{sessao.totalAgentes} respostas
-                    </p>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <span>
+                        {formatarDataHora(sessao.iniciadaEm)} •{' '}
+                        {new Set(sessao.respostas.map(r => r.eleitor_id)).size}/{sessao.totalAgentes} eleitores
+                      </span>
+                      {sessao.usuarioNome && (
+                        <span className="flex items-center gap-1 text-xs bg-secondary px-2 py-0.5 rounded-full">
+                          <User className="w-3 h-3" />
+                          {sessao.usuarioNome}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Progresso */}
-                  <div className="w-full sm:w-32 order-last sm:order-none">
-                    <div className="flex justify-between text-xs mb-1">
-                      <span className="text-muted-foreground">Progresso</span>
-                      <span className="text-foreground">
-                        {Math.round((sessao.respostas.length / sessao.totalAgentes) * 100)}%
-                      </span>
-                    </div>
-                    <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
-                      <div
-                        className={cn('h-full rounded-full', config.cor)}
-                        style={{
-                          width: `${(sessao.respostas.length / sessao.totalAgentes) * 100}%`,
-                        }}
-                      />
-                    </div>
+                  {/* Progresso - calculado por eleitores únicos */}
+                  <div className="w-32">
+                    {(() => {
+                      const eleitoresUnicos = new Set(sessao.respostas.map(r => r.eleitor_id)).size;
+                      const progressoPct = Math.min((eleitoresUnicos / sessao.totalAgentes) * 100, 100);
+                      return (
+                        <>
+                          <div className="flex justify-between text-xs mb-1">
+                            <span className="text-muted-foreground">Progresso</span>
+                            <span className="text-foreground">
+                              {Math.round(progressoPct)}%
+                            </span>
+                          </div>
+                          <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
+                            <div
+                              className={cn('h-full rounded-full', config.cor)}
+                              style={{ width: `${progressoPct}%` }}
+                            />
+                          </div>
+                        </>
+                      );
+                    })()}
                   </div>
 
                   {/* Custo */}
-                  <div className="hidden sm:block text-right">
+                  <div className="text-right">
                     <p className="font-medium text-foreground">{formatarMoeda(sessao.custoAtual)}</p>
                     <p className="text-xs text-muted-foreground">
                       {sessao.tokensInput + sessao.tokensOutput} tokens

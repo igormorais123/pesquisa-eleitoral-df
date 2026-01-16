@@ -4,16 +4,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { Entrevista, Pergunta, RespostaEleitor } from '@/types';
 import type { SessaoEntrevista } from '@/lib/db/dexie';
-import {
-  criarPesquisa,
-  registrarResposta,
-  iniciarPesquisa,
-  pausarPesquisa,
-  finalizarPesquisa,
-  atualizarProgresso,
-  PesquisaCreate,
-  RespostaCreate,
-} from '@/services/pesquisas-api';
+import { useAuthStore } from './auth-store';
 
 interface EntrevistasState {
   // Entrevista atual
@@ -38,11 +29,6 @@ interface EntrevistasState {
 
   // Erros
   erro: string | null;
-
-  // Persistência no backend
-  pesquisaIdBackend: string | null;
-  perguntasIdMap: Record<string, string>; // mapa local -> backend
-  salvandoNoBackend: boolean;
 
   // Ações - Configuração
   novaEntrevista: () => void;
@@ -70,12 +56,6 @@ interface EntrevistasState {
 
   // Erros
   setErro: (erro: string | null) => void;
-
-  // Ações - Persistência no Backend
-  criarPesquisaNoBackend: (eleitoresIds: string[]) => Promise<string | null>;
-  salvarRespostaNoBackend: (resposta: RespostaEleitor, perguntaIdLocal: string, eleitorPerfil?: Record<string, unknown>) => Promise<boolean>;
-  sincronizarProgressoBackend: () => Promise<void>;
-  finalizarPesquisaNoBackend: (erro?: string) => Promise<boolean>;
 }
 
 export const useEntrevistasStore = create<EntrevistasState>()(
@@ -95,9 +75,6 @@ export const useEntrevistasStore = create<EntrevistasState>()(
       limiteCusto: 100, // R$ 100 por padrão
       sessoes: [],
       erro: null,
-      pesquisaIdBackend: null,
-      perguntasIdMap: {},
-      salvandoNoBackend: false,
 
       // Configuração
       novaEntrevista: () => {
@@ -169,6 +146,11 @@ export const useEntrevistasStore = create<EntrevistasState>()(
         const sessaoId = `s-${Date.now()}`;
         const { entrevistaAtual, perguntas } = get();
 
+        // Obter dados do usuário logado
+        const authState = useAuthStore.getState();
+        const usuarioId = authState.usuario?.id;
+        const usuarioNome = authState.usuario?.nome;
+
         const novaSessao: SessaoEntrevista = {
           id: sessaoId,
           entrevistaId,
@@ -182,6 +164,9 @@ export const useEntrevistasStore = create<EntrevistasState>()(
           respostas: [],
           iniciadaEm: new Date().toISOString(),
           atualizadaEm: new Date().toISOString(),
+          // Vincular ao usuário logado
+          usuarioId,
+          usuarioNome,
         };
 
         set({
@@ -285,140 +270,6 @@ export const useEntrevistasStore = create<EntrevistasState>()(
 
       // Erros
       setErro: (erro) => set({ erro }),
-
-      // Persistência no Backend
-      criarPesquisaNoBackend: async (eleitoresIds) => {
-        const { entrevistaAtual, perguntas, limiteCusto } = get();
-
-        if (!entrevistaAtual?.titulo || perguntas.length === 0) {
-          console.error('Entrevista sem título ou perguntas');
-          return null;
-        }
-
-        try {
-          set({ salvandoNoBackend: true });
-
-          const dadosPesquisa: PesquisaCreate = {
-            titulo: entrevistaAtual.titulo,
-            descricao: entrevistaAtual.descricao,
-            tipo: (entrevistaAtual.tipo as 'quantitativa' | 'qualitativa' | 'mista') || 'mista',
-            perguntas: perguntas.map((p, index) => ({
-              texto: p.texto,
-              tipo: p.tipo as 'aberta' | 'aberta_longa' | 'escala_likert' | 'multipla_escolha' | 'sim_nao' | 'ranking',
-              ordem: index,
-              obrigatoria: p.obrigatoria ?? true,
-              opcoes: p.opcoes,
-              escala_min: p.escala_min,
-              escala_max: p.escala_max,
-            })),
-            eleitores_ids: eleitoresIds,
-            limite_custo: limiteCusto,
-            usar_opus_complexas: true,
-            batch_size: 10,
-          };
-
-          const pesquisa = await criarPesquisa(dadosPesquisa);
-
-          // Criar mapa de IDs de perguntas (local -> backend)
-          const perguntasIdMap: Record<string, string> = {};
-          pesquisa.perguntas.forEach((pBackend, index) => {
-            if (perguntas[index]) {
-              perguntasIdMap[perguntas[index].id] = pBackend.id!;
-            }
-          });
-
-          // Marcar pesquisa como iniciada
-          await iniciarPesquisa(pesquisa.id);
-
-          set({
-            pesquisaIdBackend: pesquisa.id,
-            perguntasIdMap,
-            salvandoNoBackend: false,
-          });
-
-          console.log('Pesquisa criada no backend:', pesquisa.id);
-          return pesquisa.id;
-        } catch (error) {
-          console.error('Erro ao criar pesquisa no backend:', error);
-          set({ salvandoNoBackend: false });
-          return null;
-        }
-      },
-
-      salvarRespostaNoBackend: async (resposta, perguntaIdLocal, eleitorPerfil) => {
-        const { pesquisaIdBackend, perguntasIdMap } = get();
-
-        if (!pesquisaIdBackend) {
-          console.warn('Sem pesquisa no backend para salvar resposta');
-          return false;
-        }
-
-        const perguntaIdBackend = perguntasIdMap[perguntaIdLocal];
-        if (!perguntaIdBackend) {
-          console.warn('Pergunta não encontrada no mapa:', perguntaIdLocal);
-          return false;
-        }
-
-        try {
-          const dadosResposta: RespostaCreate = {
-            pesquisa_id: pesquisaIdBackend,
-            pergunta_id: perguntaIdBackend,
-            eleitor_id: resposta.eleitor_id,
-            eleitor_nome: resposta.eleitor_nome,
-            eleitor_perfil: eleitorPerfil,
-            resposta_texto: resposta.resposta_texto,
-            resposta_valor: resposta.resposta_valor,
-            fluxo_cognitivo: resposta.fluxo_cognitivo as Record<string, unknown>,
-            sentimento: resposta.fluxo_cognitivo?.emocional?.sentimento_dominante,
-            intensidade_sentimento: resposta.fluxo_cognitivo?.emocional?.intensidade,
-            modelo_usado: resposta.modelo_usado || 'claude-sonnet-4-20250514',
-            tokens_entrada: resposta.tokens_entrada || 0,
-            tokens_saida: resposta.tokens_saida || 0,
-            custo_reais: resposta.custo_reais || 0,
-            tempo_resposta_ms: resposta.tempo_resposta_ms || 0,
-          };
-
-          await registrarResposta(pesquisaIdBackend, dadosResposta);
-          return true;
-        } catch (error) {
-          console.error('Erro ao salvar resposta no backend:', error);
-          return false;
-        }
-      },
-
-      sincronizarProgressoBackend: async () => {
-        const { pesquisaIdBackend, progresso, respostasRecebidas, sessaoAtual } = get();
-
-        if (!pesquisaIdBackend) return;
-
-        try {
-          const eleitoresProcessados = sessaoAtual
-            ? Math.floor((progresso / 100) * sessaoAtual.totalAgentes)
-            : respostasRecebidas.length;
-
-          await atualizarProgresso(pesquisaIdBackend, progresso, eleitoresProcessados);
-        } catch (error) {
-          console.error('Erro ao sincronizar progresso:', error);
-        }
-      },
-
-      finalizarPesquisaNoBackend: async (erro) => {
-        const { pesquisaIdBackend } = get();
-
-        if (!pesquisaIdBackend) return false;
-
-        try {
-          await finalizarPesquisa(pesquisaIdBackend, erro);
-          set({
-            pesquisaIdBackend: null,
-            perguntasIdMap: {},
-          });
-          return true;
-        } catch (error) {
-          console.error('Erro ao finalizar pesquisa no backend:', error);
-          return false;
-        }
-      },
     }),
     {
       name: 'entrevistas-store',

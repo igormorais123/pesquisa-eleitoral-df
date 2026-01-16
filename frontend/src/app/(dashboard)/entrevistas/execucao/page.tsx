@@ -181,19 +181,19 @@ export default function PaginaExecucaoEntrevista() {
           data.tokensOutput
         );
 
-        // Criar resposta
+        // Criar resposta - usar texto da pergunta como ID para exibição nos resultados
         const resposta: RespostaEleitor = {
           eleitor_id: eleitor.id,
           eleitor_nome: eleitor.nome,
           respostas: [
             {
-              pergunta_id: pergunta.id || '',
+              pergunta_id: pergunta.texto || pergunta.id || '',
               resposta: data.resposta.resposta_texto,
             },
           ],
           tokens_usados: data.tokensInput + data.tokensOutput,
           custo: data.custoReais,
-          tempo_resposta_ms: 0,
+          tempo_resposta_ms: Date.now() - tempoInicio,
         };
 
         adicionarResposta(resposta);
@@ -202,9 +202,11 @@ export default function PaginaExecucaoEntrevista() {
       // Remover eleitor da lista de pendentes
       setEleitoresPendentes((prev) => prev.slice(1));
 
-      // Atualizar progresso
+      // Atualizar progresso - baseado em eleitores únicos processados, não respostas
       const total = totalEleitoresSelecionados || eleitoresSelecionados.length;
-      const novoProgresso = ((respostasRecebidas.length + 1) / total) * 100;
+      const eleitoresProcessadosSet = new Set(respostasRecebidas.map(r => r.eleitor_id));
+      eleitoresProcessadosSet.add(eleitor.id);
+      const novoProgresso = Math.min((eleitoresProcessadosSet.size / total) * 100, 100);
       atualizarProgresso(novoProgresso);
     } catch (error) {
       if (error instanceof Error && error.name !== 'AbortError') {
@@ -308,11 +310,12 @@ export default function PaginaExecucaoEntrevista() {
     return `${min}:${seg.toString().padStart(2, '0')}`;
   };
 
-  // Status
+  // Status - calcular eleitores únicos processados (não respostas)
   const status = sessaoAtual?.status || 'em_andamento';
   const totalAgentes = totalEleitoresSelecionados || eleitoresSelecionados.length;
-  const processados = respostasRecebidas.length;
-  const percentual = totalAgentes > 0 ? (processados / totalAgentes) * 100 : 0;
+  const eleitoresUnicos = new Set(respostasRecebidas.map(r => r.eleitor_id)).size;
+  const processados = eleitoresUnicos;
+  const percentual = totalAgentes > 0 ? Math.min((processados / totalAgentes) * 100, 100) : 0;
 
   // Tela de carregamento enquanto eleitores são carregados
   if (carregandoEleitores) {

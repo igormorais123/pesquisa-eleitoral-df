@@ -5,6 +5,9 @@
  * Valida o token JWT no header Authorization.
  */
 
+// Forcar rota dinamica (usa request.headers)
+export const dynamic = 'force-dynamic';
+
 import { NextRequest, NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 

@@ -21327,5 +21327,710 @@
     "historia_resumida": "Helena viu SIA nascer e crescer. A experiência de estudar fora do país e voltar com nova perspectiva moldou sua visão de mundo. Casado(a) e com 2 filho(s), Trabalha como engenheiro(a) civil. Acredita que o mercado funciona melhor que o governo.",
     "instrucao_comportamental": "Tom: emotivo. Pouco interesse em política, evita discussões. Considera múltiplos pontos de vista. Decide mais pela emoção do momento.",
     "observacao_territorial": "Caso atípico: residente em área industrial"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0401"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0402"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0403"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0404"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0405"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0406"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0407"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0408"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0409"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0410"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0411"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0412"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0413"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0414"
+  },
+  {
+    "nome": "Maria da Silva",
+    "idade": 35,
+    "genero": "feminino",
+    "cor_raca": "parda",
+    "regiao_administrativa": "Ceilândia",
+    "local_referencia": null,
+    "cluster_socioeconomico": "G3_media_baixa",
+    "escolaridade": "Ensino médio completo",
+    "profissao": "Comerciante",
+    "ocupacao_vinculo": "Autônoma",
+    "renda_salarios_minimos": "2-3",
+    "religiao": "Católica",
+    "estado_civil": "Casada",
+    "filhos": 2,
+    "orientacao_politica": "centro",
+    "posicao_bolsonaro": "neutro",
+    "interesse_politico": "medio",
+    "tolerancia_nuance": "media",
+    "estilo_decisao": "economico",
+    "valores": [
+      "família",
+      "trabalho"
+    ],
+    "preocupacoes": [
+      "saúde",
+      "educação"
+    ],
+    "vieses_cognitivos": [
+      "viés de confirmação"
+    ],
+    "medos": [
+      "desemprego"
+    ],
+    "fontes_informacao": [
+      "TV",
+      "WhatsApp"
+    ],
+    "susceptibilidade_desinformacao": 5,
+    "meio_transporte": null,
+    "tempo_deslocamento_trabalho": null,
+    "voto_facultativo": false,
+    "conflito_identitario": false,
+    "historia_resumida": "Comerciante há 10 anos em Ceilândia.",
+    "instrucao_comportamental": "Responde de forma prática e direta.",
+    "id": "df-0415"
   }
 ]

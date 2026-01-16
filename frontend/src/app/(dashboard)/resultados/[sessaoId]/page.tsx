@@ -227,51 +227,108 @@ export default function PaginaResultadoDetalhe() {
     carregar();
   }, [sessaoId]);
 
-  // Calcular estatísticas das respostas
+  // Palavras para análise de sentimento
+  const PALAVRAS_POSITIVAS = ['bom', 'boa', 'ótimo', 'ótima', 'excelente', 'maravilhoso', 'concordo', 'apoio', 'favor', 'favorável', 'positivo', 'melhor', 'satisfeito', 'feliz', 'esperança', 'confiança', 'otimista', 'progresso', 'avanço', 'importante', 'necessário', 'essencial', 'correto', 'certo', 'sim', 'aprovo', 'aceito', 'gosto', 'adoro', 'prefiro', 'quero', 'acredito', 'confio', 'respeito'];
+  const PALAVRAS_NEGATIVAS = ['ruim', 'péssimo', 'péssima', 'terrível', 'horrível', 'discordo', 'contra', 'nunca', 'jamais', 'negativo', 'pior', 'insatisfeito', 'triste', 'preocupado', 'medo', 'receio', 'desconfiança', 'pessimista', 'retrocesso', 'problema', 'dificuldade', 'errado', 'não', 'reprovar', 'rejeito', 'odeio', 'detesto', 'falso', 'mentira', 'corrupto', 'corrupção', 'incompetente', 'fracasso', 'decepção', 'inaceitável'];
+  const STOP_WORDS = new Set(['a', 'o', 'e', 'é', 'de', 'da', 'do', 'em', 'um', 'uma', 'para', 'com', 'não', 'por', 'mais', 'as', 'os', 'como', 'mas', 'foi', 'ao', 'ele', 'ela', 'das', 'dos', 'tem', 'seu', 'sua', 'ou', 'ser', 'quando', 'muito', 'há', 'nos', 'já', 'está', 'eu', 'também', 'só', 'pelo', 'pela', 'até', 'isso', 'entre', 'era', 'depois', 'sem', 'mesmo', 'aos', 'ter', 'seus', 'suas', 'numa', 'num', 'nem', 'que', 'no', 'na', 'se', 'me', 'te', 'lhe', 'então', 'pois', 'porque', 'onde', 'qual', 'quem', 'cada', 'todo', 'toda', 'todos', 'todas', 'outro', 'outra', 'ainda', 'sempre', 'aqui', 'ali', 'aí', 'lá', 'hoje', 'agora', 'antes', 'bem', 'mal', 'assim', 'apenas', 'somente']);
+
+  // Calcular estatísticas das respostas (versão melhorada)
   const calcularEstatisticas = () => {
     if (!sessao) return null;
 
     const respostas = sessao.respostas;
-    const sentimentos: Record<string, number> = {
-      positivo: 0,
-      negativo: 0,
-      neutro: 0,
-    };
+    const sentimentos: Record<string, number> = { positivo: 0, negativo: 0, neutro: 0 };
 
+    // Análise de sentimento aprimorada
     respostas.forEach((r) => {
-      const texto = r.respostas
-        .map((resp) => String(resp.resposta))
-        .join(' ')
-        .toLowerCase();
-
-      if (
-        texto.includes('bom') ||
-        texto.includes('ótimo') ||
-        texto.includes('concordo') ||
-        texto.includes('apoio') ||
-        texto.includes('favor')
-      ) {
-        sentimentos.positivo++;
-      } else if (
-        texto.includes('ruim') ||
-        texto.includes('péssimo') ||
-        texto.includes('discordo') ||
-        texto.includes('contra') ||
-        texto.includes('nunca')
-      ) {
-        sentimentos.negativo++;
-      } else {
-        sentimentos.neutro++;
-      }
+      const texto = r.respostas.map((resp) => String(resp.resposta)).join(' ').toLowerCase();
+      const palavras = texto.split(/\s+/);
+      let scorePosi = 0, scoreNega = 0;
+      palavras.forEach((p) => {
+        const limpa = p.replace(/[.,!?;:()"\[\]{}]/g, '');
+        if (PALAVRAS_POSITIVAS.includes(limpa)) scorePosi++;
+        if (PALAVRAS_NEGATIVAS.includes(limpa)) scoreNega++;
+      });
+      if (scorePosi > scoreNega + 1) sentimentos.positivo++;
+      else if (scoreNega > scorePosi + 1) sentimentos.negativo++;
+      else sentimentos.neutro++;
     });
+
+    // Extração de palavras frequentes
+    const contadorPalavras: Record<string, number> = {};
+    respostas.forEach((r) => {
+      r.respostas.forEach((resp) => {
+        const palavras = String(resp.resposta).toLowerCase().split(/\s+/);
+        palavras.forEach((p) => {
+          const limpa = p.replace(/[.,!?;:()"\[\]{}]/g, '');
+          if (limpa.length > 2 && !STOP_WORDS.has(limpa)) {
+            contadorPalavras[limpa] = (contadorPalavras[limpa] || 0) + 1;
+          }
+        });
+      });
+    });
+    const palavrasFrequentes = Object.entries(contadorPalavras)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 30)
+      .map(([palavra, contagem]) => ({ palavra, contagem, percentual: Math.round((contagem / respostas.length) * 100) }));
+
+    // Análise por pergunta
+    const estatisticasPorPergunta: Record<string, { perguntaId: string; totalRespostas: number; sentimentos: { positivo: number; negativo: number; neutro: number }; palavrasChave: { palavra: string; contagem: number }[] }> = {};
+    respostas.forEach((r) => {
+      r.respostas.forEach((resp) => {
+        const pid = resp.pergunta_id;
+        if (!estatisticasPorPergunta[pid]) estatisticasPorPergunta[pid] = { perguntaId: pid, totalRespostas: 0, sentimentos: { positivo: 0, negativo: 0, neutro: 0 }, palavrasChave: [] };
+        const st = estatisticasPorPergunta[pid];
+        st.totalRespostas++;
+        const texto = String(resp.resposta).toLowerCase();
+        const palavras = texto.split(/\s+/);
+        let sp = 0, sn = 0;
+        const contLocal: Record<string, number> = {};
+        palavras.forEach((p) => {
+          const limpa = p.replace(/[.,!?;:()"\[\]{}]/g, '');
+          if (PALAVRAS_POSITIVAS.includes(limpa)) sp++;
+          if (PALAVRAS_NEGATIVAS.includes(limpa)) sn++;
+          if (limpa.length > 2 && !STOP_WORDS.has(limpa)) contLocal[limpa] = (contLocal[limpa] || 0) + 1;
+        });
+        if (sp > sn + 1) st.sentimentos.positivo++;
+        else if (sn > sp + 1) st.sentimentos.negativo++;
+        else st.sentimentos.neutro++;
+        Object.entries(contLocal).forEach(([pal, cnt]) => {
+          const ex = st.palavrasChave.find((x) => x.palavra === pal);
+          if (ex) ex.contagem += cnt;
+          else st.palavrasChave.push({ palavra: pal, contagem: cnt });
+        });
+      });
+    });
+    Object.values(estatisticasPorPergunta).forEach((st) => {
+      st.palavrasChave = st.palavrasChave.sort((a, b) => b.contagem - a.contagem).slice(0, 10);
+    });
+
+    // Métricas
+    const tempos = respostas.map((r) => r.tempo_resposta_ms).filter((t) => t > 0);
+    const tempoMedio = tempos.length > 0 ? tempos.reduce((a, b) => a + b, 0) / tempos.length / 1000 : 0;
+    const tempoMin = tempos.length > 0 ? Math.min(...tempos) / 1000 : 0;
+    const tempoMax = tempos.length > 0 ? Math.max(...tempos) / 1000 : 0;
+    const tokensTotal = respostas.reduce((acc, r) => acc + r.tokens_usados, 0);
+    const custoTotal = respostas.reduce((acc, r) => acc + r.custo, 0);
+    const tokensMedio = respostas.length > 0 ? tokensTotal / respostas.length : 0;
+    const custoMedio = respostas.length > 0 ? custoTotal / respostas.length : 0;
+    const comprimentos = respostas.flatMap((r) => r.respostas.map((x) => String(x.resposta).length));
+    const comprimentoMedio = comprimentos.length > 0 ? comprimentos.reduce((a, b) => a + b, 0) / comprimentos.length : 0;
 
     return {
       totalRespostas: respostas.length,
       sentimentos,
-      tempoMedio:
-        respostas.length > 0
-          ? respostas.reduce((acc, r) => acc + r.tempo_resposta_ms, 0) / respostas.length / 1000
-          : 0,
+      tempoMedio,
+      tempoMin,
+      tempoMax,
+      palavrasFrequentes,
+      estatisticasPorPergunta: Object.values(estatisticasPorPergunta),
+      tokensTotal,
+      tokensMedio,
+      custoTotal,
+      custoMedio,
+      comprimentoMedio,
     };
   };
 
@@ -516,110 +573,279 @@ export default function PaginaResultadoDetalhe() {
 
       {/* Conteúdo das abas */}
       {abaAtiva === 'geral' && stats && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Gráfico de Sentimentos */}
-          <div className="glass-card rounded-xl p-6">
-            <h3 className="font-semibold text-foreground mb-4">Análise de Sentimento</h3>
-            <ResponsiveContainer width="100%" height={250}>
-              <PieChart>
-                <Pie
-                  data={dadosSentimentos}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={90}
-                  paddingAngle={5}
-                  dataKey="valor"
-                  nameKey="nome"
-                  label={({ nome, valor }) => `${nome}: ${valor}`}
-                >
-                  {dadosSentimentos.map((entry, index) => (
-                    <Cell key={index} fill={entry.cor} />
-                  ))}
-                </Pie>
-                <Tooltip
-                  contentStyle={{
-                    background: '#1f2937',
-                    border: 'none',
-                    borderRadius: '8px',
-                  }}
-                />
-                <Legend />
-              </PieChart>
-            </ResponsiveContainer>
+        <div className="space-y-6">
+          {/* Resumo Estatístico Principal */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div className="glass-card rounded-lg p-3 text-center">
+              <p className="text-xs text-muted-foreground">Taxa Conclusão</p>
+              <p className="text-xl font-bold text-green-400">{Math.round((sessao.respostas.length / sessao.totalAgentes) * 100)}%</p>
+            </div>
+            <div className="glass-card rounded-lg p-3 text-center">
+              <p className="text-xs text-muted-foreground">Tempo Médio</p>
+              <p className="text-xl font-bold text-blue-400">{stats.tempoMedio.toFixed(1)}s</p>
+            </div>
+            <div className="glass-card rounded-lg p-3 text-center">
+              <p className="text-xs text-muted-foreground">Custo/Resposta</p>
+              <p className="text-xl font-bold text-yellow-400">{formatarMoeda(stats.custoMedio)}</p>
+            </div>
+            <div className="glass-card rounded-lg p-3 text-center">
+              <p className="text-xs text-muted-foreground">Tokens/Resposta</p>
+              <p className="text-xl font-bold text-purple-400">{Math.round(stats.tokensMedio)}</p>
+            </div>
+            <div className="glass-card rounded-lg p-3 text-center">
+              <p className="text-xs text-muted-foreground">Caracteres Médio</p>
+              <p className="text-xl font-bold text-cyan-400">{Math.round(stats.comprimentoMedio)}</p>
+            </div>
+            <div className="glass-card rounded-lg p-3 text-center">
+              <p className="text-xs text-muted-foreground">Total Perguntas</p>
+              <p className="text-xl font-bold text-orange-400">{stats.estatisticasPorPergunta.length}</p>
+            </div>
           </div>
 
-          {/* Métricas adicionais */}
-          <div className="glass-card rounded-xl p-6">
-            <h3 className="font-semibold text-foreground mb-4">Métricas Detalhadas</h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
-                <span className="text-muted-foreground">Taxa de Conclusão</span>
-                <span className="font-bold text-green-400">
-                  {Math.round((sessao.respostas.length / sessao.totalAgentes) * 100)}%
-                </span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Gráfico de Sentimentos */}
+            <div className="glass-card rounded-xl p-6">
+              <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                <BarChart3 className="w-5 h-5 text-primary" />
+                Análise de Sentimento Geral
+              </h3>
+              <ResponsiveContainer width="100%" height={200}>
+                <PieChart>
+                  <Pie data={dadosSentimentos} cx="50%" cy="50%" innerRadius={50} outerRadius={80} paddingAngle={5} dataKey="valor" nameKey="nome" label={({ nome, valor }) => `${nome}: ${valor}`}>
+                    {dadosSentimentos.map((entry, index) => (<Cell key={index} fill={entry.cor} />))}
+                  </Pie>
+                  <Tooltip contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }} />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+              <div className="mt-4 space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground w-16">Positivo</span>
+                  <div className="flex-1 h-3 bg-secondary rounded-full overflow-hidden">
+                    <div className="h-full bg-green-500 rounded-full" style={{ width: `${(stats.sentimentos.positivo / stats.totalRespostas) * 100}%` }} />
+                  </div>
+                  <span className="text-xs font-medium text-green-400 w-10 text-right">{Math.round((stats.sentimentos.positivo / stats.totalRespostas) * 100)}%</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground w-16">Neutro</span>
+                  <div className="flex-1 h-3 bg-secondary rounded-full overflow-hidden">
+                    <div className="h-full bg-gray-500 rounded-full" style={{ width: `${(stats.sentimentos.neutro / stats.totalRespostas) * 100}%` }} />
+                  </div>
+                  <span className="text-xs font-medium text-gray-400 w-10 text-right">{Math.round((stats.sentimentos.neutro / stats.totalRespostas) * 100)}%</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground w-16">Negativo</span>
+                  <div className="flex-1 h-3 bg-secondary rounded-full overflow-hidden">
+                    <div className="h-full bg-red-500 rounded-full" style={{ width: `${(stats.sentimentos.negativo / stats.totalRespostas) * 100}%` }} />
+                  </div>
+                  <span className="text-xs font-medium text-red-400 w-10 text-right">{Math.round((stats.sentimentos.negativo / stats.totalRespostas) * 100)}%</span>
+                </div>
               </div>
-              <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
-                <span className="text-muted-foreground">Custo por Resposta</span>
-                <span className="font-bold text-foreground">
-                  {formatarMoeda(sessao.custoAtual / sessao.respostas.length || 0)}
-                </span>
+            </div>
+
+            {/* Palavras Mais Frequentes */}
+            <div className="glass-card rounded-xl p-6">
+              <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                <MessageSquare className="w-5 h-5 text-primary" />
+                Top 12 Palavras Mais Frequentes
+              </h3>
+              <div className="space-y-2 max-h-[300px] overflow-y-auto">
+                {stats.palavrasFrequentes.slice(0, 12).map((item, index) => (
+                  <div key={item.palavra} className="flex items-center gap-2">
+                    <span className="text-xs text-muted-foreground w-5">{index + 1}.</span>
+                    <span className="text-sm text-foreground w-20 truncate font-medium">{item.palavra}</span>
+                    <div className="flex-1 h-4 bg-secondary rounded overflow-hidden">
+                      <div className="h-full bg-gradient-to-r from-primary/80 to-primary rounded" style={{ width: `${Math.min((item.contagem / stats.palavrasFrequentes[0].contagem) * 100, 100)}%` }} />
+                    </div>
+                    <span className="text-xs font-medium text-primary w-8 text-right">{item.contagem}x</span>
+                  </div>
+                ))}
               </div>
-              <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
-                <span className="text-muted-foreground">Tokens por Resposta</span>
-                <span className="font-bold text-foreground">
-                  {Math.round(
-                    (sessao.tokensInput + sessao.tokensOutput) / sessao.respostas.length || 0
-                  )}
-                </span>
+            </div>
+          </div>
+
+          {/* Estatísticas por Pergunta - Design Steve Jobs */}
+          {stats.estatisticasPorPergunta.length > 0 && (
+            <div className="glass-card rounded-2xl p-6">
+              <h3 className="font-semibold text-foreground mb-6 flex items-center gap-2">
+                <FileText className="w-5 h-5 text-primary" />
+                Análise por Pergunta
+              </h3>
+              <div className="space-y-6">
+                {stats.estatisticasPorPergunta.map((pergunta, index) => (
+                  <div key={pergunta.perguntaId} className="group relative">
+                    {/* Número da pergunta - destaque visual */}
+                    <div className="absolute -left-3 top-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                      <span className="text-sm font-bold text-primary">{index + 1}</span>
+                    </div>
+
+                    <div className="ml-8 p-5 bg-gradient-to-br from-secondary/40 to-secondary/20 rounded-xl border border-border/50 hover:border-primary/30 transition-all duration-300">
+                      {/* Texto da pergunta - destaque principal */}
+                      <p className="text-base text-foreground font-medium mb-4 leading-relaxed">
+                        &ldquo;{pergunta.perguntaId}&rdquo;
+                      </p>
+
+                      {/* Barra de sentimentos visual */}
+                      <div className="mb-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs text-muted-foreground">Análise de Sentimento</span>
+                          <span className="text-xs text-muted-foreground">{pergunta.totalRespostas} respostas</span>
+                        </div>
+                        <div className="h-3 bg-secondary rounded-full overflow-hidden flex shadow-inner">
+                          <div
+                            className="h-full bg-gradient-to-r from-green-400 to-green-500 transition-all duration-500"
+                            style={{ width: `${(pergunta.sentimentos.positivo / pergunta.totalRespostas) * 100}%` }}
+                          />
+                          <div
+                            className="h-full bg-gradient-to-r from-gray-400 to-gray-500 transition-all duration-500"
+                            style={{ width: `${(pergunta.sentimentos.neutro / pergunta.totalRespostas) * 100}%` }}
+                          />
+                          <div
+                            className="h-full bg-gradient-to-r from-red-400 to-red-500 transition-all duration-500"
+                            style={{ width: `${(pergunta.sentimentos.negativo / pergunta.totalRespostas) * 100}%` }}
+                          />
+                        </div>
+                        {/* Legenda com porcentagens */}
+                        <div className="flex items-center justify-between mt-2 text-xs">
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
+                            <span className="text-green-400 font-medium">{Math.round((pergunta.sentimentos.positivo / pergunta.totalRespostas) * 100)}% positivo</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-2.5 h-2.5 rounded-full bg-gray-500" />
+                            <span className="text-gray-400 font-medium">{Math.round((pergunta.sentimentos.neutro / pergunta.totalRespostas) * 100)}% neutro</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                            <span className="text-red-400 font-medium">{Math.round((pergunta.sentimentos.negativo / pergunta.totalRespostas) * 100)}% negativo</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Palavras-chave com visual melhorado */}
+                      {pergunta.palavrasChave.length > 0 && (
+                        <div>
+                          <span className="text-xs text-muted-foreground mb-2 block">Termos mais citados:</span>
+                          <div className="flex flex-wrap gap-2">
+                            {pergunta.palavrasChave.slice(0, 6).map((palavra, i) => (
+                              <span
+                                key={palavra.palavra}
+                                className="px-3 py-1 bg-primary/10 hover:bg-primary/20 text-primary text-xs rounded-full font-medium transition-colors"
+                                style={{ opacity: 1 - (i * 0.1) }}
+                              >
+                                {palavra.palavra} <span className="opacity-60">({palavra.contagem})</span>
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
-                <span className="text-muted-foreground">Sentimento Predominante</span>
-                <span
-                  className={cn(
-                    'font-bold',
-                    stats.sentimentos.positivo > stats.sentimentos.negativo
-                      ? 'text-green-400'
-                      : stats.sentimentos.negativo > stats.sentimentos.positivo
-                        ? 'text-red-400'
-                        : 'text-gray-400'
-                  )}
-                >
-                  {stats.sentimentos.positivo > stats.sentimentos.negativo
-                    ? 'Positivo'
-                    : stats.sentimentos.negativo > stats.sentimentos.positivo
-                      ? 'Negativo'
-                      : 'Neutro'}
-                </span>
+            </div>
+          )}
+
+          {/* Métricas de Performance */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="glass-card rounded-xl p-6">
+              <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                <Clock className="w-5 h-5 text-primary" />
+                Métricas de Tempo
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
+                  <span className="text-muted-foreground">Tempo Mínimo</span>
+                  <span className="font-bold text-cyan-400">{stats.tempoMin.toFixed(2)}s</span>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
+                  <span className="text-muted-foreground">Tempo Médio</span>
+                  <span className="font-bold text-blue-400">{stats.tempoMedio.toFixed(2)}s</span>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
+                  <span className="text-muted-foreground">Tempo Máximo</span>
+                  <span className="font-bold text-purple-400">{stats.tempoMax.toFixed(2)}s</span>
+                </div>
+              </div>
+            </div>
+            <div className="glass-card rounded-xl p-6">
+              <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                <Coins className="w-5 h-5 text-primary" />
+                Métricas de Custo e Tokens
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
+                  <span className="text-muted-foreground">Custo Total</span>
+                  <span className="font-bold text-yellow-400">{formatarMoeda(stats.custoTotal)}</span>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
+                  <span className="text-muted-foreground">Custo Médio/Resposta</span>
+                  <span className="font-bold text-orange-400">{formatarMoeda(stats.custoMedio)}</span>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
+                  <span className="text-muted-foreground">Total de Tokens</span>
+                  <span className="font-bold text-purple-400">{formatarNumero(stats.tokensTotal)}</span>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Nuvem de Palavras */}
-          <div className="glass-card rounded-xl p-6 lg:col-span-2">
-            <h3 className="font-semibold text-foreground mb-4">Nuvem de Palavras das Respostas</h3>
+          <div className="glass-card rounded-xl p-6">
+            <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-primary" />
+              Nuvem de Palavras das Respostas
+            </h3>
             <WordCloudRespostas respostas={sessao.respostas} altura={300} />
           </div>
         </div>
       )}
 
       {abaAtiva === 'respostas' && (
-        <div className="glass-card rounded-xl divide-y divide-border">
+        <div className="space-y-4">
           {sessao.respostas.map((resposta, i) => (
-            <div key={i} className="p-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-medium text-foreground">{resposta.eleitor_nome}</span>
-                <span className="text-xs text-muted-foreground">
-                  {resposta.tokens_usados} tokens • {formatarMoeda(resposta.custo)}
-                </span>
-              </div>
-              {resposta.respostas.map((r, j) => (
-                <div key={j} className="mt-2 p-3 bg-secondary/50 rounded-lg">
-                  <p className="text-sm text-muted-foreground whitespace-pre-wrap">
-                    {String(r.resposta)}
-                  </p>
+            <div key={i} className="glass-card rounded-2xl overflow-hidden">
+              {/* Header do eleitor */}
+              <div className="px-5 py-4 bg-gradient-to-r from-primary/5 to-transparent border-b border-border/50">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-sm font-bold text-primary">
+                        {resposta.eleitor_nome.split(' ').map(n => n[0]).slice(0, 2).join('')}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="font-medium text-foreground">{resposta.eleitor_nome}</span>
+                      <p className="text-xs text-muted-foreground">Respondente #{i + 1}</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-xs text-muted-foreground block">{resposta.tokens_usados} tokens</span>
+                    <span className="text-xs font-medium text-yellow-400">{formatarMoeda(resposta.custo)}</span>
+                  </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Respostas */}
+              <div className="p-5 space-y-4">
+                {resposta.respostas.map((r, j) => (
+                  <div key={j} className="space-y-2">
+                    {/* Pergunta */}
+                    <div className="flex items-start gap-2">
+                      <MessageSquare className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                      <p className="text-sm font-medium text-primary">
+                        {r.pergunta_id}
+                      </p>
+                    </div>
+                    {/* Resposta */}
+                    <div className="ml-6 p-4 bg-secondary/30 rounded-xl border-l-2 border-primary/30">
+                      <p className="text-sm text-foreground/90 whitespace-pre-wrap leading-relaxed">
+                        {String(r.resposta)}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>

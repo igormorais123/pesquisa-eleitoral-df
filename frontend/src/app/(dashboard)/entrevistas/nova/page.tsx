@@ -195,15 +195,25 @@ export default function PaginaNovaEntrevista() {
           {/* Título */}
           <div className="glass-card rounded-xl p-6">
             <label className="block text-sm font-medium text-foreground mb-2">
-              Título da Entrevista
+              Título da Entrevista <span className="text-red-500 font-bold">*</span>
             </label>
             <input
               type="text"
               value={titulo}
               onChange={(e) => setTitulo(e.target.value)}
               placeholder="Ex: Pesquisa de intenção de voto - Janeiro 2026"
-              className="w-full px-4 py-3 bg-secondary border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+              className={cn(
+                'w-full px-4 py-3 bg-secondary border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors',
+                !titulo.trim() ? 'border-red-500/50' : 'border-border'
+              )}
+              required
             />
+            {!titulo.trim() && (
+              <p className="text-xs text-red-400 mt-1.5 flex items-center gap-1">
+                <span className="inline-block w-1 h-1 bg-red-400 rounded-full" />
+                Campo obrigatório - preencha para avançar
+              </p>
+            )}
           </div>
 
           {/* Perguntas */}

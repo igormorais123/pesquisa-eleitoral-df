@@ -2,22 +2,21 @@
 Rotas de Autenticação
 
 Endpoints para login, logout e verificação de token.
+Suporta autenticação via banco de dados com fallback para usuário de teste.
 """
 
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel
-from slowapi import Limiter
-from slowapi.util import get_remote_address
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import DadosToken, obter_usuario_atual
 from app.core.config import configuracoes
-from app.core.seguranca import autenticar_usuario, criar_token_acesso
+from app.core.seguranca import autenticar_usuario_legado, criar_token_acesso
+from app.db.database import get_db
+from app.servicos.usuario_servico import UsuarioServico
 
 router = APIRouter()
-
-# Rate limiter para proteger contra brute force
-limiter = Limiter(key_func=get_remote_address)
 
 
 class LoginRequest(BaseModel):
@@ -46,18 +45,32 @@ class UsuarioResponse(BaseModel):
 
 
 @router.post("/login", response_model=LoginResponse)
-@limiter.limit("5/minute")
-async def login(request: Request, dados: LoginRequest):
+async def login(dados: LoginRequest, db: AsyncSession = Depends(get_db)):
     """
     Realiza login no sistema.
 
-    - **usuario**: Nome de usuário
+    - **usuario**: Nome de usuário ou email
     - **senha**: Senha do usuário
 
     Retorna token JWT para autenticação.
-    Rate limit: 5 tentativas por minuto por IP.
+
+    Tenta autenticar primeiro no banco de dados.
+    Se não encontrar, usa fallback para usuário de teste (desenvolvimento).
     """
-    usuario = autenticar_usuario(dados.usuario, dados.senha)
+    # Tentar autenticar no banco de dados
+    usuario_db = await UsuarioServico.autenticar(db, dados.usuario, dados.senha)
+
+    if usuario_db:
+        # Usuário encontrado no banco
+        usuario = {
+            "id": usuario_db.id,
+            "usuario": usuario_db.usuario,
+            "nome": usuario_db.nome,
+            "papel": usuario_db.papel,
+        }
+    else:
+        # Fallback para usuário de teste (desenvolvimento)
+        usuario = autenticar_usuario_legado(dados.usuario, dados.senha)
 
     if not usuario:
         raise HTTPException(
@@ -84,13 +97,26 @@ async def login(request: Request, dados: LoginRequest):
 
 
 @router.post("/login/form", response_model=LoginResponse)
-@limiter.limit("5/minute")
-async def login_form(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
+async def login_form(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    db: AsyncSession = Depends(get_db),
+):
     """
     Login via formulário OAuth2 (para Swagger UI).
-    Rate limit: 5 tentativas por minuto por IP.
     """
-    usuario = autenticar_usuario(form_data.username, form_data.password)
+    # Tentar autenticar no banco de dados
+    usuario_db = await UsuarioServico.autenticar(db, form_data.username, form_data.password)
+
+    if usuario_db:
+        usuario = {
+            "id": usuario_db.id,
+            "usuario": usuario_db.usuario,
+            "nome": usuario_db.nome,
+            "papel": usuario_db.papel,
+        }
+    else:
+        # Fallback para usuário de teste
+        usuario = autenticar_usuario_legado(form_data.username, form_data.password)
 
     if not usuario:
         raise HTTPException(

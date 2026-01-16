@@ -19,8 +19,6 @@ import {
   History,
   X,
   CheckSquare,
-  TrendingUp,
-  History,
 } from 'lucide-react';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { useEffect } from 'react';

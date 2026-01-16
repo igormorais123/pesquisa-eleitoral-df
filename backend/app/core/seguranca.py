@@ -134,9 +134,12 @@ USUARIO_TESTE: Dict[str, Any] = {
 }
 
 
-def autenticar_usuario(usuario: str, senha: str) -> Optional[dict]:
+def autenticar_usuario_legado(usuario: str, senha: str) -> Optional[dict]:
     """
-    Autentica um usuário pelo nome de usuário e senha.
+    Autentica usuário usando o usuário de teste hardcoded.
+
+    NOTA: Esta função é um fallback para desenvolvimento.
+    Em produção, use autenticação via banco de dados (UsuarioServico.autenticar).
 
     Args:
         usuario: Nome de usuário
@@ -145,7 +148,7 @@ def autenticar_usuario(usuario: str, senha: str) -> Optional[dict]:
     Returns:
         Dados do usuário se autenticado, None caso contrário
     """
-    # Por enquanto, apenas usuário de teste
+    # Apenas usuário de teste (fallback para desenvolvimento)
     if usuario != USUARIO_TESTE["usuario"]:
         return None
 
@@ -159,3 +162,7 @@ def autenticar_usuario(usuario: str, senha: str) -> Optional[dict]:
         }
 
     return None
+
+
+# Alias para compatibilidade
+autenticar_usuario = autenticar_usuario_legado

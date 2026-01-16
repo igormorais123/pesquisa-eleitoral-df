@@ -7,56 +7,43 @@ Autor: Professor Igor
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.errors import RateLimitExceeded
-from slowapi.util import get_remote_address
 
 from app.api.rotas import (
-    analytics,
     autenticacao,
     eleitores,
     entrevistas,
     geracao,
-    historico,
     memorias,
-    pesquisas,
     resultados,
+    usuarios,
 )
 from app.core.config import configuracoes
-from app.db.session import engine
-from app.db.base import Base
-
-# Configurar rate limiter
-limiter = Limiter(key_func=get_remote_address)
+from app.db.database import init_db
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Gerencia ciclo de vida da aplicação"""
     # Startup
-    print("🚀 Iniciando Sistema de Pesquisa Eleitoral DF 2026...")
-    print(f"📊 Ambiente: {configuracoes.AMBIENTE}")
-    print(f"🔗 Frontend URL: {configuracoes.FRONTEND_URL}")
+    print("[STARTUP] Iniciando Sistema de Pesquisa Eleitoral DF 2026...")
+    print(f"[CONFIG] Ambiente: {configuracoes.AMBIENTE}")
+    print(f"[CONFIG] Frontend URL: {configuracoes.FRONTEND_URL}")
 
-    # Criar tabelas do banco de dados (se não existirem)
+    # Inicializar banco de dados (criar tabelas se não existirem)
     try:
-        async with engine.begin() as conn:
-            # Importar modelos para registrar nas metadata
-            from app.db.modelos import pesquisa  # noqa
-            await conn.run_sync(Base.metadata.create_all)
-            print("✅ Banco de dados inicializado")
+        await init_db()
+        print("[DB] Banco de dados inicializado com sucesso")
     except Exception as e:
-        print(f"⚠️ Aviso: Não foi possível conectar ao banco de dados: {e}")
-        print("   O sistema funcionará sem persistência no PostgreSQL")
+        print(f"[DB] Aviso: Não foi possível conectar ao banco - {e}")
+        print("[DB] Sistema funcionará com autenticação de teste apenas")
 
     yield
 
     # Shutdown
-    print("👋 Encerrando aplicação...")
-    await engine.dispose()
+    print("[SHUTDOWN] Encerrando aplicacao...")
 
 
 # Metadata para tags do Swagger
@@ -162,11 +149,28 @@ permitindo que agentes mantenham consistência
 entre diferentes entrevistas.
         """,
     },
+    {
+        "name": "Usuários",
+        "description": """
+Gerenciamento de usuários do sistema.
+
+**Papéis disponíveis:**
+- `admin`: Acesso total ao sistema
+- `pesquisador`: Pode criar e executar pesquisas
+- `visualizador`: Apenas visualização de resultados
+
+**Funcionalidades:**
+- CRUD completo de usuários (admin)
+- Alterar senha própria
+- Atualizar perfil próprio
+        """,
+    },
 ]
 
 # Criar aplicação FastAPI
 app = FastAPI(
     title="API Pesquisa Eleitoral DF 2026",
+    redirect_slashes=False,  # Evita redirects 307 por barras finais
     description="""
 ## Sistema de Simulação de Pesquisa Eleitoral
 
@@ -225,10 +229,6 @@ Authorization: Bearer <seu_token>
     },
 )
 
-# Configurar rate limiter
-app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
-
 # Configurar CORS
 # Origens permitidas
 origens_permitidas = [
@@ -248,8 +248,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origens_permitidas,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allow_headers=["Authorization", "Content-Type", "Accept", "Origin", "X-Requested-With"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
@@ -309,21 +309,8 @@ app.include_router(
     tags=["Geração"],
 )
 
-# Rotas de persistência e análise
 app.include_router(
-    pesquisas.router,
-    prefix="/api/v1/pesquisas",
-    tags=["Pesquisas Persistidas"],
-)
-
-app.include_router(
-    analytics.router,
-    prefix="/api/v1/analytics",
-    tags=["Analytics e Análise Global"],
-)
-
-app.include_router(
-    historico.router,
-    prefix="/api/v1/historico",
-    tags=["Histórico"],
+    usuarios.router,
+    prefix="/api/v1/usuarios",
+    tags=["Usuários"],
 )

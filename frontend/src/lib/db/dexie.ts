@@ -17,6 +17,9 @@ export interface SessaoEntrevista {
   iniciadaEm: string;
   atualizadaEm: string;
   finalizadaEm?: string;
+  // Vínculo com usuário logado
+  usuarioId?: string;
+  usuarioNome?: string;
 }
 
 // Interface para configurações do sistema
@@ -42,6 +45,15 @@ export class BancoEleitoral extends Dexie {
       memorias: 'id, eleitor_id, data, tema',
       entrevistas: 'id, titulo, status, criado_em',
       sessoes: 'id, entrevistaId, status, iniciadaEm',
+      configuracoes: 'chave',
+    });
+
+    // Versão 2: Adiciona índice por usuário nas sessões
+    this.version(2).stores({
+      eleitores: 'id, nome, regiao_administrativa, cluster_socioeconomico, orientacao_politica, genero, religiao, idade',
+      memorias: 'id, eleitor_id, data, tema',
+      entrevistas: 'id, titulo, status, criado_em',
+      sessoes: 'id, entrevistaId, status, iniciadaEm, usuarioId',
       configuracoes: 'chave',
     });
   }
@@ -105,6 +117,15 @@ export async function obterSessao(id: string): Promise<SessaoEntrevista | undefi
 
 export async function obterSessoes(): Promise<SessaoEntrevista[]> {
   return db.sessoes.orderBy('iniciadaEm').reverse().toArray();
+}
+
+// Obter sessões filtradas por usuário
+export async function obterSessoesPorUsuario(usuarioId: string): Promise<SessaoEntrevista[]> {
+  return db.sessoes
+    .where('usuarioId')
+    .equals(usuarioId)
+    .reverse()
+    .sortBy('iniciadaEm');
 }
 
 // Entrevistas
