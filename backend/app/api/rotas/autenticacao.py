@@ -259,11 +259,17 @@ async def google_callback(
 )
 async def obter_usuario_logado(
     usuario_atual: DadosToken = Depends(obter_usuario_atual),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_db_optional),
 ):
     """Obtém dados do usuário logado"""
-    # Tentar buscar do banco
-    usuario = await UsuarioServico.obter_por_id(db, usuario_atual.usuario_id)
+    # Tentar buscar do banco (se disponível)
+    usuario = None
+    if db is not None:
+        try:
+            usuario = await UsuarioServico.obter_por_id(db, usuario_atual.usuario_id)
+        except Exception:
+            # Banco indisponível, usar fallback
+            pass
 
     if usuario:
         return UsuarioResponse.model_validate(usuario)
