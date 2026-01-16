@@ -1,35 +1,62 @@
 import axios from 'axios';
 
-// Determina a URL base da API
-// NEXT_PUBLIC_API_URL pode ser a URL completa (com /api/v1) ou apenas o host
-const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
-
-// Remove /api/v1 se já existir na URL para evitar duplicação
-const baseHost = rawApiUrl.replace(/\/api\/v1\/?$/, '');
-
+// Usa rota relativa para funcionar em qualquer ambiente (dev, producao, Vercel)
+// As API routes do Next.js respondem em /api/v1/*
 export const api = axios.create({
-  baseURL: `${baseHost}/api/v1`,
+  baseURL: '/api/v1',
   headers: {
     'Content-Type': 'application/json',
   },
   timeout: 30000,
 });
 
-// Interceptor para adicionar token
-api.interceptors.request.use(
-  (config) => {
-    if (typeof window !== 'undefined') {
+// Performance: cache do token em memória para evitar localStorage em cada request
+let cachedToken: string | null = null;
+let tokenLoadedFromStorage = false;
+
+/**
+ * Carrega o token do localStorage para o cache em memória (uma vez).
+ * Chamadas subsequentes usam o cache.
+ */
+function getAuthToken(): string | null {
+  if (!tokenLoadedFromStorage && typeof window !== 'undefined') {
+    try {
       const authStorage = localStorage.getItem('pesquisa-eleitoral-auth');
       if (authStorage) {
-        try {
-          const { state } = JSON.parse(authStorage);
-          if (state?.token) {
-            config.headers.Authorization = `Bearer ${state.token}`;
-          }
-        } catch (e) {
-          console.error('Erro ao parsear auth storage:', e);
-        }
+        const { state } = JSON.parse(authStorage);
+        cachedToken = state?.token || null;
       }
+    } catch (e) {
+      console.error('Erro ao parsear auth storage:', e);
+      cachedToken = null;
+    }
+    tokenLoadedFromStorage = true;
+  }
+  return cachedToken;
+}
+
+/**
+ * Atualiza o token em cache (chamado após login).
+ */
+export function setAuthToken(token: string | null): void {
+  cachedToken = token;
+  tokenLoadedFromStorage = true;
+}
+
+/**
+ * Limpa o token em cache (chamado após logout ou expiração).
+ */
+export function clearAuthToken(): void {
+  cachedToken = null;
+  tokenLoadedFromStorage = true; // Marca como carregado para não recarregar
+}
+
+// Interceptor para adicionar token (usa cache em memória)
+api.interceptors.request.use(
+  (config) => {
+    const token = getAuthToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
@@ -43,7 +70,8 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response?.status === 401) {
-      // Token expirado ou inválido
+      // Token expirado ou inválido - limpa cache e storage
+      clearAuthToken();
       if (typeof window !== 'undefined') {
         localStorage.removeItem('pesquisa-eleitoral-auth');
         window.location.href = '/login';
