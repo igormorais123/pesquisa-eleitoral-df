@@ -5,11 +5,6 @@ import { useParlamentaresStore } from '@/stores/parlamentares-store';
 import { notify } from '@/stores/notifications-store';
 import type { Parlamentar, CasaLegislativa } from '@/types';
 
-// Importar dados JSON dos parlamentares
-import deputadosFederais from '../../../agentes/banco-deputados-federais-df.json';
-import senadores from '../../../agentes/banco-senadores-df.json';
-import deputadosDistritais from '../../../agentes/banco-deputados-distritais-df.json';
-
 export function useParlamentares() {
   const notifiedRef = useRef(false);
   const [carregandoLocal, setCarregandoLocal] = useState(true);
@@ -41,17 +36,28 @@ export function useParlamentares() {
     calcularEstatisticas,
   } = useParlamentaresStore();
 
-  // Carregar todos os parlamentares
+  // Carregar todos os parlamentares via fetch (para funcionar em produção)
   useEffect(() => {
     const carregarParlamentares = async () => {
       try {
         setCarregando(true);
 
+        // Carregar dados de cada casa via fetch
+        const [deputadosFederaisRes, senadoresRes, deputadosDistritaisRes] = await Promise.all([
+          fetch('/data/banco-deputados-federais-df.json'),
+          fetch('/data/banco-senadores-df.json'),
+          fetch('/data/banco-deputados-distritais-df.json'),
+        ]);
+
+        const deputadosFederais = await deputadosFederaisRes.json();
+        const senadores = await senadoresRes.json();
+        const deputadosDistritais = await deputadosDistritaisRes.json();
+
         // Combinar todos os parlamentares de diferentes casas
         const todosParlamentares: Parlamentar[] = [
-          ...(deputadosFederais as unknown as Parlamentar[]),
-          ...(senadores as unknown as Parlamentar[]),
-          ...(deputadosDistritais as unknown as Parlamentar[]),
+          ...(deputadosFederais as Parlamentar[]),
+          ...(senadores as Parlamentar[]),
+          ...(deputadosDistritais as Parlamentar[]),
         ];
 
         setParlamentares(todosParlamentares);
