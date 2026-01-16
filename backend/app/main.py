@@ -12,11 +12,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 
 from app.api.rotas import (
+    analise_global,
     autenticacao,
     eleitores,
     entrevistas,
     geracao,
+    historico,
     memorias,
+    pesquisas,
     resultados,
 )
 from app.core.config import configuracoes
@@ -280,4 +283,23 @@ app.include_router(
     geracao.router,
     prefix="/api/v1/geracao",
     tags=["Geração"],
+)
+
+# Novas rotas de persistência
+app.include_router(
+    pesquisas.router,
+    prefix="/api/v1",
+    tags=["Pesquisas Persistidas"],
+)
+
+app.include_router(
+    analise_global.router,
+    prefix="/api/v1",
+    tags=["Análise Global"],
+)
+
+app.include_router(
+    historico.router,
+    prefix="/api/v1",
+    tags=["Histórico"],
 )
