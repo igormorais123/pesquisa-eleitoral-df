@@ -14,12 +14,13 @@ export function obterClienteAnthropic(): Anthropic {
   return clienteAnthropic;
 }
 
-// Tipos para resposta estruturada
+// Tipos para resposta estruturada - Formato Robusto
 export interface RespostaAgente {
   agente_id: string;
   modelo_usado: 'opus' | 'sonnet' | 'haiku';
   tokens_input: number;
   tokens_output: number;
+  // Formato legado (mantido para compatibilidade)
   chain_of_thought: {
     etapa1_atencao: {
       prestou_atencao: boolean;
@@ -31,7 +32,7 @@ export interface RespostaAgente {
       medos_ativados: string[];
     };
     etapa3_emocional: {
-      sentimento: 'seguranca' | 'ameaca' | 'raiva' | 'indiferenca' | 'esperanca';
+      sentimento: 'seguranca' | 'ameaca' | 'raiva' | 'indiferenca' | 'esperanca' | 'medo' | 'desprezo' | 'desconfianca';
       intensidade: number;
     };
     etapa4_decisao: {
@@ -44,6 +45,40 @@ export interface RespostaAgente {
     escala?: number;
     opcao?: string;
     ranking?: string[];
+  };
+  // Novo formato robusto (opcional para compatibilidade)
+  raciocinio?: {
+    atencao: {
+      prestou_atencao: boolean;
+      motivo: string;
+      relevancia_pessoal: string;
+    };
+    processamento: {
+      confirma_crencas: boolean;
+      ameaca_valores: boolean;
+      medos_ativados: string[];
+      vieses_em_acao: string[];
+    };
+    emocional: {
+      sentimento_primario: 'raiva' | 'medo' | 'esperanca' | 'desprezo' | 'indiferenca' | 'desconfianca' | 'seguranca';
+      sentimento_secundario?: string;
+      intensidade: number;
+      pensamento_interno: string;
+    };
+    social: {
+      alinhado_com_grupo: boolean;
+      diria_publicamente: boolean;
+    };
+  };
+  resposta_completa?: {
+    texto: string;
+    tom: 'direto' | 'evasivo' | 'agressivo' | 'indiferente' | 'entusiasmado' | 'desconfiado';
+    certeza: number;
+  };
+  meta?: {
+    muda_intencao_voto: boolean;
+    aumenta_cinismo: boolean;
+    engajamento: 'alto' | 'medio' | 'baixo';
   };
 }
 

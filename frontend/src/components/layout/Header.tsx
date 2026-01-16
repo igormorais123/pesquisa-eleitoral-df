@@ -3,6 +3,7 @@
 import { useAuthStore } from '@/stores/auth-store';
 import { useThemeStore } from '@/stores/theme-store';
 import { useNotificationsStore, type Notification } from '@/stores/notifications-store';
+import { useSidebarStore } from '@/stores/sidebar-store';
 import {
   LogOut,
   User,
@@ -53,8 +54,7 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
     clearAll,
   } = useNotificationsStore();
 
-  const [menuAberto, setMenuAberto] = useState(false);
-  const [buscaAberta, setBuscaAberta] = useState(false);
+  const { mobileAberto, toggleMobile } = useSidebarStore();
   const [buscaGlobalAberta, setBuscaGlobalAberta] = useState(false);
   const notificacoesRef = useRef<HTMLDivElement>(null);
 
@@ -89,7 +89,6 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
 
   const abrirBuscaGlobal = useCallback(() => {
     setBuscaGlobalAberta(true);
-    setBuscaAberta(false);
   }, []);
 
   return (
@@ -100,9 +99,10 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
           {/* Botão menu mobile */}
           <button
             className="lg:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
-            onClick={() => setMenuAberto(!menuAberto)}
+            onClick={toggleMobile}
+            aria-label={mobileAberto ? 'Fechar menu' : 'Abrir menu'}
           >
-            {menuAberto ? (
+            {mobileAberto ? (
               <X className="w-5 h-5 text-foreground" />
             ) : (
               <Menu className="w-5 h-5 text-foreground" />

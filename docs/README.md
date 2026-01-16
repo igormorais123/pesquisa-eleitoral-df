@@ -15,6 +15,7 @@ Sistema de simulação de pesquisa eleitoral com agentes sintéticos de IA para 
 | [Criando Entrevistas](guia-usuario/03-criando-entrevistas.md) | Passo a passo para criar pesquisas |
 | [Interpretando Resultados](guia-usuario/04-interpretando-resultados.md) | Como ler gráficos e insights |
 | [Glossário](glossario.md) | Termos técnicos explicados |
+| [FAQ](faq.md) | Perguntas frequentes |
 
 ### Para Desenvolvedores (Técnico)
 
@@ -34,6 +35,13 @@ Sistema de simulação de pesquisa eleitoral com agentes sintéticos de IA para 
 | [Variáveis de Ambiente](deployment/variaveis-ambiente.md) | Todas as configurações |
 | [Troubleshooting](deployment/troubleshooting.md) | Resolução de problemas |
 | [Backup e Restore](deployment/backup-restore.md) | Proteção de dados |
+
+### Arquitetura
+
+| Documento | Descrição |
+|-----------|-----------|
+| [Performance e Scaling](arquitetura/performance.md) | Otimização e escalabilidade |
+| [ADRs](arquitetura/adrs.md) | Decisões arquiteturais documentadas |
 
 ### Documentação Interativa
 
@@ -81,6 +89,7 @@ cd frontend && npm run dev
 docs/
 ├── README.md                    # Este arquivo (índice)
 ├── glossario.md                 # Termos técnicos explicados
+├── faq.md                       # Perguntas frequentes
 ├── guia-usuario/                # Para não-programadores
 │   ├── 01-primeiros-passos.md   # Tutorial inicial
 │   ├── 02-entendendo-eleitores.md
@@ -94,11 +103,14 @@ docs/
 │   └── regras-anti-convergencia.md
 ├── agentes/                     # Customização
 │   └── README.md                # Schema e exemplos
-└── deployment/                  # Operações
-    ├── README.md                # Docker, manual, produção
-    ├── variaveis-ambiente.md    # Configurações
-    ├── troubleshooting.md       # Resolução de problemas
-    └── backup-restore.md        # Proteção de dados
+├── deployment/                  # Operações
+│   ├── README.md                # Docker, manual, produção
+│   ├── variaveis-ambiente.md    # Configurações
+│   ├── troubleshooting.md       # Resolução de problemas
+│   └── backup-restore.md        # Proteção de dados
+└── arquitetura/                 # Decisões técnicas
+    ├── performance.md           # Scaling e otimização
+    └── adrs.md                  # Architecture Decision Records
 ```
 
 ---
