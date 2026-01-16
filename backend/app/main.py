@@ -20,6 +20,7 @@ from app.api.rotas import (
     memorias,
     resultados,
     usuarios,
+    pesquisas_parlamentares,
 )
 from app.parlamentares.routes import router as parlamentares_router
 from app.core.config import configuracoes
@@ -216,6 +217,33 @@ Gerenciamento de parlamentares do Distrito Federal.
 - Portal da CLDF
         """,
     },
+    {
+        "name": "Pesquisas Parlamentares",
+        "description": """
+Pesquisas de opinião com parlamentares como sujeitos de pesquisa.
+
+**Funcionalidades:**
+- Criar pesquisas selecionando parlamentares por casa legislativa
+- Executar pesquisas com simulação de respostas via IA
+- Monitorar progresso em tempo real
+- Obter respostas agrupadas por parlamentar ou por pergunta
+
+**Fluxo de pesquisa:**
+1. Criar pesquisa com perguntas e parlamentares
+2. Estimar custo (opcional)
+3. Iniciar execução
+4. Monitorar progresso
+5. Obter respostas ao final
+
+**Prompts especializados:**
+Os parlamentares respondem usando prompts específicos que consideram:
+- Cargo e casa legislativa
+- Histórico de votações
+- Posicionamento partidário
+- Temas de atuação
+- Base eleitoral
+        """,
+    },
 ]
 
 # Criar aplicação FastAPI
@@ -376,4 +404,10 @@ app.include_router(
     parlamentares_router,
     prefix="/api/v1/parlamentares",
     tags=["Parlamentares"],
+)
+
+app.include_router(
+    pesquisas_parlamentares.router,
+    prefix="/api/v1/pesquisas-parlamentares",
+    tags=["Pesquisas Parlamentares"],
 )

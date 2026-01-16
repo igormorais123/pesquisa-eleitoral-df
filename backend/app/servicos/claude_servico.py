@@ -459,6 +459,119 @@ Responda APENAS com JSON válido no seguinte formato:
             "tempo_resposta_ms": tempo_ms,
         }
 
+    async def processar_resposta_parlamentar(
+        self,
+        parlamentar: Dict[str, Any],
+        pergunta: str,
+        tipo_pergunta: str,
+        opcoes: Optional[List[str]] = None,
+        forcar_modelo: Optional[str] = None,
+        simplificado: bool = False,
+    ) -> Dict[str, Any]:
+        """
+        Processa uma resposta de parlamentar.
+
+        Args:
+            parlamentar: Dados do parlamentar (formato de agente)
+            pergunta: Texto da pergunta
+            tipo_pergunta: Tipo da pergunta
+            opcoes: Opções para múltipla escolha
+            forcar_modelo: Forçar uso de modelo específico
+            simplificado: Usar prompt simplificado (menos tokens)
+
+        Returns:
+            Resposta processada com metadados
+        """
+        from app.servicos.parlamentar_prompt import (
+            construir_prompt_parlamentar,
+            construir_prompt_parlamentar_simplificado,
+        )
+
+        self._verificar_cliente()
+
+        # Selecionar modelo (parlamentares usam o mesmo modelo de entrevistas)
+        modelo = forcar_modelo or MODELO_ENTREVISTAS
+
+        # Construir prompt
+        if simplificado:
+            prompt = construir_prompt_parlamentar_simplificado(
+                parlamentar, pergunta, tipo_pergunta, opcoes
+            )
+        else:
+            prompt = construir_prompt_parlamentar(
+                parlamentar, pergunta, tipo_pergunta, opcoes
+            )
+
+        # Medir tempo
+        inicio = time.time()
+
+        # Chamar API
+        response = self.client.messages.create(
+            model=modelo,
+            max_tokens=2000,
+            messages=[{"role": "user", "content": prompt}],
+        )
+
+        tempo_ms = int((time.time() - inicio) * 1000)
+
+        # Extrair tokens
+        tokens_entrada = response.usage.input_tokens
+        tokens_saida = response.usage.output_tokens
+
+        # Calcular custo
+        custo = self.calcular_custo(tokens_entrada, tokens_saida, modelo)
+
+        # Parsear resposta JSON
+        resposta_texto = response.content[0].text
+        try:
+            resposta_json = json.loads(resposta_texto)
+        except json.JSONDecodeError:
+            import re
+
+            json_match = re.search(r"\{.*\}", resposta_texto, re.DOTALL)
+            if json_match:
+                try:
+                    resposta_json = json.loads(json_match.group())
+                except json.JSONDecodeError:
+                    resposta_json = None
+            else:
+                resposta_json = None
+
+            # Fallback
+            if resposta_json is None:
+                resposta_json = {
+                    "raciocinio": {},
+                    "resposta": {
+                        "texto": resposta_texto,
+                        "tom": "direto",
+                        "certeza": 5,
+                    },
+                    "meta": {
+                        "alinhado_partido": True,
+                        "potencial_polemico": False,
+                        "adequado_base": True,
+                    },
+                }
+
+        # Extrair resposta
+        if "resposta" in resposta_json and isinstance(resposta_json["resposta"], dict):
+            resposta_final = resposta_json["resposta"].get("texto", "")
+        else:
+            resposta_final = resposta_texto
+
+        return {
+            "eleitor_id": parlamentar.get("id"),
+            "eleitor_nome": parlamentar.get("nome_parlamentar", parlamentar.get("nome")),
+            "tipo_sujeito": "parlamentar",
+            "resposta_texto": resposta_final,
+            "fluxo_cognitivo": resposta_json,
+            "modelo_usado": modelo,
+            "tokens_entrada": tokens_entrada,
+            "tokens_saida": tokens_saida,
+            "custo_reais": custo,
+            "tempo_resposta_ms": tempo_ms,
+        }
+
     def estimar_custo(self, total_perguntas: int, total_eleitores: int) -> Dict[str, Any]:
         """
         Estima custo de uma entrevista.

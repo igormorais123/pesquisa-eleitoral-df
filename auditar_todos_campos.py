@@ -71,16 +71,16 @@ REFERENCIAS = {
         "tolerancia": 5,
     },
     "ocupacao_vinculo": {
-        "fonte": "PNAD/PDAD 2023",
+        "fonte": "PNAD/PDAD 2023 (normalizado para 100%)",
         "metas": {
-            "clt": 35.0,
-            "autonomo": 25.0,         # Autonomo formal + informal
-            "informal": 15.0,
-            "servidor_publico": 8.0,  # DF tem muito servidor
-            "desempregado": 8.0,
-            "aposentado": 12.0,
-            "estudante": 5.0,
-            "empresario": 3.0,
+            "clt": 31.5,              # Era 35%, normalizado
+            "autonomo": 22.5,         # Era 25%, normalizado
+            "informal": 13.5,         # Era 15%, normalizado
+            "servidor_publico": 7.2,  # Era 8%, normalizado
+            "desempregado": 7.2,      # Era 8%, normalizado
+            "aposentado": 10.8,       # Era 12%, normalizado
+            "estudante": 4.5,         # Era 5%, normalizado
+            "empresario": 2.8,        # Era 3%, normalizado
         },
         "tolerancia": 5,
     },
