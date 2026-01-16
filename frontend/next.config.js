@@ -2,9 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  // Output standalone para deploy em plataformas como Vercel, Render Web Service
+  // NAO usar static export porque temos API routes (Claude, Auth)
+  output: 'standalone',
+
   // Configuracao para API externa
   // Usa NEXT_PUBLIC_BACKEND_URL (apenas o host, sem /api/v1) para evitar duplicação de path
-  // Nota: rotas de auth (/api/v1/auth/*) sao tratadas localmente pelo Next.js
   async rewrites() {
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
 

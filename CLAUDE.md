@@ -163,7 +163,59 @@ SECRET_KEY=...                      # JWT signing
 DATABASE_URL=postgresql://...       # PostgreSQL connection
 FRONTEND_URL=http://localhost:3000
 BACKEND_URL=http://localhost:8000
+VERCEL_TOKEN=vck_...               # Vercel API Token
 ```
+
+## Vercel Deploy (IMPORTANTE!)
+
+### Onde encontrar o Token Vercel
+O token da API Vercel está salvo em **dois lugares**:
+1. **Arquivo `.env`** na raiz do projeto (linha VERCEL_TOKEN)
+2. **Dashboard Vercel**: https://vercel.com/account/tokens
+
+### Como usar o token
+```bash
+# Via CLI (já configurado)
+vercel --token $VERCEL_TOKEN
+
+# Listar projetos
+vercel project ls --token $VERCEL_TOKEN
+
+# Deploy manual
+cd frontend && vercel --prod --token $VERCEL_TOKEN
+
+# Ver deploys
+vercel ls --token $VERCEL_TOKEN
+```
+
+### Projeto na Vercel
+- **Nome**: pesquisa-eleitoral-df
+- **URL Produção**: https://pesquisa-eleitoral-df.vercel.app
+- **Usuário**: igormorais123
+- **Project ID**: prj_gl8ATaXX0NxNQzWAo4hcUVqPmq0R
+
+### Se perder o token Vercel
+1. Acesse: https://vercel.com/account/tokens
+2. Clique em "Create Token"
+3. Dê um nome (ex: "Claude Code")
+4. Copie e cole no arquivo `.env` em VERCEL_TOKEN
+
+## Render Deploy (Backend)
+
+### Onde encontrar o Token Render
+O token da API Render está salvo em **dois lugares**:
+1. **Arquivo `.env`** na raiz do projeto (linha RENDER_API_KEY)
+2. **Dashboard Render**: https://dashboard.render.com/u/settings#api-keys
+
+### Backend no Render
+- **URL Produção**: https://pesquisa-eleitoral-df-1.onrender.com
+- **Tipo**: Web Service (FastAPI)
+
+### Se perder o token Render
+1. Acesse: https://dashboard.render.com/u/settings
+2. Vá em "API Keys"
+3. Clique em "Create API Key"
+4. Copie e cole no arquivo `.env` em RENDER_API_KEY
 
 ## Language
 
