@@ -194,7 +194,7 @@ export default function PaginaUploadEleitores() {
               Resultado da Validação
             </h2>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-4 bg-green-500/10 rounded-lg border border-green-500/30">
                 <div className="flex items-center gap-2 text-green-400 mb-1">
                   <CheckCircle className="w-5 h-5" />

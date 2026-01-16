@@ -1,7 +1,7 @@
 """
-Esquemas de Pesquisa Persistida
+Esquemas Pydantic para Pesquisas Persistidas.
 
-Modelos Pydantic para validação e serialização de pesquisas no banco de dados.
+Modelos para validação e serialização de pesquisas, perguntas e respostas.
 """
 
 from datetime import datetime
@@ -17,26 +17,47 @@ from pydantic import BaseModel, Field
 
 
 class TipoPesquisa(str, Enum):
+    """Tipo de pesquisa eleitoral."""
+
     quantitativa = "quantitativa"
     qualitativa = "qualitativa"
     mista = "mista"
 
 
+# Alias para compatibilidade
+TipoPesquisaEnum = TipoPesquisa
+
+
 class StatusPesquisa(str, Enum):
+    """Status de execução da pesquisa."""
+
     rascunho = "rascunho"
+    agendada = "agendada"
     executando = "executando"
     pausada = "pausada"
     concluida = "concluida"
+    cancelada = "cancelada"
     erro = "erro"
 
 
+# Alias para compatibilidade
+StatusPesquisaEnum = StatusPesquisa
+
+
 class TipoPerguntaPesquisa(str, Enum):
+    """Tipo de pergunta."""
+
     aberta = "aberta"
     aberta_longa = "aberta_longa"
     escala_likert = "escala_likert"
     multipla_escolha = "multipla_escolha"
     sim_nao = "sim_nao"
     ranking = "ranking"
+    numerica = "numerica"
+
+
+# Alias para compatibilidade
+TipoPerguntaEnum = TipoPerguntaPesquisa
 
 
 # ============================================
@@ -45,9 +66,9 @@ class TipoPerguntaPesquisa(str, Enum):
 
 
 class PerguntaPesquisaBase(BaseModel):
-    """Base de uma pergunta de pesquisa"""
+    """Base de uma pergunta de pesquisa."""
 
-    texto: str = Field(..., min_length=10, max_length=2000)
+    texto: str = Field(..., min_length=5, max_length=2000)
     tipo: TipoPerguntaPesquisa = TipoPerguntaPesquisa.aberta
     ordem: int = 0
     obrigatoria: bool = True
@@ -56,15 +77,17 @@ class PerguntaPesquisaBase(BaseModel):
     escala_max: Optional[int] = None
     escala_rotulos: Optional[List[str]] = None
     instrucoes_ia: Optional[str] = None
+    codigo: Optional[str] = None
 
 
 class PerguntaPesquisaCreate(PerguntaPesquisaBase):
-    """Criação de pergunta"""
+    """Criação de pergunta."""
+
     pass
 
 
 class PerguntaPesquisaResponse(PerguntaPesquisaBase):
-    """Resposta de pergunta"""
+    """Resposta de pergunta com ID."""
 
     id: str
     pesquisa_id: str
@@ -80,12 +103,20 @@ class PerguntaPesquisaResponse(PerguntaPesquisaBase):
 
 
 class RespostaPesquisaBase(BaseModel):
-    """Base de uma resposta"""
+    """Base de uma resposta."""
 
     eleitor_id: str
-    eleitor_nome: str
+    eleitor_nome: Optional[str] = None
     resposta_texto: str
     resposta_valor: Optional[Any] = None
+
+
+class RespostaPesquisaCreate(RespostaPesquisaBase):
+    """Criação de resposta."""
+
+    pesquisa_id: str
+    pergunta_id: str
+    eleitor_perfil: Optional[Dict[str, Any]] = None
     fluxo_cognitivo: Optional[Dict[str, Any]] = None
     sentimento: Optional[str] = None
     intensidade_sentimento: Optional[float] = None
@@ -94,34 +125,61 @@ class RespostaPesquisaBase(BaseModel):
     tokens_saida: int = 0
     custo_reais: float = 0.0
     tempo_resposta_ms: int = 0
+    metadados: Optional[Dict[str, Any]] = None
 
 
-class RespostaPesquisaCreate(RespostaPesquisaBase):
-    """Criação de resposta"""
-
-    pesquisa_id: str
-    pergunta_id: str
-    eleitor_perfil: Optional[Dict[str, Any]] = None
+# Alias para compatibilidade
+RespostaCreate = RespostaPesquisaCreate
 
 
 class RespostaPesquisaResponse(RespostaPesquisaBase):
-    """Resposta completa"""
+    """Resposta completa com metadados."""
 
     id: str
     pesquisa_id: str
     pergunta_id: str
     eleitor_perfil: Optional[Dict[str, Any]] = None
+    fluxo_cognitivo: Optional[Dict[str, Any]] = None
+    sentimento: Optional[str] = None
+    intensidade_sentimento: Optional[float] = None
+    modelo_usado: str
+    tokens_entrada: int
+    tokens_saida: int
+    custo_reais: float
+    tempo_resposta_ms: int
     criado_em: datetime
 
     class Config:
         from_attributes = True
 
 
+# Alias para compatibilidade
+RespostaResponse = RespostaPesquisaResponse
+
+
 class RespostaPesquisaDetalhada(RespostaPesquisaResponse):
-    """Resposta com dados da pergunta"""
+    """Resposta com dados derivados do fluxo cognitivo."""
 
     pergunta_texto: Optional[str] = None
     pergunta_tipo: Optional[str] = None
+    sentimento_dominante: Optional[str] = None
+    intensidade_emocional: Optional[int] = None
+    mudaria_voto: Optional[bool] = None
+
+    @classmethod
+    def from_resposta(cls, resposta: "RespostaPesquisaResponse") -> "RespostaPesquisaDetalhada":
+        """Cria RespostaPesquisaDetalhada a partir de RespostaPesquisaResponse."""
+        dados = resposta.model_dump()
+
+        # Extrair dados do fluxo cognitivo
+        fluxo = resposta.fluxo_cognitivo or {}
+        if "emocional" in fluxo:
+            dados["sentimento_dominante"] = fluxo["emocional"].get("sentimento_dominante")
+            dados["intensidade_emocional"] = fluxo["emocional"].get("intensidade")
+        if "decisao" in fluxo:
+            dados["mudaria_voto"] = fluxo["decisao"].get("muda_intencao_voto")
+
+        return cls(**dados)
 
 
 # ============================================
@@ -130,7 +188,7 @@ class RespostaPesquisaDetalhada(RespostaPesquisaResponse):
 
 
 class PesquisaBase(BaseModel):
-    """Base de uma pesquisa"""
+    """Base de uma pesquisa."""
 
     titulo: str = Field(..., min_length=3, max_length=200)
     descricao: Optional[str] = None
@@ -139,7 +197,7 @@ class PesquisaBase(BaseModel):
 
 
 class PesquisaCreate(PesquisaBase):
-    """Criação de pesquisa"""
+    """Criação de pesquisa."""
 
     perguntas: List[PerguntaPesquisaCreate]
     eleitores_ids: List[str] = Field(..., min_length=1)
@@ -149,7 +207,7 @@ class PesquisaCreate(PesquisaBase):
 
 
 class PesquisaUpdate(BaseModel):
-    """Atualização de pesquisa"""
+    """Atualização de pesquisa."""
 
     titulo: Optional[str] = None
     descricao: Optional[str] = None
@@ -167,7 +225,7 @@ class PesquisaUpdate(BaseModel):
 
 
 class PesquisaResumo(BaseModel):
-    """Resumo de pesquisa para listagens"""
+    """Resumo de pesquisa para listagens."""
 
     id: str
     titulo: str
@@ -186,7 +244,7 @@ class PesquisaResumo(BaseModel):
 
 
 class PesquisaResponse(PesquisaBase):
-    """Resposta completa de pesquisa"""
+    """Resposta completa de pesquisa."""
 
     id: str
     status: StatusPesquisa
@@ -224,7 +282,7 @@ class PesquisaResponse(PesquisaBase):
 
 
 class PesquisaCompleta(PesquisaResponse):
-    """Pesquisa com todas as respostas"""
+    """Pesquisa com todas as respostas."""
 
     respostas: List[RespostaPesquisaResponse] = []
 
@@ -235,17 +293,21 @@ class PesquisaCompleta(PesquisaResponse):
 
 
 class FiltrosPesquisa(BaseModel):
-    """Filtros para listagem de pesquisas"""
+    """Filtros para listagem de pesquisas."""
 
     status: Optional[StatusPesquisa] = None
     tipo: Optional[TipoPesquisa] = None
     data_inicio: Optional[datetime] = None
     data_fim: Optional[datetime] = None
     busca: Optional[str] = None
+    pagina: int = Field(default=1, ge=1)
+    por_pagina: int = Field(default=20, ge=1, le=100)
+    ordenar_por: str = "criado_em"
+    ordem_desc: bool = True
 
 
 class PesquisaListResponse(BaseModel):
-    """Resposta paginada de pesquisas"""
+    """Resposta paginada de pesquisas."""
 
     pesquisas: List[PesquisaResumo]
     total: int
@@ -255,13 +317,13 @@ class PesquisaListResponse(BaseModel):
 
 
 class RespostaListResponse(BaseModel):
-    """Resposta paginada de respostas"""
+    """Resposta paginada de respostas."""
 
     respostas: List[RespostaPesquisaResponse]
     total: int
     pagina: int
     por_pagina: int
-    total_paginas: int
+    total_paginas: int = 1
 
 
 # ============================================
@@ -270,7 +332,7 @@ class RespostaListResponse(BaseModel):
 
 
 class DashboardGlobal(BaseModel):
-    """Métricas globais do dashboard"""
+    """Métricas globais do dashboard."""
 
     # Totais
     total_pesquisas: int
@@ -296,7 +358,7 @@ class DashboardGlobal(BaseModel):
 
 
 class CorrelacaoGlobal(BaseModel):
-    """Correlação entre variáveis"""
+    """Correlação entre variáveis."""
 
     variavel_x: str
     variavel_y: str
@@ -308,7 +370,7 @@ class CorrelacaoGlobal(BaseModel):
 
 
 class TendenciaTemporal(BaseModel):
-    """Tendência ao longo do tempo"""
+    """Tendência ao longo do tempo."""
 
     periodo: str  # "2026-01", "2026-01-15", etc.
     pesquisas_realizadas: int
@@ -318,7 +380,7 @@ class TendenciaTemporal(BaseModel):
 
 
 class SegmentoAnalise(BaseModel):
-    """Análise por segmento de eleitores"""
+    """Análise por segmento de eleitores."""
 
     segmento: str  # cluster, região, orientação, etc.
     valor: str  # "classe_a", "plano_piloto", "direita", etc.
@@ -329,7 +391,7 @@ class SegmentoAnalise(BaseModel):
 
 
 class InsightGlobal(BaseModel):
-    """Insight descoberto nas análises"""
+    """Insight descoberto nas análises."""
 
     tipo: str  # descoberta, alerta, correlacao, tendencia
     titulo: str
@@ -346,7 +408,7 @@ class InsightGlobal(BaseModel):
 
 
 class HistoricoEleitor(BaseModel):
-    """Histórico de participações de um eleitor"""
+    """Histórico de participações de um eleitor."""
 
     eleitor_id: str
     eleitor_nome: str
@@ -357,7 +419,7 @@ class HistoricoEleitor(BaseModel):
 
 
 class HistoricoPergunta(BaseModel):
-    """Histórico de uma pergunta em diferentes pesquisas"""
+    """Histórico de uma pergunta em diferentes pesquisas."""
 
     texto_pergunta: str
     total_ocorrencias: int
@@ -366,12 +428,33 @@ class HistoricoPergunta(BaseModel):
 
 
 # ============================================
+# AÇÕES
+# ============================================
+
+
+class IniciarPesquisaRequest(BaseModel):
+    """Requisição para iniciar execução de pesquisa."""
+
+    usar_opus_para_complexas: bool = True
+    limite_custo: Optional[float] = Field(None, gt=0, le=500)
+    batch_size: int = Field(default=10, ge=1, le=50)
+
+
+class StatusResponse(BaseModel):
+    """Resposta de status de operação."""
+
+    sucesso: bool
+    mensagem: str
+    dados: Optional[Dict[str, Any]] = None
+
+
+# ============================================
 # EXPORTAÇÃO
 # ============================================
 
 
 class ExportacaoRequest(BaseModel):
-    """Requisição de exportação"""
+    """Requisição de exportação."""
 
     formato: str = Field(..., pattern="^(xlsx|csv|json|pdf)$")
     pesquisa_ids: Optional[List[str]] = None  # None = todas
@@ -381,7 +464,7 @@ class ExportacaoRequest(BaseModel):
 
 
 class ExportacaoResponse(BaseModel):
-    """Resposta de exportação"""
+    """Resposta de exportação."""
 
     arquivo_url: str
     formato: str

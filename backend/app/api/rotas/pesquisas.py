@@ -5,15 +5,17 @@ Endpoints para gerenciamento e consulta de pesquisas no banco de dados.
 """
 
 from datetime import datetime
-from typing import Optional
+import logging
 import math
+from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
 from app.esquemas.pesquisa import (
     FiltrosPesquisa,
+    IniciarPesquisaRequest,
     PesquisaCompleta,
     PesquisaCreate,
     PesquisaListResponse,
@@ -24,9 +26,12 @@ from app.esquemas.pesquisa import (
     RespostaPesquisaCreate,
     RespostaPesquisaResponse,
     StatusPesquisa,
+    StatusResponse,
     TipoPesquisa,
 )
 from app.servicos.pesquisa_servico import PesquisaServico
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -45,6 +50,8 @@ async def listar_pesquisas(
     busca: Optional[str] = None,
     pagina: int = Query(1, ge=1),
     por_pagina: int = Query(20, ge=1, le=100),
+    ordenar_por: str = "criado_em",
+    ordem_desc: bool = True,
     db: AsyncSession = Depends(get_db),
 ):
     """
@@ -94,7 +101,7 @@ async def listar_pesquisas(
     )
 
 
-@router.post("/", response_model=PesquisaResponse, status_code=201)
+@router.post("/", response_model=PesquisaResponse, status_code=status.HTTP_201_CREATED)
 async def criar_pesquisa(
     dados: PesquisaCreate,
     db: AsyncSession = Depends(get_db),
@@ -103,9 +110,12 @@ async def criar_pesquisa(
     Cria uma nova pesquisa eleitoral.
 
     Recebe título, descrição, perguntas e lista de IDs dos eleitores.
+    A pesquisa é criada com status 'rascunho'.
     """
     servico = PesquisaServico(db)
     pesquisa = await servico.criar_pesquisa(dados)
+
+    logger.info(f"Pesquisa criada: id={pesquisa.id}")
 
     return PesquisaResponse(
         id=pesquisa.id,
@@ -133,7 +143,7 @@ async def criar_pesquisa(
         iniciado_em=pesquisa.iniciado_em,
         pausado_em=pesquisa.pausado_em,
         concluido_em=pesquisa.concluido_em,
-        perguntas=[],  # Será populado após refresh
+        perguntas=[],
     )
 
 
@@ -149,7 +159,10 @@ async def obter_pesquisa(
     pesquisa = await servico.obter_pesquisa(pesquisa_id)
 
     if not pesquisa:
-        raise HTTPException(status_code=404, detail="Pesquisa não encontrada")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
+        )
 
     return PesquisaResponse(
         id=pesquisa.id,
@@ -195,7 +208,10 @@ async def obter_pesquisa_completa(
     pesquisa = await servico.obter_pesquisa(pesquisa_id, incluir_respostas=True)
 
     if not pesquisa:
-        raise HTTPException(status_code=404, detail="Pesquisa não encontrada")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
+        )
 
     return PesquisaCompleta(
         id=pesquisa.id,
@@ -257,12 +273,17 @@ async def atualizar_pesquisa(
 ):
     """
     Atualiza uma pesquisa existente.
+
+    Apenas campos fornecidos são atualizados.
     """
     servico = PesquisaServico(db)
     pesquisa = await servico.atualizar_pesquisa(pesquisa_id, dados)
 
     if not pesquisa:
-        raise HTTPException(status_code=404, detail="Pesquisa não encontrada")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
+        )
 
     return PesquisaResponse(
         id=pesquisa.id,
@@ -294,21 +315,160 @@ async def atualizar_pesquisa(
     )
 
 
-@router.delete("/{pesquisa_id}")
+@router.delete("/{pesquisa_id}", response_model=StatusResponse)
 async def deletar_pesquisa(
     pesquisa_id: str,
     db: AsyncSession = Depends(get_db),
 ):
     """
     Deleta uma pesquisa e todos os dados relacionados.
+
+    Esta ação é irreversível.
     """
     servico = PesquisaServico(db)
     deletado = await servico.deletar_pesquisa(pesquisa_id)
 
     if not deletado:
-        raise HTTPException(status_code=404, detail="Pesquisa não encontrada")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
+        )
 
-    return {"message": "Pesquisa deletada com sucesso"}
+    return StatusResponse(
+        sucesso=True,
+        mensagem=f"Pesquisa {pesquisa_id} deletada com sucesso",
+    )
+
+
+# ============================================
+# STATUS E EXECUÇÃO
+# ============================================
+
+
+@router.post("/{pesquisa_id}/iniciar", response_model=StatusResponse)
+async def iniciar_execucao(
+    pesquisa_id: str,
+    config: Optional[IniciarPesquisaRequest] = None,
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Marca a pesquisa como em execução.
+
+    Muda o status para 'executando'.
+    """
+    servico = PesquisaServico(db)
+    pesquisa = await servico.iniciar_execucao(pesquisa_id)
+
+    if not pesquisa:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
+        )
+
+    if config and config.limite_custo:
+        await servico.atualizar_pesquisa(
+            pesquisa_id,
+            PesquisaUpdate(limite_custo=config.limite_custo),
+        )
+
+    return StatusResponse(
+        sucesso=True,
+        mensagem="Execução iniciada",
+        dados={"pesquisa_id": pesquisa.id},
+    )
+
+
+@router.post("/{pesquisa_id}/pausar", response_model=StatusResponse)
+async def pausar_execucao(
+    pesquisa_id: str,
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Pausa a execução de uma pesquisa.
+
+    A pesquisa pode ser retomada posteriormente.
+    """
+    servico = PesquisaServico(db)
+    pesquisa = await servico.pausar_execucao(pesquisa_id)
+
+    if not pesquisa:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
+        )
+
+    return StatusResponse(
+        sucesso=True,
+        mensagem="Execução pausada",
+        dados={"pesquisa_id": pesquisa.id},
+    )
+
+
+@router.post("/{pesquisa_id}/retomar", response_model=StatusResponse)
+async def retomar_execucao(
+    pesquisa_id: str,
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Retoma uma pesquisa pausada.
+    """
+    servico = PesquisaServico(db)
+    pesquisa = await servico.retomar_execucao(pesquisa_id)
+
+    if not pesquisa:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
+        )
+
+    return StatusResponse(
+        sucesso=True,
+        mensagem="Execução retomada",
+        dados={"pesquisa_id": pesquisa.id},
+    )
+
+
+@router.post("/{pesquisa_id}/finalizar", response_model=StatusResponse)
+async def finalizar_execucao(
+    pesquisa_id: str,
+    erro: Optional[str] = None,
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Finaliza a execução de uma pesquisa.
+
+    - **erro**: Mensagem de erro se houve falha (opcional)
+    """
+    servico = PesquisaServico(db)
+    pesquisa = await servico.finalizar_execucao(pesquisa_id, erro)
+
+    if not pesquisa:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
+        )
+
+    status_msg = "com erro" if erro else "com sucesso"
+    return StatusResponse(
+        sucesso=True,
+        mensagem=f"Execução finalizada {status_msg}",
+        dados={"pesquisa_id": pesquisa.id},
+    )
+
+
+@router.put("/{pesquisa_id}/progresso")
+async def atualizar_progresso(
+    pesquisa_id: str,
+    progresso: int = Query(..., ge=0, le=100),
+    eleitores_processados: int = Query(..., ge=0),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Atualiza o progresso de execução.
+    """
+    servico = PesquisaServico(db)
+    await servico.atualizar_progresso(pesquisa_id, progresso, eleitores_processados)
+    return {"message": "Progresso atualizado", "progresso": progresso}
 
 
 # ============================================
@@ -366,7 +526,11 @@ async def listar_respostas(
     )
 
 
-@router.post("/{pesquisa_id}/respostas", response_model=RespostaPesquisaResponse, status_code=201)
+@router.post(
+    "/{pesquisa_id}/respostas",
+    response_model=RespostaPesquisaResponse,
+    status_code=status.HTTP_201_CREATED,
+)
 async def registrar_resposta(
     pesquisa_id: str,
     dados: RespostaPesquisaCreate,
@@ -375,7 +539,7 @@ async def registrar_resposta(
     """
     Registra uma nova resposta de eleitor.
 
-    Chamado durante a execução da pesquisa para salvar cada resposta.
+    Usado durante a execução da pesquisa para salvar cada resposta.
     """
     # Garantir que o pesquisa_id está correto
     dados.pesquisa_id = pesquisa_id
@@ -405,92 +569,19 @@ async def registrar_resposta(
 
 
 # ============================================
-# CONTROLE DE EXECUÇÃO
+# ESTATÍSTICAS
 # ============================================
 
 
-@router.post("/{pesquisa_id}/iniciar")
-async def iniciar_execucao(
-    pesquisa_id: str,
+@router.get("/estatisticas/globais")
+async def obter_estatisticas_globais(
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Marca a pesquisa como em execução.
+    Obtém estatísticas globais de todas as pesquisas.
+
+    Retorna totais, médias e métricas agregadas.
     """
     servico = PesquisaServico(db)
-    pesquisa = await servico.iniciar_execucao(pesquisa_id)
-
-    if not pesquisa:
-        raise HTTPException(status_code=404, detail="Pesquisa não encontrada")
-
-    return {"message": "Execução iniciada", "pesquisa_id": pesquisa.id}
-
-
-@router.post("/{pesquisa_id}/pausar")
-async def pausar_execucao(
-    pesquisa_id: str,
-    db: AsyncSession = Depends(get_db),
-):
-    """
-    Pausa a execução de uma pesquisa.
-    """
-    servico = PesquisaServico(db)
-    pesquisa = await servico.pausar_execucao(pesquisa_id)
-
-    if not pesquisa:
-        raise HTTPException(status_code=404, detail="Pesquisa não encontrada")
-
-    return {"message": "Execução pausada", "pesquisa_id": pesquisa.id}
-
-
-@router.post("/{pesquisa_id}/retomar")
-async def retomar_execucao(
-    pesquisa_id: str,
-    db: AsyncSession = Depends(get_db),
-):
-    """
-    Retoma uma pesquisa pausada.
-    """
-    servico = PesquisaServico(db)
-    pesquisa = await servico.retomar_execucao(pesquisa_id)
-
-    if not pesquisa:
-        raise HTTPException(status_code=404, detail="Pesquisa não encontrada")
-
-    return {"message": "Execução retomada", "pesquisa_id": pesquisa.id}
-
-
-@router.post("/{pesquisa_id}/finalizar")
-async def finalizar_execucao(
-    pesquisa_id: str,
-    erro: Optional[str] = None,
-    db: AsyncSession = Depends(get_db),
-):
-    """
-    Finaliza a execução de uma pesquisa.
-
-    - **erro**: Mensagem de erro se houve falha (opcional)
-    """
-    servico = PesquisaServico(db)
-    pesquisa = await servico.finalizar_execucao(pesquisa_id, erro)
-
-    if not pesquisa:
-        raise HTTPException(status_code=404, detail="Pesquisa não encontrada")
-
-    status_msg = "com erro" if erro else "com sucesso"
-    return {"message": f"Execução finalizada {status_msg}", "pesquisa_id": pesquisa.id}
-
-
-@router.put("/{pesquisa_id}/progresso")
-async def atualizar_progresso(
-    pesquisa_id: str,
-    progresso: int = Query(..., ge=0, le=100),
-    eleitores_processados: int = Query(..., ge=0),
-    db: AsyncSession = Depends(get_db),
-):
-    """
-    Atualiza o progresso de execução.
-    """
-    servico = PesquisaServico(db)
-    await servico.atualizar_progresso(pesquisa_id, progresso, eleitores_processados)
-    return {"message": "Progresso atualizado", "progresso": progresso}
+    estatisticas = await servico.obter_estatisticas_globais()
+    return estatisticas

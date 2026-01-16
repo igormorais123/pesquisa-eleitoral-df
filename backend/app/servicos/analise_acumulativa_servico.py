@@ -5,12 +5,12 @@ Realiza análises de correlação, tendências temporais e descobertas
 em dados acumulados de múltiplas pesquisas.
 """
 
+import logging
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta
-from typing import Any, Dict, List, Optional, Tuple
-import math
+from typing import Any, Dict, List, Optional
 
-from sqlalchemy import and_, desc, func, select
+from sqlalchemy import desc, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.modelos.pesquisa import (
@@ -25,11 +25,29 @@ from app.esquemas.pesquisa import (
     TendenciaTemporal,
 )
 
+logger = logging.getLogger(__name__)
+
 
 class AnaliseAcumulativaServico:
-    """Serviço para análises avançadas de dados acumulados"""
+    """
+    Serviço para análises avançadas de dados acumulados.
+
+    Fornece métodos para:
+    - Correlações globais entre variáveis
+    - Tendências temporais
+    - Agrupamento por perfil de eleitor
+    - Detecção de outliers
+    - Insights cumulativos
+    - Exportação de datasets
+    """
 
     def __init__(self, db: AsyncSession):
+        """
+        Inicializa o serviço com uma sessão do banco.
+
+        Args:
+            db: Sessão assíncrona do SQLAlchemy
+        """
         self.db = db
 
     # ============================================
@@ -37,23 +55,29 @@ class AnaliseAcumulativaServico:
     # ============================================
 
     async def calcular_correlacoes_globais(
-        self, variaveis: Optional[List[str]] = None
+        self,
+        variaveis: Optional[List[str]] = None,
+        pesquisa_ids: Optional[List[str]] = None,
     ) -> List[CorrelacaoGlobal]:
         """
         Calcula correlações entre variáveis de perfil e sentimentos.
 
         Args:
             variaveis: Lista de variáveis a correlacionar (opcional)
+            pesquisa_ids: Filtrar por pesquisas específicas
 
         Returns:
             Lista de correlações encontradas
         """
         # Buscar todas as respostas com perfil
-        result = await self.db.execute(
-            select(RespostaPesquisa)
-            .where(RespostaPesquisa.eleitor_perfil.isnot(None))
-            .where(RespostaPesquisa.sentimento.isnot(None))
+        query = select(RespostaPesquisa).where(
+            RespostaPesquisa.eleitor_perfil.isnot(None),
+            RespostaPesquisa.sentimento.isnot(None),
         )
+        if pesquisa_ids:
+            query = query.where(RespostaPesquisa.pesquisa_id.in_(pesquisa_ids))
+
+        result = await self.db.execute(query)
         respostas = list(result.scalars().all())
 
         if len(respostas) < 10:
@@ -252,13 +276,16 @@ class AnaliseAcumulativaServico:
     # ============================================
 
     async def analisar_segmento(
-        self, tipo_segmento: str
+        self,
+        tipo_segmento: str,
+        pesquisa_ids: Optional[List[str]] = None,
     ) -> List[SegmentoAnalise]:
         """
         Analisa respostas agrupadas por segmento de eleitores.
 
         Args:
             tipo_segmento: cluster, regiao, orientacao, religiao, etc.
+            pesquisa_ids: Filtrar por pesquisas específicas
 
         Returns:
             Lista de análises por valor do segmento
@@ -277,10 +304,13 @@ class AnaliseAcumulativaServico:
         campo = campo_mapa.get(tipo_segmento, tipo_segmento)
 
         # Buscar respostas com perfil
-        result = await self.db.execute(
-            select(RespostaPesquisa)
-            .where(RespostaPesquisa.eleitor_perfil.isnot(None))
+        query = select(RespostaPesquisa).where(
+            RespostaPesquisa.eleitor_perfil.isnot(None)
         )
+        if pesquisa_ids:
+            query = query.where(RespostaPesquisa.pesquisa_id.in_(pesquisa_ids))
+
+        result = await self.db.execute(query)
         respostas = list(result.scalars().all())
 
         if not respostas:
@@ -338,7 +368,7 @@ class AnaliseAcumulativaServico:
         return analises
 
     def _extrair_temas(self, textos: List[str], top_n: int = 10) -> List[str]:
-        """Extrai palavras/temas mais frequentes dos textos"""
+        """Extrai palavras/temas mais frequentes dos textos."""
         # Stopwords em português
         stopwords = {
             "de", "a", "o", "que", "e", "do", "da", "em", "um", "para",
@@ -358,24 +388,7 @@ class AnaliseAcumulativaServico:
             "dela", "delas", "esta", "estes", "estas", "aquele",
             "aquela", "aqueles", "aquelas", "isto", "aquilo", "estou",
             "está", "estamos", "estão", "estive", "esteve", "estivemos",
-            "estiveram", "estava", "estávamos", "estavam", "estivera",
-            "estivéramos", "esteja", "estejamos", "estejam", "estivesse",
-            "estivéssemos", "estivessem", "estiver", "estivermos",
-            "estiverem", "hei", "há", "havemos", "hão", "houve",
-            "houvemos", "houveram", "houvera", "houvéramos", "haja",
-            "hajamos", "hajam", "houvesse", "houvéssemos", "houvessem",
-            "houver", "houvermos", "houverem", "houverei", "houverá",
-            "houveremos", "houverão", "houveria", "houveríamos",
-            "houveriam", "sou", "somos", "são", "era", "éramos",
-            "eram", "fui", "foi", "fomos", "foram", "fora", "fôramos",
-            "seja", "sejamos", "sejam", "fosse", "fôssemos", "fossem",
-            "for", "formos", "forem", "serei", "será", "seremos",
-            "serão", "seria", "seríamos", "seriam", "tenho", "tem",
-            "temos", "têm", "tinha", "tínhamos", "tinham", "tive",
-            "teve", "tivemos", "tiveram", "tivera", "tivéramos",
-            "tenha", "tenhamos", "tenham", "tivesse", "tivéssemos",
-            "tivessem", "tiver", "tivermos", "tiverem", "terei",
-            "terá", "teremos", "terão", "teria", "teríamos", "teriam",
+            "estiveram", "estava", "estávamos", "estavam",
         }
 
         # Contar palavras
@@ -391,12 +404,94 @@ class AnaliseAcumulativaServico:
         return [palavra for palavra, _ in contador.most_common(top_n)]
 
     # ============================================
+    # DETECÇÃO DE OUTLIERS
+    # ============================================
+
+    async def detectar_outliers(
+        self,
+        pesquisa_id: Optional[str] = None,
+        limite_desvios: float = 2.0,
+    ) -> Dict[str, Any]:
+        """
+        Detecta respostas atípicas.
+
+        Args:
+            pesquisa_id: Filtrar por pesquisa
+            limite_desvios: Número de desvios padrão para considerar outlier
+
+        Returns:
+            Lista de outliers detectados
+        """
+        query = select(RespostaPesquisa)
+        if pesquisa_id:
+            query = query.where(RespostaPesquisa.pesquisa_id == pesquisa_id)
+
+        result = await self.db.execute(query)
+        respostas = list(result.scalars().all())
+
+        if len(respostas) < 10:
+            return {"outliers": [], "mensagem": "Dados insuficientes para análise"}
+
+        # Calcular estatísticas de tempo de resposta
+        tempos = [r.tempo_resposta_ms for r in respostas if r.tempo_resposta_ms > 0]
+        if not tempos:
+            return {"outliers": [], "mensagem": "Sem dados de tempo de resposta"}
+
+        media_tempo = sum(tempos) / len(tempos)
+        variancia = sum((t - media_tempo) ** 2 for t in tempos) / len(tempos)
+        desvio_padrao = variancia ** 0.5
+
+        # Identificar outliers
+        outliers = []
+        for r in respostas:
+            motivos = []
+
+            # Tempo de resposta muito alto ou baixo
+            if r.tempo_resposta_ms > 0 and desvio_padrao > 0:
+                z_score = (r.tempo_resposta_ms - media_tempo) / desvio_padrao
+                if abs(z_score) > limite_desvios:
+                    motivos.append(f"Tempo de resposta atípico (z={z_score:.2f})")
+
+            # Resposta muito curta
+            if r.resposta_texto and len(r.resposta_texto) < 10:
+                motivos.append("Resposta muito curta")
+
+            # Resposta muito longa
+            if r.resposta_texto and len(r.resposta_texto) > 5000:
+                motivos.append("Resposta muito longa")
+
+            if motivos:
+                outliers.append({
+                    "resposta_id": r.id,
+                    "pesquisa_id": r.pesquisa_id,
+                    "eleitor_id": r.eleitor_id,
+                    "motivos": motivos,
+                    "tempo_resposta_ms": r.tempo_resposta_ms,
+                    "tamanho_resposta": len(r.resposta_texto) if r.resposta_texto else 0,
+                })
+
+        return {
+            "outliers": outliers[:50],  # Limitar a 50
+            "total_outliers": len(outliers),
+            "estatisticas": {
+                "media_tempo_ms": round(media_tempo, 2),
+                "desvio_padrao_ms": round(desvio_padrao, 2),
+                "limite_usado": limite_desvios,
+            },
+        }
+
+    # ============================================
     # INSIGHTS AUTOMÁTICOS
     # ============================================
 
-    async def gerar_insights_globais(self) -> List[InsightGlobal]:
+    async def gerar_insights_globais(
+        self, limite_insights: int = 10
+    ) -> List[InsightGlobal]:
         """
         Gera insights automáticos a partir dos dados acumulados.
+
+        Args:
+            limite_insights: Máximo de insights a retornar
 
         Returns:
             Lista de insights descobertos
@@ -404,7 +499,21 @@ class AnaliseAcumulativaServico:
         insights = []
         agora = datetime.now()
 
-        # 1. Correlações significativas
+        # 1. Análise de volume
+        result = await self.db.execute(select(func.count(Pesquisa.id)))
+        total_pesquisas = result.scalar() or 0
+
+        if total_pesquisas > 0:
+            insights.append(InsightGlobal(
+                tipo="volume",
+                titulo="Base de dados estabelecida",
+                descricao=f"Sistema conta com {total_pesquisas} pesquisa(s) realizadas",
+                relevancia="baixa",
+                dados_suporte={"total_pesquisas": total_pesquisas},
+                criado_em=agora,
+            ))
+
+        # 2. Correlações significativas
         correlacoes = await self.calcular_correlacoes_globais()
         for corr in correlacoes[:3]:  # Top 3
             if corr.significancia == "alta":
@@ -420,7 +529,7 @@ class AnaliseAcumulativaServico:
                     criado_em=agora,
                 ))
 
-        # 2. Tendências recentes
+        # 3. Tendências recentes
         tendencias = await self.calcular_tendencias_temporais("mensal", 3)
         if len(tendencias) >= 2:
             ultima = tendencias[-1]
@@ -465,7 +574,7 @@ class AnaliseAcumulativaServico:
                         criado_em=agora,
                     ))
 
-        # 3. Segmentos com comportamento distinto
+        # 4. Segmentos com comportamento distinto
         for tipo in ["cluster", "orientacao", "religiao"]:
             segmentos = await self.analisar_segmento(tipo)
             if len(segmentos) >= 2:
@@ -489,7 +598,7 @@ class AnaliseAcumulativaServico:
                         ))
                         break
 
-        # 4. Eleitores com muitas participações
+        # 5. Eleitores com muitas participações
         result = await self.db.execute(
             select(
                 RespostaPesquisa.eleitor_id,
@@ -521,31 +630,43 @@ class AnaliseAcumulativaServico:
 
         # Ordenar por relevância
         ordem = {"alta": 0, "media": 1, "baixa": 2}
-        insights.sort(key=lambda x: ordem[x.relevancia])
+        insights.sort(key=lambda x: ordem.get(x.relevancia, 2))
 
-        return insights
+        return insights[:limite_insights]
 
     # ============================================
     # EXPORTAÇÃO DE DATASET
     # ============================================
 
-    async def exportar_dataset_completo(self) -> Dict[str, Any]:
+    async def exportar_dataset_completo(
+        self,
+        formato: str = "dict",
+        pesquisa_ids: Optional[List[str]] = None,
+    ) -> Dict[str, Any]:
         """
         Exporta todos os dados em formato estruturado.
+
+        Args:
+            formato: Formato de saída ("dict", "csv", "json")
+            pesquisa_ids: Filtrar por pesquisas específicas
 
         Returns:
             Dicionário com todos os dados para exportação
         """
         # Pesquisas
-        result = await self.db.execute(
-            select(Pesquisa).order_by(Pesquisa.criado_em)
-        )
+        query_pesquisas = select(Pesquisa).order_by(Pesquisa.criado_em)
+        if pesquisa_ids:
+            query_pesquisas = query_pesquisas.where(Pesquisa.id.in_(pesquisa_ids))
+        result = await self.db.execute(query_pesquisas)
         pesquisas = list(result.scalars().all())
 
         # Respostas
-        result = await self.db.execute(
-            select(RespostaPesquisa).order_by(RespostaPesquisa.criado_em)
-        )
+        query_respostas = select(RespostaPesquisa).order_by(RespostaPesquisa.criado_em)
+        if pesquisa_ids:
+            query_respostas = query_respostas.where(
+                RespostaPesquisa.pesquisa_id.in_(pesquisa_ids)
+            )
+        result = await self.db.execute(query_respostas)
         respostas = list(result.scalars().all())
 
         return {
@@ -580,4 +701,74 @@ class AnaliseAcumulativaServico:
                 }
                 for r in respostas
             ],
+            "metadados": {
+                "formato": formato,
+            },
         }
+
+    # ============================================
+    # HISTÓRICO DE ELEITOR
+    # ============================================
+
+    async def obter_historico_eleitor(
+        self, eleitor_id: str
+    ) -> Dict[str, Any]:
+        """
+        Obtém histórico completo de participação de um eleitor.
+
+        Args:
+            eleitor_id: ID do eleitor
+
+        Returns:
+            Histórico de participações e respostas
+        """
+        query = (
+            select(RespostaPesquisa)
+            .where(RespostaPesquisa.eleitor_id == eleitor_id)
+            .order_by(RespostaPesquisa.criado_em)
+        )
+        result = await self.db.execute(query)
+        respostas = list(result.scalars().all())
+
+        if not respostas:
+            return {"eleitor_id": eleitor_id, "participacoes": []}
+
+        # Agrupar por pesquisa
+        por_pesquisa: Dict[str, List] = defaultdict(list)
+        for r in respostas:
+            por_pesquisa[r.pesquisa_id].append(r)
+
+        participacoes = []
+        for pesquisa_id, resps in por_pesquisa.items():
+            # Contabilizar sentimentos
+            sentimentos = Counter(r.sentimento for r in resps if r.sentimento)
+
+            participacoes.append({
+                "pesquisa_id": pesquisa_id,
+                "total_respostas": len(resps),
+                "primeira_resposta": min(r.criado_em for r in resps).isoformat() if resps else None,
+                "ultima_resposta": max(r.criado_em for r in resps).isoformat() if resps else None,
+                "sentimentos": dict(sentimentos),
+                "custo_total": sum(r.custo_reais for r in resps if r.custo_reais),
+            })
+
+        return {
+            "eleitor_id": eleitor_id,
+            "total_participacoes": len(participacoes),
+            "total_respostas": len(respostas),
+            "participacoes": participacoes,
+        }
+
+
+# Factory para criar instância do serviço
+def obter_servico_analise_acumulativa(db: AsyncSession) -> AnaliseAcumulativaServico:
+    """
+    Obtém uma instância do serviço de análise acumulativa.
+
+    Args:
+        db: Sessão do banco de dados
+
+    Returns:
+        Instância do serviço
+    """
+    return AnaliseAcumulativaServico(db)

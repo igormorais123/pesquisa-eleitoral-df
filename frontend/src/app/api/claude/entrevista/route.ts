@@ -42,37 +42,44 @@ export async function POST(request: NextRequest) {
       3
     );
 
-    // Parsear resposta JSON
-    let respostaParseada: Partial<RespostaAgente>;
+    // Parsear resposta JSON (novo formato robusto)
+    let respostaParseada: Record<string, unknown>;
     try {
       // Tentar extrair JSON da resposta
       const jsonMatch = conteudo.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         respostaParseada = JSON.parse(jsonMatch[0]);
       } else {
-        // Se não encontrar JSON, criar estrutura básica
-        respostaParseada = {
-          resposta_texto: conteudo,
-          chain_of_thought: {
-            etapa1_atencao: { prestou_atencao: true, motivo: 'Processado automaticamente' },
-            etapa2_vies: { confirma_crencas: false, ameaca_valores: false, medos_ativados: [] },
-            etapa3_emocional: { sentimento: 'indiferenca', intensidade: 5 },
-            etapa4_decisao: { muda_voto: false, aumenta_cinismo: false },
-          },
-        };
+        respostaParseada = {};
       }
     } catch (parseError) {
       console.error('Erro ao parsear resposta:', parseError);
-      respostaParseada = {
-        resposta_texto: conteudo,
-        chain_of_thought: {
-          etapa1_atencao: { prestou_atencao: true, motivo: 'Erro no parse' },
-          etapa2_vies: { confirma_crencas: false, ameaca_valores: false, medos_ativados: [] },
-          etapa3_emocional: { sentimento: 'indiferenca', intensidade: 5 },
-          etapa4_decisao: { muda_voto: false, aumenta_cinismo: false },
-        },
-      };
+      respostaParseada = {};
     }
+
+    // Extrair texto da resposta (novo formato ou legado)
+    let textoResposta = conteudo;
+    if (respostaParseada.resposta && typeof respostaParseada.resposta === 'object') {
+      // Novo formato: { resposta: { texto: "..." } }
+      textoResposta = (respostaParseada.resposta as Record<string, unknown>).texto as string || conteudo;
+    } else if (respostaParseada.resposta_texto) {
+      // Formato legado: { resposta_texto: "..." }
+      textoResposta = respostaParseada.resposta_texto as string;
+    } else if (respostaParseada.decisao && typeof respostaParseada.decisao === 'object') {
+      // Formato legado alternativo: { decisao: { resposta_final: "..." } }
+      textoResposta = (respostaParseada.decisao as Record<string, unknown>).resposta_final as string || conteudo;
+    }
+
+    // Converter novo formato para estrutura de chain_of_thought (compatibilidade)
+    const raciocinio = respostaParseada.raciocinio as Record<string, unknown> | undefined;
+    const meta = respostaParseada.meta as Record<string, unknown> | undefined;
+
+    const chainOfThought = respostaParseada.chain_of_thought || {
+      etapa1_atencao: raciocinio?.atencao || { prestou_atencao: true, motivo: '' },
+      etapa2_vies: raciocinio?.processamento || { confirma_crencas: false, ameaca_valores: false, medos_ativados: [] },
+      etapa3_emocional: raciocinio?.emocional || { sentimento: 'indiferenca', intensidade: 5 },
+      etapa4_decisao: meta || { muda_voto: false, aumenta_cinismo: false },
+    };
 
     // Montar resposta completa
     const resposta: RespostaAgente = {
@@ -80,14 +87,13 @@ export async function POST(request: NextRequest) {
       modelo_usado: modelo,
       tokens_input: tokensInput,
       tokens_output: tokensOutput,
-      chain_of_thought: respostaParseada.chain_of_thought || {
-        etapa1_atencao: { prestou_atencao: true, motivo: '' },
-        etapa2_vies: { confirma_crencas: false, ameaca_valores: false, medos_ativados: [] },
-        etapa3_emocional: { sentimento: 'indiferenca', intensidade: 5 },
-        etapa4_decisao: { muda_voto: false, aumenta_cinismo: false },
-      },
-      resposta_texto: respostaParseada.resposta_texto || conteudo,
-      resposta_estruturada: respostaParseada.resposta_estruturada,
+      chain_of_thought: chainOfThought as RespostaAgente['chain_of_thought'],
+      resposta_texto: textoResposta,
+      resposta_estruturada: respostaParseada.resposta_estruturada as RespostaAgente['resposta_estruturada'],
+      // Novos campos do formato robusto
+      raciocinio: raciocinio as RespostaAgente['raciocinio'],
+      resposta_completa: respostaParseada.resposta as RespostaAgente['resposta_completa'],
+      meta: meta as RespostaAgente['meta'],
     };
 
     return NextResponse.json({
