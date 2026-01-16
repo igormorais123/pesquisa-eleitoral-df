@@ -190,9 +190,10 @@ vercel ls --token $VERCEL_TOKEN
 
 ### Projeto na Vercel
 - **Nome**: pesquisa-eleitoral-df
-- **URL Produção**: https://pesquisa-eleitoral-df.vercel.app
+- **URL Produção**: https://pesquisa-eleitoral-df-igormorais123s-projects.vercel.app
 - **Usuário**: igormorais123
 - **Project ID**: prj_gl8ATaXX0NxNQzWAo4hcUVqPmq0R
+- **Team ID**: team_Af2JN68IUUA7lwsIGKuJiN66
 
 ### Se perder o token Vercel
 1. Acesse: https://vercel.com/account/tokens
