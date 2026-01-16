@@ -46,8 +46,9 @@ const nextConfig = {
 
   // Server Actions agora são estáveis no Next.js 14
 
-  // Output standalone para Docker
-  output: 'standalone',
+  // Output standalone apenas para Docker (não usar no Vercel)
+  // Vercel detecta automaticamente e usa seu próprio sistema de build
+  ...(process.env.VERCEL ? {} : { output: 'standalone' }),
 };
 
 module.exports = nextConfig;
