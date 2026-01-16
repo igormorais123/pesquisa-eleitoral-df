@@ -16,6 +16,10 @@ import {
   FileText,
   Vote,
   Landmark,
+  TrendingUp,
+  History,
+  CheckSquare,
+  ClipboardList,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -48,6 +52,30 @@ const menuPrincipal = [
 ];
 
 const menuSecundario = [
+  {
+    titulo: 'Pesquisas Parlamentares',
+    href: '/pesquisas-parlamentares',
+    icone: ClipboardList,
+    descricao: 'Pesquisas com parlamentares',
+  },
+  {
+    titulo: 'Analytics',
+    href: '/analytics',
+    icone: TrendingUp,
+    descricao: 'Análises e correlações',
+  },
+  {
+    titulo: 'Validação',
+    href: '/validacao',
+    icone: CheckSquare,
+    descricao: 'Validação estatística',
+  },
+  {
+    titulo: 'Histórico',
+    href: '/historico',
+    icone: History,
+    descricao: 'Pesquisas anteriores',
+  },
   {
     titulo: 'Upload Eleitores',
     href: '/eleitores/upload',
@@ -149,14 +177,15 @@ export function MobileNav() {
             </div>
 
             {/* Menu Items */}
-            <div className="p-4 space-y-2 overflow-y-auto max-h-[50vh]">
+            <div className="p-4 space-y-2 overflow-y-auto max-h-[60vh]">
+              {/* Seção: Funcionalidades */}
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-2 mb-3">
-                Ações Rápidas
+                Funcionalidades
               </p>
 
-              {menuSecundario.map((item) => {
+              {menuSecundario.slice(0, 4).map((item) => {
                 const Icone = item.icone;
-                const ativo = pathname === item.href;
+                const ativo = pathname === item.href || pathname.startsWith(`${item.href}/`);
 
                 return (
                   <Link
@@ -164,7 +193,7 @@ export function MobileNav() {
                     href={item.href}
                     onClick={() => setMenuAberto(false)}
                     className={cn(
-                      'flex items-center gap-4 p-4 rounded-xl transition-all active:scale-[0.98]',
+                      'flex items-center gap-4 p-3 rounded-xl transition-all active:scale-[0.98]',
                       ativo
                         ? 'bg-primary text-primary-foreground'
                         : 'bg-secondary/50 hover:bg-secondary text-foreground'
@@ -179,7 +208,53 @@ export function MobileNav() {
                       <Icone className="w-5 h-5" />
                     </div>
                     <div className="flex-1">
-                      <span className="block font-medium">{item.titulo}</span>
+                      <span className="block font-medium text-sm">{item.titulo}</span>
+                      <span
+                        className={cn(
+                          'block text-xs',
+                          ativo ? 'text-primary-foreground/70' : 'text-muted-foreground'
+                        )}
+                      >
+                        {item.descricao}
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+
+              {/* Separador */}
+              <div className="pt-4 pb-2">
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-2">
+                  Ações Rápidas
+                </p>
+              </div>
+
+              {menuSecundario.slice(4).map((item) => {
+                const Icone = item.icone;
+                const ativo = pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMenuAberto(false)}
+                    className={cn(
+                      'flex items-center gap-4 p-3 rounded-xl transition-all active:scale-[0.98]',
+                      ativo
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-secondary/50 hover:bg-secondary text-foreground'
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        'w-10 h-10 rounded-lg flex items-center justify-center',
+                        ativo ? 'bg-primary-foreground/20' : 'bg-background'
+                      )}
+                    >
+                      <Icone className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="block font-medium text-sm">{item.titulo}</span>
                       <span
                         className={cn(
                           'block text-xs',

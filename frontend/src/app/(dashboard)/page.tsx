@@ -88,31 +88,31 @@ function CardEstatistica({
   tendencia?: { valor: number; positivo: boolean };
 }) {
   return (
-    <div className="glass-card rounded-xl p-6 hover:shadow-primary-glow transition-all duration-300">
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-sm text-muted-foreground">{titulo}</p>
-          <p className="text-3xl font-bold text-foreground mt-1">{valor}</p>
+    <div className="glass-card rounded-xl p-3 sm:p-4 md:p-6 hover:shadow-primary-glow transition-all duration-300">
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0 flex-1">
+          <p className="text-xs sm:text-sm text-muted-foreground truncate">{titulo}</p>
+          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mt-1 truncate">{valor}</p>
           {subtitulo && (
-            <p className="text-xs text-muted-foreground mt-1">{subtitulo}</p>
+            <p className="text-[10px] sm:text-xs text-muted-foreground mt-1 truncate hidden sm:block">{subtitulo}</p>
           )}
           {tendencia && (
             <div
-              className={`flex items-center gap-1 mt-2 text-sm ${
+              className={`flex items-center gap-1 mt-1 sm:mt-2 text-xs sm:text-sm ${
                 tendencia.positivo ? 'text-green-400' : 'text-red-400'
               }`}
             >
               {tendencia.positivo ? (
-                <ArrowUpRight className="w-4 h-4" />
+                <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4" />
               ) : (
-                <ArrowDownRight className="w-4 h-4" />
+                <ArrowDownRight className="w-3 h-3 sm:w-4 sm:h-4" />
               )}
               <span>{formatarPercentual(tendencia.valor)}</span>
             </div>
           )}
         </div>
-        <div className={`w-12 h-12 rounded-xl ${corIcone} flex items-center justify-center`}>
-          <Icone className="w-6 h-6 text-white" />
+        <div className={`w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl ${corIcone} flex items-center justify-center flex-shrink-0`}>
+          <Icone className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
         </div>
       </div>
     </div>
@@ -727,19 +727,20 @@ export default function PaginaInicial() {
   const totalGeral = todosEleitores.length > 0 ? todosEleitores.length : (eleitoresData as unknown as Eleitor[]).length;
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-6 md:space-y-8 animate-fade-in">
       {/* Cabeçalho */}
       <div>
-        <h1 className="text-3xl font-bold text-foreground">
-          Dashboard de Análise Eleitoral
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground flex items-center gap-2 md:gap-3">
+          <Vote className="w-6 h-6 md:w-8 md:h-8 text-primary" />
+          Dashboard Eleitoral
         </h1>
-        <p className="text-muted-foreground mt-2">
+        <p className="text-sm md:text-base text-muted-foreground mt-2">
           {temFiltrosAtivos(filtros) ? (
             <>
-              Analisando <span className="text-primary font-semibold">{stats.total}</span> de {totalGeral} eleitores ({((stats.total / totalGeral) * 100).toFixed(1)}% da amostra)
+              Analisando <span className="text-primary font-semibold">{stats.total}</span> de {totalGeral} eleitores ({((stats.total / totalGeral) * 100).toFixed(1)}%)
             </>
           ) : (
-            <>Visão completa do perfil dos {stats.total} eleitores sintéticos do Distrito Federal para as eleições de 2026.</>
+            <>Visão completa de {stats.total} eleitores sintéticos do DF para 2026.</>
           )}
         </p>
       </div>
@@ -904,7 +905,7 @@ export default function PaginaInicial() {
       </div>
 
       {/* Cards de Estatísticas Principais */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
         <CardEstatistica
           titulo="Total de Eleitores"
           valor={formatarNumero(stats.total)}
@@ -937,8 +938,8 @@ export default function PaginaInicial() {
 
       {/* Ações Rápidas */}
       <div>
-        <h2 className="text-xl font-semibold text-foreground mb-4">Ações Rápidas</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <h2 className="text-lg md:text-xl font-semibold text-foreground mb-3 md:mb-4">Ações Rápidas</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
           <CardAcaoRapida
             titulo="Ver Eleitores"
             descricao="Visualize e filtre os agentes sintéticos"
@@ -967,11 +968,11 @@ export default function PaginaInicial() {
       {/* SEÇÃO 1: PERFIL DEMOGRÁFICO */}
       {/* ============================================ */}
       <div>
-        <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h2 className="text-lg md:text-xl font-semibold text-foreground mb-3 md:mb-4 flex items-center gap-2">
           <Users className="w-5 h-5 text-blue-500" />
           Perfil Demográfico
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Gênero - Donut */}
           <GraficoCard titulo="Distribuição por Gênero" icone={Users} corIcone="bg-pink-500/20" href="/eleitores?filtro=generos&valor=masculino,feminino">
             <ResponsiveContainer width="100%" height={220}>
@@ -1074,11 +1075,11 @@ export default function PaginaInicial() {
       {/* SEÇÃO 3: SITUAÇÃO SOCIOECONÔMICA */}
       {/* ============================================ */}
       <div>
-        <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+        <h2 className="text-lg md:text-xl font-semibold text-foreground mb-3 md:mb-4 flex items-center gap-2">
           <Wallet className="w-5 h-5 text-green-500" />
           Situação Socioeconômica
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* Classe Social - Donut */}
           <GraficoCard titulo="Classe Social (Cluster)" icone={TrendingUp} corIcone="bg-emerald-500/20" href="/eleitores?filtro=clusters&valor=G1_alta,G2_media_alta,G3_media_baixa,G4_baixa">
             <ResponsiveContainer width="100%" height={250}>

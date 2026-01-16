@@ -107,14 +107,14 @@ function ParlamentaresContent() {
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="flex-shrink-0 mb-6">
-        <div className="flex items-center justify-between">
+      <div className="flex-shrink-0 mb-4 md:mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
-              <Landmark className="w-7 h-7 text-primary" />
+            <h1 className="text-xl md:text-2xl font-bold text-foreground flex items-center gap-2 md:gap-3">
+              <Landmark className="w-6 h-6 md:w-7 md:h-7 text-primary" />
               Parlamentares do DF
             </h1>
-            <p className="text-muted-foreground mt-1">
+            <p className="text-sm md:text-base text-muted-foreground mt-1">
               <span className="font-semibold text-foreground">{formatarNumero(estatisticas.filtrados)}</span>
               {' '}de {formatarNumero(estatisticas.total)} parlamentares
               {parlamentaresSelecionados.length > 0 && (
@@ -125,12 +125,12 @@ function ParlamentaresContent() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            {/* Links externos para dados abertos */}
-            <div className="relative group">
-              <button className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors">
+          <div className="flex flex-wrap items-center gap-2">
+            {/* Links externos para dados abertos - oculto em mobile */}
+            <div className="relative group hidden md:block">
+              <button className="flex items-center gap-2 px-3 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors text-sm">
                 <ExternalLink className="w-4 h-4" />
-                Dados Abertos
+                <span className="hidden lg:inline">Dados Abertos</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
               <div className="absolute right-0 mt-2 w-56 bg-secondary/95 backdrop-blur border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
@@ -166,9 +166,9 @@ function ParlamentaresContent() {
 
             {/* Dropdown de Exportação */}
             <div className="relative group">
-              <button className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors">
+              <button className="flex items-center gap-2 px-3 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors text-sm">
                 <Download className="w-4 h-4" />
-                Exportar
+                <span className="hidden sm:inline">Exportar</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
               <div className="absolute right-0 mt-2 w-48 bg-secondary/95 backdrop-blur border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
@@ -190,27 +190,34 @@ function ParlamentaresContent() {
             <Link
               href="/pesquisas/nova?tipo=parlamentar"
               className={cn(
-                'flex items-center gap-2 px-4 py-2 rounded-lg transition-colors',
+                'flex items-center gap-2 px-3 py-2 rounded-lg transition-colors text-sm',
                 parlamentaresSelecionados.length > 0
                   ? 'bg-primary text-primary-foreground hover:bg-primary/90'
                   : 'bg-secondary text-foreground hover:bg-secondary/80'
               )}
             >
               <Sparkles className="w-4 h-4" />
-              {parlamentaresSelecionados.length > 0
-                ? `Pesquisar ${parlamentaresSelecionados.length}`
-                : 'Nova Pesquisa'}
+              <span className="hidden sm:inline">
+                {parlamentaresSelecionados.length > 0
+                  ? `Pesquisar ${parlamentaresSelecionados.length}`
+                  : 'Nova Pesquisa'}
+              </span>
+              <span className="sm:hidden">
+                {parlamentaresSelecionados.length > 0
+                  ? parlamentaresSelecionados.length
+                  : 'Pesquisar'}
+              </span>
             </Link>
           </div>
         </div>
 
         {/* Barra de ações */}
-        <div className="flex items-center justify-between mt-4 py-3 px-4 bg-secondary/50 rounded-lg">
-          <div className="flex items-center gap-4">
-            {/* Link para Dashboard */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mt-4 py-3 px-3 md:px-4 bg-secondary/50 rounded-lg">
+          <div className="flex flex-wrap items-center gap-2 md:gap-4">
+            {/* Link para Dashboard - oculto em mobile */}
             <Link
               href="/"
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <Home className="w-4 h-4" />
               Dashboard
@@ -227,14 +234,14 @@ function ParlamentaresContent() {
               )}
             >
               <Filter className="w-4 h-4" />
-              Filtros
+              <span className="hidden sm:inline">Filtros</span>
             </button>
 
-            {/* Toggle Mini Dashboard */}
+            {/* Toggle Mini Dashboard - oculto em mobile */}
             <button
               onClick={() => setMostrarMiniDashboard(!mostrarMiniDashboard)}
               className={cn(
-                'flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-colors',
+                'hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-colors',
                 mostrarMiniDashboard
                   ? 'bg-primary/20 text-primary'
                   : 'text-muted-foreground hover:text-foreground'
@@ -245,12 +252,13 @@ function ParlamentaresContent() {
             </button>
 
             {/* Seleção */}
-            <div className="flex items-center gap-2 text-sm">
+            <div className="flex items-center gap-2 text-xs sm:text-sm">
               <button
                 onClick={selecionarTodos}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                Selecionar todos ({parlamentaresFiltrados.length})
+                <span className="hidden sm:inline">Selecionar todos ({parlamentaresFiltrados.length})</span>
+                <span className="sm:hidden">Todos ({parlamentaresFiltrados.length})</span>
               </button>
               {parlamentaresSelecionados.length > 0 && (
                 <>
@@ -259,7 +267,7 @@ function ParlamentaresContent() {
                     onClick={limparSelecao}
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    Limpar seleção
+                    Limpar
                   </button>
                 </>
               )}
@@ -321,10 +329,10 @@ function ParlamentaresContent() {
       </div>
 
       {/* Conteúdo principal */}
-      <div className="flex-1 flex gap-6 min-h-0">
+      <div className="flex-1 flex flex-col lg:flex-row gap-4 lg:gap-6 min-h-0">
         {/* Painel de Filtros */}
         {painelFiltros && (
-          <div className="w-80 flex-shrink-0 glass-card rounded-xl p-4 overflow-y-auto">
+          <div className="lg:w-80 flex-shrink-0 glass-card rounded-xl p-4 overflow-y-auto max-h-[40vh] lg:max-h-none">
             <ParlamentaresFilters
               filtros={filtros}
               onFiltrosChange={setFiltros}
@@ -339,7 +347,7 @@ function ParlamentaresContent() {
         )}
 
         {/* Lista/Grid/Gráficos/Insights */}
-        <div className="flex-1 min-w-0 flex gap-4">
+        <div className="flex-1 min-w-0 flex flex-col lg:flex-row gap-4">
           <div className="flex-1 min-w-0">
             {visualizacao === 'graficos' ? (
               <ParlamentaresGraficos estatisticas={estatisticas} parlamentares={parlamentaresFiltrados} />
@@ -352,7 +360,7 @@ function ParlamentaresContent() {
                 style={{ contain: 'strict' }}
               >
                 {visualizacao === 'cards' ? (
-                  // Grid de Cards Virtualizado
+                  // Grid de Cards Virtualizado - responsivo
                   <div
                     style={{
                       height: `${rowVirtualizer.getTotalSize()}px`,
@@ -376,7 +384,7 @@ function ParlamentaresContent() {
                             transform: `translateY(${virtualRow.start}px)`,
                           }}
                         >
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-4">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4 pb-4">
                             {rowParlamentares.map((parlamentar) => (
                               <ParlamentarCard
                                 key={parlamentar.id}
@@ -429,9 +437,9 @@ function ParlamentaresContent() {
             )}
           </div>
 
-          {/* Mini Dashboard - Resumo do grupo filtrado */}
+          {/* Mini Dashboard - Resumo do grupo filtrado (oculto em mobile) */}
           {mostrarMiniDashboard && visualizacao !== 'graficos' && visualizacao !== 'insights' && (
-            <div className="w-72 flex-shrink-0">
+            <div className="hidden lg:block lg:w-72 flex-shrink-0">
               <ParlamentaresMiniDashboard
                 parlamentares={parlamentaresFiltrados}
                 estatisticas={estatisticas}

@@ -59,38 +59,38 @@ function CardMetrica({
   variacao?: number;
 }) {
   const cores = {
-    blue: 'bg-blue-50 text-blue-600',
-    green: 'bg-green-50 text-green-600',
-    purple: 'bg-purple-50 text-purple-600',
-    yellow: 'bg-yellow-50 text-yellow-600',
-    red: 'bg-red-50 text-red-600',
+    blue: 'bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400',
+    green: 'bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-400',
+    purple: 'bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400',
+    yellow: 'bg-yellow-50 text-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-400',
+    red: 'bg-red-50 text-red-600 dark:bg-red-900/30 dark:text-red-400',
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-      <div className="flex items-center justify-between mb-4">
-        <div className={`p-3 rounded-lg ${cores[cor]}`}>
-          <Icone className="w-6 h-6" />
+    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3 sm:p-4 md:p-6 shadow-sm">
+      <div className="flex items-center justify-between mb-2 md:mb-4">
+        <div className={`p-2 md:p-3 rounded-lg ${cores[cor]}`}>
+          <Icone className="w-4 h-4 md:w-6 md:h-6" />
         </div>
         {variacao !== undefined && (
           <div
-            className={`flex items-center text-sm font-medium ${
+            className={`flex items-center text-xs md:text-sm font-medium ${
               variacao >= 0 ? 'text-green-600' : 'text-red-600'
             }`}
           >
             {variacao >= 0 ? (
-              <ArrowUpRight className="w-4 h-4 mr-1" />
+              <ArrowUpRight className="w-3 h-3 md:w-4 md:h-4 mr-0.5" />
             ) : (
-              <ArrowDownRight className="w-4 h-4 mr-1" />
+              <ArrowDownRight className="w-3 h-3 md:w-4 md:h-4 mr-0.5" />
             )}
             {Math.abs(variacao).toFixed(1)}%
           </div>
         )}
       </div>
-      <p className="text-gray-500 dark:text-gray-400 text-sm mb-1">{titulo}</p>
-      <p className="text-2xl font-bold text-gray-900 dark:text-white">{valor}</p>
+      <p className="text-gray-500 dark:text-gray-400 text-xs md:text-sm mb-0.5 md:mb-1 truncate">{titulo}</p>
+      <p className="text-lg md:text-2xl font-bold text-gray-900 dark:text-white truncate">{valor}</p>
       {subtitulo && (
-        <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{subtitulo}</p>
+        <p className="text-[10px] md:text-xs text-gray-400 dark:text-gray-500 mt-0.5 md:mt-1 truncate">{subtitulo}</p>
       )}
     </div>
   );
@@ -471,35 +471,36 @@ export default function AnalyticsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-3 sm:p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-blue-500" />
               Analytics Global
             </h1>
-            <p className="text-gray-500 dark:text-gray-400 mt-1">
-              Análises acumulativas de todas as pesquisas realizadas
+            <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 mt-1">
+              Análises acumulativas de todas as pesquisas
             </p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-2 sm:gap-3">
             <button
               onClick={carregarDados}
-              className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              className="flex items-center gap-2 px-3 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm"
             >
               <RefreshCcw className="w-4 h-4" />
-              Atualizar
+              <span className="hidden sm:inline">Atualizar</span>
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            <button className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
               <Download className="w-4 h-4" />
-              Exportar
+              <span className="hidden sm:inline">Exportar</span>
             </button>
           </div>
         </div>
 
         {/* Cards de Métricas */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-6 md:mb-8">
           <CardMetrica
             titulo="Total de Pesquisas"
             valor={dashboard?.total_pesquisas || 0}
@@ -531,7 +532,7 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Tokens */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
           <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
               Uso de Tokens
@@ -587,7 +588,7 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Grid de Análises */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
           <CorrelacoesCard correlacoes={correlacoes} />
           <TendenciasCard tendencias={tendencias} />
         </div>
