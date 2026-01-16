@@ -27,6 +27,7 @@ import {
   MousePointerClick,
 } from 'lucide-react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { useFilterNavigation, FilterType } from '@/hooks/useFilterNavigation';
 import {
   PieChart,
@@ -60,13 +61,13 @@ import { api } from '@/services/api';
 import { formatarNumero, formatarPercentual } from '@/lib/utils';
 import eleitoresData from '@/data/eleitores-df-400.json';
 import type { Eleitor } from '@/types';
-import dynamic from 'next/dynamic';
 import { ResumoValidacao, TooltipComFonte, BadgeDivergenciaGrafico } from '@/components/validacao';
 import {
   mapaDadosReferencia,
   type DadoReferencia,
 } from '@/data/dados-referencia-oficiais';
 import { useDivergencias, type MapaDivergencias } from '@/hooks/useDivergencias';
+import dynamic from 'next/dynamic';
 
 // Importar mapa de calor dinamicamente para evitar SSR issues
 const MapaCalorEleitoral = dynamic(
@@ -170,7 +171,7 @@ function CardAcaoRapida({
   );
 }
 
-// Componente de Card de Gráfico com suporte a fonte oficial e clicabilidade
+// Componente de Card de Gráfico com suporte a clique e fonte oficial
 function GraficoCard({
   titulo,
   subtitulo,
@@ -459,6 +460,7 @@ export default function PaginaInicial() {
         nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/_/g, ' '),
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosRegiao = Object.entries(stats.regiao)
@@ -468,6 +470,7 @@ export default function PaginaInicial() {
         nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosCorRaca = Object.entries(stats.corRaca)
@@ -476,6 +479,7 @@ export default function PaginaInicial() {
         nome: nome.charAt(0).toUpperCase() + nome.slice(1),
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosEscolaridade = Object.entries(stats.escolaridade)
@@ -483,6 +487,7 @@ export default function PaginaInicial() {
         nome: LABELS.escolaridade[nome] || nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosOcupacao = Object.entries(stats.ocupacao)
@@ -491,6 +496,7 @@ export default function PaginaInicial() {
         nome: LABELS.ocupacao[nome] || nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosRenda = Object.entries(stats.renda)
@@ -498,6 +504,7 @@ export default function PaginaInicial() {
         nome: LABELS.renda[nome] || nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosEstadoCivil = Object.entries(stats.estadoCivil)
@@ -506,6 +513,7 @@ export default function PaginaInicial() {
         nome: nome.charAt(0).toUpperCase() + nome.slice(1).replace(/[()]/g, ''),
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosInteresse = Object.entries(stats.interesse)
@@ -514,6 +522,7 @@ export default function PaginaInicial() {
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
         fill: nome === 'baixo' ? CORES.interesse[0] : nome === 'medio' ? CORES.interesse[1] : CORES.interesse[2],
+        valorOriginal: nome,
       }));
 
     const dadosDecisao = Object.entries(stats.estiloDecisao)
@@ -522,6 +531,7 @@ export default function PaginaInicial() {
         nome: LABELS.decisao[nome] || nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosTolerancia = Object.entries(stats.tolerancia)
@@ -530,6 +540,7 @@ export default function PaginaInicial() {
         nome: LABELS.tolerancia[nome] || nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosBolsonaro = Object.entries(stats.bolsonaro)
@@ -537,6 +548,7 @@ export default function PaginaInicial() {
         nome: LABELS.bolsonaro[nome] || nome,
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosTransporte = Object.entries(stats.transporte)
@@ -546,6 +558,7 @@ export default function PaginaInicial() {
         nome: nome.replace(/_/g, ' ').charAt(0).toUpperCase() + nome.replace(/_/g, ' ').slice(1),
         valor,
         percentual: ((valor / stats.total) * 100).toFixed(1),
+        valorOriginal: nome,
       }));
 
     const dadosFontes = Object.entries(stats.fontes)
@@ -771,6 +784,8 @@ export default function PaginaInicial() {
             titulo="Distribuição por Gênero"
             icone={Users}
             corIcone="bg-pink-500/20"
+            isClickable
+            filterHint="Filtrar por gênero"
             dadoReferencia={mapaDadosReferencia.genero}
             desvioMedio={desviosMedios.genero}
           >
@@ -808,6 +823,8 @@ export default function PaginaInicial() {
             titulo="Distribuição por Cor/Raça"
             icone={Users}
             corIcone="bg-amber-500/20"
+            isClickable
+            filterHint="Filtrar por cor/raça"
             dadoReferencia={mapaDadosReferencia.cor_raca}
             desvioMedio={desviosMedios.cor_raca}
           >
@@ -904,6 +921,8 @@ export default function PaginaInicial() {
             titulo="Classe Social (Cluster)"
             icone={TrendingUp}
             corIcone="bg-emerald-500/20"
+            isClickable
+            filterHint="Filtrar por classe"
             dadoReferencia={mapaDadosReferencia.cluster_socioeconomico}
             desvioMedio={desviosMedios.cluster_socioeconomico}
           >

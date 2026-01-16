@@ -19,7 +19,6 @@ import {
   ChevronRight,
   Lightbulb,
   X,
-  Home,
   ArrowLeft,
   FileSpreadsheet,
   FileDown,
