@@ -58,12 +58,19 @@ import { api } from '@/services/api';
 import { formatarNumero, formatarPercentual } from '@/lib/utils';
 import eleitoresData from '@/data/eleitores-df-400.json';
 import type { Eleitor } from '@/types';
+import dynamic from 'next/dynamic';
 import { ResumoValidacao, TooltipComFonte, BadgeDivergenciaGrafico } from '@/components/validacao';
 import {
   mapaDadosReferencia,
   type DadoReferencia,
 } from '@/data/dados-referencia-oficiais';
 import { useDivergencias, type MapaDivergencias } from '@/hooks/useDivergencias';
+
+// Importar mapa de calor dinamicamente para evitar SSR issues
+const MapaCalorEleitoral = dynamic(
+  () => import('@/components/dashboard/MapaCalorEleitoral'),
+  { ssr: false, loading: () => <div className="glass-card rounded-xl p-6 h-[600px] animate-pulse bg-secondary/20" /> }
+);
 
 // Cores para gráficos
 const CORES = {
@@ -703,6 +710,17 @@ export default function PaginaInicial() {
           <h2 className="text-xl font-semibold text-foreground mb-4">Qualidade da Amostra</h2>
           <ResumoValidacao eleitores={eleitores} />
         </div>
+      </div>
+
+      {/* ============================================ */}
+      {/* SEÇÃO: MAPA DE CALOR ELEITORAL */}
+      {/* ============================================ */}
+      <div>
+        <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+          <MapPin className="w-5 h-5 text-cyan-500" />
+          Mapa Eleitoral por Região
+        </h2>
+        <MapaCalorEleitoral eleitores={eleitores} />
       </div>
 
       {/* ============================================ */}
