@@ -34,6 +34,7 @@ import {
   type DivergenciaEstatistica,
   type ValidacaoCompleta,
 } from '@/services/validacao-estatistica';
+import { MetricasEstatisticas } from './MetricasEstatisticas';
 
 // ============================================
 // COMPONENTES AUXILIARES
@@ -408,6 +409,9 @@ export function ValidacaoEstatistica({ eleitores }: ValidacaoEstatisticaProps) {
           </p>
         </div>
       </div>
+
+      {/* Métricas Estatísticas Acadêmicas */}
+      <MetricasEstatisticas eleitores={eleitores} />
 
       {/* Principais vieses */}
       {validacao.principaisVieses.length > 0 && (
