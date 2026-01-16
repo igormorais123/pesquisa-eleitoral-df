@@ -76,7 +76,9 @@ async def criar_entrevista(
     - **titulo**: Título da entrevista
     - **tipo**: Tipo (quantitativa, qualitativa, mista)
     - **perguntas**: Lista de perguntas
-    - **eleitores_ids**: IDs dos eleitores que responderão
+    - **eleitores_ids**: IDs dos eleitores que responderão (legado, compatibilidade)
+    - **tipo_respondente**: Tipo de respondente (eleitor ou parlamentar)
+    - **respondentes_ids**: IDs dos respondentes (eleitores ou parlamentares)
     """
     try:
         return servico.criar(dados)
@@ -250,6 +252,7 @@ async def listar_respostas(
     entrevista_id: str,
     pergunta_id: Optional[str] = Query(None),
     eleitor_id: Optional[str] = Query(None),
+    respondente_id: Optional[str] = Query(None),
     servico: EntrevistaServico = Depends(get_servico),
     _: DadosToken = Depends(obter_usuario_atual),
 ):
@@ -257,10 +260,13 @@ async def listar_respostas(
     Lista respostas de uma entrevista.
 
     - **pergunta_id**: Filtrar por pergunta específica
-    - **eleitor_id**: Filtrar por eleitor específico
+    - **eleitor_id**: Filtrar por eleitor específico (legado, compatibilidade)
+    - **respondente_id**: Filtrar por respondente específico (eleitor ou parlamentar)
     """
+    # Se respondente_id for fornecido, usa ele; senão usa eleitor_id (compatibilidade)
+    filtro_respondente = respondente_id or eleitor_id
     respostas = servico.obter_respostas(
-        entrevista_id=entrevista_id, pergunta_id=pergunta_id, eleitor_id=eleitor_id
+        entrevista_id=entrevista_id, pergunta_id=pergunta_id, eleitor_id=filtro_respondente
     )
     return {"respostas": respostas, "total": len(respostas)}
 

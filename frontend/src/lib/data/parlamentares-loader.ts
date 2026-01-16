@@ -17,26 +17,25 @@ let inicializado = false;
 let carregando = false;
 
 /**
- * Carrega parlamentares de uma casa específica do JSON
+ * Carrega parlamentares de uma casa específica do JSON via fetch
  */
 async function carregarJsonPorCasa(casa: 'camara_federal' | 'senado' | 'cldf'): Promise<Parlamentar[]> {
   try {
-    switch (casa) {
-      case 'camara_federal': {
-        const dados = await import('../../../../agentes/banco-deputados-federais-df.json');
-        return dados.default as unknown as Parlamentar[];
-      }
-      case 'senado': {
-        const dados = await import('../../../../agentes/banco-senadores-df.json');
-        return dados.default as unknown as Parlamentar[];
-      }
-      case 'cldf': {
-        const dados = await import('../../../../agentes/banco-deputados-distritais-df.json');
-        return dados.default as unknown as Parlamentar[];
-      }
-      default:
-        return [];
+    const urls: Record<string, string> = {
+      camara_federal: '/data/banco-deputados-federais-df.json',
+      senado: '/data/banco-senadores-df.json',
+      cldf: '/data/banco-deputados-distritais-df.json',
+    };
+
+    const url = urls[casa];
+    if (!url) return [];
+
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
     }
+    const dados = await response.json();
+    return dados as Parlamentar[];
   } catch (error) {
     console.error(`Erro ao carregar JSON de ${casa}:`, error);
     return [];

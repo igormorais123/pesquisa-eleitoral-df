@@ -13,6 +13,9 @@ import {
   RefreshCcw,
   ArrowUpRight,
   ArrowDownRight,
+  Database,
+  Cpu,
+  Zap,
 } from 'lucide-react';
 
 import {
@@ -28,6 +31,13 @@ import {
   formatarReais,
   corRelevancia,
 } from '@/services/analytics-api';
+
+import {
+  AnalyticsGlobais,
+  obterAnalyticsGlobais,
+  formatarTokens,
+  formatarCusto,
+} from '@/services/memorias-api';
 
 // ============================================
 // COMPONENTES DE CARDS
@@ -273,6 +283,147 @@ function InsightsCard({ insights }: { insights: InsightGlobal[] }) {
 }
 
 // ============================================
+// COMPONENTE DE USO DA API (MEMÓRIAS)
+// ============================================
+
+function UsoAPICard({ memorias }: { memorias: AnalyticsGlobais | null }) {
+  if (!memorias) {
+    return (
+      <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+          <Database className="w-5 h-5 text-indigo-500" />
+          Uso da API (Memórias)
+        </h3>
+        <p className="text-gray-500 dark:text-gray-400 text-sm">
+          Dados de memórias não disponíveis.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+        <Database className="w-5 h-5 text-indigo-500" />
+        Uso da API (Memórias Persistidas)
+      </h3>
+
+      {/* Totais */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div className="p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg">
+          <p className="text-sm text-indigo-600 dark:text-indigo-400">Total Memórias</p>
+          <p className="text-2xl font-bold text-indigo-700 dark:text-indigo-300">
+            {formatarNumero(memorias.total_memorias)}
+          </p>
+        </div>
+        <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+          <p className="text-sm text-green-600 dark:text-green-400">Eleitores Únicos</p>
+          <p className="text-2xl font-bold text-green-700 dark:text-green-300">
+            {formatarNumero(memorias.total_eleitores_unicos)}
+          </p>
+        </div>
+        <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+          <p className="text-sm text-blue-600 dark:text-blue-400">Tokens Total</p>
+          <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">
+            {formatarTokens(memorias.tokens_acumulados)}
+          </p>
+        </div>
+        <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+          <p className="text-sm text-yellow-600 dark:text-yellow-400">Custo Total</p>
+          <p className="text-2xl font-bold text-yellow-700 dark:text-yellow-300">
+            {formatarCusto(memorias.custo_acumulado)}
+          </p>
+        </div>
+      </div>
+
+      {/* Tokens por Tipo */}
+      <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+          <div className="flex items-center gap-2 mb-2">
+            <Cpu className="w-4 h-4 text-blue-500" />
+            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Tokens Entrada</p>
+          </div>
+          <p className="text-xl font-bold text-gray-900 dark:text-white">
+            {formatarTokens(memorias.tokens_entrada_acumulados)}
+          </p>
+        </div>
+        <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+          <div className="flex items-center gap-2 mb-2">
+            <Zap className="w-4 h-4 text-purple-500" />
+            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Tokens Saída</p>
+          </div>
+          <p className="text-xl font-bold text-gray-900 dark:text-white">
+            {formatarTokens(memorias.tokens_saida_acumulados)}
+          </p>
+        </div>
+      </div>
+
+      {/* Distribuição por Modelo */}
+      {Object.keys(memorias.distribuicao_modelos).length > 0 && (
+        <div>
+          <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+            Distribuição por Modelo
+          </h4>
+          <div className="space-y-2">
+            {Object.entries(memorias.distribuicao_modelos).map(([modelo, total]) => {
+              const custo = memorias.custo_por_modelo[modelo] || 0;
+              const tokens = memorias.tokens_por_modelo[modelo] || 0;
+              const isOpus = modelo.includes('opus');
+
+              return (
+                <div
+                  key={modelo}
+                  className={`p-3 rounded-lg ${
+                    isOpus ? 'bg-purple-50 dark:bg-purple-900/20' : 'bg-blue-50 dark:bg-blue-900/20'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className={`text-sm font-medium ${
+                      isOpus ? 'text-purple-700 dark:text-purple-300' : 'text-blue-700 dark:text-blue-300'
+                    }`}>
+                      {isOpus ? 'Claude Opus' : 'Claude Sonnet'}
+                    </span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                      {total} chamadas
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-gray-600 dark:text-gray-400">
+                    <span>{formatarTokens(tokens)} tokens</span>
+                    <span>{formatarCusto(custo)}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Médias */}
+      <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between text-sm">
+          <span className="text-gray-500 dark:text-gray-400">Custo médio por resposta:</span>
+          <span className="font-medium text-gray-900 dark:text-white">
+            {formatarCusto(memorias.custo_medio_por_resposta)}
+          </span>
+        </div>
+        <div className="flex items-center justify-between text-sm mt-2">
+          <span className="text-gray-500 dark:text-gray-400">Custo médio por eleitor:</span>
+          <span className="font-medium text-gray-900 dark:text-white">
+            {formatarCusto(memorias.custo_medio_por_eleitor)}
+          </span>
+        </div>
+        <div className="flex items-center justify-between text-sm mt-2">
+          <span className="text-gray-500 dark:text-gray-400">Tempo médio de resposta:</span>
+          <span className="font-medium text-gray-900 dark:text-white">
+            {memorias.tempo_resposta_medio_ms}ms
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================
 // PÁGINA PRINCIPAL
 // ============================================
 
@@ -281,22 +432,25 @@ export default function AnalyticsPage() {
   const [correlacoes, setCorrelacoes] = useState<Correlacao[]>([]);
   const [tendencias, setTendencias] = useState<Tendencia[]>([]);
   const [insights, setInsights] = useState<InsightGlobal[]>([]);
+  const [memorias, setMemorias] = useState<AnalyticsGlobais | null>(null);
   const [carregando, setCarregando] = useState(true);
 
   const carregarDados = async () => {
     setCarregando(true);
     try {
-      const [dashData, corrData, tendData, insData] = await Promise.all([
+      const [dashData, corrData, tendData, insData, memData] = await Promise.all([
         obterDashboardGlobal().catch(() => null),
         obterCorrelacoes().catch(() => []),
         obterTendencias('mensal', 6).catch(() => []),
         obterInsights().catch(() => []),
+        obterAnalyticsGlobais(30).catch(() => null),
       ]);
 
       if (dashData) setDashboard(dashData);
       setCorrelacoes(corrData);
       setTendencias(tendData);
       setInsights(insData);
+      setMemorias(memData);
     } catch (error) {
       console.error('Erro ao carregar dados:', error);
     } finally {
@@ -440,6 +594,11 @@ export default function AnalyticsPage() {
 
         {/* Insights */}
         <InsightsCard insights={insights} />
+
+        {/* Uso da API / Memórias Persistidas */}
+        <div className="mt-8">
+          <UsoAPICard memorias={memorias} />
+        </div>
 
         {/* Última atualização */}
         {dashboard?.atualizado_em && (

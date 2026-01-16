@@ -385,26 +385,62 @@ function calcularDistribuicaoRegiaoAdministrativa(
 /**
  * Calcula a distribuição de preocupações principais (campo array)
  * Conta a frequência de cada preocupação no total de menções
+ * Mapeia valores dos eleitores para categorias de referência
  */
 function calcularDistribuicaoPreocupacoes(
   eleitores: Eleitor[]
 ): Record<string, { contagem: number; percentual: number }> {
-  const contagem: Record<string, number> = {};
+  // Mapeamento de valores do banco para categorias de referência
+  const mapeamento: Record<string, string> = {
+    'saúde': 'saude',
+    'saude': 'saude',
+    'segurança': 'seguranca',
+    'seguranca': 'seguranca',
+    'segurança pública': 'seguranca',
+    'violência e criminalidade': 'seguranca',
+    'violência': 'seguranca',
+    'economia': 'economia',
+    'custo de vida': 'economia',
+    'inflação': 'economia',
+    'crise econômica': 'economia',
+    'corrupção': 'corrupcao',
+    'corrupcao': 'corrupcao',
+    'educação': 'educacao',
+    'educacao': 'educacao',
+    'desemprego': 'desemprego',
+    'emprego': 'desemprego',
+    'fome e miséria': 'economia',
+    'desigualdade social': 'economia',
+    'impostos altos': 'economia',
+    'moradia': 'economia',
+    'transporte público': 'economia',
+  };
+
+  const contagem: Record<string, number> = {
+    'saude': 0,
+    'seguranca': 0,
+    'economia': 0,
+    'corrupcao': 0,
+    'educacao': 0,
+    'desemprego': 0,
+  };
   let totalMencoes = 0;
 
   eleitores.forEach((e) => {
     const preocupacoes = (e as unknown as Record<string, unknown>).preocupacoes;
     if (Array.isArray(preocupacoes)) {
       preocupacoes.forEach((p: unknown) => {
-        const valor = String(p || 'outros').toLowerCase();
-        contagem[valor] = (contagem[valor] || 0) + 1;
-        totalMencoes++;
+        const valorOriginal = String(p || '').toLowerCase().trim();
+        const valorMapeado = mapeamento[valorOriginal] || null;
+        if (valorMapeado && contagem[valorMapeado] !== undefined) {
+          contagem[valorMapeado]++;
+          totalMencoes++;
+        }
       });
     }
   });
 
-  // Se não houver menções, usa total de eleitores como base
-  const divisor = totalMencoes > 0 ? totalMencoes : eleitores.length;
+  const divisor = totalMencoes > 0 ? totalMencoes : 1;
 
   const resultado: Record<string, { contagem: number; percentual: number }> = {};
   Object.entries(contagem).forEach(([key, count]) => {
@@ -420,25 +456,60 @@ function calcularDistribuicaoPreocupacoes(
 /**
  * Calcula a distribuição de valores principais (campo array)
  * Conta a frequência de cada valor no total de menções
+ * Mapeia valores dos eleitores para categorias de referência
  */
 function calcularDistribuicaoValores(
   eleitores: Eleitor[]
 ): Record<string, { contagem: number; percentual: number }> {
-  const contagem: Record<string, number> = {};
+  // Mapeamento de valores do banco para categorias de referência
+  const mapeamento: Record<string, string> = {
+    'família': 'familia',
+    'familia': 'familia',
+    'trabalho': 'trabalho',
+    'honestidade': 'trabalho',
+    'segurança': 'seguranca',
+    'seguranca': 'seguranca',
+    'religião': 'religiao',
+    'religiao': 'religiao',
+    'fé e religião': 'religiao',
+    'fé': 'religiao',
+    'liberdade': 'liberdade',
+    'democracia': 'liberdade',
+    'igualdade': 'igualdade',
+    'justiça': 'igualdade',
+    'solidariedade': 'igualdade',
+    'respeito': 'familia',
+    'educação': 'trabalho',
+    'saúde': 'seguranca',
+    'ordem': 'seguranca',
+    'meritocracia': 'trabalho',
+  };
+
+  const contagem: Record<string, number> = {
+    'familia': 0,
+    'trabalho': 0,
+    'seguranca': 0,
+    'religiao': 0,
+    'liberdade': 0,
+    'igualdade': 0,
+  };
   let totalMencoes = 0;
 
   eleitores.forEach((e) => {
     const valores = (e as unknown as Record<string, unknown>).valores;
     if (Array.isArray(valores)) {
       valores.forEach((v: unknown) => {
-        const valor = String(v || 'outros').toLowerCase();
-        contagem[valor] = (contagem[valor] || 0) + 1;
-        totalMencoes++;
+        const valorOriginal = String(v || '').toLowerCase().trim();
+        const valorMapeado = mapeamento[valorOriginal] || null;
+        if (valorMapeado && contagem[valorMapeado] !== undefined) {
+          contagem[valorMapeado]++;
+          totalMencoes++;
+        }
       });
     }
   });
 
-  const divisor = totalMencoes > 0 ? totalMencoes : eleitores.length;
+  const divisor = totalMencoes > 0 ? totalMencoes : 1;
 
   const resultado: Record<string, { contagem: number; percentual: number }> = {};
   Object.entries(contagem).forEach(([key, count]) => {
@@ -454,25 +525,62 @@ function calcularDistribuicaoValores(
 /**
  * Calcula a distribuição de medos principais (campo array)
  * Conta a frequência de cada medo no total de menções
+ * Mapeia valores dos eleitores para categorias de referência
  */
 function calcularDistribuicaoMedos(
   eleitores: Eleitor[]
 ): Record<string, { contagem: number; percentual: number }> {
-  const contagem: Record<string, number> = {};
+  // Mapeamento de valores do banco para categorias de referência
+  const mapeamento: Record<string, string> = {
+    'violência': 'violencia',
+    'violencia': 'violencia',
+    'desemprego': 'desemprego',
+    'perder o emprego': 'desemprego',
+    'não conseguir emprego': 'desemprego',
+    'saúde': 'saude',
+    'saude': 'saude',
+    'doença': 'saude',
+    'doença sem atendimento': 'saude',
+    'economia': 'economia',
+    'crise econômica': 'economia',
+    'inflação': 'economia',
+    'não conseguir pagar as contas': 'economia',
+    'perder a casa': 'economia',
+    'fome': 'economia',
+    'corrupção': 'corrupcao',
+    'corrupcao': 'corrupcao',
+    'instabilidade política': 'instabilidade_politica',
+    'instabilidade_politica': 'instabilidade_politica',
+    'autoritarismo': 'instabilidade_politica',
+    'desigualdade': 'economia',
+    'filhos no crime': 'violencia',
+  };
+
+  const contagem: Record<string, number> = {
+    'violencia': 0,
+    'desemprego': 0,
+    'saude': 0,
+    'economia': 0,
+    'corrupcao': 0,
+    'instabilidade_politica': 0,
+  };
   let totalMencoes = 0;
 
   eleitores.forEach((e) => {
     const medos = (e as unknown as Record<string, unknown>).medos;
     if (Array.isArray(medos)) {
       medos.forEach((m: unknown) => {
-        const valor = String(m || 'outros').toLowerCase();
-        contagem[valor] = (contagem[valor] || 0) + 1;
-        totalMencoes++;
+        const valorOriginal = String(m || '').toLowerCase().trim();
+        const valorMapeado = mapeamento[valorOriginal] || null;
+        if (valorMapeado && contagem[valorMapeado] !== undefined) {
+          contagem[valorMapeado]++;
+          totalMencoes++;
+        }
       });
     }
   });
 
-  const divisor = totalMencoes > 0 ? totalMencoes : eleitores.length;
+  const divisor = totalMencoes > 0 ? totalMencoes : 1;
 
   const resultado: Record<string, { contagem: number; percentual: number }> = {};
   Object.entries(contagem).forEach(([key, count]) => {

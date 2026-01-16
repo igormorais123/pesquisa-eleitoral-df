@@ -7,7 +7,7 @@
  * - Listagem e busca de memórias
  */
 
-import api from './api';
+import { api } from './api';
 
 // ============================================
 // TIPOS
