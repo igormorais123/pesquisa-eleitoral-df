@@ -92,24 +92,23 @@ function calcularDistribuicao(
 
 /**
  * Calcula a distribuição de faixas etárias
+ * Usa o campo faixa_etaria do eleitor (que já vem categorizado)
  */
 function calcularDistribuicaoFaixaEtaria(
   eleitores: Eleitor[]
 ): Record<string, { contagem: number; percentual: number }> {
   const total = eleitores.length;
-  const faixas = [
-    { nome: '16-24', min: 16, max: 24 },
-    { nome: '25-34', min: 25, max: 34 },
-    { nome: '35-44', min: 35, max: 44 },
-    { nome: '45-54', min: 45, max: 54 },
-    { nome: '55-64', min: 55, max: 64 },
-    { nome: '65+', min: 65, max: 200 },
-  ];
+  const contagem: Record<string, number> = {};
+
+  eleitores.forEach((e) => {
+    // Usa o campo faixa_etaria se existir, senão calcula
+    const faixa = (e as Record<string, unknown>).faixa_etaria as string || calcularFaixaEtaria(e.idade);
+    contagem[faixa] = (contagem[faixa] || 0) + 1;
+  });
 
   const resultado: Record<string, { contagem: number; percentual: number }> = {};
-  faixas.forEach(({ nome, min, max }) => {
-    const count = eleitores.filter((e) => e.idade >= min && e.idade <= max).length;
-    resultado[nome] = {
+  Object.entries(contagem).forEach(([key, count]) => {
+    resultado[key] = {
       contagem: count,
       percentual: (count / total) * 100,
     };
@@ -119,49 +118,75 @@ function calcularDistribuicaoFaixaEtaria(
 }
 
 /**
+ * Calcula a faixa etária baseado na idade (fallback)
+ */
+function calcularFaixaEtaria(idade: number): string {
+  if (idade <= 17) return '16-17';
+  if (idade <= 24) return '18-24';
+  if (idade <= 34) return '25-34';
+  if (idade <= 44) return '35-44';
+  if (idade <= 59) return '45-59';
+  if (idade <= 64) return '60-64';
+  return '65+';
+}
+
+/**
  * Calcula a distribuição de susceptibilidade à desinformação
+ * Usa o campo susceptibilidade_desinformacao como string ('baixa', 'media', 'alta')
  */
 function calcularDistribuicaoSusceptibilidade(
   eleitores: Eleitor[]
 ): Record<string, { contagem: number; percentual: number }> {
   const total = eleitores.length;
-  let baixa = 0;
-  let media = 0;
-  let alta = 0;
+  const contagem: Record<string, number> = { 'baixa': 0, 'media': 0, 'alta': 0 };
 
   eleitores.forEach((e) => {
-    const valor = e.susceptibilidade_desinformacao || 5;
-    if (valor <= 3) baixa++;
-    else if (valor <= 6) media++;
-    else alta++;
+    const valor = e.susceptibilidade_desinformacao;
+    // Se for string, usa diretamente
+    if (typeof valor === 'string') {
+      contagem[valor] = (contagem[valor] || 0) + 1;
+    } else if (typeof valor === 'number') {
+      // Fallback para números (compatibilidade)
+      if (valor <= 3) contagem['baixa']++;
+      else if (valor <= 6) contagem['media']++;
+      else contagem['alta']++;
+    } else {
+      contagem['media']++; // Valor padrão
+    }
   });
 
   return {
-    'baixa_1_3': { contagem: baixa, percentual: (baixa / total) * 100 },
-    'media_4_6': { contagem: media, percentual: (media / total) * 100 },
-    'alta_7_10': { contagem: alta, percentual: (alta / total) * 100 },
+    'baixa': { contagem: contagem['baixa'], percentual: (contagem['baixa'] / total) * 100 },
+    'media': { contagem: contagem['media'], percentual: (contagem['media'] / total) * 100 },
+    'alta': { contagem: contagem['alta'], percentual: (contagem['alta'] / total) * 100 },
   };
 }
 
 /**
- * Calcula a distribuição de filhos (com/sem)
+ * Calcula a distribuição de filhos por quantidade (0, 1, 2, 3, 4+)
  */
 function calcularDistribuicaoFilhos(
   eleitores: Eleitor[]
 ): Record<string, { contagem: number; percentual: number }> {
   const total = eleitores.length;
-  let comFilhos = 0;
-  let semFilhos = 0;
+  const contagem: Record<string, number> = { '0': 0, '1': 0, '2': 0, '3': 0, '4': 0 };
 
   eleitores.forEach((e) => {
-    if (e.filhos && e.filhos > 0) comFilhos++;
-    else semFilhos++;
+    const numFilhos = e.filhos || 0;
+    // Agrupa 4+ em '4'
+    const categoria = numFilhos >= 4 ? '4' : String(numFilhos);
+    contagem[categoria] = (contagem[categoria] || 0) + 1;
   });
 
-  return {
-    'com_filhos': { contagem: comFilhos, percentual: (comFilhos / total) * 100 },
-    'sem_filhos': { contagem: semFilhos, percentual: (semFilhos / total) * 100 },
-  };
+  const resultado: Record<string, { contagem: number; percentual: number }> = {};
+  Object.entries(contagem).forEach(([key, count]) => {
+    resultado[key] = {
+      contagem: count,
+      percentual: (count / total) * 100,
+    };
+  });
+
+  return resultado;
 }
 
 /**
