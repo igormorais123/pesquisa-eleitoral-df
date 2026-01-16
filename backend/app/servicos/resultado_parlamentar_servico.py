@@ -501,10 +501,14 @@ class ResultadoParlamentarServico:
         if not respostas:
             raise ValueError("Nenhuma resposta encontrada para análise")
 
-        # Obter parlamentares
-        parlamentar_ids = list(set(str(r.get("parlamentar_id", "")) for r in respostas))
+        # Obter parlamentares (filtrando IDs nulos/vazios)
+        parlamentar_ids = list(set(
+            str(r.get("parlamentar_id"))
+            for r in respostas
+            if r.get("parlamentar_id") is not None and r.get("parlamentar_id") != ""
+        ))
         parlamentares_lista = obter_parlamentares_por_ids(parlamentar_ids)
-        parlamentares = {p["id"]: p for p in parlamentares_lista}
+        parlamentares = {str(p["id"]): p for p in parlamentares_lista if p.get("id")}
 
         # Extrair textos
         textos = [r.get("resposta_texto", "") for r in respostas if r.get("resposta_texto")]

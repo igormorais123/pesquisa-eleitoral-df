@@ -12,6 +12,7 @@ from app.api.deps import DadosToken, obter_usuario_atual
 
 from .models import (
     CasaLegislativaEnum,
+    GeneroEnum,
     FiltrosParlamentar,
     ParlamentarListResponse,
     ParlamentarProfile,
@@ -84,11 +85,21 @@ async def listar_parlamentares(
                 resultado.append(CasaLegislativaEnum(v))
         return resultado if resultado else None
 
+    def parse_generos(valor: Optional[str]) -> Optional[List[GeneroEnum]]:
+        if valor is None:
+            return None
+        resultado = []
+        for v in valor.split(","):
+            v = v.strip()
+            if v in [e.value for e in GeneroEnum]:
+                resultado.append(GeneroEnum(v))
+        return resultado if resultado else None
+
     filtros = FiltrosParlamentar(
         casas=parse_casas(casas),
         partidos=parse_lista(partidos),
         ufs=parse_lista(ufs),
-        generos=parse_lista(generos),
+        generos=parse_generos(generos),
         busca_texto=busca,
         pagina=pagina,
         por_pagina=por_pagina,

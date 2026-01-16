@@ -110,7 +110,7 @@ class CamaraFetcher:
         # Verificar cache
         if cache_key in self._cache:
             cache_time = self._cache_ttl.get(cache_key)
-            if cache_time and (datetime.now() - cache_time).seconds < 3600:  # 1 hora
+            if cache_time and (datetime.now() - cache_time).total_seconds() < 3600:  # 1 hora
                 return self._cache[cache_key]
 
         url = f"{CAMARA_API_BASE}/deputados/{id_deputado}"

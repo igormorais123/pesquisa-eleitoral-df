@@ -228,7 +228,7 @@ export const useParlamentaresStore = create<ParlamentaresState>()(
         });
 
         // Por partido
-        const partidos = [...new Set(parlamentares.map((p) => p.partido))];
+        const partidos = Array.from(new Set(parlamentares.map((p) => p.partido)));
         const porPartido = partidos
           .map((partido) => {
             const count = parlamentares.filter((p) => p.partido === partido).length;

@@ -26,12 +26,15 @@ def construir_prompt_parlamentar(
     Returns:
         Prompt formatado para Claude API
     """
-    # Extrair dados do parlamentar
+    # Extrair dados do parlamentar (formato do ParlamentarAgentAdapter.to_agent_dict)
     nome = parlamentar.get("nome", "Parlamentar")
-    nome_parlamentar = parlamentar.get("nome_parlamentar", nome)
-    cargo = parlamentar.get("cargo", "Deputado")
-    partido = parlamentar.get("partido", "SEM PARTIDO")
-    casa = parlamentar.get("casa_legislativa", "").upper()
+    nome_parlamentar = nome  # to_agent_dict usa "nome" como nome_parlamentar
+
+    # Cartão de identidade contém dados verificáveis
+    cartao = parlamentar.get("cartao_identidade", {})
+    cargo = cartao.get("cargo", parlamentar.get("profissao", "Deputado"))
+    partido = cartao.get("partido", "SEM PARTIDO")
+    casa = cartao.get("casa_legislativa", "").upper()
     genero = parlamentar.get("genero", "masculino")
     religiao = parlamentar.get("religiao", "Não informada")
 
@@ -40,33 +43,35 @@ def construir_prompt_parlamentar(
     posicao_bolsonaro = parlamentar.get("posicao_bolsonaro", "neutro")
 
     # Formação e carreira
-    formacao = parlamentar.get("formacao_academica", [])
+    formacao = cartao.get("formacao", [])
     formacao_texto = "\n".join([f"   • {f}" for f in formacao]) if formacao else "   • Não informada"
 
-    profissao_anterior = parlamentar.get("profissao_anterior", "Não informada")
+    profissao = parlamentar.get("profissao", "Não informada")
 
-    # Atuação parlamentar
-    temas = parlamentar.get("temas_atuacao", [])
+    # Atuação parlamentar (usa campos do adapter)
+    temas = parlamentar.get("agenda_legislativa", [])
     temas_texto = "\n".join([f"   • {t}" for t in temas]) if temas else "   • Não especificados"
 
-    comissoes = parlamentar.get("comissoes", [])
+    comissoes = parlamentar.get("prioridades_tematicas", [])
     comissoes_texto = "\n".join([f"   • {c}" for c in comissoes]) if comissoes else "   • Não informadas"
 
     # Valores e preocupações
     valores = parlamentar.get("valores", [])
-    valores_texto = "\n".join([f"   • {v}" for v in valores]) if valores else "   • Não especificados"
+    if isinstance(valores, list):
+        valores_texto = "\n".join([f"   • {v}" for v in valores]) if valores else "   • Não especificados"
+    else:
+        valores_texto = "   • Não especificados"
 
     preocupacoes = parlamentar.get("preocupacoes", [])
-    preocupacoes_texto = "\n".join([f"   • {p}" for p in preocupacoes]) if preocupacoes else "   • Não especificadas"
-
-    # Votações e posicionamentos
-    votacoes = parlamentar.get("votacoes_importantes", [])
-    votacoes_texto = ""
-    if votacoes:
-        for v in votacoes[:5]:  # Últimas 5 votações
-            votacoes_texto += f"   • {v.get('materia', 'N/A')}: {v.get('voto', 'N/A')}\n"
+    if isinstance(preocupacoes, list):
+        preocupacoes_texto = "\n".join([f"   • {p}" for p in preocupacoes]) if preocupacoes else "   • Não especificadas"
     else:
-        votacoes_texto = "   • Histórico não disponível"
+        preocupacoes_texto = "   • Não especificadas"
+
+    # Contexto parlamentar
+    contexto = parlamentar.get("contexto_parlamentar", {})
+    frentes = contexto.get("frentes_parlamentares", [])
+    frentes_texto = "\n".join([f"   • {f}" for f in frentes[:5]]) if frentes else "   • Não informadas"
 
     # Instrução comportamental
     instrucao = parlamentar.get("instrucao_comportamental", "")
@@ -126,7 +131,7 @@ Princípios fundamentais que regem TODAS as suas respostas:
 
 🎓 FORMAÇÃO E CARREIRA:
 {formacao_texto}
-   Profissão anterior: {profissao_anterior}
+   Profissão: {profissao}
 
 🗳️ PERFIL POLÍTICO:
    Orientação: {orientacao}
@@ -142,8 +147,8 @@ Princípios fundamentais que regem TODAS as suas respostas:
    Comissões:
 {comissoes_texto}
 
-📊 HISTÓRICO DE VOTAÇÕES RECENTES:
-{votacoes_texto}
+📊 FRENTES PARLAMENTARES:
+{frentes_texto}
 
 💎 VALORES QUE DEFENDE:
 {valores_texto}

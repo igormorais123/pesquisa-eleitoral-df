@@ -141,7 +141,7 @@ function calcularDistribuicaoSusceptibilidade(
   const contagem: Record<string, number> = { 'baixa': 0, 'media': 0, 'alta': 0 };
 
   eleitores.forEach((e) => {
-    const valor = e.susceptibilidade_desinformacao;
+    const valor = (e as unknown as Record<string, unknown>).susceptibilidade_desinformacao;
     if (typeof valor === 'string') {
       // Mapear valores do formato "baixa_1_3", "media_4_6", "alta_7_10"
       if (valor.startsWith('baixa') || valor === 'baixa') {
@@ -168,6 +168,81 @@ function calcularDistribuicaoSusceptibilidade(
     'media': { contagem: contagem['media'], percentual: (contagem['media'] / total) * 100 },
     'alta': { contagem: contagem['alta'], percentual: (contagem['alta'] / total) * 100 },
   };
+}
+
+/**
+ * Calcula a distribuição de meio de transporte
+ * Mapeia valores do banco para os valores de referência:
+ * - 'moto' -> 'motocicleta'
+ * - Outros valores passam sem alteração
+ */
+function calcularDistribuicaoMeioTransporte(
+  eleitores: Eleitor[]
+): Record<string, { contagem: number; percentual: number }> {
+  const total = eleitores.length;
+  const contagem: Record<string, number> = {};
+
+  // Mapeamento de valores do banco para valores de referência
+  const mapeamento: Record<string, string> = {
+    'moto': 'motocicleta',
+    'van_pirata': 'onibus',  // Agrupa van pirata com ônibus
+    'app': 'carro',          // Agrupa app com carro
+    'carro_familia': 'carro', // Agrupa carro família com carro
+  };
+
+  eleitores.forEach((e) => {
+    let valor = String((e as unknown as Record<string, unknown>).meio_transporte || 'nao_informado');
+    // Aplicar mapeamento se existir
+    valor = mapeamento[valor] || valor;
+    contagem[valor] = (contagem[valor] || 0) + 1;
+  });
+
+  const resultado: Record<string, { contagem: number; percentual: number }> = {};
+  Object.entries(contagem).forEach(([key, count]) => {
+    resultado[key] = {
+      contagem: count,
+      percentual: (count / total) * 100,
+    };
+  });
+
+  return resultado;
+}
+
+/**
+ * Calcula a distribuição de orientação política
+ * Mapeia valores do banco para os valores de referência:
+ * - 'centro-direita' (com hífen) -> 'centro_direita'
+ * - 'centro-esquerda' (com hífen) -> 'centro_esquerda'
+ * - Outros valores passam sem alteração
+ */
+function calcularDistribuicaoOrientacaoPolitica(
+  eleitores: Eleitor[]
+): Record<string, { contagem: number; percentual: number }> {
+  const total = eleitores.length;
+  const contagem: Record<string, number> = {};
+
+  // Mapeamento de valores do banco para valores de referência
+  const mapeamento: Record<string, string> = {
+    'centro-direita': 'centro_direita',
+    'centro-esquerda': 'centro_esquerda',
+  };
+
+  eleitores.forEach((e) => {
+    let valor = String((e as unknown as Record<string, unknown>).orientacao_politica || 'nao_informado');
+    // Aplicar mapeamento se existir
+    valor = mapeamento[valor] || valor;
+    contagem[valor] = (contagem[valor] || 0) + 1;
+  });
+
+  const resultado: Record<string, { contagem: number; percentual: number }> = {};
+  Object.entries(contagem).forEach(([key, count]) => {
+    resultado[key] = {
+      contagem: count,
+      percentual: (count / total) * 100,
+    };
+  });
+
+  return resultado;
 }
 
 /**
@@ -322,7 +397,7 @@ export function calcularValidacaoEstatistica(eleitores: Eleitor[]): ValidacaoCom
     },
     {
       variavel: 'orientacao_politica',
-      calcularDistribuicao: () => calcularDistribuicao(eleitores, 'orientacao_politica'),
+      calcularDistribuicao: () => calcularDistribuicaoOrientacaoPolitica(eleitores),
     },
     {
       variavel: 'interesse_politico',
@@ -346,7 +421,7 @@ export function calcularValidacaoEstatistica(eleitores: Eleitor[]): ValidacaoCom
     },
     {
       variavel: 'meio_transporte',
-      calcularDistribuicao: () => calcularDistribuicao(eleitores, 'meio_transporte'),
+      calcularDistribuicao: () => calcularDistribuicaoMeioTransporte(eleitores),
     },
     {
       variavel: 'susceptibilidade_desinformacao',
