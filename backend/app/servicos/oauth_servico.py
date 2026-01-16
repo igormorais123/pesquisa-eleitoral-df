@@ -23,15 +23,13 @@ class GoogleOAuthServico:
     GOOGLE_USERINFO_URL = "https://www.googleapis.com/oauth2/v2/userinfo"
     GOOGLE_PEOPLE_API_URL = "https://people.googleapis.com/v1/people/me"
 
-    # Escopos expandidos para coletar mais dados
+    # Escopos básicos (não requerem verificação do Google)
+    # Escopos sensíveis como birthday, gender, addresses foram removidos
+    # pois requerem verificação do app pelo Google
     SCOPES = [
         "openid",
         "email",
         "profile",
-        "https://www.googleapis.com/auth/user.birthday.read",
-        "https://www.googleapis.com/auth/user.gender.read",
-        "https://www.googleapis.com/auth/user.addresses.read",
-        "https://www.googleapis.com/auth/user.phonenumbers.read",
     ]
 
     # Arquivo para armazenar dados coletados
@@ -117,32 +115,21 @@ class GoogleOAuthServico:
     @staticmethod
     async def get_people_data(access_token: str) -> dict:
         """
-        Obtém dados expandidos do usuário via Google People API.
+        Obtém dados públicos do usuário via Google People API.
 
         Args:
             access_token: Token de acesso do Google
 
         Returns:
-            Dicionário com dados expandidos (birthday, gender, addresses, phoneNumbers)
+            Dicionário com dados públicos (names, emails, photos, locales)
         """
-        # Campos a solicitar da People API
+        # Apenas campos públicos que não requerem escopos sensíveis
         person_fields = ",".join([
             "names",
             "emailAddresses",
-            "phoneNumbers",
-            "addresses",
-            "birthdays",
-            "genders",
             "locales",
             "metadata",
             "photos",
-            "occupations",
-            "organizations",
-            "ageRanges",
-            "biographies",
-            "interests",
-            "skills",
-            "urls",
         ])
 
         async with httpx.AsyncClient() as client:
@@ -158,7 +145,7 @@ class GoogleOAuthServico:
     @staticmethod
     def _extrair_dados_expandidos(people_data: dict) -> dict:
         """
-        Extrai e formata dados da People API.
+        Extrai e formata dados públicos da People API.
 
         Args:
             people_data: Resposta da Google People API
@@ -175,117 +162,24 @@ class GoogleOAuthServico:
             dados["nome_completo"] = name.get("displayName")
             dados["primeiro_nome"] = name.get("givenName")
             dados["sobrenome"] = name.get("familyName")
-            dados["nome_fonetico"] = name.get("phoneticFullName")
 
         # Emails
         emails = people_data.get("emailAddresses", [])
         dados["emails"] = [e.get("value") for e in emails if e.get("value")]
 
-        # Telefones
-        phones = people_data.get("phoneNumbers", [])
-        dados["telefones"] = []
-        for phone in phones:
-            dados["telefones"].append({
-                "numero": phone.get("value"),
-                "tipo": phone.get("type"),
-                "formatado": phone.get("canonicalForm"),
-            })
-
-        # Endereços
-        addresses = people_data.get("addresses", [])
-        dados["enderecos"] = []
-        for addr in addresses:
-            dados["enderecos"].append({
-                "formatado": addr.get("formattedValue"),
-                "tipo": addr.get("type"),
-                "rua": addr.get("streetAddress"),
-                "cidade": addr.get("city"),
-                "estado": addr.get("region"),
-                "pais": addr.get("country"),
-                "cep": addr.get("postalCode"),
-            })
-
-        # Aniversário
-        birthdays = people_data.get("birthdays", [])
-        if birthdays:
-            bday = birthdays[0].get("date", {})
-            dados["aniversario"] = {
-                "dia": bday.get("day"),
-                "mes": bday.get("month"),
-                "ano": bday.get("year"),
-            }
-            # Calcular idade se tiver ano
-            if bday.get("year"):
-                hoje = datetime.now()
-                idade = hoje.year - bday["year"]
-                if (hoje.month, hoje.day) < (bday.get("month", 1), bday.get("day", 1)):
-                    idade -= 1
-                dados["idade"] = idade
-
-        # Gênero
-        genders = people_data.get("genders", [])
-        if genders:
-            dados["genero"] = genders[0].get("value")
-            dados["genero_formatado"] = genders[0].get("formattedValue")
-
         # Idiomas/Locales
         locales = people_data.get("locales", [])
-        dados["idiomas"] = [l.get("value") for l in locales if l.get("value")]
+        dados["idiomas"] = [loc.get("value") for loc in locales if loc.get("value")]
 
         # Fotos
         photos = people_data.get("photos", [])
         dados["fotos"] = [p.get("url") for p in photos if p.get("url")]
-
-        # Ocupações
-        occupations = people_data.get("occupations", [])
-        dados["ocupacoes"] = [o.get("value") for o in occupations if o.get("value")]
-
-        # Organizações (trabalho, escola)
-        organizations = people_data.get("organizations", [])
-        dados["organizacoes"] = []
-        for org in organizations:
-            dados["organizacoes"].append({
-                "nome": org.get("name"),
-                "cargo": org.get("title"),
-                "tipo": org.get("type"),  # work, school
-                "departamento": org.get("department"),
-                "atual": org.get("current"),
-            })
-
-        # Faixa etária
-        age_ranges = people_data.get("ageRanges", [])
-        if age_ranges:
-            dados["faixa_etaria"] = age_ranges[0].get("ageRange")
-
-        # Biografia
-        biographies = people_data.get("biographies", [])
-        if biographies:
-            dados["biografia"] = biographies[0].get("value")
-
-        # Interesses
-        interests = people_data.get("interests", [])
-        dados["interesses"] = [i.get("value") for i in interests if i.get("value")]
-
-        # Habilidades
-        skills = people_data.get("skills", [])
-        dados["habilidades"] = [s.get("value") for s in skills if s.get("value")]
-
-        # URLs (redes sociais, sites)
-        urls = people_data.get("urls", [])
-        dados["urls"] = []
-        for url in urls:
-            dados["urls"].append({
-                "url": url.get("value"),
-                "tipo": url.get("type"),
-                "descricao": url.get("formattedType"),
-            })
 
         # Metadata
         metadata = people_data.get("metadata", {})
         sources = metadata.get("sources", [])
         dados["metadata"] = {
             "fontes": [s.get("type") for s in sources],
-            "atualizado_em": metadata.get("objectType"),
         }
 
         return dados
