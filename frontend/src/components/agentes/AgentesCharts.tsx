@@ -215,26 +215,7 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
     { subject: 'Tribalismo', A: estatisticas.porVieses['tribalismo'] || 0 },
   ] : [], [estatisticas.porVieses]);
 
-  const dadosRegiao = useMemo(() =>
-    Object.entries(estatisticas.porRegiao)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 10)
-      .map(([nome, valor]) => ({
-        nome,
-        valor,
-        percentual: ((valor / estatisticas.filtrados) * 100).toFixed(1),
-      })),
-    [estatisticas.porRegiao, estatisticas.filtrados]
-  );
-
-  const dadosGenero = useMemo(() =>
-    Object.entries(estatisticas.porGenero).map(([nome, valor]) => ({
-      nome: nome === 'masculino' ? 'Masculino' : 'Feminino',
-      valor,
-      percentual: ((valor / estatisticas.filtrados) * 100).toFixed(1),
-    })),
-    [estatisticas.porGenero, estatisticas.filtrados]
-  );
+  const dadosRegiao = useMemo(() => formatarDados(estatisticas.porRegiao).slice(0, 10), [estatisticas.porRegiao, total]);
 
   // Faixas etárias com memoização
   const faixasEtarias = useMemo(() =>
