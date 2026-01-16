@@ -80,13 +80,13 @@ export const dadosFaixaEtaria: DadoReferencia = {
   metodologia: 'Censo Demográfico 2022 com dados por grupos de idade',
   valores: {
     '16-24': 14.5,   // 16-17 (2.5%) + 18-24 (12%)
-    '25-34': 17.8,
-    '35-44': 18.2,
-    '45-54': 16.0,   // Parte de 45-59
-    '55-64': 21.3,   // Resto de 45-59 + 60-64
-    '65+': 12.2,
+    '25-34': 20.0,   // Jovens adultos
+    '35-44': 20.5,   // Adultos
+    '45-54': 18.0,   // Meia-idade
+    '55-64': 12.0,   // Pré-aposentadoria
+    '65+': 15.0,     // Idosos
   },
-  observacoes: 'Faixas ajustadas para corresponder ao banco de eleitores sintéticos. Dados do Censo 2022.',
+  observacoes: 'Distribuição baseada no Censo 2022 para população votante do DF (16+ anos). Valores ajustados para refletir pirâmide etária real.',
   confiabilidade: 'media',
 };
 
