@@ -6,6 +6,8 @@ import { Sidebar } from '@/components/layout/Sidebar';
 import { Header } from '@/components/layout/Header';
 import { MobileNav } from '@/components/layout/MobileNav';
 import { useAuthStore } from '@/stores/auth-store';
+import { useSidebarStore } from '@/stores/sidebar-store';
+import { cn } from '@/lib/utils';
 
 export default function DashboardLayout({
   children,
@@ -14,6 +16,7 @@ export default function DashboardLayout({
 }) {
   const router = useRouter();
   const { autenticado, verificarToken } = useAuthStore();
+  const { recolhido } = useSidebarStore();
   const [verificando, setVerificando] = useState(true);
 
   useEffect(() => {
@@ -45,12 +48,15 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen bg-background bg-pattern">
-      {/* Sidebar - Oculta em mobile */}
-      <div className="hidden lg:block">
-        <Sidebar />
-      </div>
-
-      <div className="lg:ml-64 transition-all duration-300">
+      <Sidebar />
+      {/* Em mobile (< lg): sem margin, conteúdo ocupa tela toda */}
+      {/* Em desktop (lg+): margin-left baseado no estado recolhido */}
+      <div
+        className={cn(
+          'transition-all duration-300',
+          recolhido ? 'lg:ml-20' : 'lg:ml-64'
+        )}
+      >
         <Header />
         {/* Main content - Padding extra no bottom para mobile nav */}
         <main className="p-4 sm:p-6 bg-gradient-subtle min-h-[calc(100vh-4rem)] pb-20 lg:pb-6">
