@@ -32,3 +32,6 @@ memorias/*.json
 .tmp.driveupload/
 nul
 *.log
+
+# arquivos temporários de deploy
+temp_deploys*.json
