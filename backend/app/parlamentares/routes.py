@@ -199,7 +199,7 @@ async def listar_ids(
     filtros = FiltrosParlamentar(
         casas=parse_casas(casas),
         partidos=parse_lista(partidos),
-        por_pagina=500,  # Retornar todos
+        por_pagina=200,  # Máximo permitido pelo modelo
     )
 
     resultado = await servico.listar(filtros)
