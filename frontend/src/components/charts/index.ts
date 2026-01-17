@@ -25,3 +25,7 @@ export {
   GraficoTreemap,
   GraficoFunil,
 } from './GraficoDinamico';
+export { MapaCalorDF, MapaComparacao, MapaMultiplasMetricas, REGIOES_DF } from './MapaCalorDF';
+export type { DadoRegiao, RegiaoPath } from './MapaCalorDF';
+export { GraficoTendenciaTemporal, ComparacaoTemporal } from './GraficoTendenciaTemporal';
+export type { SerieTemporal, PontoTemporal } from './GraficoTendenciaTemporal';

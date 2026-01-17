@@ -21,7 +21,20 @@ import {
   Landmark,
   RefreshCw,
   ExternalLink,
+  PieChart as PieChartIcon,
 } from 'lucide-react';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from 'recharts';
 import { useParlamentares } from '@/hooks/useParlamentares';
 import { ParlamentarCard } from '@/components/parlamentares/ParlamentarCard';
 import { ParlamentaresFilters } from '@/components/parlamentares/ParlamentaresFilters';
@@ -444,7 +457,13 @@ function ParlamentaresContent() {
   );
 }
 
-// Componente de Gráficos simplificado
+// Cores para gráficos
+const CORES_CASA = ['#22c55e', '#3b82f6', '#eab308'];
+const CORES_ORIENTACAO = ['#ef4444', '#f97316', '#a855f7', '#3b82f6', '#6366f1'];
+const CORES_RELACAO = ['#22c55e', '#6b7280', '#f97316', '#ef4444'];
+const CORES_PARTIDOS = ['#3b82f6', '#ef4444', '#22c55e', '#f97316', '#a855f7', '#eab308', '#06b6d4', '#ec4899', '#84cc16', '#f43f5e'];
+
+// Componente de Gráficos com visualizações
 function ParlamentaresGraficos({
   estatisticas,
   parlamentares,
@@ -452,83 +471,178 @@ function ParlamentaresGraficos({
   estatisticas: any;
   parlamentares: any[];
 }) {
+  // Dados para gráfico de pizza - Casa Legislativa
+  const dadosCasa = Object.entries(estatisticas.porCasa)
+    .filter(([key]) => key !== 'todas')
+    .map(([casa, count], index) => ({
+      name: casa === 'camara_federal' ? 'Câmara' : casa === 'senado' ? 'Senado' : 'CLDF',
+      value: count as number,
+      fill: CORES_CASA[index],
+    }));
+
+  // Dados para gráfico de barras - Orientação Política
+  const dadosOrientacao = Object.entries(estatisticas.porOrientacao).map(([orientacao, count], index) => ({
+    name: orientacao.charAt(0).toUpperCase() + orientacao.slice(1).replace('-', ' '),
+    value: count as number,
+    fill: CORES_ORIENTACAO[index % CORES_ORIENTACAO.length],
+  }));
+
+  // Dados para gráfico de pizza - Relação com Governo
+  const dadosRelacao = Object.entries(estatisticas.porRelacaoGoverno).map(([relacao, count], index) => ({
+    name: relacao.replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+    value: count as number,
+    fill: CORES_RELACAO[index % CORES_RELACAO.length],
+  }));
+
+  // Dados para gráfico de barras - Top 10 Partidos
+  const dadosPartidos = Object.entries(estatisticas.porPartido)
+    .sort(([, a], [, b]) => (b as number) - (a as number))
+    .slice(0, 10)
+    .map(([partido, count], index) => ({
+      name: partido,
+      value: count as number,
+      fill: CORES_PARTIDOS[index % CORES_PARTIDOS.length],
+    }));
+
+  // Dados para gráfico de barras - Top 10 Estados
+  const dadosUf = Object.entries(estatisticas.porUf || {})
+    .sort(([, a], [, b]) => (b as number) - (a as number))
+    .slice(0, 10)
+    .map(([uf, count]) => ({
+      name: uf,
+      value: count as number,
+    }));
+
   return (
     <div className="h-full overflow-y-auto p-4 space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Por Casa Legislativa */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Gráfico de Pizza - Casa Legislativa */}
         <div className="glass-card rounded-xl p-4">
-          <h3 className="font-semibold text-foreground mb-4">Por Casa Legislativa</h3>
-          <div className="space-y-3">
-            {Object.entries(estatisticas.porCasa)
-              .filter(([key]) => key !== 'todas')
-              .map(([casa, count]) => (
-                <div key={casa} className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground capitalize">
-                    {casa.replace(/_/g, ' ')}
-                  </span>
-                  <span className="text-sm font-medium text-foreground">{count as number}</span>
-                </div>
-              ))}
-          </div>
+          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+            <PieChartIcon className="w-5 h-5 text-primary" />
+            Por Casa Legislativa
+          </h3>
+          <ResponsiveContainer width="100%" height={250}>
+            <PieChart>
+              <Pie
+                data={dadosCasa}
+                cx="50%"
+                cy="50%"
+                innerRadius={50}
+                outerRadius={80}
+                paddingAngle={5}
+                dataKey="value"
+                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+              >
+                {dadosCasa.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.fill} />
+                ))}
+              </Pie>
+              <Tooltip
+                contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
+                formatter={(value: number) => [`${value} parlamentares`, 'Total']}
+              />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
 
-        {/* Por Partido */}
+        {/* Gráfico de Barras - Orientação Política */}
         <div className="glass-card rounded-xl p-4">
-          <h3 className="font-semibold text-foreground mb-4">Por Partido</h3>
-          <div className="space-y-2 max-h-48 overflow-y-auto">
-            {Object.entries(estatisticas.porPartido)
-              .sort(([, a], [, b]) => (b as number) - (a as number))
-              .map(([partido, count]) => (
-                <div key={partido} className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">{partido}</span>
-                  <span className="text-sm font-medium text-foreground">{count as number}</span>
-                </div>
-              ))}
-          </div>
+          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+            <BarChart3 className="w-5 h-5 text-primary" />
+            Orientação Política
+          </h3>
+          <ResponsiveContainer width="100%" height={250}>
+            <BarChart data={dadosOrientacao} layout="vertical">
+              <XAxis type="number" tick={{ fill: '#9ca3af', fontSize: 11 }} />
+              <YAxis type="category" dataKey="name" width={100} tick={{ fill: '#9ca3af', fontSize: 11 }} />
+              <Tooltip
+                contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
+                formatter={(value: number) => [`${value} parlamentares`, 'Total']}
+              />
+              <Bar dataKey="value" radius={[0, 4, 4, 0]}>
+                {dadosOrientacao.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.fill} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
         </div>
 
-        {/* Por Orientação Política */}
+        {/* Gráfico de Pizza - Relação com Governo */}
         <div className="glass-card rounded-xl p-4">
-          <h3 className="font-semibold text-foreground mb-4">Orientação Política</h3>
-          <div className="space-y-3">
-            {Object.entries(estatisticas.porOrientacao).map(([orientacao, count]) => (
-              <div key={orientacao} className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground capitalize">{orientacao}</span>
-                <span className="text-sm font-medium text-foreground">{count as number}</span>
-              </div>
-            ))}
-          </div>
+          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+            <PieChartIcon className="w-5 h-5 text-primary" />
+            Relação com Governo Lula
+          </h3>
+          <ResponsiveContainer width="100%" height={250}>
+            <PieChart>
+              <Pie
+                data={dadosRelacao}
+                cx="50%"
+                cy="50%"
+                innerRadius={50}
+                outerRadius={80}
+                paddingAngle={5}
+                dataKey="value"
+                label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
+              >
+                {dadosRelacao.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.fill} />
+                ))}
+              </Pie>
+              <Tooltip
+                contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
+                formatter={(value: number) => [`${value} parlamentares`, 'Total']}
+              />
+              <Legend
+                formatter={(value) => <span style={{ color: '#9ca3af', fontSize: '12px' }}>{value}</span>}
+              />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
 
-        {/* Por Relação com Governo */}
+        {/* Gráfico de Barras - Top 10 Partidos */}
         <div className="glass-card rounded-xl p-4">
-          <h3 className="font-semibold text-foreground mb-4">Relação com Governo Lula</h3>
-          <div className="space-y-3">
-            {Object.entries(estatisticas.porRelacaoGoverno).map(([relacao, count]) => (
-              <div key={relacao} className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground capitalize">
-                  {relacao.replace(/_/g, ' ')}
-                </span>
-                <span className="text-sm font-medium text-foreground">{count as number}</span>
-              </div>
-            ))}
-          </div>
+          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+            <BarChart3 className="w-5 h-5 text-primary" />
+            Top 10 Partidos
+          </h3>
+          <ResponsiveContainer width="100%" height={250}>
+            <BarChart data={dadosPartidos}>
+              <XAxis dataKey="name" tick={{ fill: '#9ca3af', fontSize: 10 }} angle={-45} textAnchor="end" height={60} />
+              <YAxis tick={{ fill: '#9ca3af', fontSize: 11 }} />
+              <Tooltip
+                contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
+                formatter={(value: number) => [`${value} parlamentares`, 'Total']}
+              />
+              <Bar dataKey="value" radius={[4, 4, 0, 0]}>
+                {dadosPartidos.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.fill} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
 
-      {/* Por Estado (UF) */}
+      {/* Gráfico de Barras - Top 10 Estados */}
       <div className="glass-card rounded-xl p-4">
-        <h3 className="font-semibold text-foreground mb-4">Por Estado (UF)</h3>
-        <div className="space-y-2 max-h-48 overflow-y-auto">
-          {Object.entries(estatisticas.porUf || {})
-            .sort(([, a], [, b]) => (b as number) - (a as number))
-            .map(([uf, count]) => (
-              <div key={uf} className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">{uf}</span>
-                <span className="text-sm font-medium text-foreground">{count as number}</span>
-              </div>
-            ))}
-        </div>
+        <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+          <BarChart3 className="w-5 h-5 text-primary" />
+          Top 10 Estados (UF)
+        </h3>
+        <ResponsiveContainer width="100%" height={200}>
+          <BarChart data={dadosUf}>
+            <XAxis dataKey="name" tick={{ fill: '#9ca3af', fontSize: 11 }} />
+            <YAxis tick={{ fill: '#9ca3af', fontSize: 11 }} />
+            <Tooltip
+              contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
+              formatter={(value: number) => [`${value} parlamentares`, 'Total']}
+            />
+            <Bar dataKey="value" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
 
       {/* Temas de Atuação */}

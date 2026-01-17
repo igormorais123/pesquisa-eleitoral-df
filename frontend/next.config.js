@@ -61,7 +61,32 @@ const nextConfig = {
 
   // Otimizacoes de imagem
   images: {
-    domains: ['localhost', 'api.dicebear.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.camara.leg.br',
+        pathname: '/internet/deputado/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.senado.leg.br',
+        pathname: '/senadores/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
+        pathname: '/api/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.dicebear.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+    ],
     unoptimized: process.env.NODE_ENV === 'development',
   },
 
