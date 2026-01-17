@@ -349,12 +349,12 @@ export function TemplateSelector({
                             const TipoIcone =
                               TIPO_PERGUNTA_ICONE[pergunta.tipo] || HelpCircle;
                             const selecionada = perguntasSelecionadas.includes(
-                              pergunta.id
+                              pergunta.codigo
                             );
 
                             return (
                               <div
-                                key={pergunta.id}
+                                key={pergunta.codigo}
                                 className={`p-3 border rounded-lg transition-colors ${
                                   modoSelecao === 'perguntas'
                                     ? 'cursor-pointer hover:bg-muted/50'
@@ -362,7 +362,7 @@ export function TemplateSelector({
                                 } ${selecionada ? 'bg-primary/5 border-primary' : ''}`}
                                 onClick={() =>
                                   modoSelecao === 'perguntas' &&
-                                  togglePergunta(pergunta.id)
+                                  togglePergunta(pergunta.codigo)
                                 }
                               >
                                 <div className="flex items-start gap-3">
@@ -394,29 +394,16 @@ export function TemplateSelector({
                                           Obrigatória
                                         </Badge>
                                       )}
-                                      {pergunta.opcoes_dinamicas && (
-                                        <Badge
-                                          variant="outline"
-                                          className="text-xs text-blue-600"
-                                        >
-                                          Dinâmica
-                                        </Badge>
-                                      )}
                                     </div>
                                     {pergunta.opcoes && pergunta.opcoes.length > 0 && (
                                       <div className="text-xs text-muted-foreground mt-1">
-                                        Opções: {pergunta.opcoes.join(', ')}
+                                        Opções: {pergunta.opcoes.map((o) => o.texto).join(', ')}
                                       </div>
                                     )}
-                                    {pergunta.escala_rotulos &&
-                                      pergunta.escala_rotulos.length > 0 && (
+                                    {pergunta.validacao && (
                                         <div className="text-xs text-muted-foreground mt-1">
-                                          Escala: {pergunta.escala_min} a{' '}
-                                          {pergunta.escala_max} (
-                                          {pergunta.escala_rotulos
-                                            .filter(Boolean)
-                                            .join(' → ')}
-                                          )
+                                          Escala: {pergunta.validacao.min} a{' '}
+                                          {pergunta.validacao.max}
                                         </div>
                                       )}
                                   </div>
