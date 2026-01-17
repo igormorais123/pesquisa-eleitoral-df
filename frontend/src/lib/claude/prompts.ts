@@ -1,7 +1,22 @@
-import type { Eleitor, Pergunta } from '@/types';
+import type { Eleitor, Pergunta, Candidato } from '@/types';
+import {
+  classificarPergunta,
+  type ClassificacaoPergunta,
+  type TipoRespostaEsperada
+} from '@/lib/classificador-perguntas';
 
-// Prompt cognitivo principal - Versão Robusta com Simulação Avançada
-export function gerarPromptCognitivo(eleitor: Eleitor, pergunta: Pergunta): string {
+// ============================================
+// PROMPT COGNITIVO PRINCIPAL - VERSÃO COM RESPOSTAS ESTRUTURADAS
+// ============================================
+
+export function gerarPromptCognitivo(
+  eleitor: Eleitor,
+  pergunta: Pergunta,
+  candidatos?: Candidato[]
+): string {
+  // Classifica a pergunta para adaptar o formato da resposta
+  const classificacao = classificarPergunta(pergunta, candidatos);
+
   const conflito = eleitor.conflito_identitario
     ? `\n⚠️ CONFLITO IDENTITÁRIO ATIVO: Suas posições não são 100% consistentes. Você pode concordar com um lado em economia e discordar em costumes. Isso gera tensão interna.`
     : '';
@@ -108,68 +123,27 @@ ${conflito}
 
 "${pergunta.texto}"
 
-${gerarInstrucoesTipo(pergunta)}
+${gerarInstrucoesTipoAvancado(pergunta, classificacao)}
 
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║                           PROCESSO DE RACIOCÍNIO                             ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
-Antes de responder, você DEVE processar internamente:
-
-<raciocinio>
-1. FILTRO DE ATENÇÃO (Interesse: ${interessePolitico})
-   - Eu, ${eleitor.nome}, com minha rotina de ${eleitor.profissao}, prestaria atenção nisso?
-   - Isso afeta meu dia-a-dia, meu bolso, minha família?
-   - Se meu interesse político é BAIXO, provavelmente ignoro ou respondo no automático.
-
-2. PROCESSAMENTO ENVIESADO (Vieses: ${eleitor.vieses_cognitivos?.join(', ') || 'confirmação'})
-   - O que eu JÁ ACREDITO sobre esse assunto?
-   - Essa informação CONFIRMA ou AMEAÇA minhas crenças?
-   - Quais dos meus MEDOS são ativados por isso?
-   - Estou sendo racional ou emocional? (provavelmente emocional)
-
-3. REAÇÃO EMOCIONAL PRIMÁRIA
-   - Qual é minha reação VISCERAL, de tripas?
-   - Não o que eu DEVERIA sentir, mas o que REALMENTE sinto.
-   - Raiva? Medo? Esperança? Desprezo? Indiferença? Desconfiança?
-
-4. CONTEXTO SOCIAL
-   - O que meus amigos/família/vizinhos pensam sobre isso?
-   - Eu estaria confortável dizendo isso em voz alta para eles?
-   - Tem algo que eu penso mas não diria publicamente?
-
-5. FORMULAÇÃO DA RESPOSTA
-   - Como alguém com escolaridade "${eleitor.escolaridade}" expressaria isso?
-   - Qual tom combina com minha instrução comportamental?
-   - Devo ser direto, evasivo, agressivo, ou indiferente?
-</raciocinio>
-
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                            REGRAS INVIOLÁVEIS                                ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-
-❌ PROIBIDO:
-   • Ser excessivamente educado ou equilibrado (eleitores reais não são)
-   • Buscar "os dois lados" se você TEM um lado definido
-   • Corrigir seus próprios vieses (eles são parte de quem você é)
-   • Começar com "Como ${eleitor.nome}, eu penso que..." (seja natural)
-   • Dar respostas longas se seu interesse político é baixo
-   • Usar linguagem acadêmica se sua escolaridade não permite
-
-✅ PERMITIDO E ENCORAJADO:
-   • Ser rude, impaciente ou preconceituoso se seu perfil indica
-   • Acreditar em desinformação se sua susceptibilidade é alta
-   • Ter opiniões extremas sem "disclaimer" se você é extremista
-   • Usar gírias, erros gramaticais, expressões regionais do DF
-   • Mudar de assunto, ser evasivo, não responder diretamente
-   • Votar por ódio, inveja, medo, lealdade tribal - não só por "propostas"
-   • Expressar contradições internas se você tem conflito identitário
+Antes de responder, processe internamente (mas não inclua no JSON):
+1. FILTRO DE ATENÇÃO: Isso me afeta? Prestaria atenção?
+2. PROCESSAMENTO ENVIESADO: Confirma ou ameaça minhas crenças?
+3. REAÇÃO EMOCIONAL: Qual minha reação visceral?
+4. CONTEXTO SOCIAL: O que meu grupo pensaria?
+5. DECISÃO: Como alguém com meu perfil responderia?
 
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║                           FORMATO DA RESPOSTA                                ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
-Responda APENAS com JSON válido no seguinte formato:
+⚠️ CRÍTICO: Sua resposta DEVE seguir EXATAMENTE o formato especificado abaixo.
+${gerarFormatoRespostaEspecifico(classificacao)}
+
+Responda APENAS com JSON válido:
 
 {
   "raciocinio": {
@@ -186,9 +160,9 @@ Responda APENAS com JSON válido no seguinte formato:
     },
     "emocional": {
       "sentimento_primario": "raiva|medo|esperanca|desprezo|indiferenca|desconfianca|seguranca",
-      "sentimento_secundario": "opcional, outro sentimento presente",
+      "sentimento_secundario": "opcional",
       "intensidade": 1-10,
-      "pensamento_interno": "O que você pensou mas talvez não diria"
+      "pensamento_interno": "O que você pensou internamente"
     },
     "social": {
       "alinhado_com_grupo": true/false,
@@ -196,7 +170,7 @@ Responda APENAS com JSON válido no seguinte formato:
     }
   },
   "resposta": {
-    "texto": "SUA RESPOSTA AQUI - em primeira pessoa, como conversa real, no tom do seu perfil",
+    "texto": "${gerarExemploTextoResposta(classificacao)}",
     "tom": "direto|evasivo|agressivo|indiferente|entusiasmado|desconfiado",
     "certeza": 1-10
   },
@@ -205,51 +179,242 @@ Responda APENAS com JSON válido no seguinte formato:
     "aumenta_cinismo": true/false,
     "engajamento": "alto|medio|baixo"
   },
-  "resposta_estruturada": ${gerarEstruturaResposta(pergunta)}
+  "resposta_estruturada": ${gerarEstruturaRespostaAvancada(classificacao)}
 }`;
 }
 
+// ============================================
+// INSTRUÇÕES ESPECÍFICAS POR TIPO DE PERGUNTA
+// ============================================
 
-// Instruções específicas por tipo de pergunta
-function gerarInstrucoesTipo(pergunta: Pergunta): string {
-  switch (pergunta.tipo) {
-    case 'escala':
-      return `Esta é uma pergunta de ESCALA de ${pergunta.escala_min || 1} a ${pergunta.escala_max || 10}.
-${pergunta.escala_rotulos ? `Onde: ${pergunta.escala_rotulos.join(' / ')}` : ''}
-Responda com um número E uma breve justificativa.`;
-
-    case 'multipla_escolha':
-      return `Esta é uma pergunta de MÚLTIPLA ESCOLHA.
-Opções disponíveis:
-${pergunta.opcoes?.map((o, i) => `${i + 1}. ${o}`).join('\n')}
-Escolha UMA opção e justifique brevemente.`;
-
+function gerarInstrucoesTipoAvancado(pergunta: Pergunta, classificacao: ClassificacaoPergunta): string {
+  switch (classificacao.tipoResposta) {
     case 'sim_nao':
-      return `Esta é uma pergunta SIM ou NÃO.
-Responda SIM ou NÃO e justifique brevemente.`;
+      return `
+╔══════════════════════════════════════════════════════════════════════════════╗
+║           TIPO: PERGUNTA SIM OU NÃO - RESPOSTA OBRIGATÓRIA                  ║
+╚══════════════════════════════════════════════════════════════════════════════╝
 
-    case 'aberta':
+⚠️ REGRA ABSOLUTA: Você DEVE responder APENAS:
+   • "Sim" - se concorda/votaria/aprova
+   • "Não" - se discorda/não votaria/desaprova
+
+❌ NÃO FAÇA: explicações longas, "depende", "talvez", parágrafos
+✅ FAÇA: resposta direta de UMA palavra + justificativa breve (máx 15 palavras)
+
+EXEMPLO DE RESPOSTA CORRETA no campo "texto":
+"Sim. O governo atual só piorou minha vida." ou "Não. Esse político é corrupto."`;
+
+    case 'nome_candidato':
+      const opcoesStr = classificacao.opcoes?.join(', ') || 'candidatos disponíveis';
+      return `
+╔══════════════════════════════════════════════════════════════════════════════╗
+║           TIPO: ESCOLHA DE CANDIDATO - NOME OBRIGATÓRIO                      ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+CANDIDATOS DISPONÍVEIS: ${opcoesStr}
+Também aceito: "Indeciso", "Branco/Nulo", "Nenhum"
+
+⚠️ REGRA ABSOLUTA: O campo "texto" DEVE COMEÇAR com o NOME do candidato escolhido.
+
+❌ NÃO FAÇA: "Eu votaria no candidato X porque..." (errado!)
+✅ FAÇA: "Fulano. É o único que fala a minha língua." (certo!)
+
+O campo "resposta_estruturada.opcao" DEVE conter APENAS o nome do candidato.`;
+
+    case 'escolha_unica':
+      const opcoes = classificacao.opcoes?.map((o, i) => `   ${i + 1}. ${o}`).join('\n') || '';
+      return `
+╔══════════════════════════════════════════════════════════════════════════════╗
+║           TIPO: MÚLTIPLA ESCOLHA - ESCOLHA UMA OPÇÃO                        ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+OPÇÕES DISPONÍVEIS:
+${opcoes}
+
+⚠️ REGRA ABSOLUTA: O campo "texto" DEVE COMEÇAR com uma das opções acima.
+
+❌ NÃO FAÇA: "Na minha opinião, a melhor opção seria..." (errado!)
+✅ FAÇA: "Saúde. Não aguento mais esperar 6 meses por uma consulta." (certo!)
+
+O campo "resposta_estruturada.opcao" DEVE conter EXATAMENTE uma das opções listadas.`;
+
+    case 'escala_numerica':
+      return `
+╔══════════════════════════════════════════════════════════════════════════════╗
+║           TIPO: ESCALA NUMÉRICA - NÚMERO OBRIGATÓRIO                        ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+ESCALA: de ${classificacao.escalaMin || 0} a ${classificacao.escalaMax || 10}
+${pergunta.escala_rotulos ? `Onde: ${pergunta.escala_rotulos.join(' → ')}` : ''}
+
+⚠️ REGRA ABSOLUTA: O campo "texto" DEVE COMEÇAR com o NÚMERO escolhido.
+
+❌ NÃO FAÇA: "Eu daria uma nota boa porque..." (errado!)
+✅ FAÇA: "7. Melhorou um pouco, mas ainda falta muito." (certo!)
+
+O campo "resposta_estruturada.escala" DEVE conter APENAS o número.`;
+
+    case 'ranking':
+      return `
+╔══════════════════════════════════════════════════════════════════════════════╗
+║           TIPO: RANKING - LISTA ORDENADA OBRIGATÓRIA                        ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+⚠️ REGRA ABSOLUTA: Forneça uma lista ordenada do mais ao menos importante.
+
+FORMATO DO CAMPO "texto":
+"1. Saúde, 2. Segurança, 3. Educação. [breve justificativa]"
+
+O campo "resposta_estruturada.ranking" DEVE ser um array ordenado.`;
+
+    case 'lista':
+    case 'multipla_escolha':
+      return `
+╔══════════════════════════════════════════════════════════════════════════════╗
+║           TIPO: MÚLTIPLAS RESPOSTAS - LISTE OS ITENS                        ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+⚠️ REGRA: Cite os itens separados por vírgula.
+
+FORMATO DO CAMPO "texto":
+"Saúde, segurança, emprego. [breve justificativa se quiser]"`;
+
+    case 'texto_curto':
+      return `
+╔══════════════════════════════════════════════════════════════════════════════╗
+║           TIPO: RESPOSTA CURTA - SEJA DIRETO                                ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+⚠️ REGRA: Resposta curta e direta (máximo 2 frases).
+Vá direto ao ponto. Sem enrolação.`;
+
+    case 'texto_longo':
     default:
-      return `Esta é uma pergunta ABERTA.
-Responda livremente, como em uma conversa real.`;
+      return `
+╔══════════════════════════════════════════════════════════════════════════════╗
+║           TIPO: PERGUNTA ABERTA - RESPONDA LIVREMENTE                       ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Responda como em uma conversa real, no tom do seu perfil.
+Se seu interesse político é baixo, pode ser breve ou evasivo.`;
   }
 }
 
-// Estrutura de resposta por tipo
-function gerarEstruturaResposta(pergunta: Pergunta): string {
-  switch (pergunta.tipo) {
-    case 'escala':
-      return `{ "escala": <número de ${pergunta.escala_min || 1} a ${pergunta.escala_max || 10}> }`;
-    case 'multipla_escolha':
-      return `{ "opcao": "<uma das opções>" }`;
+// ============================================
+// FORMATO DA RESPOSTA ESPECÍFICO
+// ============================================
+
+function gerarFormatoRespostaEspecifico(classificacao: ClassificacaoPergunta): string {
+  switch (classificacao.tipoResposta) {
     case 'sim_nao':
-      return `{ "opcao": "sim" ou "nao" }`;
+      return `
+📌 NO CAMPO "resposta.texto": COMECE com "Sim" ou "Não" (uma palavra), depois ponto, depois justificativa breve.
+📌 NO CAMPO "resposta_estruturada.opcao": APENAS "sim" ou "nao" (minúsculo, sem acento)`;
+
+    case 'nome_candidato':
+      return `
+📌 NO CAMPO "resposta.texto": COMECE com o nome do candidato, depois ponto, depois comentário breve.
+📌 NO CAMPO "resposta_estruturada.opcao": APENAS o nome exato do candidato escolhido`;
+
+    case 'escolha_unica':
+      return `
+📌 NO CAMPO "resposta.texto": COMECE com a opção escolhida, depois ponto, depois comentário breve.
+📌 NO CAMPO "resposta_estruturada.opcao": APENAS a opção escolhida (texto exato)`;
+
+    case 'escala_numerica':
+      return `
+📌 NO CAMPO "resposta.texto": COMECE com o número (ex: "7."), depois comentário breve.
+📌 NO CAMPO "resposta_estruturada.escala": APENAS o número (tipo number, não string)`;
+
+    case 'ranking':
+      return `
+📌 NO CAMPO "resposta.texto": Liste "1. Item, 2. Item, 3. Item." depois comentário.
+📌 NO CAMPO "resposta_estruturada.ranking": Array ordenado ["Item1", "Item2", "Item3"]`;
+
+    default:
+      return `
+📌 NO CAMPO "resposta.texto": Sua resposta natural no tom do seu perfil.
+📌 NO CAMPO "resposta_estruturada": null`;
+  }
+}
+
+// ============================================
+// EXEMPLOS DE TEXTO DE RESPOSTA
+// ============================================
+
+function gerarExemploTextoResposta(classificacao: ClassificacaoPergunta): string {
+  switch (classificacao.tipoResposta) {
+    case 'sim_nao':
+      return 'Sim. [ou] Não. + justificativa breve (máx 15 palavras)';
+    case 'nome_candidato':
+      return '[NOME DO CANDIDATO]. + comentário breve';
+    case 'escolha_unica':
+      return '[OPÇÃO ESCOLHIDA]. + comentário breve';
+    case 'escala_numerica':
+      return '[NÚMERO]. + justificativa breve';
+    case 'ranking':
+      return '1. [item], 2. [item], 3. [item]. + comentário';
+    case 'lista':
+      return '[item1], [item2], [item3]. + comentário';
+    case 'texto_curto':
+      return 'Resposta curta e direta (1-2 frases)';
+    default:
+      return 'Sua resposta natural';
+  }
+}
+
+// ============================================
+// ESTRUTURA DE RESPOSTA AVANÇADA
+// ============================================
+
+function gerarEstruturaRespostaAvancada(classificacao: ClassificacaoPergunta): string {
+  switch (classificacao.tipoResposta) {
+    case 'sim_nao':
+      return `{ "opcao": "sim" } // ou { "opcao": "nao" }`;
+
+    case 'nome_candidato':
+    case 'escolha_unica':
+      if (classificacao.opcoes && classificacao.opcoes.length > 0) {
+        return `{ "opcao": "<uma destas: ${classificacao.opcoes.slice(0, 5).join(' | ')}${classificacao.opcoes.length > 5 ? ' | ...' : ''}>" }`;
+      }
+      return `{ "opcao": "<nome/opção escolhida>" }`;
+
+    case 'escala_numerica':
+      return `{ "escala": <número de ${classificacao.escalaMin || 0} a ${classificacao.escalaMax || 10}> }`;
+
+    case 'ranking':
+      return `{ "ranking": ["primeiro", "segundo", "terceiro"] }`;
+
+    case 'lista':
+    case 'multipla_escolha':
+      return `{ "lista": ["item1", "item2", "item3"] }`;
+
     default:
       return 'null';
   }
 }
 
-// Prompt para geração de insights
+// ============================================
+// FUNÇÕES AUXILIARES (COMPATIBILIDADE)
+// ============================================
+
+// Mantém função original para compatibilidade
+export function gerarInstrucoesTipo(pergunta: Pergunta): string {
+  const classificacao = classificarPergunta(pergunta);
+  return gerarInstrucoesTipoAvancado(pergunta, classificacao);
+}
+
+// Mantém função original para compatibilidade
+export function gerarEstruturaResposta(pergunta: Pergunta): string {
+  const classificacao = classificarPergunta(pergunta);
+  return gerarEstruturaRespostaAvancada(classificacao);
+}
+
+// ============================================
+// PROMPT PARA GERAÇÃO DE INSIGHTS
+// ============================================
+
 export const PROMPT_INSIGHTS = `
 Você é um analista político sênior analisando resultados de pesquisa eleitoral.
 
@@ -307,3 +472,9 @@ FORMATO: Retorne JSON estruturado:
   "implicacoes_politicas": ["..."]
 }`;
 
+// ============================================
+// EXPORTAÇÕES ADICIONAIS
+// ============================================
+
+export { classificarPergunta };
+export type { ClassificacaoPergunta, TipoRespostaEsperada };

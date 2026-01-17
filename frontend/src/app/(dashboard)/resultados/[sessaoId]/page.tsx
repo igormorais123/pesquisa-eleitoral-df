@@ -37,6 +37,7 @@ import {
   exportarRelatorioInteligenciaPDF,
 } from '@/lib/export';
 import { WordCloudRespostas } from '@/components/charts';
+import { ResultadosPorPergunta } from '@/components/resultados';
 import {
   PieChart,
   Pie,
@@ -195,7 +196,7 @@ export default function PaginaResultadoDetalhe() {
 
   const [sessao, setSessao] = useState<SessaoEntrevista | null>(null);
   const [carregando, setCarregando] = useState(true);
-  const [abaAtiva, setAbaAtiva] = useState<'geral' | 'respostas' | 'insights'>('geral');
+  const [abaAtiva, setAbaAtiva] = useState<'geral' | 'graficos' | 'respostas' | 'insights'>('geral');
 
   // Estados do relatório de inteligência
   const [relatorio, setRelatorio] = useState<RelatorioInteligencia | null>(null);
@@ -333,6 +334,38 @@ export default function PaginaResultadoDetalhe() {
   };
 
   const stats = calcularEstatisticas();
+
+  // Função para extrair perguntas únicas da sessão
+  const extrairPerguntasDaSessao = (sessao: SessaoEntrevista) => {
+    const perguntasMap = new Map<string, { id: string; texto: string; tipo: 'aberta' | 'escala' | 'multipla_escolha' | 'sim_nao'; obrigatoria: boolean }>();
+
+    sessao.respostas.forEach((resposta) => {
+      resposta.respostas.forEach((r) => {
+        if (!perguntasMap.has(r.pergunta_id)) {
+          // Tenta detectar o tipo da pergunta pelo texto
+          const textoLower = r.pergunta_id.toLowerCase();
+          let tipo: 'aberta' | 'escala' | 'multipla_escolha' | 'sim_nao' = 'aberta';
+
+          if (textoLower.includes('de 0 a 10') || textoLower.includes('de 1 a 10') || textoLower.includes('nota')) {
+            tipo = 'escala';
+          } else if (textoLower.includes('sim ou não') || textoLower.includes('votaria em') || textoLower.includes('concorda')) {
+            tipo = 'sim_nao';
+          } else if (textoLower.includes('qual candidato') || textoLower.includes('em quem votaria')) {
+            tipo = 'multipla_escolha';
+          }
+
+          perguntasMap.set(r.pergunta_id, {
+            id: r.pergunta_id,
+            texto: r.pergunta_id,
+            tipo,
+            obrigatoria: true,
+          });
+        }
+      });
+    });
+
+    return Array.from(perguntasMap.values());
+  };
 
   // Dados para gráficos
   const dadosSentimentos = stats
@@ -555,7 +588,7 @@ export default function PaginaResultadoDetalhe() {
 
       {/* Abas */}
       <div className="flex items-center gap-2 border-b border-border">
-        {(['geral', 'respostas', 'insights'] as const).map((aba) => (
+        {(['geral', 'graficos', 'respostas', 'insights'] as const).map((aba) => (
           <button
             key={aba}
             onClick={() => setAbaAtiva(aba)}
@@ -566,7 +599,7 @@ export default function PaginaResultadoDetalhe() {
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             )}
           >
-            {aba === 'geral' ? 'Visão Geral' : aba === 'respostas' ? 'Respostas' : 'Insights'}
+            {aba === 'geral' ? 'Visão Geral' : aba === 'graficos' ? 'Gráficos' : aba === 'respostas' ? 'Respostas' : 'Insights'}
           </button>
         ))}
       </div>
@@ -798,6 +831,31 @@ export default function PaginaResultadoDetalhe() {
             </h3>
             <WordCloudRespostas respostas={sessao.respostas} altura={300} />
           </div>
+        </div>
+      )}
+
+      {/* Aba Gráficos Dinâmicos por Pergunta */}
+      {abaAtiva === 'graficos' && sessao && (
+        <div className="space-y-6">
+          <div className="glass-card rounded-xl p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h3 className="font-semibold text-foreground flex items-center gap-2">
+                  <BarChart3 className="w-5 h-5 text-primary" />
+                  Gráficos Dinâmicos por Pergunta
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Visualização automática baseada no tipo de cada pergunta
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Componente de Resultados por Pergunta */}
+          <ResultadosPorPergunta
+            perguntas={extrairPerguntasDaSessao(sessao)}
+            respostas={sessao.respostas}
+          />
         </div>
       )}
 

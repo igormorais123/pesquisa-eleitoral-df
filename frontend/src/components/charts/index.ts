@@ -13,3 +13,15 @@ export { ViolinPlot } from './ViolinPlot';
 export { TreemapChart } from './TreemapChart';
 export { FunnelChart } from './FunnelChart';
 export { GaugeChart, MultiGauge } from './GaugeChart';
+export {
+  GraficoDinamico,
+  GraficoPizza,
+  GraficoDonut,
+  GraficoBarrasHorizontal,
+  GraficoBarrasVertical,
+  GraficoEscalaLikert,
+  GraficoGauge,
+  GraficoRanking,
+  GraficoTreemap,
+  GraficoFunil,
+} from './GraficoDinamico';

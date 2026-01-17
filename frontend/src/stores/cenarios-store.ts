@@ -14,7 +14,7 @@ import {
   ResultadoAnaliseRejeicao,
   CargoPretendido,
 } from '@/types';
-import api from '@/services/api';
+import { api } from '@/services/api';
 
 interface CenariosState {
   // Estado

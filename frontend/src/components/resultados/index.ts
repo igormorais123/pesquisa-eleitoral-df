@@ -7,3 +7,5 @@ export { CaixaVotoSilencioso } from './CaixaVotoSilencioso';
 export { CaixaPontoRuptura } from './CaixaPontoRuptura';
 export { InsightsPanel } from './InsightsPanel';
 export { CitacoesRepresentativas } from './CitacoesRepresentativas';
+export { PainelResultadosPergunta, formatarTipoPergunta, formatarTipoGrafico } from './PainelResultadosPergunta';
+export { ResultadosPorPergunta } from './ResultadosPorPergunta';
