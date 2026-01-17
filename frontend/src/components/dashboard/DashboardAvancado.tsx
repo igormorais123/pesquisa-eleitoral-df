@@ -36,7 +36,9 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts';
-import { MapaCalorDF, type DadoRegiao } from '@/components/charts/MapaCalorDF';
+// MapaCalorDF removido temporariamente - componente não implementado
+// import { MapaCalorDF, type DadoRegiao } from '@/components/charts/MapaCalorDF';
+type DadoRegiao = { regiao: string; valor: number; label?: string };
 import { GraficoTendenciaTemporal, type SerieTemporal } from '@/components/charts/GraficoTendenciaTemporal';
 import { AlertasProativos, gerarAlertasAutomaticos, type Alerta } from '@/components/alertas/AlertasProativos';
 import { baixarRelatorioPDF, type DadosRelatorio } from '@/lib/gerador-pdf';
@@ -588,12 +590,18 @@ export function DashboardAvancado({
               <CardDescription>Performance por região administrativa do DF</CardDescription>
             </CardHeader>
             <CardContent>
-              <MapaCalorDF
-                dados={dados.dadosRegionais}
-                titulo=""
-                escala="verde_vermelho"
-                formatarValor={(v) => `${v.toFixed(1)}%`}
-              />
+              {/* MapaCalorDF temporariamente indisponível */}
+              <div className="p-8 text-center text-muted-foreground">
+                <p>Análise regional em desenvolvimento</p>
+                <div className="mt-4 space-y-2">
+                  {dados.dadosRegionais.map((d: DadoRegiao) => (
+                    <div key={d.regiao} className="flex justify-between text-sm">
+                      <span>{d.regiao}</span>
+                      <span className="font-medium">{d.valor.toFixed(1)}%</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
