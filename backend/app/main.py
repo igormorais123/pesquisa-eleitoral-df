@@ -13,6 +13,7 @@ from fastapi.openapi.utils import get_openapi
 
 from app.api.rotas import (
     autenticacao,
+    candidatos,
     dados_usuarios,
     eleitores,
     entrevistas,
@@ -42,6 +43,7 @@ async def lifespan(app: FastAPI):
         # Importar modelos para registrar no metadata
         from app.modelos.usuario import Usuario  # noqa: F401
         from app.modelos.eleitor import Eleitor  # noqa: F401
+        from app.modelos.candidato import Candidato  # noqa: F401
 
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
@@ -246,6 +248,31 @@ Os parlamentares respondem usando prompts específicos que consideram:
         """,
     },
     {
+        "name": "Candidatos",
+        "description": """
+Gerenciamento de candidatos eleitorais do DF 2026.
+
+**Funcionalidades:**
+- Cadastro completo de candidatos (nome, partido, cargo, foto, biografia)
+- Filtros por cargo, partido, orientação política
+- Estatísticas e métricas de candidatura
+- Suporte a cenários eleitorais (1º e 2º turno)
+
+**Cargos disponíveis:**
+- Governador / Vice-Governador
+- Senador
+- Deputado Federal
+- Deputado Distrital
+
+**Dados incluídos:**
+- Informações pessoais e profissionais
+- Propostas e áreas de foco
+- Histórico político e eleições anteriores
+- Redes sociais e site de campanha
+- Métricas de rejeição e conhecimento
+        """,
+    },
+    {
         "name": "RLS - Segurança",
         "description": """
 Administração do Row Level Security (RLS) do PostgreSQL.
@@ -429,6 +456,12 @@ app.include_router(
     parlamentares_router,
     prefix="/api/v1/parlamentares",
     tags=["Parlamentares"],
+)
+
+app.include_router(
+    candidatos.router,
+    prefix="/api/v1/candidatos",
+    tags=["Candidatos"],
 )
 
 app.include_router(

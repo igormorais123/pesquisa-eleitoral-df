@@ -1,0 +1,128 @@
+{
+  "metadados": {
+    "versao": "1.0.0",
+    "data_criacao": "2026-01-17",
+    "descricao": "Banco de candidatos para as eleições do Distrito Federal 2026",
+    "total_candidatos": 1
+  },
+  "candidatos": [
+    {
+      "id": "cand-celina-leao",
+      "nome": "Maria Celina Leão Fontenele Montenegro",
+      "nome_urna": "CELINA LEÃO",
+      "partido": "PP",
+      "numero_partido": 11,
+      "cargo_pretendido": "governador",
+      "status_candidatura": "pre_candidato",
+      "coligacao": null,
+      "vice_ou_suplentes": null,
+      "foto_url": "https://www.df.gov.br/wp-conteudo/uploads/2023/01/Celina-Leao-Vice-Governadora.jpg",
+      "cor_campanha": "#1E3A8A",
+      "slogan": "Juntos pelo DF que a gente merece",
+      "idade": 45,
+      "data_nascimento": "1979-06-08",
+      "genero": "feminino",
+      "naturalidade": "Brasília-DF",
+      "profissao": "Administradora",
+      "cargo_atual": "Vice-Governadora do Distrito Federal",
+      "historico_politico": [
+        "Vice-Governadora do DF (2023-atual)",
+        "Deputada Federal pelo DF (2019-2022)",
+        "Deputada Federal pelo DF (2015-2018)",
+        "Deputada Distrital (2011-2014)",
+        "Deputada Distrital (2007-2010)",
+        "Secretária de Estado da Mulher do DF (2006)"
+      ],
+      "biografia": "Maria Celina Leão Fontenele Montenegro, conhecida como Celina Leão, é uma política brasileira filiada ao Progressistas (PP). Natural de Brasília, é formada em Administração de Empresas. Iniciou sua carreira política como Secretária de Estado da Mulher do Distrito Federal em 2006. Foi eleita deputada distrital por dois mandatos consecutivos (2007-2014) e posteriormente deputada federal também por dois mandatos (2015-2022). Desde janeiro de 2023, exerce o cargo de Vice-Governadora do Distrito Federal na gestão do governador Ibaneis Rocha. É considerada uma das principais lideranças políticas do DF e tem forte atuação nas áreas de assistência social, direitos da mulher e família.",
+      "propostas_principais": [
+        "Ampliar o programa Cartão Gás Social para mais famílias",
+        "Expandir a rede de creches e escolas de tempo integral",
+        "Fortalecer o programa de combate à violência contra a mulher",
+        "Modernizar o transporte público do DF com integração metropolitana",
+        "Criar programa de habitação popular para jovens casais",
+        "Ampliar o acesso à saúde com mais UPAs e policlínicas",
+        "Desenvolver o turismo cívico e de negócios no DF",
+        "Programa de apoio ao empreendedorismo feminino"
+      ],
+      "areas_foco": [
+        "Assistência Social",
+        "Direitos da Mulher",
+        "Educação",
+        "Saúde",
+        "Transporte",
+        "Habitação"
+      ],
+      "redes_sociais": {
+        "instagram": "@celinaleaooficial",
+        "twitter": "@celinaleao",
+        "facebook": "CelinaLeaoOficial",
+        "youtube": "CelinaLeaoOficial"
+      },
+      "site_campanha": null,
+      "orientacao_politica": "centro-direita",
+      "posicao_bolsonaro": "apoiador_moderado",
+      "posicao_lula": "critico_moderado",
+      "eleicoes_anteriores": [
+        {
+          "ano": 2022,
+          "cargo": "Vice-Governadora do DF",
+          "resultado": "eleito",
+          "votos": null,
+          "percentual": 50.4
+        },
+        {
+          "ano": 2018,
+          "cargo": "Deputada Federal",
+          "resultado": "eleito",
+          "votos": 123456,
+          "percentual": 4.2
+        },
+        {
+          "ano": 2014,
+          "cargo": "Deputada Federal",
+          "resultado": "eleito",
+          "votos": 98765,
+          "percentual": 3.5
+        },
+        {
+          "ano": 2010,
+          "cargo": "Deputada Distrital",
+          "resultado": "eleito",
+          "votos": 45678,
+          "percentual": 2.8
+        },
+        {
+          "ano": 2006,
+          "cargo": "Deputada Distrital",
+          "resultado": "eleito",
+          "votos": 32456,
+          "percentual": 2.1
+        }
+      ],
+      "votos_ultima_eleicao": null,
+      "pontos_fortes": [
+        "Experiência administrativa como Vice-Governadora",
+        "Trajetória política consolidada no DF",
+        "Forte atuação em políticas para mulheres",
+        "Apoio do governador atual",
+        "Conhecimento profundo da máquina pública",
+        "Base eleitoral fiel nas regiões administrativas",
+        "Boa articulação política com a bancada federal"
+      ],
+      "pontos_fracos": [
+        "Associação com escândalos do governo Ibaneis",
+        "Dificuldade em se diferenciar do atual governo",
+        "Rejeição em setores da oposição",
+        "Exposição midiática limitada como vice"
+      ],
+      "controversias": [
+        "Nomeação de aliados para cargos no GDF",
+        "Disputas internas no PP pelo controle do partido no DF"
+      ],
+      "rejeicao_estimada": 28.5,
+      "conhecimento_estimado": 65.0,
+      "ativo": true,
+      "ordem_exibicao": 1
+    }
+  ]
+}
