@@ -154,14 +154,14 @@ const gerarDadosSimulados = (): ComparativoHistoricoType => {
   ];
 
   // Calcular tendências
-  const tendencias = series.map((serie) => {
+  const tendencias: { candidato_id: string; tendencia: 'subindo' | 'estavel' | 'descendo'; variacao_periodo: number; }[] = series.map((serie) => {
     const primeiro = serie.pontos[0].valor;
     const ultimo = serie.pontos[serie.pontos.length - 1].valor;
     const variacao = ultimo - primeiro;
 
     return {
       candidato_id: serie.candidato_id,
-      tendencia: variacao > 2 ? 'subindo' : variacao < -2 ? 'descendo' : 'estavel' as const,
+      tendencia: (variacao > 2 ? 'subindo' : variacao < -2 ? 'descendo' : 'estavel') as 'subindo' | 'estavel' | 'descendo',
       variacao_periodo: variacao,
     };
   });

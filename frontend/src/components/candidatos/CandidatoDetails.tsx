@@ -183,7 +183,7 @@ export function CandidatoDetails({
 
               {candidato.slogan && (
                 <p className="mt-3 text-lg italic text-gray-500">
-                  "{candidato.slogan}"
+                  &quot;{candidato.slogan}&quot;
                 </p>
               )}
 
