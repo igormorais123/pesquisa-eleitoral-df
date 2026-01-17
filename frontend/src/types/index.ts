@@ -433,6 +433,7 @@ export interface Parlamentar {
   cor_raca: string;
   naturalidade: string;
   uf_nascimento: string;
+  uf: string; // Estado que representa (sigla: SP, RJ, MG, etc.)
   casa_legislativa: CasaLegislativa;
   cargo: CargoParlamentar;
   partido: string;
