@@ -138,7 +138,7 @@ export default function TemplatesPage() {
                 <div className="text-center py-8 text-muted-foreground">
                   <FileText className="h-12 w-12 mx-auto mb-3 opacity-30" />
                   <p>Nenhuma pergunta selecionada</p>
-                  <p className="text-sm">Clique em "Usar" em um template para adicionar perguntas</p>
+                  <p className="text-sm">Clique em &quot;Usar&quot; em um template para adicionar perguntas</p>
                 </div>
               ) : (
                 <>
