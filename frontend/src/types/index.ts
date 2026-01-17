@@ -859,6 +859,8 @@ export interface AtualizarCandidatoDTO {
 // CENÁRIOS ELEITORAIS
 // ============================================
 
+export type StatusCenario = 'rascunho' | 'executando' | 'concluido' | 'erro';
+
 export interface CenarioEleitoral {
   id: string;
   nome: string;
@@ -868,22 +870,207 @@ export interface CenarioEleitoral {
   candidatos_ids: string[];
   incluir_indecisos: boolean;
   incluir_brancos_nulos: boolean;
+  amostra_tamanho: number;
+  filtros_eleitores?: Record<string, any>;
+  status: StatusCenario;
+  resultados?: ResultadoCandidatoCenario[];
+  indecisos_percentual?: number;
+  brancos_nulos_percentual?: number;
+  margem_erro?: number;
+  nivel_confianca: number;
+  total_eleitores_simulados?: number;
+  custo_simulacao?: number;
+  tempo_execucao_segundos?: number;
+  modelo_ia_usado?: string;
+  ativo: boolean;
+  criado_por?: string;
   criado_em: string;
+  atualizado_em: string;
+  executado_em?: string;
+}
+
+export interface ResultadoCandidatoCenario {
+  candidato_id: string;
+  candidato_nome: string;
+  candidato_nome_urna: string;
+  partido: string;
+  votos: number;
+  percentual: number;
+  percentual_validos: number;
+  cor_campanha?: string;
+  foto_url?: string;
+  variacao?: number;
 }
 
 export interface ResultadoCenario {
   cenario_id: string;
-  resultados: {
-    candidato_id: string;
-    candidato_nome: string;
-    partido: string;
-    votos: number;
-    percentual: number;
-    cor_campanha?: string;
-  }[];
-  indecisos_percentual?: number;
-  brancos_nulos_percentual?: number;
+  turno: number;
+  cargo: string;
+  resultados: ResultadoCandidatoCenario[];
+  indecisos: number;
+  indecisos_percentual: number;
+  brancos_nulos: number;
+  brancos_nulos_percentual: number;
+  total_eleitores: number;
+  total_votos_validos: number;
   margem_erro: number;
-  confianca: number;
-  total_eleitores_simulados: number;
+  nivel_confianca: number;
+  haveria_segundo_turno?: boolean;
+  candidatos_segundo_turno?: string[];
+  tempo_execucao_segundos: number;
+  modelo_usado: string;
+  executado_em: string;
+}
+
+export interface CriarCenarioDTO {
+  nome: string;
+  descricao?: string;
+  turno: 1 | 2;
+  cargo: CargoPretendido;
+  candidatos_ids: string[];
+  incluir_indecisos?: boolean;
+  incluir_brancos_nulos?: boolean;
+  amostra_tamanho?: number;
+  filtros_eleitores?: Record<string, any>;
+}
+
+export interface FiltrosCenario {
+  pagina?: number;
+  por_pagina?: number;
+  busca_texto?: string;
+  cargos?: CargoPretendido[];
+  turnos?: number[];
+  status?: StatusCenario[];
+  apenas_ativos?: boolean;
+  ordenar_por?: string;
+  ordem?: 'asc' | 'desc';
+}
+
+// ============================================
+// ANÁLISE DE REJEIÇÃO
+// ============================================
+
+export interface AnaliseRejeicaoCandidato {
+  candidato_id: string;
+  candidato_nome: string;
+  candidato_nome_urna: string;
+  partido: string;
+  taxa_rejeicao: number;
+  taxa_rejeicao_forte: number;
+  total_rejeitadores: number;
+  principais_motivos: string[];
+  perfil_rejeitadores: {
+    por_orientacao: Record<string, number>;
+    por_cluster: Record<string, number>;
+    por_genero: Record<string, number>;
+    por_regiao: Record<string, number>;
+  };
+  foto_url?: string;
+  cor_campanha?: string;
+}
+
+export interface ResultadoAnaliseRejeicao {
+  candidatos: AnaliseRejeicaoCandidato[];
+  ranking_menor_rejeicao: string[];
+  insights: string[];
+  total_eleitores_analisados: number;
+  executado_em: string;
+}
+
+// ============================================
+// TEMPLATES DE PERGUNTAS ELEITORAIS
+// ============================================
+
+export type CategoriaTemplate =
+  | 'intencao_voto'
+  | 'rejeicao'
+  | 'avaliacao'
+  | 'temas'
+  | 'perfil'
+  | 'conhecimento'
+  | 'completa';
+
+export interface PerguntaTemplate {
+  id: string;
+  texto: string;
+  tipo: TipoPergunta;
+  obrigatoria: boolean;
+  opcoes?: string[];
+  opcoes_dinamicas?: boolean;
+  multipla_selecao?: boolean;
+  incluir_opcoes_extras?: string[];
+  limite_opcoes?: number;
+  escala_min?: number;
+  escala_max?: number;
+  escala_rotulos?: string[];
+}
+
+export interface TemplatePerguntas {
+  id: string;
+  nome: string;
+  descricao: string;
+  categoria: CategoriaTemplate;
+  cargo?: CargoPretendido | null;
+  icone: string;
+  cor: string;
+  perguntas: PerguntaTemplate[];
+}
+
+export interface CategoriaTemplateInfo {
+  id: CategoriaTemplate;
+  nome: string;
+  descricao: string;
+}
+
+export interface TemplatesData {
+  metadados: {
+    versao: string;
+    data_criacao: string;
+    descricao: string;
+    total_templates: number;
+    total_perguntas: number;
+  };
+  templates: TemplatePerguntas[];
+  categorias: CategoriaTemplateInfo[];
+}
+
+// ============================================
+// MAPA DE CALOR - REGIÕES ADMINISTRATIVAS
+// ============================================
+
+export interface DadosRegiaoAdministrativa {
+  codigo: string;
+  nome: string;
+  sigla: string;
+  populacao_estimada: number;
+  zona_eleitoral: number[];
+  coordenadas: {
+    latitude: number;
+    longitude: number;
+  };
+  cluster_predominante: ClusterSocioeconomico;
+  caracteristicas: string[];
+}
+
+export interface DadosMapaCalor {
+  regiao: string;
+  valor: number;
+  percentual: number;
+  candidato_lider?: string;
+  candidato_lider_percentual?: number;
+  total_eleitores: number;
+  detalhes?: Record<string, number>;
+}
+
+export interface ResultadoMapaCalor {
+  tipo: 'intencao_voto' | 'rejeicao' | 'avaliacao' | 'comparativo';
+  dados: DadosMapaCalor[];
+  legenda: {
+    titulo: string;
+    min: number;
+    max: number;
+    unidade: string;
+  };
+  filtros_aplicados: Record<string, any>;
+  executado_em: string;
 }

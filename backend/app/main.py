@@ -14,6 +14,7 @@ from fastapi.openapi.utils import get_openapi
 from app.api.rotas import (
     autenticacao,
     candidatos,
+    cenarios_eleitorais,
     dados_usuarios,
     eleitores,
     entrevistas,
@@ -44,6 +45,7 @@ async def lifespan(app: FastAPI):
         from app.modelos.usuario import Usuario  # noqa: F401
         from app.modelos.eleitor import Eleitor  # noqa: F401
         from app.modelos.candidato import Candidato  # noqa: F401
+        from app.modelos.cenario_eleitoral import CenarioEleitoral  # noqa: F401
 
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
@@ -273,6 +275,31 @@ Gerenciamento de candidatos eleitorais do DF 2026.
         """,
     },
     {
+        "name": "Cenários Eleitorais",
+        "description": """
+Simulação de cenários eleitorais para eleições do DF 2026.
+
+**Funcionalidades principais:**
+- Criar cenários de 1º e 2º turno
+- Simular votação entre candidatos selecionados
+- Análise de rejeição por candidato
+- Comparação entre cenários
+
+**Algoritmo de simulação:**
+- Considera orientação política eleitor x candidato
+- Analisa cluster socioeconômico
+- Avalia posição Bolsonaro/Lula
+- Pondera rejeição e conhecimento do candidato
+
+**Métricas geradas:**
+- Percentual de votos por candidato
+- Votos válidos e percentuais
+- Indecisos e brancos/nulos
+- Margem de erro estatística
+- Previsão de 2º turno
+        """,
+    },
+    {
         "name": "RLS - Segurança",
         "description": """
 Administração do Row Level Security (RLS) do PostgreSQL.
@@ -462,6 +489,12 @@ app.include_router(
     candidatos.router,
     prefix="/api/v1/candidatos",
     tags=["Candidatos"],
+)
+
+app.include_router(
+    cenarios_eleitorais.router,
+    prefix="/api/v1/cenarios",
+    tags=["Cenários Eleitorais"],
 )
 
 app.include_router(
