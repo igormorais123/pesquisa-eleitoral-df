@@ -38,6 +38,7 @@ import {
 } from '@/lib/export';
 import { WordCloudRespostas } from '@/components/charts';
 import { ResultadosPorPergunta } from '@/components/resultados';
+import { AnalisadorInteligente } from '@/components/resultados/AnalisadorInteligente';
 import {
   PieChart,
   Pie,
@@ -196,7 +197,7 @@ export default function PaginaResultadoDetalhe() {
 
   const [sessao, setSessao] = useState<SessaoEntrevista | null>(null);
   const [carregando, setCarregando] = useState(true);
-  const [abaAtiva, setAbaAtiva] = useState<'geral' | 'graficos' | 'respostas' | 'insights'>('geral');
+  const [abaAtiva, setAbaAtiva] = useState<'geral' | 'graficos' | 'respostas' | 'insights' | 'dashboard'>('geral');
 
   // Estados do relatório de inteligência
   const [relatorio, setRelatorio] = useState<RelatorioInteligencia | null>(null);
@@ -588,7 +589,7 @@ export default function PaginaResultadoDetalhe() {
 
       {/* Abas */}
       <div className="flex items-center gap-2 border-b border-border">
-        {(['geral', 'graficos', 'respostas', 'insights'] as const).map((aba) => (
+        {(['geral', 'dashboard', 'graficos', 'respostas', 'insights'] as const).map((aba) => (
           <button
             key={aba}
             onClick={() => setAbaAtiva(aba)}
@@ -599,7 +600,7 @@ export default function PaginaResultadoDetalhe() {
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             )}
           >
-            {aba === 'geral' ? 'Visão Geral' : aba === 'graficos' ? 'Gráficos' : aba === 'respostas' ? 'Respostas' : 'Insights'}
+            {aba === 'geral' ? 'Visão Geral' : aba === 'dashboard' ? 'Dashboard IA' : aba === 'graficos' ? 'Gráficos' : aba === 'respostas' ? 'Respostas' : 'Insights'}
           </button>
         ))}
       </div>
@@ -831,6 +832,24 @@ export default function PaginaResultadoDetalhe() {
             </h3>
             <WordCloudRespostas respostas={sessao.respostas} altura={300} />
           </div>
+        </div>
+      )}
+
+      {/* Aba Dashboard IA - Análise Inteligente */}
+      {abaAtiva === 'dashboard' && sessao && (
+        <div className="space-y-6">
+          <AnalisadorInteligente
+            respostas={sessao.respostas.flatMap(r =>
+              r.respostas.map(resp => ({
+                texto: String(resp.resposta),
+                pergunta: resp.pergunta_id,
+                eleitorId: r.eleitor_id,
+                eleitorNome: r.eleitor_nome,
+              }))
+            )}
+            relatorioTexto={relatorio ? relatorio.conclusaoAnalitica : ''}
+            titulo={sessao.titulo || 'Pesquisa Eleitoral'}
+          />
         </div>
       )}
 
