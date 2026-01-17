@@ -111,7 +111,7 @@ export function GraficoTendenciaTemporal({
         if (pontoReal) {
           ponto[s.id] = pontoReal.valor;
           ponto[`${s.id}_real`] = true;
-          if (pontoReal.intervaloMin !== undefined) {
+          if (pontoReal.intervaloMin !== undefined && pontoReal.intervaloMax !== undefined) {
             ponto[`${s.id}_min`] = pontoReal.intervaloMin;
             ponto[`${s.id}_max`] = pontoReal.intervaloMax;
           }
@@ -122,7 +122,7 @@ export function GraficoTendenciaTemporal({
         if (pontoPrevisao) {
           ponto[`${s.id}_previsao`] = pontoPrevisao.valor;
           ponto[`${s.id}_real`] = false;
-          if (pontoPrevisao.intervaloMin !== undefined) {
+          if (pontoPrevisao.intervaloMin !== undefined && pontoPrevisao.intervaloMax !== undefined) {
             ponto[`${s.id}_prev_min`] = pontoPrevisao.intervaloMin;
             ponto[`${s.id}_prev_max`] = pontoPrevisao.intervaloMax;
           }

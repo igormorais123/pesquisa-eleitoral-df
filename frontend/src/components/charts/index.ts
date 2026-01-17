@@ -25,8 +25,7 @@ export {
   GraficoTreemap,
   GraficoFunil,
 } from './GraficoDinamico';
-// MapaCalorDF removido temporariamente - componente não implementado
-// export { MapaCalorDF, MapaComparacao, MapaMultiplasMetricas, REGIOES_DF } from './MapaCalorDF';
-// export type { DadoRegiao, RegiaoPath } from './MapaCalorDF';
+export { MapaCalorDF, MapaComparacao, MapaMultiplasMetricas, REGIOES_DF } from './MapaCalorDF';
+export type { DadoRegiao, RegiaoPath } from './MapaCalorDF';
 export { GraficoTendenciaTemporal, ComparacaoTemporal } from './GraficoTendenciaTemporal';
 export type { SerieTemporal, PontoTemporal } from './GraficoTendenciaTemporal';

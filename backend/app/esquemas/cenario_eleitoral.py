@@ -6,7 +6,7 @@ Modelos Pydantic para validação e serialização de cenários eleitorais.
 
 from datetime import datetime
 from enum import Enum
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -56,7 +56,7 @@ class AnaliseRejeicao(BaseModel):
     taxa_rejeicao: float  # Percentual que NÃO votaria
     taxa_rejeicao_forte: float  # Percentual que NUNCA votaria
     principais_motivos: List[str]
-    perfil_rejeitadores: Dict[str, any] = Field(default_factory=dict)
+    perfil_rejeitadores: Dict[str, Any] = Field(default_factory=dict)
 
 
 class ResultadoSimulacao(BaseModel):
