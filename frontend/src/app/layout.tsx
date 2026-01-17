@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import { Toaster } from 'sonner';
 import { Providers } from './providers';
 
-const inter = Inter({ subsets: ['latin'] });
+// Usando font-family do sistema para evitar erros de fetch durante build
+const fontClass = 'font-sans';
 
 export const metadata: Metadata = {
   title: 'Pesquisa Eleitoral DF 2026 - Sistema de Agentes Sintéticos',
@@ -46,7 +46,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} antialiased bg-background text-foreground`}>
+      <body className={`${fontClass} antialiased bg-background text-foreground`}>
         <Providers>
           {children}
           <Toaster

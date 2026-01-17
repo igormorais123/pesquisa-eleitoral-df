@@ -16,7 +16,7 @@ import {
   AtualizarCandidatoDTO,
   CargoPretendido,
 } from '@/types';
-import api from '@/services/api';
+import { api } from '@/services/api';
 
 interface CandidatosState {
   // Estado
