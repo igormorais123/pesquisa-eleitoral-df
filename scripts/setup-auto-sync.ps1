@@ -3,7 +3,7 @@
 
 $ErrorActionPreference = "Stop"
 $TaskName = "PesquisaEleitoralDF-GitSync"
-$ScriptPath = "C:\Agentes\scripts\git-sync.ps1"
+$ScriptPath = "C:\Users\igorm\pesquisa-eleitoral-df\scripts\git-sync.ps1"
 
 Write-Host "=== Configuracao de Sincronizacao Automatica ===" -ForegroundColor Cyan
 
@@ -48,7 +48,7 @@ Write-Host "Detalhes:" -ForegroundColor Cyan
 Write-Host "  Nome: $TaskName"
 Write-Host "  Frequencia: A cada 30 minutos"
 Write-Host "  Script: $ScriptPath"
-Write-Host "  Logs: C:\Agentes\logs\git-sync.log"
+Write-Host "  Logs: C:\Users\igorm\pesquisa-eleitoral-df\logs\git-sync.log"
 Write-Host ""
 Write-Host "Comandos uteis:" -ForegroundColor Cyan
 Write-Host "  Executar agora:  schtasks /run /tn `"$TaskName`""

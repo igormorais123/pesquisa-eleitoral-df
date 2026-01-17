@@ -37,7 +37,7 @@ import {
   exportarRelatorioInteligenciaPDF,
 } from '@/lib/export';
 import { WordCloudRespostas } from '@/components/charts';
-import { ResultadosPorPergunta, RelatorioInteligenciaVisual } from '@/components/resultados';
+import { ResultadosPorPergunta, RelatorioInteligenciaVisual, AnalisadorInteligente } from '@/components/resultados';
 import {
   PieChart,
   Pie,
@@ -196,7 +196,7 @@ export default function PaginaResultadoDetalhe() {
 
   const [sessao, setSessao] = useState<SessaoEntrevista | null>(null);
   const [carregando, setCarregando] = useState(true);
-  const [abaAtiva, setAbaAtiva] = useState<'geral' | 'graficos' | 'respostas' | 'insights'>('geral');
+  const [abaAtiva, setAbaAtiva] = useState<'geral' | 'dashboard' | 'graficos' | 'respostas' | 'insights'>('geral');
 
   // Estados do relatório de inteligência
   const [relatorio, setRelatorio] = useState<RelatorioInteligencia | null>(null);
@@ -587,19 +587,19 @@ export default function PaginaResultadoDetalhe() {
       </div>
 
       {/* Abas */}
-      <div className="flex items-center gap-2 border-b border-border">
-        {(['geral', 'graficos', 'respostas', 'insights'] as const).map((aba) => (
+      <div className="flex items-center gap-2 border-b border-border overflow-x-auto">
+        {(['geral', 'dashboard', 'graficos', 'respostas', 'insights'] as const).map((aba) => (
           <button
             key={aba}
             onClick={() => setAbaAtiva(aba)}
             className={cn(
-              'px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors',
+              'px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors whitespace-nowrap',
               abaAtiva === aba
                 ? 'border-primary text-primary'
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             )}
           >
-            {aba === 'geral' ? 'Visão Geral' : aba === 'graficos' ? 'Gráficos' : aba === 'respostas' ? 'Respostas' : 'Insights'}
+            {aba === 'geral' ? 'Visão Geral' : aba === 'dashboard' ? '🤖 Dashboard IA' : aba === 'graficos' ? 'Gráficos' : aba === 'respostas' ? 'Respostas' : 'Insights'}
           </button>
         ))}
       </div>
@@ -831,6 +831,27 @@ export default function PaginaResultadoDetalhe() {
             </h3>
             <WordCloudRespostas respostas={sessao.respostas} altura={300} />
           </div>
+        </div>
+      )}
+
+      {/* Aba Dashboard IA - Análise Inteligente */}
+      {abaAtiva === 'dashboard' && sessao && (
+        <div className="space-y-6">
+          <AnalisadorInteligente
+            respostas={sessao.respostas.flatMap(r =>
+              r.respostas.map(resp => ({
+                texto: String(resp.resposta),
+                pergunta: resp.pergunta_id,
+                eleitorId: r.eleitor_id,
+                eleitorNome: r.eleitor_nome,
+                regiao: r.eleitor_perfil?.regiao_administrativa,
+                orientacao: r.eleitor_perfil?.orientacao_politica,
+                cluster: r.eleitor_perfil?.cluster_socioeconomico,
+              }))
+            )}
+            relatorioTexto={relatorio?.conclusaoAnalitica || ''}
+            titulo={sessao.titulo || 'Pesquisa Eleitoral'}
+          />
         </div>
       )}
 

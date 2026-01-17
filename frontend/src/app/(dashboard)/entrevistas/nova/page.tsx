@@ -21,7 +21,11 @@ import {
   ChevronUp,
   X,
   Briefcase,
+  FileText,
+  Sparkles,
 } from 'lucide-react';
+import { TemplateSelectorAPI } from '@/components/templates';
+import { TemplateCompleto, PerguntaTemplate as PerguntaTemplateType } from '@/types';
 import { useEleitores } from '@/hooks/useEleitores';
 import { useEntrevistasStore } from '@/stores/entrevistas-store';
 import { cn, formatarMoeda, formatarNumero } from '@/lib/utils';
@@ -79,6 +83,7 @@ export default function PaginaNovaEntrevista() {
     { texto: '', tipo: 'aberta', obrigatoria: true },
   ]);
   const [mostrarFiltros, setMostrarFiltros] = useState(false);
+  const [mostrarTemplates, setMostrarTemplates] = useState(false);
 
   const {
     eleitoresFiltrados,
@@ -105,6 +110,61 @@ export default function PaginaNovaEntrevista() {
 
   const atualizarPergunta = useCallback((index: number, dados: Partial<Pergunta>) => {
     setPerguntas((prev) => prev.map((p, i) => (i === index ? { ...p, ...dados } : p)));
+  }, []);
+
+  // Importar perguntas de um template
+  const importarDoTemplate = useCallback((template: TemplateCompleto) => {
+    const novasPerguntas: Partial<Pergunta>[] = template.perguntas.map((p) => {
+      // Mapear tipo do template para tipo do sistema
+      let tipo: TipoPergunta = 'aberta';
+      if (p.tipo === 'unica' || p.tipo === 'multipla') tipo = 'multipla_escolha';
+      else if (p.tipo === 'escala' || p.tipo === 'numerica') tipo = 'escala';
+      else if (p.tipo === 'aberta') tipo = 'aberta';
+
+      return {
+        texto: p.texto,
+        tipo,
+        obrigatoria: p.obrigatoria,
+        opcoes: p.opcoes.length > 0 ? p.opcoes.map(o => o.texto) : undefined,
+        escala_min: p.tipo === 'escala' ? 1 : undefined,
+        escala_max: p.tipo === 'escala' ? 10 : undefined,
+      };
+    });
+
+    setPerguntas(novasPerguntas);
+    setMostrarTemplates(false);
+    // Se o título estiver vazio, usar o nome do template
+    if (!titulo.trim()) {
+      setTitulo(template.nome);
+    }
+  }, [titulo]);
+
+  // Adicionar perguntas selecionadas do template
+  const adicionarPerguntasDoTemplate = useCallback((perguntasTemplate: PerguntaTemplateType[]) => {
+    const novasPerguntas: Partial<Pergunta>[] = perguntasTemplate.map((p) => {
+      let tipo: TipoPergunta = 'aberta';
+      if (p.tipo === 'unica' || p.tipo === 'multipla') tipo = 'multipla_escolha';
+      else if (p.tipo === 'escala' || p.tipo === 'numerica') tipo = 'escala';
+      else if (p.tipo === 'aberta') tipo = 'aberta';
+
+      return {
+        texto: p.texto,
+        tipo,
+        obrigatoria: p.obrigatoria,
+        opcoes: p.opcoes.length > 0 ? p.opcoes.map(o => o.texto) : undefined,
+        escala_min: p.tipo === 'escala' ? 1 : undefined,
+        escala_max: p.tipo === 'escala' ? 10 : undefined,
+      };
+    });
+
+    // Adicionar às perguntas existentes (exceto se só tiver uma vazia)
+    setPerguntas((prev) => {
+      if (prev.length === 1 && !prev[0].texto?.trim()) {
+        return novasPerguntas;
+      }
+      return [...prev, ...novasPerguntas];
+    });
+    setMostrarTemplates(false);
   }, []);
 
   // Calcular custo estimado
@@ -216,10 +276,47 @@ export default function PaginaNovaEntrevista() {
             )}
           </div>
 
+          {/* Botão para usar templates */}
+          <div className="glass-card rounded-xl p-6 bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-primary/20">
+                  <Sparkles className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">Usar Templates de Perguntas</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Comece rapidamente com perguntas prontas para pesquisas eleitorais
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setMostrarTemplates(!mostrarTemplates)}
+                className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors"
+              >
+                <FileText className="w-4 h-4" />
+                {mostrarTemplates ? 'Ocultar Templates' : 'Ver Templates'}
+              </button>
+            </div>
+
+            {/* Seletor de templates */}
+            {mostrarTemplates && (
+              <div className="mt-6 pt-6 border-t border-border">
+                <TemplateSelectorAPI
+                  modoSelecao="perguntas"
+                  onSelectTemplate={importarDoTemplate}
+                  onSelectPerguntas={adicionarPerguntasDoTemplate}
+                />
+              </div>
+            )}
+          </div>
+
           {/* Perguntas */}
           <div className="glass-card rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-foreground">Perguntas</h2>
+              <h2 className="text-lg font-semibold text-foreground">
+                Perguntas {perguntas.length > 0 && `(${perguntas.length})`}
+              </h2>
               <button
                 onClick={adicionarPergunta}
                 className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"

@@ -1011,27 +1011,110 @@ export interface ResultadoAnaliseRejeicao {
 export type CategoriaTemplate =
   | 'intencao_voto'
   | 'rejeicao'
-  | 'avaliacao'
-  | 'temas'
-  | 'perfil'
-  | 'conhecimento'
-  | 'completa';
+  | 'avaliacao_governo'
+  | 'imagem_candidato'
+  | 'opiniao_publica'
+  | 'comportamento_eleitoral'
+  | 'dados_demograficos'
+  | 'controle_qualidade';
 
-export interface PerguntaTemplate {
-  id: string;
+export type TipoEleicao =
+  | 'presidente'
+  | 'governador'
+  | 'senador'
+  | 'deputado_federal'
+  | 'deputado_distrital'
+  | 'prefeito'
+  | 'vereador'
+  | 'geral';
+
+export type TipoPerguntaTemplate = 'unica' | 'multipla' | 'aberta' | 'escala' | 'numerica' | 'ranking';
+
+export interface OpcaoPerguntaTemplate {
+  valor: string;
   texto: string;
-  tipo: TipoPergunta;
-  obrigatoria: boolean;
-  opcoes?: string[];
-  opcoes_dinamicas?: boolean;
-  multipla_selecao?: boolean;
-  incluir_opcoes_extras?: string[];
-  limite_opcoes?: number;
-  escala_min?: number;
-  escala_max?: number;
-  escala_rotulos?: string[];
+  ordem: number;
 }
 
+export interface ValidacaoPergunta {
+  min?: number;
+  max?: number;
+  regex?: string;
+}
+
+export interface CondicaoPergunta {
+  pergunta_ref: string;
+  valor_condicao: string;
+}
+
+export interface PerguntaTemplate {
+  codigo: string;
+  texto: string;
+  tipo: TipoPerguntaTemplate;
+  categoria: string;
+  obrigatoria: boolean;
+  ordem: number;
+  instrucoes?: string;
+  opcoes: OpcaoPerguntaTemplate[];
+  validacao?: ValidacaoPergunta;
+  condicional?: CondicaoPergunta;
+}
+
+export interface TemplateResumo {
+  id: string;
+  nome: string;
+  descricao: string;
+  categoria: string;
+  tipo_eleicao: string;
+  tags: string[];
+  total_perguntas: number;
+}
+
+export interface TemplateCompleto {
+  id: string;
+  nome: string;
+  descricao: string;
+  categoria: string;
+  tipo_eleicao: string;
+  tags: string[];
+  perguntas: PerguntaTemplate[];
+}
+
+export interface CategoriaTemplateInfo {
+  id: string;
+  nome: string;
+  descricao: string;
+  cor: string;
+}
+
+export interface TipoEleicaoInfo {
+  id: string;
+  nome: string;
+  descricao: string;
+}
+
+export interface EstatisticasTemplates {
+  total_templates: number;
+  total_perguntas: number;
+  media_perguntas_por_template: number;
+  por_categoria: Record<string, number>;
+  por_tipo_eleicao: Record<string, number>;
+  tags_mais_usadas: Record<string, number>;
+  versao: string;
+  ultima_atualizacao: string;
+}
+
+export interface AplicarTemplateResponse {
+  sucesso: boolean;
+  mensagem: string;
+  template_id: string;
+  pesquisa_id: number;
+  perguntas_adicionadas: number;
+  substituiu_existentes: boolean;
+  perguntas: PerguntaTemplate[];
+}
+
+// Tipos legados (mantidos para retrocompatibilidade)
 export interface TemplatePerguntas {
   id: string;
   nome: string;
@@ -1041,12 +1124,6 @@ export interface TemplatePerguntas {
   icone: string;
   cor: string;
   perguntas: PerguntaTemplate[];
-}
-
-export interface CategoriaTemplateInfo {
-  id: CategoriaTemplate;
-  nome: string;
-  descricao: string;
 }
 
 export interface TemplatesData {

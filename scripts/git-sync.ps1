@@ -1,7 +1,7 @@
 # Script de sincronizacao automatica com GitHub (PowerShell)
 # Pesquisa Eleitoral DF 2026
 
-$ProjectPath = "C:\Agentes"
+$ProjectPath = "C:\Users\igorm\pesquisa-eleitoral-df"
 $LogFile = "$ProjectPath\logs\git-sync.log"
 
 # Cria pasta de logs se nao existir

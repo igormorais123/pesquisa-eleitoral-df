@@ -22,6 +22,7 @@ from app.api.rotas import (
     memorias,
     resultados,
     rls,
+    templates,
     usuarios,
     pesquisas_parlamentares,
 )
@@ -300,6 +301,33 @@ Simulação de cenários eleitorais para eleições do DF 2026.
         """,
     },
     {
+        "name": "Templates de Pesquisa",
+        "description": """
+Templates predefinidos para pesquisas eleitorais.
+
+**Categorias de templates:**
+- **Intenção de Voto**: Perguntas espontâneas e estimuladas
+- **Rejeição**: Perguntas sobre rejeição a candidatos
+- **Avaliação de Governo**: Avaliação do governo atual
+- **Imagem de Candidato**: Conhecimento e imagem dos candidatos
+- **Opinião Pública**: Temas e problemas públicos
+- **Comportamento Eleitoral**: Histórico político do eleitor
+- **Dados Demográficos**: Perfil sociodemográfico
+- **Controle de Qualidade**: Verificação e encerramento
+
+**Tipos de eleição disponíveis:**
+- Presidente, Governador, Senador
+- Deputado Federal, Deputado Distrital
+- Prefeito, Vereador
+
+**Funcionalidades:**
+- Listar e filtrar templates por categoria/tipo
+- Obter template completo com perguntas
+- Aplicar template a uma pesquisa
+- Estatísticas de uso
+        """,
+    },
+    {
         "name": "RLS - Segurança",
         "description": """
 Administração do Row Level Security (RLS) do PostgreSQL.
@@ -501,6 +529,12 @@ app.include_router(
     pesquisas_parlamentares.router,
     prefix="/api/v1/pesquisas-parlamentares",
     tags=["Pesquisas Parlamentares"],
+)
+
+app.include_router(
+    templates.router,
+    prefix="/api/v1/templates",
+    tags=["Templates de Pesquisa"],
 )
 
 app.include_router(
