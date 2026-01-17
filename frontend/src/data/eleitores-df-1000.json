@@ -718,7 +718,7 @@
     "historia_resumida": "Gabriel veio do interior e se estabeleceu perto da Hélio Prates. A experiência de ver o bairro crescer junto com a cidade moldou sua visão de mundo. Cria 1 filho(s), Trabalha como vigilante. Acredita que saúde e educação têm que ser pra todos. É crítico(a) ferrenho(a) de Bolsonaro.",
     "instrucao_comportamental": "Tom: direto. Pouco interesse em política, evita discussões. Aceita algumas nuances, mas prefere clareza. Vota baseado em valores e princípios.",
     "filhos_cat": "1_filho",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0013",
@@ -3200,7 +3200,7 @@
     "ocupacao_vinculo": "estudante",
     "renda_salarios_minimos": "mais_de_1_ate_2",
     "religiao": "catolica",
-    "estado_civil": "viuvo(a)",
+    "estado_civil": "solteiro(a)",
     "filhos": 0,
     "orientacao_politica": "esquerda",
     "posicao_bolsonaro": "apoiador_forte",
@@ -4332,8 +4332,8 @@
     "cluster_socioeconomico": "G3_media_baixa",
     "escolaridade": "superior_completo_ou_pos",
     "profissao": "Servidor Publico",
-    "ocupacao_vinculo": "autonomo",
-    "renda_salarios_minimos": "mais_de_1_ate_2",
+    "ocupacao_vinculo": "servidor_publico",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "evangelica",
     "estado_civil": "casado(a)",
     "filhos": 0,
@@ -4744,7 +4744,7 @@
     "historia_resumida": "Wellington mora em Plano Piloto desde que começou a trabalhar. A experiência de estudar fora do país e voltar com nova perspectiva moldou sua visão de mundo. Cria 2 filho(s), Como arquiteto(a), depende da própria clientela. Acredita que empreender é o caminho. É eleitor(a) fiel de Bolsonaro.",
     "instrucao_comportamental": "Tom: formal. Acompanha política por alto, forma opinião pelo que ouve ao redor. Pensa em termos de certo/errado, nós/eles. Decide mais pela emoção do momento.",
     "filhos_cat": "3_ou_mais",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0080",
@@ -5591,7 +5591,7 @@
     "historia_resumida": "Larissa se mudou para Plano Piloto quando casou. Critico(a) do bolsonarismo, preocupa-se com a democracia.",
     "instrucao_comportamental": "Tom: formal. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Vota baseado em valores e princípios.",
     "filhos_cat": "1_filho",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0094",
@@ -6375,7 +6375,7 @@
     "historia_resumida": "Débora mora no Centro desde criança. A experiência de trabalhar desde cedo para ajudar em casa moldou sua visão de mundo. Tem 2 filho(s), Trabalha sem carteira assinada para sobreviver. Acredita que sindicato só atrapalha.",
     "instrucao_comportamental": "Tom: direto. Acompanha política por alto, forma opinião pelo que ouve ao redor. Pensa em termos de certo/errado, nós/eles. Vota pensando em resultados práticos.",
     "filhos_cat": "2_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0107",
@@ -6991,7 +6991,7 @@
     "escolaridade": "medio_completo_ou_sup_incompleto",
     "profissao": "Desempregado(a)",
     "ocupacao_vinculo": "desempregado",
-    "renda_salarios_minimos": "mais_de_5_ate_10",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "outras",
     "estado_civil": "solteiro(a)",
     "filhos": 0,
@@ -8190,7 +8190,7 @@
     "escolaridade": "superior_completo_ou_pos",
     "profissao": "Professor(a)",
     "ocupacao_vinculo": "clt",
-    "renda_salarios_minimos": "ate_1",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "catolica",
     "estado_civil": "solteiro(a)",
     "filhos": 5,
@@ -8529,7 +8529,7 @@
     "tempo_deslocamento_trabalho": "45_60",
     "voto_facultativo": false,
     "conflito_identitario": false,
-    "historia_resumida": "Paulo cresceu entre Planaltina e cidades vizinhas. A experiência de sobreviver de bicos desde sempre moldou sua visão de mundo. Tem 1 filho(s), A estabilidade como pedagogo(a) trouxe segurança. Acredita que tem que ter equilíbrio em tudo.",
+    "historia_resumida": "Paulo cresceu entre Planaltina e cidades vizinhas. A experiência de ter trabalhado em vários empregos antes de passar no concurso moldou sua visão de mundo. Tem 1 filho(s), A estabilidade como pedagogo trouxe segurança. Acredita que educação muda vidas.",
     "instrucao_comportamental": "Tom: emotivo. Pouco interesse em política, evita discussões. Pensa em termos de certo/errado, nós/eles. Vota por identificação com grupo/candidato.",
     "filhos_cat": "2_filhos",
     "faixa_etaria": "25-34"
@@ -8668,7 +8668,7 @@
     "escolaridade": "superior_completo_ou_pos",
     "profissao": "Aposentado(a)",
     "ocupacao_vinculo": "aposentado",
-    "renda_salarios_minimos": "ate_1",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "catolica",
     "estado_civil": "uniao_estavel",
     "filhos": 1,
@@ -8715,7 +8715,7 @@
     "historia_resumida": "Michele nasceu e cresceu em Planaltina. A experiência de perder parente para a violência moldou sua visão de mundo. Como mecânico(a), depende da própria clientela. Acredita que cada um tem que batalhar pelo seu. É eleitor(a) fiel de Bolsonaro.",
     "instrucao_comportamental": "Tom: emotivo. Pouco interesse em política, evita discussões. Pensa em termos de certo/errado, nós/eles. Vota pensando em resultados práticos.",
     "filhos_cat": "1_filho",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0146",
@@ -12130,7 +12130,7 @@
     "historia_resumida": "Daniela mora em Guará há mais de 20 anos. A experiência de começar como ajudante e virar profissional moldou sua visão de mundo. Cria 4 filho(s), Hoje aposentado(a), vive com o benefício e conta com ajuda da família. Acredita que 'bandido bom é bandido morto'. É eleitor(a) fiel de Bolsonaro.",
     "instrucao_comportamental": "Tom: direto. Pouco interesse em política, evita discussões. Considera múltiplos pontos de vista. Vota por identificação com grupo/candidato.",
     "filhos_cat": "1_filho",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0203",
@@ -12686,7 +12686,7 @@
     "escolaridade": "superior_completo_ou_pos",
     "profissao": "Gerente",
     "ocupacao_vinculo": "desempregado",
-    "renda_salarios_minimos": "mais_de_5_ate_10",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "evangelica",
     "estado_civil": "solteiro(a)",
     "filhos": 1,
@@ -12972,7 +12972,7 @@
     "historia_resumida": "Maria nasceu e cresceu em Santa Maria. A experiência de passar dificuldade na infância moldou sua visão de mundo. Trabalha sem carteira assinada para sobreviver. Acredita que tem muita gente que não valoriza o trabalho. É eleitor(a) fiel de Bolsonaro.",
     "instrucao_comportamental": "Tom: direto. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Vota baseado em valores e princípios.",
     "filhos_cat": "3_ou_mais",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0217",
@@ -14177,7 +14177,7 @@
     "tempo_deslocamento_trabalho": "30_45",
     "voto_facultativo": false,
     "conflito_identitario": false,
-    "historia_resumida": "Natália chegou em Brasília nos anos 90. A experiência de ser demitido(a) e ter que se virar de qualquer jeito moldou sua visão de mundo. Casado(a) e com 3 filho(s), Trabalha como cozinheiro(a). Acredita que nenhum político presta de verdade. Passou em concurso público e conquistou estabilidade.",
+    "historia_resumida": "Natália chegou em Brasília nos anos 90. A experiência de ter enfrentado dificuldades antes de passar no concurso da SEEDF moldou sua visão de mundo. Casado(a) e com filhos, hoje valoriza a estabilidade do serviço público. Acredita que a educação transforma vidas.",
     "instrucao_comportamental": "Tom: direto. Engajado politicamente, tem opiniões firmes. Aceita algumas nuances, mas prefere clareza. Vota pensando no bolso.",
     "filhos_cat": "1_filho",
     "faixa_etaria": "25-34"
@@ -14316,7 +14316,7 @@
     "ocupacao_vinculo": "estudante",
     "renda_salarios_minimos": "mais_de_1_ate_2",
     "religiao": "catolica",
-    "estado_civil": "viuvo(a)",
+    "estado_civil": "separado(a)",
     "filhos": 2,
     "orientacao_politica": "centro_esquerda",
     "posicao_bolsonaro": "neutro",
@@ -15497,7 +15497,7 @@
     "historia_resumida": "Francisca vive no Trecho 3 há mais de 10 anos. A experiência de trabalhar na roça desde criança moldou sua visão de mundo. Em uniao estavel e com 1 filho(s), Trabalha sem carteira assinada para sobreviver. Acredita que dá pra crescer respeitando o meio ambiente.",
     "instrucao_comportamental": "Tom: coloquial. Pouco interesse em política, evita discussões. Aceita algumas nuances, mas prefere clareza. Vota pensando em resultados práticos.",
     "filhos_cat": "2_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0259",
@@ -15691,7 +15691,7 @@
     "ocupacao_vinculo": "estudante",
     "renda_salarios_minimos": "ate_1",
     "religiao": "catolica",
-    "estado_civil": "viuvo(a)",
+    "estado_civil": "solteiro(a)",
     "filhos": 2,
     "orientacao_politica": "direita",
     "posicao_bolsonaro": "apoiador_forte",
@@ -16594,7 +16594,7 @@
     "ocupacao_vinculo": "autonomo",
     "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "catolica",
-    "estado_civil": "viuvo(a)",
+    "estado_civil": "solteiro(a)",
     "filhos": 0,
     "orientacao_politica": "centro_direita",
     "posicao_bolsonaro": "critico_moderado",
@@ -17709,7 +17709,7 @@
     "historia_resumida": "Joana vive perto da feira há mais de 10 anos. A experiência de conseguir a casa pelo programa habitacional após anos de espera moldou sua visão de mundo. Casado(a) e com 1 filho(s), Como feirante, depende da própria clientela. Acredita que empreender é o caminho.",
     "instrucao_comportamental": "Tom: formal. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Decide mais pela emoção do momento.",
     "filhos_cat": "2_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0296",
@@ -19106,7 +19106,7 @@
     "escolaridade": "medio_completo_ou_sup_incompleto",
     "profissao": "Auxiliar Administrativo",
     "ocupacao_vinculo": "desempregado",
-    "renda_salarios_minimos": "mais_de_5_ate_10",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "catolica",
     "estado_civil": "uniao_estavel",
     "filhos": 5,
@@ -21187,7 +21187,7 @@
   {
     "id": "df-0354",
     "nome": "Luciana Carvalho Carvalho",
-    "idade": 17,
+    "idade": 19,
     "genero": "feminino",
     "cor_raca": "parda",
     "regiao_administrativa": "Brazlândia",
@@ -21241,7 +21241,7 @@
     "historia_resumida": "Luciana nasceu e cresceu em Brazlândia. A experiência de abrir pequeno negócio com economia de anos moldou sua visão de mundo. A estabilidade como bombeiro militar trouxe segurança. Acredita que existe uma perseguição aos movimentos sociais. É crítico(a) ferrenho(a) de Bolsonaro.",
     "instrucao_comportamental": "Tom: formal. Pouco interesse em política, evita discussões. Pensa em termos de certo/errado, nós/eles. Decide mais pela emoção do momento.",
     "filhos_cat": "2_filhos",
-    "faixa_etaria": "16-17"
+    "faixa_etaria": "18-24"
   },
   {
     "id": "df-0355",
@@ -21974,7 +21974,7 @@
     "escolaridade": "medio_completo_ou_sup_incompleto",
     "profissao": "Tecnico em Enfermagem",
     "ocupacao_vinculo": "desempregado",
-    "renda_salarios_minimos": "mais_de_5_ate_10",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "catolica",
     "estado_civil": "casado(a)",
     "filhos": 2,
@@ -24018,7 +24018,7 @@
     "ocupacao_vinculo": "informal",
     "renda_salarios_minimos": "mais_de_1_ate_2",
     "religiao": "catolica",
-    "estado_civil": "viuvo(a)",
+    "estado_civil": "solteiro(a)",
     "filhos": 0,
     "orientacao_politica": "direita",
     "posicao_bolsonaro": "critico_forte",
@@ -24257,7 +24257,7 @@
     "escolaridade": "medio_completo_ou_sup_incompleto",
     "profissao": "Porteiro",
     "ocupacao_vinculo": "empresario",
-    "renda_salarios_minimos": "mais_de_1_ate_2",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "evangelica",
     "estado_civil": "uniao_estavel",
     "filhos": 1,
@@ -25847,7 +25847,7 @@
     "historia_resumida": "Miguel cresceu em outra cidade do DF e se mudou para Plano Piloto. a família sempre valorizou educação e cultura. Solteiro(a) e não tem filhos. Trabalha por conta própria como Advogado. É fortemente crítico a Bolsonaro e à direita radical. Miguel é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: analítico e bem informado. Acompanha política ativamente e forma opinião própria. Considera diferentes pontos de vista antes de opinar. Vota em quem representa seus valores e grupo.",
     "filhos_cat": "3_ou_mais",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0432",
@@ -25963,7 +25963,7 @@
     "historia_resumida": "Matheus veio de outro estado e se estabeleceu em Sol Nascente/Pôr do Sol. cresceu enfrentando dificuldades financeiras. Solteiro(a) e não tem filhos. Está em busca de emprego. É fortemente crítico a Bolsonaro e à direita radical. Matheus é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha política por alto, forma opinião pelo que ouve ao redor. Pensa em termos de certo e errado, sem meio termo. Avalia propostas e histórico antes de votar.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0434",
@@ -27232,7 +27232,7 @@
     "escolaridade": "superior_completo_ou_pos",
     "profissao": "Procurador(a) do DF",
     "ocupacao_vinculo": "servidor_publico",
-    "renda_salarios_minimos": "mais_de_2_ate_5",
+    "renda_salarios_minimos": "mais_de_10_ate_20",
     "religiao": "catolica",
     "estado_civil": "casado(a)",
     "filhos": 1,
@@ -27472,7 +27472,7 @@
     "escolaridade": "superior_completo_ou_pos",
     "profissao": "Empresario(a)",
     "ocupacao_vinculo": "clt",
-    "renda_salarios_minimos": "ate_1",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "sem_religiao",
     "estado_civil": "uniao_estavel",
     "filhos": 2,
@@ -28422,7 +28422,7 @@
     "tempo_deslocamento_trabalho": "30_45",
     "voto_facultativo": false,
     "conflito_identitario": false,
-    "historia_resumida": "Ana mora em Taguatinga desde a infância. conhece bem a luta diária para pagar as contas. Vive em união estável e tem 1 filho. Trabalha no informal, sem carteira. É fortemente crítico a Bolsonaro e à direita radical. Ana é evangélico(a) praticante. Passou em concurso público e conquistou estabilidade.",
+    "historia_resumida": "Ana se estabeleceu em Taguatinga depois de passar em concurso público. A experiência de superar dificuldades financeiras na juventude moldou sua visão de mundo. A estabilidade como analista administrativo trouxe segurança para a família.",
     "instrucao_comportamental": "Tom: prático. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Prioriza valores morais e religiosos ao votar.",
     "filhos_cat": "1_filho",
     "faixa_etaria": "55-64"
@@ -30488,7 +30488,7 @@
     "ocupacao_vinculo": "informal",
     "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "outras_religioes",
-    "estado_civil": "viuvo(a)",
+    "estado_civil": "separado(a)",
     "filhos": 0,
     "orientacao_politica": "centro_esquerda",
     "posicao_bolsonaro": "apoiador_forte",
@@ -32283,7 +32283,7 @@
     "historia_resumida": "Teresa nasceu e cresceu em Recanto das Emas. aprendeu a se virar com pouco desde cedo. Casado(a) e tem 1 filho. Está aposentado(a) e vive da aposentadoria. É fortemente crítico a Bolsonaro e à direita radical. Teresa é católico(a).",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Aceita algumas nuances, mas prefere clareza. Vota pensando no bolso.",
     "filhos_cat": "1_filho",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0539",
@@ -32904,7 +32904,7 @@
     "escolaridade": "superior_completo_ou_pos",
     "profissao": "Empresario(a)",
     "ocupacao_vinculo": "informal",
-    "renda_salarios_minimos": "ate_1",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "catolica",
     "estado_civil": "uniao_estavel",
     "filhos": 2,
@@ -33506,7 +33506,7 @@
     "escolaridade": "superior_completo_ou_pos",
     "profissao": "Contador(a)",
     "ocupacao_vinculo": "desempregado",
-    "renda_salarios_minimos": "ate_1",
+    "renda_salarios_minimos": "mais_de_1_ate_2",
     "religiao": "evangelica",
     "estado_civil": "divorciado(a)",
     "filhos": 5,
@@ -33627,7 +33627,7 @@
     "ocupacao_vinculo": "estudante",
     "renda_salarios_minimos": "mais_de_1_ate_2",
     "religiao": "outras",
-    "estado_civil": "viuvo(a)",
+    "estado_civil": "separado(a)",
     "filhos": 0,
     "orientacao_politica": "centro",
     "posicao_bolsonaro": "critico_forte",
@@ -34212,7 +34212,7 @@
     "historia_resumida": "Adriano cresceu em outra cidade do DF e se mudou para Recanto das Emas. a família sempre dependeu de ajuda do governo. Solteiro(a) e tem 1 filho. Está em busca de emprego. Apoia fortemente Bolsonaro e suas políticas. Adriano é católico(a).",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Aceita algumas nuances, mas prefere clareza. Prioriza valores morais e religiosos ao votar.",
     "filhos_cat": "1_filho",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0571",
@@ -34698,7 +34698,7 @@
     "historia_resumida": "Bernardo sempre morou no DF, atualmente em Recanto das Emas. aprendeu a se virar com pouco desde cedo. Casado(a) e tem 1 filho. Trabalha como Ajudante de Pedreiro com carteira assinada. Apoia fortemente Bolsonaro e suas políticas. Bernardo é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: distante. Não acompanha política, vota por obrigação ou indicação. Considera diferentes pontos de vista antes de opinar. Vota em quem transmite confiança e carisma.",
     "filhos_cat": "2_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0579",
@@ -35247,7 +35247,7 @@
     "escolaridade": "medio_completo_ou_sup_incompleto",
     "profissao": "Recebendo Bolsa Família",
     "ocupacao_vinculo": "desempregado",
-    "renda_salarios_minimos": "mais_de_5_ate_10",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "outras",
     "estado_civil": "casado(a)",
     "filhos": 1,
@@ -36061,7 +36061,7 @@
     "historia_resumida": "Fernando veio de outro estado e se estabeleceu em Ceilândia. aprendeu desde cedo o valor do trabalho. Solteiro(a) e não tem filhos. É Professor da Rede Pública e valoriza a estabilidade. Apoia fortemente Bolsonaro e suas políticas. Fernando é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: distante. Não acompanha política, vota por obrigação ou indicação. Considera diferentes pontos de vista antes de opinar. Avalia propostas e histórico antes de votar.",
     "filhos_cat": "3_ou_mais",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0602",
@@ -36901,7 +36901,7 @@
     "historia_resumida": "Beatriz sempre morou no DF, atualmente em Plano Piloto. Tem criticas ao governo Bolsonaro mas nao e radical.",
     "instrucao_comportamental": "Tom: desinteressado mas informado. Não acompanha política, vota por obrigação ou indicação. Considera diferentes pontos de vista antes de opinar. Vota pensando no bolso.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0616",
@@ -38157,7 +38157,7 @@
     "historia_resumida": "Simone nasceu e cresceu em Sol Nascente/Pôr do Sol. cresceu enfrentando dificuldades financeiras. Solteiro(a) e não tem filhos. Trabalha como Auxiliar de Limpeza com carteira assinada. Tem críticas ao bolsonarismo mas não é anti-Bolsonaro radical. Simone é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: distante. Não acompanha política, vota por obrigação ou indicação. Considera diferentes pontos de vista antes de opinar. Vota em quem transmite confiança e carisma.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0637",
@@ -38520,7 +38520,7 @@
     "historia_resumida": "Aline nasceu e cresceu em Vicente Pires. a educação foi o caminho para a ascensão social. Solteiro(a) e não tem filhos. É dono do próprio negócio. Simpatiza com o bolsonarismo mas tem algumas ressalvas. Aline é católico(a).",
     "instrucao_comportamental": "Tom: reflexivo. Acompanha política por alto, forma opinião pelo que ouve ao redor. Pensa em termos de certo e errado, sem meio termo. Vota pensando no bolso.",
     "filhos_cat": "1_filho",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0643",
@@ -38700,7 +38700,7 @@
     "tempo_deslocamento_trabalho": "15_30",
     "voto_facultativo": false,
     "conflito_identitario": false,
-    "historia_resumida": "Wesley nasceu e cresceu em Gama. a vida ensinou que nada vem fácil. Solteiro(a) e não tem filhos. Trabalha no informal, sem carteira. Apoia fortemente Bolsonaro e suas políticas. Wesley é católico(a). A estabilidade como servidor(a) público(a) trouxe segurança para a família.",
+    "historia_resumida": "Wesley cresceu no Gama e sempre sonhou em ser professor. A experiência de estudar em escola pública moldou sua visão de mundo. Passou no concurso da SEEDF e encontrou sua vocação. A estabilidade como servidor público trouxe segurança para realizar seus projetos.",
     "instrucao_comportamental": "Tom: prático. Acompanha política por alto, forma opinião pelo que ouve ao redor. Aceita algumas nuances, mas prefere clareza. Prioriza valores morais e religiosos ao votar.",
     "filhos_cat": "sem_filhos",
     "faixa_etaria": "25-34"
@@ -41213,7 +41213,7 @@
     "historia_resumida": "Priscila nasceu e cresceu em Ceilândia. aprendeu desde cedo o valor do trabalho. Solteiro(a) e tem 1 filho. Trabalha como Atendente com carteira assinada. Apoia fortemente Bolsonaro e suas políticas. Priscila é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: prático. Acompanha política por alto, forma opinião pelo que ouve ao redor. Considera diferentes pontos de vista antes de opinar. Prioriza valores morais e religiosos ao votar.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0688",
@@ -41636,11 +41636,11 @@
     "cor_raca": "parda",
     "regiao_administrativa": "Sol Nascente/Pôr do Sol",
     "local_referencia": "na Trecho",
-    "cluster_socioeconomico": "G4_baixa",
+    "cluster_socioeconomico": "G3_media_baixa",
     "escolaridade": "superior_completo_ou_pos",
     "profissao": "Servidor Publico",
-    "ocupacao_vinculo": "autonomo",
-    "renda_salarios_minimos": "ate_1",
+    "ocupacao_vinculo": "servidor_publico",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "evangelica",
     "estado_civil": "casado(a)",
     "filhos": 1,
@@ -42593,7 +42593,7 @@
     "historia_resumida": "Márcia nasceu e cresceu em Recanto das Emas. sabe o que é passar necessidade. Casado(a) e tem 1 filho. Trabalha como Servente com carteira assinada. É fortemente crítico a Bolsonaro e à direita radical. Márcia é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: distante. Não acompanha política, vota por obrigação ou indicação. Aceita algumas nuances, mas prefere clareza. Avalia propostas e histórico antes de votar.",
     "filhos_cat": "1_filho",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0711",
@@ -43078,7 +43078,7 @@
     "escolaridade": "medio_completo_ou_sup_incompleto",
     "profissao": "Cozinheiro(a)",
     "ocupacao_vinculo": "desempregado",
-    "renda_salarios_minimos": "mais_de_5_ate_10",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "religiao": "catolica",
     "estado_civil": "uniao_estavel",
     "filhos": 0,
@@ -44019,7 +44019,7 @@
     "historia_resumida": "Douglas nasceu e cresceu em Recanto das Emas. cresceu enfrentando dificuldades financeiras. Solteiro(a) e não tem filhos. Trabalha no informal, sem carteira. Simpatiza com o bolsonarismo mas tem algumas ressalvas. Douglas é evangélico(a) praticante.",
     "instrucao_comportamental": "Tom: simples e direto. Não acompanha política, vota por obrigação ou indicação. Considera diferentes pontos de vista antes de opinar. Avalia propostas e histórico antes de votar.",
     "filhos_cat": "2_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0735",
@@ -45109,11 +45109,11 @@
     "genero": "masculino",
     "cor_raca": "preta",
     "regiao_administrativa": "Ceilândia",
-    "cluster_socioeconomico": "G3_media_baixa",
+    "cluster_socioeconomico": "G2_media_alta",
     "escolaridade": "superior_completo_ou_pos",
     "ocupacao_vinculo": "servidor_publico",
     "profissao": "Médico(a) da SES-DF",
-    "renda_salarios_minimos": "mais_de_2_ate_5",
+    "renda_salarios_minimos": "mais_de_5_ate_10",
     "meio_transporte": "carro",
     "tempo_deslocamento_trabalho": "ate_15",
     "estado_civil": "casado(a)",
@@ -47103,7 +47103,7 @@
     "historia_resumida": "Felipe trabalha como Administrador(a) em Gama. uniao_estavel. Sempre foi progressista e se opõe às políticas conservadoras.",
     "instrucao_comportamental": "Tom: formal. Acompanha política ativamente. Vota pensando no candidato.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0786",
@@ -49102,10 +49102,10 @@
     "cor_raca": "branca",
     "regiao_administrativa": "Planaltina",
     "cluster_socioeconomico": "G3_media_baixa",
-    "escolaridade": "fundamental_ou_sem_instrucao",
+    "escolaridade": "superior_completo_ou_pos",
     "ocupacao_vinculo": "clt",
     "profissao": "Economista",
-    "renda_salarios_minimos": "ate_1",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "meio_transporte": "carro",
     "tempo_deslocamento_trabalho": "15_30",
     "estado_civil": "solteiro(a)",
@@ -49328,7 +49328,7 @@
     "historia_resumida": "Ana trabalha como Administrador(a) em Samambaia. casadoa, tem 2 filho(s). Sempre foi progressista e se opõe às políticas conservadoras.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha por alto. Vota pensando no bolso.",
     "filhos_cat": "1_filho",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0823",
@@ -49939,7 +49939,7 @@
     "escolaridade": "superior_completo_ou_pos",
     "ocupacao_vinculo": "servidor_publico",
     "profissao": "Médico(a) da SES-DF",
-    "renda_salarios_minimos": "mais_de_2_ate_5",
+    "renda_salarios_minimos": "mais_de_5_ate_10",
     "meio_transporte": "carro",
     "tempo_deslocamento_trabalho": "ate_15",
     "estado_civil": "solteiro(a)",
@@ -52876,7 +52876,7 @@
     "historia_resumida": "Rodrigo trabalha como Operador de Caixa em Recanto das Emas. solteiro(a), tem 3 filho(s). Acompanha a política mas prefere não se posicionar fortemente.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha por alto. Vota pensando no bolso.",
     "filhos_cat": "1_filho",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0882",
@@ -53063,11 +53063,11 @@
     "genero": "masculino",
     "cor_raca": "branca",
     "regiao_administrativa": "Santa Maria",
-    "cluster_socioeconomico": "G3_media_baixa",
+    "cluster_socioeconomico": "G2_media_alta",
     "escolaridade": "superior_completo_ou_pos",
     "ocupacao_vinculo": "servidor_publico",
     "profissao": "Médico(a) da SES-DF",
-    "renda_salarios_minimos": "mais_de_2_ate_5",
+    "renda_salarios_minimos": "mais_de_5_ate_10",
     "meio_transporte": "carro",
     "tempo_deslocamento_trabalho": "mais_60",
     "estado_civil": "casado(a)",
@@ -54214,9 +54214,9 @@
     "regiao_administrativa": "Gama",
     "cluster_socioeconomico": "G3_media_baixa",
     "escolaridade": "superior_completo_ou_pos",
-    "ocupacao_vinculo": "autonomo",
+    "ocupacao_vinculo": "servidor_publico",
     "profissao": "Servidor Publico",
-    "renda_salarios_minimos": "mais_de_1_ate_2",
+    "renda_salarios_minimos": "mais_de_2_ate_5",
     "meio_transporte": "motocicleta",
     "tempo_deslocamento_trabalho": "ate_15",
     "estado_civil": "solteiro(a)",
@@ -55064,11 +55064,11 @@
     "genero": "masculino",
     "cor_raca": "parda",
     "regiao_administrativa": "Riacho Fundo",
-    "cluster_socioeconomico": "G3_media_baixa",
+    "cluster_socioeconomico": "G1_alta",
     "escolaridade": "superior_completo_ou_pos",
     "ocupacao_vinculo": "servidor_publico",
     "profissao": "Procurador(a) do DF",
-    "renda_salarios_minimos": "mais_de_2_ate_5",
+    "renda_salarios_minimos": "mais_de_10_ate_20",
     "meio_transporte": "motocicleta",
     "tempo_deslocamento_trabalho": "15_30",
     "estado_civil": "solteiro(a)",
@@ -55547,11 +55547,11 @@
     "genero": "feminino",
     "cor_raca": "branca",
     "regiao_administrativa": "Paranoa",
-    "cluster_socioeconomico": "G3_media_baixa",
+    "cluster_socioeconomico": "G2_media_alta",
     "escolaridade": "superior_completo_ou_pos",
     "ocupacao_vinculo": "servidor_publico",
     "profissao": "Procurador(a) do DF",
-    "renda_salarios_minimos": "mais_de_2_ate_5",
+    "renda_salarios_minimos": "mais_de_5_ate_10",
     "meio_transporte": "onibus",
     "tempo_deslocamento_trabalho": "mais_60",
     "estado_civil": "uniao_estavel",
@@ -58536,7 +58536,7 @@
     "historia_resumida": "Larissa mora em Recanto das Emas e trabalha como Atendente. Tem criticas ao governo Bolsonaro, especialmente na pandemia.",
     "instrucao_comportamental": "Tom: coloquial. Acompanha politica por alto. Vota pensando no dia a dia.",
     "filhos_cat": "sem_filhos",
-    "faixa_etaria": "65+"
+    "faixa_etaria": "55-64"
   },
   {
     "id": "df-0976",
