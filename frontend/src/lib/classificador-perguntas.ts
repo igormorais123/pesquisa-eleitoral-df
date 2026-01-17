@@ -45,9 +45,9 @@ export type TipoGrafico =
 
 // Palavras-chave para classificação automática
 const PALAVRAS_SIM_NAO = [
-  'você votaria', 'votaria em', 'concorda', 'discorda', 'aprova', 'desaprova',
+  'concorda', 'discorda', 'aprova', 'desaprova',
   'é a favor', 'é contra', 'apoia', 'rejeita', 'sim ou não', 'sim/não',
-  'considera', 'acredita', 'pretende', 'planeja', 'vai votar', 'você é',
+  'considera', 'acredita', 'pretende', 'planeja', 'você é',
   'você tem', 'conhece', 'já ouviu', 'sabe quem', 'aceita', 'tolera'
 ];
 
@@ -55,7 +55,8 @@ const PALAVRAS_ESCOLHA_CANDIDATO = [
   'em quem votaria', 'qual candidato', 'votaria em qual', 'seu candidato',
   'escolheria entre', 'entre estes candidatos', 'qual destes', 'primeiro turno',
   'segundo turno', 'votaria para', 'governador', 'senador', 'deputado',
-  'presidente', 'prefeito', 'vereador', 'intenção de voto'
+  'presidente', 'prefeito', 'vereador', 'intenção de voto', 'votaria em',
+  'você votaria em', 'voce votaria em', 'vai votar em', 'votou em'
 ];
 
 const PALAVRAS_ESCALA = [
@@ -141,20 +142,30 @@ export function classificarPergunta(
 
   // Classificação automática baseada no texto
 
-  // Verifica se é sobre candidatos
-  if (detectarPerguntaCandidato(textoLower) && candidatos && candidatos.length > 0) {
-    const opcoesCandidatos = extrairCandidatosDaPergunta(textoLower, candidatos);
+  // PRIMEIRO: Verifica se é sobre candidatos (antes de sim/não para evitar falso positivo)
+  if (detectarPerguntaCandidato(textoLower)) {
+    // Se tem lista de candidatos, usa ela
+    if (candidatos && candidatos.length > 0) {
+      const opcoesCandidatos = extrairCandidatosDaPergunta(textoLower, candidatos);
+      return {
+        tipo: 'multipla_escolha',
+        tipoResposta: 'nome_candidato',
+        formatoResposta: 'Apenas o NOME do candidato escolhido (ou "Indeciso", "Branco/Nulo")',
+        graficoRecomendado: 'barras_horizontal',
+        opcoes: opcoesCandidatos.length > 0 ? opcoesCandidatos : candidatos.map(c => c.nome_urna),
+        candidatosEnvolvidos: opcoesCandidatos.length > 0 ? opcoesCandidatos : candidatos.map(c => c.nome_urna)
+      };
+    }
+    // Mesmo sem lista, detecta como pergunta de candidato
     return {
       tipo: 'multipla_escolha',
       tipoResposta: 'nome_candidato',
       formatoResposta: 'Apenas o NOME do candidato escolhido (ou "Indeciso", "Branco/Nulo")',
       graficoRecomendado: 'barras_horizontal',
-      opcoes: opcoesCandidatos.length > 0 ? opcoesCandidatos : candidatos.map(c => c.nome_urna),
-      candidatosEnvolvidos: opcoesCandidatos.length > 0 ? opcoesCandidatos : candidatos.map(c => c.nome_urna)
     };
   }
 
-  // Verifica se é sim/não
+  // DEPOIS: Verifica se é sim/não (só se não for sobre candidatos)
   if (detectarSimNao(textoLower)) {
     return {
       tipo: 'sim_nao',
@@ -224,12 +235,26 @@ function detectarPerguntaCandidato(texto: string): boolean {
  * Detecta se a pergunta é sim/não
  */
 function detectarSimNao(texto: string): boolean {
-  return PALAVRAS_SIM_NAO.some(p => texto.includes(p)) ||
-    texto.endsWith('?') && (
-      texto.includes(' ou ') ||
-      texto.startsWith('você ') ||
-      texto.startsWith('voce ')
-    );
+  // Verifica palavras-chave de sim/não
+  if (PALAVRAS_SIM_NAO.some(p => texto.includes(p))) {
+    return true;
+  }
+
+  // Padrão "você X?" mas NÃO quando tem nomes próprios ou candidatos
+  if (texto.endsWith('?') && (texto.startsWith('você ') || texto.startsWith('voce '))) {
+    // Evita classificar como sim/não se tem " ou " com nomes próprios (escolha entre opções)
+    if (texto.includes(' ou ')) {
+      // Verifica se parece ser escolha entre candidatos/opções
+      const partes = texto.split(' ou ');
+      const temNomeProprio = partes.some(p => /[A-Z][a-zà-ü]+/.test(p.trim()));
+      if (temNomeProprio) {
+        return false; // É escolha entre opções, não sim/não
+      }
+    }
+    return true;
+  }
+
+  return false;
 }
 
 /**
