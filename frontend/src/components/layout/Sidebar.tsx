@@ -24,6 +24,8 @@ import {
   UserCircle,
   Target,
   Map,
+  Shuffle,
+  LineChart,
 } from 'lucide-react';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { useAuthStore } from '@/stores/auth-store';
@@ -98,6 +100,12 @@ const menuItems = [
     descricao: 'Mapa de calor por região',
   },
   {
+    titulo: 'Swing Voters',
+    href: '/swing-voters',
+    icone: Shuffle,
+    descricao: 'Eleitores indecisos',
+  },
+  {
     titulo: 'Analytics',
     href: '/analytics',
     icone: TrendingUp,
@@ -108,6 +116,12 @@ const menuItems = [
     href: '/historico',
     icone: History,
     descricao: 'Pesquisas anteriores',
+  },
+  {
+    titulo: 'Evolução',
+    href: '/evolucao',
+    icone: LineChart,
+    descricao: 'Comparativo temporal',
   },
   {
     titulo: 'Configurações',

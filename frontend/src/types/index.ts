@@ -1074,3 +1074,133 @@ export interface ResultadoMapaCalor {
   filtros_aplicados: Record<string, any>;
   executado_em: string;
 }
+
+// ============================================
+// ANÁLISE DE SWING VOTERS
+// ============================================
+
+export type CategoriaSwingVoter =
+  | 'indeciso_total'
+  | 'baixa_conviccao'
+  | 'susceptivel_mudanca'
+  | 'volatil';
+
+export interface SwingVoter {
+  eleitor_id: string;
+  eleitor_nome: string;
+  regiao_administrativa: string;
+  cluster_socioeconomico: ClusterSocioeconomico;
+  orientacao_politica: OrientacaoPolitica;
+  idade: number;
+  genero: Genero;
+  categoria: CategoriaSwingVoter;
+  score_indecisao: number; // 0-100
+  candidato_inclinacao?: string;
+  fatores_influencia: string[];
+  susceptibilidade_campanha: number; // 0-100
+  principais_preocupacoes: string[];
+}
+
+export interface PerfilSwingVoters {
+  total: number;
+  percentual_eleitorado: number;
+  por_categoria: {
+    categoria: CategoriaSwingVoter;
+    quantidade: number;
+    percentual: number;
+  }[];
+  por_regiao: {
+    regiao: string;
+    quantidade: number;
+    percentual: number;
+  }[];
+  por_cluster: {
+    cluster: ClusterSocioeconomico;
+    quantidade: number;
+    percentual: number;
+  }[];
+  por_orientacao: {
+    orientacao: OrientacaoPolitica;
+    quantidade: number;
+    percentual: number;
+  }[];
+  por_faixa_etaria: {
+    faixa: string;
+    quantidade: number;
+    percentual: number;
+  }[];
+  media_idade: number;
+  distribuicao_genero: {
+    genero: Genero;
+    quantidade: number;
+    percentual: number;
+  }[];
+}
+
+export interface FatorInfluencia {
+  fator: string;
+  peso: number; // 0-100
+  descricao: string;
+  eleitores_afetados: number;
+}
+
+export interface PotencialConversao {
+  candidato_origem?: string;
+  candidato_destino: string;
+  quantidade_eleitores: number;
+  percentual: number;
+  facilidade_conversao: 'facil' | 'moderada' | 'dificil';
+  fatores_chave: string[];
+}
+
+export interface ResultadoAnaliseSwingVoters {
+  perfil: PerfilSwingVoters;
+  swing_voters: SwingVoter[];
+  fatores_influencia: FatorInfluencia[];
+  potencial_conversao: PotencialConversao[];
+  insights: string[];
+  recomendacoes_campanha: string[];
+  executado_em: string;
+}
+
+// ============================================
+// COMPARATIVO HISTÓRICO
+// ============================================
+
+export interface PontoHistorico {
+  data: string;
+  valor: number;
+  margem_erro?: number;
+  amostra?: number;
+  fonte?: string;
+}
+
+export interface SerieHistorica {
+  candidato_id: string;
+  candidato_nome: string;
+  partido: string;
+  cor: string;
+  pontos: PontoHistorico[];
+}
+
+export interface EventoRelevante {
+  data: string;
+  titulo: string;
+  descricao: string;
+  impacto: 'positivo' | 'negativo' | 'neutro';
+  candidatos_afetados?: string[];
+}
+
+export interface ComparativoHistorico {
+  periodo_inicio: string;
+  periodo_fim: string;
+  tipo: 'intencao_voto' | 'rejeicao' | 'avaliacao';
+  series: SerieHistorica[];
+  eventos: EventoRelevante[];
+  tendencias: {
+    candidato_id: string;
+    tendencia: 'subindo' | 'estavel' | 'descendo';
+    variacao_periodo: number;
+  }[];
+  insights: string[];
+}
