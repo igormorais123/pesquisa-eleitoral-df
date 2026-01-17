@@ -681,3 +681,209 @@ export interface ResultadoPesquisaParlamentar {
     relevancia: number;
   }[];
 }
+
+// ============================================
+// CANDIDATOS
+// ============================================
+
+export type CargoPretendido = 'governador' | 'vice_governador' | 'senador' | 'deputado_federal' | 'deputado_distrital';
+
+export type StatusCandidatura = 'pre_candidato' | 'candidato_oficial' | 'indeferido' | 'desistente';
+
+export interface RedesSociaisCandidato {
+  twitter?: string;
+  instagram?: string;
+  facebook?: string;
+  youtube?: string;
+  tiktok?: string;
+}
+
+export interface EleicaoAnterior {
+  ano: number;
+  cargo: string;
+  resultado: 'eleito' | 'nao_eleito' | 'segundo_turno';
+  votos?: number;
+  percentual?: number;
+}
+
+export interface Candidato {
+  id: string;
+  nome: string;
+  nome_urna: string;
+  partido: string;
+  numero_partido?: number;
+  cargo_pretendido: CargoPretendido;
+  status_candidatura: StatusCandidatura;
+  coligacao?: string;
+  vice_ou_suplentes?: string;
+  foto_url?: string;
+  cor_campanha?: string;
+  slogan?: string;
+  idade?: number;
+  data_nascimento?: string;
+  genero?: Genero;
+  naturalidade?: string;
+  profissao?: string;
+  cargo_atual?: string;
+  historico_politico: string[];
+  biografia?: string;
+  propostas_principais: string[];
+  areas_foco: string[];
+  redes_sociais?: RedesSociaisCandidato;
+  site_campanha?: string;
+  orientacao_politica?: OrientacaoPolitica;
+  posicao_bolsonaro?: PosicaoBolsonaro;
+  posicao_lula?: PosicaoLula;
+  eleicoes_anteriores: EleicaoAnterior[];
+  votos_ultima_eleicao?: number;
+  pontos_fortes: string[];
+  pontos_fracos: string[];
+  controversias: string[];
+  rejeicao_estimada?: number;
+  conhecimento_estimado?: number;
+  ativo: boolean;
+  ordem_exibicao?: number;
+  criado_em: string;
+  atualizado_em: string;
+}
+
+export interface CandidatoResumo {
+  id: string;
+  nome: string;
+  nome_urna: string;
+  partido: string;
+  numero_partido?: number;
+  cargo_pretendido: CargoPretendido;
+  foto_url?: string;
+  cor_campanha?: string;
+  status_candidatura: StatusCandidatura;
+  ativo: boolean;
+}
+
+export interface FiltrosCandidato {
+  pagina?: number;
+  por_pagina?: number;
+  busca_texto?: string;
+  partidos?: string[];
+  cargos?: CargoPretendido[];
+  status?: StatusCandidatura[];
+  orientacoes_politicas?: OrientacaoPolitica[];
+  generos?: Genero[];
+  apenas_ativos?: boolean;
+  ordenar_por?: string;
+  ordem?: 'asc' | 'desc';
+}
+
+export interface CandidatoListResponse {
+  candidatos: Candidato[];
+  total: number;
+  pagina: number;
+  por_pagina: number;
+  total_paginas: number;
+}
+
+export interface EstatisticasCandidatos {
+  total: number;
+  por_cargo: { cargo: string; quantidade: number; percentual: number }[];
+  por_partido: { partido: string; quantidade: number; percentual: number }[];
+  por_genero: { genero: string; quantidade: number; percentual: number }[];
+  por_orientacao_politica: { orientacao: string; quantidade: number; percentual: number }[];
+  por_status: { status: string; quantidade: number }[];
+}
+
+export interface CriarCandidatoDTO {
+  nome: string;
+  nome_urna: string;
+  partido: string;
+  cargo_pretendido: CargoPretendido;
+  numero_partido?: number;
+  status_candidatura?: StatusCandidatura;
+  coligacao?: string;
+  vice_ou_suplentes?: string;
+  foto_url?: string;
+  cor_campanha?: string;
+  slogan?: string;
+  idade?: number;
+  data_nascimento?: string;
+  genero?: Genero;
+  naturalidade?: string;
+  profissao?: string;
+  cargo_atual?: string;
+  historico_politico?: string[];
+  biografia?: string;
+  propostas_principais?: string[];
+  areas_foco?: string[];
+  redes_sociais?: RedesSociaisCandidato;
+  site_campanha?: string;
+  orientacao_politica?: OrientacaoPolitica;
+  posicao_bolsonaro?: string;
+  posicao_lula?: string;
+  pontos_fortes?: string[];
+  pontos_fracos?: string[];
+}
+
+export interface AtualizarCandidatoDTO {
+  nome?: string;
+  nome_urna?: string;
+  partido?: string;
+  cargo_pretendido?: CargoPretendido;
+  numero_partido?: number;
+  status_candidatura?: StatusCandidatura;
+  coligacao?: string;
+  vice_ou_suplentes?: string;
+  foto_url?: string;
+  cor_campanha?: string;
+  slogan?: string;
+  idade?: number;
+  data_nascimento?: string;
+  genero?: Genero;
+  naturalidade?: string;
+  profissao?: string;
+  cargo_atual?: string;
+  historico_politico?: string[];
+  biografia?: string;
+  propostas_principais?: string[];
+  areas_foco?: string[];
+  redes_sociais?: RedesSociaisCandidato;
+  site_campanha?: string;
+  orientacao_politica?: OrientacaoPolitica;
+  posicao_bolsonaro?: string;
+  posicao_lula?: string;
+  pontos_fortes?: string[];
+  pontos_fracos?: string[];
+  ativo?: boolean;
+  ordem_exibicao?: number;
+}
+
+// ============================================
+// CENÁRIOS ELEITORAIS
+// ============================================
+
+export interface CenarioEleitoral {
+  id: string;
+  nome: string;
+  descricao?: string;
+  turno: 1 | 2;
+  cargo: CargoPretendido;
+  candidatos_ids: string[];
+  incluir_indecisos: boolean;
+  incluir_brancos_nulos: boolean;
+  criado_em: string;
+}
+
+export interface ResultadoCenario {
+  cenario_id: string;
+  resultados: {
+    candidato_id: string;
+    candidato_nome: string;
+    partido: string;
+    votos: number;
+    percentual: number;
+    cor_campanha?: string;
+  }[];
+  indecisos_percentual?: number;
+  brancos_nulos_percentual?: number;
+  margem_erro: number;
+  confianca: number;
+  total_eleitores_simulados: number;
+}

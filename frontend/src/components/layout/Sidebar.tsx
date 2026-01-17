@@ -21,6 +21,7 @@ import {
   CheckSquare,
   Shield,
   Landmark,
+  UserCircle,
 } from 'lucide-react';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { useAuthStore } from '@/stores/auth-store';
@@ -57,6 +58,12 @@ const menuItems = [
     href: '/parlamentares',
     icone: Landmark,
     descricao: 'Deputados e senadores do DF',
+  },
+  {
+    titulo: 'Candidatos',
+    href: '/candidatos',
+    icone: UserCircle,
+    descricao: 'Candidatos às eleições 2026',
   },
   {
     titulo: 'Entrevistas',
