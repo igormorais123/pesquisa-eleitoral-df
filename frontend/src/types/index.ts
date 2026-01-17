@@ -379,6 +379,21 @@ export type PosicaoLula = 'apoiador_forte' | 'apoiador_moderado' | 'neutro' | 'c
 
 export type EstiloComunicacao = 'combativo' | 'articulado' | 'popular' | 'tecnico' | 'religioso' | 'emotivo' | 'institucional' | 'conservador' | 'pragmatico' | 'didatico' | 'militante' | 'sindicalista' | 'assertivo' | 'autoritario' | 'conciliador' | 'digital' | 'firme';
 
+// Bancadas Temáticas (definido aqui para uso em Parlamentar)
+export type BancadaTematica =
+  | 'ruralista'
+  | 'evangelica'
+  | 'bala'
+  | 'sindical'
+  | 'feminina'
+  | 'ambientalista'
+  | 'empresarial'
+  | 'saude'
+  | 'educacao'
+  | 'lgbtqia'
+  | 'indigena'
+  | 'negra';
+
 export interface RedesSociais {
   twitter?: string;
   instagram?: string;
@@ -433,6 +448,7 @@ export interface Parlamentar {
   cor_raca: string;
   naturalidade: string;
   uf_nascimento: string;
+  uf: string; // Estado que representa (sigla: AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO)
   casa_legislativa: CasaLegislativa;
   cargo: CargoParlamentar;
   partido: string;
@@ -469,6 +485,12 @@ export interface Parlamentar {
   fontes_informacao?: string[];
   aliancas_politicas?: string[];
   relacao_governo_atual?: RelacaoGoverno;
+  // Novos campos para parlamentares nacionais
+  estado?: string; // Nome completo do estado
+  regiao?: string; // Norte, Nordeste, Sul, Sudeste, Centro-Oeste
+  bancadas_tematicas?: BancadaTematica[]; // Bancadas temáticas (ruralista, evangelica, bala, etc.)
+  bancada_bbb?: boolean; // Se pertence à bancada BBB (Bíblia, Boi, Bala)
+  espectro_politico?: string; // esquerda, centro-esquerda, centro, centro-direita, direita
   email_contato?: string;
   telefone_gabinete?: string;
   gabinete_localizacao?: string;
@@ -556,6 +578,7 @@ export interface ParlamentarResumo {
   nome_parlamentar: string;
   idade: number;
   genero: Genero;
+  uf: string;
   casa_legislativa: CasaLegislativa;
   cargo: CargoParlamentar;
   partido: string;
@@ -569,6 +592,8 @@ export interface FiltrosParlamentar {
   por_pagina?: number;
   busca?: string;
   casas_legislativas?: CasaLegislativa[];
+  ufs?: string[]; // Filtro por estado (UF)
+  regioes?: string[]; // Filtro por região (Norte, Nordeste, Sul, Sudeste, Centro-Oeste)
   partidos?: string[];
   generos?: Genero[];
   orientacoes_politicas?: OrientacaoPolitica[];
@@ -577,6 +602,7 @@ export interface FiltrosParlamentar {
   religioes?: string[];
   temas_atuacao?: string[];
   relacoes_governo?: RelacaoGoverno[];
+  bancadas_tematicas?: BancadaTematica[]; // Filtro por bancadas temáticas (ruralista, evangélica, bala, etc.)
   ordenar_por?: string;
   ordem?: 'asc' | 'desc';
 }
@@ -584,6 +610,7 @@ export interface FiltrosParlamentar {
 export interface EstatisticasParlamentares {
   total: number;
   por_casa: { casa: CasaLegislativa; contagem: number; percentual: number }[];
+  por_uf: { uf: string; contagem: number; percentual: number }[];
   por_partido: { partido: string; contagem: number; percentual: number }[];
   por_genero: { genero: Genero; contagem: number; percentual: number }[];
   por_orientacao_politica: { orientacao: OrientacaoPolitica; contagem: number; percentual: number }[];

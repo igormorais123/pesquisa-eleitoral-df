@@ -101,7 +101,7 @@ export const ParlamentarCard = memo(function ParlamentarCard({
         <div className="flex-1 min-w-0">
           <p className="font-medium text-foreground truncate">{p.nome_parlamentar}</p>
           <p className="text-xs text-muted-foreground truncate">
-            {p.partido} • {p.cargo}
+            {p.partido} {p.uf && `• ${p.uf}`} • {p.cargo}
           </p>
         </div>
 
@@ -181,9 +181,14 @@ export const ParlamentarCard = memo(function ParlamentarCard({
             </div>
           </div>
 
-          {/* Partido e Casa */}
+          {/* Partido, UF e Casa */}
           <div className="flex items-center gap-2 mt-1 sm:mt-2 flex-wrap">
             <span className="text-sm font-bold text-primary">{p.partido}</span>
+            {p.uf && (
+              <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-medium">
+                {p.uf}
+              </span>
+            )}
             <span
               className={cn(
                 'text-xs px-2 py-0.5 rounded-full border',

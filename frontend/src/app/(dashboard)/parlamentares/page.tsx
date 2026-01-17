@@ -112,7 +112,7 @@ function ParlamentaresContent() {
           <div>
             <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
               <Landmark className="w-7 h-7 text-primary" />
-              Parlamentares do DF
+              Parlamentares do Congresso Nacional
             </h1>
             <p className="text-muted-foreground mt-1">
               <span className="font-semibold text-foreground">{formatarNumero(estatisticas.filtrados)}</span>
@@ -516,6 +516,21 @@ function ParlamentaresGraficos({
         </div>
       </div>
 
+      {/* Por Estado (UF) */}
+      <div className="glass-card rounded-xl p-4">
+        <h3 className="font-semibold text-foreground mb-4">Por Estado (UF)</h3>
+        <div className="space-y-2 max-h-48 overflow-y-auto">
+          {Object.entries(estatisticas.porUf || {})
+            .sort(([, a], [, b]) => (b as number) - (a as number))
+            .map(([uf, count]) => (
+              <div key={uf} className="flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">{uf}</span>
+                <span className="text-sm font-medium text-foreground">{count as number}</span>
+              </div>
+            ))}
+        </div>
+      </div>
+
       {/* Temas de Atuação */}
       <div className="glass-card rounded-xl p-4">
         <h3 className="font-semibold text-foreground mb-4">Temas de Atuação Principais</h3>
@@ -591,7 +606,7 @@ function ParlamentaresInsights({
           </div>
           <div className="p-3 bg-secondary/50 rounded-lg">
             <p className="text-sm text-foreground">
-              &quot;Como você avalia a política de segurança pública do DF?&quot;
+              &quot;Como você avalia a política de segurança pública no Brasil?&quot;
             </p>
           </div>
           <div className="p-3 bg-secondary/50 rounded-lg">

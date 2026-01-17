@@ -244,8 +244,8 @@ export function RelatorioInteligenciaVisual({
                 </Pie>
                 <Tooltip
                   contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  formatter={(value: number, name: string, props: { payload: { nomeCompleto: string } }) => [
-                    `${value}% (${props.payload.nomeCompleto})`,
+                  formatter={(value: number, name: string, props: any) => [
+                    `${value}% (${props?.payload?.nomeCompleto || name})`,
                     'Percentual',
                   ]}
                 />
@@ -266,9 +266,9 @@ export function RelatorioInteligenciaVisual({
                 <YAxis type="category" dataKey="nome" width={100} tick={{ fill: '#9ca3af', fontSize: 11 }} />
                 <Tooltip
                   contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  formatter={(value: number, name: string, props: { payload: { nomeCompleto: string; percentual: number } }) => [
-                    `${props.payload.percentual}% (~${value} eleitores)`,
-                    props.payload.nomeCompleto,
+                  formatter={(value: number, name: string, props: any) => [
+                    `${props?.payload?.percentual || 0}% (~${value} eleitores)`,
+                    props?.payload?.nomeCompleto || name,
                   ]}
                 />
                 <Bar dataKey="valor" radius={[0, 4, 4, 0]}>
@@ -349,9 +349,9 @@ export function RelatorioInteligenciaVisual({
                 <YAxis domain={[0, 100]} tick={{ fill: '#9ca3af', fontSize: 10 }} />
                 <Tooltip
                   contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  formatter={(value: number, name: string, props: { payload: { nomeCompleto: string } }) => [
+                  formatter={(value: number, name: string, props: any) => [
                     `${value}% de chance`,
-                    props.payload.nomeCompleto,
+                    props?.payload?.nomeCompleto || name,
                   ]}
                 />
                 <Bar dataKey="probabilidade" radius={[4, 4, 0, 0]}>

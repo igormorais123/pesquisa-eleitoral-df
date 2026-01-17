@@ -21,9 +21,13 @@ let carregando = false;
  */
 async function carregarJsonPorCasa(casa: 'camara_federal' | 'senado' | 'cldf'): Promise<Parlamentar[]> {
   try {
+    // Novos arquivos com todos os parlamentares do Congresso Nacional
+    // banco-deputados-federais.json: 513 deputados federais (todos os estados)
+    // banco-senadores.json: 81 senadores (3 por estado)
+    // banco-deputados-distritais-df.json: deputados distritais do DF
     const urls: Record<string, string> = {
-      camara_federal: '/data/banco-deputados-federais-df.json',
-      senado: '/data/banco-senadores-df.json',
+      camara_federal: '/data/banco-deputados-federais.json',
+      senado: '/data/banco-senadores.json',
       cldf: '/data/banco-deputados-distritais-df.json',
     };
 

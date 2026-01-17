@@ -13,6 +13,7 @@ import type {
 interface FiltrosParlamentarExtendido extends FiltrosParlamentar {
   estilos_comunicacao?: string[];
   formacoes?: string[];
+  regioes?: string[];
 }
 
 interface ParlamentaresState {
@@ -52,6 +53,8 @@ interface ParlamentaresState {
 const filtrosIniciais: FiltrosParlamentarExtendido = {
   busca: '',
   casas_legislativas: [],
+  ufs: [],
+  regioes: [],
   partidos: [],
   generos: [],
   orientacoes_politicas: [],
@@ -62,6 +65,7 @@ const filtrosIniciais: FiltrosParlamentarExtendido = {
   relacoes_governo: [],
   estilos_comunicacao: [],
   formacoes: [],
+  bancadas_tematicas: [],
 };
 
 export const useParlamentaresStore = create<ParlamentaresState>()(
@@ -160,6 +164,11 @@ export const useParlamentaresStore = create<ParlamentaresState>()(
             return false;
           }
 
+          // Filtro por UF (estado)
+          if (filtros.ufs?.length && p.uf && !filtros.ufs.includes(p.uf)) {
+            return false;
+          }
+
           // Filtro por partidos
           if (filtros.partidos?.length && !filtros.partidos.includes(p.partido)) {
             return false;
@@ -203,6 +212,21 @@ export const useParlamentaresStore = create<ParlamentaresState>()(
             return false;
           }
 
+          // Filtro por região
+          if (filtros.regioes?.length) {
+            const regiao = (p as any).regiao;
+            if (!regiao || !filtros.regioes.includes(regiao)) {
+              return false;
+            }
+          }
+
+          // Filtro por bancadas temáticas
+          if (filtros.bancadas_tematicas?.length) {
+            const bancadas = (p as any).bancadas_tematicas || [];
+            const temAlgumaBancada = filtros.bancadas_tematicas.some((b) => bancadas.includes(b));
+            if (!temAlgumaBancada) return false;
+          }
+
           return true;
         });
 
@@ -226,6 +250,19 @@ export const useParlamentaresStore = create<ParlamentaresState>()(
             percentual: (count / parlamentares.length) * 100,
           };
         });
+
+        // Por UF (estado)
+        const ufs = Array.from(new Set(parlamentares.map((p) => p.uf).filter(Boolean)));
+        const porUf = ufs
+          .map((uf) => {
+            const count = parlamentares.filter((p) => p.uf === uf).length;
+            return {
+              uf,
+              contagem: count,
+              percentual: (count / parlamentares.length) * 100,
+            };
+          })
+          .sort((a, b) => b.contagem - a.contagem);
 
         // Por partido
         const partidos = Array.from(new Set(parlamentares.map((p) => p.partido)));
@@ -292,6 +329,7 @@ export const useParlamentaresStore = create<ParlamentaresState>()(
           estatisticas: {
             total: parlamentares.length,
             por_casa: porCasa,
+            por_uf: porUf,
             por_partido: porPartido,
             por_genero: porGenero,
             por_orientacao_politica: porOrientacao,

@@ -43,9 +43,10 @@ export function useParlamentares() {
         setCarregando(true);
 
         // Carregar dados de cada casa via fetch
+        // Novos arquivos com todos os parlamentares do Congresso Nacional
         const [deputadosFederaisRes, senadoresRes, deputadosDistritaisRes] = await Promise.all([
-          fetch('/data/banco-deputados-federais-df.json'),
-          fetch('/data/banco-senadores-df.json'),
+          fetch('/data/banco-deputados-federais.json'),
+          fetch('/data/banco-senadores.json'),
           fetch('/data/banco-deputados-distritais-df.json'),
         ]);
 
@@ -108,6 +109,9 @@ export function useParlamentares() {
 
     // Por casa
     porCasa: contagemPorCasa,
+
+    // Por UF (estado)
+    porUf: calcularDistribuicao(parlamentaresFiltrados, 'uf'),
 
     // Demográficos
     porGenero: calcularDistribuicao(parlamentaresFiltrados, 'genero'),

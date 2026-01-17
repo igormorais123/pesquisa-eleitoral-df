@@ -140,7 +140,7 @@ export function CandidatoCard({
             {/* Slogan */}
             {candidato.slogan && (
               <p className="mt-2 text-sm italic text-gray-500">
-                "{candidato.slogan}"
+                &quot;{candidato.slogan}&quot;
               </p>
             )}
           </div>

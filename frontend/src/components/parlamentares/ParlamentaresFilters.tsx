@@ -11,6 +11,7 @@ import {
   Building2,
   Landmark,
   Users,
+  MapPin,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { FiltrosParlamentar, CasaLegislativa } from '@/types';
@@ -35,6 +36,7 @@ function useDebounce<T>(value: T, delay: number): T {
 interface FiltrosParlamentarExtendido extends FiltrosParlamentar {
   estilos_comunicacao?: string[];
   formacoes?: string[];
+  regioes?: string[];
 }
 
 interface ParlamentaresFiltersProps {
@@ -49,6 +51,38 @@ interface ParlamentaresFiltersProps {
 }
 
 // Opções de Filtro
+
+// Todos os estados brasileiros
+const ESTADOS_UF = [
+  { valor: 'AC', rotulo: 'Acre (AC)' },
+  { valor: 'AL', rotulo: 'Alagoas (AL)' },
+  { valor: 'AM', rotulo: 'Amazonas (AM)' },
+  { valor: 'AP', rotulo: 'Amapá (AP)' },
+  { valor: 'BA', rotulo: 'Bahia (BA)' },
+  { valor: 'CE', rotulo: 'Ceará (CE)' },
+  { valor: 'DF', rotulo: 'Distrito Federal (DF)' },
+  { valor: 'ES', rotulo: 'Espírito Santo (ES)' },
+  { valor: 'GO', rotulo: 'Goiás (GO)' },
+  { valor: 'MA', rotulo: 'Maranhão (MA)' },
+  { valor: 'MG', rotulo: 'Minas Gerais (MG)' },
+  { valor: 'MS', rotulo: 'Mato Grosso do Sul (MS)' },
+  { valor: 'MT', rotulo: 'Mato Grosso (MT)' },
+  { valor: 'PA', rotulo: 'Pará (PA)' },
+  { valor: 'PB', rotulo: 'Paraíba (PB)' },
+  { valor: 'PE', rotulo: 'Pernambuco (PE)' },
+  { valor: 'PI', rotulo: 'Piauí (PI)' },
+  { valor: 'PR', rotulo: 'Paraná (PR)' },
+  { valor: 'RJ', rotulo: 'Rio de Janeiro (RJ)' },
+  { valor: 'RN', rotulo: 'Rio Grande do Norte (RN)' },
+  { valor: 'RO', rotulo: 'Rondônia (RO)' },
+  { valor: 'RR', rotulo: 'Roraima (RR)' },
+  { valor: 'RS', rotulo: 'Rio Grande do Sul (RS)' },
+  { valor: 'SC', rotulo: 'Santa Catarina (SC)' },
+  { valor: 'SE', rotulo: 'Sergipe (SE)' },
+  { valor: 'SP', rotulo: 'São Paulo (SP)' },
+  { valor: 'TO', rotulo: 'Tocantins (TO)' },
+];
+
 const PARTIDOS = [
   { valor: 'PL', rotulo: 'PL' },
   { valor: 'PT', rotulo: 'PT' },
@@ -64,6 +98,12 @@ const PARTIDOS = [
   { valor: 'PV', rotulo: 'PV' },
   { valor: 'AVANTE', rotulo: 'Avante' },
   { valor: 'PRD', rotulo: 'PRD' },
+  { valor: 'NOVO', rotulo: 'Novo' },
+  { valor: 'PODE', rotulo: 'Podemos' },
+  { valor: 'CIDADANIA', rotulo: 'Cidadania' },
+  { valor: 'SOLIDARIEDADE', rotulo: 'Solidariedade' },
+  { valor: 'PCdoB', rotulo: 'PCdoB' },
+  { valor: 'REDE', rotulo: 'Rede' },
 ];
 
 const GENEROS = [
@@ -139,6 +179,31 @@ const ESTILOS_COMUNICACAO = [
   { valor: 'conciliador', rotulo: 'Conciliador' },
   { valor: 'didatico', rotulo: 'Didático' },
   { valor: 'assertivo', rotulo: 'Assertivo' },
+];
+
+// Bancadas Temáticas
+const BANCADAS_TEMATICAS = [
+  { valor: 'ruralista', rotulo: 'Bancada Ruralista (Agro)' },
+  { valor: 'evangelica', rotulo: 'Bancada Evangélica' },
+  { valor: 'bala', rotulo: 'Bancada da Bala (Segurança)' },
+  { valor: 'sindical', rotulo: 'Bancada Sindical' },
+  { valor: 'feminina', rotulo: 'Bancada Feminina' },
+  { valor: 'ambientalista', rotulo: 'Bancada Ambientalista' },
+  { valor: 'empresarial', rotulo: 'Bancada Empresarial' },
+  { valor: 'saude', rotulo: 'Bancada da Saúde' },
+  { valor: 'educacao', rotulo: 'Bancada da Educação' },
+  { valor: 'lgbtqia', rotulo: 'Bancada LGBTQIA+' },
+  { valor: 'indigena', rotulo: 'Bancada Indígena' },
+  { valor: 'negra', rotulo: 'Bancada Negra' },
+];
+
+// Regiões do Brasil
+const REGIOES = [
+  { valor: 'Norte', rotulo: 'Norte' },
+  { valor: 'Nordeste', rotulo: 'Nordeste' },
+  { valor: 'Centro-Oeste', rotulo: 'Centro-Oeste' },
+  { valor: 'Sudeste', rotulo: 'Sudeste' },
+  { valor: 'Sul', rotulo: 'Sul' },
 ];
 
 // Componente de grupo de filtro
@@ -313,6 +378,8 @@ export function ParlamentaresFilters({
   const contarFiltrosAtivos = useCallback(() => {
     let total = 0;
     if (filtros.busca?.length) total++;
+    if (filtros.ufs?.length) total += filtros.ufs.length;
+    if (filtros.regioes?.length) total += filtros.regioes.length;
     if (filtros.partidos?.length) total += filtros.partidos.length;
     if (filtros.generos?.length) total += filtros.generos.length;
     if (filtros.orientacoes_politicas?.length) total += filtros.orientacoes_politicas.length;
@@ -322,6 +389,7 @@ export function ParlamentaresFilters({
     if (filtros.temas_atuacao?.length) total += filtros.temas_atuacao.length;
     if (filtros.relacoes_governo?.length) total += filtros.relacoes_governo.length;
     if (filtros.estilos_comunicacao?.length) total += filtros.estilos_comunicacao.length;
+    if (filtros.bancadas_tematicas?.length) total += filtros.bancadas_tematicas.length;
     return total;
   }, [filtros]);
 
@@ -395,6 +463,14 @@ export function ParlamentaresFilters({
       {/* SEÇÃO: DADOS BÁSICOS */}
       <SecaoFiltros titulo="👤 Dados Básicos" corBorda="border-blue-500/30">
         <FiltroGrupo
+          titulo="Estado (UF)"
+          opcoes={ESTADOS_UF}
+          selecionados={filtros.ufs || []}
+          onChange={(valores) => onFiltrosChange({ ufs: valores })}
+          cor="bg-emerald-500"
+        />
+
+        <FiltroGrupo
           titulo="Partido"
           opcoes={PARTIDOS}
           selecionados={filtros.partidos || []}
@@ -451,6 +527,25 @@ export function ParlamentaresFilters({
           selecionados={filtros.relacoes_governo || []}
           onChange={(valores) => onFiltrosChange({ relacoes_governo: valores as any })}
           cor="bg-indigo-500"
+        />
+      </SecaoFiltros>
+
+      {/* SEÇÃO: BANCADAS TEMÁTICAS */}
+      <SecaoFiltros titulo="🏛️ Bancadas Temáticas" corBorda="border-orange-500/30">
+        <FiltroGrupo
+          titulo="Bancadas"
+          opcoes={BANCADAS_TEMATICAS}
+          selecionados={filtros.bancadas_tematicas || []}
+          onChange={(valores) => onFiltrosChange({ bancadas_tematicas: valores as any })}
+          cor="bg-orange-500"
+        />
+
+        <FiltroGrupo
+          titulo="Região do Brasil"
+          opcoes={REGIOES}
+          selecionados={filtros.regioes || []}
+          onChange={(valores) => onFiltrosChange({ regioes: valores })}
+          cor="bg-teal-500"
         />
       </SecaoFiltros>
 
