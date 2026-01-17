@@ -51,16 +51,29 @@ export default function TemplatesPage() {
       return;
     }
 
+    // Mapear tipo de pergunta do template para tipo de pergunta do sistema
+    const mapearTipo = (tipoTemplate: string): 'aberta' | 'escala' | 'multipla_escolha' | 'sim_nao' => {
+      const mapa: Record<string, 'aberta' | 'escala' | 'multipla_escolha' | 'sim_nao'> = {
+        'unica': 'multipla_escolha',
+        'multipla': 'multipla_escolha',
+        'aberta': 'aberta',
+        'escala': 'escala',
+        'numerica': 'escala',
+        'ranking': 'multipla_escolha',
+      };
+      return mapa[tipoTemplate] || 'aberta';
+    };
+
     // Converter perguntas do template
     const novasPerguntas: Pergunta[] = template.perguntas.map((pt) => ({
-      id: `${template.id}-${pt.id}-${Date.now()}`,
+      id: `${template.id}-${pt.codigo}-${Date.now()}`,
       texto: pt.texto,
-      tipo: pt.tipo,
+      tipo: mapearTipo(pt.tipo),
       obrigatoria: pt.obrigatoria,
-      opcoes: pt.opcoes,
-      escala_min: pt.escala_min,
-      escala_max: pt.escala_max,
-      escala_rotulos: pt.escala_rotulos,
+      opcoes: pt.opcoes?.map((op) => op.texto || op.valor) || [],
+      escala_min: pt.validacao?.min ?? 1,
+      escala_max: pt.validacao?.max ?? 10,
+      escala_rotulos: undefined,
     }));
 
     setPerguntasSelecionadas((prev) => [...prev, ...novasPerguntas]);

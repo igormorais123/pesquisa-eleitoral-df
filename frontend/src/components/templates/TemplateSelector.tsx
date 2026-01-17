@@ -135,16 +135,29 @@ export function TemplateSelector({
     return IconComponent;
   };
 
+  // Mapear tipo de pergunta do template para tipo de pergunta do sistema
+  const mapearTipo = (tipoTemplate: string): 'aberta' | 'escala' | 'multipla_escolha' | 'sim_nao' => {
+    const mapa: Record<string, 'aberta' | 'escala' | 'multipla_escolha' | 'sim_nao'> = {
+      'unica': 'multipla_escolha',
+      'multipla': 'multipla_escolha',
+      'aberta': 'aberta',
+      'escala': 'escala',
+      'numerica': 'escala',
+      'ranking': 'multipla_escolha',
+    };
+    return mapa[tipoTemplate] || 'aberta';
+  };
+
   // Converter PerguntaTemplate para Pergunta
   const converterParaPergunta = (pt: PerguntaTemplate): Pergunta => ({
-    id: `imported-${pt.id}-${Date.now()}`,
+    id: `imported-${pt.codigo}-${Date.now()}`,
     texto: pt.texto,
-    tipo: pt.tipo,
+    tipo: mapearTipo(pt.tipo),
     obrigatoria: pt.obrigatoria,
-    opcoes: pt.opcoes,
-    escala_min: pt.escala_min,
-    escala_max: pt.escala_max,
-    escala_rotulos: pt.escala_rotulos,
+    opcoes: pt.opcoes?.map((op) => op.texto || op.valor) || [],
+    escala_min: pt.validacao?.min,
+    escala_max: pt.validacao?.max,
+    escala_rotulos: undefined,
   });
 
   // Selecionar template completo
@@ -175,7 +188,7 @@ export function TemplateSelector({
     if (!templatePreview || perguntasSelecionadas.length === 0) return;
 
     const perguntasParaImportar = templatePreview.perguntas
-      .filter((p) => perguntasSelecionadas.includes(p.id))
+      .filter((p) => perguntasSelecionadas.includes(p.codigo))
       .map(converterParaPergunta);
 
     if (onSelectPerguntas) {
@@ -191,7 +204,7 @@ export function TemplateSelector({
   // Selecionar todas as perguntas do template
   const selecionarTodas = () => {
     if (!templatePreview) return;
-    setPerguntasSelecionadas(templatePreview.perguntas.map((p) => p.id));
+    setPerguntasSelecionadas(templatePreview.perguntas.map((p) => p.codigo));
   };
 
   // Limpar seleção

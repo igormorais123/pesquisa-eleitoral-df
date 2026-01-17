@@ -844,9 +844,9 @@ export default function PaginaResultadoDetalhe() {
                 pergunta: resp.pergunta_id,
                 eleitorId: r.eleitor_id,
                 eleitorNome: r.eleitor_nome,
-                regiao: r.eleitor_perfil?.regiao_administrativa,
-                orientacao: r.eleitor_perfil?.orientacao_politica,
-                cluster: r.eleitor_perfil?.cluster_socioeconomico,
+                regiao: undefined,
+                orientacao: undefined,
+                cluster: undefined,
               }))
             )}
             relatorioTexto={relatorio?.conclusaoAnalitica || ''}
