@@ -1,0 +1,510 @@
+{
+  "metadados": {
+    "versao": "1.0.0",
+    "data_criacao": "2026-01-17",
+    "descricao": "Dados geográficos das 33 Regiões Administrativas do Distrito Federal",
+    "fonte": "CODEPLAN/PDAD 2021-2023, IBGE 2022",
+    "total_regioes": 33,
+    "populacao_total_estimada": 3055149
+  },
+  "regioes": [
+    {
+      "codigo": "RA-I",
+      "nome": "Brasília",
+      "sigla": "BSB",
+      "populacao_estimada": 225369,
+      "zona_eleitoral": [1, 2, 3, 4],
+      "coordenadas": {
+        "latitude": -15.7942,
+        "longitude": -47.8822
+      },
+      "cluster_predominante": "G1_alta",
+      "renda_media_sm": 12.5,
+      "caracteristicas": ["Plano Piloto", "Centro administrativo", "Alta renda", "Servidores públicos", "Comércio de luxo"]
+    },
+    {
+      "codigo": "RA-II",
+      "nome": "Gama",
+      "sigla": "GAM",
+      "populacao_estimada": 132466,
+      "zona_eleitoral": [5, 6],
+      "coordenadas": {
+        "latitude": -16.0167,
+        "longitude": -48.0667
+      },
+      "cluster_predominante": "G3_media_baixa",
+      "renda_media_sm": 4.2,
+      "caracteristicas": ["Cidade satélite antiga", "Comércio local forte", "Classe média trabalhadora"]
+    },
+    {
+      "codigo": "RA-III",
+      "nome": "Taguatinga",
+      "sigla": "TAG",
+      "populacao_estimada": 210492,
+      "zona_eleitoral": [7, 8, 9],
+      "coordenadas": {
+        "latitude": -15.8333,
+        "longitude": -48.05
+      },
+      "cluster_predominante": "G2_media_alta",
+      "renda_media_sm": 6.8,
+      "caracteristicas": ["Centro comercial regional", "Classe média consolidada", "Infraestrutura completa"]
+    },
+    {
+      "codigo": "RA-IV",
+      "nome": "Brazlândia",
+      "sigla": "BRA",
+      "populacao_estimada": 52287,
+      "zona_eleitoral": [10],
+      "coordenadas": {
+        "latitude": -15.6833,
+        "longitude": -48.2
+      },
+      "cluster_predominante": "G4_baixa",
+      "renda_media_sm": 2.8,
+      "caracteristicas": ["Rural", "Agricultura familiar", "Morango", "Isolamento geográfico"]
+    },
+    {
+      "codigo": "RA-V",
+      "nome": "Sobradinho",
+      "sigla": "SOB",
+      "populacao_estimada": 68551,
+      "zona_eleitoral": [11],
+      "coordenadas": {
+        "latitude": -15.65,
+        "longitude": -47.7833
+      },
+      "cluster_predominante": "G2_media_alta",
+      "renda_media_sm": 5.9,
+      "caracteristicas": ["Condomínios fechados", "Classe média", "Próximo ao Plano Piloto"]
+    },
+    {
+      "codigo": "RA-VI",
+      "nome": "Planaltina",
+      "sigla": "PLA",
+      "populacao_estimada": 195616,
+      "zona_eleitoral": [12, 13],
+      "coordenadas": {
+        "latitude": -15.6167,
+        "longitude": -47.65
+      },
+      "cluster_predominante": "G4_baixa",
+      "renda_media_sm": 2.5,
+      "caracteristicas": ["Cidade antiga", "Expansão urbana", "Carente de infraestrutura", "Grande população"]
+    },
+    {
+      "codigo": "RA-VII",
+      "nome": "Paranoá",
+      "sigla": "PAR",
+      "populacao_estimada": 51068,
+      "zona_eleitoral": [14],
+      "coordenadas": {
+        "latitude": -15.7833,
+        "longitude": -47.7667
+      },
+      "cluster_predominante": "G3_media_baixa",
+      "renda_media_sm": 3.4,
+      "caracteristicas": ["Lago Paranoá", "Trabalhadores do Plano Piloto", "Em desenvolvimento"]
+    },
+    {
+      "codigo": "RA-VIII",
+      "nome": "Núcleo Bandeirante",
+      "sigla": "NUB",
+      "populacao_estimada": 25072,
+      "zona_eleitoral": [15],
+      "coordenadas": {
+        "latitude": -15.8667,
+        "longitude": -47.9667
+      },
+      "cluster_predominante": "G2_media_alta",
+      "renda_media_sm": 5.6,
+      "caracteristicas": ["Cidade livre histórica", "Comércio tradicional", "Classe média"]
+    },
+    {
+      "codigo": "RA-IX",
+      "nome": "Ceilândia",
+      "sigla": "CEI",
+      "populacao_estimada": 432927,
+      "zona_eleitoral": [16, 17, 18, 19, 20],
+      "coordenadas": {
+        "latitude": -15.8167,
+        "longitude": -48.1167
+      },
+      "cluster_predominante": "G3_media_baixa",
+      "renda_media_sm": 3.1,
+      "caracteristicas": ["Maior população do DF", "Nordestinos", "Comércio popular", "Cultura diversa", "Classe trabalhadora"]
+    },
+    {
+      "codigo": "RA-X",
+      "nome": "Guará",
+      "sigla": "GUA",
+      "populacao_estimada": 119923,
+      "zona_eleitoral": [21, 22],
+      "coordenadas": {
+        "latitude": -15.8333,
+        "longitude": -47.9833
+      },
+      "cluster_predominante": "G2_media_alta",
+      "renda_media_sm": 7.2,
+      "caracteristicas": ["Próximo ao centro", "Classe média alta", "Servidores públicos", "Feira do Guará"]
+    },
+    {
+      "codigo": "RA-XI",
+      "nome": "Cruzeiro",
+      "sigla": "CRU",
+      "populacao_estimada": 31230,
+      "zona_eleitoral": [23],
+      "coordenadas": {
+        "latitude": -15.7833,
+        "longitude": -47.9333
+      },
+      "cluster_predominante": "G1_alta",
+      "renda_media_sm": 9.8,
+      "caracteristicas": ["Setor de funcionários públicos", "Alta renda", "Próximo ao centro"]
+    },
+    {
+      "codigo": "RA-XII",
+      "nome": "Samambaia",
+      "sigla": "SAM",
+      "populacao_estimada": 254439,
+      "zona_eleitoral": [24, 25, 26],
+      "coordenadas": {
+        "latitude": -15.8833,
+        "longitude": -48.0833
+      },
+      "cluster_predominante": "G3_media_baixa",
+      "renda_media_sm": 3.3,
+      "caracteristicas": ["Grande população", "Expansão recente", "Comércio crescente", "Classe trabalhadora"]
+    },
+    {
+      "codigo": "RA-XIII",
+      "nome": "Santa Maria",
+      "sigla": "STM",
+      "populacao_estimada": 135723,
+      "zona_eleitoral": [27, 28],
+      "coordenadas": {
+        "latitude": -16.0167,
+        "longitude": -48.0167
+      },
+      "cluster_predominante": "G4_baixa",
+      "renda_media_sm": 2.6,
+      "caracteristicas": ["Cidade dormitório", "Baixa renda", "Crescimento rápido", "Carente de serviços"]
+    },
+    {
+      "codigo": "RA-XIV",
+      "nome": "São Sebastião",
+      "sigla": "SSB",
+      "populacao_estimada": 115256,
+      "zona_eleitoral": [29],
+      "coordenadas": {
+        "latitude": -15.9,
+        "longitude": -47.7667
+      },
+      "cluster_predominante": "G3_media_baixa",
+      "renda_media_sm": 3.5,
+      "caracteristicas": ["Cerâmicas", "Trabalhadores do Plano Piloto", "Crescimento desordenado"]
+    },
+    {
+      "codigo": "RA-XV",
+      "nome": "Recanto das Emas",
+      "sigla": "RCE",
+      "populacao_estimada": 145304,
+      "zona_eleitoral": [30],
+      "coordenadas": {
+        "latitude": -15.9167,
+        "longitude": -48.0667
+      },
+      "cluster_predominante": "G4_baixa",
+      "renda_media_sm": 2.4,
+      "caracteristicas": ["Baixa renda", "Jovem", "Periferia", "Problemas sociais"]
+    },
+    {
+      "codigo": "RA-XVI",
+      "nome": "Lago Sul",
+      "sigla": "LSU",
+      "populacao_estimada": 29754,
+      "zona_eleitoral": [31],
+      "coordenadas": {
+        "latitude": -15.85,
+        "longitude": -47.8667
+      },
+      "cluster_predominante": "G1_alta",
+      "renda_media_sm": 25.3,
+      "caracteristicas": ["Maior renda do DF", "Mansões", "Embaixadas", "Elite política e empresarial"]
+    },
+    {
+      "codigo": "RA-XVII",
+      "nome": "Riacho Fundo",
+      "sigla": "RFU",
+      "populacao_estimada": 41410,
+      "zona_eleitoral": [32],
+      "coordenadas": {
+        "latitude": -15.8833,
+        "longitude": -48.0167
+      },
+      "cluster_predominante": "G3_media_baixa",
+      "renda_media_sm": 4.1,
+      "caracteristicas": ["Classe média baixa", "Comércio local", "Próximo a Taguatinga"]
+    },
+    {
+      "codigo": "RA-XVIII",
+      "nome": "Lago Norte",
+      "sigla": "LNO",
+      "populacao_estimada": 35254,
+      "zona_eleitoral": [33],
+      "coordenadas": {
+        "latitude": -15.7333,
+        "longitude": -47.85
+      },
+      "cluster_predominante": "G1_alta",
+      "renda_media_sm": 18.7,
+      "caracteristicas": ["Alta renda", "Condomínios fechados", "Diplomatas", "Empresários"]
+    },
+    {
+      "codigo": "RA-XIX",
+      "nome": "Candangolândia",
+      "sigla": "CAN",
+      "populacao_estimada": 16848,
+      "zona_eleitoral": [34],
+      "coordenadas": {
+        "latitude": -15.85,
+        "longitude": -47.95
+      },
+      "cluster_predominante": "G2_media_alta",
+      "renda_media_sm": 5.4,
+      "caracteristicas": ["Primeira cidade satélite", "Histórica", "Classe média"]
+    },
+    {
+      "codigo": "RA-XX",
+      "nome": "Águas Claras",
+      "sigla": "AGC",
+      "populacao_estimada": 161184,
+      "zona_eleitoral": [35, 36],
+      "coordenadas": {
+        "latitude": -15.8333,
+        "longitude": -48.0167
+      },
+      "cluster_predominante": "G2_media_alta",
+      "renda_media_sm": 8.9,
+      "caracteristicas": ["Verticalização", "Jovens profissionais", "Metrô", "Crescimento acelerado", "Classe média alta"]
+    },
+    {
+      "codigo": "RA-XXI",
+      "nome": "Riacho Fundo II",
+      "sigla": "RF2",
+      "populacao_estimada": 54957,
+      "zona_eleitoral": [37],
+      "coordenadas": {
+        "latitude": -15.9,
+        "longitude": -48.05
+      },
+      "cluster_predominante": "G3_media_baixa",
+      "renda_media_sm": 3.2,
+      "caracteristicas": ["Expansão do Riacho Fundo", "Classe trabalhadora", "Jovem"]
+    },
+    {
+      "codigo": "RA-XXII",
+      "nome": "Sudoeste/Octogonal",
+      "sigla": "SDO",
+      "populacao_estimada": 57377,
+      "zona_eleitoral": [38],
+      "coordenadas": {
+        "latitude": -15.8,
+        "longitude": -47.9167
+      },
+      "cluster_predominante": "G1_alta",
+      "renda_media_sm": 15.6,
+      "caracteristicas": ["Alta renda", "Servidores públicos graduados", "Comércio sofisticado"]
+    },
+    {
+      "codigo": "RA-XXIII",
+      "nome": "Varjão",
+      "sigla": "VAR",
+      "populacao_estimada": 9292,
+      "zona_eleitoral": [39],
+      "coordenadas": {
+        "latitude": -15.7167,
+        "longitude": -47.8667
+      },
+      "cluster_predominante": "G4_baixa",
+      "renda_media_sm": 2.1,
+      "caracteristicas": ["Menor RA", "Baixa renda", "Invasão regularizada", "Próximo ao Lago Norte"]
+    },
+    {
+      "codigo": "RA-XXIV",
+      "nome": "Park Way",
+      "sigla": "PKW",
+      "populacao_estimada": 20511,
+      "zona_eleitoral": [40],
+      "coordenadas": {
+        "latitude": -15.9,
+        "longitude": -47.95
+      },
+      "cluster_predominante": "G1_alta",
+      "renda_media_sm": 16.2,
+      "caracteristicas": ["Chácaras", "Alta renda", "Residencial exclusivo", "Grandes lotes"]
+    },
+    {
+      "codigo": "RA-XXV",
+      "nome": "SCIA/Estrutural",
+      "sigla": "EST",
+      "populacao_estimada": 39015,
+      "zona_eleitoral": [41],
+      "coordenadas": {
+        "latitude": -15.7833,
+        "longitude": -47.9833
+      },
+      "cluster_predominante": "G4_baixa",
+      "renda_media_sm": 1.8,
+      "caracteristicas": ["Menor renda do DF", "Lixão", "Vulnerabilidade social", "Catadores"]
+    },
+    {
+      "codigo": "RA-XXVI",
+      "nome": "Sobradinho II",
+      "sigla": "SO2",
+      "populacao_estimada": 100775,
+      "zona_eleitoral": [42],
+      "coordenadas": {
+        "latitude": -15.6333,
+        "longitude": -47.8
+      },
+      "cluster_predominante": "G3_media_baixa",
+      "renda_media_sm": 4.0,
+      "caracteristicas": ["Expansão de Sobradinho", "Classe média baixa", "Condomínios"]
+    },
+    {
+      "codigo": "RA-XXVII",
+      "nome": "Jardim Botânico",
+      "sigla": "JBT",
+      "populacao_estimada": 27364,
+      "zona_eleitoral": [43],
+      "coordenadas": {
+        "latitude": -15.8667,
+        "longitude": -47.8
+      },
+      "cluster_predominante": "G1_alta",
+      "renda_media_sm": 14.5,
+      "caracteristicas": ["Condomínios fechados", "Alta renda", "Área verde", "Exclusivo"]
+    },
+    {
+      "codigo": "RA-XXVIII",
+      "nome": "Itapoã",
+      "sigla": "ITA",
+      "populacao_estimada": 68587,
+      "zona_eleitoral": [44],
+      "coordenadas": {
+        "latitude": -15.7667,
+        "longitude": -47.7667
+      },
+      "cluster_predominante": "G4_baixa",
+      "renda_media_sm": 2.3,
+      "caracteristicas": ["Invasão regularizada", "Baixa renda", "Jovem", "Próximo ao Paranoá"]
+    },
+    {
+      "codigo": "RA-XXIX",
+      "nome": "SIA",
+      "sigla": "SIA",
+      "populacao_estimada": 1899,
+      "zona_eleitoral": [45],
+      "coordenadas": {
+        "latitude": -15.8167,
+        "longitude": -47.9667
+      },
+      "cluster_predominante": "G2_media_alta",
+      "renda_media_sm": 6.5,
+      "caracteristicas": ["Setor industrial", "Comércio atacadista", "Pouca população residente"]
+    },
+    {
+      "codigo": "RA-XXX",
+      "nome": "Vicente Pires",
+      "sigla": "VIP",
+      "populacao_estimada": 72879,
+      "zona_eleitoral": [46],
+      "coordenadas": {
+        "latitude": -15.8,
+        "longitude": -48.0333
+      },
+      "cluster_predominante": "G2_media_alta",
+      "renda_media_sm": 7.8,
+      "caracteristicas": ["Chácaras urbanizadas", "Classe média alta", "Condomínios", "Crescimento recente"]
+    },
+    {
+      "codigo": "RA-XXXI",
+      "nome": "Fercal",
+      "sigla": "FER",
+      "populacao_estimada": 8746,
+      "zona_eleitoral": [47],
+      "coordenadas": {
+        "latitude": -15.6,
+        "longitude": -47.8833
+      },
+      "cluster_predominante": "G4_baixa",
+      "renda_media_sm": 2.0,
+      "caracteristicas": ["Rural", "Fábricas de cimento", "Isolamento", "Baixa renda"]
+    },
+    {
+      "codigo": "RA-XXXII",
+      "nome": "Sol Nascente/Pôr do Sol",
+      "sigla": "SNS",
+      "populacao_estimada": 87126,
+      "zona_eleitoral": [48],
+      "coordenadas": {
+        "latitude": -15.8333,
+        "longitude": -48.1333
+      },
+      "cluster_predominante": "G4_baixa",
+      "renda_media_sm": 1.9,
+      "caracteristicas": ["Segunda maior favela do Brasil", "Baixíssima renda", "Invasão", "Vulnerabilidade extrema", "Jovem"]
+    },
+    {
+      "codigo": "RA-XXXIII",
+      "nome": "Arniqueira",
+      "sigla": "ARN",
+      "populacao_estimada": 25637,
+      "zona_eleitoral": [49],
+      "coordenadas": {
+        "latitude": -15.8667,
+        "longitude": -48.0333
+      },
+      "cluster_predominante": "G2_media_alta",
+      "renda_media_sm": 6.1,
+      "caracteristicas": ["Desmembrada de Águas Claras", "Chácaras", "Classe média", "Recente"]
+    }
+  ],
+  "clusters_socioeconomicos": {
+    "G1_alta": {
+      "nome": "Alta Renda",
+      "cor": "#10B981",
+      "renda_minima_sm": 10,
+      "caracteristicas": ["Ensino superior", "Servidores públicos de alto escalão", "Empresários", "Profissionais liberais"],
+      "regioes": ["Brasília", "Lago Sul", "Lago Norte", "Park Way", "Sudoeste/Octogonal", "Cruzeiro", "Jardim Botânico"]
+    },
+    "G2_media_alta": {
+      "nome": "Média-Alta",
+      "cor": "#3B82F6",
+      "renda_minima_sm": 5,
+      "caracteristicas": ["Ensino superior ou técnico", "Servidores públicos", "Profissionais qualificados"],
+      "regioes": ["Taguatinga", "Guará", "Águas Claras", "Sobradinho", "Núcleo Bandeirante", "Vicente Pires", "Candangolândia", "Arniqueira"]
+    },
+    "G3_media_baixa": {
+      "nome": "Média-Baixa",
+      "cor": "#F59E0B",
+      "renda_minima_sm": 2.5,
+      "caracteristicas": ["Ensino médio", "Trabalhadores formais", "Pequenos comerciantes"],
+      "regioes": ["Ceilândia", "Samambaia", "Gama", "Riacho Fundo", "Riacho Fundo II", "Sobradinho II", "São Sebastião", "Paranoá"]
+    },
+    "G4_baixa": {
+      "nome": "Baixa Renda",
+      "cor": "#EF4444",
+      "renda_minima_sm": 0,
+      "caracteristicas": ["Ensino fundamental", "Trabalhadores informais", "Beneficiários de programas sociais"],
+      "regioes": ["Planaltina", "Santa Maria", "Recanto das Emas", "Itapoã", "Estrutural", "Sol Nascente/Pôr do Sol", "Varjão", "Brazlândia", "Fercal"]
+    }
+  },
+  "zonas_eleitorais_por_cluster": {
+    "G1_alta": [1, 2, 3, 4, 23, 31, 33, 38, 40, 43],
+    "G2_media_alta": [7, 8, 9, 11, 15, 21, 22, 34, 35, 36, 46, 49],
+    "G3_media_baixa": [5, 6, 14, 16, 17, 18, 19, 20, 24, 25, 26, 29, 32, 37, 42],
+    "G4_baixa": [10, 12, 13, 27, 28, 30, 39, 41, 44, 47, 48]
+  }
+}

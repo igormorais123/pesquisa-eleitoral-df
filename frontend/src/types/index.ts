@@ -976,3 +976,101 @@ export interface ResultadoAnaliseRejeicao {
   total_eleitores_analisados: number;
   executado_em: string;
 }
+
+// ============================================
+// TEMPLATES DE PERGUNTAS ELEITORAIS
+// ============================================
+
+export type CategoriaTemplate =
+  | 'intencao_voto'
+  | 'rejeicao'
+  | 'avaliacao'
+  | 'temas'
+  | 'perfil'
+  | 'conhecimento'
+  | 'completa';
+
+export interface PerguntaTemplate {
+  id: string;
+  texto: string;
+  tipo: TipoPergunta;
+  obrigatoria: boolean;
+  opcoes?: string[];
+  opcoes_dinamicas?: boolean;
+  multipla_selecao?: boolean;
+  incluir_opcoes_extras?: string[];
+  limite_opcoes?: number;
+  escala_min?: number;
+  escala_max?: number;
+  escala_rotulos?: string[];
+}
+
+export interface TemplatePerguntas {
+  id: string;
+  nome: string;
+  descricao: string;
+  categoria: CategoriaTemplate;
+  cargo?: CargoPretendido | null;
+  icone: string;
+  cor: string;
+  perguntas: PerguntaTemplate[];
+}
+
+export interface CategoriaTemplateInfo {
+  id: CategoriaTemplate;
+  nome: string;
+  descricao: string;
+}
+
+export interface TemplatesData {
+  metadados: {
+    versao: string;
+    data_criacao: string;
+    descricao: string;
+    total_templates: number;
+    total_perguntas: number;
+  };
+  templates: TemplatePerguntas[];
+  categorias: CategoriaTemplateInfo[];
+}
+
+// ============================================
+// MAPA DE CALOR - REGIÕES ADMINISTRATIVAS
+// ============================================
+
+export interface DadosRegiaoAdministrativa {
+  codigo: string;
+  nome: string;
+  sigla: string;
+  populacao_estimada: number;
+  zona_eleitoral: number[];
+  coordenadas: {
+    latitude: number;
+    longitude: number;
+  };
+  cluster_predominante: ClusterSocioeconomico;
+  caracteristicas: string[];
+}
+
+export interface DadosMapaCalor {
+  regiao: string;
+  valor: number;
+  percentual: number;
+  candidato_lider?: string;
+  candidato_lider_percentual?: number;
+  total_eleitores: number;
+  detalhes?: Record<string, number>;
+}
+
+export interface ResultadoMapaCalor {
+  tipo: 'intencao_voto' | 'rejeicao' | 'avaliacao' | 'comparativo';
+  dados: DadosMapaCalor[];
+  legenda: {
+    titulo: string;
+    min: number;
+    max: number;
+    unidade: string;
+  };
+  filtros_aplicados: Record<string, any>;
+  executado_em: string;
+}

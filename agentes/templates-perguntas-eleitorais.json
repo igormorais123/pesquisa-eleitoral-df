@@ -1,0 +1,395 @@
+{
+  "metadados": {
+    "versao": "1.0.0",
+    "data_criacao": "2026-01-17",
+    "descricao": "Templates de perguntas para pesquisas eleitorais do DF 2026",
+    "total_templates": 8,
+    "total_perguntas": 45
+  },
+  "templates": [
+    {
+      "id": "intenção-voto-governador",
+      "nome": "Intenção de Voto - Governador",
+      "descricao": "Perguntas para medir intenção de voto na disputa para Governador do DF",
+      "categoria": "intencao_voto",
+      "cargo": "governador",
+      "icone": "vote",
+      "cor": "#3B82F6",
+      "perguntas": [
+        {
+          "id": "iv-gov-1",
+          "texto": "Se a eleição para Governador do DF fosse hoje, em qual destes candidatos você votaria?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes_dinamicas": true,
+          "incluir_opcoes_extras": ["Não sei / Indeciso", "Branco / Nulo", "Não pretendo votar"]
+        },
+        {
+          "id": "iv-gov-2",
+          "texto": "Em uma escala de 0 a 10, qual a probabilidade de você mudar seu voto até o dia da eleição?",
+          "tipo": "escala",
+          "obrigatoria": true,
+          "escala_min": 0,
+          "escala_max": 10,
+          "escala_rotulos": ["Não mudaria de jeito nenhum", "Poderia mudar facilmente"]
+        },
+        {
+          "id": "iv-gov-3",
+          "texto": "Qual o principal motivo da sua escolha de voto?",
+          "tipo": "aberta",
+          "obrigatoria": true
+        },
+        {
+          "id": "iv-gov-4",
+          "texto": "Você já votou neste candidato em eleições anteriores?",
+          "tipo": "sim_nao",
+          "obrigatoria": false
+        }
+      ]
+    },
+    {
+      "id": "rejeicao-candidatos",
+      "nome": "Rejeição de Candidatos",
+      "descricao": "Perguntas para medir a rejeição aos candidatos",
+      "categoria": "rejeicao",
+      "cargo": null,
+      "icone": "thumbs-down",
+      "cor": "#EF4444",
+      "perguntas": [
+        {
+          "id": "rej-1",
+          "texto": "Em quais destes candidatos você NÃO votaria de jeito nenhum?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes_dinamicas": true,
+          "multipla_selecao": true,
+          "incluir_opcoes_extras": ["Votaria em qualquer um", "Não conheço nenhum"]
+        },
+        {
+          "id": "rej-2",
+          "texto": "Qual o principal motivo da sua rejeição ao candidato mais rejeitado?",
+          "tipo": "aberta",
+          "obrigatoria": true
+        },
+        {
+          "id": "rej-3",
+          "texto": "Se seu candidato preferido não estivesse concorrendo, você votaria em branco/nulo ou escolheria outro?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes": ["Votaria em outro candidato", "Votaria em branco/nulo", "Não iria votar", "Não sei"]
+        }
+      ]
+    },
+    {
+      "id": "avaliacao-governo-atual",
+      "nome": "Avaliação do Governo Atual",
+      "descricao": "Perguntas para avaliar a gestão atual do governo do DF",
+      "categoria": "avaliacao",
+      "cargo": "governador",
+      "icone": "clipboard-check",
+      "cor": "#10B981",
+      "perguntas": [
+        {
+          "id": "aval-1",
+          "texto": "Como você avalia o governo atual do Distrito Federal?",
+          "tipo": "escala",
+          "obrigatoria": true,
+          "escala_min": 1,
+          "escala_max": 5,
+          "escala_rotulos": ["Péssimo", "Ruim", "Regular", "Bom", "Ótimo"]
+        },
+        {
+          "id": "aval-2",
+          "texto": "Qual área do governo você considera que teve melhor desempenho?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes": ["Saúde", "Educação", "Segurança", "Transporte", "Infraestrutura", "Assistência Social", "Economia/Emprego", "Nenhuma"]
+        },
+        {
+          "id": "aval-3",
+          "texto": "Qual área do governo você considera que teve pior desempenho?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes": ["Saúde", "Educação", "Segurança", "Transporte", "Infraestrutura", "Assistência Social", "Economia/Emprego", "Nenhuma"]
+        },
+        {
+          "id": "aval-4",
+          "texto": "Você gostaria que o próximo governador desse continuidade ou mudasse as políticas atuais?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes": ["Continuidade total", "Continuidade com ajustes", "Mudança moderada", "Mudança radical"]
+        },
+        {
+          "id": "aval-5",
+          "texto": "O que você espera do próximo governo do DF?",
+          "tipo": "aberta",
+          "obrigatoria": false
+        }
+      ]
+    },
+    {
+      "id": "temas-prioritarios",
+      "nome": "Temas Prioritários",
+      "descricao": "Identificar as principais preocupações e prioridades dos eleitores",
+      "categoria": "temas",
+      "cargo": null,
+      "icone": "list-ordered",
+      "cor": "#8B5CF6",
+      "perguntas": [
+        {
+          "id": "tema-1",
+          "texto": "Qual o tema mais importante para você nesta eleição?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes": ["Saúde", "Educação", "Segurança Pública", "Emprego e Economia", "Transporte Público", "Moradia", "Meio Ambiente", "Corrupção", "Outro"]
+        },
+        {
+          "id": "tema-2",
+          "texto": "Como você avalia a situação da SAÚDE no DF?",
+          "tipo": "escala",
+          "obrigatoria": true,
+          "escala_min": 1,
+          "escala_max": 5,
+          "escala_rotulos": ["Péssima", "Ruim", "Regular", "Boa", "Ótima"]
+        },
+        {
+          "id": "tema-3",
+          "texto": "Como você avalia a situação da SEGURANÇA no DF?",
+          "tipo": "escala",
+          "obrigatoria": true,
+          "escala_min": 1,
+          "escala_max": 5,
+          "escala_rotulos": ["Péssima", "Ruim", "Regular", "Boa", "Ótima"]
+        },
+        {
+          "id": "tema-4",
+          "texto": "Como você avalia a situação do TRANSPORTE PÚBLICO no DF?",
+          "tipo": "escala",
+          "obrigatoria": true,
+          "escala_min": 1,
+          "escala_max": 5,
+          "escala_rotulos": ["Péssimo", "Ruim", "Regular", "Bom", "Ótimo"]
+        },
+        {
+          "id": "tema-5",
+          "texto": "Qual proposta você mais gostaria de ver implementada pelo próximo governo?",
+          "tipo": "aberta",
+          "obrigatoria": true
+        }
+      ]
+    },
+    {
+      "id": "segundo-turno",
+      "nome": "Simulação de Segundo Turno",
+      "descricao": "Perguntas para simular cenários de segundo turno",
+      "categoria": "intencao_voto",
+      "cargo": "governador",
+      "icone": "repeat",
+      "cor": "#F59E0B",
+      "perguntas": [
+        {
+          "id": "2t-1",
+          "texto": "Em um segundo turno entre os dois candidatos mais votados, em quem você votaria?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes_dinamicas": true,
+          "limite_opcoes": 2,
+          "incluir_opcoes_extras": ["Branco/Nulo", "Não iria votar", "Não sei"]
+        },
+        {
+          "id": "2t-2",
+          "texto": "Se seu candidato preferido não chegasse ao segundo turno, para quem você transferiria seu voto?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes_dinamicas": true,
+          "incluir_opcoes_extras": ["Votaria em branco/nulo", "Não sei ainda"]
+        },
+        {
+          "id": "2t-3",
+          "texto": "Qual fator seria mais importante na sua decisão de voto no segundo turno?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes": ["Rejeitar o adversário", "Propostas do candidato", "Partido político", "Apoios recebidos", "Histórico do candidato"]
+        }
+      ]
+    },
+    {
+      "id": "perfil-eleitor",
+      "nome": "Perfil do Eleitor",
+      "descricao": "Perguntas para entender o perfil político e comportamental do eleitor",
+      "categoria": "perfil",
+      "cargo": null,
+      "icone": "user",
+      "cor": "#06B6D4",
+      "perguntas": [
+        {
+          "id": "perf-1",
+          "texto": "Como você se posiciona politicamente?",
+          "tipo": "escala",
+          "obrigatoria": true,
+          "escala_min": 1,
+          "escala_max": 7,
+          "escala_rotulos": ["Esquerda", "", "", "Centro", "", "", "Direita"]
+        },
+        {
+          "id": "perf-2",
+          "texto": "Você costuma acompanhar notícias sobre política?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes": ["Diariamente", "Algumas vezes por semana", "Raramente", "Nunca"]
+        },
+        {
+          "id": "perf-3",
+          "texto": "Qual sua principal fonte de informação sobre política?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes": ["TV", "Rádio", "Jornais/Revistas", "Sites de notícias", "Redes sociais", "Conversas com amigos/família", "Não me informo"]
+        },
+        {
+          "id": "perf-4",
+          "texto": "Você já mudou de voto após assistir a um debate eleitoral?",
+          "tipo": "sim_nao",
+          "obrigatoria": false
+        },
+        {
+          "id": "perf-5",
+          "texto": "A religião influencia suas decisões de voto?",
+          "tipo": "escala",
+          "obrigatoria": true,
+          "escala_min": 1,
+          "escala_max": 5,
+          "escala_rotulos": ["Não influencia", "", "Influencia moderadamente", "", "Influencia muito"]
+        }
+      ]
+    },
+    {
+      "id": "conhecimento-candidatos",
+      "nome": "Conhecimento dos Candidatos",
+      "descricao": "Medir o grau de conhecimento sobre os candidatos",
+      "categoria": "conhecimento",
+      "cargo": null,
+      "icone": "search",
+      "cor": "#EC4899",
+      "perguntas": [
+        {
+          "id": "conh-1",
+          "texto": "Quais destes candidatos você conhece ou já ouviu falar?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes_dinamicas": true,
+          "multipla_selecao": true,
+          "incluir_opcoes_extras": ["Não conheço nenhum"]
+        },
+        {
+          "id": "conh-2",
+          "texto": "Sobre qual candidato você gostaria de saber mais?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": false,
+          "opcoes_dinamicas": true,
+          "incluir_opcoes_extras": ["Nenhum, já me decidi", "Já conheço todos o suficiente"]
+        },
+        {
+          "id": "conh-3",
+          "texto": "O que você sabe sobre as propostas do seu candidato preferido?",
+          "tipo": "aberta",
+          "obrigatoria": false
+        }
+      ]
+    },
+    {
+      "id": "pesquisa-completa",
+      "nome": "Pesquisa Eleitoral Completa",
+      "descricao": "Conjunto completo de perguntas para uma pesquisa eleitoral abrangente",
+      "categoria": "completa",
+      "cargo": "governador",
+      "icone": "file-text",
+      "cor": "#6366F1",
+      "perguntas": [
+        {
+          "id": "comp-1",
+          "texto": "Se a eleição para Governador do DF fosse hoje, em qual destes candidatos você votaria?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes_dinamicas": true,
+          "incluir_opcoes_extras": ["Não sei / Indeciso", "Branco / Nulo"]
+        },
+        {
+          "id": "comp-2",
+          "texto": "Em quais destes candidatos você NÃO votaria de jeito nenhum?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes_dinamicas": true,
+          "multipla_selecao": true
+        },
+        {
+          "id": "comp-3",
+          "texto": "Como você avalia o governo atual do DF?",
+          "tipo": "escala",
+          "obrigatoria": true,
+          "escala_min": 1,
+          "escala_max": 5,
+          "escala_rotulos": ["Péssimo", "Ruim", "Regular", "Bom", "Ótimo"]
+        },
+        {
+          "id": "comp-4",
+          "texto": "Qual o tema mais importante para você nesta eleição?",
+          "tipo": "multipla_escolha",
+          "obrigatoria": true,
+          "opcoes": ["Saúde", "Educação", "Segurança", "Emprego", "Transporte", "Moradia", "Corrupção"]
+        },
+        {
+          "id": "comp-5",
+          "texto": "Qual a probabilidade de você mudar seu voto até a eleição?",
+          "tipo": "escala",
+          "obrigatoria": true,
+          "escala_min": 0,
+          "escala_max": 10,
+          "escala_rotulos": ["Nenhuma", "Muito alta"]
+        },
+        {
+          "id": "comp-6",
+          "texto": "O que você espera do próximo governador do DF?",
+          "tipo": "aberta",
+          "obrigatoria": true
+        }
+      ]
+    }
+  ],
+  "categorias": [
+    {
+      "id": "intencao_voto",
+      "nome": "Intenção de Voto",
+      "descricao": "Perguntas sobre escolha de candidatos"
+    },
+    {
+      "id": "rejeicao",
+      "nome": "Rejeição",
+      "descricao": "Perguntas sobre candidatos rejeitados"
+    },
+    {
+      "id": "avaliacao",
+      "nome": "Avaliação",
+      "descricao": "Perguntas sobre avaliação do governo"
+    },
+    {
+      "id": "temas",
+      "nome": "Temas Prioritários",
+      "descricao": "Perguntas sobre prioridades"
+    },
+    {
+      "id": "perfil",
+      "nome": "Perfil do Eleitor",
+      "descricao": "Perguntas sobre comportamento político"
+    },
+    {
+      "id": "conhecimento",
+      "nome": "Conhecimento",
+      "descricao": "Perguntas sobre conhecimento dos candidatos"
+    },
+    {
+      "id": "completa",
+      "nome": "Pesquisa Completa",
+      "descricao": "Pesquisa abrangente"
+    }
+  ]
+}

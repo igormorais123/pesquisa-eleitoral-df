@@ -23,6 +23,7 @@ import {
   Landmark,
   UserCircle,
   Target,
+  Map,
 } from 'lucide-react';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { useAuthStore } from '@/stores/auth-store';
@@ -73,6 +74,12 @@ const menuItems = [
     descricao: 'Simulador de cenários eleitorais',
   },
   {
+    titulo: 'Templates',
+    href: '/templates',
+    icone: FileText,
+    descricao: 'Modelos de perguntas prontos',
+  },
+  {
     titulo: 'Entrevistas',
     href: '/entrevistas',
     icone: MessageSquare,
@@ -83,6 +90,12 @@ const menuItems = [
     href: '/resultados',
     icone: BarChart3,
     descricao: 'Análises e visualizações',
+  },
+  {
+    titulo: 'Mapa',
+    href: '/mapa',
+    icone: Map,
+    descricao: 'Mapa de calor por região',
   },
   {
     titulo: 'Analytics',
