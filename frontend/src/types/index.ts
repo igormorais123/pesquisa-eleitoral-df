@@ -859,6 +859,8 @@ export interface AtualizarCandidatoDTO {
 // CENÁRIOS ELEITORAIS
 // ============================================
 
+export type StatusCenario = 'rascunho' | 'executando' | 'concluido' | 'erro';
+
 export interface CenarioEleitoral {
   id: string;
   nome: string;
@@ -868,22 +870,109 @@ export interface CenarioEleitoral {
   candidatos_ids: string[];
   incluir_indecisos: boolean;
   incluir_brancos_nulos: boolean;
+  amostra_tamanho: number;
+  filtros_eleitores?: Record<string, any>;
+  status: StatusCenario;
+  resultados?: ResultadoCandidatoCenario[];
+  indecisos_percentual?: number;
+  brancos_nulos_percentual?: number;
+  margem_erro?: number;
+  nivel_confianca: number;
+  total_eleitores_simulados?: number;
+  custo_simulacao?: number;
+  tempo_execucao_segundos?: number;
+  modelo_ia_usado?: string;
+  ativo: boolean;
+  criado_por?: string;
   criado_em: string;
+  atualizado_em: string;
+  executado_em?: string;
+}
+
+export interface ResultadoCandidatoCenario {
+  candidato_id: string;
+  candidato_nome: string;
+  candidato_nome_urna: string;
+  partido: string;
+  votos: number;
+  percentual: number;
+  percentual_validos: number;
+  cor_campanha?: string;
+  foto_url?: string;
+  variacao?: number;
 }
 
 export interface ResultadoCenario {
   cenario_id: string;
-  resultados: {
-    candidato_id: string;
-    candidato_nome: string;
-    partido: string;
-    votos: number;
-    percentual: number;
-    cor_campanha?: string;
-  }[];
-  indecisos_percentual?: number;
-  brancos_nulos_percentual?: number;
+  turno: number;
+  cargo: string;
+  resultados: ResultadoCandidatoCenario[];
+  indecisos: number;
+  indecisos_percentual: number;
+  brancos_nulos: number;
+  brancos_nulos_percentual: number;
+  total_eleitores: number;
+  total_votos_validos: number;
   margem_erro: number;
-  confianca: number;
-  total_eleitores_simulados: number;
+  nivel_confianca: number;
+  haveria_segundo_turno?: boolean;
+  candidatos_segundo_turno?: string[];
+  tempo_execucao_segundos: number;
+  modelo_usado: string;
+  executado_em: string;
+}
+
+export interface CriarCenarioDTO {
+  nome: string;
+  descricao?: string;
+  turno: 1 | 2;
+  cargo: CargoPretendido;
+  candidatos_ids: string[];
+  incluir_indecisos?: boolean;
+  incluir_brancos_nulos?: boolean;
+  amostra_tamanho?: number;
+  filtros_eleitores?: Record<string, any>;
+}
+
+export interface FiltrosCenario {
+  pagina?: number;
+  por_pagina?: number;
+  busca_texto?: string;
+  cargos?: CargoPretendido[];
+  turnos?: number[];
+  status?: StatusCenario[];
+  apenas_ativos?: boolean;
+  ordenar_por?: string;
+  ordem?: 'asc' | 'desc';
+}
+
+// ============================================
+// ANÁLISE DE REJEIÇÃO
+// ============================================
+
+export interface AnaliseRejeicaoCandidato {
+  candidato_id: string;
+  candidato_nome: string;
+  candidato_nome_urna: string;
+  partido: string;
+  taxa_rejeicao: number;
+  taxa_rejeicao_forte: number;
+  total_rejeitadores: number;
+  principais_motivos: string[];
+  perfil_rejeitadores: {
+    por_orientacao: Record<string, number>;
+    por_cluster: Record<string, number>;
+    por_genero: Record<string, number>;
+    por_regiao: Record<string, number>;
+  };
+  foto_url?: string;
+  cor_campanha?: string;
+}
+
+export interface ResultadoAnaliseRejeicao {
+  candidatos: AnaliseRejeicaoCandidato[];
+  ranking_menor_rejeicao: string[];
+  insights: string[];
+  total_eleitores_analisados: number;
+  executado_em: string;
 }

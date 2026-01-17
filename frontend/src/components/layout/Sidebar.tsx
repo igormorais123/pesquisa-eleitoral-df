@@ -22,6 +22,7 @@ import {
   Shield,
   Landmark,
   UserCircle,
+  Target,
 } from 'lucide-react';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { useAuthStore } from '@/stores/auth-store';
@@ -64,6 +65,12 @@ const menuItems = [
     href: '/candidatos',
     icone: UserCircle,
     descricao: 'Candidatos às eleições 2026',
+  },
+  {
+    titulo: 'Cenários',
+    href: '/cenarios',
+    icone: Target,
+    descricao: 'Simulador de cenários eleitorais',
   },
   {
     titulo: 'Entrevistas',
