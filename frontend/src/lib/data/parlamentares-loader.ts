@@ -21,10 +21,11 @@ let carregando = false;
  */
 async function carregarJsonPorCasa(casa: 'camara_federal' | 'senado' | 'cldf'): Promise<Parlamentar[]> {
   try {
+    // Usar bancos do Brasil inteiro (594 parlamentares: 513 deputados + 81 senadores)
     const urls: Record<string, string> = {
-      camara_federal: '/data/banco-deputados-federais-df.json',
-      senado: '/data/banco-senadores-df.json',
-      cldf: '/data/banco-deputados-distritais-df.json',
+      camara_federal: '/data/banco-deputados-federais-brasil.json',
+      senado: '/data/banco-senadores-brasil.json',
+      cldf: '/data/banco-deputados-distritais-df.json', // CLDF mantém apenas DF
     };
 
     const url = urls[casa];
