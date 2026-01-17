@@ -37,7 +37,7 @@ import {
   exportarRelatorioInteligenciaPDF,
 } from '@/lib/export';
 import { WordCloudRespostas } from '@/components/charts';
-import { ResultadosPorPergunta } from '@/components/resultados';
+import { ResultadosPorPergunta, RelatorioInteligenciaVisual } from '@/components/resultados';
 import {
   PieChart,
   Pie,
@@ -1042,6 +1042,16 @@ export default function PaginaResultadoDetalhe() {
                   {relatorio.sumarioExecutivo.conclusaoPrincipal}
                 </p>
               </div>
+
+              {/* Visualizações Gráficas do Relatório */}
+              <RelatorioInteligenciaVisual
+                perfisPsicograficos={relatorio.perfisPsicograficos}
+                pontosRuptura={relatorio.pontosRuptura}
+                votoSilencioso={relatorio.votoSilencioso}
+                analiseEstrategica={relatorio.analiseEstrategica}
+                alertasInteligencia={relatorio.alertasInteligencia}
+                totalEntrevistados={relatorio.sumarioExecutivo.totalEntrevistados}
+              />
 
               {/* Análise Estratégica - SWOT */}
               <SecaoColapsavel

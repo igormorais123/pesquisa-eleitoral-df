@@ -9,3 +9,4 @@ export { InsightsPanel } from './InsightsPanel';
 export { CitacoesRepresentativas } from './CitacoesRepresentativas';
 export { PainelResultadosPergunta, formatarTipoPergunta, formatarTipoGrafico } from './PainelResultadosPergunta';
 export { ResultadosPorPergunta } from './ResultadosPorPergunta';
+export { RelatorioInteligenciaVisual } from './RelatorioInteligenciaVisual';
