@@ -125,7 +125,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-002",
@@ -248,7 +252,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-003",
@@ -372,7 +380,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-004",
@@ -494,7 +506,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "oposicao_forte"
   },
   {
     "id": "dep-dist-005",
@@ -614,7 +630,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "oposicao_forte"
   },
   {
     "id": "dep-dist-006",
@@ -734,7 +754,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-007",
@@ -860,7 +884,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-008",
@@ -983,7 +1011,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-009",
@@ -1106,7 +1138,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-010",
@@ -1233,7 +1269,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-011",
@@ -1246,7 +1286,7 @@
     "naturalidade": "São Paulo",
     "uf_nascimento": "SP",
     "casa_legislativa": "cldf",
-    "cargo": "deputada_distrital",
+    "cargo": "deputado_distrital",
     "partido": "PSDB",
     "numero_partido": 45,
     "mandato_inicio": "2023-02-01",
@@ -1353,7 +1393,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-012",
@@ -1366,7 +1410,7 @@
     "naturalidade": "Gama",
     "uf_nascimento": "DF",
     "casa_legislativa": "cldf",
-    "cargo": "deputada_distrital",
+    "cargo": "deputado_distrital",
     "partido": "MDB",
     "numero_partido": 15,
     "mandato_inicio": "2023-02-01",
@@ -1474,7 +1518,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-013",
@@ -1598,7 +1646,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-014",
@@ -1720,7 +1772,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "oposicao_forte"
   },
   {
     "id": "dep-dist-015",
@@ -1733,7 +1789,7 @@
     "naturalidade": "Brasília",
     "uf_nascimento": "DF",
     "casa_legislativa": "cldf",
-    "cargo": "deputada_distrital",
+    "cargo": "deputado_distrital",
     "partido": "REPUBLICANOS",
     "numero_partido": 10,
     "mandato_inicio": "2023-02-01",
@@ -1843,7 +1899,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-016",
@@ -1971,7 +2031,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-017",
@@ -2095,7 +2159,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-018",
@@ -2108,7 +2176,7 @@
     "naturalidade": "Belém",
     "uf_nascimento": "PA",
     "casa_legislativa": "cldf",
-    "cargo": "deputada_distrital",
+    "cargo": "deputado_distrital",
     "partido": "PSB",
     "numero_partido": 40,
     "mandato_inicio": "2023-02-01",
@@ -2219,7 +2287,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-019",
@@ -2343,7 +2415,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-020",
@@ -2465,7 +2541,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-021",
@@ -2586,7 +2666,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-022",
@@ -2708,7 +2792,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-023",
@@ -2835,7 +2923,11 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   },
   {
     "id": "dep-dist-024",
@@ -2955,6 +3047,10 @@
     "apadrinhados": [],
     "controversias_principais": [],
     "declaracoes_polemicas": [],
-    "escandalos": []
+    "escandalos": [],
+    "uf": "DF",
+    "telefone_gabinete": "",
+    "gabinete_localizacao": "",
+    "relacao_governo_atual": "independente"
   }
 ]

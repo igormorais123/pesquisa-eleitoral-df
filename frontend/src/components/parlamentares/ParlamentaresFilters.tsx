@@ -124,7 +124,8 @@ const POSICOES_BOLSONARO = [
   { valor: 'apoiador_moderado', rotulo: 'Apoiador Moderado' },
   { valor: 'neutro', rotulo: 'Neutro' },
   { valor: 'critico_moderado', rotulo: 'Crítico Moderado' },
-  { valor: 'critico_forte', rotulo: 'Crítico Forte' },
+  { valor: 'opositor_moderado', rotulo: 'Opositor Moderado' },
+  { valor: 'opositor_forte', rotulo: 'Opositor Forte' },
 ];
 
 const POSICOES_LULA = [
@@ -147,6 +148,10 @@ const RELIGIOES = [
 
 const RELACOES_GOVERNO = [
   { valor: 'base_aliada', rotulo: 'Base Aliada' },
+  { valor: 'situacao', rotulo: 'Situação' },
+  { valor: 'aliado_situacional', rotulo: 'Aliado Situacional' },
+  { valor: 'aliado_com_ressalvas', rotulo: 'Aliado com Ressalvas' },
+  { valor: 'centrao', rotulo: 'Centrão' },
   { valor: 'independente', rotulo: 'Independente' },
   { valor: 'oposicao_moderada', rotulo: 'Oposição Moderada' },
   { valor: 'oposicao_forte', rotulo: 'Oposição Forte' },
