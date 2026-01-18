@@ -1,9 +1,11 @@
 {
   "metadados": {
-    "versao": "1.0.0",
+    "versao": "2.0.0",
     "data_criacao": "2026-01-17",
+    "data_atualizacao": "2026-01-18",
     "descricao": "Banco de candidatos para as eleições do Distrito Federal 2026",
-    "total_candidatos": 1
+    "total_candidatos": 6,
+    "fonte_pesquisa": "Paraná Pesquisas (Dez/2025), Instituto Opinião, Metrópoles, CNN Brasil"
   },
   "candidatos": [
     {
@@ -19,7 +21,7 @@
       "foto_url": "https://www.df.gov.br/wp-conteudo/uploads/2023/01/Celina-Leao-Vice-Governadora.jpg",
       "cor_campanha": "#1E3A8A",
       "slogan": "Juntos pelo DF que a gente merece",
-      "idade": 45,
+      "idade": 46,
       "data_nascimento": "1979-06-08",
       "genero": "feminino",
       "naturalidade": "Brasília-DF",
@@ -33,7 +35,7 @@
         "Deputada Distrital (2007-2010)",
         "Secretária de Estado da Mulher do DF (2006)"
       ],
-      "biografia": "Maria Celina Leão Fontenele Montenegro, conhecida como Celina Leão, é uma política brasileira filiada ao Progressistas (PP). Natural de Brasília, é formada em Administração de Empresas. Iniciou sua carreira política como Secretária de Estado da Mulher do Distrito Federal em 2006. Foi eleita deputada distrital por dois mandatos consecutivos (2007-2014) e posteriormente deputada federal também por dois mandatos (2015-2022). Desde janeiro de 2023, exerce o cargo de Vice-Governadora do Distrito Federal na gestão do governador Ibaneis Rocha. É considerada uma das principais lideranças políticas do DF e tem forte atuação nas áreas de assistência social, direitos da mulher e família.",
+      "biografia": "Maria Celina Leão Fontenele Montenegro, conhecida como Celina Leão, é uma política brasileira filiada ao Progressistas (PP). Natural de Brasília, é formada em Administração de Empresas. Iniciou sua carreira política como Secretária de Estado da Mulher do Distrito Federal em 2006. Foi eleita deputada distrital por dois mandatos consecutivos (2007-2014) e posteriormente deputada federal também por dois mandatos (2015-2022). Desde janeiro de 2023, exerce o cargo de Vice-Governadora do Distrito Federal na gestão do governador Ibaneis Rocha. É considerada uma das principais lideranças políticas do DF e tem forte atuação nas áreas de assistência social, direitos da mulher e família. Lidera as pesquisas de intenção de voto com aproximadamente 30% das intenções.",
       "propostas_principais": [
         "Ampliar o programa Cartão Gás Social para mais famílias",
         "Expandir a rede de creches e escolas de tempo integral",
@@ -76,53 +78,466 @@
           "resultado": "eleito",
           "votos": 123456,
           "percentual": 4.2
-        },
-        {
-          "ano": 2014,
-          "cargo": "Deputada Federal",
-          "resultado": "eleito",
-          "votos": 98765,
-          "percentual": 3.5
-        },
-        {
-          "ano": 2010,
-          "cargo": "Deputada Distrital",
-          "resultado": "eleito",
-          "votos": 45678,
-          "percentual": 2.8
-        },
-        {
-          "ano": 2006,
-          "cargo": "Deputada Distrital",
-          "resultado": "eleito",
-          "votos": 32456,
-          "percentual": 2.1
         }
       ],
-      "votos_ultima_eleicao": null,
+      "intencao_voto_pesquisa": 30.6,
+      "rejeicao_estimada": 28.5,
+      "conhecimento_estimado": 65.0,
       "pontos_fortes": [
         "Experiência administrativa como Vice-Governadora",
         "Trajetória política consolidada no DF",
         "Forte atuação em políticas para mulheres",
-        "Apoio do governador atual",
+        "Apoio do governador atual Ibaneis Rocha",
         "Conhecimento profundo da máquina pública",
-        "Base eleitoral fiel nas regiões administrativas",
-        "Boa articulação política com a bancada federal"
+        "Base eleitoral fiel nas regiões administrativas"
       ],
       "pontos_fracos": [
         "Associação com escândalos do governo Ibaneis",
         "Dificuldade em se diferenciar do atual governo",
-        "Rejeição em setores da oposição",
-        "Exposição midiática limitada como vice"
+        "Rejeição em setores da oposição"
       ],
       "controversias": [
         "Nomeação de aliados para cargos no GDF",
         "Disputas internas no PP pelo controle do partido no DF"
       ],
-      "rejeicao_estimada": 28.5,
-      "conhecimento_estimado": 65.0,
+      "elegivel": true,
       "ativo": true,
       "ordem_exibicao": 1
+    },
+    {
+      "id": "cand-jose-roberto-arruda",
+      "nome": "José Roberto Arruda",
+      "nome_urna": "ARRUDA",
+      "partido": "PSD",
+      "numero_partido": 55,
+      "cargo_pretendido": "governador",
+      "status_candidatura": "pre_candidato",
+      "coligacao": null,
+      "vice_ou_suplentes": null,
+      "foto_url": null,
+      "cor_campanha": "#FF6600",
+      "slogan": "Resgatar o DF",
+      "idade": 72,
+      "data_nascimento": "1954-01-05",
+      "genero": "masculino",
+      "naturalidade": "Itajubá-MG",
+      "profissao": "Engenheiro Eletricista",
+      "cargo_atual": "Sem cargo público",
+      "historico_politico": [
+        "Governador do DF (2007-2010) - cassado",
+        "Deputado Federal pelo DF (2003-2006)",
+        "Senador pelo DF (1995-2001) - renunciou",
+        "Secretário de Obras do DF",
+        "Chefe da Casa Civil do DF",
+        "Diretor da CEB"
+      ],
+      "biografia": "José Roberto Arruda nasceu em Itajubá-MG em 5 de janeiro de 1954. Engenheiro eletricista de formação, construiu carreira na administração pública do DF antes de ingressar na política. Foi senador (1995-2001), deputado federal (2003-2006) e governador do DF (2007-2010). Sua gestão foi marcada pela Operação Caixa de Pandora em 2009, que revelou esquema de corrupção conhecido como 'Mensalão do DEM'. Tornou-se o primeiro governador brasileiro preso no exercício do mandato. Cassado pelo TRE-DF em 2010. Acumula cinco condenações por improbidade administrativa. Em dezembro de 2025, filiou-se ao PSD para tentar disputar o governo do DF em 2026, alegando estar elegível após mudanças na Lei da Ficha Limpa. Sua elegibilidade ainda é contestada judicialmente.",
+      "propostas_principais": [
+        "Construir 5 novas linhas de metrô",
+        "Resgatar a segurança pública",
+        "Saúde pública digna",
+        "Educação pública exemplar",
+        "Retomar obras paralisadas"
+      ],
+      "areas_foco": [
+        "Infraestrutura",
+        "Transporte (Metrô)",
+        "Segurança Pública",
+        "Saúde",
+        "Educação"
+      ],
+      "redes_sociais": {
+        "instagram": "@arrudaoficial",
+        "twitter": null,
+        "facebook": null,
+        "youtube": null
+      },
+      "site_campanha": null,
+      "orientacao_politica": "direita",
+      "posicao_bolsonaro": "apoiador",
+      "posicao_lula": "critico",
+      "eleicoes_anteriores": [
+        {
+          "ano": 2006,
+          "cargo": "Governador do DF",
+          "resultado": "eleito",
+          "votos": null,
+          "percentual": 50.4
+        },
+        {
+          "ano": 2002,
+          "cargo": "Deputado Federal",
+          "resultado": "eleito",
+          "votos": null,
+          "percentual": null
+        },
+        {
+          "ano": 1994,
+          "cargo": "Senador",
+          "resultado": "eleito",
+          "votos": null,
+          "percentual": null
+        }
+      ],
+      "intencao_voto_pesquisa": 16.3,
+      "rejeicao_estimada": 45.0,
+      "conhecimento_estimado": 85.0,
+      "pontos_fortes": [
+        "Alto reconhecimento de nome",
+        "Experiência administrativa como ex-governador",
+        "Base eleitoral fiel e nostálgica",
+        "Apoio de lideranças como Izalci Lucas (PL) e Alberto Fraga (PL)",
+        "Capacidade de articulação política"
+      ],
+      "pontos_fracos": [
+        "Alta rejeição devido aos escândalos de corrupção",
+        "Elegibilidade contestada judicialmente",
+        "Condenações múltiplas por improbidade",
+        "Idade avançada (72 anos)",
+        "Imagem associada à corrupção (vídeos recebendo propina)"
+      ],
+      "controversias": [
+        "Operação Caixa de Pandora (2009) - Mensalão do DEM",
+        "Primeiro governador brasileiro preso no exercício do mandato",
+        "Cassação pelo TRE-DF em 2010",
+        "Cinco condenações por improbidade administrativa",
+        "Escândalo do painel do Senado (2001) - renúncia",
+        "Inelegibilidade até 2032/2034 segundo juristas"
+      ],
+      "elegivel": false,
+      "observacao_elegibilidade": "Arruda alega estar elegível após mudanças na Lei da Ficha Limpa, mas juristas contestam. Prazo máximo de inelegibilidade seria 2034.",
+      "ativo": true,
+      "ordem_exibicao": 2
+    },
+    {
+      "id": "cand-leandro-grass",
+      "nome": "Leandro Antonio Grass Peixoto",
+      "nome_urna": "LEANDRO GRASS",
+      "partido": "PV",
+      "numero_partido": 43,
+      "cargo_pretendido": "governador",
+      "status_candidatura": "pre_candidato",
+      "coligacao": "Federação Brasil da Esperança (PT/PCdoB/PV)",
+      "vice_ou_suplentes": null,
+      "foto_url": null,
+      "cor_campanha": "#00A651",
+      "slogan": "Refundar Brasília",
+      "idade": 40,
+      "data_nascimento": "1985-06-15",
+      "genero": "masculino",
+      "naturalidade": "Brasília-DF",
+      "profissao": "Professor e Sociólogo",
+      "cargo_atual": "Presidente do IPHAN (Instituto do Patrimônio Histórico e Artístico Nacional)",
+      "historico_politico": [
+        "Presidente do IPHAN (2023-atual)",
+        "Candidato a Governador do DF (2022) - 2º turno com 26,25%",
+        "Deputado Distrital pela Rede (2019-2022)",
+        "Autor de 30 leis aprovadas na CLDF"
+      ],
+      "biografia": "Leandro Grass nasceu em Brasília em 15 de junho de 1985. Professor com 17 anos de experiência em sala de aula, formado em Sociologia com mestrado em Desenvolvimento Sustentável pela UnB. Foi deputado distrital pela Rede Sustentabilidade (2019-2022), sendo autor de 30 leis aprovadas. Em 2022, disputou o governo do DF pelo PV na Federação Brasil da Esperança, obtendo 434 mil votos (26,25%) e chegando ao segundo turno contra Ibaneis Rocha. Em janeiro de 2023, foi indicado para a presidência do IPHAN pela ministra da Cultura Margareth Menezes. Declarou intenção de disputar novamente o governo do DF em 2026 com objetivo de 'refundar Brasília'.",
+      "propostas_principais": [
+        "Refundar Brasília como cidade justa e inclusiva",
+        "Valorização do patrimônio cultural e histórico",
+        "Políticas ambientais sustentáveis",
+        "Incentivo à economia criativa",
+        "Transporte público de qualidade",
+        "Educação pública fortalecida",
+        "Políticas para mulheres e minorias"
+      ],
+      "areas_foco": [
+        "Cultura",
+        "Meio Ambiente",
+        "Educação",
+        "Transporte",
+        "Direitos Humanos",
+        "Patrimônio Histórico"
+      ],
+      "redes_sociais": {
+        "instagram": "@leandrograss",
+        "twitter": "@leandrograss",
+        "facebook": "LeandroGrassOficial",
+        "youtube": null
+      },
+      "site_campanha": "https://leandrograss.com.br/",
+      "orientacao_politica": "esquerda",
+      "posicao_bolsonaro": "critico",
+      "posicao_lula": "apoiador",
+      "eleicoes_anteriores": [
+        {
+          "ano": 2022,
+          "cargo": "Governador do DF",
+          "resultado": "segundo_turno",
+          "votos": 434000,
+          "percentual": 26.25
+        },
+        {
+          "ano": 2018,
+          "cargo": "Deputado Distrital",
+          "resultado": "eleito",
+          "votos": 6578,
+          "percentual": null
+        }
+      ],
+      "intencao_voto_pesquisa": 8.4,
+      "rejeicao_estimada": 25.0,
+      "conhecimento_estimado": 55.0,
+      "pontos_fortes": [
+        "Experiência como candidato competitivo em 2022 (2º turno)",
+        "Perfil jovem e renovador",
+        "Apoio da esquerda unificada (PT/PCdoB/PV)",
+        "Cargo de visibilidade no governo federal (IPHAN)",
+        "Trajetória legislativa produtiva"
+      ],
+      "pontos_fracos": [
+        "Condenação à inelegibilidade por 8 anos (em recurso)",
+        "Base eleitoral limitada ao campo progressista",
+        "Dificuldade de penetração nas periferias conservadoras"
+      ],
+      "controversias": [
+        "Condenado à perda dos direitos políticos por 8 anos por divulgação de notícias falsas na campanha de 2022 - está recorrendo"
+      ],
+      "elegivel": false,
+      "observacao_elegibilidade": "Condenado à inelegibilidade por 8 anos em 2025. Recorrendo da decisão.",
+      "ativo": true,
+      "ordem_exibicao": 3
+    },
+    {
+      "id": "cand-paula-belmonte",
+      "nome": "Paula Moreno Paro Belmonte",
+      "nome_urna": "PAULA BELMONTE",
+      "partido": "PSDB",
+      "numero_partido": 45,
+      "cargo_pretendido": "governador",
+      "status_candidatura": "pre_candidato",
+      "coligacao": null,
+      "vice_ou_suplentes": null,
+      "foto_url": null,
+      "cor_campanha": "#003366",
+      "slogan": null,
+      "idade": 52,
+      "data_nascimento": "1973-06-23",
+      "genero": "feminino",
+      "naturalidade": "São Paulo-SP",
+      "profissao": "Empresária",
+      "cargo_atual": "Deputada Distrital - 2ª Vice-Presidente da Mesa Diretora da CLDF",
+      "historico_politico": [
+        "Deputada Distrital (2023-atual)",
+        "2ª Vice-Presidente da Mesa Diretora da CLDF (2025-2026)",
+        "Procuradora Especial da Mulher da CLDF (2025)",
+        "Deputada Federal pelo DF (2019-2022)",
+        "Vice-líder da bancada do Cidadania na Câmara"
+      ],
+      "biografia": "Paula Belmonte nasceu em São Paulo em 23 de junho de 1973. Empresária, casada e mãe de seis filhos. Sua entrada na política foi motivada por um acidente fatal envolvendo seu filho de dois anos em 2014. Em 2018, foi eleita deputada federal com 46.069 votos, uma das oito eleitas pelo DF. Na Câmara, foi vice-líder do Cidadania. Em 2022, optou por disputar a CLDF, sendo eleita deputada distrital. Em 2025, tornou-se a primeira mulher a integrar a Mesa Diretora da CLDF como 2ª vice-presidente. Também é Procuradora Especial da Mulher. Se define como parlamentar independente, em oposição tanto ao GDF quanto ao governo federal.",
+      "propostas_principais": [
+        "Proteção de crianças e adolescentes",
+        "Liberdade econômica e geração de empregos",
+        "Combate à corrupção",
+        "Defesa dos direitos das mulheres",
+        "Segurança nas escolas"
+      ],
+      "areas_foco": [
+        "Infância e Adolescência",
+        "Economia",
+        "Anticorrupção",
+        "Direitos da Mulher",
+        "Educação"
+      ],
+      "redes_sociais": {
+        "instagram": "@paulabelmonteoficial",
+        "twitter": "@paulabelmonte",
+        "facebook": "PaulaBelmonteOficial",
+        "youtube": null
+      },
+      "site_campanha": "https://paulabelmonte.com.br/",
+      "orientacao_politica": "centro-direita",
+      "posicao_bolsonaro": "neutro",
+      "posicao_lula": "critico",
+      "eleicoes_anteriores": [
+        {
+          "ano": 2022,
+          "cargo": "Deputada Distrital",
+          "resultado": "eleito",
+          "votos": null,
+          "percentual": null
+        },
+        {
+          "ano": 2018,
+          "cargo": "Deputada Federal",
+          "resultado": "eleito",
+          "votos": 46069,
+          "percentual": null
+        }
+      ],
+      "intencao_voto_pesquisa": 5.4,
+      "rejeicao_estimada": 15.0,
+      "conhecimento_estimado": 35.0,
+      "pontos_fortes": [
+        "Perfil independente e anticorrupção",
+        "Forte atuação em defesa das mulheres e crianças",
+        "Experiência legislativa federal e distrital",
+        "Cargo de destaque na Mesa Diretora da CLDF",
+        "Baixa rejeição"
+      ],
+      "pontos_fracos": [
+        "Baixo conhecimento do eleitorado",
+        "Migração partidária (Cidadania para PSDB)",
+        "Dificuldade de se posicionar entre direita e esquerda",
+        "Base eleitoral ainda em construção"
+      ],
+      "controversias": [
+        "Saída conturbada do Cidadania com carta pedindo sua expulsão"
+      ],
+      "elegivel": true,
+      "ativo": true,
+      "ordem_exibicao": 4
+    },
+    {
+      "id": "cand-ricardo-cappelli",
+      "nome": "Ricardo Garcia Cappelli",
+      "nome_urna": "RICARDO CAPPELLI",
+      "partido": "PSB",
+      "numero_partido": 40,
+      "cargo_pretendido": "governador",
+      "status_candidatura": "pre_candidato",
+      "coligacao": "Apoio do PT",
+      "vice_ou_suplentes": null,
+      "foto_url": null,
+      "cor_campanha": "#FF0000",
+      "slogan": null,
+      "idade": 53,
+      "data_nascimento": "1972-02-11",
+      "genero": "masculino",
+      "naturalidade": "Rio de Janeiro-RJ",
+      "profissao": "Jornalista",
+      "cargo_atual": "Presidente da ABDI (Agência Brasileira de Desenvolvimento Industrial)",
+      "historico_politico": [
+        "Presidente da ABDI (2024-atual)",
+        "Chefe Interino do GSI (2023)",
+        "Secretário-Executivo do Ministério da Justiça (2023)",
+        "Interventor Federal na Segurança do DF (janeiro 2023)",
+        "Secretário de Comunicação do Maranhão (gov. Flávio Dino)",
+        "Representante do Governo do Maranhão em Brasília (2015-2021)",
+        "Secretário Nacional de Esporte (2003-2006)",
+        "Presidente da UNE (PCdoB)"
+      ],
+      "biografia": "Ricardo Cappelli nasceu no Rio de Janeiro em 11 de fevereiro de 1972. Jornalista com pós-graduação em Administração Pública pela FGV. Foi presidente da UNE pelo PCdoB e construiu carreira política próximo a Flávio Dino, sendo Secretário de Comunicação e representante do Maranhão em Brasília. No governo Lula, foi Secretário-Executivo do Ministério da Justiça e interventor federal na segurança do DF por 23 dias após os atos golpistas de 8 de janeiro de 2023. Chefiou interinamente o GSI após renúncia dos generais. Em 2024, assumiu a presidência da ABDI. Em outubro de 2024, o PSB nacional anunciou seu nome para disputar o governo do DF em 2026, com apoio do PT.",
+      "propostas_principais": [
+        "Segurança pública com inteligência",
+        "Desenvolvimento industrial e tecnológico",
+        "Diálogo amplo com todos os setores",
+        "Políticas sociais inclusivas",
+        "Modernização da gestão pública"
+      ],
+      "areas_foco": [
+        "Segurança Pública",
+        "Desenvolvimento Econômico",
+        "Indústria e Tecnologia",
+        "Gestão Pública",
+        "Políticas Sociais"
+      ],
+      "redes_sociais": {
+        "instagram": "@ricardocappelli",
+        "twitter": "@ricardocappelli",
+        "facebook": null,
+        "youtube": null
+      },
+      "site_campanha": null,
+      "orientacao_politica": "esquerda",
+      "posicao_bolsonaro": "critico",
+      "posicao_lula": "apoiador",
+      "eleicoes_anteriores": [
+        {
+          "ano": 2002,
+          "cargo": "Deputado Estadual RJ",
+          "resultado": "nao_eleito",
+          "votos": null,
+          "percentual": null
+        }
+      ],
+      "intencao_voto_pesquisa": 4.2,
+      "rejeicao_estimada": 20.0,
+      "conhecimento_estimado": 25.0,
+      "pontos_fortes": [
+        "Apoio do governo federal (Lula) e do PT",
+        "Visibilidade como interventor após 8 de janeiro",
+        "Experiência em gestão pública federal",
+        "Capacidade de diálogo amplo (perfil moderado)",
+        "Cidadão Honorário de Brasília"
+      ],
+      "pontos_fracos": [
+        "Baixo conhecimento do eleitorado",
+        "Sem experiência eleitoral no DF",
+        "Pode ser visto como 'forasteiro' (carioca)",
+        "Associação com governo federal pode gerar rejeição"
+      ],
+      "controversias": [],
+      "elegivel": true,
+      "ativo": true,
+      "ordem_exibicao": 5
+    },
+    {
+      "id": "cand-kiko-caputo",
+      "nome": "Francisco Caputo",
+      "nome_urna": "KIKO CAPUTO",
+      "partido": null,
+      "numero_partido": null,
+      "cargo_pretendido": "governador",
+      "status_candidatura": "pre_candidato",
+      "coligacao": null,
+      "vice_ou_suplentes": null,
+      "foto_url": null,
+      "cor_campanha": null,
+      "slogan": null,
+      "idade": null,
+      "data_nascimento": null,
+      "genero": "masculino",
+      "naturalidade": "Brasília-DF",
+      "profissao": "Advogado",
+      "cargo_atual": "Advogado (ex-presidente da OAB-DF)",
+      "historico_politico": [
+        "Presidente da OAB-DF (2010-2012)",
+        "Conselheiro Federal da OAB"
+      ],
+      "biografia": "Francisco Caputo, conhecido como Kiko Caputo, é advogado e foi presidente da OAB-DF de 2010 a 2012, posteriormente atuando como conselheiro federal. É um dos principais nomes do chamado 'grupo laranja' da advocacia brasiliense, com históricas conexões políticas, incluindo proximidade com o ex-governador José Roberto Arruda. Em outubro de 2025, anunciou intenção de entrar na política e disputar o governo do DF em 2026. Ainda não se filiou a nenhum partido, tendo prazo até abril de 2026 para formalizar filiação.",
+      "propostas_principais": [],
+      "areas_foco": [
+        "Advocacia",
+        "Justiça",
+        "Gestão Pública"
+      ],
+      "redes_sociais": {
+        "instagram": null,
+        "twitter": null,
+        "facebook": null,
+        "youtube": null
+      },
+      "site_campanha": null,
+      "orientacao_politica": "direita",
+      "posicao_bolsonaro": "neutro",
+      "posicao_lula": "critico",
+      "eleicoes_anteriores": [],
+      "intencao_voto_pesquisa": 2.3,
+      "rejeicao_estimada": 10.0,
+      "conhecimento_estimado": 15.0,
+      "pontos_fortes": [
+        "Reconhecimento na comunidade jurídica",
+        "Experiência de gestão como presidente da OAB-DF",
+        "Conexões com lideranças políticas locais",
+        "Baixa rejeição (pouco conhecido)"
+      ],
+      "pontos_fracos": [
+        "Sem experiência eleitoral",
+        "Muito baixo conhecimento do eleitorado geral",
+        "Ainda sem partido definido",
+        "Associação com Arruda pode gerar rejeição"
+      ],
+      "controversias": [
+        "Histórica ligação com José Roberto Arruda"
+      ],
+      "elegivel": true,
+      "observacao_elegibilidade": "Precisa se filiar a um partido até abril de 2026",
+      "ativo": true,
+      "ordem_exibicao": 6
     }
   ]
 }

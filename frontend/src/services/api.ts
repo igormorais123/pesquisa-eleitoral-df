@@ -70,16 +70,55 @@ api.interceptors.request.use(
   }
 );
 
+// Flag para controlar redirecionamento automático em 401
+let autoRedirectOn401 = true;
+
+/**
+ * Desabilita o redirecionamento automático para login em 401.
+ * Útil para requisições em segundo plano que não devem forçar logout.
+ */
+export function disableAutoRedirect(): void {
+  autoRedirectOn401 = false;
+}
+
+/**
+ * Habilita o redirecionamento automático para login em 401.
+ */
+export function enableAutoRedirect(): void {
+  autoRedirectOn401 = true;
+}
+
+// Rotas que não devem causar redirecionamento em 401
+const ROTAS_SEM_REDIRECT = [
+  '/auth/me',
+  '/candidatos',
+  '/eleitores/estatisticas',
+  '/parlamentares',
+  '/gestores',
+];
+
 // Interceptor para tratar erros
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response?.status === 401) {
-      // Token expirado ou inválido - limpa cache e storage
-      clearAuthToken();
-      if (typeof window !== 'undefined') {
-        localStorage.removeItem('pesquisa-eleitoral-auth');
-        window.location.href = '/login';
+      const url = error.config?.url || '';
+
+      // Verifica se é uma rota que não deve causar redirecionamento
+      const isRotaSemRedirect = ROTAS_SEM_REDIRECT.some(rota => url.includes(rota));
+
+      // Só redireciona se autoRedirect estiver ativo E não for rota sem redirect
+      // E não for uma requisição em background (verificação silenciosa)
+      if (autoRedirectOn401 && !isRotaSemRedirect && !error.config?.headers?.['X-Silent-Request']) {
+        // Token expirado ou inválido - limpa cache e storage
+        clearAuthToken();
+        if (typeof window !== 'undefined') {
+          // Verifica se já está na página de login para evitar loop
+          if (!window.location.pathname.includes('/login')) {
+            localStorage.removeItem('pesquisa-eleitoral-auth');
+            window.location.href = '/login';
+          }
+        }
       }
     }
 
