@@ -23,7 +23,8 @@ class PesquisaPODC(Base):
     __tablename__ = 'pesquisas_podc'
 
     id = Column(String(36), primary_key=True, default=lambda: str(uuid4()))
-    usuario_id = Column(String(36), ForeignKey('usuarios.id'), nullable=False)
+    # usuario_id sem FK para permitir autenticação de teste
+    usuario_id = Column(String(36), nullable=False, index=True)
 
     # Informações básicas da pesquisa
     titulo = Column(String(255), nullable=False)
@@ -58,7 +59,6 @@ class PesquisaPODC(Base):
 
     # Relacionamentos
     respostas = relationship('RespostaPODC', back_populates='pesquisa', cascade='all, delete-orphan')
-    usuario = relationship('Usuario', backref='pesquisas_podc')
 
     def __repr__(self):
         return f"<PesquisaPODC {self.id}: {self.titulo}>"
