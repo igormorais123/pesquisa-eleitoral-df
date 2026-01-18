@@ -257,7 +257,7 @@ export function simularCenarios(
 
   return Array.from(vitorias.entries())
     .map(([candidato, vitorias]) => ({
-      candidato,
+      vencedor: candidato,
       probabilidade: (vitorias / numSimulacoes) * 100
     }))
     .sort((a, b) => b.probabilidade - a.probabilidade);

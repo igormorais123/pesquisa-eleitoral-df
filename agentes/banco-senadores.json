@@ -223,7 +223,7 @@
     "nome": "Daniella Ribeiro",
     "nome_parlamentar": "Daniella Ribeiro",
     "idade": 58,
-    "data_nascimento": "1968-11-05",
+    "data_nascimento": "1972-03-26",
     "genero": "feminino",
     "cor_raca": "branca",
     "naturalidade": "João Pessoa",
@@ -240,7 +240,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 1419122,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_79bb8c02.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5998.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Daniella+Ribeiro&size=200&background=random",
     "formacao_academica": [
       "Ciências Políticas",
@@ -318,8 +318,8 @@
       "PSD"
     ],
     "relacao_governo_atual": "independente",
-    "email_contato": "dep.daniella@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-5872",
+    "email_contato": "sen.daniellaribeiro@senado.leg.br",
+    "telefone_gabinete": "33036788",
     "gabinete_localizacao": "Gabinete 210 - Anexo II",
     "redes_sociais": {
       "instagram": "@daniella",
@@ -328,14 +328,16 @@
     "criado_em": "2026-01-17T14:23:56.445643Z",
     "atualizado_em": "2026-01-17T14:23:56.445644Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5998",
+    "bloco_parlamentar": "Bloco Parlamentar Aliança"
   },
   {
     "id": "sen-0004",
     "nome": "Irajá",
     "nome_parlamentar": "Irajá",
     "idade": 47,
-    "data_nascimento": "1979-08-15",
+    "data_nascimento": "1983-02-03",
     "genero": "masculino",
     "cor_raca": "branca",
     "naturalidade": "Palmas",
@@ -352,7 +354,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 7721753,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_f654b810.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5385.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Irajá&size=200&background=random",
     "formacao_academica": [
       "Odontologia",
@@ -424,8 +426,8 @@
       "PSD"
     ],
     "relacao_governo_atual": "centrao",
-    "email_contato": "dep.irajá@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-5013",
+    "email_contato": "sen.iraja@senado.leg.br",
+    "telefone_gabinete": "33036469",
     "gabinete_localizacao": "Gabinete 706 - Anexo II",
     "redes_sociais": {
       "instagram": "@irajá",
@@ -434,7 +436,9 @@
     "criado_em": "2026-01-17T14:23:56.445680Z",
     "atualizado_em": "2026-01-17T14:23:56.445681Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5385",
+    "bloco_parlamentar": "Bloco Parlamentar da Resistência Democrática"
   },
   {
     "id": "sen-0005",
@@ -659,7 +663,7 @@
     "nome": "Mara Gabrilli",
     "nome_parlamentar": "Mara Gabrilli",
     "idade": 64,
-    "data_nascimento": "1962-09-25",
+    "data_nascimento": "1967-09-28",
     "genero": "feminino",
     "cor_raca": "branca",
     "naturalidade": "São Paulo",
@@ -676,7 +680,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 1453875,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_d14ba6f7.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5376.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Mara+Gabrilli&size=200&background=random",
     "formacao_academica": [
       "Veterinária"
@@ -750,8 +754,8 @@
       "PSD"
     ],
     "relacao_governo_atual": "independente",
-    "email_contato": "dep.mara@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-9687",
+    "email_contato": "sen.maragabrilli@senado.leg.br",
+    "telefone_gabinete": "33032191",
     "gabinete_localizacao": "Gabinete 594 - Anexo II",
     "redes_sociais": {
       "instagram": "@mara",
@@ -760,7 +764,9 @@
     "criado_em": "2026-01-17T14:23:56.445811Z",
     "atualizado_em": "2026-01-17T14:23:56.445812Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5376",
+    "bloco_parlamentar": "Bloco Parlamentar da Resistência Democrática"
   },
   {
     "id": "sen-0008",
@@ -983,7 +989,7 @@
     "nome": "Omar Aziz",
     "nome_parlamentar": "Omar Aziz",
     "idade": 54,
-    "data_nascimento": "1972-08-04",
+    "data_nascimento": "1958-08-13",
     "genero": "masculino",
     "cor_raca": "branca",
     "naturalidade": "Manaus",
@@ -1000,7 +1006,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 6858014,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_b845eb98.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5525.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Omar+Aziz&size=200&background=random",
     "formacao_academica": [
       "Odontologia"
@@ -1072,8 +1078,8 @@
       "PSD"
     ],
     "relacao_governo_atual": "centrao",
-    "email_contato": "dep.omar@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-4680",
+    "email_contato": "sen.omaraziz@senado.leg.br",
+    "telefone_gabinete": "33036579",
     "gabinete_localizacao": "Gabinete 652 - Anexo II",
     "redes_sociais": {
       "instagram": "@omar",
@@ -1082,14 +1088,16 @@
     "criado_em": "2026-01-17T14:23:56.445925Z",
     "atualizado_em": "2026-01-17T14:23:56.445926Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5525",
+    "bloco_parlamentar": "Bloco Parlamentar da Resistência Democrática"
   },
   {
     "id": "sen-0011",
     "nome": "Otto Alencar",
     "nome_parlamentar": "Otto Alencar",
     "idade": 46,
-    "data_nascimento": "1980-02-09",
+    "data_nascimento": "1947-08-28",
     "genero": "masculino",
     "cor_raca": "amarela",
     "naturalidade": "Salvador",
@@ -1106,7 +1114,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 1129644,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_76cbc53d.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5523.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Otto+Alencar&size=200&background=random",
     "formacao_academica": [
       "Odontologia"
@@ -1173,8 +1181,8 @@
       "PSD"
     ],
     "relacao_governo_atual": "independente",
-    "email_contato": "dep.otto@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-4892",
+    "email_contato": "sen.ottoalencar@senado.leg.br",
+    "telefone_gabinete": "33033172",
     "gabinete_localizacao": "Gabinete 855 - Anexo II",
     "redes_sociais": {
       "instagram": "@otto",
@@ -1183,14 +1191,16 @@
     "criado_em": "2026-01-17T14:23:56.445960Z",
     "atualizado_em": "2026-01-17T14:23:56.445962Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5523",
+    "bloco_parlamentar": "Bloco Parlamentar da Resistência Democrática"
   },
   {
     "id": "sen-0012",
     "nome": "Rodrigo Pacheco",
     "nome_parlamentar": "Rodrigo Pacheco",
     "idade": 43,
-    "data_nascimento": "1983-10-26",
+    "data_nascimento": "1976-11-03",
     "genero": "masculino",
     "cor_raca": "preta",
     "naturalidade": "Belo Horizonte",
@@ -1207,7 +1217,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 2157093,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_98cc8533.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5732.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Rodrigo+Pacheco&size=200&background=random",
     "formacao_academica": [
       "Filosofia"
@@ -1281,8 +1291,8 @@
       "PSD"
     ],
     "relacao_governo_atual": "centrao",
-    "email_contato": "dep.rodrigo@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-4717",
+    "email_contato": "sen.rodrigopacheco@senado.leg.br",
+    "telefone_gabinete": "33032794",
     "gabinete_localizacao": "Gabinete 505 - Anexo II",
     "redes_sociais": {
       "instagram": "@rodrigo",
@@ -1291,7 +1301,9 @@
     "criado_em": "2026-01-17T14:23:56.445996Z",
     "atualizado_em": "2026-01-17T14:23:56.445998Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5732",
+    "bloco_parlamentar": "Bloco Parlamentar da Resistência Democrática"
   },
   {
     "id": "sen-0013",
@@ -1406,7 +1418,7 @@
     "nome": "Vanderlan Cardoso",
     "nome_parlamentar": "Vanderlan Cardoso",
     "idade": 55,
-    "data_nascimento": "1971-06-18",
+    "data_nascimento": "1962-11-15",
     "genero": "masculino",
     "cor_raca": "branca",
     "naturalidade": "Goiânia",
@@ -1423,7 +1435,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 9679720,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_e4384b17.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5899.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Vanderlan+Cardoso&size=200&background=random",
     "formacao_academica": [
       "Letras"
@@ -1494,8 +1506,8 @@
       "PSD"
     ],
     "relacao_governo_atual": "centrao",
-    "email_contato": "dep.vanderlan@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-5615",
+    "email_contato": "sen.vanderlancardoso@senado.leg.br",
+    "telefone_gabinete": "33032092",
     "gabinete_localizacao": "Gabinete 359 - Anexo II",
     "redes_sociais": {
       "instagram": "@vanderlan",
@@ -1504,14 +1516,16 @@
     "criado_em": "2026-01-17T14:23:56.446071Z",
     "atualizado_em": "2026-01-17T14:23:56.446072Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5899",
+    "bloco_parlamentar": "Bloco Parlamentar da Resistência Democrática"
   },
   {
     "id": "sen-0015",
     "nome": "Zenaide Maia",
     "nome_parlamentar": "Zenaide Maia",
     "idade": 63,
-    "data_nascimento": "1963-11-05",
+    "data_nascimento": "1954-11-27",
     "genero": "feminino",
     "cor_raca": "indigena",
     "naturalidade": "Natal",
@@ -1528,7 +1542,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 1720180,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_0579ca6a.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5783.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Zenaide+Maia&size=200&background=random",
     "formacao_academica": [
       "Administração",
@@ -1606,8 +1620,8 @@
       "PSD"
     ],
     "relacao_governo_atual": "centrao",
-    "email_contato": "dep.zenaide@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-1333",
+    "email_contato": "sen.zenaidemaia@senado.leg.br",
+    "telefone_gabinete": "33032371",
     "gabinete_localizacao": "Gabinete 320 - Anexo II",
     "redes_sociais": {
       "instagram": "@zenaide",
@@ -1616,7 +1630,9 @@
     "criado_em": "2026-01-17T14:23:56.446109Z",
     "atualizado_em": "2026-01-17T14:23:56.446110Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5783",
+    "bloco_parlamentar": "Bloco Parlamentar da Resistência Democrática"
   },
   {
     "id": "sen-0016",
@@ -1733,7 +1749,7 @@
     "nome": "Carlos Portinho",
     "nome_parlamentar": "Carlos Portinho",
     "idade": 52,
-    "data_nascimento": "1974-06-17",
+    "data_nascimento": "1973-07-02",
     "genero": "masculino",
     "cor_raca": "preta",
     "naturalidade": "Rio de Janeiro",
@@ -1750,7 +1766,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 5531194,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_44c7f593.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5936.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Carlos+Portinho&size=200&background=random",
     "formacao_academica": [
       "Letras",
@@ -1825,8 +1841,8 @@
       "PL"
     ],
     "relacao_governo_atual": "oposicao_moderada",
-    "email_contato": "dep.carlos@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-7823",
+    "email_contato": "sen.carlosportinho@senado.leg.br",
+    "telefone_gabinete": "33036640",
     "gabinete_localizacao": "Gabinete 369 - Anexo II",
     "redes_sociais": {
       "instagram": "@carlos",
@@ -1835,7 +1851,9 @@
     "criado_em": "2026-01-17T14:23:56.446184Z",
     "atualizado_em": "2026-01-17T14:23:56.446186Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5936",
+    "bloco_parlamentar": "Bloco Parlamentar Vanguarda"
   },
   {
     "id": "sen-0018",
@@ -2060,7 +2078,7 @@
     "nome": "Flávio Bolsonaro",
     "nome_parlamentar": "Flávio Bolsonaro",
     "idade": 44,
-    "data_nascimento": "1982-01-27",
+    "data_nascimento": "1981-04-30",
     "genero": "masculino",
     "cor_raca": "preta",
     "naturalidade": "Rio de Janeiro",
@@ -2077,7 +2095,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 1866789,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_d77fc811.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5894.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Flávio+Bolsonaro&size=200&background=random",
     "formacao_academica": [
       "História",
@@ -2155,8 +2173,8 @@
       "PL"
     ],
     "relacao_governo_atual": "oposicao_forte",
-    "email_contato": "dep.flávio@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-9938",
+    "email_contato": "sen.flaviobolsonaro@senado.leg.br",
+    "telefone_gabinete": "33031717",
     "gabinete_localizacao": "Gabinete 688 - Anexo II",
     "redes_sociais": {
       "instagram": "@flávio",
@@ -2165,14 +2183,16 @@
     "criado_em": "2026-01-17T14:23:56.446291Z",
     "atualizado_em": "2026-01-17T14:23:56.446292Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5894",
+    "bloco_parlamentar": "Bloco Parlamentar Vanguarda"
   },
   {
     "id": "sen-0021",
     "nome": "Izalci Lucas",
     "nome_parlamentar": "Izalci Lucas",
     "idade": 40,
-    "data_nascimento": "1986-07-23",
+    "data_nascimento": "1956-04-07",
     "genero": "feminino",
     "cor_raca": "parda",
     "naturalidade": "Brasília",
@@ -2189,7 +2209,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 2988961,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_73b1926b.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador4770.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Izalci+Lucas&size=200&background=random",
     "formacao_academica": [
       "Pedagogia",
@@ -2262,8 +2282,8 @@
       "PL"
     ],
     "relacao_governo_atual": "oposicao_forte",
-    "email_contato": "dep.izalci@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-6067",
+    "email_contato": "sen.izalcilucas@senado.leg.br",
+    "telefone_gabinete": "33036049",
     "gabinete_localizacao": "Gabinete 506 - Anexo II",
     "redes_sociais": {
       "instagram": "@izalci",
@@ -2272,14 +2292,16 @@
     "criado_em": "2026-01-17T14:23:56.446328Z",
     "atualizado_em": "2026-01-17T14:23:56.446329Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/4770",
+    "bloco_parlamentar": "Bloco Parlamentar Vanguarda"
   },
   {
     "id": "sen-0022",
     "nome": "Jaime Bagattoli",
     "nome_parlamentar": "Jaime Bagattoli",
     "idade": 61,
-    "data_nascimento": "1965-03-05",
+    "data_nascimento": "1961-04-26",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Porto Velho",
@@ -2296,7 +2318,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 5031057,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_9490fd9e.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador6340.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Jaime+Bagattoli&size=200&background=random",
     "formacao_academica": [
       "Filosofia"
@@ -2369,8 +2391,8 @@
       "PL"
     ],
     "relacao_governo_atual": "oposicao_forte",
-    "email_contato": "dep.jaime@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-6490",
+    "email_contato": "sen.jaimebagattoli@senado.leg.br",
+    "telefone_gabinete": "33032714",
     "gabinete_localizacao": "Gabinete 747 - Anexo II",
     "redes_sociais": {
       "instagram": "@jaime",
@@ -2379,14 +2401,16 @@
     "criado_em": "2026-01-17T14:23:56.446364Z",
     "atualizado_em": "2026-01-17T14:23:56.446365Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/6340",
+    "bloco_parlamentar": "Bloco Parlamentar Vanguarda"
   },
   {
     "id": "sen-0023",
     "nome": "Jorge Seif",
     "nome_parlamentar": "Jorge Seif",
     "idade": 48,
-    "data_nascimento": "1978-07-10",
+    "data_nascimento": "1977-05-10",
     "genero": "masculino",
     "cor_raca": "branca",
     "naturalidade": "Florianópolis",
@@ -2403,7 +2427,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 5634292,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_6000f6d4.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador6342.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Jorge+Seif&size=200&background=random",
     "formacao_academica": [
       "Administração",
@@ -2479,8 +2503,8 @@
       "PL"
     ],
     "relacao_governo_atual": "oposicao_moderada",
-    "email_contato": "dep.jorge@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-8298",
+    "email_contato": "sen.jorgeseif@senado.leg.br",
+    "telefone_gabinete": "33033784",
     "gabinete_localizacao": "Gabinete 926 - Anexo II",
     "redes_sociais": {
       "instagram": "@jorge",
@@ -2489,14 +2513,16 @@
     "criado_em": "2026-01-17T14:23:56.446399Z",
     "atualizado_em": "2026-01-17T14:23:56.446401Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/6342",
+    "bloco_parlamentar": "Bloco Parlamentar Vanguarda"
   },
   {
     "id": "sen-0024",
     "nome": "Magno Malta",
     "nome_parlamentar": "Magno Malta",
     "idade": 62,
-    "data_nascimento": "1964-05-09",
+    "data_nascimento": "1957-10-16",
     "genero": "masculino",
     "cor_raca": "amarela",
     "naturalidade": "Vitória",
@@ -2513,7 +2539,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 4612210,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_062acc27.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador631.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Magno+Malta&size=200&background=random",
     "formacao_academica": [
       "Agronomia",
@@ -2589,8 +2615,8 @@
       "PL"
     ],
     "relacao_governo_atual": "oposicao_forte",
-    "email_contato": "dep.magno@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-6864",
+    "email_contato": "sen.magnomalta@senado.leg.br",
+    "telefone_gabinete": "33036370",
     "gabinete_localizacao": "Gabinete 112 - Anexo II",
     "redes_sociais": {
       "instagram": "@magno",
@@ -2599,14 +2625,16 @@
     "criado_em": "2026-01-17T14:23:56.446436Z",
     "atualizado_em": "2026-01-17T14:23:56.446438Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/631",
+    "bloco_parlamentar": "Bloco Parlamentar Vanguarda"
   },
   {
     "id": "sen-0025",
     "nome": "Marcos Rogério",
     "nome_parlamentar": "Marcos Rogério",
     "idade": 44,
-    "data_nascimento": "1982-04-27",
+    "data_nascimento": "1978-07-07",
     "genero": "masculino",
     "cor_raca": "preta",
     "naturalidade": "Porto Velho",
@@ -2623,7 +2651,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 3644814,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_1c46b485.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5422.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Marcos+Rogério&size=200&background=random",
     "formacao_academica": [
       "Engenharia Elétrica",
@@ -2700,8 +2728,8 @@
       "PL"
     ],
     "relacao_governo_atual": "oposicao_forte",
-    "email_contato": "dep.marcos@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-2714",
+    "email_contato": "sen.marcosrogerio@senado.leg.br",
+    "telefone_gabinete": "33036148",
     "gabinete_localizacao": "Gabinete 861 - Anexo II",
     "redes_sociais": {
       "instagram": "@marcos",
@@ -2710,7 +2738,9 @@
     "criado_em": "2026-01-17T14:23:56.446471Z",
     "atualizado_em": "2026-01-17T14:23:56.446473Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5422",
+    "bloco_parlamentar": "Bloco Parlamentar Vanguarda"
   },
   {
     "id": "sen-0026",
@@ -2930,7 +2960,7 @@
     "nome": "Wilder Morais",
     "nome_parlamentar": "Wilder Morais",
     "idade": 62,
-    "data_nascimento": "1964-09-27",
+    "data_nascimento": "1968-06-29",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Goiânia",
@@ -2947,7 +2977,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 1258749,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_a0427bf0.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5070.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Wilder+Morais&size=200&background=random",
     "formacao_academica": [
       "Ciências Políticas"
@@ -3028,8 +3058,8 @@
       "PL"
     ],
     "relacao_governo_atual": "oposicao_moderada",
-    "email_contato": "dep.wilder@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-4731",
+    "email_contato": "sen.wildermorais@senado.leg.br",
+    "telefone_gabinete": "33036440",
     "gabinete_localizacao": "Gabinete 165 - Anexo II",
     "redes_sociais": {
       "instagram": "@wilder",
@@ -3038,14 +3068,16 @@
     "criado_em": "2026-01-17T14:23:56.446614Z",
     "atualizado_em": "2026-01-17T14:23:56.446615Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5070",
+    "bloco_parlamentar": "Bloco Parlamentar Vanguarda"
   },
   {
     "id": "sen-0029",
     "nome": "Alessandro Vieira",
     "nome_parlamentar": "Alessandro Vieira",
     "idade": 50,
-    "data_nascimento": "1976-04-06",
+    "data_nascimento": "1975-04-03",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Aracaju",
@@ -3062,7 +3094,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 6047174,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_18919ab7.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5982.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Alessandro+Vieira&size=200&background=random",
     "formacao_academica": [
       "Contabilidade"
@@ -3133,8 +3165,8 @@
       "MDB"
     ],
     "relacao_governo_atual": "centrao",
-    "email_contato": "dep.alessandro@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-7823",
+    "email_contato": "sen.alessandrovieira@senado.leg.br",
+    "telefone_gabinete": "33039011",
     "gabinete_localizacao": "Gabinete 250 - Anexo II",
     "redes_sociais": {
       "instagram": "@alessandro",
@@ -3143,14 +3175,16 @@
     "criado_em": "2026-01-17T14:23:56.446650Z",
     "atualizado_em": "2026-01-17T14:23:56.446652Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5982",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0030",
     "nome": "Confúcio Moura",
     "nome_parlamentar": "Confúcio Moura",
     "idade": 40,
-    "data_nascimento": "1986-03-02",
+    "data_nascimento": "1948-05-16",
     "genero": "masculino",
     "cor_raca": "preta",
     "naturalidade": "Porto Velho",
@@ -3167,7 +3201,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 3244631,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_9ce786b5.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador475.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Confúcio+Moura&size=200&background=random",
     "formacao_academica": [
       "Direito"
@@ -3241,8 +3275,8 @@
       "MDB"
     ],
     "relacao_governo_atual": "centrao",
-    "email_contato": "dep.confúcio@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-7773",
+    "email_contato": "sen.confuciomoura@senado.leg.br",
+    "telefone_gabinete": "33032470",
     "gabinete_localizacao": "Gabinete 744 - Anexo II",
     "redes_sociais": {
       "instagram": "@confúcio",
@@ -3251,7 +3285,9 @@
     "criado_em": "2026-01-17T14:23:56.446687Z",
     "atualizado_em": "2026-01-17T14:23:56.446689Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/475",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0031",
@@ -3362,7 +3398,7 @@
     "nome": "Fernando Dueire",
     "nome_parlamentar": "Fernando Dueire",
     "idade": 62,
-    "data_nascimento": "1964-12-18",
+    "data_nascimento": "1959-04-14",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Recife",
@@ -3379,7 +3415,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 7955840,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_61809e74.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5917.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Fernando+Dueire&size=200&background=random",
     "formacao_academica": [
       "Pedagogia",
@@ -3456,8 +3492,8 @@
       "MDB"
     ],
     "relacao_governo_atual": "independente",
-    "email_contato": "dep.fernando@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-3873",
+    "email_contato": "sen.fernandodueire@senado.leg.br",
+    "telefone_gabinete": "33033522",
     "gabinete_localizacao": "Gabinete 377 - Anexo II",
     "redes_sociais": {
       "instagram": "@fernando",
@@ -3466,14 +3502,16 @@
     "criado_em": "2026-01-17T14:23:56.447130Z",
     "atualizado_em": "2026-01-17T14:23:56.447133Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5917",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0033",
     "nome": "Fernando Farias",
     "nome_parlamentar": "Fernando Farias",
     "idade": 57,
-    "data_nascimento": "1969-11-01",
+    "data_nascimento": "1952-02-06",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Maceió",
@@ -3490,7 +3528,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 2062066,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_4eabe968.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador6345.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Fernando+Farias&size=200&background=random",
     "formacao_academica": [
       "Ciências Políticas",
@@ -3566,8 +3604,8 @@
       "MDB"
     ],
     "relacao_governo_atual": "aliado_situacional",
-    "email_contato": "dep.fernando@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-8385",
+    "email_contato": "sen.fernandofarias@senado.leg.br",
+    "telefone_gabinete": "33036266",
     "gabinete_localizacao": "Gabinete 262 - Anexo II",
     "redes_sociais": {
       "instagram": "@fernando",
@@ -3576,14 +3614,16 @@
     "criado_em": "2026-01-17T14:23:56.447183Z",
     "atualizado_em": "2026-01-17T14:23:56.447184Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/6345",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0034",
     "nome": "Giordano",
     "nome_parlamentar": "Giordano",
     "idade": 64,
-    "data_nascimento": "1962-08-17",
+    "data_nascimento": "1973-06-26",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "São Paulo",
@@ -3600,7 +3640,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 3001828,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_4fd4a0b6.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador6008.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Giordano&size=200&background=random",
     "formacao_academica": [
       "Direito"
@@ -3671,8 +3711,8 @@
       "MDB"
     ],
     "relacao_governo_atual": "aliado_situacional",
-    "email_contato": "dep.giordano@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-7387",
+    "email_contato": "sen.giordano@senado.leg.br",
+    "telefone_gabinete": "33034177",
     "gabinete_localizacao": "Gabinete 320 - Anexo II",
     "redes_sociais": {
       "instagram": "@giordano",
@@ -3681,14 +3721,15 @@
     "criado_em": "2026-01-17T14:23:56.447228Z",
     "atualizado_em": "2026-01-17T14:23:56.447229Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/6008"
   },
   {
     "id": "sen-0035",
     "nome": "Ivete da Silveira",
     "nome_parlamentar": "Ivete da Silveira",
     "idade": 65,
-    "data_nascimento": "1961-11-01",
+    "data_nascimento": "1943-05-28",
     "genero": "feminino",
     "cor_raca": "branca",
     "naturalidade": "Florianópolis",
@@ -3705,7 +3746,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 5772364,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_937f9768.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador6010.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Ivete+da+Silveira&size=200&background=random",
     "formacao_academica": [
       "Ciências Sociais"
@@ -3780,8 +3821,8 @@
       "MDB"
     ],
     "relacao_governo_atual": "centrao",
-    "email_contato": "dep.ivete@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-7833",
+    "email_contato": "sen.ivetedasilveira@senado.leg.br",
+    "telefone_gabinete": "33032200",
     "gabinete_localizacao": "Gabinete 957 - Anexo II",
     "redes_sociais": {
       "instagram": "@ivete",
@@ -3790,14 +3831,16 @@
     "criado_em": "2026-01-17T14:23:56.447272Z",
     "atualizado_em": "2026-01-17T14:23:56.447273Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/6010",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0036",
     "nome": "Jader Barbalho",
     "nome_parlamentar": "Jader Barbalho",
     "idade": 40,
-    "data_nascimento": "1986-04-08",
+    "data_nascimento": "1944-10-27",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Belém",
@@ -3814,7 +3857,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 9779995,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_b3c4e721.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador35.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Jader+Barbalho&size=200&background=random",
     "formacao_academica": [
       "Pedagogia",
@@ -3889,8 +3932,8 @@
       "MDB"
     ],
     "relacao_governo_atual": "independente",
-    "email_contato": "dep.jader@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-1571",
+    "email_contato": "sen.jaderbarbalho@senado.leg.br",
+    "telefone_gabinete": "33039831",
     "gabinete_localizacao": "Gabinete 980 - Anexo II",
     "redes_sociais": {
       "instagram": "@jader",
@@ -3899,14 +3942,16 @@
     "criado_em": "2026-01-17T14:23:56.447312Z",
     "atualizado_em": "2026-01-17T14:23:56.447313Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/35",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0037",
     "nome": "Marcelo Castro",
     "nome_parlamentar": "Marcelo Castro",
     "idade": 58,
-    "data_nascimento": "1968-03-02",
+    "data_nascimento": "1950-06-09",
     "genero": "masculino",
     "cor_raca": "branca",
     "naturalidade": "Teresina",
@@ -3923,7 +3968,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 8154523,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_7c6c6acc.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador742.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Marcelo+Castro&size=200&background=random",
     "formacao_academica": [
       "Economia"
@@ -3999,8 +4044,8 @@
       "MDB"
     ],
     "relacao_governo_atual": "independente",
-    "email_contato": "dep.marcelo@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-5649",
+    "email_contato": "sen.marcelocastro@senado.leg.br",
+    "telefone_gabinete": "33034078",
     "gabinete_localizacao": "Gabinete 256 - Anexo II",
     "redes_sociais": {
       "instagram": "@marcelo",
@@ -4009,7 +4054,9 @@
     "criado_em": "2026-01-17T14:23:56.447393Z",
     "atualizado_em": "2026-01-17T14:23:56.447404Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/742",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0038",
@@ -4124,7 +4171,7 @@
     "nome": "Veneziano Vital do Rêgo",
     "nome_parlamentar": "Veneziano Vital do Rêgo",
     "idade": 41,
-    "data_nascimento": "1985-04-27",
+    "data_nascimento": "1970-07-17",
     "genero": "masculino",
     "cor_raca": "branca",
     "naturalidade": "João Pessoa",
@@ -4141,7 +4188,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 1685949,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_a8a15772.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5748.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Veneziano+Vital+do+Rêgo&size=200&background=random",
     "formacao_academica": [
       "Contabilidade"
@@ -4217,8 +4264,8 @@
       "MDB"
     ],
     "relacao_governo_atual": "independente",
-    "email_contato": "dep.veneziano@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-2412",
+    "email_contato": "sen.venezianovitaldorego@senado.leg.br",
+    "telefone_gabinete": "33032252",
     "gabinete_localizacao": "Gabinete 226 - Anexo II",
     "redes_sociais": {
       "instagram": "@veneziano",
@@ -4227,7 +4274,9 @@
     "criado_em": "2026-01-17T14:23:56.447533Z",
     "atualizado_em": "2026-01-17T14:23:56.447535Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5748",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0040",
@@ -4341,7 +4390,7 @@
     "nome": "Fabiano Contarato",
     "nome_parlamentar": "Fabiano Contarato",
     "idade": 62,
-    "data_nascimento": "1964-10-17",
+    "data_nascimento": "1966-06-20",
     "genero": "feminino",
     "cor_raca": "parda",
     "naturalidade": "Vitória",
@@ -4358,7 +4407,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 7307444,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_cccdf885.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5953.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Fabiano+Contarato&size=200&background=random",
     "formacao_academica": [
       "Teologia",
@@ -4434,8 +4483,8 @@
       "PT"
     ],
     "relacao_governo_atual": "base_aliada",
-    "email_contato": "dep.fabiano@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-4354",
+    "email_contato": "sen.fabianocontarato@senado.leg.br",
+    "telefone_gabinete": "33039054",
     "gabinete_localizacao": "Gabinete 894 - Anexo II",
     "redes_sociais": {
       "instagram": "@fabiano",
@@ -4444,7 +4493,9 @@
     "criado_em": "2026-01-17T14:23:56.447622Z",
     "atualizado_em": "2026-01-17T14:23:56.447624Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5953",
+    "bloco_parlamentar": "Bloco Parlamentar Pelo Brasil"
   },
   {
     "id": "sen-0042",
@@ -4669,7 +4720,7 @@
     "nome": "Jaques Wagner",
     "nome_parlamentar": "Jaques Wagner",
     "idade": 55,
-    "data_nascimento": "1971-08-19",
+    "data_nascimento": "1951-03-16",
     "genero": "masculino",
     "cor_raca": "branca",
     "naturalidade": "Salvador",
@@ -4686,7 +4737,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 6653670,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_05271b68.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador581.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Jaques+Wagner&size=200&background=random",
     "formacao_academica": [
       "Administração"
@@ -4759,8 +4810,8 @@
       "PT"
     ],
     "relacao_governo_atual": "situacao",
-    "email_contato": "dep.jaques@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-7139",
+    "email_contato": "sen.jaqueswagner@senado.leg.br",
+    "telefone_gabinete": "33036390",
     "gabinete_localizacao": "Gabinete 259 - Anexo II",
     "redes_sociais": {
       "instagram": "@jaques",
@@ -4769,14 +4820,16 @@
     "criado_em": "2026-01-17T14:23:56.447744Z",
     "atualizado_em": "2026-01-17T14:23:56.447746Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/581",
+    "bloco_parlamentar": "Bloco Parlamentar Pelo Brasil"
   },
   {
     "id": "sen-0045",
     "nome": "Paulo Paim",
     "nome_parlamentar": "Paulo Paim",
     "idade": 49,
-    "data_nascimento": "1977-11-20",
+    "data_nascimento": "1950-03-15",
     "genero": "masculino",
     "cor_raca": "branca",
     "naturalidade": "Porto Alegre",
@@ -4793,7 +4846,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 4379311,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_1eef6f2a.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador825.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Paulo+Paim&size=200&background=random",
     "formacao_academica": [
       "Pedagogia"
@@ -4867,8 +4920,8 @@
       "PT"
     ],
     "relacao_governo_atual": "base_aliada",
-    "email_contato": "dep.paulo@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-7930",
+    "email_contato": "sen.paulopaim@senado.leg.br",
+    "telefone_gabinete": "33035232",
     "gabinete_localizacao": "Gabinete 196 - Anexo II",
     "redes_sociais": {
       "instagram": "@paulo",
@@ -4877,7 +4930,9 @@
     "criado_em": "2026-01-17T14:23:56.447782Z",
     "atualizado_em": "2026-01-17T14:23:56.447783Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/825",
+    "bloco_parlamentar": "Bloco Parlamentar Pelo Brasil"
   },
   {
     "id": "sen-0046",
@@ -4992,7 +5047,7 @@
     "nome": "Rogério Carvalho",
     "nome_parlamentar": "Rogério Carvalho",
     "idade": 62,
-    "data_nascimento": "1964-12-22",
+    "data_nascimento": "1968-08-02",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Aracaju",
@@ -5009,7 +5064,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 2601298,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_4fe09bf9.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5352.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Rogério+Carvalho&size=200&background=random",
     "formacao_academica": [
       "Engenharia Civil",
@@ -5082,8 +5137,8 @@
       "PT"
     ],
     "relacao_governo_atual": "situacao",
-    "email_contato": "dep.rogério@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-5229",
+    "email_contato": "sen.rogeriocarvalho@senado.leg.br",
+    "telefone_gabinete": "33032201",
     "gabinete_localizacao": "Gabinete 861 - Anexo II",
     "redes_sociais": {
       "instagram": "@rogério",
@@ -5092,14 +5147,16 @@
     "criado_em": "2026-01-17T14:23:56.447858Z",
     "atualizado_em": "2026-01-17T14:23:56.447860Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5352",
+    "bloco_parlamentar": "Bloco Parlamentar Pelo Brasil"
   },
   {
     "id": "sen-0048",
     "nome": "Teresa Leitão",
     "nome_parlamentar": "Teresa Leitão",
     "idade": 42,
-    "data_nascimento": "1984-11-27",
+    "data_nascimento": "1951-10-07",
     "genero": "feminino",
     "cor_raca": "parda",
     "naturalidade": "Recife",
@@ -5116,7 +5173,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 8154992,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_37e2fd6c.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador6338.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Teresa+Leitão&size=200&background=random",
     "formacao_academica": [
       "Veterinária"
@@ -5189,8 +5246,8 @@
       "PT"
     ],
     "relacao_governo_atual": "situacao",
-    "email_contato": "dep.teresa@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-3610",
+    "email_contato": "sen.teresaleitao@senado.leg.br",
+    "telefone_gabinete": "33032423",
     "gabinete_localizacao": "Gabinete 319 - Anexo II",
     "redes_sociais": {
       "instagram": "@teresa",
@@ -5199,7 +5256,9 @@
     "criado_em": "2026-01-17T14:23:56.447897Z",
     "atualizado_em": "2026-01-17T14:23:56.447898Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/6338",
+    "bloco_parlamentar": "Bloco Parlamentar Pelo Brasil"
   },
   {
     "id": "sen-0049",
@@ -5309,7 +5368,7 @@
     "nome": "Ciro Nogueira",
     "nome_parlamentar": "Ciro Nogueira",
     "idade": 62,
-    "data_nascimento": "1964-06-28",
+    "data_nascimento": "1968-11-21",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Teresina",
@@ -5326,7 +5385,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 3619178,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_0c051367.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador739.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Ciro+Nogueira&size=200&background=random",
     "formacao_academica": [
       "Ciências Sociais",
@@ -5402,8 +5461,8 @@
       "PP"
     ],
     "relacao_governo_atual": "oposicao_moderada",
-    "email_contato": "dep.ciro@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-9802",
+    "email_contato": "sen.cironogueira@senado.leg.br",
+    "telefone_gabinete": "33036187",
     "gabinete_localizacao": "Gabinete 440 - Anexo II",
     "redes_sociais": {
       "instagram": "@ciro",
@@ -5412,7 +5471,9 @@
     "criado_em": "2026-01-17T14:23:56.447969Z",
     "atualizado_em": "2026-01-17T14:23:56.447971Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/739",
+    "bloco_parlamentar": "Bloco Parlamentar Aliança"
   },
   {
     "id": "sen-0051",
@@ -5532,7 +5593,7 @@
     "nome": "Esperidião Amin",
     "nome_parlamentar": "Esperidião Amin",
     "idade": 49,
-    "data_nascimento": "1977-12-09",
+    "data_nascimento": "1947-12-21",
     "genero": "masculino",
     "cor_raca": "preta",
     "naturalidade": "Florianópolis",
@@ -5549,7 +5610,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 7373394,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_4b33e6d9.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador22.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Esperidião+Amin&size=200&background=random",
     "formacao_academica": [
       "Pedagogia"
@@ -5619,8 +5680,8 @@
       "PP"
     ],
     "relacao_governo_atual": "independente",
-    "email_contato": "dep.esperidião@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-1527",
+    "email_contato": "sen.esperidiaoamin@senado.leg.br",
+    "telefone_gabinete": "33036446",
     "gabinete_localizacao": "Gabinete 647 - Anexo II",
     "redes_sociais": {
       "instagram": "@esperidião",
@@ -5629,7 +5690,9 @@
     "criado_em": "2026-01-17T14:23:56.448045Z",
     "atualizado_em": "2026-01-17T14:23:56.448046Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/22",
+    "bloco_parlamentar": "Bloco Parlamentar Aliança"
   },
   {
     "id": "sen-0053",
@@ -5744,7 +5807,7 @@
     "nome": "Laércio Oliveira",
     "nome_parlamentar": "Laércio Oliveira",
     "idade": 65,
-    "data_nascimento": "1961-02-09",
+    "data_nascimento": "1959-04-15",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Aracaju",
@@ -5761,7 +5824,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 1967504,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_6e55b751.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador4811.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Laércio+Oliveira&size=200&background=random",
     "formacao_academica": [
       "Administração"
@@ -5838,8 +5901,8 @@
       "PP"
     ],
     "relacao_governo_atual": "independente",
-    "email_contato": "dep.laércio@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-1973",
+    "email_contato": "sen.laerciooliveira@senado.leg.br",
+    "telefone_gabinete": "33031763",
     "gabinete_localizacao": "Gabinete 878 - Anexo II",
     "redes_sociais": {
       "instagram": "@laércio",
@@ -5848,14 +5911,16 @@
     "criado_em": "2026-01-17T14:23:56.448122Z",
     "atualizado_em": "2026-01-17T14:23:56.448123Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/4811",
+    "bloco_parlamentar": "Bloco Parlamentar Aliança"
   },
   {
     "id": "sen-0055",
     "nome": "Tereza Cristina",
     "nome_parlamentar": "Tereza Cristina",
     "idade": 54,
-    "data_nascimento": "1972-06-04",
+    "data_nascimento": "1954-07-06",
     "genero": "feminino",
     "cor_raca": "parda",
     "naturalidade": "Campo Grande",
@@ -5872,7 +5937,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 998843,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_98740eca.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5736.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Tereza+Cristina&size=200&background=random",
     "formacao_academica": [
       "Pedagogia"
@@ -5949,8 +6014,8 @@
       "PP"
     ],
     "relacao_governo_atual": "oposicao_moderada",
-    "email_contato": "dep.tereza@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-7255",
+    "email_contato": "sen.terezacristina@senado.leg.br",
+    "telefone_gabinete": "33032431",
     "gabinete_localizacao": "Gabinete 790 - Anexo II",
     "redes_sociais": {
       "instagram": "@tereza",
@@ -5959,14 +6024,16 @@
     "criado_em": "2026-01-17T14:23:56.448164Z",
     "atualizado_em": "2026-01-17T14:23:56.448165Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5736",
+    "bloco_parlamentar": "Bloco Parlamentar Aliança"
   },
   {
     "id": "sen-0056",
     "nome": "Alan Rick",
     "nome_parlamentar": "Alan Rick",
     "idade": 50,
-    "data_nascimento": "1976-06-18",
+    "data_nascimento": "1976-10-23",
     "genero": "masculino",
     "cor_raca": "preta",
     "naturalidade": "Rio Branco",
@@ -5983,7 +6050,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 2431370,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_c5515b47.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5672.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Alan+Rick&size=200&background=random",
     "formacao_academica": [
       "Ciências Sociais"
@@ -6055,8 +6122,8 @@
       "UNIÃO"
     ],
     "relacao_governo_atual": "oposicao_moderada",
-    "email_contato": "dep.alan@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-5150",
+    "email_contato": "sen.alanrick@senado.leg.br",
+    "telefone_gabinete": "33036333",
     "gabinete_localizacao": "Gabinete 128 - Anexo II",
     "redes_sociais": {
       "instagram": "@alan",
@@ -6065,7 +6132,9 @@
     "criado_em": "2026-01-17T14:23:56.448202Z",
     "atualizado_em": "2026-01-17T14:23:56.448204Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5672",
+    "bloco_parlamentar": "Bloco Parlamentar Aliança"
   },
   {
     "id": "sen-0057",
@@ -6293,7 +6362,7 @@
     "nome": "Jayme Campos",
     "nome_parlamentar": "Jayme Campos",
     "idade": 43,
-    "data_nascimento": "1983-06-24",
+    "data_nascimento": "1951-09-13",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Cuiabá",
@@ -6310,7 +6379,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 4976848,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_af2391ef.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador4531.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Jayme+Campos&size=200&background=random",
     "formacao_academica": [
       "Filosofia"
@@ -6383,8 +6452,8 @@
       "UNIÃO"
     ],
     "relacao_governo_atual": "independente",
-    "email_contato": "dep.jayme@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-1037",
+    "email_contato": "sen.jaymecampos@senado.leg.br",
+    "telefone_gabinete": "33032390",
     "gabinete_localizacao": "Gabinete 365 - Anexo II",
     "redes_sociais": {
       "instagram": "@jayme",
@@ -6393,14 +6462,16 @@
     "criado_em": "2026-01-17T14:23:56.448482Z",
     "atualizado_em": "2026-01-17T14:23:56.448485Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/4531",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0060",
     "nome": "Marcio Bittar",
     "nome_parlamentar": "Marcio Bittar",
     "idade": 40,
-    "data_nascimento": "1986-02-19",
+    "data_nascimento": "1963-06-28",
     "genero": "masculino",
     "cor_raca": "branca",
     "naturalidade": "Rio Branco",
@@ -6417,7 +6488,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 1816457,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_dee33c0f.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador285.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Marcio+Bittar&size=200&background=random",
     "formacao_academica": [
       "Filosofia"
@@ -6485,8 +6556,8 @@
       "UNIÃO"
     ],
     "relacao_governo_atual": "oposicao_moderada",
-    "email_contato": "dep.marcio@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-6960",
+    "email_contato": "sen.marciobittar@senado.leg.br",
+    "telefone_gabinete": "33032115",
     "gabinete_localizacao": "Gabinete 718 - Anexo II",
     "redes_sociais": {
       "instagram": "@marcio",
@@ -6495,7 +6566,9 @@
     "criado_em": "2026-01-17T14:23:56.448532Z",
     "atualizado_em": "2026-01-17T14:23:56.448534Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/285",
+    "bloco_parlamentar": "Bloco Parlamentar Vanguarda"
   },
   {
     "id": "sen-0061",
@@ -6616,7 +6689,7 @@
     "nome": "Sergio Moro",
     "nome_parlamentar": "Sergio Moro",
     "idade": 44,
-    "data_nascimento": "1982-07-17",
+    "data_nascimento": "1972-08-01",
     "genero": "masculino",
     "cor_raca": "preta",
     "naturalidade": "Curitiba",
@@ -6633,7 +6706,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 3082022,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_625f4071.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador6331.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Sergio+Moro&size=200&background=random",
     "formacao_academica": [
       "Veterinária"
@@ -6712,8 +6785,8 @@
       "UNIÃO"
     ],
     "relacao_governo_atual": "oposicao_moderada",
-    "email_contato": "dep.sergio@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-3695",
+    "email_contato": "sen.sergiomoro@senado.leg.br",
+    "telefone_gabinete": "33036202",
     "gabinete_localizacao": "Gabinete 611 - Anexo II",
     "redes_sociais": {
       "instagram": "@sergio",
@@ -6722,14 +6795,16 @@
     "criado_em": "2026-01-17T14:23:56.448621Z",
     "atualizado_em": "2026-01-17T14:23:56.448622Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/6331",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0063",
     "nome": "Marcos do Val",
     "nome_parlamentar": "Marcos do Val",
     "idade": 50,
-    "data_nascimento": "1976-08-08",
+    "data_nascimento": "1971-06-15",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Vitória",
@@ -6746,7 +6821,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 6101201,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_db7b1133.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5942.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Marcos+do+Val&size=200&background=random",
     "formacao_academica": [
       "Engenharia Elétrica",
@@ -6820,8 +6895,8 @@
       "PODE"
     ],
     "relacao_governo_atual": "centrao",
-    "email_contato": "dep.marcos@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-3654",
+    "email_contato": "sen.marcosdoval@senado.leg.br",
+    "telefone_gabinete": "33036747",
     "gabinete_localizacao": "Gabinete 973 - Anexo II",
     "redes_sociais": {
       "instagram": "@marcos",
@@ -6830,14 +6905,16 @@
     "criado_em": "2026-01-17T14:23:56.448659Z",
     "atualizado_em": "2026-01-17T14:23:56.448661Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5942",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0064",
     "nome": "Oriovisto Guimarães",
     "nome_parlamentar": "Oriovisto Guimarães",
     "idade": 41,
-    "data_nascimento": "1985-05-13",
+    "data_nascimento": "1945-08-12",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Curitiba",
@@ -6854,7 +6931,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 3973452,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_991a603f.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5924.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Oriovisto+Guimarães&size=200&background=random",
     "formacao_academica": [
       "Veterinária",
@@ -6927,8 +7004,8 @@
       "PODE"
     ],
     "relacao_governo_atual": "aliado_situacional",
-    "email_contato": "dep.oriovisto@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-8575",
+    "email_contato": "sen.oriovistoguimaraes@senado.leg.br",
+    "telefone_gabinete": "33031635",
     "gabinete_localizacao": "Gabinete 490 - Anexo II",
     "redes_sociais": {
       "instagram": "@oriovisto",
@@ -6937,7 +7014,9 @@
     "criado_em": "2026-01-17T14:23:56.448701Z",
     "atualizado_em": "2026-01-17T14:23:56.448703Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5924",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0065",
@@ -7050,7 +7129,7 @@
     "nome": "Soraya Thronicke",
     "nome_parlamentar": "Soraya Thronicke",
     "idade": 52,
-    "data_nascimento": "1974-01-19",
+    "data_nascimento": "1973-06-01",
     "genero": "feminino",
     "cor_raca": "amarela",
     "naturalidade": "Campo Grande",
@@ -7067,7 +7146,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 8918201,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_3bb865e4.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5988.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Soraya+Thronicke&size=200&background=random",
     "formacao_academica": [
       "Direito",
@@ -7141,8 +7220,8 @@
       "PODE"
     ],
     "relacao_governo_atual": "aliado_situacional",
-    "email_contato": "dep.soraya@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-8749",
+    "email_contato": "sen.sorayathronicke@senado.leg.br",
+    "telefone_gabinete": "33031775",
     "gabinete_localizacao": "Gabinete 880 - Anexo II",
     "redes_sociais": {
       "instagram": "@soraya",
@@ -7151,14 +7230,16 @@
     "criado_em": "2026-01-17T14:23:56.448780Z",
     "atualizado_em": "2026-01-17T14:23:56.448782Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5988",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0067",
     "nome": "Styvenson Valentim",
     "nome_parlamentar": "Styvenson Valentim",
     "idade": 61,
-    "data_nascimento": "1965-01-11",
+    "data_nascimento": "1977-02-07",
     "genero": "masculino",
     "cor_raca": "branca",
     "naturalidade": "Natal",
@@ -7175,7 +7256,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 5235234,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_e176e243.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5959.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Styvenson+Valentim&size=200&background=random",
     "formacao_academica": [
       "Engenharia Elétrica"
@@ -7251,8 +7332,8 @@
       "PODE"
     ],
     "relacao_governo_atual": "centrao",
-    "email_contato": "dep.styvenson@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-5690",
+    "email_contato": "sen.styvensonvalentim@senado.leg.br",
+    "telefone_gabinete": "33031148",
     "gabinete_localizacao": "Gabinete 591 - Anexo II",
     "redes_sociais": {
       "instagram": "@styvenson",
@@ -7261,7 +7342,9 @@
     "criado_em": "2026-01-17T14:23:56.448817Z",
     "atualizado_em": "2026-01-17T14:23:56.448819Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5959",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   },
   {
     "id": "sen-0068",
@@ -7479,7 +7562,7 @@
     "nome": "Damares Alves",
     "nome_parlamentar": "Damares Alves",
     "idade": 53,
-    "data_nascimento": "1973-02-04",
+    "data_nascimento": "1964-03-11",
     "genero": "feminino",
     "cor_raca": "branca",
     "naturalidade": "Brasília",
@@ -7496,7 +7579,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 7895601,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_89d9ef8e.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador6335.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Damares+Alves&size=200&background=random",
     "formacao_academica": [
       "Veterinária"
@@ -7571,8 +7654,8 @@
       "REPUBLICANOS"
     ],
     "relacao_governo_atual": "oposicao_moderada",
-    "email_contato": "dep.damares@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-4633",
+    "email_contato": "sen.damaresalves@senado.leg.br",
+    "telefone_gabinete": "33033265",
     "gabinete_localizacao": "Gabinete 225 - Anexo II",
     "redes_sociais": {
       "instagram": "@damares",
@@ -7581,7 +7664,9 @@
     "criado_em": "2026-01-17T14:23:56.448959Z",
     "atualizado_em": "2026-01-17T14:23:56.448961Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/6335",
+    "bloco_parlamentar": "Bloco Parlamentar Aliança"
   },
   {
     "id": "sen-0071",
@@ -7917,7 +8002,7 @@
     "nome": "Cid Gomes",
     "nome_parlamentar": "Cid Gomes",
     "idade": 44,
-    "data_nascimento": "1982-03-25",
+    "data_nascimento": "1963-04-27",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Fortaleza",
@@ -7934,7 +8019,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 4251652,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_6cfb8295.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5973.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Cid+Gomes&size=200&background=random",
     "formacao_academica": [
       "Enfermagem",
@@ -8005,8 +8090,8 @@
       "PSB"
     ],
     "relacao_governo_atual": "situacao",
-    "email_contato": "dep.cid@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-5611",
+    "email_contato": "sen.cidgomes@senado.leg.br",
+    "telefone_gabinete": "33036460",
     "gabinete_localizacao": "Gabinete 485 - Anexo II",
     "redes_sociais": {
       "instagram": "@cid",
@@ -8015,14 +8100,16 @@
     "criado_em": "2026-01-17T14:23:56.449116Z",
     "atualizado_em": "2026-01-17T14:23:56.449117Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5973",
+    "bloco_parlamentar": "Bloco Parlamentar da Resistência Democrática"
   },
   {
     "id": "sen-0075",
     "nome": "Flávio Arns",
     "nome_parlamentar": "Flávio Arns",
     "idade": 64,
-    "data_nascimento": "1962-09-22",
+    "data_nascimento": "1950-11-09",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Curitiba",
@@ -8039,7 +8126,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 5052943,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_cab3c9a1.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador345.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Flávio+Arns&size=200&background=random",
     "formacao_academica": [
       "Letras",
@@ -8113,8 +8200,8 @@
       "PSB"
     ],
     "relacao_governo_atual": "aliado_com_ressalvas",
-    "email_contato": "dep.flávio@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-3523",
+    "email_contato": "sen.flavioarns@senado.leg.br",
+    "telefone_gabinete": "33036301",
     "gabinete_localizacao": "Gabinete 784 - Anexo II",
     "redes_sociais": {
       "instagram": "@flávio",
@@ -8123,14 +8210,16 @@
     "criado_em": "2026-01-17T14:23:56.449156Z",
     "atualizado_em": "2026-01-17T14:23:56.449157Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/345",
+    "bloco_parlamentar": "Bloco Parlamentar da Resistência Democrática"
   },
   {
     "id": "sen-0076",
     "nome": "Jorge Kajuru",
     "nome_parlamentar": "Jorge Kajuru",
     "idade": 47,
-    "data_nascimento": "1979-08-11",
+    "data_nascimento": "1961-01-20",
     "genero": "masculino",
     "cor_raca": "preta",
     "naturalidade": "Goiânia",
@@ -8147,7 +8236,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 9994628,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_b29efe69.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5895.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Jorge+Kajuru&size=200&background=random",
     "formacao_academica": [
       "Administração",
@@ -8221,8 +8310,8 @@
       "PSB"
     ],
     "relacao_governo_atual": "aliado_com_ressalvas",
-    "email_contato": "dep.jorge@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-7854",
+    "email_contato": "sen.jorgekajuru@senado.leg.br",
+    "telefone_gabinete": "33032844",
     "gabinete_localizacao": "Gabinete 768 - Anexo II",
     "redes_sociais": {
       "instagram": "@jorge",
@@ -8231,7 +8320,9 @@
     "criado_em": "2026-01-17T14:23:56.449193Z",
     "atualizado_em": "2026-01-17T14:23:56.449194Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5895",
+    "bloco_parlamentar": "Bloco Parlamentar da Resistência Democrática"
   },
   {
     "id": "sen-0077",
@@ -8458,7 +8549,7 @@
     "nome": "Weverton",
     "nome_parlamentar": "Weverton",
     "idade": 54,
-    "data_nascimento": "1972-10-13",
+    "data_nascimento": "1979-10-08",
     "genero": "masculino",
     "cor_raca": "preta",
     "naturalidade": "São Luís",
@@ -8475,7 +8566,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 8268924,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_3f530d7e.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5411.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Weverton&size=200&background=random",
     "formacao_academica": [
       "Administração",
@@ -8550,8 +8641,8 @@
       "PDT"
     ],
     "relacao_governo_atual": "aliado_com_ressalvas",
-    "email_contato": "dep.weverton@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-3497",
+    "email_contato": "sen.wevertonrocha@senado.leg.br",
+    "telefone_gabinete": "33034161",
     "gabinete_localizacao": "Gabinete 153 - Anexo II",
     "redes_sociais": {
       "instagram": "@weverton",
@@ -8560,7 +8651,9 @@
     "criado_em": "2026-01-17T14:23:56.449304Z",
     "atualizado_em": "2026-01-17T14:23:56.449306Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5411",
+    "bloco_parlamentar": "Bloco Parlamentar Pelo Brasil"
   },
   {
     "id": "sen-0080",
@@ -8677,7 +8770,7 @@
     "nome": "Plínio Valério",
     "nome_parlamentar": "Plínio Valério",
     "idade": 56,
-    "data_nascimento": "1970-01-04",
+    "data_nascimento": "1955-01-31",
     "genero": "masculino",
     "cor_raca": "parda",
     "naturalidade": "Manaus",
@@ -8694,7 +8787,7 @@
     "mandato_fim": "2027-01-31",
     "legislatura": 57,
     "votos_eleicao": 3484210,
-    "foto_url": "https://www.senado.leg.br/senadores/img/fotos-oficiais/sen_9e8abd98.jpg",
+    "foto_url": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5502.jpg",
     "foto_url_alternativa": "https://ui-avatars.com/api/?name=Plínio+Valério&size=200&background=random",
     "formacao_academica": [
       "Contabilidade"
@@ -8767,8 +8860,8 @@
       "PSDB"
     ],
     "relacao_governo_atual": "independente",
-    "email_contato": "dep.plínio@senado.leg.br",
-    "telefone_gabinete": "(61) 3215-7617",
+    "email_contato": "sen.pliniovalerio@senado.leg.br",
+    "telefone_gabinete": "33032898",
     "gabinete_localizacao": "Gabinete 729 - Anexo II",
     "redes_sociais": {
       "instagram": "@plínio",
@@ -8777,6 +8870,8 @@
     "criado_em": "2026-01-17T14:23:56.449380Z",
     "atualizado_em": "2026-01-17T14:23:56.449382Z",
     "fonte_dados": "Câmara dos Deputados / Senado Federal / TSE",
-    "versao": "2.0"
+    "versao": "2.0",
+    "pagina_senado": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5502",
+    "bloco_parlamentar": "Bloco Parlamentar Democracia"
   }
 ]

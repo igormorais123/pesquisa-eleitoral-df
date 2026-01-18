@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * Página de Analytics Global
+ * Análises visuais das pesquisas realizadas (dados locais do Dexie)
+ * Pesquisa Eleitoral DF 2026
+ */
+
 import { useEffect, useState } from 'react';
 import {
   BarChart3,
@@ -8,39 +14,68 @@ import {
   DollarSign,
   MessageSquare,
   Lightbulb,
-  Search,
-  Download,
   RefreshCcw,
-  ArrowUpRight,
-  ArrowDownRight,
   Database,
   Cpu,
   Zap,
+  PieChart as PieChartIcon,
+  Target,
+  MapPin,
+  Calendar,
 } from 'lucide-react';
-
 import {
-  DashboardGlobal,
-  Correlacao,
-  Tendencia,
-  InsightGlobal,
-  obterDashboardGlobal,
-  obterCorrelacoes,
-  obterTendencias,
-  obterInsights,
-  formatarNumero,
-  formatarReais,
-  corRelevancia,
-} from '@/services/analytics-api';
-
+  PieChart,
+  Pie,
+  Cell,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  Legend,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar,
+} from 'recharts';
 import {
-  AnalyticsGlobais,
-  obterAnalyticsGlobais,
-  formatarTokens,
-  formatarCusto,
-} from '@/services/memorias-api';
+  calcularDashboard,
+  calcularSegmentacao,
+  calcularTendencias,
+  gerarInsights,
+  extrairPalavrasFrequentes,
+  formatarMoeda,
+  type DashboardLocal,
+  type SegmentacaoLocal,
+  type TendenciaLocal,
+  type InsightLocal,
+  type PalavraFrequente,
+} from '@/services/analytics-local';
+import { cn } from '@/lib/utils';
 
 // ============================================
-// COMPONENTES DE CARDS
+// CORES
+// ============================================
+
+const CORES = {
+  primaria: '#8b5cf6',
+  positivo: '#22c55e',
+  negativo: '#ef4444',
+  neutro: '#6b7280',
+  alerta: '#f59e0b',
+  info: '#3b82f6',
+  roxo: '#a855f7',
+  cyan: '#06b6d4',
+};
+
+const CORES_GRAFICO = [CORES.primaria, CORES.positivo, CORES.alerta, CORES.info, CORES.roxo, CORES.cyan, CORES.negativo];
+
+// ============================================
+// COMPONENTES
 // ============================================
 
 function CardMetrica({
@@ -48,377 +83,20 @@ function CardMetrica({
   valor,
   subtitulo,
   icone: Icone,
-  cor = 'blue',
-  variacao,
+  cor,
 }: {
   titulo: string;
   valor: string | number;
   subtitulo?: string;
   icone: React.ElementType;
-  cor?: 'blue' | 'green' | 'purple' | 'yellow' | 'red';
-  variacao?: number;
+  cor: string;
 }) {
-  const cores = {
-    blue: 'bg-blue-50 text-blue-600',
-    green: 'bg-green-50 text-green-600',
-    purple: 'bg-purple-50 text-purple-600',
-    yellow: 'bg-yellow-50 text-yellow-600',
-    red: 'bg-red-50 text-red-600',
-  };
-
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-      <div className="flex items-center justify-between mb-4">
-        <div className={`p-3 rounded-lg ${cores[cor]}`}>
-          <Icone className="w-6 h-6" />
-        </div>
-        {variacao !== undefined && (
-          <div
-            className={`flex items-center text-sm font-medium ${
-              variacao >= 0 ? 'text-green-600' : 'text-red-600'
-            }`}
-          >
-            {variacao >= 0 ? (
-              <ArrowUpRight className="w-4 h-4 mr-1" />
-            ) : (
-              <ArrowDownRight className="w-4 h-4 mr-1" />
-            )}
-            {Math.abs(variacao).toFixed(1)}%
-          </div>
-        )}
-      </div>
-      <p className="text-gray-500 dark:text-gray-400 text-sm mb-1">{titulo}</p>
-      <p className="text-2xl font-bold text-gray-900 dark:text-white">{valor}</p>
-      {subtitulo && (
-        <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{subtitulo}</p>
-      )}
-    </div>
-  );
-}
-
-// ============================================
-// COMPONENTE DE CORRELAÇÕES
-// ============================================
-
-function CorrelacoesCard({ correlacoes }: { correlacoes: Correlacao[] }) {
-  return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-        <BarChart3 className="w-5 h-5 text-purple-500" />
-        Correlações Significativas
-      </h3>
-
-      {correlacoes.length === 0 ? (
-        <p className="text-gray-500 dark:text-gray-400 text-sm">
-          Nenhuma correlação significativa encontrada ainda. Execute mais pesquisas para gerar análises.
-        </p>
-      ) : (
-        <div className="space-y-4">
-          {correlacoes.slice(0, 5).map((corr, i) => (
-            <div
-              key={i}
-              className={`p-4 rounded-lg border ${corRelevancia(corr.significancia)}`}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-medium capitalize">
-                  {corr.variavel_x.replace(/_/g, ' ')}
-                </span>
-                <span
-                  className={`text-xs px-2 py-1 rounded-full ${
-                    corr.significancia === 'alta'
-                      ? 'bg-red-100 text-red-700'
-                      : corr.significancia === 'media'
-                      ? 'bg-yellow-100 text-yellow-700'
-                      : 'bg-blue-100 text-blue-700'
-                  }`}
-                >
-                  {corr.significancia}
-                </span>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                {corr.interpretacao}
-              </p>
-              <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
-                <span>Coef: {corr.coeficiente.toFixed(3)}</span>
-                <span>Amostra: {corr.amostra}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ============================================
-// COMPONENTE DE TENDÊNCIAS
-// ============================================
-
-function TendenciasCard({ tendencias }: { tendencias: Tendencia[] }) {
-  const ultimasTres = tendencias.slice(-3);
-
-  return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-        <TrendingUp className="w-5 h-5 text-green-500" />
-        Tendências Recentes
-      </h3>
-
-      {tendencias.length === 0 ? (
-        <p className="text-gray-500 dark:text-gray-400 text-sm">
-          Sem dados suficientes para análise de tendências.
-        </p>
-      ) : (
-        <div className="space-y-4">
-          {ultimasTres.map((t, i) => (
-            <div
-              key={i}
-              className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-medium text-gray-900 dark:text-white">
-                  {t.periodo}
-                </span>
-                {t.sentimento_medio != null && (
-                  <span
-                    className={`text-sm font-medium ${
-                      (t.sentimento_medio || 0) > 0.2
-                        ? 'text-green-600'
-                        : (t.sentimento_medio || 0) < -0.2
-                        ? 'text-red-600'
-                        : 'text-gray-600'
-                    }`}
-                  >
-                    Sentimento: {(t.sentimento_medio || 0).toFixed(2)}
-                  </span>
-                )}
-              </div>
-              <div className="grid grid-cols-3 gap-2 text-sm">
-                <div>
-                  <p className="text-gray-500 dark:text-gray-400">Pesquisas</p>
-                  <p className="font-semibold text-gray-900 dark:text-white">
-                    {t.pesquisas_realizadas}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-gray-500 dark:text-gray-400">Respostas</p>
-                  <p className="font-semibold text-gray-900 dark:text-white">
-                    {formatarNumero(t.respostas_coletadas)}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-gray-500 dark:text-gray-400">Custo</p>
-                  <p className="font-semibold text-gray-900 dark:text-white">
-                    {formatarReais(t.custo_total)}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ============================================
-// COMPONENTE DE INSIGHTS
-// ============================================
-
-function InsightsCard({ insights }: { insights: InsightGlobal[] }) {
-  const iconesPorTipo: Record<string, React.ElementType> = {
-    descoberta: Lightbulb,
-    alerta: MessageSquare,
-    correlacao: BarChart3,
-    tendencia: TrendingUp,
-  };
-
-  return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-        <Lightbulb className="w-5 h-5 text-yellow-500" />
-        Insights Descobertos
-      </h3>
-
-      {insights.length === 0 ? (
-        <p className="text-gray-500 dark:text-gray-400 text-sm">
-          Nenhum insight disponível ainda. Continue executando pesquisas para descobrir padrões.
-        </p>
-      ) : (
-        <div className="space-y-4">
-          {insights.slice(0, 4).map((insight, i) => {
-            const Icone = iconesPorTipo[insight.tipo] || Lightbulb;
-            return (
-              <div
-                key={i}
-                className={`p-4 rounded-lg border ${corRelevancia(insight.relevancia)}`}
-              >
-                <div className="flex items-start gap-3">
-                  <Icone className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-medium text-gray-900 dark:text-white">
-                      {insight.titulo}
-                    </h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-                      {insight.descricao}
-                    </p>
-                    <div className="flex items-center gap-2 mt-2">
-                      <span className="text-xs text-gray-500 capitalize">
-                        {insight.tipo}
-                      </span>
-                      <span className="text-xs text-gray-400">•</span>
-                      <span className="text-xs text-gray-500">
-                        Relevância {insight.relevancia}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ============================================
-// COMPONENTE DE USO DA API (MEMÓRIAS)
-// ============================================
-
-function UsoAPICard({ memorias }: { memorias: AnalyticsGlobais | null }) {
-  if (!memorias) {
-    return (
-      <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-          <Database className="w-5 h-5 text-indigo-500" />
-          Uso da API (Memórias)
-        </h3>
-        <p className="text-gray-500 dark:text-gray-400 text-sm">
-          Dados de memórias não disponíveis.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-        <Database className="w-5 h-5 text-indigo-500" />
-        Uso da API (Memórias Persistidas)
-      </h3>
-
-      {/* Totais */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg">
-          <p className="text-sm text-indigo-600 dark:text-indigo-400">Total Memórias</p>
-          <p className="text-2xl font-bold text-indigo-700 dark:text-indigo-300">
-            {formatarNumero(memorias.total_memorias)}
-          </p>
-        </div>
-        <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
-          <p className="text-sm text-green-600 dark:text-green-400">Eleitores Únicos</p>
-          <p className="text-2xl font-bold text-green-700 dark:text-green-300">
-            {formatarNumero(memorias.total_eleitores_unicos)}
-          </p>
-        </div>
-        <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-          <p className="text-sm text-blue-600 dark:text-blue-400">Tokens Total</p>
-          <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">
-            {formatarTokens(memorias.tokens_acumulados)}
-          </p>
-        </div>
-        <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
-          <p className="text-sm text-yellow-600 dark:text-yellow-400">Custo Total</p>
-          <p className="text-2xl font-bold text-yellow-700 dark:text-yellow-300">
-            {formatarCusto(memorias.custo_acumulado)}
-          </p>
-        </div>
-      </div>
-
-      {/* Tokens por Tipo */}
-      <div className="grid grid-cols-2 gap-4 mb-6">
-        <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-          <div className="flex items-center gap-2 mb-2">
-            <Cpu className="w-4 h-4 text-blue-500" />
-            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Tokens Entrada</p>
-          </div>
-          <p className="text-xl font-bold text-gray-900 dark:text-white">
-            {formatarTokens(memorias.tokens_entrada_acumulados)}
-          </p>
-        </div>
-        <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-          <div className="flex items-center gap-2 mb-2">
-            <Zap className="w-4 h-4 text-purple-500" />
-            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Tokens Saída</p>
-          </div>
-          <p className="text-xl font-bold text-gray-900 dark:text-white">
-            {formatarTokens(memorias.tokens_saida_acumulados)}
-          </p>
-        </div>
-      </div>
-
-      {/* Distribuição por Modelo */}
-      {Object.keys(memorias.distribuicao_modelos).length > 0 && (
-        <div>
-          <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-            Distribuição por Modelo
-          </h4>
-          <div className="space-y-2">
-            {Object.entries(memorias.distribuicao_modelos).map(([modelo, total]) => {
-              const custo = memorias.custo_por_modelo[modelo] || 0;
-              const tokens = memorias.tokens_por_modelo[modelo] || 0;
-              const isOpus = modelo.includes('opus');
-
-              return (
-                <div
-                  key={modelo}
-                  className={`p-3 rounded-lg ${
-                    isOpus ? 'bg-purple-50 dark:bg-purple-900/20' : 'bg-blue-50 dark:bg-blue-900/20'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className={`text-sm font-medium ${
-                      isOpus ? 'text-purple-700 dark:text-purple-300' : 'text-blue-700 dark:text-blue-300'
-                    }`}>
-                      {isOpus ? 'Claude Opus' : 'Claude Sonnet'}
-                    </span>
-                    <span className="text-xs text-gray-500 dark:text-gray-400">
-                      {total} chamadas
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs text-gray-600 dark:text-gray-400">
-                    <span>{formatarTokens(tokens)} tokens</span>
-                    <span>{formatarCusto(custo)}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Médias */}
-      <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-        <div className="flex items-center justify-between text-sm">
-          <span className="text-gray-500 dark:text-gray-400">Custo médio por resposta:</span>
-          <span className="font-medium text-gray-900 dark:text-white">
-            {formatarCusto(memorias.custo_medio_por_resposta)}
-          </span>
-        </div>
-        <div className="flex items-center justify-between text-sm mt-2">
-          <span className="text-gray-500 dark:text-gray-400">Custo médio por eleitor:</span>
-          <span className="font-medium text-gray-900 dark:text-white">
-            {formatarCusto(memorias.custo_medio_por_eleitor)}
-          </span>
-        </div>
-        <div className="flex items-center justify-between text-sm mt-2">
-          <span className="text-gray-500 dark:text-gray-400">Tempo médio de resposta:</span>
-          <span className="font-medium text-gray-900 dark:text-white">
-            {memorias.tempo_resposta_medio_ms}ms
-          </span>
-        </div>
-      </div>
+    <div className={cn('rounded-xl p-5 border', cor)}>
+      <Icone className="w-6 h-6 mb-3" />
+      <p className="text-2xl font-bold">{valor}</p>
+      <p className="text-sm opacity-80">{titulo}</p>
+      {subtitulo && <p className="text-xs opacity-60 mt-1">{subtitulo}</p>}
     </div>
   );
 }
@@ -428,31 +106,37 @@ function UsoAPICard({ memorias }: { memorias: AnalyticsGlobais | null }) {
 // ============================================
 
 export default function AnalyticsPage() {
-  const [dashboard, setDashboard] = useState<DashboardGlobal | null>(null);
-  const [correlacoes, setCorrelacoes] = useState<Correlacao[]>([]);
-  const [tendencias, setTendencias] = useState<Tendencia[]>([]);
-  const [insights, setInsights] = useState<InsightGlobal[]>([]);
-  const [memorias, setMemorias] = useState<AnalyticsGlobais | null>(null);
   const [carregando, setCarregando] = useState(true);
+  const [dashboard, setDashboard] = useState<DashboardLocal | null>(null);
+  const [segCluster, setSegCluster] = useState<SegmentacaoLocal[]>([]);
+  const [segRegiao, setSegRegiao] = useState<SegmentacaoLocal[]>([]);
+  const [segOrientacao, setSegOrientacao] = useState<SegmentacaoLocal[]>([]);
+  const [tendencias, setTendencias] = useState<TendenciaLocal[]>([]);
+  const [insights, setInsights] = useState<InsightLocal[]>([]);
+  const [palavras, setPalavras] = useState<PalavraFrequente[]>([]);
 
   const carregarDados = async () => {
     setCarregando(true);
     try {
-      const [dashData, corrData, tendData, insData, memData] = await Promise.all([
-        obterDashboardGlobal().catch(() => null),
-        obterCorrelacoes().catch(() => []),
-        obterTendencias('mensal', 6).catch(() => []),
-        obterInsights().catch(() => []),
-        obterAnalyticsGlobais(30).catch(() => null),
+      const [dash, cluster, regiao, orient, tend, ins, palav] = await Promise.all([
+        calcularDashboard(),
+        calcularSegmentacao('cluster'),
+        calcularSegmentacao('regiao'),
+        calcularSegmentacao('orientacao'),
+        calcularTendencias(),
+        gerarInsights(),
+        extrairPalavrasFrequentes(20),
       ]);
 
-      if (dashData) setDashboard(dashData);
-      setCorrelacoes(corrData);
-      setTendencias(tendData);
-      setInsights(insData);
-      setMemorias(memData);
+      setDashboard(dash);
+      setSegCluster(cluster);
+      setSegRegiao(regiao);
+      setSegOrientacao(orient);
+      setTendencias(tend);
+      setInsights(ins);
+      setPalavras(palav);
     } catch (error) {
-      console.error('Erro ao carregar dados:', error);
+      console.error('Erro ao carregar analytics:', error);
     } finally {
       setCarregando(false);
     }
@@ -462,152 +146,344 @@ export default function AnalyticsPage() {
     carregarDados();
   }, []);
 
+  // Dados para gráficos
+  const dadosSentimento = dashboard ? [
+    { nome: 'Positivo', valor: dashboard.sentimentos.positivo, cor: CORES.positivo },
+    { nome: 'Negativo', valor: dashboard.sentimentos.negativo, cor: CORES.negativo },
+    { nome: 'Neutro', valor: dashboard.sentimentos.neutro, cor: CORES.neutro },
+    { nome: 'Misto', valor: dashboard.sentimentos.misto, cor: CORES.alerta },
+  ].filter(d => d.valor > 0) : [];
+
+  const dadosOrientacao = segOrientacao.slice(0, 6).map((s, i) => ({
+    nome: s.nome.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+    valor: s.total,
+    percentual: s.percentual,
+    cor: s.nome.includes('direita') ? CORES.negativo :
+         s.nome.includes('esquerda') ? CORES.positivo :
+         s.nome.includes('centro') ? CORES.alerta : CORES_GRAFICO[i],
+  }));
+
+  const dadosTendencia = tendencias.map(t => ({
+    periodo: t.periodo,
+    pesquisas: t.pesquisas,
+    respostas: t.respostas,
+    custo: t.custo,
+  }));
+
   if (carregando) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-              Analytics Global
-            </h1>
-            <p className="text-gray-500 dark:text-gray-400 mt-1">
-              Análises acumulativas de todas as pesquisas realizadas
-            </p>
-          </div>
-          <div className="flex gap-3">
-            <button
-              onClick={carregarDados}
-              className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-            >
-              <RefreshCcw className="w-4 h-4" />
-              Atualizar
-            </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-              <Download className="w-4 h-4" />
-              Exportar
-            </button>
-          </div>
-        </div>
-
-        {/* Cards de Métricas */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <CardMetrica
-            titulo="Total de Pesquisas"
-            valor={dashboard?.total_pesquisas || 0}
-            subtitulo={`${dashboard?.total_pesquisas_concluidas || 0} concluídas`}
-            icone={BarChart3}
-            cor="blue"
-          />
-          <CardMetrica
-            titulo="Respostas Coletadas"
-            valor={formatarNumero(dashboard?.total_respostas || 0)}
-            subtitulo={`Média: ${dashboard?.media_respostas_por_pesquisa?.toFixed(0) || 0} por pesquisa`}
-            icone={MessageSquare}
-            cor="green"
-          />
-          <CardMetrica
-            titulo="Eleitores Únicos"
-            valor={formatarNumero(dashboard?.total_eleitores_unicos || 0)}
-            subtitulo="Participaram de pesquisas"
-            icone={Users}
-            cor="purple"
-          />
-          <CardMetrica
-            titulo="Investimento Total"
-            valor={formatarReais(dashboard?.custo_total_reais || 0)}
-            subtitulo={`Média: ${formatarReais(dashboard?.media_custo_por_pesquisa || 0)} por pesquisa`}
-            icone={DollarSign}
-            cor="yellow"
-          />
-        </div>
-
-        {/* Tokens */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-              Uso de Tokens
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                <p className="text-sm text-blue-600 dark:text-blue-400">Entrada</p>
-                <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">
-                  {formatarNumero(dashboard?.tokens_entrada_total || 0)}
-                </p>
-              </div>
-              <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                <p className="text-sm text-purple-600 dark:text-purple-400">Saída</p>
-                <p className="text-2xl font-bold text-purple-700 dark:text-purple-300">
-                  {formatarNumero(dashboard?.tokens_saida_total || 0)}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-              Distribuição de Sentimentos
-            </h3>
-            {dashboard?.sentimentos_acumulados ? (
-              <div className="grid grid-cols-3 gap-4">
-                {Object.entries(dashboard.sentimentos_acumulados).map(([sent, count]) => (
-                  <div
-                    key={sent}
-                    className={`p-3 rounded-lg ${
-                      sent === 'positivo'
-                        ? 'bg-green-50 dark:bg-green-900/20'
-                        : sent === 'negativo'
-                        ? 'bg-red-50 dark:bg-red-900/20'
-                        : 'bg-gray-50 dark:bg-gray-700'
-                    }`}
-                  >
-                    <p className="text-sm capitalize text-gray-600 dark:text-gray-300">
-                      {sent}
-                    </p>
-                    <p className="text-xl font-bold text-gray-900 dark:text-white">
-                      {formatarNumero(count as number)}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-gray-500 dark:text-gray-400 text-sm">
-                Dados de sentimento não disponíveis ainda.
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* Grid de Análises */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <CorrelacoesCard correlacoes={correlacoes} />
-          <TendenciasCard tendencias={tendencias} />
-        </div>
-
-        {/* Insights */}
-        <InsightsCard insights={insights} />
-
-        {/* Uso da API / Memórias Persistidas */}
-        <div className="mt-8">
-          <UsoAPICard memorias={memorias} />
-        </div>
-
-        {/* Última atualização */}
-        {dashboard?.atualizado_em && (
-          <p className="text-center text-sm text-gray-400 dark:text-gray-500 mt-8">
-            Última atualização:{' '}
-            {new Date(dashboard.atualizado_em).toLocaleString('pt-BR')}
+    <div className="space-y-6 p-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+            <BarChart3 className="w-7 h-7 text-primary" />
+            Analytics Global
+          </h1>
+          <p className="text-muted-foreground text-sm">
+            Análise completa das pesquisas realizadas
           </p>
+        </div>
+        <button
+          onClick={carregarDados}
+          className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+        >
+          <RefreshCcw className="w-4 h-4" />
+          Atualizar
+        </button>
+      </div>
+
+      {/* Cards de Métricas */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <CardMetrica
+          titulo="Pesquisas"
+          valor={dashboard?.totalPesquisas || 0}
+          subtitulo={`${dashboard?.totalPesquisasConcluidas || 0} concluídas`}
+          icone={Database}
+          cor="bg-blue-500/10 border-blue-500/30 text-blue-400"
+        />
+        <CardMetrica
+          titulo="Respostas"
+          valor={dashboard?.totalRespostas || 0}
+          subtitulo={`Média: ${(dashboard?.mediaRespostasPorPesquisa || 0).toFixed(1)}/pesquisa`}
+          icone={MessageSquare}
+          cor="bg-green-500/10 border-green-500/30 text-green-400"
+        />
+        <CardMetrica
+          titulo="Eleitores"
+          valor={dashboard?.totalEleitoresUnicos || 0}
+          subtitulo="Participantes únicos"
+          icone={Users}
+          cor="bg-purple-500/10 border-purple-500/30 text-purple-400"
+        />
+        <CardMetrica
+          titulo="Custo Total"
+          valor={formatarMoeda(dashboard?.custoAtual || 0)}
+          subtitulo={`Média: ${formatarMoeda(dashboard?.mediaCustoPorPesquisa || 0)}`}
+          icone={DollarSign}
+          cor="bg-yellow-500/10 border-yellow-500/30 text-yellow-400"
+        />
+        <CardMetrica
+          titulo="Tokens Entrada"
+          valor={((dashboard?.tokensEntrada || 0) / 1000).toFixed(1) + 'k'}
+          subtitulo="Prompts enviados"
+          icone={Cpu}
+          cor="bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
+        />
+        <CardMetrica
+          titulo="Tokens Saída"
+          valor={((dashboard?.tokensSaida || 0) / 1000).toFixed(1) + 'k'}
+          subtitulo="Respostas geradas"
+          icone={Zap}
+          cor="bg-orange-500/10 border-orange-500/30 text-orange-400"
+        />
+      </div>
+
+      {/* Gráficos Principais */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Gráfico de Sentimentos */}
+        <div className="glass-card rounded-xl p-6">
+          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+            <PieChartIcon className="w-5 h-5 text-primary" />
+            Distribuição de Sentimentos
+          </h3>
+          {dadosSentimento.length > 0 ? (
+            <ResponsiveContainer width="100%" height={250}>
+              <PieChart>
+                <Pie
+                  data={dadosSentimento}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={50}
+                  outerRadius={90}
+                  paddingAngle={3}
+                  dataKey="valor"
+                  nameKey="nome"
+                  label={({ nome, valor }) => `${nome}: ${valor}`}
+                >
+                  {dadosSentimento.map((entry, index) => (
+                    <Cell key={index} fill={entry.cor} />
+                  ))}
+                </Pie>
+                <Tooltip contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }} />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
+          ) : (
+            <div className="flex items-center justify-center h-[250px] text-muted-foreground">
+              Sem dados de sentimento disponíveis
+            </div>
+          )}
+        </div>
+
+        {/* Gráfico de Orientação Política */}
+        <div className="glass-card rounded-xl p-6">
+          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+            <Target className="w-5 h-5 text-primary" />
+            Espectro Político
+          </h3>
+          {dadosOrientacao.length > 0 ? (
+            <ResponsiveContainer width="100%" height={250}>
+              <BarChart data={dadosOrientacao} layout="vertical">
+                <XAxis type="number" hide />
+                <YAxis type="category" dataKey="nome" width={100} tick={{ fill: '#9ca3af', fontSize: 11 }} />
+                <Tooltip
+                  contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
+                  formatter={(value: number, name: string, props: any) => [
+                    `${value} (${props.payload.percentual}%)`,
+                    'Total'
+                  ]}
+                />
+                <Bar dataKey="valor" radius={[0, 4, 4, 0]}>
+                  {dadosOrientacao.map((entry, index) => (
+                    <Cell key={index} fill={entry.cor} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          ) : (
+            <div className="flex items-center justify-center h-[250px] text-muted-foreground">
+              Sem dados de orientação política
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Tendências Temporais */}
+      {dadosTendencia.length > 0 && (
+        <div className="glass-card rounded-xl p-6">
+          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+            <TrendingUp className="w-5 h-5 text-primary" />
+            Tendências Temporais
+          </h3>
+          <ResponsiveContainer width="100%" height={250}>
+            <AreaChart data={dadosTendencia}>
+              <XAxis dataKey="periodo" tick={{ fill: '#9ca3af', fontSize: 11 }} />
+              <YAxis tick={{ fill: '#9ca3af', fontSize: 11 }} />
+              <Tooltip contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }} />
+              <Area type="monotone" dataKey="respostas" name="Respostas" stroke={CORES.primaria} fill={CORES.primaria} fillOpacity={0.3} />
+              <Area type="monotone" dataKey="pesquisas" name="Pesquisas" stroke={CORES.positivo} fill={CORES.positivo} fillOpacity={0.3} />
+              <Legend />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+
+      {/* Segmentações */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Por Região */}
+        <div className="glass-card rounded-xl p-6">
+          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-primary" />
+            Por Região Administrativa
+          </h3>
+          {segRegiao.length > 0 ? (
+            <div className="space-y-3 max-h-[300px] overflow-y-auto">
+              {segRegiao.slice(0, 10).map((seg, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-sm text-foreground truncate" title={seg.nome}>{seg.nome}</span>
+                      <span className="text-sm text-muted-foreground">{seg.percentual}%</span>
+                    </div>
+                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all"
+                        style={{ width: `${seg.percentual}%`, backgroundColor: CORES_GRAFICO[i % CORES_GRAFICO.length] }}
+                      />
+                    </div>
+                  </div>
+                  <span className="text-xs text-muted-foreground w-12 text-right">{seg.total}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex items-center justify-center h-[200px] text-muted-foreground">
+              Sem dados de região
+            </div>
+          )}
+        </div>
+
+        {/* Por Cluster */}
+        <div className="glass-card rounded-xl p-6">
+          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+            <Users className="w-5 h-5 text-primary" />
+            Por Cluster Socioeconômico
+          </h3>
+          {segCluster.length > 0 ? (
+            <div className="space-y-3 max-h-[300px] overflow-y-auto">
+              {segCluster.slice(0, 10).map((seg, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-sm text-foreground truncate" title={seg.nome}>{seg.nome}</span>
+                      <span className="text-sm text-muted-foreground">{seg.percentual}%</span>
+                    </div>
+                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all"
+                        style={{ width: `${seg.percentual}%`, backgroundColor: CORES_GRAFICO[i % CORES_GRAFICO.length] }}
+                      />
+                    </div>
+                  </div>
+                  <span className="text-xs text-muted-foreground w-12 text-right">{seg.total}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex items-center justify-center h-[200px] text-muted-foreground">
+              Sem dados de cluster
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Nuvem de Palavras */}
+      {palavras.length > 0 && (
+        <div className="glass-card rounded-xl p-6">
+          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+            <MessageSquare className="w-5 h-5 text-primary" />
+            Palavras Mais Frequentes
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {palavras.map((p, i) => {
+              const tamanho = Math.max(0.8, Math.min(2, p.frequencia / (palavras[0]?.frequencia || 1) * 1.5));
+              return (
+                <span
+                  key={i}
+                  className="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
+                  style={{ fontSize: `${tamanho}rem` }}
+                  title={`${p.frequencia} ocorrências`}
+                >
+                  {p.palavra}
+                </span>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Insights */}
+      <div className="glass-card rounded-xl p-6">
+        <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+          <Lightbulb className="w-5 h-5 text-yellow-400" />
+          Insights Automáticos
+        </h3>
+        {insights.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {insights.map((insight, i) => {
+              const cores = {
+                destaque: 'bg-blue-500/10 border-blue-500/30 text-blue-400',
+                alerta: 'bg-red-500/10 border-red-500/30 text-red-400',
+                tendencia: 'bg-green-500/10 border-green-500/30 text-green-400',
+                correlacao: 'bg-purple-500/10 border-purple-500/30 text-purple-400',
+                descoberta: 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400',
+              };
+              return (
+                <div
+                  key={i}
+                  className={cn('p-4 rounded-xl border', cores[insight.tipo])}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className={cn(
+                      'w-2 h-2 rounded-full',
+                      insight.relevancia === 'alta' ? 'bg-red-500' :
+                      insight.relevancia === 'media' ? 'bg-yellow-500' : 'bg-green-500'
+                    )} />
+                    <span className="text-xs uppercase opacity-70">{insight.tipo}</span>
+                  </div>
+                  <h4 className="font-medium text-foreground mb-1">{insight.titulo}</h4>
+                  <p className="text-sm text-muted-foreground">{insight.descricao}</p>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="text-center py-8 text-muted-foreground">
+            <Lightbulb className="w-12 h-12 mx-auto mb-3 opacity-30" />
+            <p>Nenhum insight disponível ainda.</p>
+            <p className="text-sm">Execute pesquisas para gerar insights automáticos.</p>
+          </div>
         )}
       </div>
+
+      {/* Mensagem quando não há dados */}
+      {dashboard?.totalPesquisas === 0 && (
+        <div className="glass-card rounded-xl p-8 text-center">
+          <Database className="w-16 h-16 mx-auto mb-4 text-muted-foreground opacity-30" />
+          <h3 className="text-lg font-semibold text-foreground mb-2">Nenhuma pesquisa encontrada</h3>
+          <p className="text-muted-foreground">
+            Execute pesquisas eleitorais para ver análises e insights aqui.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
