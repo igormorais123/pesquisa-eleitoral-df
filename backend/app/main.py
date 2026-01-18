@@ -20,6 +20,7 @@ from app.api.rotas import (
     entrevistas,
     geracao,
     memorias,
+    mensagens,
     resultados,
     rls,
     templates,
@@ -377,6 +378,32 @@ Baseada na teoria clássica de Fayol, mede como gestores distribuem tempo entre:
 - IAD < 1: Perfil Reativo (executor)
         """,
     },
+    {
+        "name": "Mensagens",
+        "description": """
+Gerador de mensagens de persuasão otimizadas para campanhas eleitorais.
+
+**Funcionalidades:**
+- Gerar mensagens personalizadas para diferentes perfis de eleitores
+- 5 tipos de gatilhos psicológicos (medo, esperança, econômico, tribal, identitário)
+- Análise automática do perfil agregado do público-alvo
+- Estimativas de eficácia e risco de backfire
+- Sugestões de canal ideal (WhatsApp, TV, panfleto, etc)
+
+**Como usar:**
+1. Defina o objetivo (ex: "convencer indecisos a votar em X")
+2. Selecione o público-alvo por filtros ou IDs
+3. Escolha os gatilhos psicológicos desejados
+4. Receba mensagens otimizadas com métricas
+
+**Gatilhos disponíveis:**
+- `medo`: Ativa ansiedades (risco médio, eficácia alta)
+- `esperanca`: Ativa aspirações (risco baixo, eficácia média)
+- `economico`: Foca no bolso (risco baixo, eficácia alta)
+- `tribal`: Pertencimento (risco alto, eficácia média)
+- `identitario`: Valores/religião (risco médio, eficácia alta)
+        """,
+    },
 ]
 
 # Criar aplicação FastAPI
@@ -567,6 +594,12 @@ app.include_router(
     pesquisas_podc.router,
     prefix="/api/v1/pesquisas-podc",
     tags=["Pesquisas PODC"],
+)
+
+app.include_router(
+    mensagens.router,
+    prefix="/api/v1/mensagens",
+    tags=["Mensagens"],
 )
 
 app.include_router(
