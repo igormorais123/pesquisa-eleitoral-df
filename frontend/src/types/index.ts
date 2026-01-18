@@ -1114,6 +1114,348 @@ export interface AplicarTemplateResponse {
   perguntas: PerguntaTemplate[];
 }
 
+// ============================================
+// GESTORES PÚBLICOS E PRIVADOS
+// ============================================
+
+export type SetorGestor = 'publico' | 'privado';
+
+export type NivelHierarquico = 'estrategico' | 'tatico' | 'operacional';
+
+export type TipoOrgaoPublico =
+  | 'ministerio'
+  | 'autarquia'
+  | 'empresa_publica'
+  | 'fundacao'
+  | 'agencia_reguladora'
+  | 'orgao_controle'
+  | 'tribunal'
+  | 'hospital_publico'
+  | 'universidade_federal'
+  | 'instituto_pesquisa';
+
+export type SetorPrivado =
+  | 'industria'
+  | 'servicos'
+  | 'varejo'
+  | 'tecnologia'
+  | 'financeiro'
+  | 'saude'
+  | 'agronegocio'
+  | 'construcao'
+  | 'energia'
+  | 'telecomunicacoes'
+  | 'logistica'
+  | 'educacao_privada'
+  | 'juridico'
+  | 'consultoria';
+
+export type PorteEmpresa = 'multinacional' | 'grande_nacional' | 'media' | 'pequena';
+
+export type AreaAtuacao =
+  | 'gestao_pessoas'
+  | 'financeiro_orcamento'
+  | 'juridico'
+  | 'tecnologia_informacao'
+  | 'infraestrutura_obras'
+  | 'saude'
+  | 'educacao'
+  | 'avaliacao_monitoramento'
+  | 'licitacoes_contratos'
+  | 'comunicacao'
+  | 'pesquisa'
+  | 'operacoes'
+  | 'comercial_vendas'
+  | 'marketing'
+  | 'producao'
+  | 'logistica_supply'
+  | 'controladoria'
+  | 'auditoria'
+  | 'compliance'
+  | 'estrategia';
+
+export type EstiloLiderancaGestor =
+  | 'transformacional'
+  | 'transacional'
+  | 'democratico'
+  | 'autoritario'
+  | 'laissez_faire'
+  | 'servical'
+  | 'tecnico'
+  | 'coaching'
+  | 'visionario'
+  | 'coordenativo';
+
+export interface DistribuicaoPODC {
+  planejar: number;
+  organizar: number;
+  dirigir: number;
+  controlar: number;
+}
+
+export interface Gestor {
+  id: string;
+  nome: string;
+
+  // Classificação
+  setor: SetorGestor;
+  nivel_hierarquico: NivelHierarquico;
+
+  // Dados demográficos
+  idade: number;
+  genero: Genero;
+  formacao_academica: string[];
+  especializacoes?: string[];
+  mestrado?: string;
+  doutorado?: string;
+
+  // Dados profissionais
+  cargo: string;
+  instituicao: string;
+  tipo_orgao?: TipoOrgaoPublico; // Para setor público
+  setor_privado?: SetorPrivado; // Para setor privado
+  porte_empresa?: PorteEmpresa; // Para setor privado
+  area_atuacao: AreaAtuacao;
+  tempo_no_cargo: string;
+  tempo_servico_total?: string; // Para setor público
+  carreira?: string; // Ex: EPPGG, Auditor Federal, etc
+  regime?: string; // Ex: DAS-4, CLT, etc
+  remuneracao_estimada?: string;
+
+  // Localização
+  localizacao: string;
+  regiao?: string; // Norte, Nordeste, Sul, Sudeste, Centro-Oeste
+  viagens_frequentes?: boolean;
+
+  // Contexto organizacional
+  tamanho_equipe?: number;
+  orcamento_gerenciado?: string;
+  subordinados_diretos?: number;
+  interfaces_institucionais?: string[];
+
+  // Trajetória
+  trajetoria_carreira: string;
+  marcos_carreira?: string[];
+
+  // Desafios e competências
+  desafios_cotidianos: string[];
+  competencias_distintivas: string[];
+  limitacoes?: string[];
+  pressoes_especificas?: string[];
+
+  // Liderança
+  estilo_lideranca: EstiloLiderancaGestor;
+  ferramentas_gestao?: string[];
+
+  // Distribuição PODC
+  distribuicao_podc: DistribuicaoPODC;
+
+  // Perfil psicológico (opcional)
+  perfil_psicologico?: string;
+  frustracoes?: string[];
+  motivacoes?: string[];
+
+  // Narrativa
+  historia_resumida: string;
+  instrucao_comportamental?: string;
+
+  // Metadados
+  avatar_url?: string;
+  criado_em: string;
+  atualizado_em: string;
+}
+
+export interface GestorResumo {
+  id: string;
+  nome: string;
+  setor: SetorGestor;
+  nivel_hierarquico: NivelHierarquico;
+  cargo: string;
+  instituicao: string;
+  area_atuacao: AreaAtuacao;
+  idade: number;
+  genero: Genero;
+  localizacao: string;
+  distribuicao_podc: DistribuicaoPODC;
+  avatar_url?: string;
+}
+
+export interface FiltrosGestor {
+  pagina?: number;
+  por_pagina?: number;
+  busca?: string;
+  setores?: SetorGestor[];
+  niveis_hierarquicos?: NivelHierarquico[];
+  generos?: Genero[];
+  areas_atuacao?: AreaAtuacao[];
+  tipos_orgao?: TipoOrgaoPublico[];
+  setores_privados?: SetorPrivado[];
+  portes_empresa?: PorteEmpresa[];
+  faixas_etarias?: string[];
+  localizacoes?: string[];
+  estilos_lideranca?: EstiloLiderancaGestor[];
+  ordenar_por?: string;
+  ordem?: 'asc' | 'desc';
+}
+
+export interface EstatisticasGestores {
+  total: number;
+  por_setor: Distribuicao[];
+  por_nivel: Distribuicao[];
+  por_genero: Distribuicao[];
+  por_area: Distribuicao[];
+  por_localizacao: Distribuicao[];
+  media_idade: number;
+  media_podc: {
+    planejar: number;
+    organizar: number;
+    dirigir: number;
+    controlar: number;
+  };
+}
+
+// ============================================
+// PESQUISA DE GESTORES
+// ============================================
+
+export type TipoPesquisaGestor = 'distribuicao_tempo' | 'desafios' | 'competencias' | 'estilo_gestao' | 'analise_comportamental';
+
+export interface PerguntaGestor {
+  id: string;
+  texto: string;
+  tipo: TipoPergunta;
+  opcoes?: string[];
+  obrigatoria: boolean;
+  contexto_gestor?: string;
+  escala_min?: number;
+  escala_max?: number;
+  escala_rotulos?: string[];
+}
+
+export interface PesquisaGestor {
+  id: string;
+  titulo: string;
+  descricao?: string;
+  tipo: TipoPesquisaGestor;
+  perguntas: PerguntaGestor[];
+  filtros_aplicados: FiltrosGestor;
+  total_gestores: number;
+  status: 'rascunho' | 'executando' | 'concluida' | 'erro';
+  custo_estimado: number;
+  custo_real?: number;
+  progresso?: number;
+  criado_em: string;
+  iniciado_em?: string;
+  finalizado_em?: string;
+}
+
+export interface RespostaGestor {
+  gestor_id: string;
+  gestor_nome: string;
+  setor: SetorGestor;
+  nivel_hierarquico: NivelHierarquico;
+  cargo: string;
+  respostas: {
+    pergunta_id: string;
+    resposta: string | number | string[];
+  }[];
+  justificativa?: string;
+  tokens_usados: number;
+  custo: number;
+  tempo_resposta_ms: number;
+}
+
+export interface ResultadoPesquisaGestor {
+  pesquisa_id: string;
+  total_respostas: number;
+  custo_total: number;
+
+  // Análise por setor
+  analise_por_setor?: {
+    setor: SetorGestor;
+    total: number;
+    distribuicao_respostas: Record<string, number>;
+    media_podc?: DistribuicaoPODC;
+  }[];
+
+  // Análise por nível hierárquico
+  analise_por_nivel?: {
+    nivel: NivelHierarquico;
+    total: number;
+    distribuicao_respostas: Record<string, number>;
+    media_podc?: DistribuicaoPODC;
+  }[];
+
+  // Análise por área de atuação
+  analise_por_area?: {
+    area: AreaAtuacao;
+    total: number;
+    distribuicao_respostas: Record<string, number>;
+  }[];
+
+  // Comparativo setor público vs privado
+  comparativo_setores?: {
+    dimensao: string;
+    publico: number;
+    privado: number;
+    diferenca: number;
+    significativo: boolean;
+  }[];
+
+  // Respostas individuais
+  respostas: RespostaGestor[];
+
+  // Insights específicos
+  insights: {
+    tipo: 'convergencia' | 'divergencia' | 'tendencia' | 'anomalia' | 'correlacao';
+    titulo: string;
+    descricao: string;
+    relevancia: number;
+    dados_suporte?: Record<string, unknown>;
+  }[];
+
+  // Estatísticas PODC
+  estatisticas_podc?: {
+    por_setor: {
+      setor: SetorGestor;
+      nivel: NivelHierarquico;
+      media_planejar: number;
+      media_organizar: number;
+      media_dirigir: number;
+      media_controlar: number;
+      desvio_planejar: number;
+      desvio_organizar: number;
+      desvio_dirigir: number;
+      desvio_controlar: number;
+    }[];
+    correlacoes: Correlacao[];
+  };
+}
+
+// ============================================
+// TEMPLATES DE PERGUNTAS PARA GESTORES
+// ============================================
+
+export type CategoriaTemplateGestor =
+  | 'distribuicao_tempo_podc'
+  | 'desafios_gestao'
+  | 'competencias_lideranca'
+  | 'ambiente_organizacional'
+  | 'pressoes_externas'
+  | 'ferramentas_gestao'
+  | 'perfil_decisorio';
+
+export interface TemplateGestor {
+  id: string;
+  nome: string;
+  descricao: string;
+  categoria: CategoriaTemplateGestor;
+  icone: string;
+  cor: string;
+  perguntas: PerguntaGestor[];
+  prompt_sistema?: string; // Prompt do sistema para o Claude
+}
+
 // Tipos legados (mantidos para retrocompatibilidade)
 export interface TemplatePerguntas {
   id: string;
