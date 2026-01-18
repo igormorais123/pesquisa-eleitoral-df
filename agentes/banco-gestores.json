@@ -50,15 +50,17 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 24.3,
+        "organizar": 30.0,
+        "dirigir": 23.0,
+        "controlar": 22.7
       },
       "historia_resumida": "MARCELA TAVARES RIBEIRO é diretora de gestão estratégica do instituto nacional do seguro social (inss) com experiência em gestao pessoas. Iniciou como analista de políticas públicas em consultoria privada (2000-2008). Coordenadora de planejamento em ministério da área social (2008-2014). Assessora especial de ministro (2015-2017). Super",
       "criado_em": "2026-01-18T00:50:43.780717",
       "atualizado_em": "2026-01-18T00:50:43.780773",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 1.19,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-002",
@@ -95,15 +97,17 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 33.6,
+        "organizar": 23.2,
+        "dirigir": 23.1,
+        "controlar": 20.1
       },
       "historia_resumida": "ROBERTO CAMPOS NETO é diretor-presidente da embrapa com experiência em financeiro orcamento. Engenheiro em empresa privada do agronegócio (1990-1996). Pesquisador Embrapa desde 1997. Chefe de centro de pesquisa em SP (2007-2012), triplicou parcerias. Coordenador nacional de transferência de t",
       "criado_em": "2026-01-18T00:50:43.781030",
       "atualizado_em": "2026-01-18T00:50:43.781034",
-      "tipo_orgao": "empresa_publica"
+      "tipo_orgao": "empresa_publica",
+      "iad": 1.31,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-003",
@@ -138,15 +142,17 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 25.0,
+        "organizar": 29.9,
+        "dirigir": 21.9,
+        "controlar": 23.2
       },
       "historia_resumida": "JULIANA MENDES COSTA é secretária-executiva adjunta do ministério do desenvolvimento social com experiência em gestao pessoas. EPPGG desde 2005. Coordenação de programas sociais (2005-2010), assessoria de gabinete (2010-2013), coordenação-geral de monitoramento (2013-2017), diretora de departamento SUAS (2017-2021). Professor",
       "criado_em": "2026-01-18T00:50:43.781174",
       "atualizado_em": "2026-01-18T00:50:43.781177",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.22,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-004",
@@ -183,16 +189,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 29.3,
+        "organizar": 29.2,
+        "dirigir": 24.0,
+        "controlar": 17.5
       },
       "historia_resumida": "CARLOS EDUARDO FONSECA LIMA é secretário federal de controle interno da cgu com experiência em financeiro orcamento. Auditor desde 2001. Auditoria de demonstrações contábeis (2001-2006), auditoria operacional (2006-2010), coordenador de auditoria em infraestrutura (2010-2014), diretor de área temática (2014-2019), s",
       "criado_em": "2026-01-18T00:50:43.781307",
       "atualizado_em": "2026-01-18T00:50:43.781309",
       "tipo_orgao": "orgao_controle",
-      "carreira": "Auditor Federal de Finanças e Controle"
+      "carreira": "Auditor Federal de Finanças e Controle",
+      "iad": 1.41,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-005",
@@ -226,15 +234,17 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 30.4,
+        "organizar": 27.1,
+        "dirigir": 26.2,
+        "controlar": 16.3
       },
       "historia_resumida": "ANA PAULA RODRIGUES SANTOS é diretora de planejamento e gestão da codesp com experiência em gestao pessoas. Engenheira de obras em construtora (1999-2004). CODESP desde 2005. Gerente de projetos de expansão (2009-2014), R$ 800 milhões em investimentos. Diretora de meio ambiente (2014-2018), ISO 14001. Consu",
       "criado_em": "2026-01-18T00:50:43.781439",
       "atualizado_em": "2026-01-18T00:50:43.781441",
-      "tipo_orgao": "empresa_publica"
+      "tipo_orgao": "empresa_publica",
+      "iad": 1.35,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-006",
@@ -270,15 +280,17 @@
       ],
       "estilo_lideranca": "laissez_faire",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 28.9,
+        "organizar": 27.0,
+        "dirigir": 24.1,
+        "controlar": 20.0
       },
       "historia_resumida": "FERNANDO AUGUSTO SILVA MARTINS é secretário de vigilância em saúde e ambiente do ministério da saúde com experiência em financeiro orcamento. Médico sanitarista, carreira no SUS desde 1995. Coordenador de vigilância epidemiológica em Minas Gerais (2000-2008). Diretor do Centro de Informações Estratégicas em Vigilância em Saúde (2008-2015). ",
       "criado_em": "2026-01-18T00:50:43.781573",
       "atualizado_em": "2026-01-18T00:50:43.781575",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.27,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-007",
@@ -315,15 +327,17 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 29.3,
+        "organizar": 30.9,
+        "dirigir": 21.2,
+        "controlar": 18.6
       },
       "historia_resumida": "MARIA HELENA GUIMARÃES CASTRO é presidente do instituto nacional de estudos e pesquisas educacionais anísio teixeira (inep) com experiência em tecnologia informacao. Professora universitária por 20 anos. Secretária de Educação de São Paulo (2007-2010). Secretária-Executiva do MEC (2016-2018). Consultora internacional UNESCO e Banco Mundial. Retornou ao setor públi",
       "criado_em": "2026-01-18T00:50:43.781706",
       "atualizado_em": "2026-01-18T00:50:43.781708",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 1.51,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-pub-e-008",
@@ -360,15 +374,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 27.3,
+        "organizar": 28.7,
+        "dirigir": 21.3,
+        "controlar": 22.7
       },
       "historia_resumida": "RICARDO JOSÉ PEREIRA RODRIGUES é diretor da agência nacional de energia elétrica (aneel) com experiência em estrategia. Engenheiro em empresa do setor elétrico (1998-2005). Especialista em regulação na ANEEL desde 2005. Superintendente de regulação econômica (2012-2018). Assessor especial da diretoria (2018-2021). Indi",
       "criado_em": "2026-01-18T00:50:43.781860",
       "atualizado_em": "2026-01-18T00:50:43.781861",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 1.27,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-009",
@@ -404,15 +420,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 28.7,
+        "organizar": 30.3,
+        "dirigir": 23.9,
+        "controlar": 17.1
       },
       "historia_resumida": "PATRÍCIA SOARES DE ANDRADE é secretária nacional de políticas para mulheres com experiência em financeiro orcamento. Advogada militante em direitos humanos (1998-2008). Assessora parlamentar em comissões de direitos humanos (2008-2012). Coordenadora de enfrentamento à violência contra mulher em secretaria estadual (",
       "criado_em": "2026-01-18T00:50:43.782069",
       "atualizado_em": "2026-01-18T00:50:43.782071",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.44,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-010",
@@ -448,15 +466,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 26.5,
+        "organizar": 29.6,
+        "dirigir": 26.8,
+        "controlar": 17.1
       },
       "historia_resumida": "JOSÉ HENRIQUE PAIM FERNANDES é secretário-executivo do ministério do planejamento e orçamento com experiência em financeiro orcamento. Carreira de Analista de Planejamento e Orçamento desde 1992. Atuou na formulação de 5 Planos Plurianuais. Secretário de Orçamento Federal (2011-2014). Consultor internacional CEPAL (2015-2018). Retorn",
       "criado_em": "2026-01-18T00:50:43.782226",
       "atualizado_em": "2026-01-18T00:50:43.782227",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.28,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-011",
@@ -492,15 +512,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 26.8,
+        "organizar": 32.8,
+        "dirigir": 22.0,
+        "controlar": 18.4
       },
       "historia_resumida": "LUCIANA BARBOSA DE OLIVEIRA é diretora de programa da secretaria especial de modernização do estado com experiência em tecnologia informacao. EPPGG desde 2004. Coordenadora de simplificação de serviços (2008-2012). Gerente de projetos de governo digital (2012-2018). Superintendente de transformação digital em estado do Nordeste (2018-2021).",
       "criado_em": "2026-01-18T00:50:43.782353",
       "atualizado_em": "2026-01-18T00:50:43.782355",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.48,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-012",
@@ -537,15 +559,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 31.6,
+        "organizar": 27.8,
+        "dirigir": 20.2,
+        "controlar": 20.4
       },
       "historia_resumida": "MARCOS ANTÔNIO CINTRA é diretor-presidente da agência nacional de águas e saneamento básico (ana) com experiência em juridico. Engenheiro em companhia estadual de saneamento (1995-2005). Especialista em recursos hídricos na ANA desde 2005. Superintendente de regulação (2012-2018). Consultor Banco Mundial em projetos de govern",
       "criado_em": "2026-01-18T00:50:43.782481",
       "atualizado_em": "2026-01-18T00:50:43.782483",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 1.46,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-013",
@@ -581,15 +605,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 28.6,
+        "organizar": 28.0,
+        "dirigir": 22.0,
+        "controlar": 21.4
       },
       "historia_resumida": "CRISTIANE BRAGA FERREIRA é presidente da fundação nacional dos povos indígenas (funai) com experiência em financeiro orcamento. Pesquisadora em indigenismo desde 1998. Coordenadora regional da FUNAI no Mato Grosso do Sul (2005-2012). Diretora de Proteção Territorial (2012-2016). Assessora especial para assuntos indígenas no Mi",
       "criado_em": "2026-01-18T00:50:43.782613",
       "atualizado_em": "2026-01-18T00:50:43.782615",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 1.3,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-014",
@@ -625,15 +651,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 30.2,
+        "organizar": 31.5,
+        "dirigir": 22.9,
+        "controlar": 15.4
       },
       "historia_resumida": "ALEXANDRE RIBEIRO COSTA é diretor financeiro do banco nacional de desenvolvimento econômico e social (bndes) com experiência em financeiro orcamento. Economista do BNDES desde 1998. Gerente de operações em infraestrutura (2005-2010). Superintendente de risco (2010-2015). Diretor em empresa de participações do Sistema BNDES (2015-2019). Consultor em",
       "criado_em": "2026-01-18T00:50:43.782735",
       "atualizado_em": "2026-01-18T00:50:43.782737",
-      "tipo_orgao": "empresa_publica"
+      "tipo_orgao": "empresa_publica",
+      "iad": 1.61,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-pub-e-015",
@@ -669,15 +697,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 30.4,
+        "organizar": 30.8,
+        "dirigir": 23.2,
+        "controlar": 15.6
       },
       "historia_resumida": "DÉBORA CRISTINA SANTOS PEREIRA é secretária nacional de acesso à justiça do ministério da justiça e segurança pública com experiência em financeiro orcamento. Defensora Pública Federal desde 2006. Coordenadora de núcleo especializado em direitos humanos (2010-2015). Diretora de escola de defensoria (2015-2019). Assessora especial do Ministério da Justiça (2",
       "criado_em": "2026-01-18T00:50:43.782869",
       "atualizado_em": "2026-01-18T00:50:43.782870",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.58,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-pub-e-016",
@@ -714,15 +744,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 27.4,
+        "organizar": 27.0,
+        "dirigir": 27.1,
+        "controlar": 18.5
       },
       "historia_resumida": "PAULO ROBERTO FERREIRA LIMA é diretor-geral da agência nacional de mineração (anm) com experiência em tecnologia informacao. Geólogo em mineradoras (1992-2005). Especialista em regulação no DNPM/ANM desde 2005. Superintendente regional em Minas Gerais (2010-2016). Diretor de fiscalização (2016-2021). Enfrentou tragédias de ",
       "criado_em": "2026-01-18T00:50:43.783067",
       "atualizado_em": "2026-01-18T00:50:43.783069",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 1.19,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-017",
@@ -759,15 +791,17 @@
       ],
       "estilo_lideranca": "visionario",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 31.0,
+        "organizar": 29.9,
+        "dirigir": 21.9,
+        "controlar": 17.2
       },
       "historia_resumida": "ADRIANA CARVALHO DE SOUZA é secretária de assuntos internacionais do ministério da fazenda com experiência em tecnologia informacao. Diplomata desde 1999. Postos em Washington (FMI/Banco Mundial), Genebra (OMC), Bruxelas (UE). Coordenadora de negociações comerciais (2010-2015). Assessora especial para G20 (2015-2019). Chefe de gabi",
       "criado_em": "2026-01-18T00:50:43.783198",
       "atualizado_em": "2026-01-18T00:50:43.783199",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.56,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-pub-e-018",
@@ -804,15 +838,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 26.8,
+        "organizar": 26.3,
+        "dirigir": 24.0,
+        "controlar": 22.9
       },
       "historia_resumida": "RENATO AUGUSTO CAMPOS é diretor-presidente da autoridade nacional de proteção de dados (anpd) com experiência em tecnologia informacao. Pesquisador em criptografia e segurança (1995-2005). Professor universitário (2005-2015). Diretor de TI no Banco Central (2015-2019). Consultor em proteção de dados para empresas e governo (2019-2021)",
       "criado_em": "2026-01-18T00:50:43.783328",
       "atualizado_em": "2026-01-18T00:50:43.783329",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 1.13,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-019",
@@ -849,15 +885,17 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 31.9,
+        "organizar": 25.9,
+        "dirigir": 25.7,
+        "controlar": 16.5
       },
       "historia_resumida": "SANDRA REGINA GOMES é secretária de gestão de pessoas do ministério da gestão e inovação com experiência em gestao pessoas. EPPGG desde 2000. Coordenadora de capacitação (2005-2010). Diretora de departamento de carreiras (2010-2016). Secretária-adjunta de gestão de pessoas (2016-2020). Consultora em gestão pública (2020-20",
       "criado_em": "2026-01-18T00:50:43.783441",
       "atualizado_em": "2026-01-18T00:50:43.783442",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.37,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-020",
@@ -894,15 +932,17 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 33.5,
+        "organizar": 26.5,
+        "dirigir": 23.0,
+        "controlar": 17.0
       },
       "historia_resumida": "GILBERTO ALVES MACHADO é procurador-geral da fazenda nacional com experiência em juridico. Procurador da Fazenda Nacional desde 1993. Coordenador de contencioso tributário (2000-2008). Procurador-regional em São Paulo (2008-2015). Procurador-geral adjunto (2015-2020). Docente em direito tri",
       "criado_em": "2026-01-18T00:50:43.783551",
       "atualizado_em": "2026-01-18T00:50:43.783552",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.5,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-pub-e-021",
@@ -938,15 +978,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 30.8,
+        "organizar": 26.9,
+        "dirigir": 25.1,
+        "controlar": 17.2
       },
       "historia_resumida": "TEREZA CRISTINA BORGES é secretária de política agrícola do ministério da agricultura com experiência em tecnologia informacao. Pesquisadora Embrapa (1998-2008). Coordenadora de estudos agrícolas no IPEA (2008-2014). Diretora de departamento de comercialização (2014-2018). Consultora FAO (2018-2020). Assessora especial do Mini",
       "criado_em": "2026-01-18T00:50:43.783675",
       "atualizado_em": "2026-01-18T00:50:43.783676",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.36,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-022",
@@ -983,15 +1025,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 28.3,
+        "organizar": 31.2,
+        "dirigir": 21.6,
+        "controlar": 18.9
       },
       "historia_resumida": "MÁRCIO ROBERTO SANTOS é conselheiro da agência nacional de telecomunicações (anatel) com experiência em estrategia. Engenheiro em operadora de telecomunicações (1992-2000). Especialista em regulação na ANATEL desde 2000. Superintendente de outorga (2008-2014). Superintendente de competição (2014-2018). Assessor esp",
       "criado_em": "2026-01-18T00:50:43.783818",
       "atualizado_em": "2026-01-18T00:50:43.783819",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 1.47,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-023",
@@ -1028,15 +1072,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 30.5,
+        "organizar": 23.8,
+        "dirigir": 23.3,
+        "controlar": 22.4
       },
       "historia_resumida": "HELENA CRISTINA MARTINS é secretária nacional de assistência social do ministério do desenvolvimento social com experiência em financeiro orcamento. Assistente social em CRAS (2000-2006). Coordenadora municipal de assistência social (2006-2010). Diretora de departamento no MDS (2010-2016). Consultora UNICEF em proteção social (2016-2020). Secretár",
       "criado_em": "2026-01-18T00:50:43.783946",
       "atualizado_em": "2026-01-18T00:50:43.783948",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.19,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-024",
@@ -1074,15 +1120,17 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 30.0,
+        "organizar": 26.9,
+        "dirigir": 22.6,
+        "controlar": 20.5
       },
       "historia_resumida": "RODRIGO AUGUSTO MENDES é presidente do instituto brasileiro do meio ambiente e dos recursos naturais renováveis (ibama) com experiência em juridico. Analista ambiental no IBAMA desde 2002. Coordenador de fiscalização na Amazônia (2008-2012). Diretor de licenciamento (2012-2016). Superintendente no Pará (2016-2019). Diretor de proteção ambiental (2",
       "criado_em": "2026-01-18T00:50:43.784068",
       "atualizado_em": "2026-01-18T00:50:43.784070",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 1.32,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-025",
@@ -1119,15 +1167,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 29.6,
+        "organizar": 27.1,
+        "dirigir": 24.1,
+        "controlar": 19.2
       },
       "historia_resumida": "FLÁVIA REGINA OLIVEIRA é secretária de comunicação social da presidência da república (secom) com experiência em financeiro orcamento. Jornalista em veículos de comunicação (1998-2008). Assessora de comunicação em ministérios (2008-2014). Diretora de comunicação em empresa pública (2014-2018). Consultora em comunicação governamental ",
       "criado_em": "2026-01-18T00:50:43.784193",
       "atualizado_em": "2026-01-18T00:50:43.784194",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.31,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-026",
@@ -1164,15 +1214,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 29.0,
+        "organizar": 27.3,
+        "dirigir": 21.6,
+        "controlar": 22.1
       },
       "historia_resumida": "ANTÔNIO CARLOS FERREIRA é diretor-presidente da agência nacional de vigilância sanitária (anvisa) com experiência em tecnologia informacao. Fiscal agropecuário (1992-2000). Especialista em regulação na ANVISA desde 2000. Gerente de alimentos (2005-2010). Diretor de controle sanitário em secretaria estadual (2010-2015). Diretor de medicame",
       "criado_em": "2026-01-18T00:50:43.784320",
       "atualizado_em": "2026-01-18T00:50:43.784321",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 1.29,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-027",
@@ -1209,15 +1261,17 @@
       ],
       "estilo_lideranca": "visionario",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 31.4,
+        "organizar": 30.3,
+        "dirigir": 21.0,
+        "controlar": 17.3
       },
       "historia_resumida": "BEATRIZ HELENA RAMOS é secretária nacional de habitação do ministério das cidades com experiência em financeiro orcamento. Arquiteta em COHAB estadual (1998-2006). Coordenadora de programas habitacionais em município de grande porte (2006-2012). Diretora de urbanização em secretaria estadual (2012-2018). Consultora em pol",
       "criado_em": "2026-01-18T00:50:43.784448",
       "atualizado_em": "2026-01-18T00:50:43.784449",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.61,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-pub-e-028",
@@ -1254,15 +1308,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 29.4,
+        "organizar": 25.3,
+        "dirigir": 24.2,
+        "controlar": 21.1
       },
       "historia_resumida": "RICARDO SOUZA ANDRADE é secretário-executivo do ministério da defesa (general de divisão) com experiência em financeiro orcamento. Oficial do Exército desde 1990. Comandos em unidades operacionais e escolas militares. Adido militar em Washington (2010-2013). Chefe de gabinete do Comandante do Exército (2015-2018). General de Brig",
       "criado_em": "2026-01-18T00:50:43.784570",
       "atualizado_em": "2026-01-18T00:50:43.784571",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.21,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-029",
@@ -1299,15 +1355,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 30.9,
+        "organizar": 26.1,
+        "dirigir": 25.5,
+        "controlar": 17.5
       },
       "historia_resumida": "MARINA SILVA CASTRO é diretora de política econômica do banco central do brasil com experiência em financeiro orcamento. Economista do Banco Central desde 2002. Pesquisadora no Departamento de Estudos e Pesquisas (2002-2010). Chefe de departamento de operações de mercado aberto (2010-2016). Diretora-adjunta de política ",
       "criado_em": "2026-01-18T00:50:43.784684",
       "atualizado_em": "2026-01-18T00:50:43.784686",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 1.33,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-e-030",
@@ -1344,15 +1402,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 26.1,
+        "organizar": 32.4,
+        "dirigir": 24.0,
+        "controlar": 17.5
       },
       "historia_resumida": "JORGE LUÍS FERREIRA é diretor-presidente da empresa de planejamento e logística (epl) com experiência em tecnologia informacao. Engenheiro no DNER/DNIT (1992-2005). Coordenador de projetos rodoviários (2005-2010). Superintendente regional do DNIT (2010-2015). Diretor de planejamento em concessionária de rodovias (2015-2019). C",
       "criado_em": "2026-01-18T00:50:43.784828",
       "atualizado_em": "2026-01-18T00:50:43.784829",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 1.41,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-t-001",
@@ -1389,16 +1449,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 28.0,
-        "organizar": 23.0,
-        "dirigir": 32.0,
-        "controlar": 17.0
+        "planejar": 21.6,
+        "organizar": 25.2,
+        "dirigir": 31.8,
+        "controlar": 21.4
       },
       "historia_resumida": "RENATA CAMPOS FERREIRA é coordenadora-geral de desenvolvimento de pessoas em ministério da área social com experiência em gestao pessoas. Analista na área de capacitação (2007-2013). Coordenadora de projetos educacionais (2013-2019). Coordenadora-geral desde 2019. Vivenciou 3 gestões ministeriais com prioridades conflitantes.",
       "criado_em": "2026-01-18T00:50:43.785916",
       "atualizado_em": "2026-01-18T00:50:43.785918",
       "tipo_orgao": "ministerio",
-      "carreira": "Analista desde 2007 (18 anos de serviço público)"
+      "carreira": "Analista desde 2007 (18 anos de serviço público)",
+      "iad": 0.88,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-002",
@@ -1435,16 +1497,18 @@
       ],
       "estilo_lideranca": "autoritario",
       "distribuicao_podc": {
-        "planejar": 18.0,
-        "organizar": 15.0,
-        "dirigir": 22.0,
-        "controlar": 45.0
+        "planejar": 23.6,
+        "organizar": 23.8,
+        "dirigir": 27.0,
+        "controlar": 25.6
       },
       "historia_resumida": "MARCELO AUGUSTO SILVEIRA é superintendente regional de infraestrutura em autarquia federal de transportes com experiência em gestao pessoas. Engenheiro de campo em obras (1998-2012). Gerente de projetos (2012-2017). Superintendente regional desde 2017. Coordenou recuperação pós-desastres naturais. Sofreu processo administrativo (arquivado)",
       "criado_em": "2026-01-18T00:50:43.786114",
       "atualizado_em": "2026-01-18T00:50:43.786119",
       "tipo_orgao": "autarquia",
-      "carreira": "Engenheiro desde 1998 (27 anos de serviço público)"
+      "carreira": "Engenheiro desde 1998 (27 anos de serviço público)",
+      "iad": 0.9,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-003",
@@ -1480,16 +1544,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 22.0,
-        "organizar": 18.0,
-        "dirigir": 25.0,
-        "controlar": 35.0
+        "planejar": 23.8,
+        "organizar": 21.8,
+        "dirigir": 28.3,
+        "controlar": 26.1
       },
       "historia_resumida": "JULIANA MENDES ROCHA é coordenadora jurídica em empresa pública federal com experiência em financeiro orcamento. Demandas trabalhistas (2013-2016). Área consultiva (2016-2021). Coordenadora desde 2021. Liderou defesa em ACP de R$ 2 bilhões. Estruturou área de compliance.",
       "criado_em": "2026-01-18T00:50:43.786255",
       "atualizado_em": "2026-01-18T00:50:43.786258",
       "tipo_orgao": "empresa_publica",
-      "carreira": "Procuradora desde 2013 (12 anos)"
+      "carreira": "Procuradora desde 2013 (12 anos)",
+      "iad": 0.84,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-004",
@@ -1524,16 +1590,18 @@
       ],
       "estilo_lideranca": "autoritario",
       "distribuicao_podc": {
-        "planejar": 35.0,
-        "organizar": 20.0,
-        "dirigir": 15.0,
-        "controlar": 30.0
+        "planejar": 23.6,
+        "organizar": 25.0,
+        "dirigir": 27.5,
+        "controlar": 23.9
       },
       "historia_resumida": "CARLOS EDUARDO TAVARES é coordenador de orçamento e finanças em órgão regulador federal com experiência em financeiro orcamento. SOF por 16 anos, participou de formulação do PPA 2004-2007. Migrou para regulador em 2010 buscando menor exposição política. Sobreviveu a 8 ministros, 5 reformas administrativas, 3 crises fiscais.",
       "criado_em": "2026-01-18T00:50:43.786384",
       "atualizado_em": "2026-01-18T00:50:43.786386",
       "tipo_orgao": "orgao_controle",
-      "carreira": "APO desde 1994 (31 anos)"
+      "carreira": "APO desde 1994 (31 anos)",
+      "iad": 0.95,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-005",
@@ -1569,16 +1637,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 25.0,
-        "organizar": 18.0,
-        "dirigir": 16.0,
-        "controlar": 41.0
+        "planejar": 22.3,
+        "organizar": 27.6,
+        "dirigir": 26.5,
+        "controlar": 23.6
       },
       "historia_resumida": "PATRÍCIA GOMES ALMEIDA é coordenadora de monitoramento e avaliação em ministério de desenvolvimento social com experiência em financeiro orcamento. Execução de programas sociais (2006-2014). Área de avaliação desde 2014. Publicou artigos acadêmicos sobre efetividade. Referência técnica com resistências políticas.",
       "criado_em": "2026-01-18T00:50:43.786509",
       "atualizado_em": "2026-01-18T00:50:43.786511",
       "tipo_orgao": "ministerio",
-      "carreira": "EPPGG desde 2006 (19 anos)"
+      "carreira": "EPPGG desde 2006 (19 anos)",
+      "iad": 1.0,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-t-006",
@@ -1615,16 +1685,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 30.0,
-        "organizar": 28.0,
-        "dirigir": 25.0,
-        "controlar": 17.0
+        "planejar": 20.2,
+        "organizar": 28.9,
+        "dirigir": 25.8,
+        "controlar": 25.1
       },
       "historia_resumida": "RODRIGO FREITAS MENDES é coordenador-geral de tecnologia da informação em autarquia federal com experiência em gestao pessoas. Desenvolvedor de sistemas (2008-2012). Gerente de projetos de TI (2012-2016). Coordenador de infraestrutura (2016-2020). Coordenador-geral desde 2020.",
       "criado_em": "2026-01-18T00:50:43.786619",
       "atualizado_em": "2026-01-18T00:50:43.786621",
       "tipo_orgao": "autarquia",
-      "carreira": "ATI desde 2008 (17 anos)"
+      "carreira": "ATI desde 2008 (17 anos)",
+      "iad": 0.96,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-007",
@@ -1661,16 +1733,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 25.0,
-        "organizar": 22.0,
-        "dirigir": 30.0,
-        "controlar": 23.0
+        "planejar": 26.0,
+        "organizar": 22.1,
+        "dirigir": 25.0,
+        "controlar": 26.9
       },
       "historia_resumida": "ANDRÉA CRISTINA SOUZA é coordenadora-geral de atenção primária em secretaria estadual de saúde (cedida da união) com experiência em tecnologia informacao. Enfermeira em hospital federal (2005-2010). Coordenadora de ESF em município (2010-2015). Apoiadora institucional do MS (2015-2018). Consultora técnica OPAS (2018-2021).",
       "criado_em": "2026-01-18T00:50:43.786741",
       "atualizado_em": "2026-01-18T00:50:43.786743",
       "tipo_orgao": "autarquia",
-      "carreira": "Enfermeira do quadro federal desde 2005 (20 anos)"
+      "carreira": "Enfermeira do quadro federal desde 2005 (20 anos)",
+      "iad": 0.93,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-008",
@@ -1707,16 +1781,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 20.0,
-        "organizar": 25.0,
-        "dirigir": 20.0,
-        "controlar": 35.0
+        "planejar": 24.7,
+        "organizar": 20.3,
+        "dirigir": 28.6,
+        "controlar": 26.4
       },
       "historia_resumida": "MARCELO ROBERTO SANTOS é coordenador-geral de licitações e contratos em ministério com experiência em licitacoes contratos. Pregoeiro (2003-2008). Coordenador de compras (2008-2014). Diretor de administração em autarquia (2014-2019). Coordenador-geral desde 2019.",
       "criado_em": "2026-01-18T00:50:43.786880",
       "atualizado_em": "2026-01-18T00:50:43.786881",
       "tipo_orgao": "ministerio",
-      "carreira": "Analista administrativo desde 2003 (22 anos)"
+      "carreira": "Analista administrativo desde 2003 (22 anos)",
+      "iad": 0.82,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-009",
@@ -1753,16 +1829,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 25.0,
-        "organizar": 20.0,
-        "dirigir": 35.0,
-        "controlar": 20.0
+        "planejar": 20.1,
+        "organizar": 29.2,
+        "dirigir": 26.8,
+        "controlar": 23.9
       },
       "historia_resumida": "FERNANDA LUIZA COSTA é coordenadora de comunicação social em autarquia federal com experiência em gestao pessoas. Assessora de imprensa em gabinete parlamentar (2010-2014). Coordenadora de redes sociais em ministério (2014-2018). Coordenadora de comunicação desde 2020.",
       "criado_em": "2026-01-18T00:50:43.786991",
       "atualizado_em": "2026-01-18T00:50:43.786993",
       "tipo_orgao": "autarquia",
-      "carreira": "Jornalista desde 2010 (15 anos)"
+      "carreira": "Jornalista desde 2010 (15 anos)",
+      "iad": 0.97,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-010",
@@ -1799,16 +1877,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 15.0,
-        "organizar": 20.0,
-        "dirigir": 25.0,
-        "controlar": 40.0
+        "planejar": 19.2,
+        "organizar": 22.8,
+        "dirigir": 27.6,
+        "controlar": 30.4
       },
       "historia_resumida": "PAULO HENRIQUE OLIVEIRA é coordenador-geral de defesa agropecuária em superintendência federal de agricultura com experiência em tecnologia informacao. Fiscal de campo (1998-2006). Chefe de seção fitossanitária (2006-2012). Chefe de divisão (2012-2017). Coordenador-geral desde 2017.",
       "criado_em": "2026-01-18T00:50:43.787304",
       "atualizado_em": "2026-01-18T00:50:43.787324",
       "tipo_orgao": "autarquia",
-      "carreira": "Fiscal agropecuário desde 1998 (27 anos)"
+      "carreira": "Fiscal agropecuário desde 1998 (27 anos)",
+      "iad": 0.72,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-011",
@@ -1845,16 +1925,18 @@
       ],
       "estilo_lideranca": "laissez_faire",
       "distribuicao_podc": {
-        "planejar": 30.0,
-        "organizar": 20.0,
-        "dirigir": 28.0,
-        "controlar": 22.0
+        "planejar": 23.0,
+        "organizar": 24.2,
+        "dirigir": 30.7,
+        "controlar": 22.1
       },
       "historia_resumida": "AMANDA CRISTINA PEREIRA é coordenadora de estudos econômicos em instituto de pesquisa econômica com experiência em tecnologia informacao. Assistente de pesquisa (2012-2015). Pesquisadora plena (2015-2019). Pesquisadora sênior (2019-2021). Coordenadora desde 2021.",
       "criado_em": "2026-01-18T00:50:43.787508",
       "atualizado_em": "2026-01-18T00:50:43.787511",
       "tipo_orgao": "ministerio",
-      "carreira": "Pesquisadora desde 2012 (13 anos)"
+      "carreira": "Pesquisadora desde 2012 (13 anos)",
+      "iad": 0.89,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-012",
@@ -1891,16 +1973,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 20.0,
-        "organizar": 25.0,
-        "dirigir": 30.0,
-        "controlar": 25.0
+        "planejar": 20.1,
+        "organizar": 22.2,
+        "dirigir": 28.8,
+        "controlar": 28.9
       },
       "historia_resumida": "JOSÉ RICARDO ALMEIDA é superintendente de operação em empresa pública de energia com experiência em gestao pessoas. Engenheiro de manutenção (2000-2006). Gerente de usina (2006-2012). Gerente de operação regional (2012-2018). Superintendente (2018-2022). Diretor interino (2022-atual).",
       "criado_em": "2026-01-18T00:50:43.787633",
       "atualizado_em": "2026-01-18T00:50:43.787635",
       "tipo_orgao": "autarquia",
-      "carreira": "Engenheiro desde 2000 (25 anos)"
+      "carreira": "Engenheiro desde 2000 (25 anos)",
+      "iad": 0.73,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-013",
@@ -1937,16 +2021,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 28.0,
-        "organizar": 22.0,
-        "dirigir": 30.0,
-        "controlar": 20.0
+        "planejar": 22.6,
+        "organizar": 25.7,
+        "dirigir": 27.5,
+        "controlar": 24.2
       },
       "historia_resumida": "CAROLINA MARIA SANTOS é coordenadora-geral de educação básica em secretaria do mec com experiência em gestao pessoas. Analista em avaliação educacional no INEP (2008-2012). Coordenadora de programas do FNDE (2012-2016). Diretora de departamento em secretaria estadual (2016-2020). Retornou ao MEC como coordenadora-ger",
       "criado_em": "2026-01-18T00:50:43.787756",
       "atualizado_em": "2026-01-18T00:50:43.787758",
       "tipo_orgao": "autarquia",
-      "carreira": "EPPGG desde 2008 (17 anos)"
+      "carreira": "EPPGG desde 2008 (17 anos)",
+      "iad": 0.93,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-014",
@@ -1983,16 +2069,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 22.0,
-        "organizar": 20.0,
-        "dirigir": 28.0,
-        "controlar": 30.0
+        "planejar": 24.6,
+        "organizar": 23.9,
+        "dirigir": 29.1,
+        "controlar": 22.4
       },
       "historia_resumida": "RICARDO AUGUSTO FERREIRA é coordenador-geral de políticas penais em secretaria nacional com experiência em gestao pessoas. Delegado em delegacias especializadas (2004-2012). Coordenador de operações especiais (2012-2016). Adido policial em país europeu (2016-2019). Retornou para área de políticas.",
       "criado_em": "2026-01-18T00:50:43.787878",
       "atualizado_em": "2026-01-18T00:50:43.787879",
       "tipo_orgao": "ministerio",
-      "carreira": "Delegado Federal desde 2004 (21 anos)"
+      "carreira": "Delegado Federal desde 2004 (21 anos)",
+      "iad": 0.94,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-015",
@@ -2029,16 +2117,18 @@
       ],
       "estilo_lideranca": "coaching",
       "distribuicao_podc": {
-        "planejar": 25.0,
-        "organizar": 18.0,
-        "dirigir": 22.0,
-        "controlar": 35.0
+        "planejar": 22.8,
+        "organizar": 28.9,
+        "dirigir": 26.7,
+        "controlar": 21.6
       },
       "historia_resumida": "LUCIANA APARECIDA COSTA é coordenadora de auditoria interna em empresa pública com experiência em auditoria. Auditora em empresa privada de auditoria (2006-2010). Auditora interna em empresa pública (2010-2016). Gerente de auditoria (2016-2019). Coordenadora desde 2019.",
       "criado_em": "2026-01-18T00:50:43.788004",
       "atualizado_em": "2026-01-18T00:50:43.788006",
       "tipo_orgao": "empresa_publica",
-      "carreira": "Auditora desde 2006 (19 anos)"
+      "carreira": "Auditora desde 2006 (19 anos)",
+      "iad": 1.07,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-pub-o-001",
@@ -2073,15 +2163,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 19.0,
-        "organizar": 19.0,
-        "dirigir": 35.0,
-        "controlar": 27.0
+        "planejar": 8.3,
+        "organizar": 15.5,
+        "dirigir": 38.2,
+        "controlar": 38.0
       },
       "historia_resumida": "MARIA APARECIDA SANTOS é auxiliar de atendimento no inss com experiência em estrategia. ",
       "criado_em": "2026-01-18T00:50:43.788514",
       "atualizado_em": "2026-01-18T00:50:43.788516",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.31,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-002",
@@ -2115,15 +2207,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 15.0,
-        "organizar": 20.0,
-        "dirigir": 25.0,
-        "controlar": 40.0
+        "planejar": 13.0,
+        "organizar": 13.3,
+        "dirigir": 38.2,
+        "controlar": 35.5
       },
       "historia_resumida": "JOSÉ ROBERTO SILVA é técnico de infraestrutura em autarquia federal com experiência em infraestrutura obras. ",
       "criado_em": "2026-01-18T00:50:43.788615",
       "atualizado_em": "2026-01-18T00:50:43.788616",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.36,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-003",
@@ -2158,15 +2252,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 10.0,
-        "organizar": 25.0,
-        "dirigir": 50.0,
-        "controlar": 15.0
+        "planejar": 13.5,
+        "organizar": 20.4,
+        "dirigir": 38.9,
+        "controlar": 27.2
       },
       "historia_resumida": "ANA PAULA FERREIRA é técnica de enfermagem em hospital federal com experiência em saude. ",
       "criado_em": "2026-01-18T00:50:43.788699",
       "atualizado_em": "2026-01-18T00:50:43.788700",
-      "tipo_orgao": "hospital_publico"
+      "tipo_orgao": "hospital_publico",
+      "iad": 0.51,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-004",
@@ -2201,15 +2297,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 12.0,
-        "organizar": 23.0,
-        "dirigir": 45.0,
-        "controlar": 20.0
+        "planejar": 14.1,
+        "organizar": 20.3,
+        "dirigir": 36.2,
+        "controlar": 29.4
       },
       "historia_resumida": "CARLOS HENRIQUE ALMEIDA é técnico de ti em órgão federal com experiência em tecnologia informacao. ",
       "criado_em": "2026-01-18T00:50:43.788781",
       "atualizado_em": "2026-01-18T00:50:43.788782",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.52,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-005",
@@ -2243,15 +2341,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 5.0,
-        "organizar": 30.0,
-        "dirigir": 55.0,
-        "controlar": 10.0
+        "planejar": 7.6,
+        "organizar": 14.7,
+        "dirigir": 41.4,
+        "controlar": 36.3
       },
       "historia_resumida": "FRANCISCA DAS CHAGAS OLIVEIRA é auxiliar de serviços gerais (terceirizada) em ministério com experiência em estrategia. ",
       "criado_em": "2026-01-18T00:50:43.788892",
       "atualizado_em": "2026-01-18T00:50:43.788894",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.29,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-t-016",
@@ -2282,15 +2382,17 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 24.2,
-        "organizar": 26.3,
-        "dirigir": 30.3,
-        "controlar": 19.2
+        "planejar": 19.1,
+        "organizar": 25.4,
+        "dirigir": 30.1,
+        "controlar": 25.4
       },
       "historia_resumida": "Carla Silva Souza é superintendente regional com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.793595",
       "atualizado_em": "2026-01-18T00:50:43.793607",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.8,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-017",
@@ -2321,15 +2423,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 20.8,
-        "organizar": 26.7,
-        "dirigir": 31.7,
-        "controlar": 20.8
+        "planejar": 24.6,
+        "organizar": 23.1,
+        "dirigir": 26.8,
+        "controlar": 25.5
       },
       "historia_resumida": "Eduardo Oliveira Carvalho é gerente de departamento com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.793645",
       "atualizado_em": "2026-01-18T00:50:43.793648",
-      "tipo_orgao": "empresa_publica"
+      "tipo_orgao": "empresa_publica",
+      "iad": 0.91,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-018",
@@ -2360,15 +2464,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 21.0,
-        "organizar": 22.9,
-        "dirigir": 30.5,
-        "controlar": 25.7
+        "planejar": 17.3,
+        "organizar": 28.2,
+        "dirigir": 27.1,
+        "controlar": 27.4
       },
       "historia_resumida": "Beatriz Rodrigues Silva é coordenador de área com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.793673",
       "atualizado_em": "2026-01-18T00:50:43.793675",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.83,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-019",
@@ -2399,15 +2505,17 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 20.4,
-        "organizar": 27.2,
-        "dirigir": 27.2,
-        "controlar": 25.2
+        "planejar": 18.8,
+        "organizar": 29.0,
+        "dirigir": 26.7,
+        "controlar": 25.5
       },
       "historia_resumida": "José Gomes Santos é diretor de divisão com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.793688",
       "atualizado_em": "2026-01-18T00:50:43.793689",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.92,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-020",
@@ -2438,15 +2546,17 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 23.7,
-        "organizar": 25.4,
-        "dirigir": 31.6,
-        "controlar": 19.3
+        "planejar": 22.6,
+        "organizar": 24.4,
+        "dirigir": 27.0,
+        "controlar": 26.0
       },
       "historia_resumida": "Beatriz Martins Lima é coordenador-geral com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.793701",
       "atualizado_em": "2026-01-18T00:50:43.793702",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.89,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-021",
@@ -2477,15 +2587,17 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 19.6,
-        "organizar": 28.0,
-        "dirigir": 33.6,
-        "controlar": 18.7
+        "planejar": 24.5,
+        "organizar": 23.2,
+        "dirigir": 28.9,
+        "controlar": 23.4
       },
       "historia_resumida": "Bruno Costa Silva é superintendente regional com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.793714",
       "atualizado_em": "2026-01-18T00:50:43.793716",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.91,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-022",
@@ -2516,15 +2628,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 19.8,
-        "organizar": 25.7,
-        "dirigir": 30.7,
-        "controlar": 23.8
+        "planejar": 20.9,
+        "organizar": 22.2,
+        "dirigir": 31.4,
+        "controlar": 25.5
       },
       "historia_resumida": "Amanda Ferreira Costa é gerente de departamento com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.793751",
       "atualizado_em": "2026-01-18T00:50:43.793752",
-      "tipo_orgao": "empresa_publica"
+      "tipo_orgao": "empresa_publica",
+      "iad": 0.76,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-023",
@@ -2555,15 +2669,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 23.2,
-        "organizar": 25.9,
-        "dirigir": 30.4,
-        "controlar": 20.5
+        "planejar": 21.3,
+        "organizar": 23.9,
+        "dirigir": 27.2,
+        "controlar": 27.6
       },
       "historia_resumida": "Ricardo Lima Araújo é coordenador de área com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.793762",
       "atualizado_em": "2026-01-18T00:50:43.793763",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.82,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-024",
@@ -2594,15 +2710,17 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 20.3,
-        "organizar": 25.4,
-        "dirigir": 30.5,
-        "controlar": 23.7
+        "planejar": 20.9,
+        "organizar": 24.5,
+        "dirigir": 33.3,
+        "controlar": 21.3
       },
       "historia_resumida": "Juliana Costa Ferreira é diretor de divisão com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.793773",
       "atualizado_em": "2026-01-18T00:50:43.793774",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.83,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-025",
@@ -2633,15 +2751,17 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 20.0,
-        "organizar": 29.1,
-        "dirigir": 33.6,
-        "controlar": 17.3
+        "planejar": 19.1,
+        "organizar": 23.4,
+        "dirigir": 25.8,
+        "controlar": 31.7
       },
       "historia_resumida": "Paulo Costa Araújo é coordenador-geral com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.793790",
       "atualizado_em": "2026-01-18T00:50:43.793791",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.74,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-026",
@@ -2672,15 +2792,17 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 20.2,
-        "organizar": 28.4,
-        "dirigir": 32.1,
-        "controlar": 19.3
+        "planejar": 19.2,
+        "organizar": 22.5,
+        "dirigir": 34.5,
+        "controlar": 23.8
       },
       "historia_resumida": "Amanda Rodrigues Carvalho é superintendente regional com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.793800",
       "atualizado_em": "2026-01-18T00:50:43.793802",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.72,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-027",
@@ -2711,15 +2833,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 19.6,
-        "organizar": 21.4,
-        "dirigir": 33.9,
-        "controlar": 25.0
+        "planejar": 24.3,
+        "organizar": 23.1,
+        "dirigir": 30.2,
+        "controlar": 22.4
       },
       "historia_resumida": "Fernando Almeida Martins é gerente de departamento com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.793814",
       "atualizado_em": "2026-01-18T00:50:43.793815",
-      "tipo_orgao": "empresa_publica"
+      "tipo_orgao": "empresa_publica",
+      "iad": 0.9,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-028",
@@ -2750,15 +2874,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 22.0,
-        "organizar": 29.4,
-        "dirigir": 31.2,
-        "controlar": 17.4
+        "planejar": 21.2,
+        "organizar": 25.8,
+        "dirigir": 25.9,
+        "controlar": 27.1
       },
       "historia_resumida": "Ana Gomes Santos é coordenador de área com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.793826",
       "atualizado_em": "2026-01-18T00:50:43.793827",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.89,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-t-029",
@@ -2789,15 +2915,17 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 23.4,
-        "organizar": 26.1,
-        "dirigir": 27.0,
-        "controlar": 23.4
+        "planejar": 18.6,
+        "organizar": 19.8,
+        "dirigir": 32.5,
+        "controlar": 29.1
       },
       "historia_resumida": "Bruno Lima Pereira é diretor de divisão com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.793857",
       "atualizado_em": "2026-01-18T00:50:43.793858",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.62,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-t-030",
@@ -2828,15 +2956,17 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 20.2,
-        "organizar": 24.6,
-        "dirigir": 33.3,
-        "controlar": 21.9
+        "planejar": 21.5,
+        "organizar": 25.3,
+        "dirigir": 28.4,
+        "controlar": 24.8
       },
       "historia_resumida": "Beatriz Lima Santos é coordenador-geral com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.793870",
       "atualizado_em": "2026-01-18T00:50:43.793871",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.88,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-pub-o-006",
@@ -2867,15 +2997,17 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 11.3,
-        "organizar": 21.6,
-        "dirigir": 50.5,
-        "controlar": 16.5
+        "planejar": 11.4,
+        "organizar": 18.6,
+        "dirigir": 37.3,
+        "controlar": 32.7
       },
       "historia_resumida": "Camila Silva Gomes é analista de sistemas com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.793943",
       "atualizado_em": "2026-01-18T00:50:43.793945",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.43,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-007",
@@ -2906,15 +3038,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 14.4,
-        "organizar": 21.1,
-        "dirigir": 47.8,
-        "controlar": 16.7
+        "planejar": 13.3,
+        "organizar": 15.2,
+        "dirigir": 38.8,
+        "controlar": 32.7
       },
       "historia_resumida": "Eduardo Ferreira Martins é assistente de atendimento com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.793956",
       "atualizado_em": "2026-01-18T00:50:43.793957",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.4,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-008",
@@ -2945,15 +3079,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 12.5,
-        "organizar": 22.1,
-        "dirigir": 47.1,
-        "controlar": 18.3
+        "planejar": 11.2,
+        "organizar": 15.9,
+        "dirigir": 42.1,
+        "controlar": 30.8
       },
       "historia_resumida": "Luciana Lima Lima é técnico de enfermagem com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.793968",
       "atualizado_em": "2026-01-18T00:50:43.793969",
-      "tipo_orgao": "hospital_publico"
+      "tipo_orgao": "hospital_publico",
+      "iad": 0.37,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-009",
@@ -2984,15 +3120,17 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 13.5,
-        "organizar": 23.1,
-        "dirigir": 47.1,
-        "controlar": 16.3
+        "planejar": 12.8,
+        "organizar": 19.2,
+        "dirigir": 36.6,
+        "controlar": 31.4
       },
       "historia_resumida": "Thiago Pereira Silva é auxiliar administrativo com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.793978",
       "atualizado_em": "2026-01-18T00:50:43.793980",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.47,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-010",
@@ -3023,15 +3161,17 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 10.1,
-        "organizar": 25.7,
-        "dirigir": 46.8,
-        "controlar": 17.4
+        "planejar": 11.1,
+        "organizar": 18.7,
+        "dirigir": 34.0,
+        "controlar": 36.2
       },
       "historia_resumida": "Fernanda Souza Lima é técnico administrativo com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.793997",
       "atualizado_em": "2026-01-18T00:50:43.793998",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.42,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-011",
@@ -3062,15 +3202,17 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 12.0,
-        "organizar": 16.7,
-        "dirigir": 49.1,
-        "controlar": 22.2
+        "planejar": 13.2,
+        "organizar": 19.7,
+        "dirigir": 36.1,
+        "controlar": 31.0
       },
       "historia_resumida": "Eduardo Carvalho Santos é analista de sistemas com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.794008",
       "atualizado_em": "2026-01-18T00:50:43.794009",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.49,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-012",
@@ -3101,15 +3243,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 11.0,
-        "organizar": 23.9,
-        "dirigir": 44.0,
-        "controlar": 21.1
+        "planejar": 9.1,
+        "organizar": 18.9,
+        "dirigir": 36.3,
+        "controlar": 35.7
       },
       "historia_resumida": "Fernanda Araújo Ferreira é assistente de atendimento com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.794043",
       "atualizado_em": "2026-01-18T00:50:43.794045",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.39,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-013",
@@ -3140,15 +3284,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 8.8,
-        "organizar": 24.8,
-        "dirigir": 44.2,
-        "controlar": 22.1
+        "planejar": 13.3,
+        "organizar": 16.5,
+        "dirigir": 34.6,
+        "controlar": 35.6
       },
       "historia_resumida": "Eduardo Araújo Gomes é técnico de enfermagem com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.794056",
       "atualizado_em": "2026-01-18T00:50:43.794058",
-      "tipo_orgao": "hospital_publico"
+      "tipo_orgao": "hospital_publico",
+      "iad": 0.42,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-014",
@@ -3179,15 +3325,17 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 13.5,
-        "organizar": 23.4,
-        "dirigir": 40.5,
-        "controlar": 22.5
+        "planejar": 10.3,
+        "organizar": 21.4,
+        "dirigir": 36.1,
+        "controlar": 32.2
       },
       "historia_resumida": "Cristiane Almeida Pereira é auxiliar administrativo com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.794068",
       "atualizado_em": "2026-01-18T00:50:43.794069",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.46,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-015",
@@ -3218,15 +3366,17 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 11.4,
-        "organizar": 18.1,
-        "dirigir": 46.7,
-        "controlar": 23.8
+        "planejar": 14.9,
+        "organizar": 20.9,
+        "dirigir": 32.9,
+        "controlar": 31.3
       },
       "historia_resumida": "Rafael Gomes Santos é técnico administrativo com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.794081",
       "atualizado_em": "2026-01-18T00:50:43.794082",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.56,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-016",
@@ -3257,15 +3407,17 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 7.5,
-        "organizar": 19.6,
-        "dirigir": 50.5,
-        "controlar": 22.4
+        "planejar": 9.4,
+        "organizar": 21.8,
+        "dirigir": 41.4,
+        "controlar": 27.4
       },
       "historia_resumida": "Cristiane Oliveira Souza é analista de sistemas com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.794092",
       "atualizado_em": "2026-01-18T00:50:43.794093",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.45,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-017",
@@ -3296,15 +3448,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 9.1,
-        "organizar": 25.5,
-        "dirigir": 43.6,
-        "controlar": 21.8
+        "planejar": 16.6,
+        "organizar": 13.8,
+        "dirigir": 33.6,
+        "controlar": 36.0
       },
       "historia_resumida": "Marcos Santos Rodrigues é assistente de atendimento com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.794104",
       "atualizado_em": "2026-01-18T00:50:43.794105",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.44,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-018",
@@ -3335,15 +3489,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 9.3,
-        "organizar": 20.6,
-        "dirigir": 46.4,
-        "controlar": 23.7
+        "planejar": 12.7,
+        "organizar": 16.0,
+        "dirigir": 42.4,
+        "controlar": 28.9
       },
       "historia_resumida": "Juliana Gomes Rodrigues é técnico de enfermagem com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.794115",
       "atualizado_em": "2026-01-18T00:50:43.794116",
-      "tipo_orgao": "hospital_publico"
+      "tipo_orgao": "hospital_publico",
+      "iad": 0.4,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-019",
@@ -3374,15 +3530,17 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 12.8,
-        "organizar": 24.8,
-        "dirigir": 46.8,
-        "controlar": 15.6
+        "planejar": 13.4,
+        "organizar": 15.3,
+        "dirigir": 35.7,
+        "controlar": 35.6
       },
       "historia_resumida": "Bruno Oliveira Ribeiro é auxiliar administrativo com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.794125",
       "atualizado_em": "2026-01-18T00:50:43.794127",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.4,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-020",
@@ -3413,15 +3571,17 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 12.0,
-        "organizar": 19.0,
-        "dirigir": 45.0,
-        "controlar": 24.0
+        "planejar": 10.2,
+        "organizar": 15.1,
+        "dirigir": 38.7,
+        "controlar": 36.0
       },
       "historia_resumida": "Maria Silva Lima é técnico administrativo com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.794152",
       "atualizado_em": "2026-01-18T00:50:43.794154",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.34,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-021",
@@ -3452,15 +3612,17 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 9.1,
-        "organizar": 25.3,
-        "dirigir": 50.5,
-        "controlar": 15.2
+        "planejar": 13.7,
+        "organizar": 17.8,
+        "dirigir": 38.6,
+        "controlar": 29.9
       },
       "historia_resumida": "Luiz Martins Araújo é analista de sistemas com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.794163",
       "atualizado_em": "2026-01-18T00:50:43.794164",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.46,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-022",
@@ -3491,15 +3653,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 9.0,
-        "organizar": 20.7,
-        "dirigir": 47.7,
-        "controlar": 22.5
+        "planejar": 8.7,
+        "organizar": 22.7,
+        "dirigir": 39.1,
+        "controlar": 29.5
       },
       "historia_resumida": "Amanda Rodrigues Ribeiro é assistente de atendimento com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.794174",
       "atualizado_em": "2026-01-18T00:50:43.794175",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.46,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-023",
@@ -3530,15 +3694,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 9.9,
-        "organizar": 22.0,
-        "dirigir": 48.4,
-        "controlar": 19.8
+        "planejar": 14.6,
+        "organizar": 20.8,
+        "dirigir": 37.6,
+        "controlar": 27.0
       },
       "historia_resumida": "José Rodrigues Souza é técnico de enfermagem com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.794474",
       "atualizado_em": "2026-01-18T00:50:43.794488",
-      "tipo_orgao": "hospital_publico"
+      "tipo_orgao": "hospital_publico",
+      "iad": 0.55,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-024",
@@ -3569,15 +3735,17 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 12.8,
-        "organizar": 23.1,
-        "dirigir": 43.6,
-        "controlar": 20.5
+        "planejar": 12.2,
+        "organizar": 14.1,
+        "dirigir": 41.1,
+        "controlar": 32.6
       },
       "historia_resumida": "Cristiane Almeida Ferreira é auxiliar administrativo com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.794516",
       "atualizado_em": "2026-01-18T00:50:43.794517",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.36,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-025",
@@ -3608,15 +3776,17 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 11.9,
-        "organizar": 20.8,
-        "dirigir": 48.5,
-        "controlar": 18.8
+        "planejar": 9.6,
+        "organizar": 19.6,
+        "dirigir": 36.0,
+        "controlar": 34.8
       },
       "historia_resumida": "Fernando Ferreira Carvalho é técnico administrativo com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.794533",
       "atualizado_em": "2026-01-18T00:50:43.794534",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.41,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-026",
@@ -3647,15 +3817,17 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 11.3,
-        "organizar": 20.6,
-        "dirigir": 51.5,
-        "controlar": 16.5
+        "planejar": 10.7,
+        "organizar": 17.6,
+        "dirigir": 37.9,
+        "controlar": 33.8
       },
       "historia_resumida": "Maria Ferreira Martins é analista de sistemas com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.794546",
       "atualizado_em": "2026-01-18T00:50:43.794547",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.39,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-027",
@@ -3686,15 +3858,17 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 8.2,
-        "organizar": 21.4,
-        "dirigir": 49.0,
-        "controlar": 21.4
+        "planejar": 15.8,
+        "organizar": 14.7,
+        "dirigir": 36.7,
+        "controlar": 32.8
       },
       "historia_resumida": "Roberto Rodrigues Souza é assistente de atendimento com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.794558",
       "atualizado_em": "2026-01-18T00:50:43.794559",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.44,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-028",
@@ -3725,15 +3899,17 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 9.6,
-        "organizar": 19.1,
-        "dirigir": 55.3,
-        "controlar": 16.0
+        "planejar": 9.1,
+        "organizar": 19.2,
+        "dirigir": 41.2,
+        "controlar": 30.5
       },
       "historia_resumida": "Luciana Costa Ferreira é técnico de enfermagem com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.794570",
       "atualizado_em": "2026-01-18T00:50:43.794571",
-      "tipo_orgao": "hospital_publico"
+      "tipo_orgao": "hospital_publico",
+      "iad": 0.39,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-029",
@@ -3764,15 +3940,17 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 10.1,
-        "organizar": 23.2,
-        "dirigir": 46.5,
-        "controlar": 20.2
+        "planejar": 7.3,
+        "organizar": 20.0,
+        "dirigir": 39.2,
+        "controlar": 33.5
       },
       "historia_resumida": "Carlos Souza Ribeiro é auxiliar administrativo com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.794580",
       "atualizado_em": "2026-01-18T00:50:43.794582",
-      "tipo_orgao": "ministerio"
+      "tipo_orgao": "ministerio",
+      "iad": 0.38,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-pub-o-030",
@@ -3803,15 +3981,17 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 13.9,
-        "organizar": 22.2,
-        "dirigir": 49.1,
-        "controlar": 14.8
+        "planejar": 10.3,
+        "organizar": 16.2,
+        "dirigir": 39.1,
+        "controlar": 34.4
       },
       "historia_resumida": "Gabriela Araújo Almeida é técnico administrativo com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.794592",
       "atualizado_em": "2026-01-18T00:50:43.794593",
-      "tipo_orgao": "autarquia"
+      "tipo_orgao": "autarquia",
+      "iad": 0.36,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-e-001",
@@ -3848,16 +4028,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 25,
-        "organizar": 25,
-        "dirigir": 25,
-        "controlar": 25
+        "planejar": 34.4,
+        "organizar": 32.0,
+        "dirigir": 18.5,
+        "controlar": 15.1
       },
       "historia_resumida": "RICARDO MENDES ALBUQUERQUE é ceo de multinacional do setor automotivo com experiência em tecnologia informacao. Trainee na empresa (1992). Expatriado na Argentina (1998-2002), México (2002-2006), China (2006-2010). VP de Operações LATAM (2010-2016). COO Brasil (2016-2020). CEO desde 2020.",
       "criado_em": "2026-01-18T00:50:43.803942",
       "atualizado_em": "2026-01-18T00:50:43.803959",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.98,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-002",
@@ -3894,16 +4076,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 30.0,
-        "organizar": 35.0,
-        "dirigir": 20.0,
-        "controlar": 15.0
+        "planejar": 32.9,
+        "organizar": 28.8,
+        "dirigir": 26.1,
+        "controlar": 12.2
       },
       "historia_resumida": "MARIANA COSTA SILVA é cfo de banco digital com experiência em tecnologia informacao. Trainee em banco tradicional (1998). Controller (2005-2010). VP de Finanças em fintech (2010-2016). CFO de unicórnio (2016-2020). CFO atual desde 2021.",
       "criado_em": "2026-01-18T00:50:43.804115",
       "atualizado_em": "2026-01-18T00:50:43.804119",
       "setor_privado": "financeiro",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.61,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-003",
@@ -3939,16 +4123,18 @@
       ],
       "estilo_lideranca": "visionario",
       "distribuicao_podc": {
-        "planejar": 25.0,
-        "organizar": 30.0,
-        "dirigir": 25.0,
-        "controlar": 20.0
+        "planejar": 34.6,
+        "organizar": 32.4,
+        "dirigir": 20.9,
+        "controlar": 12.1
       },
       "historia_resumida": "FERNANDO AUGUSTO BARBOSA é ceo de grupo agroindustrial com experiência em producao. Filho do fundador. Trabalhou desde jovem nas fazendas. Gerente de produção (1995-2002). Diretor de operações (2002-2010). CEO após falecimento do pai (2012).",
       "criado_em": "2026-01-18T00:50:43.804252",
       "atualizado_em": "2026-01-18T00:50:43.804254",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 2.03,
+      "iad_classificacao": "Formulador Puro"
     },
     {
       "id": "gest-prv-e-004",
@@ -3985,16 +4171,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 28.0,
-        "organizar": 32.0,
-        "dirigir": 25.0,
-        "controlar": 15.0
+        "planejar": 31.1,
+        "organizar": 30.3,
+        "dirigir": 25.6,
+        "controlar": 13.0
       },
       "historia_resumida": "PATRÍCIA HELENA SANTOS é cmo de varejista de moda com experiência em tecnologia informacao. Trainee em agência de publicidade (2000). Gerente de produto em multinacional de cosméticos (2005-2010). Diretora de marketing em e-commerce (2010-2016). VP de Marketing em varejo (2016-2022). CMO des",
       "criado_em": "2026-01-18T00:50:43.804363",
       "atualizado_em": "2026-01-18T00:50:43.804365",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.59,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-005",
@@ -4031,16 +4219,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 30.0,
-        "organizar": 28.0,
-        "dirigir": 22.0,
-        "controlar": 20.0
+        "planejar": 31.4,
+        "organizar": 31.3,
+        "dirigir": 24.0,
+        "controlar": 13.3
       },
       "historia_resumida": "CARLOS EDUARDO MACHADO é ceo de construtora e incorporadora com experiência em comercial vendas. Engenheiro de obras (1994-2000). Gerente de contratos (2000-2006). Diretor de incorporação (2006-2012). COO (2012-2018). CEO desde 2018.",
       "criado_em": "2026-01-18T00:50:43.804478",
       "atualizado_em": "2026-01-18T00:50:43.804480",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.68,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-006",
@@ -4077,16 +4267,18 @@
       ],
       "estilo_lideranca": "visionario",
       "distribuicao_podc": {
-        "planejar": 35.0,
-        "organizar": 30.0,
-        "dirigir": 25.0,
-        "controlar": 10.0
+        "planejar": 35.4,
+        "organizar": 32.5,
+        "dirigir": 16.8,
+        "controlar": 15.3
       },
       "historia_resumida": "ANDRÉ LUIS FERREIRA é ceo e fundador de startup de ia com experiência em financeiro orcamento. Desenvolvedor em Big Tech no Vale do Silício (2004-2012). Tech Lead em unicórnio brasileiro (2012-2016). Fundou startup de IA em 2019. Captou R$ 500 milhões em séries A-C.",
       "criado_em": "2026-01-18T00:50:43.804580",
       "atualizado_em": "2026-01-18T00:50:43.804582",
       "setor_privado": "financeiro",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 2.12,
+      "iad_classificacao": "Formulador Puro"
     },
     {
       "id": "gest-prv-e-007",
@@ -4123,16 +4315,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 25.0,
-        "organizar": 35.0,
-        "dirigir": 25.0,
-        "controlar": 15.0
+        "planejar": 27.8,
+        "organizar": 30.6,
+        "dirigir": 22.3,
+        "controlar": 19.3
       },
       "historia_resumida": "HELENA CRISTINA ARAÚJO é ceo de rede de hospitais com experiência em saude. Médica clínica (1998-2005). Diretora médica de hospital (2005-2012). Superintendente de hospital de referência (2012-2018). CEO de rede (2020).",
       "criado_em": "2026-01-18T00:50:43.804678",
       "atualizado_em": "2026-01-18T00:50:43.804680",
       "setor_privado": "saude",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.4,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-e-008",
@@ -4169,16 +4363,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 28.0,
-        "organizar": 32.0,
-        "dirigir": 22.0,
-        "controlar": 18.0
+        "planejar": 30.8,
+        "organizar": 31.0,
+        "dirigir": 24.5,
+        "controlar": 13.7
       },
       "historia_resumida": "ROBERTO SÉRGIO LIMA é ceo de petroquímica com experiência em tecnologia informacao. Engenheiro de processos em multinacional (1990-2000). Diretor industrial (2000-2008). VP de operações LATAM (2008-2015). CEO de subsidiária (2015-2019). CEO do grupo (2019).",
       "criado_em": "2026-01-18T00:50:43.804781",
       "atualizado_em": "2026-01-18T00:50:43.804782",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.62,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-009",
@@ -4214,16 +4410,18 @@
       ],
       "estilo_lideranca": "coaching",
       "distribuicao_podc": {
-        "planejar": 25.0,
-        "organizar": 30.0,
-        "dirigir": 35.0,
-        "controlar": 10.0
+        "planejar": 29.8,
+        "organizar": 35.3,
+        "dirigir": 21.9,
+        "controlar": 13.0
       },
       "historia_resumida": "JULIANA MOREIRA SANTOS é ceo de escritório de advocacia (managing partner) com experiência em juridico. Associada em escritório full-service (2002-2008). Sócia júnior (2008-2012). Sócia equity (2012-2020). Managing partner desde 2021.",
       "criado_em": "2026-01-18T00:50:43.804880",
       "atualizado_em": "2026-01-18T00:50:43.804881",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.87,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-010",
@@ -4260,16 +4458,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 25.0,
-        "organizar": 30.0,
-        "dirigir": 20.0,
-        "controlar": 25.0
+        "planejar": 32.3,
+        "organizar": 31.3,
+        "dirigir": 24.7,
+        "controlar": 11.7
       },
       "historia_resumida": "MARCOS ANTONIO RIBEIRO é ceo de distribuidora de energia com experiência em infraestrutura obras. Engenheiro em concessionária estadual (1996-2005). Gerente de operações (2005-2010). Diretor técnico (2010-2016). VP de operações em holding (2016-2020). CEO (2020).",
       "criado_em": "2026-01-18T00:50:43.805002",
       "atualizado_em": "2026-01-18T00:50:43.805004",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.75,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-t-001",
@@ -4305,16 +4505,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 20.0,
-        "organizar": 25.0,
-        "dirigir": 40.0,
-        "controlar": 15.0
+        "planejar": 24.2,
+        "organizar": 29.3,
+        "dirigir": 25.9,
+        "controlar": 20.6
       },
       "historia_resumida": "RICARDO GOMES FERREIRA é gerente regional de vendas em multinacional de bens de consumo com experiência em tecnologia informacao. Vendedor (2004-2008). Supervisor de vendas (2008-2014). Gerente de contas-chave (2014-2020). Gerente regional desde 2020.",
       "criado_em": "2026-01-18T00:50:43.805402",
       "atualizado_em": "2026-01-18T00:50:43.805404",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.15,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-002",
@@ -4350,16 +4552,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 18.0,
-        "organizar": 30.0,
-        "dirigir": 32.0,
-        "controlar": 20.0
+        "planejar": 23.6,
+        "organizar": 25.9,
+        "dirigir": 29.7,
+        "controlar": 20.8
       },
       "historia_resumida": "CAROLINA ANDRADE LIMA é gerente de planta industrial em fabricante de autopeças com experiência em tecnologia informacao. Trainee industrial (2008). Engenheira de processos (2010-2014). Coordenadora de produção (2014-2018). Gerente de turno (2018-2021). Gerente de planta desde 2021.",
       "criado_em": "2026-01-18T00:50:43.805516",
       "atualizado_em": "2026-01-18T00:50:43.805518",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.98,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-prv-t-003",
@@ -4395,16 +4599,18 @@
       ],
       "estilo_lideranca": "servical",
       "distribuicao_podc": {
-        "planejar": 25.0,
-        "organizar": 30.0,
-        "dirigir": 35.0,
-        "controlar": 10.0
+        "planejar": 25.7,
+        "organizar": 26.0,
+        "dirigir": 24.4,
+        "controlar": 23.9
       },
       "historia_resumida": "PEDRO HENRIQUE COSTA é tech lead / engineering manager em startup de tecnologia com experiência em tecnologia informacao. Desenvolvedor júnior (2012-2015). Desenvolvedor sênior em Big Tech (2015-2019). Staff Engineer em unicórnio (2019-2022). Engineering Manager desde 2022.",
       "criado_em": "2026-01-18T00:50:43.805606",
       "atualizado_em": "2026-01-18T00:50:43.805608",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.07,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-004",
@@ -4441,16 +4647,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 22.0,
-        "organizar": 28.0,
-        "dirigir": 35.0,
-        "controlar": 15.0
+        "planejar": 28.5,
+        "organizar": 33.1,
+        "dirigir": 22.6,
+        "controlar": 15.8
       },
       "historia_resumida": "AMANDA SILVA RODRIGUES é head de rh (hrbp) em empresa de tecnologia com experiência em gestao pessoas. Analista de RH em consultoria (2006-2010). Business Partner em multinacional (2010-2016). Gerente de RH em startup (2016-2020). Head de RH desde 2021.",
       "criado_em": "2026-01-18T00:50:43.805691",
       "atualizado_em": "2026-01-18T00:50:43.805692",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.6,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-t-005",
@@ -4486,16 +4694,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 20.0,
-        "organizar": 30.0,
-        "dirigir": 20.0,
-        "controlar": 30.0
+        "planejar": 22.6,
+        "organizar": 27.0,
+        "dirigir": 28.4,
+        "controlar": 22.0
       },
       "historia_resumida": "MARCELO AUGUSTO SANTOS é controller em empresa de médio porte com experiência em gestao pessoas. Auditor em Big 4 (2002-2008). Contador sênior em multinacional (2008-2014). Gerente contábil (2014-2019). Controller desde 2019.",
       "criado_em": "2026-01-18T00:50:43.805786",
       "atualizado_em": "2026-01-18T00:50:43.805788",
       "setor_privado": "servicos",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.98,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-prv-o-001",
@@ -4530,16 +4740,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 10.0,
-        "organizar": 20.0,
-        "dirigir": 55.0,
-        "controlar": 15.0
+        "planejar": 16.2,
+        "organizar": 22.1,
+        "dirigir": 38.8,
+        "controlar": 22.9
       },
       "historia_resumida": "JOSÉ CARLOS SILVA é operador de produção em indústria automotiva com experiência em tecnologia informacao. ",
       "criado_em": "2026-01-18T00:50:43.806077",
       "atualizado_em": "2026-01-18T00:50:43.806079",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.62,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-002",
@@ -4575,16 +4787,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 5.0,
-        "organizar": 15.0,
-        "dirigir": 70.0,
-        "controlar": 10.0
+        "planejar": 13.2,
+        "organizar": 19.4,
+        "dirigir": 40.9,
+        "controlar": 26.5
       },
       "historia_resumida": "MARIA FERNANDA OLIVEIRA é atendente de call center em operadora de telefonia com experiência em estrategia. ",
       "criado_em": "2026-01-18T00:50:43.806160",
       "atualizado_em": "2026-01-18T00:50:43.806161",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.48,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-003",
@@ -4616,16 +4830,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 8.0,
-        "organizar": 25.0,
-        "dirigir": 55.0,
-        "controlar": 12.0
+        "planejar": 10.7,
+        "organizar": 23.3,
+        "dirigir": 39.4,
+        "controlar": 26.6
       },
       "historia_resumida": "RODRIGO ALVES SANTOS é operador de empilhadeira em centro de distribuição com experiência em estrategia. ",
       "criado_em": "2026-01-18T00:50:43.806243",
       "atualizado_em": "2026-01-18T00:50:43.806245",
       "setor_privado": "logistica",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.52,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-004",
@@ -4659,16 +4875,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 5.0,
-        "organizar": 20.0,
-        "dirigir": 65.0,
-        "controlar": 10.0
+        "planejar": 15.9,
+        "organizar": 19.9,
+        "dirigir": 42.7,
+        "controlar": 21.5
       },
       "historia_resumida": "ANA CAROLINA PEREIRA é caixa em rede de supermercados com experiência em estrategia. ",
       "criado_em": "2026-01-18T00:50:43.806326",
       "atualizado_em": "2026-01-18T00:50:43.806327",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.56,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-005",
@@ -4703,16 +4921,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 15.0,
-        "organizar": 20.0,
-        "dirigir": 55.0,
-        "controlar": 10.0
+        "planejar": 12.6,
+        "organizar": 19.0,
+        "dirigir": 47.6,
+        "controlar": 20.8
       },
       "historia_resumida": "CARLOS ROBERTO LIMA é motorista de caminhão em transportadora com experiência em estrategia. ",
       "criado_em": "2026-01-18T00:50:43.806969",
       "atualizado_em": "2026-01-18T00:50:43.806973",
       "setor_privado": "servicos",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.46,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-e-011",
@@ -4743,16 +4963,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 30.3,
-        "organizar": 33.7,
-        "dirigir": 23.6,
-        "controlar": 12.4
+        "planejar": 29.0,
+        "organizar": 30.2,
+        "dirigir": 25.6,
+        "controlar": 15.2
       },
       "historia_resumida": "Eduardo Oliveira Pereira é cfo com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.807069",
       "atualizado_em": "2026-01-18T00:50:43.807071",
       "setor_privado": "financeiro",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.45,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-e-012",
@@ -4783,16 +5005,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 31.7,
-        "organizar": 28.8,
-        "dirigir": 25.0,
-        "controlar": 14.4
+        "planejar": 33.2,
+        "organizar": 27.3,
+        "dirigir": 21.0,
+        "controlar": 18.5
       },
       "historia_resumida": "Larissa Lima Oliveira é diretor-presidente com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.807091",
       "atualizado_em": "2026-01-18T00:50:43.807092",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.53,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-013",
@@ -4823,16 +5047,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 33.0,
-        "organizar": 30.2,
-        "dirigir": 22.6,
-        "controlar": 14.2
+        "planejar": 34.4,
+        "organizar": 25.0,
+        "dirigir": 25.3,
+        "controlar": 15.3
       },
       "historia_resumida": "André Carvalho Santos é coo com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.807105",
       "atualizado_em": "2026-01-18T00:50:43.807107",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.46,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-e-014",
@@ -4863,16 +5089,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 32.7,
-        "organizar": 28.6,
-        "dirigir": 27.6,
-        "controlar": 11.2
+        "planejar": 31.6,
+        "organizar": 30.6,
+        "dirigir": 23.8,
+        "controlar": 14.0
       },
       "historia_resumida": "Tatiana Pereira Ribeiro é vp de operações com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.807118",
       "atualizado_em": "2026-01-18T00:50:43.807120",
       "setor_privado": "logistica",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.65,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-015",
@@ -4903,16 +5131,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 27.6,
-        "organizar": 36.7,
-        "dirigir": 20.4,
-        "controlar": 15.3
+        "planejar": 26.6,
+        "organizar": 33.2,
+        "dirigir": 22.4,
+        "controlar": 17.8
       },
       "historia_resumida": "Roberto Oliveira Santos é ceo com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.807131",
       "atualizado_em": "2026-01-18T00:50:43.807132",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.49,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-e-016",
@@ -4943,16 +5173,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 29.5,
-        "organizar": 31.6,
+        "planejar": 34.3,
+        "organizar": 29.9,
         "dirigir": 23.2,
-        "controlar": 15.8
+        "controlar": 12.6
       },
       "historia_resumida": "Larissa Pereira Gomes é cfo com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.807146",
       "atualizado_em": "2026-01-18T00:50:43.807147",
       "setor_privado": "financeiro",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.79,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-017",
@@ -4983,16 +5215,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 31.7,
-        "organizar": 31.7,
-        "dirigir": 24.0,
-        "controlar": 12.5
+        "planejar": 34.5,
+        "organizar": 31.9,
+        "dirigir": 19.9,
+        "controlar": 13.7
       },
       "historia_resumida": "Marcos Pereira Costa é diretor-presidente com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.807158",
       "atualizado_em": "2026-01-18T00:50:43.807159",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.98,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-018",
@@ -5023,16 +5257,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 31.9,
-        "organizar": 33.0,
-        "dirigir": 22.3,
-        "controlar": 12.8
+        "planejar": 36.2,
+        "organizar": 30.1,
+        "dirigir": 16.8,
+        "controlar": 16.9
       },
       "historia_resumida": "Luciana Ribeiro Oliveira é coo com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.807169",
       "atualizado_em": "2026-01-18T00:50:43.807170",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.97,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-019",
@@ -5063,16 +5299,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 29.5,
-        "organizar": 29.5,
-        "dirigir": 26.7,
-        "controlar": 14.3
+        "planejar": 30.5,
+        "organizar": 31.9,
+        "dirigir": 22.8,
+        "controlar": 14.8
       },
       "historia_resumida": "André Carvalho Santos é vp de operações com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.807180",
       "atualizado_em": "2026-01-18T00:50:43.807182",
       "setor_privado": "logistica",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.66,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-020",
@@ -5103,16 +5341,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 30.5,
-        "organizar": 37.9,
-        "dirigir": 21.1,
-        "controlar": 10.5
+        "planejar": 33.5,
+        "organizar": 32.3,
+        "dirigir": 18.2,
+        "controlar": 16.0
       },
       "historia_resumida": "Carla Pereira Lima é ceo com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.807192",
       "atualizado_em": "2026-01-18T00:50:43.807193",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.92,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-021",
@@ -5143,16 +5383,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 34.0,
-        "organizar": 34.0,
-        "dirigir": 22.3,
-        "controlar": 9.7
+        "planejar": 30.2,
+        "organizar": 28.2,
+        "dirigir": 27.3,
+        "controlar": 14.3
       },
       "historia_resumida": "Rafael Santos Ribeiro é cfo com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.807202",
       "atualizado_em": "2026-01-18T00:50:43.807204",
       "setor_privado": "financeiro",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.4,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-e-022",
@@ -5183,16 +5425,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 26.9,
-        "organizar": 32.3,
-        "dirigir": 26.9,
-        "controlar": 14.0
+        "planejar": 31.7,
+        "organizar": 30.0,
+        "dirigir": 20.6,
+        "controlar": 17.7
       },
       "historia_resumida": "Larissa Souza Martins é diretor-presidente com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.807213",
       "atualizado_em": "2026-01-18T00:50:43.807214",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.61,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-023",
@@ -5223,16 +5467,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 26.0,
-        "organizar": 36.5,
-        "dirigir": 27.1,
-        "controlar": 10.4
+        "planejar": 30.6,
+        "organizar": 29.1,
+        "dirigir": 19.0,
+        "controlar": 21.3
       },
       "historia_resumida": "Roberto Lima Gomes é coo com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.807225",
       "atualizado_em": "2026-01-18T00:50:43.807226",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.48,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-e-024",
@@ -5263,16 +5509,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 28.2,
-        "organizar": 32.5,
-        "dirigir": 23.9,
-        "controlar": 15.4
+        "planejar": 34.2,
+        "organizar": 28.1,
+        "dirigir": 20.9,
+        "controlar": 16.8
       },
       "historia_resumida": "Patrícia Souza Gomes é vp de operações com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.807236",
       "atualizado_em": "2026-01-18T00:50:43.807237",
       "setor_privado": "logistica",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.65,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-025",
@@ -5303,16 +5551,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 32.7,
-        "organizar": 33.7,
-        "dirigir": 21.4,
-        "controlar": 12.2
+        "planejar": 30.0,
+        "organizar": 35.7,
+        "dirigir": 20.3,
+        "controlar": 14.0
       },
       "historia_resumida": "Fernando Silva Costa é ceo com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.807247",
       "atualizado_em": "2026-01-18T00:50:43.807248",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.92,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-026",
@@ -5343,16 +5593,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 28.9,
-        "organizar": 32.0,
-        "dirigir": 24.7,
-        "controlar": 14.4
+        "planejar": 26.7,
+        "organizar": 31.3,
+        "dirigir": 26.3,
+        "controlar": 15.7
       },
       "historia_resumida": "Maria Gomes Ribeiro é cfo com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.807259",
       "atualizado_em": "2026-01-18T00:50:43.807261",
       "setor_privado": "financeiro",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.38,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-e-027",
@@ -5383,16 +5635,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 28.8,
-        "organizar": 35.6,
-        "dirigir": 23.1,
-        "controlar": 12.5
+        "planejar": 31.1,
+        "organizar": 29.7,
+        "dirigir": 23.6,
+        "controlar": 15.6
       },
       "historia_resumida": "Diego Lima Silva é diretor-presidente com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.807271",
       "atualizado_em": "2026-01-18T00:50:43.807272",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.55,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-028",
@@ -5423,16 +5677,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 27.7,
-        "organizar": 31.7,
-        "dirigir": 23.8,
-        "controlar": 16.8
+        "planejar": 32.9,
+        "organizar": 28.9,
+        "dirigir": 25.6,
+        "controlar": 12.6
       },
       "historia_resumida": "Larissa Ribeiro Carvalho é coo com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.807285",
       "atualizado_em": "2026-01-18T00:50:43.807286",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.62,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-029",
@@ -5463,16 +5719,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 31.8,
-        "organizar": 34.6,
-        "dirigir": 19.6,
-        "controlar": 14.0
+        "planejar": 32.1,
+        "organizar": 29.8,
+        "dirigir": 23.5,
+        "controlar": 14.6
       },
       "historia_resumida": "Eduardo Ferreira Ribeiro é vp de operações com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.807296",
       "atualizado_em": "2026-01-18T00:50:43.807297",
       "setor_privado": "logistica",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.62,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-e-030",
@@ -5503,16 +5761,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 29.4,
-        "organizar": 32.9,
-        "dirigir": 23.5,
-        "controlar": 14.1
+        "planejar": 32.4,
+        "organizar": 27.7,
+        "dirigir": 22.5,
+        "controlar": 17.4
       },
       "historia_resumida": "Maria Souza Oliveira é ceo com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.807307",
       "atualizado_em": "2026-01-18T00:50:43.807308",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.51,
+      "iad_classificacao": "Formulador"
     },
     {
       "id": "gest-prv-t-006",
@@ -5543,16 +5803,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 24.6,
-        "organizar": 25.4,
-        "dirigir": 25.4,
-        "controlar": 24.6
+        "planejar": 25.4,
+        "organizar": 29.7,
+        "dirigir": 28.1,
+        "controlar": 16.8
       },
       "historia_resumida": "Gabriela Costa Rodrigues é gerente de planta com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.807335",
       "atualizado_em": "2026-01-18T00:50:43.807337",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.23,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-007",
@@ -5583,16 +5845,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 18.5,
-        "organizar": 29.6,
-        "dirigir": 33.3,
-        "controlar": 18.5
+        "planejar": 27.2,
+        "organizar": 24.6,
+        "dirigir": 24.2,
+        "controlar": 24.0
       },
       "historia_resumida": "Carlos Ribeiro Santos é head de rh com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.807358",
       "atualizado_em": "2026-01-18T00:50:43.807359",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.07,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-008",
@@ -5623,16 +5887,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 19.4,
-        "organizar": 29.1,
-        "dirigir": 27.2,
-        "controlar": 24.3
+        "planejar": 28.0,
+        "organizar": 28.9,
+        "dirigir": 26.0,
+        "controlar": 17.1
       },
       "historia_resumida": "Ana Martins Martins é controller com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.807369",
       "atualizado_em": "2026-01-18T00:50:43.807370",
       "setor_privado": "financeiro",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.32,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-009",
@@ -5663,16 +5929,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 19.3,
-        "organizar": 22.9,
-        "dirigir": 34.9,
-        "controlar": 22.9
+        "planejar": 27.5,
+        "organizar": 26.9,
+        "dirigir": 26.9,
+        "controlar": 18.7
       },
       "historia_resumida": "Thiago Souza Oliveira é gerente de projetos com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.807380",
       "atualizado_em": "2026-01-18T00:50:43.807381",
       "setor_privado": "consultoria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.19,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-010",
@@ -5703,16 +5971,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 23.7,
-        "organizar": 26.3,
-        "dirigir": 26.3,
-        "controlar": 23.7
+        "planejar": 22.4,
+        "organizar": 29.5,
+        "dirigir": 31.8,
+        "controlar": 16.3
       },
       "historia_resumida": "Fernanda Ferreira Ribeiro é gerente regional com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.807393",
       "atualizado_em": "2026-01-18T00:50:43.807394",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.08,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-011",
@@ -5743,16 +6013,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 22.5,
-        "organizar": 26.1,
-        "dirigir": 27.9,
-        "controlar": 23.4
+        "planejar": 26.3,
+        "organizar": 26.6,
+        "dirigir": 28.1,
+        "controlar": 19.0
       },
       "historia_resumida": "Thiago Costa Ribeiro é gerente de planta com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.807404",
       "atualizado_em": "2026-01-18T00:50:43.807405",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.12,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-012",
@@ -5783,16 +6055,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 20.4,
-        "organizar": 27.8,
-        "dirigir": 35.2,
-        "controlar": 16.7
+        "planejar": 22.1,
+        "organizar": 28.4,
+        "dirigir": 32.5,
+        "controlar": 17.0
       },
       "historia_resumida": "Beatriz Lima Gomes é head de rh com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.807415",
       "atualizado_em": "2026-01-18T00:50:43.807416",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.02,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-013",
@@ -5823,16 +6097,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 23.5,
-        "organizar": 23.5,
-        "dirigir": 34.7,
-        "controlar": 18.4
+        "planejar": 20.8,
+        "organizar": 31.0,
+        "dirigir": 24.3,
+        "controlar": 23.9
       },
       "historia_resumida": "Eduardo Souza Martins é controller com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.807426",
       "atualizado_em": "2026-01-18T00:50:43.807427",
       "setor_privado": "financeiro",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.07,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-014",
@@ -5863,16 +6139,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 22.7,
-        "organizar": 23.7,
-        "dirigir": 29.9,
-        "controlar": 23.7
+        "planejar": 23.2,
+        "organizar": 25.8,
+        "dirigir": 27.1,
+        "controlar": 23.9
       },
       "historia_resumida": "Carla Carvalho Oliveira é gerente de projetos com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.807436",
       "atualizado_em": "2026-01-18T00:50:43.807437",
       "setor_privado": "consultoria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.96,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-prv-t-015",
@@ -5903,16 +6181,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 26.2,
-        "organizar": 21.4,
-        "dirigir": 28.2,
-        "controlar": 24.3
+        "planejar": 23.6,
+        "organizar": 29.4,
+        "dirigir": 25.5,
+        "controlar": 21.5
       },
       "historia_resumida": "Diego Gomes Silva é gerente regional com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.807447",
       "atualizado_em": "2026-01-18T00:50:43.807448",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.13,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-016",
@@ -5943,16 +6223,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 22.0,
-        "organizar": 24.0,
-        "dirigir": 29.0,
-        "controlar": 25.0
+        "planejar": 24.2,
+        "organizar": 27.5,
+        "dirigir": 32.3,
+        "controlar": 16.0
       },
       "historia_resumida": "Rafaela Pereira Lima é gerente de planta com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.807459",
       "atualizado_em": "2026-01-18T00:50:43.807460",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.07,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-017",
@@ -5983,16 +6265,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 18.3,
-        "organizar": 24.8,
-        "dirigir": 31.2,
-        "controlar": 25.7
+        "planejar": 21.9,
+        "organizar": 32.4,
+        "dirigir": 22.6,
+        "controlar": 23.1
       },
       "historia_resumida": "Luiz Rodrigues Almeida é head de rh com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.807470",
       "atualizado_em": "2026-01-18T00:50:43.807471",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.19,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-018",
@@ -6023,16 +6307,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 25.5,
-        "organizar": 26.4,
-        "dirigir": 27.4,
-        "controlar": 20.8
+        "planejar": 23.8,
+        "organizar": 24.6,
+        "dirigir": 27.9,
+        "controlar": 23.7
       },
       "historia_resumida": "Luciana Silva Costa é controller com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.807480",
       "atualizado_em": "2026-01-18T00:50:43.807481",
       "setor_privado": "financeiro",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.94,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-prv-t-019",
@@ -6063,16 +6349,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 19.6,
-        "organizar": 29.9,
-        "dirigir": 26.2,
-        "controlar": 24.3
+        "planejar": 25.7,
+        "organizar": 28.4,
+        "dirigir": 25.8,
+        "controlar": 20.1
       },
       "historia_resumida": "Ricardo Almeida Pereira é gerente de projetos com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.807491",
       "atualizado_em": "2026-01-18T00:50:43.807492",
       "setor_privado": "consultoria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.18,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-020",
@@ -6103,16 +6391,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 24.5,
-        "organizar": 20.0,
-        "dirigir": 32.7,
-        "controlar": 22.7
+        "planejar": 22.4,
+        "organizar": 35.2,
+        "dirigir": 25.8,
+        "controlar": 16.6
       },
       "historia_resumida": "Patrícia Almeida Rodrigues é gerente regional com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.807503",
       "atualizado_em": "2026-01-18T00:50:43.807504",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.36,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-021",
@@ -6143,16 +6433,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 21.4,
-        "organizar": 30.1,
-        "dirigir": 27.2,
-        "controlar": 21.4
+        "planejar": 27.7,
+        "organizar": 25.8,
+        "dirigir": 29.1,
+        "controlar": 17.4
       },
       "historia_resumida": "Bruno Rodrigues Silva é gerente de planta com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.807515",
       "atualizado_em": "2026-01-18T00:50:43.807516",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.15,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-022",
@@ -6183,16 +6475,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 21.0,
-        "organizar": 26.7,
-        "dirigir": 32.4,
-        "controlar": 20.0
+        "planejar": 23.5,
+        "organizar": 29.3,
+        "dirigir": 27.5,
+        "controlar": 19.7
       },
       "historia_resumida": "Beatriz Santos Oliveira é head de rh com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.807526",
       "atualizado_em": "2026-01-18T00:50:43.807527",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.12,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-023",
@@ -6223,16 +6517,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 22.3,
-        "organizar": 26.2,
-        "dirigir": 32.0,
-        "controlar": 19.4
+        "planejar": 20.3,
+        "organizar": 31.0,
+        "dirigir": 26.1,
+        "controlar": 22.6
       },
       "historia_resumida": "Ricardo Martins Silva é controller com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.807536",
       "atualizado_em": "2026-01-18T00:50:43.807538",
       "setor_privado": "financeiro",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.05,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-024",
@@ -6263,16 +6559,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 25.0,
-        "organizar": 23.1,
-        "dirigir": 28.7,
-        "controlar": 23.1
+        "planejar": 23.4,
+        "organizar": 25.2,
+        "dirigir": 29.4,
+        "controlar": 22.0
       },
       "historia_resumida": "Beatriz Lima Oliveira é gerente de projetos com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.807549",
       "atualizado_em": "2026-01-18T00:50:43.807550",
       "setor_privado": "consultoria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.95,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-prv-t-025",
@@ -6303,16 +6601,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 21.9,
-        "organizar": 25.4,
-        "dirigir": 32.5,
-        "controlar": 20.2
+        "planejar": 30.8,
+        "organizar": 24.3,
+        "dirigir": 26.3,
+        "controlar": 18.6
       },
       "historia_resumida": "Bruno Santos Carvalho é gerente regional com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.807559",
       "atualizado_em": "2026-01-18T00:50:43.807561",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.23,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-026",
@@ -6343,16 +6643,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 23.2,
-        "organizar": 24.2,
-        "dirigir": 33.7,
-        "controlar": 18.9
+        "planejar": 25.0,
+        "organizar": 27.6,
+        "dirigir": 24.5,
+        "controlar": 22.9
       },
       "historia_resumida": "Larissa Araújo Martins é gerente de planta com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.807571",
       "atualizado_em": "2026-01-18T00:50:43.807572",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.11,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-027",
@@ -6383,16 +6685,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 19.1,
-        "organizar": 27.0,
-        "dirigir": 31.3,
-        "controlar": 22.6
+        "planejar": 27.5,
+        "organizar": 26.4,
+        "dirigir": 25.1,
+        "controlar": 21.0
       },
       "historia_resumida": "Carlos Costa Ribeiro é head de rh com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.807582",
       "atualizado_em": "2026-01-18T00:50:43.807583",
       "setor_privado": "tecnologia",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.17,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-028",
@@ -6424,15 +6728,17 @@
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
         "planejar": 27.0,
-        "organizar": 24.0,
-        "dirigir": 28.0,
-        "controlar": 21.0
+        "organizar": 32.2,
+        "dirigir": 22.7,
+        "controlar": 18.1
       },
       "historia_resumida": "Amanda Lima Oliveira é controller com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.807592",
       "atualizado_em": "2026-01-18T00:50:43.807593",
       "setor_privado": "financeiro",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.45,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-029",
@@ -6463,16 +6769,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 28.6,
-        "organizar": 22.4,
-        "dirigir": 28.6,
-        "controlar": 20.4
+        "planejar": 21.1,
+        "organizar": 30.4,
+        "dirigir": 29.3,
+        "controlar": 19.2
       },
       "historia_resumida": "Thiago Martins Oliveira é gerente de projetos com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.807605",
       "atualizado_em": "2026-01-18T00:50:43.807606",
       "setor_privado": "consultoria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.06,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-t-030",
@@ -6503,16 +6811,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 21.8,
-        "organizar": 24.8,
-        "dirigir": 33.7,
-        "controlar": 19.8
+        "planejar": 27.9,
+        "organizar": 25.1,
+        "dirigir": 24.2,
+        "controlar": 22.8
       },
       "historia_resumida": "Camila Carvalho Oliveira é gerente regional com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.807615",
       "atualizado_em": "2026-01-18T00:50:43.807617",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 1.13,
+      "iad_classificacao": "Equilibrado"
     },
     {
       "id": "gest-prv-o-006",
@@ -6543,16 +6853,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 10.1,
-        "organizar": 19.2,
-        "dirigir": 49.5,
-        "controlar": 21.2
+        "planejar": 15.4,
+        "organizar": 18.4,
+        "dirigir": 42.6,
+        "controlar": 23.6
       },
       "historia_resumida": "Maria Oliveira Martins é operador de máquinas com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.807642",
       "atualizado_em": "2026-01-18T00:50:43.807644",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.51,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-007",
@@ -6583,16 +6895,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 12.8,
-        "organizar": 22.9,
-        "dirigir": 45.0,
-        "controlar": 19.3
+        "planejar": 9.8,
+        "organizar": 20.0,
+        "dirigir": 43.9,
+        "controlar": 26.3
       },
       "historia_resumida": "Pedro Souza Silva é atendente de sac com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.807655",
       "atualizado_em": "2026-01-18T00:50:43.807656",
       "setor_privado": "servicos",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.42,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-008",
@@ -6623,16 +6937,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 7.7,
-        "organizar": 22.1,
-        "dirigir": 49.0,
-        "controlar": 21.2
+        "planejar": 15.5,
+        "organizar": 22.9,
+        "dirigir": 39.7,
+        "controlar": 21.9
       },
       "historia_resumida": "Beatriz Carvalho Pereira é técnico de manutenção com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.807667",
       "atualizado_em": "2026-01-18T00:50:43.807668",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.62,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-009",
@@ -6663,16 +6979,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 14.7,
-        "organizar": 24.5,
-        "dirigir": 41.2,
-        "controlar": 19.6
+        "planejar": 17.3,
+        "organizar": 20.3,
+        "dirigir": 39.5,
+        "controlar": 22.9
       },
       "historia_resumida": "Luiz Rodrigues Costa é auxiliar de logística com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.807678",
       "atualizado_em": "2026-01-18T00:50:43.807679",
       "setor_privado": "logistica",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.6,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-010",
@@ -6703,16 +7021,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 11.1,
-        "organizar": 22.2,
-        "dirigir": 49.5,
-        "controlar": 17.2
+        "planejar": 11.4,
+        "organizar": 24.1,
+        "dirigir": 40.8,
+        "controlar": 23.7
       },
       "historia_resumida": "Camila Ribeiro Costa é vendedor com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.807688",
       "atualizado_em": "2026-01-18T00:50:43.807690",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.55,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-011",
@@ -6743,16 +7063,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 9.4,
-        "organizar": 21.9,
-        "dirigir": 50.0,
-        "controlar": 18.8
+        "planejar": 12.1,
+        "organizar": 17.7,
+        "dirigir": 46.4,
+        "controlar": 23.8
       },
       "historia_resumida": "Roberto Almeida Ferreira é operador de máquinas com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.808643",
       "atualizado_em": "2026-01-18T00:50:43.808651",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.42,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-012",
@@ -6783,16 +7105,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 10.1,
-        "organizar": 18.2,
-        "dirigir": 47.5,
-        "controlar": 24.2
+        "planejar": 12.6,
+        "organizar": 18.6,
+        "dirigir": 43.4,
+        "controlar": 25.4
       },
       "historia_resumida": "Maria Almeida Lima é atendente de sac com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.808678",
       "atualizado_em": "2026-01-18T00:50:43.808679",
       "setor_privado": "servicos",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.45,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-013",
@@ -6823,16 +7147,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 12.9,
-        "organizar": 21.8,
-        "dirigir": 47.5,
-        "controlar": 17.8
+        "planejar": 18.7,
+        "organizar": 21.9,
+        "dirigir": 36.7,
+        "controlar": 22.7
       },
       "historia_resumida": "Pedro Gomes Ferreira é técnico de manutenção com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.808692",
       "atualizado_em": "2026-01-18T00:50:43.808694",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.68,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-014",
@@ -6863,16 +7189,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 12.6,
-        "organizar": 22.5,
-        "dirigir": 44.1,
-        "controlar": 20.7
+        "planejar": 18.8,
+        "organizar": 23.1,
+        "dirigir": 37.6,
+        "controlar": 20.5
       },
       "historia_resumida": "Camila Gomes Ribeiro é auxiliar de logística com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.808709",
       "atualizado_em": "2026-01-18T00:50:43.808710",
       "setor_privado": "logistica",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.72,
+      "iad_classificacao": "Executor"
     },
     {
       "id": "gest-prv-o-015",
@@ -6903,16 +7231,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 11.2,
-        "organizar": 21.3,
-        "dirigir": 47.2,
-        "controlar": 20.2
+        "planejar": 18.3,
+        "organizar": 20.7,
+        "dirigir": 41.3,
+        "controlar": 19.7
       },
       "historia_resumida": "Pedro Gomes Gomes é vendedor com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.808722",
       "atualizado_em": "2026-01-18T00:50:43.808723",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.64,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-016",
@@ -6943,16 +7273,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 10.7,
-        "organizar": 22.3,
-        "dirigir": 51.5,
-        "controlar": 15.5
+        "planejar": 12.2,
+        "organizar": 22.9,
+        "dirigir": 42.5,
+        "controlar": 22.4
       },
       "historia_resumida": "Patrícia Ferreira Martins é operador de máquinas com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.808733",
       "atualizado_em": "2026-01-18T00:50:43.808735",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.54,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-017",
@@ -6983,16 +7315,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 9.3,
-        "organizar": 21.3,
-        "dirigir": 50.9,
-        "controlar": 18.5
+        "planejar": 17.5,
+        "organizar": 14.2,
+        "dirigir": 42.8,
+        "controlar": 25.5
       },
       "historia_resumida": "Ricardo Rodrigues Araújo é atendente de sac com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.808745",
       "atualizado_em": "2026-01-18T00:50:43.808746",
       "setor_privado": "servicos",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.46,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-018",
@@ -7023,16 +7357,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 10.8,
-        "organizar": 17.6,
-        "dirigir": 52.9,
-        "controlar": 18.6
+        "planejar": 14.1,
+        "organizar": 22.3,
+        "dirigir": 43.5,
+        "controlar": 20.1
       },
       "historia_resumida": "Ana Ribeiro Rodrigues é técnico de manutenção com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.808756",
       "atualizado_em": "2026-01-18T00:50:43.808757",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.57,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-019",
@@ -7063,16 +7399,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 14.3,
-        "organizar": 23.1,
-        "dirigir": 46.2,
-        "controlar": 16.5
+        "planejar": 15.9,
+        "organizar": 18.5,
+        "dirigir": 45.9,
+        "controlar": 19.7
       },
       "historia_resumida": "Rafael Almeida Silva é auxiliar de logística com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.808769",
       "atualizado_em": "2026-01-18T00:50:43.808770",
       "setor_privado": "logistica",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.52,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-020",
@@ -7103,16 +7441,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 13.6,
-        "organizar": 23.3,
-        "dirigir": 42.7,
-        "controlar": 20.4
+        "planejar": 15.4,
+        "organizar": 15.8,
+        "dirigir": 45.0,
+        "controlar": 23.8
       },
       "historia_resumida": "Patrícia Silva Santos é vendedor com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.808783",
       "atualizado_em": "2026-01-18T00:50:43.808784",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.45,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-021",
@@ -7143,16 +7483,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 11.7,
-        "organizar": 23.3,
-        "dirigir": 44.2,
-        "controlar": 20.8
+        "planejar": 15.1,
+        "organizar": 17.1,
+        "dirigir": 40.4,
+        "controlar": 27.4
       },
       "historia_resumida": "Thiago Oliveira Ferreira é operador de máquinas com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.808795",
       "atualizado_em": "2026-01-18T00:50:43.808796",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.47,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-022",
@@ -7183,16 +7525,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 12.0,
-        "organizar": 20.0,
-        "dirigir": 49.0,
-        "controlar": 19.0
+        "planejar": 12.1,
+        "organizar": 23.9,
+        "dirigir": 43.6,
+        "controlar": 20.4
       },
       "historia_resumida": "Maria Santos Martins é atendente de sac com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.808806",
       "atualizado_em": "2026-01-18T00:50:43.808807",
       "setor_privado": "servicos",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.56,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-023",
@@ -7223,16 +7567,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 9.4,
-        "organizar": 20.8,
-        "dirigir": 46.9,
-        "controlar": 22.9
+        "planejar": 14.4,
+        "organizar": 24.7,
+        "dirigir": 40.7,
+        "controlar": 20.2
       },
       "historia_resumida": "Thiago Carvalho Gomes é técnico de manutenção com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.808830",
       "atualizado_em": "2026-01-18T00:50:43.808831",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.64,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-024",
@@ -7263,16 +7609,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 8.8,
-        "organizar": 20.9,
-        "dirigir": 52.7,
-        "controlar": 17.6
+        "planejar": 18.7,
+        "organizar": 17.9,
+        "dirigir": 43.1,
+        "controlar": 20.3
       },
       "historia_resumida": "Rafaela Souza Ribeiro é auxiliar de logística com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.808841",
       "atualizado_em": "2026-01-18T00:50:43.808842",
       "setor_privado": "logistica",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.58,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-025",
@@ -7303,16 +7651,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 10.9,
-        "organizar": 18.8,
-        "dirigir": 54.5,
-        "controlar": 15.8
+        "planejar": 11.9,
+        "organizar": 24.3,
+        "dirigir": 43.2,
+        "controlar": 20.6
       },
       "historia_resumida": "André Silva Pereira é vendedor com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.808852",
       "atualizado_em": "2026-01-18T00:50:43.808854",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.57,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-026",
@@ -7343,16 +7693,18 @@
       ],
       "estilo_lideranca": "transacional",
       "distribuicao_podc": {
-        "planejar": 9.2,
-        "organizar": 20.4,
-        "dirigir": 44.9,
-        "controlar": 25.5
+        "planejar": 15.5,
+        "organizar": 21.6,
+        "dirigir": 42.3,
+        "controlar": 20.6
       },
       "historia_resumida": "Tatiana Lima Souza é operador de máquinas com experiência em financeiro orcamento.",
       "criado_em": "2026-01-18T00:50:43.808866",
       "atualizado_em": "2026-01-18T00:50:43.808867",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.59,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-027",
@@ -7383,16 +7735,18 @@
       ],
       "estilo_lideranca": "democratico",
       "distribuicao_podc": {
-        "planejar": 14.7,
-        "organizar": 22.5,
-        "dirigir": 45.1,
-        "controlar": 17.6
+        "planejar": 13.9,
+        "organizar": 22.9,
+        "dirigir": 38.1,
+        "controlar": 25.1
       },
       "historia_resumida": "Marcos Souza Araújo é atendente de sac com experiência em tecnologia informacao.",
       "criado_em": "2026-01-18T00:50:43.808877",
       "atualizado_em": "2026-01-18T00:50:43.808878",
       "setor_privado": "servicos",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.58,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-028",
@@ -7423,16 +7777,18 @@
       ],
       "estilo_lideranca": "tecnico",
       "distribuicao_podc": {
-        "planejar": 11.5,
-        "organizar": 26.0,
-        "dirigir": 42.3,
-        "controlar": 20.2
+        "planejar": 13.1,
+        "organizar": 22.1,
+        "dirigir": 44.9,
+        "controlar": 19.9
       },
       "historia_resumida": "Beatriz Santos Martins é técnico de manutenção com experiência em operacoes.",
       "criado_em": "2026-01-18T00:50:43.808887",
       "atualizado_em": "2026-01-18T00:50:43.808889",
       "setor_privado": "industria",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.54,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-029",
@@ -7463,16 +7819,18 @@
       ],
       "estilo_lideranca": "coordenativo",
       "distribuicao_podc": {
-        "planejar": 11.3,
-        "organizar": 26.4,
-        "dirigir": 47.2,
-        "controlar": 15.1
+        "planejar": 17.5,
+        "organizar": 16.7,
+        "dirigir": 41.0,
+        "controlar": 24.8
       },
       "historia_resumida": "André Oliveira Gomes é auxiliar de logística com experiência em estrategia.",
       "criado_em": "2026-01-18T00:50:43.808901",
       "atualizado_em": "2026-01-18T00:50:43.808902",
       "setor_privado": "logistica",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.52,
+      "iad_classificacao": "Executor Puro"
     },
     {
       "id": "gest-prv-o-030",
@@ -7503,16 +7861,18 @@
       ],
       "estilo_lideranca": "transformacional",
       "distribuicao_podc": {
-        "planejar": 8.7,
-        "organizar": 19.6,
-        "dirigir": 54.3,
-        "controlar": 17.4
+        "planejar": 17.7,
+        "organizar": 20.0,
+        "dirigir": 43.0,
+        "controlar": 19.3
       },
       "historia_resumida": "Amanda Almeida Ferreira é vendedor com experiência em gestao pessoas.",
       "criado_em": "2026-01-18T00:50:43.808912",
       "atualizado_em": "2026-01-18T00:50:43.808914",
       "setor_privado": "varejo",
-      "porte_empresa": "grande_nacional"
+      "porte_empresa": "grande_nacional",
+      "iad": 0.61,
+      "iad_classificacao": "Executor Puro"
     }
   ]
 }
