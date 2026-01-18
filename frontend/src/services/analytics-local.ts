@@ -78,10 +78,10 @@ export async function calcularDashboard(): Promise<DashboardLocal> {
 
   // Tempo médio de execução
   const temposExecucao = sessoes
-    .filter((s) => s.dataFim && s.dataInicio)
+    .filter((s) => s.finalizadaEm && s.iniciadaEm)
     .map((s) => {
-      const inicio = new Date(s.dataInicio!).getTime();
-      const fim = new Date(s.dataFim!).getTime();
+      const inicio = new Date(s.iniciadaEm).getTime();
+      const fim = new Date(s.finalizadaEm!).getTime();
       return (fim - inicio) / 1000;
     });
   const mediaTempoExecucao = temposExecucao.length > 0
@@ -206,8 +206,8 @@ export async function calcularTendencias(): Promise<TendenciaLocal[]> {
   const porMes: Record<string, { pesquisas: number; respostas: number; custo: number }> = {};
 
   sessoes.forEach((s) => {
-    if (!s.dataCriacao) return;
-    const data = new Date(s.dataCriacao);
+    if (!s.iniciadaEm) return;
+    const data = new Date(s.iniciadaEm);
     const chave = `${data.getFullYear()}-${String(data.getMonth() + 1).padStart(2, '0')}`;
 
     if (!porMes[chave]) {
