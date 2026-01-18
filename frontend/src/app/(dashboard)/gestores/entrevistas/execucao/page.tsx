@@ -166,6 +166,12 @@ export default function PaginaExecucaoPODC() {
 
       const data = await response.json();
 
+      // Verificar se houve erro ao salvar no backend
+      if (data.erroBackend) {
+        console.warn('[PODC] Aviso: Erro ao salvar no backend:', data.erroBackend);
+        // Não interrompe a execução, mas registra o aviso
+      }
+
       // Atualizar custos no store
       atualizarCusto(data.custoReais, data.tokensInput, data.tokensOutput);
 

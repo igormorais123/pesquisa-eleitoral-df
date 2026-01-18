@@ -28,6 +28,7 @@ from app.modelos.eleitor import (
 from app.modelos.memoria import Memoria, TipoMemoria, UsoAPI
 from app.modelos.pergunta import PerguntaPesquisa, TipoPergunta
 from app.modelos.pesquisa import Pesquisa, StatusPesquisa, TipoPesquisa
+from app.modelos.pesquisa_podc import PesquisaPODC, RespostaPODC, EstatisticasPODC
 from app.modelos.resposta import Resposta
 
 __all__ = [
@@ -42,6 +43,10 @@ __all__ = [
     "Analise",
     "Memoria",
     "UsoAPI",
+    # Modelos PODC
+    "PesquisaPODC",
+    "RespostaPODC",
+    "EstatisticasPODC",
     # Enums - Eleitor
     "ClusterSocioeconomico",
     "EstiloDecisao",

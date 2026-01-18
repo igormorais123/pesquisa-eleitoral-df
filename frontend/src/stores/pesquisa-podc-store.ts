@@ -345,7 +345,7 @@ export const usePesquisaPODCStore = create<PesquisaPODCState>()(
         try {
           set({ carregandoBackend: true, erro: null });
 
-          const response = await fetch(`${BACKEND_URL}/api/v1/pesquisas-podc`, {
+          const response = await fetch(`${BACKEND_URL}/api/v1/pesquisas-podc/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -396,7 +396,7 @@ export const usePesquisaPODCStore = create<PesquisaPODCState>()(
         try {
           set({ carregandoBackend: true, erro: null });
 
-          const response = await fetch(`${BACKEND_URL}/api/v1/pesquisas-podc`, {
+          const response = await fetch(`${BACKEND_URL}/api/v1/pesquisas-podc/`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -427,7 +427,7 @@ export const usePesquisaPODCStore = create<PesquisaPODCState>()(
           set({ carregandoBackend: true, erro: null });
 
           const response = await fetch(
-            `${BACKEND_URL}/api/v1/pesquisas-podc/${pesquisaId}/respostas`,
+            `${BACKEND_URL}/api/v1/pesquisas-podc/${pesquisaId}/respostas/`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,

@@ -175,13 +175,18 @@ export async function POST(request: NextRequest) {
       tokensOutput,
     };
 
-    // Se houver pesquisaId, salvar no backend
+    // Se houver pesquisaId, salvar no backend (OBRIGATORIO para persistencia)
+    let salvoNoBackend = false;
+    let erroBackend: string | null = null;
+
     if (pesquisaId) {
       try {
         const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
         const token = request.headers.get('authorization');
 
-        await fetch(`${backendUrl}/api/v1/pesquisas-podc/${pesquisaId}/respostas`, {
+        console.log(`[PODC] Salvando resposta no backend: ${backendUrl}/api/v1/pesquisas-podc/${pesquisaId}/respostas/`);
+
+        const saveResponse = await fetch(`${backendUrl}/api/v1/pesquisas-podc/${pesquisaId}/respostas/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -211,13 +216,30 @@ export async function POST(request: NextRequest) {
             custo_reais: custoReais,
           }),
         });
+
+        if (!saveResponse.ok) {
+          const errorData = await saveResponse.json().catch(() => ({ detail: 'Erro desconhecido' }));
+          erroBackend = `Erro ${saveResponse.status}: ${errorData.detail || JSON.stringify(errorData)}`;
+          console.error('[PODC] Erro ao salvar no backend:', erroBackend);
+        } else {
+          salvoNoBackend = true;
+          console.log('[PODC] Resposta salva com sucesso no backend');
+        }
       } catch (saveError) {
-        console.error('Erro ao salvar no backend:', saveError);
-        // Continua mesmo se falhar ao salvar no backend
+        erroBackend = saveError instanceof Error ? saveError.message : 'Erro de conexao com o backend';
+        console.error('[PODC] Erro ao salvar no backend:', saveError);
       }
+    } else {
+      erroBackend = 'pesquisaId nao fornecido - resposta nao sera persistida';
+      console.warn('[PODC] AVISO:', erroBackend);
     }
 
-    return NextResponse.json(resposta);
+    // Incluir status de salvamento na resposta
+    return NextResponse.json({
+      ...resposta,
+      salvoNoBackend,
+      erroBackend,
+    });
   } catch (error) {
     console.error('Erro na pesquisa PODC:', error);
     return NextResponse.json(

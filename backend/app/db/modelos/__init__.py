@@ -11,9 +11,20 @@ from app.db.modelos.pesquisa import (
     AnalisePesquisa,
 )
 
+# Importa modelos PODC de app.modelos
+from app.modelos.pesquisa_podc import (
+    PesquisaPODC,
+    RespostaPODC,
+    EstatisticasPODC,
+)
+
 __all__ = [
     "Pesquisa",
     "PerguntaPesquisa",
     "RespostaPesquisa",
     "AnalisePesquisa",
+    # Modelos PODC
+    "PesquisaPODC",
+    "RespostaPODC",
+    "EstatisticasPODC",
 ]
