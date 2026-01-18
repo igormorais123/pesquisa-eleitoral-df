@@ -1,0 +1,195 @@
+{
+  // SNIPPETS REACT/NEXT.JS
+  "React Functional Component": {
+    "prefix": "rfc",
+    "body": [
+      "'use client';",
+      "",
+      "interface ${1:Component}Props {",
+      "  $2",
+      "}",
+      "",
+      "export function ${1:Component}({ $3 }: ${1:Component}Props) {",
+      "  return (",
+      "    <div>",
+      "      $0",
+      "    </div>",
+      "  );",
+      "}"
+    ],
+    "description": "React Functional Component com TypeScript"
+  },
+
+  "React useState": {
+    "prefix": "ust",
+    "body": "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState<${2:type}>($3);",
+    "description": "useState com TypeScript"
+  },
+
+  "React useEffect": {
+    "prefix": "uef",
+    "body": [
+      "useEffect(() => {",
+      "  $1",
+      "}, [$2]);"
+    ],
+    "description": "useEffect hook"
+  },
+
+  // SNIPPETS ZUSTAND
+  "Zustand Store": {
+    "prefix": "zstore",
+    "body": [
+      "import { create } from 'zustand';",
+      "",
+      "interface ${1:Store}State {",
+      "  ${2:data}: ${3:any}[];",
+      "  carregando: boolean;",
+      "  erro: string | null;",
+      "  ",
+      "  set${2/(.*)/${1:/capitalize}/}: (${2:data}: ${3:any}[]) => void;",
+      "  setCarregando: (carregando: boolean) => void;",
+      "  setErro: (erro: string | null) => void;",
+      "}",
+      "",
+      "export const use${1:Store}Store = create<${1:Store}State>((set) => ({",
+      "  ${2:data}: [],",
+      "  carregando: false,",
+      "  erro: null,",
+      "  ",
+      "  set${2/(.*)/${1:/capitalize}/}: (${2:data}) => set({ ${2:data} }),",
+      "  setCarregando: (carregando) => set({ carregando }),",
+      "  setErro: (erro) => set({ erro }),",
+      "}));"
+    ],
+    "description": "Zustand Store completa"
+  },
+
+  // SNIPPETS API
+  "API Route Next.js": {
+    "prefix": "apiroute",
+    "body": [
+      "import { NextRequest, NextResponse } from 'next/server';",
+      "",
+      "export async function ${1|GET,POST,PUT,DELETE|}(request: NextRequest) {",
+      "  try {",
+      "    $2",
+      "    ",
+      "    return NextResponse.json({ sucesso: true, dados: $3 });",
+      "  } catch (error) {",
+      "    console.error('Erro:', error);",
+      "    return NextResponse.json(",
+      "      { sucesso: false, erro: 'Erro interno' },",
+      "      { status: 500 }",
+      "    );",
+      "  }",
+      "}"
+    ],
+    "description": "API Route do Next.js"
+  },
+
+  // SNIPPETS FASTAPI
+  "FastAPI Route": {
+    "prefix": "faroute",
+    "body": [
+      "@router.${1|get,post,put,delete|}(\"/${2:path}\")",
+      "async def ${3:nome_funcao}(",
+      "    $4",
+      "    session: AsyncSession = Depends(get_session),",
+      ") -> ${5:ResponseType}:",
+      "    \"\"\"${6:Descrição da rota}\"\"\"",
+      "    $0"
+    ],
+    "description": "Rota FastAPI"
+  },
+
+  "FastAPI Service Method": {
+    "prefix": "faservice",
+    "body": [
+      "async def ${1:nome_metodo}(self, ${2:params}) -> ${3:ReturnType}:",
+      "    \"\"\"${4:Descrição do método}\"\"\"",
+      "    try:",
+      "        $5",
+      "    except Exception as e:",
+      "        raise HTTPException(",
+      "            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,",
+      "            detail=str(e)",
+      "        )"
+    ],
+    "description": "Método de serviço FastAPI"
+  },
+
+  // SNIPPETS CLAUDE/IA
+  "Claude API Call": {
+    "prefix": "claudecall",
+    "body": [
+      "const { conteudo, tokensInput, tokensOutput, custoReais } = await chamarClaudeComRetry(",
+      "  [{ role: 'user', content: ${1:prompt} }],",
+      "  '${2|sonnet,opus,haiku|}',",
+      "  ${3:1000}, // maxTokens",
+      "  ${4:2}     // maxRetries",
+      ");",
+      "",
+      "console.log(`Custo: R$ \\${custoReais.toFixed(4)}`);"
+    ],
+    "description": "Chamada Claude API com retry"
+  },
+
+  // SNIPPETS CONSOLE/DEBUG
+  "Console Log Object": {
+    "prefix": "clo",
+    "body": "console.log('${1:label}:', JSON.stringify($2, null, 2));",
+    "description": "Console log formatado"
+  },
+
+  "Console Log Table": {
+    "prefix": "clt",
+    "body": "console.table($1);",
+    "description": "Console table"
+  },
+
+  // SNIPPETS TYPESCRIPT
+  "TypeScript Interface": {
+    "prefix": "tsi",
+    "body": [
+      "interface ${1:Nome} {",
+      "  ${2:propriedade}: ${3:tipo};",
+      "  $0",
+      "}"
+    ],
+    "description": "Interface TypeScript"
+  },
+
+  "TypeScript Type": {
+    "prefix": "tst",
+    "body": "type ${1:Nome} = ${2:tipo};",
+    "description": "Type alias TypeScript"
+  },
+
+  // SNIPPETS TAILWIND
+  "Tailwind Card": {
+    "prefix": "twcard",
+    "body": [
+      "<div className=\"rounded-lg border bg-card p-6 shadow-sm\">",
+      "  <h3 className=\"text-lg font-semibold\">$1</h3>",
+      "  <p className=\"text-muted-foreground\">$2</p>",
+      "  $0",
+      "</div>"
+    ],
+    "description": "Card com Tailwind"
+  },
+
+  "Tailwind Button": {
+    "prefix": "twbtn",
+    "body": [
+      "<button",
+      "  className=\"inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50\"",
+      "  onClick={$1}",
+      "  disabled={$2}",
+      ">",
+      "  $3",
+      "</button>"
+    ],
+    "description": "Button com Tailwind"
+  }
+}

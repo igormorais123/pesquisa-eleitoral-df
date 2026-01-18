@@ -27,6 +27,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { useGestores } from '@/hooks/useGestores';
+import { usePesquisaPODCStore } from '@/stores/pesquisa-podc-store';
 import { cn, formatarMoeda, formatarNumero } from '@/lib/utils';
 import type { TipoPergunta, Pergunta, SetorGestor, NivelHierarquico } from '@/types';
 
@@ -204,9 +205,16 @@ export default function PaginaEntrevistasGestores() {
     toggleSelecionarParaPesquisa,
     selecionarTodos,
     limparSelecao,
+    selecionarPorFiltro,
     setFiltros,
     limparFiltros,
   } = useGestores();
+
+  const {
+    setTitulo: setTituloPODC,
+    setPerguntas: setPerguntasPODC,
+    setGestoresSelecionados,
+  } = usePesquisaPODCStore();
 
   // Selecionar template
   const selecionarTemplate = useCallback((templateId: string) => {
@@ -248,10 +256,24 @@ export default function PaginaEntrevistasGestores() {
 
   // Iniciar entrevista
   const iniciar = () => {
-    // Aqui seria a lógica para iniciar a entrevista com os gestores
-    // Por enquanto, apenas redireciona para uma página de execução
-    alert(`Iniciando pesquisa "${titulo}" com ${gestoresSelecionados.length} gestores e ${perguntas.length} perguntas.`);
-    // router.push(`/gestores/entrevistas/execucao?entrevista=${entrevistaId}`);
+    // Salvar dados no store PODC
+    setTituloPODC(titulo);
+
+    // Converter perguntas para formato completo com IDs
+    const perguntasCompletas: Pergunta[] = perguntas.map((p, index) => ({
+      id: `p-${Date.now()}-${index}`,
+      texto: p.texto || '',
+      tipo: p.tipo || 'aberta',
+      obrigatoria: p.obrigatoria ?? true,
+      escala_min: p.escala_min,
+      escala_max: p.escala_max,
+    }));
+
+    setPerguntasPODC(perguntasCompletas);
+    setGestoresSelecionados(gestoresSelecionados);
+
+    // Redirecionar para a página de execução
+    router.push('/gestores/entrevistas/execucao');
   };
 
   return (

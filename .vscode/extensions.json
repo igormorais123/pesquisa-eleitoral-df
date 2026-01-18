@@ -1,0 +1,46 @@
+{
+  "recommendations": [
+    // Claude Code & IA
+    "anthropic.claude-code",
+    "github.copilot",
+    "github.copilot-chat",
+    "sourcegraph.cody-ai",
+
+    // Essenciais
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens",
+    "usernamehw.errorlens",
+
+    // TypeScript/React
+    "yoavbls.pretty-ts-errors",
+    "dsznajder.es7-react-js-snippets",
+    "bradlc.vscode-tailwindcss",
+    "christian-kohler.path-intellisense",
+    "formulahendry.auto-rename-tag",
+
+    // Python
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-python.black-formatter",
+
+    // Produtividade
+    "gruntfuggly.todo-tree",
+    "wayou.vscode-todo-highlight",
+    "quicktype.quicktype",
+    "meganrogge.template-string-converter",
+
+    // Markdown
+    "yzhang.markdown-all-in-one",
+    "bierner.markdown-mermaid",
+    "hediet.vscode-drawio",
+
+    // Infra
+    "ms-azuretools.vscode-docker",
+    "redhat.vscode-yaml",
+    "humao.rest-client",
+
+    // Tema
+    "pkief.material-icon-theme"
+  ]
+}
