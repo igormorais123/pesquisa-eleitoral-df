@@ -115,9 +115,15 @@ export const AgenteCard = memo(function AgenteCard({
   return (
     <div
       className={cn(
-        'glass-card rounded-xl p-3 sm:p-4 hover:shadow-primary-glow/50 transition-all',
+        'glass-card rounded-xl p-3 sm:p-4 hover:shadow-primary-glow/50 transition-all group cursor-pointer',
         selecionado && 'ring-2 ring-primary'
       )}
+      onClick={() => {
+        // Navegar para o perfil se não houver função de seleção
+        if (!onToggleSelecao) {
+          window.location.href = `/eleitores/${eleitor.id}`;
+        }
+      }}
     >
       {/* Header - Mobile optimized */}
       <div className="flex items-start gap-3 sm:gap-4">

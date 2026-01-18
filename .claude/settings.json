@@ -1,21 +1,23 @@
 {
   "permissions": {
     "allow": [
-      "Bash",
-      "Read",
-      "Write",
-      "Edit",
-      "Glob",
-      "Grep",
+      "Bash(*)",
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)",
+      "Glob(*)",
+      "Grep(*)",
       "TodoWrite",
-      "Task",
-      "WebFetch",
-      "WebSearch",
-      "NotebookEdit",
+      "Task(*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "NotebookEdit(*)",
       "mcp__render__*",
       "mcp__puppeteer__*",
-      "mcp__playwright__*"
+      "mcp__playwright__*",
+      "mcp__github__*",
+      "mcp__filesystem__*"
     ],
-    "deny": []
+    "defaultMode": "acceptEdits"
   }
 }

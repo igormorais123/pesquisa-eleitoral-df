@@ -201,7 +201,7 @@ function ParlamentaresContent() {
             </div>
 
             <Link
-              href="/pesquisas/nova?tipo=parlamentar"
+              href={`/entrevistas/nova?tipo=parlamentar${parlamentaresSelecionados.length > 0 ? `&selecionados=${parlamentaresSelecionados.join(',')}` : ''}`}
               className={cn(
                 'flex items-center gap-2 px-4 py-2 rounded-lg transition-colors',
                 parlamentaresSelecionados.length > 0

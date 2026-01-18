@@ -7,8 +7,11 @@
  */
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { TemplateSelector } from '@/components/templates';
 import { TemplatePerguntas, Pergunta } from '@/types';
+import { useEntrevistasStore } from '@/stores/entrevistas-store';
 import {
   Card,
   CardContent,
@@ -40,6 +43,8 @@ const TIPO_PERGUNTA_ICONE: Record<string, React.ElementType> = {
 };
 
 export default function TemplatesPage() {
+  const router = useRouter();
+  const { setPerguntas, novaEntrevista, setTitulo } = useEntrevistasStore();
   const [perguntasSelecionadas, setPerguntasSelecionadas] = useState<Pergunta[]>([]);
   const [templatesSelecionados, setTemplatesSelecionados] = useState<string[]>([]);
 
@@ -104,9 +109,16 @@ export default function TemplatesPage() {
       toast.error('Selecione pelo menos uma pergunta');
       return;
     }
-    // Aqui integraria com o sistema de criação de entrevistas
-    toast.success(`Pesquisa criada com ${perguntasSelecionadas.length} perguntas!`);
-    // TODO: Redirecionar para página de criação de entrevista com perguntas pré-carregadas
+
+    // Inicializar nova entrevista e carregar as perguntas
+    novaEntrevista();
+    setTitulo(`Pesquisa com ${perguntasSelecionadas.length} perguntas`);
+    setPerguntas(perguntasSelecionadas);
+
+    toast.success(`${perguntasSelecionadas.length} perguntas carregadas! Redirecionando...`);
+
+    // Redirecionar para página de criação de entrevista
+    router.push('/entrevistas/nova');
   };
 
   return (
@@ -118,6 +130,22 @@ export default function TemplatesPage() {
           <p className="text-muted-foreground">
             Selecione templates pré-definidos para criar pesquisas eleitorais rapidamente
           </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/entrevistas"
+            className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors"
+          >
+            <MessageSquare className="w-4 h-4" />
+            Ver Entrevistas
+          </Link>
+          <Link
+            href="/resultados"
+            className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors"
+          >
+            <FileText className="w-4 h-4" />
+            Ver Resultados
+          </Link>
         </div>
       </div>
 

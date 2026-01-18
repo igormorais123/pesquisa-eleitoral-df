@@ -18,7 +18,11 @@ import {
   Trash2,
   ToggleLeft,
   ToggleRight,
+  Vote,
+  TrendingDown,
+  ExternalLink,
 } from 'lucide-react';
+import Link from 'next/link';
 
 interface CandidatoCardProps {
   candidato: Candidato;
@@ -146,9 +150,29 @@ export function CandidatoCard({
           </div>
         </div>
 
+        {/* Links para Cenários */}
+        <div className="flex items-center gap-2 mt-3 pt-3 border-t flex-wrap">
+          <Link
+            href={`/cenarios?candidato=${encodeURIComponent(candidato.nome_urna)}`}
+            className="text-xs text-primary hover:underline flex items-center gap-1"
+          >
+            <Vote className="h-3 w-3" />
+            Simular cenários
+            <ExternalLink className="h-3 w-3" />
+          </Link>
+          <span className="text-muted-foreground">•</span>
+          <Link
+            href={`/cenarios?tab=rejeicao&candidato=${encodeURIComponent(candidato.nome_urna)}`}
+            className="text-xs text-orange-500 hover:underline flex items-center gap-1"
+          >
+            <TrendingDown className="h-3 w-3" />
+            Análise de rejeição
+          </Link>
+        </div>
+
         {/* Ações */}
         {showActions && (
-          <div className="flex items-center justify-end gap-2 mt-4 pt-4 border-t">
+          <div className="flex items-center justify-end gap-2 mt-3 pt-3 border-t">
             {onView && (
               <Button
                 variant="ghost"
