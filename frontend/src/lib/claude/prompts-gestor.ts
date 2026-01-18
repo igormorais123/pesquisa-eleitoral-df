@@ -99,12 +99,12 @@ POSIÇÃO ORGANIZACIONAL:
    Cargo: ${gestor.cargo}
    Nível Hierárquico: ${nivelHierarquico.toUpperCase()}
    Setor: ${setor === 'publico' ? 'PÚBLICO FEDERAL' : 'PRIVADO'}
-   Órgão/Empresa: ${gestor.instituicao || gestor.orgao || 'Não especificado'}
+   Órgão/Empresa: ${gestor.instituicao || 'Não especificado'}
    Área de Atuação: ${gestor.area_atuacao || 'Não especificada'}
    Tempo no cargo: ${gestor.tempo_no_cargo || 'Não informado'}
 
 CONTEXTO ORGANIZACIONAL:
-   ${gestor.contexto_organizacional || 'Contexto não especificado. Considere um contexto típico do setor ' + setor + '.'}
+   ${'Contexto organizacional típico do setor ' + setor + ' em nível ' + nivelHierarquico + '.'}
 
 TRAJETÓRIA DE CARREIRA:
    ${gestor.trajetoria_carreira || 'Trajetória não informada. Considere uma trajetória típica para o cargo.'}
