@@ -529,6 +529,30 @@ export default function PaginaResultadoDetalhe() {
         </div>
       </div>
 
+      {/* Links contextuais */}
+      <div className="flex flex-wrap items-center gap-2 text-sm">
+        <span className="text-muted-foreground">Relacionados:</span>
+        <Link href="/eleitores" className="text-primary hover:underline flex items-center gap-1">
+          <Users className="w-3 h-3" />
+          Ver Eleitores
+        </Link>
+        <span className="text-muted-foreground">•</span>
+        <Link href="/cenarios" className="text-primary hover:underline flex items-center gap-1">
+          <Target className="w-3 h-3" />
+          Cenários
+        </Link>
+        <span className="text-muted-foreground">•</span>
+        <Link href="/mapa" className="text-primary hover:underline flex items-center gap-1">
+          <BarChart3 className="w-3 h-3" />
+          Ver no Mapa
+        </Link>
+        <span className="text-muted-foreground">•</span>
+        <Link href="/entrevistas/nova" className="text-primary hover:underline flex items-center gap-1">
+          <MessageSquare className="w-3 h-3" />
+          Nova Pesquisa
+        </Link>
+      </div>
+
       {/* Cards de resumo */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="glass-card rounded-xl p-4">
@@ -888,14 +912,30 @@ export default function PaginaResultadoDetalhe() {
               <div className="px-5 py-4 bg-gradient-to-r from-primary/5 to-transparent border-b border-border/50">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Link
+                      href={`/eleitores/${resposta.eleitor_id}`}
+                      className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                    >
                       <span className="text-sm font-bold text-primary">
                         {resposta.eleitor_nome.split(' ').map(n => n[0]).slice(0, 2).join('')}
                       </span>
-                    </div>
+                    </Link>
                     <div>
-                      <span className="font-medium text-foreground">{resposta.eleitor_nome}</span>
-                      <p className="text-xs text-muted-foreground">Respondente #{i + 1}</p>
+                      <Link
+                        href={`/eleitores/${resposta.eleitor_id}`}
+                        className="font-medium text-foreground hover:text-primary transition-colors"
+                      >
+                        {resposta.eleitor_nome}
+                      </Link>
+                      <p className="text-xs text-muted-foreground">
+                        Respondente #{i + 1} •{' '}
+                        <Link
+                          href={`/eleitores/${resposta.eleitor_id}`}
+                          className="text-primary hover:underline"
+                        >
+                          Ver perfil completo
+                        </Link>
+                      </p>
                     </div>
                   </div>
                   <div className="text-right">

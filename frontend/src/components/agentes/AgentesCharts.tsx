@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
 import {
   PieChart,
   Pie,
@@ -35,9 +35,11 @@ import {
   MapPin,
   Activity,
   GitBranch,
+  MousePointerClick,
 } from 'lucide-react';
 import { PiramideEtaria, CorrelacaoHeatmap, TabelaCalorEmocional, SankeyComSeletor } from '@/components/charts';
 import { CorrelacoesAutomaticas } from '@/components/analysis';
+import { useFilterNavigation, FilterType } from '@/hooks/useFilterNavigation';
 
 interface AgentesChartsProps {
   estatisticas: {
@@ -74,21 +76,31 @@ function ChartCard({
   icone: Icone,
   corIcone,
   children,
+  clicavel = false,
 }: {
   titulo: string;
   icone?: React.ElementType;
   corIcone?: string;
   children: React.ReactNode;
+  clicavel?: boolean;
 }) {
   return (
-    <div className="glass-card rounded-xl p-6">
-      <div className="flex items-center gap-2 mb-4">
-        {Icone && (
-          <div className={`w-8 h-8 rounded-lg ${corIcone || 'bg-primary/20'} flex items-center justify-center`}>
-            <Icone className="w-4 h-4 text-primary" />
+    <div className="glass-card rounded-xl p-6 group">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          {Icone && (
+            <div className={`w-8 h-8 rounded-lg ${corIcone || 'bg-primary/20'} flex items-center justify-center`}>
+              <Icone className="w-4 h-4 text-primary" />
+            </div>
+          )}
+          <h3 className="font-semibold text-foreground">{titulo}</h3>
+        </div>
+        {clicavel && (
+          <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+            <MousePointerClick className="w-3 h-3" />
+            <span>Clique para filtrar</span>
           </div>
         )}
-        <h3 className="font-semibold text-foreground">{titulo}</h3>
       </div>
       {children}
     </div>
@@ -174,6 +186,36 @@ const CORES = {
 
 export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
   const total = estatisticas.filtrados || 1;
+  const { navigateWithFilter } = useFilterNavigation();
+
+  // Hook para criar handler de clique genérico
+  const createChartClickHandler = useCallback(
+    (filterType: FilterType) => {
+      return (data: any) => {
+        if (data?.activePayload?.[0]?.payload) {
+          const payload = data.activePayload[0].payload;
+          const value = payload.valorOriginal || payload.nome;
+          if (value) {
+            navigateWithFilter(filterType, value);
+          }
+        }
+      };
+    },
+    [navigateWithFilter]
+  );
+
+  // Handler para clique em célula de gráfico de pizza
+  const createPieCellClickHandler = useCallback(
+    (filterType: FilterType, dados: any[]) => {
+      return (_: any, index: number) => {
+        const item = dados[index];
+        if (item?.valorOriginal || item?.nome) {
+          navigateWithFilter(filterType, item.valorOriginal || item.nome);
+        }
+      };
+    },
+    [navigateWithFilter]
+  );
 
   // Função auxiliar para formatar dados com memoização
   const formatarDados = useMemo(() => {
@@ -181,9 +223,10 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
       return Object.entries(dados)
         .filter(([nome]) => nome !== 'undefined' && nome !== 'Não informado')
         .sort((a, b) => b[1] - a[1])
-        .map(([nome, valor]) => ({
-          nome: labels?.[nome] || nome.charAt(0).toUpperCase() + nome.slice(1).replace(/_/g, ' '),
+        .map(([chave, valor]) => ({
+          nome: labels?.[chave] || chave.charAt(0).toUpperCase() + chave.slice(1).replace(/_/g, ' '),
           valor,
+          valorOriginal: chave,
           percentual: ((valor / total) * 100).toFixed(1),
         }));
     };
@@ -255,7 +298,7 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
       {/* Gráficos em grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Gênero - Pizza */}
-        <ChartCard titulo="Distribuição por Gênero" icone={Users} corIcone="bg-pink-500/20">
+        <ChartCard titulo="Distribuição por Gênero" icone={Users} corIcone="bg-pink-500/20" clicavel>
           <ResponsiveContainer width="100%" height={220}>
             <PieChart>
               <Pie
@@ -268,17 +311,19 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
                 dataKey="valor"
                 nameKey="nome"
                 label={({ nome, percentual }) => `${nome}: ${percentual}%`}
+                onClick={createPieCellClickHandler('generos', dadosGenero)}
+                style={{ cursor: 'pointer' }}
               >
                 <Cell fill="#3b82f6" />
                 <Cell fill="#ec4899" />
               </Pie>
-              <Tooltip {...tooltipStyle} />
+              <Tooltip {...tooltipStyle} formatter={(value: number, name: string) => [value, `Clique para filtrar: ${name}`]} />
             </PieChart>
           </ResponsiveContainer>
         </ChartCard>
 
         {/* Classe Social - Pizza */}
-        <ChartCard titulo="Classe Social" icone={Wallet} corIcone="bg-emerald-500/20">
+        <ChartCard titulo="Classe Social" icone={Wallet} corIcone="bg-emerald-500/20" clicavel>
           <ResponsiveContainer width="100%" height={220}>
             <PieChart>
               <Pie
@@ -291,12 +336,14 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
                 dataKey="valor"
                 nameKey="nome"
                 label={({ percentual }) => `${percentual}%`}
+                onClick={createPieCellClickHandler('clusters', dadosCluster)}
+                style={{ cursor: 'pointer' }}
               >
                 {dadosCluster.map((_, index) => (
                   <Cell key={index} fill={CORES.cluster[index % CORES.cluster.length]} />
                 ))}
               </Pie>
-              <Tooltip {...tooltipStyle} />
+              <Tooltip {...tooltipStyle} formatter={(value: number, name: string) => [value, `Clique para filtrar: ${name}`]} />
               <Legend />
             </PieChart>
           </ResponsiveContainer>
@@ -304,17 +351,17 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
 
         {/* Ocupação/Vínculo - Barras Horizontais */}
         {dadosOcupacao.length > 0 && (
-          <ChartCard titulo="Ocupação / Vínculo" icone={Briefcase} corIcone="bg-violet-500/20">
+          <ChartCard titulo="Ocupação / Vínculo" icone={Briefcase} corIcone="bg-violet-500/20" clicavel>
             <ResponsiveContainer width="100%" height={280}>
-              <BarChart data={dadosOcupacao} layout="vertical">
+              <BarChart data={dadosOcupacao} layout="vertical" onClick={createChartClickHandler('ocupacoes_vinculos')}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis type="number" stroke="#9ca3af" />
                 <YAxis dataKey="nome" type="category" width={95} stroke="#9ca3af" tick={{ fontSize: 10 }} />
                 <Tooltip
                   {...tooltipStyle}
-                  formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                  formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Clique para filtrar']}
                 />
-                <Bar dataKey="valor" radius={[0, 4, 4, 0]}>
+                <Bar dataKey="valor" radius={[0, 4, 4, 0]} style={{ cursor: 'pointer' }}>
                   {dadosOcupacao.map((_, index) => (
                     <Cell key={index} fill={CORES.primarias[index % CORES.primarias.length]} />
                   ))}
@@ -326,17 +373,17 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
 
         {/* Escolaridade */}
         {dadosEscolaridade.length > 0 && (
-          <ChartCard titulo="Escolaridade" icone={GraduationCap} corIcone="bg-blue-500/20">
+          <ChartCard titulo="Escolaridade" icone={GraduationCap} corIcone="bg-blue-500/20" clicavel>
             <ResponsiveContainer width="100%" height={280}>
-              <BarChart data={dadosEscolaridade}>
+              <BarChart data={dadosEscolaridade} onClick={createChartClickHandler('escolaridades')}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 9 }} />
                 <YAxis stroke="#9ca3af" />
                 <Tooltip
                   {...tooltipStyle}
-                  formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                  formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Clique para filtrar']}
                 />
-                <Bar dataKey="valor" radius={[4, 4, 0, 0]}>
+                <Bar dataKey="valor" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
                   {dadosEscolaridade.map((_, index) => (
                     <Cell key={index} fill={CORES.primarias[index % CORES.primarias.length]} />
                   ))}
@@ -348,34 +395,34 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
 
         {/* Faixa de Renda */}
         {dadosRenda.length > 0 && (
-          <ChartCard titulo="Faixa de Renda" icone={Wallet} corIcone="bg-yellow-500/20">
+          <ChartCard titulo="Faixa de Renda" icone={Wallet} corIcone="bg-yellow-500/20" clicavel>
             <ResponsiveContainer width="100%" height={220}>
-              <AreaChart data={dadosRenda}>
+              <AreaChart data={dadosRenda} onClick={createChartClickHandler('faixas_renda')}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 10 }} />
                 <YAxis stroke="#9ca3af" />
                 <Tooltip
                   {...tooltipStyle}
-                  formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                  formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Clique para filtrar']}
                 />
-                <Area type="monotone" dataKey="valor" stroke="#eab308" fill="#eab308" fillOpacity={0.3} />
+                <Area type="monotone" dataKey="valor" stroke="#eab308" fill="#eab308" fillOpacity={0.3} style={{ cursor: 'pointer' }} />
               </AreaChart>
             </ResponsiveContainer>
           </ChartCard>
         )}
 
         {/* Espectro Político */}
-        <ChartCard titulo="Espectro Político" icone={Vote} corIcone="bg-red-500/20">
+        <ChartCard titulo="Espectro Político" icone={Vote} corIcone="bg-red-500/20" clicavel>
           <ResponsiveContainer width="100%" height={220}>
-            <BarChart data={dadosOrientacao} layout="vertical">
+            <BarChart data={dadosOrientacao} layout="vertical" onClick={createChartClickHandler('orientacoes_politicas')}>
               <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
               <XAxis type="number" stroke="#9ca3af" />
               <YAxis dataKey="nome" type="category" width={80} stroke="#9ca3af" />
               <Tooltip
                 {...tooltipStyle}
-                formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Clique para filtrar']}
               />
-              <Bar dataKey="valor" radius={[0, 4, 4, 0]}>
+              <Bar dataKey="valor" radius={[0, 4, 4, 0]} style={{ cursor: 'pointer' }}>
                 {dadosOrientacao.map((_, index) => (
                   <Cell key={index} fill={CORES.orientacao[index % CORES.orientacao.length]} />
                 ))}
@@ -386,17 +433,17 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
 
         {/* Posição Bolsonaro */}
         {dadosBolsonaro.length > 0 && (
-          <ChartCard titulo="Posição sobre Bolsonaro" icone={Vote} corIcone="bg-yellow-500/20">
+          <ChartCard titulo="Posição sobre Bolsonaro" icone={Vote} corIcone="bg-yellow-500/20" clicavel>
             <ResponsiveContainer width="100%" height={220}>
-              <BarChart data={dadosBolsonaro}>
+              <BarChart data={dadosBolsonaro} onClick={createChartClickHandler('posicoes_bolsonaro')}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 9 }} />
                 <YAxis stroke="#9ca3af" />
                 <Tooltip
                   {...tooltipStyle}
-                  formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                  formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Clique para filtrar']}
                 />
-                <Bar dataKey="valor" radius={[4, 4, 0, 0]}>
+                <Bar dataKey="valor" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
                   {dadosBolsonaro.map((entry, index) => (
                     <Cell key={index} fill={
                       entry.nome.includes('Apoiador Forte') ? '#22c55e' :
@@ -412,17 +459,17 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
         )}
 
         {/* Religião */}
-        <ChartCard titulo="Religião" icone={Church} corIcone="bg-purple-500/20">
+        <ChartCard titulo="Religião" icone={Church} corIcone="bg-purple-500/20" clicavel>
           <ResponsiveContainer width="100%" height={220}>
-            <BarChart data={dadosReligiao}>
+            <BarChart data={dadosReligiao} onClick={createChartClickHandler('religioes')}>
               <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
               <XAxis dataKey="nome" stroke="#9ca3af" tick={{ fontSize: 10 }} />
               <YAxis stroke="#9ca3af" />
               <Tooltip
                 {...tooltipStyle}
-                formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Clique para filtrar']}
               />
-              <Bar dataKey="valor" radius={[4, 4, 0, 0]}>
+              <Bar dataKey="valor" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
                 {dadosReligiao.map((_, index) => (
                   <Cell key={index} fill={CORES.religiao[index % CORES.religiao.length]} />
                 ))}
@@ -432,7 +479,7 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
         </ChartCard>
 
         {/* Filhos */}
-        <ChartCard titulo="Filhos" icone={Heart} corIcone="bg-pink-500/20">
+        <ChartCard titulo="Filhos" icone={Heart} corIcone="bg-pink-500/20" clicavel>
           <ResponsiveContainer width="100%" height={220}>
             <PieChart>
               <Pie
@@ -445,18 +492,20 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
                 dataKey="valor"
                 nameKey="nome"
                 label={({ nome, percentual }) => `${nome}: ${percentual}%`}
+                onClick={createPieCellClickHandler('tem_filhos', dadosFilhos.map((d, i) => ({ ...d, valorOriginal: i === 0 ? 'sim' : 'nao' })))}
+                style={{ cursor: 'pointer' }}
               >
                 <Cell fill="#ec4899" />
                 <Cell fill="#94a3b8" />
               </Pie>
-              <Tooltip {...tooltipStyle} />
+              <Tooltip {...tooltipStyle} formatter={(value: number, name: string) => [value, `Clique para filtrar: ${name}`]} />
             </PieChart>
           </ResponsiveContainer>
         </ChartCard>
 
         {/* Estilo de Decisão */}
         {dadosDecisao.length > 0 && (
-          <ChartCard titulo="Estilo de Decisão" icone={Brain} corIcone="bg-fuchsia-500/20">
+          <ChartCard titulo="Estilo de Decisão" icone={Brain} corIcone="bg-fuchsia-500/20" clicavel>
             <ResponsiveContainer width="100%" height={220}>
               <PieChart>
                 <Pie
@@ -467,12 +516,14 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
                   dataKey="valor"
                   nameKey="nome"
                   label={({ percentual }) => `${percentual}%`}
+                  onClick={createPieCellClickHandler('estilos_decisao', dadosDecisao)}
+                  style={{ cursor: 'pointer' }}
                 >
                   {dadosDecisao.map((_, index) => (
                     <Cell key={index} fill={CORES.decisao[index % CORES.decisao.length]} />
                   ))}
                 </Pie>
-                <Tooltip {...tooltipStyle} />
+                <Tooltip {...tooltipStyle} formatter={(value: number, name: string) => [value, `Clique para filtrar: ${name}`]} />
                 <Legend />
               </PieChart>
             </ResponsiveContainer>
@@ -535,17 +586,17 @@ export function AgentesCharts({ estatisticas, eleitores }: AgentesChartsProps) {
         )}
 
         {/* Top 10 Regiões */}
-        <ChartCard titulo="Top 10 Regiões" icone={MapPin} corIcone="bg-cyan-500/20">
+        <ChartCard titulo="Top 10 Regiões" icone={MapPin} corIcone="bg-cyan-500/20" clicavel>
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={dadosRegiao} layout="vertical">
+            <BarChart data={dadosRegiao} layout="vertical" onClick={createChartClickHandler('regioes')}>
               <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
               <XAxis type="number" stroke="#9ca3af" />
               <YAxis dataKey="nome" type="category" width={100} stroke="#9ca3af" tick={{ fontSize: 10 }} />
               <Tooltip
                 {...tooltipStyle}
-                formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Eleitores']}
+                formatter={(value: number, _: string, props: any) => [`${value} (${props.payload.percentual}%)`, 'Clique para filtrar']}
               />
-              <Bar dataKey="valor" fill="#3b82f6" radius={[0, 4, 4, 0]} />
+              <Bar dataKey="valor" fill="#3b82f6" radius={[0, 4, 4, 0]} style={{ cursor: 'pointer' }} />
             </BarChart>
           </ResponsiveContainer>
         </ChartCard>

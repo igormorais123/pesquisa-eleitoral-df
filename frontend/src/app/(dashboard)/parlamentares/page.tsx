@@ -39,7 +39,7 @@ import { useParlamentares } from '@/hooks/useParlamentares';
 import { ParlamentarCard } from '@/components/parlamentares/ParlamentarCard';
 import { ParlamentaresFilters } from '@/components/parlamentares/ParlamentaresFilters';
 import { cn, formatarNumero } from '@/lib/utils';
-import type { CasaLegislativa } from '@/types';
+import type { CasaLegislativa, OrientacaoPolitica, RelacaoGoverno } from '@/types';
 
 type VisualizacaoTipo = 'cards' | 'lista' | 'graficos' | 'insights';
 
@@ -355,7 +355,30 @@ function ParlamentaresContent() {
         <div className="flex-1 min-w-0 flex gap-4">
           <div className="flex-1 min-w-0">
             {visualizacao === 'graficos' ? (
-              <ParlamentaresGraficos estatisticas={estatisticas} parlamentares={parlamentaresFiltrados} />
+              <ParlamentaresGraficos
+                estatisticas={estatisticas}
+                parlamentares={parlamentaresFiltrados}
+                onFiltrarPorOrientacao={(orientacao) => {
+                  setFiltros({ orientacoes_politicas: [orientacao as OrientacaoPolitica] });
+                  setVisualizacao('cards');
+                }}
+                onFiltrarPorPartido={(partido) => {
+                  setFiltros({ partidos: [partido] });
+                  setVisualizacao('cards');
+                }}
+                onFiltrarPorCasa={(casa) => {
+                  setCasaAtiva(casa as CasaLegislativa);
+                  setVisualizacao('cards');
+                }}
+                onFiltrarPorRelacao={(relacao) => {
+                  setFiltros({ relacoes_governo: [relacao as RelacaoGoverno] });
+                  setVisualizacao('cards');
+                }}
+                onFiltrarPorUf={(uf) => {
+                  setFiltros({ ufs: [uf] });
+                  setVisualizacao('cards');
+                }}
+              />
             ) : visualizacao === 'insights' ? (
               <ParlamentaresInsights parlamentares={parlamentares} parlamentaresFiltrados={parlamentaresFiltrados} />
             ) : (
@@ -463,19 +486,32 @@ const CORES_ORIENTACAO = ['#ef4444', '#f97316', '#a855f7', '#3b82f6', '#6366f1']
 const CORES_RELACAO = ['#22c55e', '#6b7280', '#f97316', '#ef4444'];
 const CORES_PARTIDOS = ['#3b82f6', '#ef4444', '#22c55e', '#f97316', '#a855f7', '#eab308', '#06b6d4', '#ec4899', '#84cc16', '#f43f5e'];
 
+import { MousePointerClick } from 'lucide-react';
+
 // Componente de Gráficos com visualizações
 function ParlamentaresGraficos({
   estatisticas,
   parlamentares,
+  onFiltrarPorOrientacao,
+  onFiltrarPorPartido,
+  onFiltrarPorCasa,
+  onFiltrarPorRelacao,
+  onFiltrarPorUf,
 }: {
   estatisticas: any;
   parlamentares: any[];
+  onFiltrarPorOrientacao?: (orientacao: string) => void;
+  onFiltrarPorPartido?: (partido: string) => void;
+  onFiltrarPorCasa?: (casa: string) => void;
+  onFiltrarPorRelacao?: (relacao: string) => void;
+  onFiltrarPorUf?: (uf: string) => void;
 }) {
   // Dados para gráfico de pizza - Casa Legislativa
   const dadosCasa = Object.entries(estatisticas.porCasa)
     .filter(([key]) => key !== 'todas')
     .map(([casa, count], index) => ({
       name: casa === 'camara_federal' ? 'Câmara' : casa === 'senado' ? 'Senado' : 'CLDF',
+      valorOriginal: casa,
       value: count as number,
       fill: CORES_CASA[index],
     }));
@@ -483,6 +519,7 @@ function ParlamentaresGraficos({
   // Dados para gráfico de barras - Orientação Política
   const dadosOrientacao = Object.entries(estatisticas.porOrientacao).map(([orientacao, count], index) => ({
     name: orientacao.charAt(0).toUpperCase() + orientacao.slice(1).replace('-', ' '),
+    valorOriginal: orientacao,
     value: count as number,
     fill: CORES_ORIENTACAO[index % CORES_ORIENTACAO.length],
   }));
@@ -490,6 +527,7 @@ function ParlamentaresGraficos({
   // Dados para gráfico de pizza - Relação com Governo
   const dadosRelacao = Object.entries(estatisticas.porRelacaoGoverno).map(([relacao, count], index) => ({
     name: relacao.replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+    valorOriginal: relacao,
     value: count as number,
     fill: CORES_RELACAO[index % CORES_RELACAO.length],
   }));
@@ -500,6 +538,7 @@ function ParlamentaresGraficos({
     .slice(0, 10)
     .map(([partido, count], index) => ({
       name: partido,
+      valorOriginal: partido,
       value: count as number,
       fill: CORES_PARTIDOS[index % CORES_PARTIDOS.length],
     }));
@@ -510,18 +549,58 @@ function ParlamentaresGraficos({
     .slice(0, 10)
     .map(([uf, count]) => ({
       name: uf,
+      valorOriginal: uf,
       value: count as number,
     }));
+
+  // Handlers de clique
+  const handleCasaClick = (data: any, index: number) => {
+    const item = dadosCasa[index];
+    if (item && onFiltrarPorCasa) {
+      onFiltrarPorCasa(item.valorOriginal);
+    }
+  };
+
+  const handleOrientacaoClick = (data: any) => {
+    if (data?.activePayload?.[0]?.payload && onFiltrarPorOrientacao) {
+      onFiltrarPorOrientacao(data.activePayload[0].payload.valorOriginal);
+    }
+  };
+
+  const handleRelacaoClick = (data: any, index: number) => {
+    const item = dadosRelacao[index];
+    if (item && onFiltrarPorRelacao) {
+      onFiltrarPorRelacao(item.valorOriginal);
+    }
+  };
+
+  const handlePartidoClick = (data: any) => {
+    if (data?.activePayload?.[0]?.payload && onFiltrarPorPartido) {
+      onFiltrarPorPartido(data.activePayload[0].payload.valorOriginal);
+    }
+  };
+
+  const handleUfClick = (data: any) => {
+    if (data?.activePayload?.[0]?.payload && onFiltrarPorUf) {
+      onFiltrarPorUf(data.activePayload[0].payload.valorOriginal);
+    }
+  };
 
   return (
     <div className="h-full overflow-y-auto p-4 space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Gráfico de Pizza - Casa Legislativa */}
-        <div className="glass-card rounded-xl p-4">
-          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-            <PieChartIcon className="w-5 h-5 text-primary" />
-            Por Casa Legislativa
-          </h3>
+        <div className="glass-card rounded-xl p-4 group">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold text-foreground flex items-center gap-2">
+              <PieChartIcon className="w-5 h-5 text-primary" />
+              Por Casa Legislativa
+            </h3>
+            <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+              <MousePointerClick className="w-3 h-3" />
+              <span>Clique para filtrar</span>
+            </div>
+          </div>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie
@@ -533,6 +612,8 @@ function ParlamentaresGraficos({
                 paddingAngle={5}
                 dataKey="value"
                 label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                onClick={handleCasaClick}
+                style={{ cursor: 'pointer' }}
               >
                 {dadosCasa.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.fill} />
@@ -540,27 +621,33 @@ function ParlamentaresGraficos({
               </Pie>
               <Tooltip
                 contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                formatter={(value: number) => [`${value} parlamentares`, 'Total']}
+                formatter={(value: number) => [`${value} parlamentares`, 'Clique para filtrar']}
               />
             </PieChart>
           </ResponsiveContainer>
         </div>
 
         {/* Gráfico de Barras - Orientação Política */}
-        <div className="glass-card rounded-xl p-4">
-          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-primary" />
-            Orientação Política
-          </h3>
+        <div className="glass-card rounded-xl p-4 group">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold text-foreground flex items-center gap-2">
+              <BarChart3 className="w-5 h-5 text-primary" />
+              Orientação Política
+            </h3>
+            <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+              <MousePointerClick className="w-3 h-3" />
+              <span>Clique para filtrar</span>
+            </div>
+          </div>
           <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={dadosOrientacao} layout="vertical">
+            <BarChart data={dadosOrientacao} layout="vertical" onClick={handleOrientacaoClick}>
               <XAxis type="number" tick={{ fill: '#9ca3af', fontSize: 11 }} />
               <YAxis type="category" dataKey="name" width={100} tick={{ fill: '#9ca3af', fontSize: 11 }} />
               <Tooltip
                 contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                formatter={(value: number) => [`${value} parlamentares`, 'Total']}
+                formatter={(value: number) => [`${value} parlamentares`, 'Clique para filtrar']}
               />
-              <Bar dataKey="value" radius={[0, 4, 4, 0]}>
+              <Bar dataKey="value" radius={[0, 4, 4, 0]} style={{ cursor: 'pointer' }}>
                 {dadosOrientacao.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.fill} />
                 ))}
@@ -570,11 +657,17 @@ function ParlamentaresGraficos({
         </div>
 
         {/* Gráfico de Pizza - Relação com Governo */}
-        <div className="glass-card rounded-xl p-4">
-          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-            <PieChartIcon className="w-5 h-5 text-primary" />
-            Relação com Governo Lula
-          </h3>
+        <div className="glass-card rounded-xl p-4 group">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold text-foreground flex items-center gap-2">
+              <PieChartIcon className="w-5 h-5 text-primary" />
+              Relação com Governo Lula
+            </h3>
+            <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+              <MousePointerClick className="w-3 h-3" />
+              <span>Clique para filtrar</span>
+            </div>
+          </div>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie
@@ -586,6 +679,8 @@ function ParlamentaresGraficos({
                 paddingAngle={5}
                 dataKey="value"
                 label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
+                onClick={handleRelacaoClick}
+                style={{ cursor: 'pointer' }}
               >
                 {dadosRelacao.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.fill} />
@@ -593,7 +688,7 @@ function ParlamentaresGraficos({
               </Pie>
               <Tooltip
                 contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                formatter={(value: number) => [`${value} parlamentares`, 'Total']}
+                formatter={(value: number) => [`${value} parlamentares`, 'Clique para filtrar']}
               />
               <Legend
                 formatter={(value) => <span style={{ color: '#9ca3af', fontSize: '12px' }}>{value}</span>}
@@ -603,20 +698,26 @@ function ParlamentaresGraficos({
         </div>
 
         {/* Gráfico de Barras - Top 10 Partidos */}
-        <div className="glass-card rounded-xl p-4">
-          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-primary" />
-            Top 10 Partidos
-          </h3>
+        <div className="glass-card rounded-xl p-4 group">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold text-foreground flex items-center gap-2">
+              <BarChart3 className="w-5 h-5 text-primary" />
+              Top 10 Partidos
+            </h3>
+            <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+              <MousePointerClick className="w-3 h-3" />
+              <span>Clique para filtrar</span>
+            </div>
+          </div>
           <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={dadosPartidos}>
+            <BarChart data={dadosPartidos} onClick={handlePartidoClick}>
               <XAxis dataKey="name" tick={{ fill: '#9ca3af', fontSize: 10 }} angle={-45} textAnchor="end" height={60} />
               <YAxis tick={{ fill: '#9ca3af', fontSize: 11 }} />
               <Tooltip
                 contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-                formatter={(value: number) => [`${value} parlamentares`, 'Total']}
+                formatter={(value: number) => [`${value} parlamentares`, 'Clique para filtrar']}
               />
-              <Bar dataKey="value" radius={[4, 4, 0, 0]}>
+              <Bar dataKey="value" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}>
                 {dadosPartidos.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.fill} />
                 ))}
@@ -627,20 +728,26 @@ function ParlamentaresGraficos({
       </div>
 
       {/* Gráfico de Barras - Top 10 Estados */}
-      <div className="glass-card rounded-xl p-4">
-        <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-          <BarChart3 className="w-5 h-5 text-primary" />
-          Top 10 Estados (UF)
-        </h3>
+      <div className="glass-card rounded-xl p-4 group">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="font-semibold text-foreground flex items-center gap-2">
+            <BarChart3 className="w-5 h-5 text-primary" />
+            Top 10 Estados (UF)
+          </h3>
+          <div className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+            <MousePointerClick className="w-3 h-3" />
+            <span>Clique para filtrar</span>
+          </div>
+        </div>
         <ResponsiveContainer width="100%" height={200}>
-          <BarChart data={dadosUf}>
+          <BarChart data={dadosUf} onClick={handleUfClick}>
             <XAxis dataKey="name" tick={{ fill: '#9ca3af', fontSize: 11 }} />
             <YAxis tick={{ fill: '#9ca3af', fontSize: 11 }} />
             <Tooltip
               contentStyle={{ background: '#1f2937', border: 'none', borderRadius: '8px' }}
-              formatter={(value: number) => [`${value} parlamentares`, 'Total']}
+              formatter={(value: number) => [`${value} parlamentares`, 'Clique para filtrar']}
             />
-            <Bar dataKey="value" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="value" fill="#3b82f6" radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }} />
           </BarChart>
         </ResponsiveContainer>
       </div>
