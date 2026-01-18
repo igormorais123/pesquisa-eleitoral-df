@@ -412,7 +412,7 @@ Gerador de mensagens de persuasão otimizadas para campanhas eleitorais.
 # Criar aplicação FastAPI
 app = FastAPI(
     title="API Pesquisa Eleitoral DF 2026",
-    redirect_slashes=False,  # Evita redirects 307 por barras finais
+    redirect_slashes=True,  # Redireciona automaticamente com/sem barra final
     description="""
 ## Sistema de Simulação de Pesquisa Eleitoral
 
