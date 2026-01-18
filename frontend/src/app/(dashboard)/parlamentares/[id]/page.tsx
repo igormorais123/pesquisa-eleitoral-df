@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
+import { ImageWithFallback } from '@/components/ui/image-with-fallback';
 import {
   ArrowLeft,
   Building2,
@@ -170,8 +170,14 @@ export default function PaginaPerfilParlamentar() {
           <div className="flex-shrink-0">
             <div className="relative w-48 h-48 rounded-xl overflow-hidden bg-secondary">
               {parlamentar.foto_url ? (
-                <Image
+                <ImageWithFallback
                   src={parlamentar.foto_url}
+                  fallbackSrc={parlamentar.foto_url_alternativa}
+                  fallbackElement={
+                    <div className="w-full h-full flex items-center justify-center">
+                      <User className="w-24 h-24 text-muted-foreground" />
+                    </div>
+                  }
                   alt={parlamentar.nome_parlamentar}
                   fill
                   className="object-cover"

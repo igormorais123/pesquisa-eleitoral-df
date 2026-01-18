@@ -2,8 +2,8 @@
 
 import { memo } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { ImageWithFallback } from '@/components/ui/image-with-fallback';
 import {
   Building2,
   Vote,
@@ -83,8 +83,14 @@ export const ParlamentarCard = memo(function ParlamentarCard({
         {/* Foto */}
         <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-secondary">
           {p.foto_url ? (
-            <Image
+            <ImageWithFallback
               src={p.foto_url}
+              fallbackSrc={p.foto_url_alternativa}
+              fallbackElement={
+                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                  <Users className="w-6 h-6" />
+                </div>
+              }
               alt={p.nome_parlamentar}
               fill
               className="object-cover"
@@ -160,8 +166,14 @@ export const ParlamentarCard = memo(function ParlamentarCard({
         {/* Foto */}
         <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden flex-shrink-0 bg-secondary">
           {p.foto_url ? (
-            <Image
+            <ImageWithFallback
               src={p.foto_url}
+              fallbackSrc={p.foto_url_alternativa}
+              fallbackElement={
+                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                  <Users className="w-8 h-8" />
+                </div>
+              }
               alt={p.nome_parlamentar}
               fill
               className="object-cover"

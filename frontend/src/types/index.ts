@@ -458,6 +458,7 @@ export interface Parlamentar {
   legislatura: number;
   votos_eleicao: number;
   foto_url: string;
+  foto_url_alternativa?: string;
   formacao_academica: string[];
   profissao_anterior: string;
   carreira_profissional: string;
