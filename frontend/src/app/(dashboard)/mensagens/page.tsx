@@ -33,7 +33,6 @@ import {
   Check,
   Loader2,
   Filter,
-  History,
   Zap,
   Heart,
   DollarSign,
@@ -217,7 +216,7 @@ export default function MensagensPage() {
   const handleBuscarPreview = async () => {
     setLoadingPreview(true);
     try {
-      const response = await api.post("/api/v1/mensagens/preview", {
+      const response = await api.post("/mensagens/preview", {
         filtros: construirFiltros(),
       });
       setPreview(response.data);
@@ -250,7 +249,7 @@ export default function MensagensPage() {
 
     setLoading(true);
     try {
-      const response = await api.post("/api/v1/mensagens/gerar", {
+      const response = await api.post("/mensagens/gerar", {
         objetivo: objetivo.trim(),
         gatilhos: gatilhosSelecionados,
         restricoes: restricoes.length > 0 ? restricoes : undefined,
@@ -473,12 +472,12 @@ export default function MensagensPage() {
 
                 {/* Preview do público */}
                 {preview && (
-                  <div className="p-3 bg-blue-50 rounded-lg text-sm">
-                    <p className="font-medium text-blue-800">
+                  <div className="p-3 bg-primary/10 rounded-lg text-sm">
+                    <p className="font-medium text-primary">
                       {preview.total} eleitores selecionados
                     </p>
                     {preview.perfil_resumido && (
-                      <div className="mt-2 space-y-1 text-xs text-blue-700">
+                      <div className="mt-2 space-y-1 text-xs text-muted-foreground">
                         <p>
                           Idade média:{" "}
                           {preview.perfil_resumido.idade_media?.toFixed(0) ||
@@ -508,7 +507,7 @@ export default function MensagensPage() {
                     placeholder="Ex: não usar tom agressivo"
                     value={novaRestricao}
                     onChange={(e) => setNovaRestricao(e.target.value)}
-                    onKeyPress={(e) =>
+                    onKeyDown={(e) =>
                       e.key === "Enter" && handleAddRestricao()
                     }
                   />
@@ -791,12 +790,12 @@ export default function MensagensPage() {
                           )}
 
                         {/* Perfil receptivo */}
-                        <div className="p-3 bg-blue-50 rounded-lg">
-                          <Label className="text-sm font-medium text-blue-800 flex items-center gap-1">
+                        <div className="p-3 bg-primary/10 rounded-lg">
+                          <Label className="text-sm font-medium text-primary flex items-center gap-1">
                             <Target className="h-4 w-4" />
                             Perfil mais receptivo
                           </Label>
-                          <p className="text-sm text-blue-700 mt-1">
+                          <p className="text-sm text-muted-foreground mt-1">
                             {msg.perfil_mais_receptivo}
                           </p>
                         </div>

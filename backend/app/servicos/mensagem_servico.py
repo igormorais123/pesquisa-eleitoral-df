@@ -88,7 +88,8 @@ class MensagemServico:
             try:
                 with open(self.caminho_historico, "r", encoding="utf-8") as f:
                     self._historico = json.load(f)
-            except Exception:
+            except (json.JSONDecodeError, OSError) as e:
+                print(f"Aviso: Não foi possível carregar histórico: {e}")
                 self._historico = []
 
     def _salvar_historico(self):
@@ -103,7 +104,8 @@ class MensagemServico:
             try:
                 with open(self.caminho_eleitores, "r", encoding="utf-8") as f:
                     self._eleitores = json.load(f)
-            except Exception:
+            except (json.JSONDecodeError, OSError) as e:
+                print(f"Aviso: Não foi possível carregar eleitores: {e}")
                 self._eleitores = []
 
     def _filtrar_eleitores(
@@ -455,9 +457,10 @@ Retorne APENAS um JSON válido com a seguinte estrutura (sem texto adicional ant
         # Parse da resposta
         resultado = self._parse_resposta_claude(resposta_texto)
 
-        # Calcular custo estimado (preços aproximados do Claude)
-        custo_entrada = tokens_entrada * 0.003 / 1000  # $3 por 1M tokens
-        custo_saida = tokens_saida * 0.015 / 1000  # $15 por 1M tokens
+        # Calcular custo estimado (preços Claude Sonnet 4 - jan/2025)
+        # Input: $3/1M tokens, Output: $15/1M tokens
+        custo_entrada = (tokens_entrada / 1_000_000) * 3.0
+        custo_saida = (tokens_saida / 1_000_000) * 15.0
         custo_total = custo_entrada + custo_saida
 
         # Adicionar metadados
