@@ -62,7 +62,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -169,7 +170,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -409,7 +411,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -519,7 +522,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -635,7 +639,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "feminina",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -857,7 +862,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Progresso",
@@ -1196,7 +1203,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -1313,7 +1321,8 @@
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
       "sindical",
-      "ambientalista"
+      "ambientalista",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -1428,7 +1437,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -1544,7 +1554,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -1875,7 +1886,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -1995,7 +2007,8 @@
     "bancadas_tematicas": [
       "sindical",
       "ambientalista",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -2457,7 +2470,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -2797,7 +2811,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Democracia",
@@ -3136,7 +3152,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Família",
@@ -3368,7 +3386,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "evangelica"
+      "evangelica",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -3485,7 +3504,8 @@
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
       "ruralista",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -3713,7 +3733,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Meritocracia",
@@ -3829,7 +3851,8 @@
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
       "ruralista",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -4067,7 +4090,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -4761,7 +4785,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -4881,7 +4906,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Desenvolvimento sustentável",
@@ -4993,7 +5020,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -5218,7 +5246,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Meritocracia",
@@ -5441,7 +5471,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Desenvolvimento sustentável",
@@ -5670,7 +5702,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -5787,7 +5820,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Liberdade",
@@ -5899,7 +5934,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -6019,7 +6055,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "ruralista",
-      "evangelica"
+      "evangelica",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -6133,7 +6170,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Solidariedade",
@@ -6239,7 +6278,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "sindical"
+      "sindical",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -6474,7 +6514,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -6823,7 +6864,8 @@
     "bancadas_tematicas": [
       "sindical",
       "ambientalista",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -6934,7 +6976,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -7050,7 +7093,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Igualdade",
@@ -7385,7 +7430,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -7506,7 +7552,8 @@
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
       "evangelica",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -7621,7 +7668,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Igualdade",
@@ -7735,7 +7784,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Liberdade",
@@ -7846,7 +7897,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Fé",
@@ -8204,7 +8257,8 @@
     "bancadas_tematicas": [
       "ruralista",
       "empresarial",
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -8555,7 +8609,8 @@
     "bancadas_tematicas": [
       "ruralista",
       "empresarial",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -8661,7 +8716,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -8780,7 +8836,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "evangelica",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -8897,7 +8954,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Trabalho",
@@ -9121,7 +9180,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "ambientalista"
+      "ambientalista",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -9348,7 +9408,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "sindical",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -9581,7 +9642,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Fé",
@@ -9697,7 +9760,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "feminina",
-      "ambientalista"
+      "ambientalista",
+      "indigena"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -10037,7 +10101,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -10265,7 +10330,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Democracia",
@@ -11060,7 +11127,9 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "ambientalista"
+      "ambientalista",
+      "lgbtqia",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -11412,7 +11481,8 @@
       "ruralista",
       "evangelica",
       "empresarial",
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -11526,7 +11596,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "feminina",
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -11753,7 +11824,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -11871,7 +11943,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -11992,7 +12065,8 @@
     "bancadas_tematicas": [
       "ruralista",
       "empresarial",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -12110,7 +12184,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -12225,7 +12300,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Liberdade",
@@ -12344,7 +12421,9 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "sindical",
-      "feminina"
+      "feminina",
+      "lgbtqia",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -12455,7 +12534,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Transparência",
@@ -12568,7 +12649,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -12684,7 +12766,9 @@
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
       "sindical",
-      "feminina"
+      "feminina",
+      "lgbtqia",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -13029,7 +13113,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "sindical"
+      "sindical",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -13144,7 +13229,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Patriotismo",
@@ -13253,7 +13340,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Transparência",
@@ -13365,7 +13454,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Justiça social",
@@ -14291,7 +14382,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -14519,7 +14611,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -14634,7 +14727,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -14877,7 +14971,8 @@
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
       "ruralista",
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -15112,7 +15207,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -15234,7 +15330,8 @@
     "bancadas_tematicas": [
       "ruralista",
       "empresarial",
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -15355,7 +15452,8 @@
     "bancadas_tematicas": [
       "ruralista",
       "empresarial",
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -15470,7 +15568,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -15585,7 +15684,8 @@
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
       "empresarial",
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -15699,7 +15799,8 @@
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
       "empresarial",
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -15917,7 +16018,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Igualdade",
@@ -16143,7 +16246,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -16370,7 +16474,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -16715,7 +16820,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Liberdade",
@@ -16943,7 +17050,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -17281,7 +17389,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Trabalho",
@@ -17396,7 +17506,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "saude"
+      "saude",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -17512,7 +17623,8 @@
     "bancadas_tematicas": [
       "ruralista",
       "saude",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -17627,7 +17739,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "sindical",
-      "saude"
+      "saude",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -17744,7 +17857,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "saude"
+      "saude",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -17859,7 +17973,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "saude"
+      "saude",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -17975,7 +18090,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "ruralista",
-      "saude"
+      "saude",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -18092,7 +18208,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "saude"
+      "saude",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -18451,7 +18568,8 @@
     "bancadas_tematicas": [
       "ruralista",
       "saude",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -18557,7 +18675,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Responsabilidade fiscal",
@@ -18784,7 +18904,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "lgbtqia"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Patriotismo",
@@ -19004,7 +19126,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Igualdade",
@@ -19226,7 +19350,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Democracia",
@@ -19793,7 +19919,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -20248,7 +20375,8 @@
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
       "feminina",
-      "ambientalista"
+      "ambientalista",
+      "lgbtqia"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -20364,7 +20492,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -20946,7 +21075,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Patriotismo",
@@ -21065,7 +21196,8 @@
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -21404,7 +21536,8 @@
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -21512,7 +21645,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Desenvolvimento sustentável",
@@ -21626,7 +21761,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -21741,7 +21877,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Progresso",
@@ -21975,7 +22113,8 @@
     "bancadas_tematicas": [
       "ruralista",
       "empresarial",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -22085,7 +22224,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -22315,7 +22455,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -22428,7 +22569,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Responsabilidade fiscal",
@@ -22653,7 +22796,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -22882,7 +23026,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Democracia",
@@ -22997,7 +23143,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Meritocracia",
@@ -23228,7 +23376,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Transparência",
@@ -23459,7 +23609,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -23572,7 +23723,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Solidariedade",
@@ -23687,7 +23840,8 @@
     "bancadas_tematicas": [
       "ruralista",
       "empresarial",
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -23808,7 +23962,8 @@
     "bancadas_tematicas": [
       "ruralista",
       "evangelica",
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -24266,7 +24421,8 @@
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
       "evangelica",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -24840,7 +24996,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -24951,7 +25108,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -25287,7 +25445,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "ambientalista"
+      "ambientalista",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -25618,7 +25777,8 @@
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
       "sindical",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -25727,7 +25887,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -25841,7 +26002,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "ambientalista"
+      "ambientalista",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -26174,7 +26336,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Tradição",
@@ -26283,7 +26447,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -26396,7 +26561,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "sindical"
+      "sindical",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -26735,7 +26901,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Democracia",
@@ -26955,7 +27123,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Trabalho",
@@ -27069,7 +27239,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -27183,7 +27354,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Progresso",
@@ -27407,7 +27580,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -27521,7 +27695,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "sindical"
+      "sindical",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -27627,7 +27802,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Democracia",
@@ -27739,7 +27916,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Fé",
@@ -27854,7 +28033,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Justiça social",
@@ -27966,7 +28147,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Meritocracia",
@@ -28081,7 +28264,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "ambientalista"
+      "ambientalista",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -28546,7 +28730,8 @@
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
       "ruralista",
-      "evangelica"
+      "evangelica",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -28662,7 +28847,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -28778,7 +28964,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -29007,7 +29194,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Igualdade",
@@ -29126,7 +29315,8 @@
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -29238,7 +29428,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "sindical"
+      "sindical",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -29357,7 +29548,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Meritocracia",
@@ -29922,7 +30115,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -30148,7 +30342,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Desenvolvimento sustentável",
@@ -30267,7 +30463,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Tradição",
@@ -30493,7 +30691,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -30609,7 +30808,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -30726,7 +30926,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Liberdade",
@@ -30843,7 +31045,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "sindical",
-      "ambientalista"
+      "ambientalista",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -30960,7 +31163,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Família",
@@ -31070,7 +31275,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "sindical"
+      "sindical",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -31177,7 +31383,8 @@
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
       "ruralista",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -31294,7 +31501,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Meritocracia",
@@ -31520,7 +31729,8 @@
     "bancadas_tematicas": [
       "ruralista",
       "empresarial",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -31640,7 +31850,8 @@
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
       "feminina",
-      "ambientalista"
+      "ambientalista",
+      "indigena"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -31865,7 +32076,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Meritocracia",
@@ -32212,7 +32425,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Meritocracia",
@@ -32439,7 +32654,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "evangelica"
+      "evangelica",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -32552,7 +32768,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -32665,7 +32882,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "sindical"
+      "sindical",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -32900,7 +33118,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Justiça social",
@@ -33566,7 +33786,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Solidariedade",
@@ -33680,7 +33902,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -33795,7 +34018,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -33912,7 +34136,8 @@
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
       "ruralista",
-      "evangelica"
+      "evangelica",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -34137,7 +34362,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Desenvolvimento sustentável",
@@ -34365,7 +34592,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "feminina",
-      "ambientalista"
+      "ambientalista",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -34483,7 +34711,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -34596,7 +34825,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Justiça social",
@@ -35044,7 +35275,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Democracia",
@@ -35274,7 +35507,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -35389,7 +35623,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Meritocracia",
@@ -35741,7 +35977,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Progresso",
@@ -35854,7 +36092,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -36434,7 +36673,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "feminina",
-      "ambientalista"
+      "ambientalista",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -36549,7 +36789,8 @@
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
       "sindical",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -36774,7 +37015,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -36889,7 +37131,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "ruralista",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -37003,7 +37246,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Família",
@@ -37692,7 +37937,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Progresso",
@@ -37802,7 +38049,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Transparência",
@@ -37911,7 +38160,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Justiça social",
@@ -38143,7 +38394,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Família",
@@ -38367,7 +38620,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Liberdade",
@@ -38590,7 +38845,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Família",
@@ -38707,7 +38964,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Liberdade",
@@ -39050,7 +39309,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "sindical",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -39166,7 +39426,8 @@
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
       "feminina",
-      "evangelica"
+      "evangelica",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -39281,7 +39542,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -39392,7 +39654,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "sindical"
+      "sindical",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -39619,7 +39882,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Tradição",
@@ -39737,7 +40002,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "ruralista",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -40074,7 +40340,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Trabalho",
@@ -40306,7 +40574,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Fé",
@@ -40534,7 +40804,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "sindical"
+      "sindical",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -40651,7 +40922,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Democracia",
@@ -41565,7 +41838,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Responsabilidade fiscal",
@@ -41681,7 +41956,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -41914,7 +42190,8 @@
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
       "ruralista",
-      "evangelica"
+      "evangelica",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -42031,7 +42308,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "sindical",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -42259,7 +42537,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -42484,7 +42763,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Justiça social",
@@ -42941,7 +43222,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Tradição",
@@ -43166,7 +43449,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "sindical",
-      "ambientalista"
+      "ambientalista",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -43280,7 +43564,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -43621,7 +43906,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "evangelica"
+      "evangelica",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -43953,7 +44239,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -44063,7 +44350,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "ambientalista"
+      "ambientalista",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -44181,7 +44469,8 @@
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
       "ruralista",
-      "evangelica"
+      "evangelica",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -44536,7 +44825,8 @@
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
       "evangelica",
-      "ambientalista"
+      "ambientalista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -44990,7 +45280,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Família",
@@ -45104,7 +45396,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -45213,7 +45506,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Progresso",
@@ -45678,7 +45973,8 @@
     "bancadas_tematicas": [
       "ruralista",
       "evangelica",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -45794,7 +46090,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Família",
@@ -45906,7 +46204,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Patriotismo",
@@ -46912,7 +47212,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -47030,7 +47331,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -47148,7 +47450,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "sindical"
+      "sindical",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -47263,7 +47566,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -47500,7 +47804,8 @@
       "ruralista",
       "evangelica",
       "educacao",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -47617,7 +47922,8 @@
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
       "feminina",
-      "educacao"
+      "educacao",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -47731,7 +48037,8 @@
     "bancadas_tematicas": [
       "feminina",
       "ambientalista",
-      "educacao"
+      "educacao",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -47956,7 +48263,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -48181,7 +48489,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Patriotismo",
@@ -48415,7 +48725,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "sindical"
+      "sindical",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -48530,7 +48841,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "sindical",
-      "evangelica"
+      "evangelica",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -48757,7 +49069,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "articulado",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Progresso",
@@ -49322,7 +49636,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -49436,7 +49751,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -49662,7 +49978,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Meritocracia",
@@ -49772,7 +50090,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Progresso",
@@ -49880,7 +50200,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "sindical"
+      "sindical",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -49995,7 +50316,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "ruralista",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -50110,7 +50432,8 @@
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
       "ruralista",
-      "evangelica"
+      "evangelica",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -50464,7 +50787,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "ruralista",
-      "evangelica"
+      "evangelica",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -50580,7 +50904,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "ruralista",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -50806,7 +51131,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Responsabilidade fiscal",
@@ -51151,7 +51478,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Liberdade",
@@ -51492,7 +51821,8 @@
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
       "feminina",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -51609,7 +51939,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -51947,7 +52278,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Solidariedade",
@@ -52173,7 +52506,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Desenvolvimento sustentável",
@@ -52286,7 +52621,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "agressivo",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Igualdade",
@@ -52521,7 +52858,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "ruralista",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -52868,7 +53206,8 @@
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
       "empresarial",
-      "bala"
+      "bala",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -53201,7 +53540,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Tradição",
@@ -53315,7 +53656,8 @@
     "estilo_decisao": "racional",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -53539,7 +53881,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -53656,7 +53999,8 @@
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
       "ruralista",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -53775,7 +54119,9 @@
       "ruralista",
       "evangelica",
       "empresarial",
-      "feminina"
+      "feminina",
+      "indigena",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -53888,7 +54234,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "ruralista",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -54006,7 +54353,8 @@
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
       "ruralista",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -54239,7 +54587,8 @@
       "ruralista",
       "evangelica",
       "empresarial",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -54348,7 +54697,8 @@
     "bancadas_tematicas": [
       "ruralista",
       "empresarial",
-      "feminina"
+      "feminina",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -54580,7 +54930,9 @@
     "tolerancia_nuance": "media",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Tradição",
@@ -54813,7 +55165,8 @@
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
       "evangelica",
-      "empresarial"
+      "empresarial",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -55500,7 +55853,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "popular",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -55842,7 +56196,8 @@
     "estilo_decisao": "pragmatico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "ambientalista"
+      "ambientalista",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -55955,7 +56310,9 @@
     "tolerancia_nuance": "alta",
     "estilo_decisao": "racional",
     "estilo_comunicacao": "tecnico",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Igualdade",
@@ -56419,7 +56776,8 @@
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "agressivo",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -56539,7 +56897,8 @@
     "estilo_comunicacao": "articulado",
     "bancadas_tematicas": [
       "ruralista",
-      "evangelica"
+      "evangelica",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -56889,7 +57248,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Democracia",
@@ -57339,7 +57700,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "conciliador",
     "bancadas_tematicas": [
-      "ruralista"
+      "ruralista",
+      "negra"
     ],
     "bancada_bbb": true,
     "valores": [
@@ -57451,7 +57813,8 @@
     "estilo_decisao": "ideologico",
     "estilo_comunicacao": "tecnico",
     "bancadas_tematicas": [
-      "ambientalista"
+      "ambientalista",
+      "negra"
     ],
     "bancada_bbb": false,
     "valores": [
@@ -57796,7 +58159,9 @@
     "tolerancia_nuance": "baixa",
     "estilo_decisao": "identitario",
     "estilo_comunicacao": "popular",
-    "bancadas_tematicas": [],
+    "bancadas_tematicas": [
+      "negra"
+    ],
     "bancada_bbb": false,
     "valores": [
       "Família",
