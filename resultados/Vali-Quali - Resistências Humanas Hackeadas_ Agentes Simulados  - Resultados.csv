@@ -1,0 +1,23 @@
+Item,Texto,Alinhamento,Aderência,Clareza,Expectativa,Indicador,Fase 1,Status
+P1,"Para começarmos, gostaria de conhecer um pouco sobre você. Qual é a sua idade, gênero e há quanto te","3,8","4,8",5,2,"3,9",Aprovada,Modificação Necessária
+P2,Pode me descrever sua função atual? Quais são as principais tarefas que você executa no dia a dia do,5,4,5,"4,4","4,6",Aprovada,Modificação Opcional
+P3,Qual é a sua formação acadêmica? E como foi sua trajetória profissional até chegar ao cargo atual?,"3,4",4,"4,8","3,6","3,95",Aprovada,Modificação Necessária
+P4,"Pensando na sua história com tecnologia no trabalho, como foi essa trajetória? Desde quando você com",5,5,"4,2",5,"4,8",Aprovada,Modificação Opcional
+P5,Pode me contar uma experiência positiva que você teve com alguma tecnologia ou sistema no seu trabal,"4,8",5,5,5,"4,95",Aprovada,Modificação Opcional
+P6,E uma experiência negativa ou frustrante com tecnologia no trabalho? O que aconteceu e como você lid,"4,8",5,5,5,"4,95",Aprovada,Modificação Opcional
+P7,"Você já teve algum contato com inteligência artificial, seja no trabalho ou na vida pessoal? Se sim,",5,"4,8","4,8","4,8","4,85",Aprovada,Modificação Opcional
+P8,"Quando você ouve falar em 'inteligência artificial no serviço público', o que vem à sua mente? Quais",5,"4,8","4,6",5,"4,85",Aprovada,Modificação Opcional
+P9,"Na sua opinião, a inteligência artificial poderia ajudar no seu trabalho específico? De que forma? E",5,5,5,"4,8","4,95",Aprovada,Modificação Opcional
+P10,Imagine que amanhã seu órgão anunciasse a implementação de um sistema de inteligência artificial par,5,5,5,5,5,Aprovada,Aprovação Total
+P11,"Se a inteligência artificial cometesse um erro que prejudicasse um cidadão que você atende, de quem ",5,5,"4,6",5,"4,9",Aprovada,Modificação Opcional
+P12,Você confiaria em uma decisão tomada ou sugerida por inteligência artificial sobre um caso de um cid,5,5,5,"4,8","4,95",Aprovada,Modificação Opcional
+P13,Algumas pessoas têm receio de que a inteligência artificial possa substituir trabalhadores. Você tem,5,"4,8",5,5,"4,95",Aprovada,Modificação Opcional
+P14,O que você considera que seria 'perder' se a inteligência artificial passasse a fazer parte do seu t,5,5,5,5,5,Aprovada,Aprovação Total
+P15,Já houve alguma situação em que você se sentiu pressionado a usar uma tecnologia no trabalho sem est,4,5,"4,8",5,"4,7",Aprovada,Modificação Opcional
+P16,"Na sua percepção, o seu órgão teria condições — em termos de equipamentos, sistemas, internet, supor","4,4","4,8","4,8","3,8","4,45",Aprovada,Modificação Necessária
+P17,"Se colegas seus começassem a usar inteligência artificial e relatassem bons resultados, isso mudaria",5,5,5,"4,8","4,95",Aprovada,Modificação Opcional
+P18,Como você costuma reagir quando precisa aprender algo totalmente novo no trabalho? Pode me contar um,4,5,5,5,"4,75",Aprovada,Modificação Opcional
+P19,"Quando surgem muitas tarefas ao mesmo tempo, com prazos apertados, como você organiza o seu dia? O q",4,5,5,"4,4","4,6",Aprovada,Modificação Opcional
+P20,Pense em uma situação de conflito ou tensão na sua equipe. O que você fez naquela ocasião e o que co,"3,8",5,"4,6","4,8","4,55",Aprovada,Modificação Opcional
+P21,"Em momentos de muita pressão ou incerteza no trabalho, o que costuma passar pela sua cabeça? Como is",4,5,5,5,"4,75",Aprovada,Modificação Opcional
+P22,"Quando não há uma orientação muito clara sobre como realizar uma tarefa nova, você tende a esperar i",4,"4,8",5,"4,8","4,65",Aprovada,Modificação Opcional
