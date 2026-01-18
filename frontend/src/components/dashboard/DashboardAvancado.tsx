@@ -220,7 +220,7 @@ export function DashboardAvancado({
       })),
       temasDiscurso: dados.temas,
       analiseRegional: dados.dadosRegionais.map(r => ({
-        regiao: r.nome,
+        regiao: r.nome || r.regiao,
         candidatoLider: dados.intencaoVoto[0]?.candidato || '',
         percentual: r.valor,
         variacao: r.variacao ?? 0

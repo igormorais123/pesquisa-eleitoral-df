@@ -38,6 +38,173 @@ def carregar_templates() -> dict:
 
 
 @router.get(
+    "/meta/categorias",
+    response_model=List[CategoriaInfo],
+    summary="Listar categorias de templates",
+    description="Retorna todas as categorias disponíveis para templates"
+)
+async def listar_categorias():
+    """Lista todas as categorias de templates disponíveis."""
+    dados = carregar_templates()
+    categorias = dados.get("categorias", [])
+
+    return [
+        CategoriaInfo(
+            id=cat["id"],
+            nome=cat["nome"],
+            descricao=cat.get("descricao", ""),
+            cor=cat.get("cor", "#666666")
+        )
+        for cat in categorias
+    ]
+
+
+@router.get(
+    "/meta/tipos-eleicao",
+    response_model=List[TipoEleicaoInfo],
+    summary="Listar tipos de eleição",
+    description="Retorna todos os tipos de eleição disponíveis"
+)
+async def listar_tipos_eleicao():
+    """Lista todos os tipos de eleição disponíveis."""
+    dados = carregar_templates()
+    tipos = dados.get("tipos_eleicao", [])
+
+    return [
+        TipoEleicaoInfo(
+            id=tipo["id"],
+            nome=tipo["nome"],
+            descricao=tipo.get("descricao", "")
+        )
+        for tipo in tipos
+    ]
+
+
+@router.get(
+    "/meta/tags",
+    response_model=List[str],
+    summary="Listar todas as tags",
+    description="Retorna todas as tags únicas usadas nos templates"
+)
+async def listar_tags():
+    """Lista todas as tags únicas dos templates."""
+    dados = carregar_templates()
+    templates = dados.get("templates", [])
+
+    tags_unicas = set()
+    for tpl in templates:
+        for tag in tpl.get("tags", []):
+            tags_unicas.add(tag)
+
+    return sorted(list(tags_unicas))
+
+
+@router.get(
+    "/meta/estatisticas",
+    summary="Estatísticas dos templates",
+    description="Retorna estatísticas gerais sobre os templates disponíveis"
+)
+async def estatisticas_templates():
+    """Retorna estatísticas sobre os templates disponíveis."""
+    dados = carregar_templates()
+    templates = dados.get("templates", [])
+
+    total_templates = len(templates)
+    total_perguntas = sum(len(tpl.get("perguntas", [])) for tpl in templates)
+
+    # Contar por categoria
+    por_categoria = {}
+    for tpl in templates:
+        cat = tpl.get("categoria", "outros")
+        por_categoria[cat] = por_categoria.get(cat, 0) + 1
+
+    # Contar por tipo de eleição
+    por_tipo_eleicao = {}
+    for tpl in templates:
+        tipo = tpl.get("tipo_eleicao", "geral")
+        por_tipo_eleicao[tipo] = por_tipo_eleicao.get(tipo, 0) + 1
+
+    # Tags mais usadas
+    tags_count = {}
+    for tpl in templates:
+        for tag in tpl.get("tags", []):
+            tags_count[tag] = tags_count.get(tag, 0) + 1
+
+    tags_populares = sorted(
+        tags_count.items(),
+        key=lambda x: x[1],
+        reverse=True
+    )[:10]
+
+    return {
+        "total_templates": total_templates,
+        "total_perguntas": total_perguntas,
+        "media_perguntas_por_template": round(total_perguntas / total_templates, 1) if total_templates > 0 else 0,
+        "por_categoria": por_categoria,
+        "por_tipo_eleicao": por_tipo_eleicao,
+        "tags_mais_usadas": dict(tags_populares),
+        "versao": dados.get("versao", "1.0.0"),
+        "ultima_atualizacao": dados.get("ultima_atualizacao", "")
+    }
+
+
+@router.get(
+    "/filtro/por-tipo-eleicao/{tipo_eleicao}",
+    response_model=List[TemplateResumo],
+    summary="Templates por tipo de eleição",
+    description="Retorna templates filtrados por tipo de eleição"
+)
+async def templates_por_tipo_eleicao(tipo_eleicao: str):
+    """Retorna templates para um tipo específico de eleição."""
+    dados = carregar_templates()
+    templates = dados.get("templates", [])
+
+    resultado = []
+
+    for tpl in templates:
+        if tpl.get("tipo_eleicao") == tipo_eleicao or tpl.get("tipo_eleicao") == "geral":
+            resultado.append(TemplateResumo(
+                id=tpl["id"],
+                nome=tpl["nome"],
+                descricao=tpl.get("descricao", ""),
+                categoria=tpl.get("categoria", ""),
+                tipo_eleicao=tpl.get("tipo_eleicao", ""),
+                tags=tpl.get("tags", []),
+                total_perguntas=len(tpl.get("perguntas", []))
+            ))
+
+    return resultado
+
+
+@router.get(
+    "/filtro/por-categoria/{categoria}",
+    response_model=List[TemplateResumo],
+    summary="Templates por categoria",
+    description="Retorna templates filtrados por categoria"
+)
+async def templates_por_categoria(categoria: CategoriaTemplate):
+    """Retorna templates para uma categoria específica."""
+    dados = carregar_templates()
+    templates = dados.get("templates", [])
+
+    resultado = []
+
+    for tpl in templates:
+        if tpl.get("categoria") == categoria.value:
+            resultado.append(TemplateResumo(
+                id=tpl["id"],
+                nome=tpl["nome"],
+                descricao=tpl.get("descricao", ""),
+                categoria=tpl.get("categoria", ""),
+                tipo_eleicao=tpl.get("tipo_eleicao", ""),
+                tags=tpl.get("tags", []),
+                total_perguntas=len(tpl.get("perguntas", []))
+            ))
+
+    return resultado
+
+
+@router.get(
     "/",
     response_model=List[TemplateResumo],
     summary="Listar todos os templates",
@@ -177,124 +344,6 @@ async def obter_perguntas_template(
     )
 
 
-@router.get(
-    "/meta/categorias",
-    response_model=List[CategoriaInfo],
-    summary="Listar categorias de templates",
-    description="Retorna todas as categorias disponíveis para templates"
-)
-async def listar_categorias():
-    """Lista todas as categorias de templates disponíveis."""
-    dados = carregar_templates()
-    categorias = dados.get("categorias", [])
-
-    return [
-        CategoriaInfo(
-            id=cat["id"],
-            nome=cat["nome"],
-            descricao=cat.get("descricao", ""),
-            cor=cat.get("cor", "#666666")
-        )
-        for cat in categorias
-    ]
-
-
-@router.get(
-    "/meta/tipos-eleicao",
-    response_model=List[TipoEleicaoInfo],
-    summary="Listar tipos de eleição",
-    description="Retorna todos os tipos de eleição disponíveis"
-)
-async def listar_tipos_eleicao():
-    """Lista todos os tipos de eleição disponíveis."""
-    dados = carregar_templates()
-    tipos = dados.get("tipos_eleicao", [])
-
-    return [
-        TipoEleicaoInfo(
-            id=tipo["id"],
-            nome=tipo["nome"],
-            descricao=tipo.get("descricao", "")
-        )
-        for tipo in tipos
-    ]
-
-
-@router.get(
-    "/meta/tags",
-    response_model=List[str],
-    summary="Listar todas as tags",
-    description="Retorna todas as tags únicas usadas nos templates"
-)
-async def listar_tags():
-    """Lista todas as tags únicas dos templates."""
-    dados = carregar_templates()
-    templates = dados.get("templates", [])
-
-    tags_unicas = set()
-    for tpl in templates:
-        for tag in tpl.get("tags", []):
-            tags_unicas.add(tag)
-
-    return sorted(list(tags_unicas))
-
-
-@router.get(
-    "/filtro/por-tipo-eleicao/{tipo_eleicao}",
-    response_model=List[TemplateResumo],
-    summary="Templates por tipo de eleição",
-    description="Retorna templates filtrados por tipo de eleição"
-)
-async def templates_por_tipo_eleicao(tipo_eleicao: str):
-    """Retorna templates para um tipo específico de eleição."""
-    dados = carregar_templates()
-    templates = dados.get("templates", [])
-
-    resultado = []
-
-    for tpl in templates:
-        if tpl.get("tipo_eleicao") == tipo_eleicao or tpl.get("tipo_eleicao") == "geral":
-            resultado.append(TemplateResumo(
-                id=tpl["id"],
-                nome=tpl["nome"],
-                descricao=tpl.get("descricao", ""),
-                categoria=tpl.get("categoria", ""),
-                tipo_eleicao=tpl.get("tipo_eleicao", ""),
-                tags=tpl.get("tags", []),
-                total_perguntas=len(tpl.get("perguntas", []))
-            ))
-
-    return resultado
-
-
-@router.get(
-    "/filtro/por-categoria/{categoria}",
-    response_model=List[TemplateResumo],
-    summary="Templates por categoria",
-    description="Retorna templates filtrados por categoria"
-)
-async def templates_por_categoria(categoria: CategoriaTemplate):
-    """Retorna templates para uma categoria específica."""
-    dados = carregar_templates()
-    templates = dados.get("templates", [])
-
-    resultado = []
-
-    for tpl in templates:
-        if tpl.get("categoria") == categoria.value:
-            resultado.append(TemplateResumo(
-                id=tpl["id"],
-                nome=tpl["nome"],
-                descricao=tpl.get("descricao", ""),
-                categoria=tpl.get("categoria", ""),
-                tipo_eleicao=tpl.get("tipo_eleicao", ""),
-                tags=tpl.get("tags", []),
-                total_perguntas=len(tpl.get("perguntas", []))
-            ))
-
-    return resultado
-
-
 @router.post(
     "/{template_id}/aplicar/{pesquisa_id}",
     summary="Aplicar template a uma pesquisa",
@@ -341,53 +390,4 @@ async def aplicar_template_pesquisa(
         "perguntas_adicionadas": len(perguntas),
         "substituiu_existentes": substituir_existentes,
         "perguntas": perguntas
-    }
-
-
-@router.get(
-    "/meta/estatisticas",
-    summary="Estatísticas dos templates",
-    description="Retorna estatísticas gerais sobre os templates disponíveis"
-)
-async def estatisticas_templates():
-    """Retorna estatísticas sobre os templates disponíveis."""
-    dados = carregar_templates()
-    templates = dados.get("templates", [])
-
-    total_templates = len(templates)
-    total_perguntas = sum(len(tpl.get("perguntas", [])) for tpl in templates)
-
-    # Contar por categoria
-    por_categoria = {}
-    for tpl in templates:
-        cat = tpl.get("categoria", "outros")
-        por_categoria[cat] = por_categoria.get(cat, 0) + 1
-
-    # Contar por tipo de eleição
-    por_tipo_eleicao = {}
-    for tpl in templates:
-        tipo = tpl.get("tipo_eleicao", "geral")
-        por_tipo_eleicao[tipo] = por_tipo_eleicao.get(tipo, 0) + 1
-
-    # Tags mais usadas
-    tags_count = {}
-    for tpl in templates:
-        for tag in tpl.get("tags", []):
-            tags_count[tag] = tags_count.get(tag, 0) + 1
-
-    tags_populares = sorted(
-        tags_count.items(),
-        key=lambda x: x[1],
-        reverse=True
-    )[:10]
-
-    return {
-        "total_templates": total_templates,
-        "total_perguntas": total_perguntas,
-        "media_perguntas_por_template": round(total_perguntas / total_templates, 1) if total_templates > 0 else 0,
-        "por_categoria": por_categoria,
-        "por_tipo_eleicao": por_tipo_eleicao,
-        "tags_mais_usadas": dict(tags_populares),
-        "versao": dados.get("versao", "1.0.0"),
-        "ultima_atualizacao": dados.get("ultima_atualizacao", "")
     }
