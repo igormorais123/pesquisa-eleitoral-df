@@ -24,6 +24,7 @@ import {
   UserCircle,
   Target,
   Map,
+  Building2,
 } from 'lucide-react';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { useAuthStore } from '@/stores/auth-store';
@@ -60,6 +61,12 @@ const menuItems = [
     href: '/parlamentares',
     icone: Landmark,
     descricao: 'Deputados e senadores do DF',
+  },
+  {
+    titulo: 'Gestores',
+    href: '/gestores',
+    icone: Building2,
+    descricao: 'Gestores publicos e privados',
   },
   {
     titulo: 'Candidatos',
