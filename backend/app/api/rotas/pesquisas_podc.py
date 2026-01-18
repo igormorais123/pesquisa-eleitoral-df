@@ -12,7 +12,7 @@ from typing import List, Optional
 from uuid import uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from sqlalchemy import select, func, text
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import DadosToken, obter_usuario_atual
@@ -25,56 +25,6 @@ from app.esquemas.pesquisa_podc import (
 )
 
 router = APIRouter()
-
-
-# ============================================
-# MIGRATION (temporário)
-# ============================================
-
-
-@router.post("/migration/remover-fk")
-async def remover_fk_usuario(
-    usuario: DadosToken = Depends(obter_usuario_atual),
-    db: AsyncSession = Depends(get_db),
-):
-    """
-    Remove a FK de usuario_id que impede criar pesquisas com autenticação de teste.
-    ENDPOINT TEMPORÁRIO - remover após executar.
-    """
-    if usuario.papel != "admin":
-        raise HTTPException(status_code=403, detail="Apenas admin pode executar migrations")
-
-    try:
-        # Verificar se a constraint existe
-        check_sql = text("""
-            SELECT constraint_name FROM information_schema.table_constraints
-            WHERE table_name = 'pesquisas_podc'
-            AND constraint_type = 'FOREIGN KEY'
-            AND constraint_name LIKE '%usuario%'
-        """)
-        result = await db.execute(check_sql)
-        constraints = result.fetchall()
-
-        if not constraints:
-            return {"mensagem": "Nenhuma FK de usuario encontrada", "status": "ok"}
-
-        # Dropar todas as FKs de usuario encontradas
-        dropped = []
-        for (constraint_name,) in constraints:
-            drop_sql = text(f'ALTER TABLE pesquisas_podc DROP CONSTRAINT IF EXISTS "{constraint_name}"')
-            await db.execute(drop_sql)
-            dropped.append(constraint_name)
-
-        await db.commit()
-
-        return {
-            "mensagem": f"FKs removidas com sucesso",
-            "constraints_removidas": dropped,
-            "status": "ok"
-        }
-    except Exception as e:
-        await db.rollback()
-        return {"erro": str(e), "status": "erro"}
 
 
 # ============================================
