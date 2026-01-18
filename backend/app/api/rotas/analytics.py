@@ -4,10 +4,12 @@ Rotas de Analytics e Histórico
 Endpoints para análises globais, correlações, tendências e histórico de pesquisas.
 """
 
+import csv
+import io
 from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, Depends, Query
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
@@ -221,14 +223,25 @@ async def buscar_em_respostas(
 @router.get("/exportar")
 async def exportar_dataset(
     formato: str = Query("json", pattern="^(json|csv)$"),
+    tipo: str = Query(
+        "respostas",
+        pattern="^(respostas|pesquisas|eleitores|dashboard)$",
+        description="Tipo de dados a exportar"
+    ),
     db: AsyncSession = Depends(get_db),
 ):
     """
     Exporta todos os dados em formato estruturado.
 
-    Formatos:
-    - **json**: Retorna JSON completo
-    - **csv**: Retorna dados tabulares (em desenvolvimento)
+    **Formatos:**
+    - `json`: Retorna JSON completo
+    - `csv`: Retorna arquivo CSV para download
+
+    **Tipos de dados:**
+    - `respostas`: Todas as respostas das pesquisas
+    - `pesquisas`: Lista de pesquisas realizadas
+    - `eleitores`: Dados agregados de eleitores
+    - `dashboard`: Métricas consolidadas
     """
     servico = AnaliseAcumulativaServico(db)
     dados = await servico.exportar_dataset_completo()
@@ -236,9 +249,60 @@ async def exportar_dataset(
     if formato == "json":
         return JSONResponse(content=dados)
 
-    # CSV - retornar como JSON por enquanto
-    # TODO: Implementar exportação CSV
-    return JSONResponse(content=dados)
+    # Exportação CSV
+    output = io.StringIO()
+
+    # Selecionar dados baseado no tipo
+    if tipo == "respostas" and "respostas" in dados:
+        registros = dados.get("respostas", [])
+        if registros:
+            writer = csv.DictWriter(output, fieldnames=registros[0].keys())
+            writer.writeheader()
+            writer.writerows(registros)
+    elif tipo == "pesquisas" and "pesquisas" in dados:
+        registros = dados.get("pesquisas", [])
+        if registros:
+            writer = csv.DictWriter(output, fieldnames=registros[0].keys())
+            writer.writeheader()
+            writer.writerows(registros)
+    elif tipo == "eleitores" and "eleitores" in dados:
+        registros = dados.get("eleitores", [])
+        if registros:
+            writer = csv.DictWriter(output, fieldnames=registros[0].keys())
+            writer.writeheader()
+            writer.writerows(registros)
+    elif tipo == "dashboard":
+        # Dashboard é um objeto único, converter para linhas
+        dashboard = dados.get("dashboard", dados)
+        registros = [{"metrica": k, "valor": v} for k, v in dashboard.items() if not isinstance(v, (dict, list))]
+        if registros:
+            writer = csv.DictWriter(output, fieldnames=["metrica", "valor"])
+            writer.writeheader()
+            writer.writerows(registros)
+    else:
+        # Fallback: tentar exportar o primeiro array encontrado
+        for key, value in dados.items():
+            if isinstance(value, list) and value and isinstance(value[0], dict):
+                writer = csv.DictWriter(output, fieldnames=value[0].keys())
+                writer.writeheader()
+                writer.writerows(value)
+                break
+        else:
+            # Se não encontrar arrays, converter dict raiz
+            registros = [{"chave": k, "valor": str(v)} for k, v in dados.items()]
+            writer = csv.DictWriter(output, fieldnames=["chave", "valor"])
+            writer.writeheader()
+            writer.writerows(registros)
+
+    output.seek(0)
+
+    return StreamingResponse(
+        iter([output.getvalue()]),
+        media_type="text/csv",
+        headers={
+            "Content-Disposition": f"attachment; filename=pesquisa_eleitoral_{tipo}.csv"
+        }
+    )
 
 
 # ============================================
