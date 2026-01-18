@@ -111,6 +111,12 @@ const menuItems = [
     descricao: 'Análises globais e correlações',
   },
   {
+    titulo: 'Mensagens',
+    href: '/mensagens',
+    icone: Sparkles,
+    descricao: 'Gerador de mensagens com IA',
+  },
+  {
     titulo: 'Histórico',
     href: '/historico',
     icone: History,
