@@ -9,6 +9,8 @@ export {
   exportarDadosCompletos,
 } from './excel';
 
+export { exportarEleitoresCSV } from './csv';
+
 export {
   exportarResultadoPDF,
   exportarEleitoresPDF,

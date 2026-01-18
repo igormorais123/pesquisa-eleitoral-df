@@ -4,7 +4,9 @@ Serviço de Eleitores
 Lógica de negócio para gestão de eleitores/agentes sintéticos.
 """
 
+import csv
 import json
+import io
 import math
 from collections import Counter
 from pathlib import Path
@@ -569,6 +571,69 @@ class EleitorServico:
             if eleitor:
                 resultado.append(eleitor)
         return resultado
+
+    def exportar_csv(self, filtros: FiltrosEleitor) -> str:
+        """
+        Exporta eleitores filtrados para CSV.
+
+        Args:
+            filtros: Filtros aplicados (ordenação respeitada)
+
+        Returns:
+            Conteúdo CSV em string
+        """
+        eleitores = self._aplicar_filtros(self._eleitores, filtros)
+        eleitores = self._ordenar(eleitores, filtros.ordenar_por, filtros.ordem)
+
+        colunas = [
+            "id",
+            "nome",
+            "idade",
+            "genero",
+            "cor_raca",
+            "regiao_administrativa",
+            "local_referencia",
+            "cluster_socioeconomico",
+            "escolaridade",
+            "profissao",
+            "ocupacao_vinculo",
+            "renda_salarios_minimos",
+            "religiao",
+            "estado_civil",
+            "filhos",
+            "orientacao_politica",
+            "posicao_bolsonaro",
+            "interesse_politico",
+            "tolerancia_nuance",
+            "estilo_decisao",
+            "valores",
+            "preocupacoes",
+            "vieses_cognitivos",
+            "medos",
+            "fontes_informacao",
+            "susceptibilidade_desinformacao",
+            "meio_transporte",
+            "tempo_deslocamento_trabalho",
+            "voto_facultativo",
+            "conflito_identitario",
+            "historia_resumida",
+            "instrucao_comportamental",
+        ]
+
+        def normalizar(valor: Any) -> str:
+            if valor is None:
+                return ""
+            if isinstance(valor, (list, dict)):
+                return json.dumps(valor, ensure_ascii=False)
+            return str(valor)
+
+        buffer = io.StringIO()
+        writer = csv.writer(buffer)
+        writer.writerow(colunas)
+        for eleitor in eleitores:
+            writer.writerow([normalizar(eleitor.get(c)) for c in colunas])
+
+        return buffer.getvalue()
 
 
 # Instância global do serviço

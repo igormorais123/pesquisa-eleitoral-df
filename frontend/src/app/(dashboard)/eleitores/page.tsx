@@ -17,12 +17,13 @@ import {
   Lightbulb,
   FileSpreadsheet,
   FileDown,
+  FileText,
   ChevronDown,
   Activity,
   Home,
 } from 'lucide-react';
 import { useEleitores } from '@/hooks/useEleitores';
-import { exportarEleitoresExcel, exportarEleitoresPDF } from '@/lib/export';
+import { exportarEleitoresCSV, exportarEleitoresExcel, exportarEleitoresPDF } from '@/lib/export';
 import { AgenteCard } from '@/components/agentes/AgenteCard';
 import { AgentesFilters } from '@/components/agentes/AgentesFilters';
 import { AgentesCharts } from '@/components/agentes/AgentesCharts';
@@ -163,6 +164,13 @@ function EleitoresContent() {
                 >
                   <FileSpreadsheet className="w-4 h-4 text-green-400" />
                   Excel ({eleitoresFiltrados.length})
+                </button>
+                <button
+                  onClick={() => exportarEleitoresCSV(eleitoresFiltrados)}
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 transition-colors"
+                >
+                  <FileText className="w-4 h-4 text-blue-400" />
+                  CSV ({eleitoresFiltrados.length})
                 </button>
                 <button
                   onClick={() => exportarEleitoresPDF(eleitoresFiltrados)}

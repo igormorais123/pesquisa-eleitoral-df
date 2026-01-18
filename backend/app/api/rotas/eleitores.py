@@ -7,7 +7,7 @@ Usa PostgreSQL como backend de dados.
 
 from typing import List, Optional
 
-from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Body, Depends, HTTPException, Query, Response, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import DadosToken, obter_usuario_atual
@@ -158,6 +158,89 @@ async def obter_opcoes_filtros(
     Útil para popular dropdowns e checkboxes nos filtros da UI.
     """
     return await servico.obter_opcoes_filtros()
+
+
+@router.get("/exportar")
+async def exportar_eleitores_csv(
+    # Demográficos
+    idade_min: Optional[int] = Query(None, ge=16),
+    idade_max: Optional[int] = Query(None, le=120),
+    generos: Optional[str] = Query(None, description="Gêneros separados por vírgula"),
+    cores_racas: Optional[str] = Query(None, description="Cores/raças separadas por vírgula"),
+    # Geográficos
+    regioes: Optional[str] = Query(None, description="RAs separadas por vírgula"),
+    # Socioeconômicos
+    clusters: Optional[str] = Query(None, description="Clusters separados por vírgula"),
+    escolaridades: Optional[str] = Query(None),
+    profissoes: Optional[str] = Query(None),
+    ocupacoes: Optional[str] = Query(None),
+    rendas: Optional[str] = Query(None),
+    # Socioculturais
+    religioes: Optional[str] = Query(None),
+    estados_civis: Optional[str] = Query(None),
+    tem_filhos: Optional[bool] = Query(None),
+    # Políticos
+    orientacoes: Optional[str] = Query(None),
+    posicoes_bolsonaro: Optional[str] = Query(None),
+    interesses: Optional[str] = Query(None),
+    # Comportamentais
+    estilos: Optional[str] = Query(None),
+    tolerancias: Optional[str] = Query(None),
+    voto_facultativo: Optional[bool] = Query(None),
+    conflito_identitario: Optional[bool] = Query(None),
+    # Busca
+    busca: Optional[str] = Query(None, description="Busca por nome, profissão, região"),
+    # Ordenação
+    ordenar_por: str = Query("nome"),
+    ordem: str = Query("asc", pattern="^(asc|desc)$"),
+    servico: EleitorServicoDB = Depends(get_servico),
+    _: DadosToken = Depends(obter_usuario_atual),
+):
+    """
+    Exporta eleitores filtrados em CSV.
+
+    Usa os mesmos filtros do endpoint de listagem.
+    """
+
+    def parse_lista(valor: Optional[str]) -> Optional[List[str]]:
+        if valor is None:
+            return None
+        return [v.strip() for v in valor.split(",") if v.strip()]
+
+    filtros = FiltrosEleitor(
+        idade_min=idade_min,
+        idade_max=idade_max,
+        generos=parse_lista(generos),
+        cores_racas=parse_lista(cores_racas),
+        regioes_administrativas=parse_lista(regioes),
+        clusters=parse_lista(clusters),
+        escolaridades=parse_lista(escolaridades),
+        profissoes=parse_lista(profissoes),
+        ocupacoes=parse_lista(ocupacoes),
+        faixas_renda=parse_lista(rendas),
+        religioes=parse_lista(religioes),
+        estados_civis=parse_lista(estados_civis),
+        tem_filhos=tem_filhos,
+        orientacoes_politicas=parse_lista(orientacoes),
+        posicoes_bolsonaro=parse_lista(posicoes_bolsonaro),
+        interesses_politicos=parse_lista(interesses),
+        estilos_decisao=parse_lista(estilos),
+        tolerancias=parse_lista(tolerancias),
+        voto_facultativo=voto_facultativo,
+        conflito_identitario=conflito_identitario,
+        busca_texto=busca,
+        ordenar_por=ordenar_por,
+        ordem=ordem,
+    )
+
+    csv_conteudo = servico.exportar_csv(filtros)
+    return Response(
+        content=csv_conteudo,
+        media_type="text/csv; charset=utf-8",
+        headers={
+            "Content-Disposition": "attachment; filename=eleitores_exportados.csv"
+        },
+    )
 
 
 @router.get("/ids")

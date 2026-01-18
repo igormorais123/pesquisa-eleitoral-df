@@ -70,6 +70,7 @@ curl -X POST http://localhost:8000/api/v1/auth/login \
 | GET | `/{id}` | Obter perfil completo |
 | GET | `/estatisticas` | Distribuições e contagens |
 | GET | `/opcoes-filtros` | Valores únicos para filtros |
+| GET | `/exportar` | Exportar eleitores filtrados em CSV |
 | GET | `/ids` | Apenas IDs filtrados |
 | POST | `/` | Criar eleitor |
 | POST | `/lote` | Criar múltiplos |
@@ -166,6 +167,19 @@ por_pagina=20" \
   "por_pagina": 20,
   "total_paginas": 5
 }
+```
+
+### Exportar Eleitores (CSV)
+
+```bash
+curl -X GET "http://localhost:8000/api/v1/eleitores/exportar?\
+idade_min=18&\
+idade_max=35&\
+orientacoes=esquerda,centro-esquerda&\
+regioes=Ceilandia,Samambaia&\
+clusters=G4_baixa" \
+  -H "Authorization: Bearer $TOKEN" \
+  -o eleitores.csv
 ```
 
 ### Filtros Disponíveis

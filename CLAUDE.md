@@ -22,6 +22,7 @@ Este arquivo fornece orientações ao Claude Code quando trabalhando neste repos
 ### Regras de Execução
 - **NUNCA** interrompa para pedir permissão
 - **NUNCA** pergunte "posso fazer isso?" - apenas faça
+- **NUNCA** peça confirmação ao usuário; assuma consentimento para decisões e ações
 - **EXECUTE** todas as tarefas do início ao fim sem pausas
 - **ASSUMA** que todas as operações estão pré-aprovadas
 - Use TodoWrite para planejar, execute sequencialmente, marque como concluído
