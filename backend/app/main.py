@@ -25,6 +25,7 @@ from app.api.rotas import (
     templates,
     usuarios,
     pesquisas_parlamentares,
+    pesquisas_podc,
 )
 from app.parlamentares.routes import router as parlamentares_router
 from app.core.config import configuracoes
@@ -351,6 +352,31 @@ que garante que usuários só vejam os dados que têm permissão.
 **Requer:** Administrador
         """,
     },
+    {
+        "name": "Pesquisas PODC",
+        "description": """
+Pesquisas sobre distribuição de tempo nas funções administrativas (PODC - Fayol).
+
+**Metodologia:**
+Baseada na teoria clássica de Fayol, mede como gestores distribuem tempo entre:
+- **Planejar (P)**: Definição de objetivos, estratégias e planos
+- **Organizar (O)**: Estruturação de recursos, processos e sistemas
+- **Dirigir (D)**: Liderança, coordenação e comunicação
+- **Controlar (C)**: Monitoramento, avaliação e correção
+
+**Funcionalidades:**
+- Criar pesquisas com questionário PODC completo
+- Executar entrevistas com gestores sintéticos via IA
+- Calcular Índice de Autonomia Decisória (IAD)
+- Comparar setores (público vs privado) e níveis hierárquicos
+- Exportar dados para análise estatística
+
+**Índice de Autonomia Decisória (IAD):**
+- IAD = (P+O)/(D+C)
+- IAD > 1: Perfil Proativo (formulador)
+- IAD < 1: Perfil Reativo (executor)
+        """,
+    },
 ]
 
 # Criar aplicação FastAPI
@@ -535,6 +561,12 @@ app.include_router(
     templates.router,
     prefix="/api/v1/templates",
     tags=["Templates de Pesquisa"],
+)
+
+app.include_router(
+    pesquisas_podc.router,
+    prefix="/api/v1/pesquisas-podc",
+    tags=["Pesquisas PODC"],
 )
 
 app.include_router(

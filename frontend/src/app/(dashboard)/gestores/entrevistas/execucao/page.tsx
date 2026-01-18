@@ -19,9 +19,12 @@ import {
   Target,
   Building2,
   Briefcase,
+  Database,
+  PieChart,
 } from 'lucide-react';
 import { useGestoresStore } from '@/stores/gestores-store';
-import { usePesquisaPODCStore, type RespostaGestor } from '@/stores/pesquisa-podc-store';
+import { usePesquisaPODCStore, type RespostaGestor, type RespostaPODCEstruturada } from '@/stores/pesquisa-podc-store';
+import { useAuthStore } from '@/stores/auth-store';
 import { cn, formatarMoeda, formatarNumero } from '@/lib/utils';
 import type { Gestor } from '@/types';
 
@@ -29,12 +32,14 @@ export default function PaginaExecucaoPODC() {
   const router = useRouter();
 
   const { gestores: todosGestores } = useGestoresStore();
+  const { token } = useAuthStore();
   const {
     sessaoAtual,
     executando,
     pausado,
     progresso,
     respostasRecebidas,
+    respostasEstruturadas,
     custoAtual,
     tokensInput,
     tokensOutput,
@@ -47,9 +52,13 @@ export default function PaginaExecucaoPODC() {
     cancelarExecucao,
     atualizarProgresso,
     adicionarResposta,
+    adicionarRespostaEstruturada,
     atualizarCusto,
     finalizarExecucao,
     iniciarExecucao,
+    criarPesquisaBackend,
+    setPesquisaIdBackend,
+    carregandoBackend,
   } = usePesquisaPODCStore();
 
   const [gestoresPendentes, setGestoresPendentes] = useState<Gestor[]>([]);
@@ -97,14 +106,26 @@ export default function PaginaExecucaoPODC() {
     setCarregando(false);
   }, [todosGestores, gestoresSelecionados, respostasRecebidas]);
 
-  // Iniciar execucao automaticamente
+  // Criar pesquisa no backend antes de iniciar
   useEffect(() => {
-    if (!carregando && !iniciado && gestoresPendentes.length > 0 && perguntas.length > 0) {
-      setIniciado(true);
-      iniciarExecucao();
-      setTempoInicio(Date.now());
-    }
-  }, [carregando, iniciado, gestoresPendentes.length, perguntas.length, iniciarExecucao]);
+    const criarPesquisa = async () => {
+      if (!carregando && !iniciado && gestoresPendentes.length > 0 && token) {
+        setIniciado(true);
+        iniciarExecucao();
+        setTempoInicio(Date.now());
+
+        // Criar pesquisa no backend para salvar resultados
+        if (!sessaoAtual?.pesquisaIdBackend) {
+          const pesquisaId = await criarPesquisaBackend(token);
+          if (pesquisaId) {
+            console.log('Pesquisa criada no backend:', pesquisaId);
+          }
+        }
+      }
+    };
+
+    criarPesquisa();
+  }, [carregando, iniciado, gestoresPendentes.length, token, iniciarExecucao, criarPesquisaBackend, sessaoAtual?.pesquisaIdBackend]);
 
   // Processar proximo gestor
   const processarProximo = useCallback(async () => {
@@ -121,58 +142,73 @@ export default function PaginaExecucaoPODC() {
     setGestorAtual(gestor);
 
     try {
-      const respostasGestor: RespostaGestor['respostas'] = [];
-      let totalTokens = 0;
-      let totalCusto = 0;
+      // Chamar API com questionário completo (uma chamada por gestor)
+      const response = await fetch('/api/claude/pesquisa-podc', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({
+          gestor,
+          perguntas,
+          pesquisaId: sessaoAtual?.pesquisaIdBackend, // Passar ID para salvar no backend
+          custoAcumulado: custoAtual,
+          usarQuestionarioCompleto: true, // Usar questionário completo da metodologia
+        }),
+        signal: abortController.current?.signal,
+      });
 
-      // Chamar API para cada pergunta
-      for (const pergunta of perguntas) {
-        if (pausado) break;
-
-        const response = await fetch('/api/claude/pesquisa-podc', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            gestor,
-            pergunta,
-            custoAcumulado: custoAtual,
-          }),
-          signal: abortController.current?.signal,
-        });
-
-        if (!response.ok) {
-          const error = await response.json();
-          throw new Error(error.erro || 'Erro na API');
-        }
-
-        const data = await response.json();
-
-        // Acumular custos
-        totalTokens += data.tokensInput + data.tokensOutput;
-        totalCusto += data.custoReais;
-
-        // Atualizar custos no store
-        atualizarCusto(data.custoReais, data.tokensInput, data.tokensOutput);
-
-        // Adicionar resposta
-        respostasGestor.push({
-          pergunta_id: pergunta.id || pergunta.texto?.substring(0, 50) || '',
-          pergunta_texto: pergunta.texto || '',
-          resposta: data.resposta.resposta_texto,
-          podc_reflexao: data.resposta.podc_reflexao,
-        });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.erro || 'Erro na API');
       }
 
-      // Criar resposta completa do gestor
+      const data = await response.json();
+
+      // Atualizar custos no store
+      atualizarCusto(data.custoReais, data.tokensInput, data.tokensOutput);
+
+      // Criar resposta estruturada para análise estatística
+      const respostaEstruturada: RespostaPODCEstruturada = {
+        gestor_id: gestor.id,
+        gestor_nome: gestor.nome,
+        setor: gestor.setor,
+        nivel_hierarquico: gestor.nivel_hierarquico,
+        cargo: gestor.cargo,
+        instituicao: gestor.instituicao,
+        distribuicao_podc: data.resposta.distribuicao_podc,
+        distribuicao_ideal: data.resposta.distribuicao_ideal,
+        horas_semanais: data.resposta.horas_semanais,
+        iad: data.resposta.iad,
+        iad_classificacao: data.resposta.iad_classificacao,
+        ranking_importancia: data.resposta.ranking_importancia,
+        fatores_limitantes: data.resposta.fatores_limitantes,
+        justificativa: data.resposta.justificativa,
+        frequencia_atividades: data.resposta.frequencia_atividades,
+        respostas_perguntas: data.resposta.respostas_perguntas,
+        tokens_input: data.tokensInput,
+        tokens_output: data.tokensOutput,
+        custo_reais: data.custoReais,
+        resposta_bruta: data.resposta.resposta_bruta,
+      };
+
+      // Adicionar resposta estruturada
+      adicionarRespostaEstruturada(respostaEstruturada);
+
+      // Criar resposta legada para compatibilidade com UI
       const respostaCompleta: RespostaGestor = {
         gestor_id: gestor.id,
         gestor_nome: gestor.nome,
         setor: gestor.setor,
         nivel_hierarquico: gestor.nivel_hierarquico,
-        respostas: respostasGestor,
-        tokens_usados: totalTokens,
-        custo: totalCusto,
+        respostas: [],
+        tokens_usados: data.tokensInput + data.tokensOutput,
+        custo: data.custoReais,
         tempo_resposta_ms: Date.now() - tempoInicio,
+        distribuicao_podc: data.resposta.distribuicao_podc,
+        iad: data.resposta.iad,
+        iad_classificacao: data.resposta.iad_classificacao,
       };
 
       adicionarResposta(respostaCompleta);
@@ -203,9 +239,12 @@ export default function PaginaExecucaoPODC() {
     respostasRecebidas,
     gestoresSelecionados.length,
     tempoInicio,
+    token,
+    sessaoAtual?.pesquisaIdBackend,
     pausarExecucao,
     atualizarCusto,
     adicionarResposta,
+    adicionarRespostaEstruturada,
     atualizarProgresso,
   ]);
 
@@ -617,14 +656,17 @@ export default function PaginaExecucaoPODC() {
         </div>
       </div>
 
-      {/* Ultimas respostas */}
+      {/* Últimas respostas com distribuição PODC */}
       {respostasRecebidas.length > 0 && (
         <div className="glass-card rounded-xl p-6">
-          <h3 className="font-semibold text-foreground mb-4">Ultimas Respostas</h3>
-          <div className="space-y-3 max-h-64 overflow-y-auto">
+          <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+            <PieChart className="w-5 h-5 text-primary" />
+            Últimas Respostas - Distribuição PODC
+          </h3>
+          <div className="space-y-3 max-h-80 overflow-y-auto">
             {respostasRecebidas.slice(-5).reverse().map((resp, i) => (
-              <div key={i} className="p-3 bg-secondary/50 rounded-lg">
-                <div className="flex items-center justify-between mb-2">
+              <div key={i} className="p-4 bg-secondary/50 rounded-lg">
+                <div className="flex items-center justify-between mb-3">
                   <span className="font-medium text-foreground text-sm">
                     {resp.gestor_nome}
                   </span>
@@ -635,16 +677,74 @@ export default function PaginaExecucaoPODC() {
                     )}>
                       {resp.setor}
                     </span>
-                    <span className="text-xs text-muted-foreground">
-                      {resp.tokens_usados} tokens
+                    <span className={cn(
+                      'px-2 py-0.5 rounded text-xs',
+                      resp.nivel_hierarquico === 'estrategico' ? 'bg-purple-500/20 text-purple-400' :
+                      resp.nivel_hierarquico === 'tatico' ? 'bg-orange-500/20 text-orange-400' :
+                      'bg-cyan-500/20 text-cyan-400'
+                    )}>
+                      {resp.nivel_hierarquico}
                     </span>
                   </div>
                 </div>
-                <p className="text-xs text-muted-foreground line-clamp-2">
-                  {resp.respostas[0]?.resposta?.substring(0, 200)}...
-                </p>
+
+                {/* Distribuição PODC */}
+                {resp.distribuicao_podc && (
+                  <div className="grid grid-cols-4 gap-2 mb-2">
+                    <div className="text-center p-2 bg-blue-500/10 rounded">
+                      <p className="text-xs text-muted-foreground">P</p>
+                      <p className="text-sm font-bold text-blue-400">{resp.distribuicao_podc.planejar}%</p>
+                    </div>
+                    <div className="text-center p-2 bg-green-500/10 rounded">
+                      <p className="text-xs text-muted-foreground">O</p>
+                      <p className="text-sm font-bold text-green-400">{resp.distribuicao_podc.organizar}%</p>
+                    </div>
+                    <div className="text-center p-2 bg-yellow-500/10 rounded">
+                      <p className="text-xs text-muted-foreground">D</p>
+                      <p className="text-sm font-bold text-yellow-400">{resp.distribuicao_podc.dirigir}%</p>
+                    </div>
+                    <div className="text-center p-2 bg-red-500/10 rounded">
+                      <p className="text-xs text-muted-foreground">C</p>
+                      <p className="text-sm font-bold text-red-400">{resp.distribuicao_podc.controlar}%</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* IAD */}
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-muted-foreground">
+                    IAD: <span className="font-medium text-foreground">{resp.iad?.toFixed(2) || 'N/A'}</span>
+                  </span>
+                  <span className={cn(
+                    'px-2 py-0.5 rounded',
+                    resp.iad && resp.iad >= 1.5 ? 'bg-green-500/20 text-green-400' :
+                    resp.iad && resp.iad >= 1.0 ? 'bg-blue-500/20 text-blue-400' :
+                    resp.iad && resp.iad >= 0.7 ? 'bg-yellow-500/20 text-yellow-400' :
+                    'bg-red-500/20 text-red-400'
+                  )}>
+                    {resp.iad_classificacao || 'Não classificado'}
+                  </span>
+                  <span className="text-muted-foreground">
+                    {formatarNumero(resp.tokens_usados)} tokens
+                  </span>
+                </div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Indicador de salvamento no backend */}
+      {sessaoAtual?.pesquisaIdBackend && (
+        <div className="glass-card rounded-xl p-4">
+          <div className="flex items-center gap-3 text-green-400">
+            <Database className="w-5 h-5" />
+            <div>
+              <p className="text-sm font-medium">Resultados salvos no backend</p>
+              <p className="text-xs text-muted-foreground">
+                ID da pesquisa: {sessaoAtual.pesquisaIdBackend}
+              </p>
+            </div>
           </div>
         </div>
       )}

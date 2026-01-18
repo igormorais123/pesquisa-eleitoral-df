@@ -1,0 +1,219 @@
+{
+  "versao": "1.0.0",
+  "data_criacao": "2026-01-18",
+  "descricao": "Templates de perguntas para pesquisa com gestores sobre distribuição de tempo (PODC)",
+  "categorias": [
+    {
+      "id": "podc-basico",
+      "nome": "Distribuição PODC - Básico",
+      "descricao": "Questionário básico sobre distribuição de tempo nas funções administrativas",
+      "perguntas": [
+        {
+          "id": 1,
+          "tipo": "percentual_multiplo",
+          "bloco": "consolidacao",
+          "pergunta": "Em uma semana típica de trabalho, como você distribui percentualmente seu tempo entre as seguintes funções administrativas?",
+          "opcoes": [
+            {"funcao": "Planejar", "descricao": "Definir objetivos, elaborar estratégias, antecipar cenários"},
+            {"funcao": "Organizar", "descricao": "Estruturar recursos, definir processos, alocar equipes"},
+            {"funcao": "Dirigir", "descricao": "Liderar, comunicar, motivar, tomar decisões operacionais"},
+            {"funcao": "Controlar", "descricao": "Monitorar resultados, avaliar desempenho, corrigir desvios"}
+          ],
+          "validacao": "soma_100"
+        },
+        {
+          "id": 2,
+          "tipo": "ranking",
+          "bloco": "validacao",
+          "pergunta": "Ordene as funções administrativas da que MAIS consome seu tempo (1) para a que MENOS consome (4):",
+          "opcoes": ["Planejar", "Organizar", "Dirigir", "Controlar"]
+        },
+        {
+          "id": 3,
+          "tipo": "escala",
+          "bloco": "autonomia",
+          "pergunta": "Qual seu nível de autonomia para tomar decisões estratégicas em sua área?",
+          "escala": [1, 2, 3, 4, 5],
+          "labels": ["Nenhuma autonomia", "Pouca", "Moderada", "Alta", "Total autonomia"]
+        }
+      ]
+    },
+    {
+      "id": "podc-completo",
+      "nome": "Distribuição PODC - Completo",
+      "descricao": "Questionário completo com todas as dimensões da pesquisa original",
+      "perguntas": [
+        {
+          "id": 1,
+          "tipo": "numero",
+          "bloco": "jornada",
+          "pergunta": "Quantas horas você trabalha em uma semana típica?",
+          "min": 20,
+          "max": 80
+        },
+        {
+          "id": 2,
+          "tipo": "frequencia_multipla",
+          "bloco": "planejar",
+          "pergunta": "Com que frequência você realiza as seguintes atividades de PLANEJAMENTO?",
+          "atividades": [
+            "Definir objetivos e metas para sua área",
+            "Elaborar planos de ação e cronogramas",
+            "Participar de reuniões de planejamento estratégico",
+            "Analisar cenários e tendências",
+            "Definir prioridades de atuação",
+            "Revisar e ajustar planos existentes"
+          ],
+          "escala": ["Nunca", "Raramente", "Mensalmente", "Semanalmente", "Diariamente"]
+        },
+        {
+          "id": 3,
+          "tipo": "frequencia_multipla",
+          "bloco": "organizar",
+          "pergunta": "Com que frequência você realiza as seguintes atividades de ORGANIZAÇÃO?",
+          "atividades": [
+            "Distribuir tarefas entre membros da equipe",
+            "Definir processos e procedimentos",
+            "Alocar recursos (financeiros, materiais, humanos)",
+            "Estruturar fluxos de trabalho",
+            "Organizar informações e documentos",
+            "Redesenhar estruturas organizacionais"
+          ],
+          "escala": ["Nunca", "Raramente", "Mensalmente", "Semanalmente", "Diariamente"]
+        },
+        {
+          "id": 4,
+          "tipo": "frequencia_multipla",
+          "bloco": "dirigir",
+          "pergunta": "Com que frequência você realiza as seguintes atividades de DIREÇÃO?",
+          "atividades": [
+            "Liderar reuniões de equipe",
+            "Comunicar decisões e orientações",
+            "Motivar e desenvolver colaboradores",
+            "Negociar com stakeholders",
+            "Resolver conflitos",
+            "Tomar decisões operacionais urgentes"
+          ],
+          "escala": ["Nunca", "Raramente", "Mensalmente", "Semanalmente", "Diariamente"]
+        },
+        {
+          "id": 5,
+          "tipo": "frequencia_multipla",
+          "bloco": "controlar",
+          "pergunta": "Com que frequência você realiza as seguintes atividades de CONTROLE?",
+          "atividades": [
+            "Monitorar indicadores de desempenho",
+            "Avaliar resultados alcançados",
+            "Identificar e corrigir desvios",
+            "Elaborar ou analisar relatórios",
+            "Verificar conformidade com normas",
+            "Auditar processos e procedimentos"
+          ],
+          "escala": ["Nunca", "Raramente", "Mensalmente", "Semanalmente", "Diariamente"]
+        },
+        {
+          "id": 6,
+          "tipo": "percentual_multiplo",
+          "bloco": "consolidacao",
+          "pergunta": "Considerando todas as atividades descritas, como você distribui percentualmente seu tempo entre as funções?",
+          "opcoes": ["Planejar", "Organizar", "Dirigir", "Controlar"],
+          "validacao": "soma_100"
+        },
+        {
+          "id": 7,
+          "tipo": "percentual_multiplo",
+          "bloco": "ideal",
+          "pergunta": "Na sua opinião, qual seria a distribuição IDEAL de tempo para um gestor no seu nível?",
+          "opcoes": ["Planejar", "Organizar", "Dirigir", "Controlar"],
+          "validacao": "soma_100"
+        },
+        {
+          "id": 8,
+          "tipo": "multipla_escolha",
+          "bloco": "fatores",
+          "pergunta": "Quais fatores mais interferem na sua distribuição de tempo? (selecione até 3)",
+          "opcoes": [
+            "Demandas urgentes e imprevistos",
+            "Pressão de órgãos de controle (TCU, CGU)",
+            "Reuniões excessivas",
+            "Burocracia e normas",
+            "Falta de equipe",
+            "Limitações orçamentárias",
+            "Interferências políticas",
+            "Sistemas de gestão inadequados"
+          ],
+          "max_selecao": 3
+        },
+        {
+          "id": 9,
+          "tipo": "escala",
+          "bloco": "autonomia",
+          "pergunta": "Em uma escala de 1 a 10, qual seu nível de autonomia decisória?",
+          "min": 1,
+          "max": 10
+        },
+        {
+          "id": 10,
+          "tipo": "texto_livre",
+          "bloco": "qualitativo",
+          "pergunta": "Descreva brevemente como é um dia típico de trabalho seu:",
+          "max_caracteres": 500
+        }
+      ]
+    },
+    {
+      "id": "comparativo-publico-privado",
+      "nome": "Comparativo Público x Privado",
+      "descricao": "Perguntas focadas nas diferenças entre gestão pública e privada",
+      "perguntas": [
+        {
+          "id": 1,
+          "tipo": "escala",
+          "bloco": "percepcao",
+          "pergunta": "Em que medida a função CONTROLAR é prioritária no seu contexto?",
+          "escala": [1, 2, 3, 4, 5],
+          "labels": ["Nada prioritária", "Pouco", "Moderadamente", "Muito", "Extremamente prioritária"]
+        },
+        {
+          "id": 2,
+          "tipo": "escala",
+          "bloco": "percepcao",
+          "pergunta": "Quanto tempo você dedica a prestação de contas e accountability?",
+          "escala": [1, 2, 3, 4, 5],
+          "labels": ["Quase nenhum", "Pouco", "Moderado", "Muito", "A maior parte do tempo"]
+        },
+        {
+          "id": 3,
+          "tipo": "escala",
+          "bloco": "percepcao",
+          "pergunta": "Qual o nível de pressão por eficiência e resultados financeiros?",
+          "escala": [1, 2, 3, 4, 5],
+          "labels": ["Nenhuma pressão", "Pouca", "Moderada", "Alta", "Extremamente alta"]
+        },
+        {
+          "id": 4,
+          "tipo": "multipla_escolha",
+          "bloco": "stakeholders",
+          "pergunta": "Quais stakeholders mais influenciam suas decisões? (selecione até 3)",
+          "opcoes": [
+            "Alta direção / Conselho",
+            "Órgãos de controle (TCU, CGU, auditoria)",
+            "Clientes / Cidadãos",
+            "Funcionários / Equipe",
+            "Sindicatos",
+            "Mídia / Opinião pública",
+            "Acionistas / Investidores",
+            "Fornecedores / Parceiros"
+          ],
+          "max_selecao": 3
+        }
+      ]
+    }
+  ],
+  "instrucoes_aplicacao": {
+    "contexto_persona": "Antes de aplicar o questionário, a IA deve incorporar completamente a persona do gestor, considerando: cargo, nível hierárquico, setor (público/privado), trajetória, desafios cotidianos e estilo de liderança.",
+    "modo_resposta": "As respostas devem refletir a realidade específica daquele gestor, não respostas genéricas ou 'equilibradas artificialmente'.",
+    "validacao": "Verificar consistência entre: ranking de funções, percentuais declarados, frequência de atividades.",
+    "prompt_contexto": "Você é [NOME], [CARGO] em [INSTITUIÇÃO]. Com base em sua trajetória e contexto atual, responda ao questionário sobre como você distribui seu tempo de trabalho."
+  }
+}
