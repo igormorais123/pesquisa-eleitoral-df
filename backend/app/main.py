@@ -12,6 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 
 from app.api.rotas import (
+    analytics,
     autenticacao,
     candidatos,
     cenarios_eleitorais,
@@ -608,4 +609,10 @@ app.include_router(
     rls.router,
     prefix="/api/v1/admin",
     tags=["RLS - Segurança"],
+)
+
+app.include_router(
+    analytics.router,
+    prefix="/api/v1/analytics",
+    tags=["Analytics"],
 )
