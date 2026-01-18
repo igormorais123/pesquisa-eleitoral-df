@@ -46,7 +46,8 @@ export function useGestores() {
 
         // Carregar dados dos gestores
         const res = await fetch('/data/banco-gestores.json');
-        const todosGestores: Gestor[] = await res.json();
+        const data = await res.json();
+        const todosGestores: Gestor[] = data.gestores || [];
 
         setGestores(todosGestores);
 
