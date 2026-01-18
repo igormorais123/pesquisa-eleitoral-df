@@ -211,6 +211,17 @@ class Eleitor(Base):
         }
 
     @classmethod
+    def _converter_susceptibilidade(cls, valor) -> Optional[int]:
+        """Converte susceptibilidade de string para inteiro"""
+        if valor is None:
+            return None
+        if isinstance(valor, int):
+            return valor
+        # Mapeamento de strings para inteiros
+        mapa = {"baixa": 1, "media": 2, "média": 2, "alta": 3}
+        return mapa.get(str(valor).lower(), None)
+
+    @classmethod
     def from_dict(cls, data: dict) -> "Eleitor":
         """Cria instância a partir de dicionário (JSON)"""
         return cls(
@@ -238,7 +249,7 @@ class Eleitor(Base):
             conflito_identitario=data.get("conflito_identitario", False),
             meio_transporte=data.get("meio_transporte"),
             tempo_deslocamento_trabalho=data.get("tempo_deslocamento_trabalho"),
-            susceptibilidade_desinformacao=data.get("susceptibilidade_desinformacao"),
+            susceptibilidade_desinformacao=cls._converter_susceptibilidade(data.get("susceptibilidade_desinformacao")),
             valores=data.get("valores", []),
             preocupacoes=data.get("preocupacoes", []),
             medos=data.get("medos", []),
