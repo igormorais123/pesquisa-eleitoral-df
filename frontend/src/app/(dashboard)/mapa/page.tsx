@@ -114,8 +114,18 @@ const gerarDadosAvaliacaoGoverno = (): DadoRegiao[] => {
   });
 };
 
-type TipoDados = 'intencao_voto' | 'rejeicao' | 'avaliacao_governo' | 'quantidade_eleitores' | 'participacao' | 'renda_media';
-type EscalaCor = 'azul' | 'verde_vermelho' | 'azul_vermelho';
+type TipoDados =
+  | 'intencao_voto'
+  | 'rejeicao'
+  | 'avaliacao_governo'
+  | 'quantidade_eleitores'
+  | 'participacao'
+  | 'renda_media'
+  | 'idade_media'
+  | 'escolaridade'
+  | 'densidade_demografica'
+  | 'cluster_socioeconomico';
+type EscalaCor = 'azul' | 'verde_vermelho' | 'azul_vermelho' | 'quantidade';
 type NivelDetalhe = 'minimo' | 'medio' | 'completo';
 
 // População por RA para dados de quantidade de eleitores
@@ -206,6 +216,99 @@ const gerarDadosRendaMedia = (): DadoRegiao[] => {
   });
 };
 
+// Gerar dados de idade média
+const gerarDadosIdadeMedia = (): DadoRegiao[] => {
+  const idadePorRegiao: Record<string, number> = {
+    'Lago Sul': 48, 'Lago Norte': 45, 'Park Way': 46, 'Jardim Botânico': 42,
+    'Sudoeste/Octogonal': 40, 'Plano Piloto': 42, 'Águas Claras': 34, 'Guará': 38,
+    'Cruzeiro': 44, 'Núcleo Bandeirante': 40, 'Taguatinga': 36, 'Vicente Pires': 35,
+    'Sobradinho': 38, 'Sobradinho II': 34, 'Gama': 37, 'Samambaia': 32,
+    'Ceilândia': 33, 'Planaltina': 30, 'Santa Maria': 29, 'Recanto das Emas': 28,
+    'Riacho Fundo': 35, 'Riacho Fundo II': 30, 'Candangolândia': 39, 'Brazlândia': 34,
+    'São Sebastião': 31, 'Paranoá': 32, 'Itapoã': 27, 'Varjão': 28,
+    'SCIA/Estrutural': 26, 'Fercal': 33, 'Sol Nascente/Pôr do Sol': 25,
+    'Arniqueira': 36, 'SIA': 41,
+  };
+  return REGIOES_DF.map((regiao) => {
+    const idade = idadePorRegiao[regiao] || 35;
+    return {
+      regiao,
+      valor: idade,
+      label: idade > 40 ? 'População mais velha' : idade > 32 ? 'Idade média' : 'População jovem',
+    };
+  });
+};
+
+// Gerar dados de escolaridade (% com ensino superior)
+const gerarDadosEscolaridade = (): DadoRegiao[] => {
+  const escolaridadePorRegiao: Record<string, number> = {
+    'Lago Sul': 78, 'Lago Norte': 72, 'Park Way': 68, 'Jardim Botânico': 65,
+    'Sudoeste/Octogonal': 75, 'Plano Piloto': 70, 'Águas Claras': 62, 'Guará': 52,
+    'Cruzeiro': 58, 'Núcleo Bandeirante': 42, 'Taguatinga': 35, 'Vicente Pires': 45,
+    'Sobradinho': 38, 'Sobradinho II': 28, 'Gama': 25, 'Samambaia': 18,
+    'Ceilândia': 15, 'Planaltina': 12, 'Santa Maria': 10, 'Recanto das Emas': 11,
+    'Riacho Fundo': 22, 'Riacho Fundo II': 16, 'Candangolândia': 32, 'Brazlândia': 14,
+    'São Sebastião': 18, 'Paranoá': 15, 'Itapoã': 9, 'Varjão': 8,
+    'SCIA/Estrutural': 5, 'Fercal': 10, 'Sol Nascente/Pôr do Sol': 6,
+    'Arniqueira': 40, 'SIA': 48,
+  };
+  return REGIOES_DF.map((regiao) => {
+    const escolaridade = escolaridadePorRegiao[regiao] || 25;
+    return {
+      regiao,
+      valor: escolaridade,
+      label: escolaridade > 50 ? 'Alta escolaridade' : escolaridade > 25 ? 'Escolaridade média' : 'Baixa escolaridade',
+    };
+  });
+};
+
+// Gerar dados de densidade demográfica (hab/km²)
+const gerarDadosDensidadeDemografica = (): DadoRegiao[] => {
+  const densidadePorRegiao: Record<string, number> = {
+    'Águas Claras': 15000, 'Guará': 8500, 'Cruzeiro': 7800, 'Taguatinga': 6200,
+    'Sudoeste/Octogonal': 5800, 'Ceilândia': 5500, 'Samambaia': 5200, 'Plano Piloto': 4500,
+    'Candangolândia': 4200, 'Santa Maria': 4000, 'Recanto das Emas': 3800, 'Riacho Fundo': 3500,
+    'Riacho Fundo II': 3400, 'Sobradinho II': 3200, 'Gama': 3000, 'Núcleo Bandeirante': 2800,
+    'Vicente Pires': 2600, 'Itapoã': 2400, 'São Sebastião': 2200, 'Paranoá': 2000,
+    'Sol Nascente/Pôr do Sol': 4500, 'SCIA/Estrutural': 3000, 'Sobradinho': 1800,
+    'Varjão': 8000, 'Planaltina': 1500, 'Arniqueira': 1400, 'Lago Norte': 800,
+    'Lago Sul': 600, 'Park Way': 400, 'Jardim Botânico': 500, 'Brazlândia': 700,
+    'Fercal': 300, 'SIA': 100,
+  };
+  return REGIOES_DF.map((regiao) => {
+    const densidade = densidadePorRegiao[regiao] || 2000;
+    return {
+      regiao,
+      valor: densidade,
+      label: densidade > 5000 ? 'Alta densidade' : densidade > 2000 ? 'Densidade média' : 'Baixa densidade',
+    };
+  });
+};
+
+// Gerar dados de cluster socioeconômico (1=baixa, 4=alta)
+const gerarDadosClusterSocioeconomico = (): DadoRegiao[] => {
+  const clusterPorRegiao: Record<string, number> = {
+    'Lago Sul': 4, 'Lago Norte': 4, 'Park Way': 4, 'Jardim Botânico': 4,
+    'Sudoeste/Octogonal': 4, 'Plano Piloto': 4, 'Cruzeiro': 4,
+    'Águas Claras': 3, 'Guará': 3, 'Vicente Pires': 3, 'Taguatinga': 3,
+    'Sobradinho': 3, 'Núcleo Bandeirante': 3, 'Candangolândia': 3, 'Arniqueira': 3,
+    'Gama': 2, 'Samambaia': 2, 'Ceilândia': 2, 'Riacho Fundo': 2, 'Riacho Fundo II': 2,
+    'Sobradinho II': 2, 'São Sebastião': 2, 'Paranoá': 2,
+    'Planaltina': 1, 'Santa Maria': 1, 'Recanto das Emas': 1, 'Itapoã': 1,
+    'SCIA/Estrutural': 1, 'Sol Nascente/Pôr do Sol': 1, 'Varjão': 1, 'Brazlândia': 1, 'Fercal': 1,
+    'SIA': 3,
+  };
+  const labels = ['', 'G4 - Baixa Renda', 'G3 - Média-Baixa', 'G2 - Média-Alta', 'G1 - Alta Renda'];
+  return REGIOES_DF.map((regiao) => {
+    const cluster = clusterPorRegiao[regiao] || 2;
+    return {
+      regiao,
+      valor: cluster,
+      label: labels[cluster],
+    };
+  });
+};
+
 export default function MapaPage() {
   const router = useRouter();
   const [tipoDados, setTipoDados] = useState<TipoDados>('intencao_voto');
@@ -248,6 +351,18 @@ export default function MapaPage() {
           break;
         case 'renda_media':
           dados = gerarDadosRendaMedia();
+          break;
+        case 'idade_media':
+          dados = gerarDadosIdadeMedia();
+          break;
+        case 'escolaridade':
+          dados = gerarDadosEscolaridade();
+          break;
+        case 'densidade_demografica':
+          dados = gerarDadosDensidadeDemografica();
+          break;
+        case 'cluster_socioeconomico':
+          dados = gerarDadosClusterSocioeconomico();
           break;
         default:
           dados = gerarDadosIntencaoVoto();
@@ -304,6 +419,14 @@ export default function MapaPage() {
         return 'Taxa de Participação por Região';
       case 'renda_media':
         return 'Renda Média por Região';
+      case 'idade_media':
+        return 'Idade Média da População por Região';
+      case 'escolaridade':
+        return 'Escolaridade (% com Ensino Superior) por Região';
+      case 'densidade_demografica':
+        return 'Densidade Demográfica por Região';
+      case 'cluster_socioeconomico':
+        return 'Cluster Socioeconômico por Região';
       default:
         return 'Intenção de Voto por Região';
     }
@@ -316,8 +439,34 @@ export default function MapaPage() {
         return (v: number) => `${(v / 1000).toFixed(0)}k`;
       case 'renda_media':
         return (v: number) => `R$ ${v.toLocaleString('pt-BR')}`;
+      case 'idade_media':
+        return (v: number) => `${v.toFixed(0)} anos`;
+      case 'densidade_demografica':
+        return (v: number) => `${v.toLocaleString('pt-BR')} hab/km²`;
+      case 'cluster_socioeconomico':
+        return (v: number) => {
+          const labels = ['', 'G4', 'G3', 'G2', 'G1'];
+          return labels[Math.round(v)] || 'G3';
+        };
       default:
         return (v: number) => `${v.toFixed(1)}%`;
+    }
+  };
+
+  // Escolher escala de cor adequada para o tipo de dados
+  const getEscalaRecomendada = (): EscalaCor => {
+    switch (tipoDados) {
+      case 'quantidade_eleitores':
+      case 'densidade_demografica':
+        return 'quantidade';
+      case 'renda_media':
+      case 'cluster_socioeconomico':
+      case 'escolaridade':
+        return 'verde_vermelho';
+      case 'rejeicao':
+        return 'azul_vermelho';
+      default:
+        return 'azul';
     }
   };
 
@@ -361,7 +510,7 @@ export default function MapaPage() {
             <div className="space-y-1">
               <Label>Tipo de Dados</Label>
               <Select value={tipoDados} onValueChange={(v) => setTipoDados(v as TipoDados)}>
-                <SelectTrigger className="w-52">
+                <SelectTrigger className="w-56">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -370,7 +519,11 @@ export default function MapaPage() {
                   <SelectItem value="avaliacao_governo">Avaliação do Governo</SelectItem>
                   <SelectItem value="quantidade_eleitores">Qtd. de Eleitores</SelectItem>
                   <SelectItem value="participacao">Participação Eleitoral</SelectItem>
-                  <SelectItem value="renda_media">Renda Média</SelectItem>
+                  <SelectItem value="renda_media">Renda Média (R$)</SelectItem>
+                  <SelectItem value="idade_media">Idade Média</SelectItem>
+                  <SelectItem value="escolaridade">Escolaridade (% Sup.)</SelectItem>
+                  <SelectItem value="densidade_demografica">Densidade (hab/km²)</SelectItem>
+                  <SelectItem value="cluster_socioeconomico">Cluster Socioeconômico</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -378,13 +531,14 @@ export default function MapaPage() {
             <div className="space-y-1">
               <Label>Escala de Cores</Label>
               <Select value={escalaCor} onValueChange={(v) => setEscalaCor(v as EscalaCor)}>
-                <SelectTrigger className="w-44">
+                <SelectTrigger className="w-48">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="azul">Azul (Intensidade)</SelectItem>
                   <SelectItem value="verde_vermelho">Verde → Vermelho</SelectItem>
                   <SelectItem value="azul_vermelho">Azul → Vermelho</SelectItem>
+                  <SelectItem value="quantidade">Roxo (Quantidade)</SelectItem>
                 </SelectContent>
               </Select>
             </div>

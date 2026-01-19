@@ -19,6 +19,8 @@ interface RequestBody {
     custoTotal: number;
     sentimentos: Record<string, number>;
   };
+  promptCustomizado?: string; // Permite prompt customizado pelo usuário
+  modelo?: 'opus' | 'sonnet' | 'haiku'; // Permite escolher o modelo
 }
 
 interface RelatorioInteligencia {
@@ -76,10 +78,23 @@ interface RelatorioInteligencia {
   thinkingProcess?: string;
 }
 
+// Mapeamento de modelos
+const MODELOS = {
+  opus: 'claude-opus-4-5-20251101',
+  sonnet: 'claude-sonnet-4-20250514',
+  haiku: 'claude-3-5-haiku-20241022',
+};
+
+const CUSTOS_POR_MODELO: Record<string, { input: number; output: number }> = {
+  opus: { input: 15.0, output: 75.0 },
+  sonnet: { input: 3.0, output: 15.0 },
+  haiku: { input: 0.25, output: 1.25 },
+};
+
 export async function POST(request: NextRequest) {
   try {
     const body: RequestBody = await request.json();
-    const { sessaoId, titulo, perguntas, respostas, estatisticas } = body;
+    const { sessaoId, titulo, perguntas, respostas, estatisticas, promptCustomizado, modelo = 'opus' } = body;
 
     if (!respostas || respostas.length === 0) {
       return NextResponse.json(
@@ -254,21 +269,33 @@ Evite jargões acadêmicos. Use linguagem de consultor político experiente que 
   "conclusaoAnalitica": "string (parágrafo final)"
 }`;
 
-    // Chamar Claude Opus 4.5 com Extended Thinking
-    const resposta = await cliente.messages.create({
-      model: 'claude-opus-4-5-20251101',
-      max_tokens: 16000,
-      thinking: {
-        type: 'enabled',
-        budget_tokens: 10000, // Permite até 10k tokens de pensamento
-      },
+    // Usar prompt customizado ou o padrão
+    const promptFinal = promptCustomizado || promptAnalise;
+    const modeloId = MODELOS[modelo] || MODELOS.opus;
+    const custosModelo = CUSTOS_POR_MODELO[modelo] || CUSTOS_POR_MODELO.opus;
+
+    // Configurar opções de mensagem baseado no modelo
+    const messageOptions: any = {
+      model: modeloId,
+      max_tokens: modelo === 'haiku' ? 8000 : 16000,
       messages: [
         {
           role: 'user',
-          content: promptAnalise,
+          content: promptFinal,
         },
       ],
-    });
+    };
+
+    // Extended Thinking apenas para Opus
+    if (modelo === 'opus') {
+      messageOptions.thinking = {
+        type: 'enabled',
+        budget_tokens: 10000,
+      };
+    }
+
+    // Chamar Claude com modelo selecionado
+    const resposta = await cliente.messages.create(messageOptions);
 
     // Extrair tokens
     const tokensInput = resposta.usage.input_tokens;
@@ -276,8 +303,8 @@ Evite jargões acadêmicos. Use linguagem de consultor político experiente que 
 
     // Calcular custo em reais
     const custoUSD =
-      (tokensInput / 1_000_000) * CUSTOS_OPUS.input +
-      (tokensOutput / 1_000_000) * CUSTOS_OPUS.output;
+      (tokensInput / 1_000_000) * custosModelo.input +
+      (tokensOutput / 1_000_000) * custosModelo.output;
     const custoReais = custoUSD * TAXA_USD_BRL;
 
     // Extrair conteúdo e thinking
@@ -358,12 +385,13 @@ Evite jargões acadêmicos. Use linguagem de consultor político experiente que 
       relatorio,
       metadados: {
         sessaoId,
-        modelo: 'claude-opus-4-5-20251101',
+        modelo: modeloId,
         tokensInput,
         tokensOutput,
         custoReais,
         tempoProcessamento: new Date().toISOString(),
-        usouExtendedThinking: true,
+        usouExtendedThinking: modelo === 'opus',
+        promptUtilizado: promptFinal,
       },
     });
   } catch (error) {

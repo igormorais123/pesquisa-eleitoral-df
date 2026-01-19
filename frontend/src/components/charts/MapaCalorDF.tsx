@@ -29,53 +29,70 @@ export interface RegiaoPath {
 // ============================================
 
 const PONTOS_REFERENCIA = [
-  { id: 'congresso', nome: 'Congresso Nacional', x: 935, y: 378, icone: '🏛️', tipo: 'principal' },
-  { id: 'torre-tv', nome: 'Torre de TV', x: 895, y: 385, icone: '📡', tipo: 'principal' },
-  { id: 'aeroporto', nome: 'Aeroporto JK', x: 1095, y: 345, icone: '✈️', tipo: 'principal' },
-  { id: 'rodoviaria', nome: 'Rodoviária', x: 910, y: 385, icone: '🚌', tipo: 'secundario' },
-  { id: 'catedral', nome: 'Catedral', x: 925, y: 378, icone: '⛪', tipo: 'secundario' },
-  { id: 'esplanada', nome: 'Esplanada', x: 920, y: 380, icone: '🏢', tipo: 'secundario' },
-  { id: 'ponte-jk', nome: 'Ponte JK', x: 980, y: 430, icone: '🌉', tipo: 'secundario' },
+  // Pontos principais - sempre visíveis
+  { id: 'congresso', nome: 'Congresso Nacional', x: 940, y: 375, icone: '🏛️', tipo: 'principal' },
+  { id: 'torre-tv', nome: 'Torre de TV', x: 895, y: 388, icone: '📡', tipo: 'principal' },
+  { id: 'aeroporto', nome: 'Aeroporto JK', x: 1100, y: 342, icone: '✈️', tipo: 'principal' },
+
+  // Pontos secundários - visíveis em nível médio e completo
+  { id: 'rodoviaria', nome: 'Rodoviária do Plano Piloto', x: 912, y: 388, icone: '🚌', tipo: 'secundario' },
+  { id: 'catedral', nome: 'Catedral de Brasília', x: 930, y: 375, icone: '⛪', tipo: 'secundario' },
+  { id: 'ponte-jk', nome: 'Ponte JK', x: 985, y: 432, icone: '🌉', tipo: 'secundario' },
+  { id: 'estadio-mane', nome: 'Estádio Mané Garrincha', x: 880, y: 368, icone: '⚽', tipo: 'secundario' },
+  { id: 'palacio-planalto', nome: 'Palácio do Planalto', x: 945, y: 378, icone: '🏛️', tipo: 'secundario' },
+
+  // Pontos terciários - visíveis apenas em nível completo
+  { id: 'unb', nome: 'UnB - Universidade de Brasília', x: 1000, y: 345, icone: '🎓', tipo: 'terciario' },
+  { id: 'shopping-conjunto', nome: 'Conjunto Nacional', x: 905, y: 382, icone: '🛒', tipo: 'terciario' },
+  { id: 'parque-cidade', nome: 'Parque da Cidade', x: 890, y: 405, icone: '🌳', tipo: 'terciario' },
+  { id: 'zoo', nome: 'Zoológico de Brasília', x: 870, y: 430, icone: '🦁', tipo: 'terciario' },
+  { id: 'jk-memorial', nome: 'Memorial JK', x: 885, y: 398, icone: '🏛️', tipo: 'terciario' },
+  { id: 'taguapark', nome: 'Taguapark', x: 680, y: 440, icone: '🛒', tipo: 'terciario' },
 ];
 
 // ============================================
 // CENTROS DAS CIDADES (coordenadas ajustadas)
 // ============================================
 
-const CENTROS_CIDADES: Record<string, { x: number; y: number; prioridade: number; nome: string }> = {
-  'ceilandia': { x: 640, y: 445, prioridade: 1, nome: 'Ceilândia' },
-  'taguatinga': { x: 695, y: 425, prioridade: 1, nome: 'Taguatinga' },
-  'samambaia': { x: 640, y: 510, prioridade: 1, nome: 'Samambaia' },
-  'plano-piloto': { x: 920, y: 365, prioridade: 1, nome: 'Plano Piloto' },
-  'gama': { x: 615, y: 585, prioridade: 1, nome: 'Gama' },
-  'planaltina': { x: 1180, y: 225, prioridade: 1, nome: 'Planaltina' },
-  'sobradinho': { x: 1015, y: 225, prioridade: 2, nome: 'Sobradinho' },
-  'sobradinho-ii': { x: 1060, y: 260, prioridade: 3, nome: 'Sobradinho II' },
-  'brazlandia': { x: 560, y: 275, prioridade: 2, nome: 'Brazlândia' },
-  'paranoa': { x: 1120, y: 375, prioridade: 2, nome: 'Paranoá' },
-  'lago-sul': { x: 985, y: 460, prioridade: 2, nome: 'Lago Sul' },
-  'lago-norte': { x: 1005, y: 320, prioridade: 2, nome: 'Lago Norte' },
-  'guara': { x: 810, y: 420, prioridade: 2, nome: 'Guará' },
-  'aguas-claras': { x: 745, y: 435, prioridade: 2, nome: 'Águas Claras' },
-  'recanto-das-emas': { x: 580, y: 540, prioridade: 2, nome: 'Rec. das Emas' },
-  'santa-maria': { x: 705, y: 565, prioridade: 2, nome: 'Santa Maria' },
-  'sao-sebastiao': { x: 1085, y: 465, prioridade: 2, nome: 'São Sebastião' },
-  'nucleo-bandeirante': { x: 850, y: 445, prioridade: 3, nome: 'N. Bandeirante' },
-  'riacho-fundo': { x: 780, y: 470, prioridade: 3, nome: 'R. Fundo' },
-  'riacho-fundo-ii': { x: 750, y: 495, prioridade: 3, nome: 'R. Fundo II' },
-  'candangolandia': { x: 870, y: 435, prioridade: 3, nome: 'Candangolândia' },
-  'cruzeiro': { x: 875, y: 400, prioridade: 3, nome: 'Cruzeiro' },
-  'sudoeste-octogonal': { x: 865, y: 385, prioridade: 3, nome: 'Sudoeste' },
-  'jardim-botanico': { x: 1045, y: 490, prioridade: 3, nome: 'Jd. Botânico' },
-  'vicente-pires': { x: 770, y: 415, prioridade: 3, nome: 'V. Pires' },
-  'itapoa': { x: 1145, y: 325, prioridade: 3, nome: 'Itapoã' },
-  'varjao': { x: 1020, y: 310, prioridade: 3, nome: 'Varjão' },
-  'fercal': { x: 1050, y: 175, prioridade: 3, nome: 'Fercal' },
-  'sol-nascente-por-do-sol': { x: 600, y: 445, prioridade: 2, nome: 'Sol Nascente' },
-  'arniqueira': { x: 720, y: 450, prioridade: 3, nome: 'Arniqueira' },
-  'park-way': { x: 900, y: 480, prioridade: 3, nome: 'Park Way' },
-  'scia-estrutural': { x: 835, y: 375, prioridade: 3, nome: 'Estrutural' },
-  'sia': { x: 830, y: 405, prioridade: 3, nome: 'SIA' },
+const CENTROS_CIDADES: Record<string, { x: number; y: number; prioridade: number; nome: string; nomeCompleto?: string }> = {
+  // Regiões principais (prioridade 1) - sempre visíveis
+  'ceilandia': { x: 640, y: 445, prioridade: 1, nome: 'CEILÂNDIA', nomeCompleto: 'Ceilândia - RA IX' },
+  'taguatinga': { x: 695, y: 425, prioridade: 1, nome: 'TAGUATINGA', nomeCompleto: 'Taguatinga - RA III' },
+  'samambaia': { x: 640, y: 510, prioridade: 1, nome: 'SAMAMBAIA', nomeCompleto: 'Samambaia - RA XII' },
+  'plano-piloto': { x: 920, y: 365, prioridade: 1, nome: 'PLANO PILOTO', nomeCompleto: 'Brasília/Plano Piloto - RA I' },
+  'gama': { x: 615, y: 585, prioridade: 1, nome: 'GAMA', nomeCompleto: 'Gama - RA II' },
+  'planaltina': { x: 1180, y: 225, prioridade: 1, nome: 'PLANALTINA', nomeCompleto: 'Planaltina - RA VI' },
+
+  // Regiões secundárias (prioridade 2) - visíveis em médio e completo
+  'sobradinho': { x: 1015, y: 220, prioridade: 2, nome: 'SOBRADINHO', nomeCompleto: 'Sobradinho - RA V' },
+  'sobradinho-ii': { x: 1065, y: 260, prioridade: 2, nome: 'SOBRADINHO II', nomeCompleto: 'Sobradinho II - RA XXVI' },
+  'brazlandia': { x: 560, y: 270, prioridade: 2, nome: 'BRAZLÂNDIA', nomeCompleto: 'Brazlândia - RA IV' },
+  'paranoa': { x: 1125, y: 375, prioridade: 2, nome: 'PARANOÁ', nomeCompleto: 'Paranoá - RA VII' },
+  'lago-sul': { x: 990, y: 465, prioridade: 2, nome: 'LAGO SUL', nomeCompleto: 'Lago Sul - RA XVI' },
+  'lago-norte': { x: 1010, y: 315, prioridade: 2, nome: 'LAGO NORTE', nomeCompleto: 'Lago Norte - RA XVIII' },
+  'guara': { x: 810, y: 420, prioridade: 2, nome: 'GUARÁ', nomeCompleto: 'Guará - RA X' },
+  'aguas-claras': { x: 745, y: 438, prioridade: 2, nome: 'ÁGUAS CLARAS', nomeCompleto: 'Águas Claras - RA XX' },
+  'recanto-das-emas': { x: 575, y: 540, prioridade: 2, nome: 'RECANTO DAS EMAS', nomeCompleto: 'Recanto das Emas - RA XV' },
+  'santa-maria': { x: 705, y: 568, prioridade: 2, nome: 'SANTA MARIA', nomeCompleto: 'Santa Maria - RA XIII' },
+  'sao-sebastiao': { x: 1090, y: 468, prioridade: 2, nome: 'SÃO SEBASTIÃO', nomeCompleto: 'São Sebastião - RA XIV' },
+  'sol-nascente-por-do-sol': { x: 595, y: 445, prioridade: 2, nome: 'SOL NASCENTE', nomeCompleto: 'Sol Nascente/Pôr do Sol - RA XXXII' },
+
+  // Regiões terciárias (prioridade 3) - visíveis apenas em completo
+  'nucleo-bandeirante': { x: 850, y: 448, prioridade: 3, nome: 'N. BANDEIRANTE', nomeCompleto: 'Núcleo Bandeirante - RA VIII' },
+  'riacho-fundo': { x: 778, y: 472, prioridade: 3, nome: 'R. FUNDO', nomeCompleto: 'Riacho Fundo - RA XVII' },
+  'riacho-fundo-ii': { x: 748, y: 498, prioridade: 3, nome: 'R. FUNDO II', nomeCompleto: 'Riacho Fundo II - RA XXI' },
+  'candangolandia': { x: 870, y: 438, prioridade: 3, nome: 'CANDANGOLÂNDIA', nomeCompleto: 'Candangolândia - RA XIX' },
+  'cruzeiro': { x: 875, y: 398, prioridade: 3, nome: 'CRUZEIRO', nomeCompleto: 'Cruzeiro - RA XI' },
+  'sudoeste-octogonal': { x: 862, y: 382, prioridade: 3, nome: 'SUDOESTE', nomeCompleto: 'Sudoeste/Octogonal - RA XXII' },
+  'jardim-botanico': { x: 1050, y: 495, prioridade: 3, nome: 'JD. BOTÂNICO', nomeCompleto: 'Jardim Botânico - RA XXVII' },
+  'vicente-pires': { x: 768, y: 412, prioridade: 3, nome: 'V. PIRES', nomeCompleto: 'Vicente Pires - RA XXX' },
+  'itapoa': { x: 1150, y: 322, prioridade: 3, nome: 'ITAPOÃ', nomeCompleto: 'Itapoã - RA XXVIII' },
+  'varjao': { x: 1022, y: 305, prioridade: 3, nome: 'VARJÃO', nomeCompleto: 'Varjão - RA XXIII' },
+  'fercal': { x: 1050, y: 172, prioridade: 3, nome: 'FERCAL', nomeCompleto: 'Fercal - RA XXXI' },
+  'arniqueira': { x: 718, y: 452, prioridade: 3, nome: 'ARNIQUEIRA', nomeCompleto: 'Arniqueira - RA XXXIII' },
+  'park-way': { x: 902, y: 482, prioridade: 3, nome: 'PARK WAY', nomeCompleto: 'Park Way - RA XXIV' },
+  'scia-estrutural': { x: 832, y: 372, prioridade: 3, nome: 'ESTRUTURAL', nomeCompleto: 'SCIA/Estrutural - RA XXV' },
+  'sia': { x: 828, y: 402, prioridade: 3, nome: 'SIA', nomeCompleto: 'SIA - RA XXIX' },
 };
 
 // ============================================
@@ -170,48 +187,78 @@ const POPULACAO_RA: Record<string, number> = {
 };
 
 // ============================================
-// LAGO PARANOÁ (path detalhado)
+// LAGO PARANOÁ (path mais detalhado e realista)
 // ============================================
 
+// Corpo principal do lago - forma mais realista
 const LAGO_PARANOA_PATH = `
-  M 940,340
-  C 945,335 960,330 980,335
-  Q 1000,340 1020,355
-  L 1035,370
-  Q 1045,385 1040,400
-  L 1030,420
-  Q 1020,440 1000,450
-  L 975,445
-  Q 955,440 945,425
-  L 938,405
-  Q 932,385 938,365
-  L 940,340
+  M 945,345
+  C 950,340 965,335 985,338
+  Q 1005,342 1025,358
+  L 1038,372
+  Q 1048,388 1042,405
+  L 1032,425
+  Q 1022,442 1002,452
+  L 978,448
+  Q 958,444 948,430
+  L 942,410
+  Q 936,390 942,368
+  L 945,345
   Z
 `;
 
-// Braços do lago
+// Braço Norte do lago - direção ao Lago Norte
 const LAGO_NORTE_BRACO = `
-  M 975,340
-  Q 985,330 1000,325
-  L 1015,330
-  Q 1020,340 1010,350
-  L 990,355
-  Q 980,352 975,340
+  M 980,345
+  Q 992,335 1008,330
+  L 1025,334
+  Q 1032,345 1020,358
+  L 998,360
+  Q 985,356 980,345
   Z
 `;
 
+// Braço Sul do lago - direção ao Lago Sul
 const LAGO_SUL_BRACO = `
-  M 960,440
-  Q 970,450 965,465
-  L 955,475
-  Q 945,470 948,455
-  L 960,440
+  M 965,445
+  Q 978,458 972,475
+  L 960,488
+  Q 948,482 952,465
+  L 965,445
   Z
 `;
 
-// Contorno estilizado do Plano Piloto (forma de avião/cruz)
+// Braço Leste - Paranoá
+const LAGO_LESTE_BRACO = `
+  M 1040,395
+  Q 1055,398 1068,405
+  L 1075,418
+  Q 1070,428 1055,425
+  L 1042,412
+  Q 1038,402 1040,395
+  Z
+`;
+
+// Contorno estilizado do Plano Piloto (forma icônica de avião)
+// Representa a forma característica de Brasília vista de cima
 const PLANO_PILOTO_CONTORNO = `
-  M 855,385 L 865,382 L 920,370 L 955,372 L 960,375 L 955,378 L 920,376 L 865,388 L 855,385 Z
+  M 858,388
+  L 870,385
+  L 905,375
+  L 925,372
+  L 950,373
+  L 958,376
+  L 950,379
+  L 925,378
+  L 905,381
+  L 870,391
+  L 858,388
+  Z
+`;
+
+// Eixo Monumental (linha central do Plano Piloto)
+const EIXO_MONUMENTAL = `
+  M 890,382 L 945,375
 `;
 
 // ============================================
@@ -466,47 +513,68 @@ export function MapaCalorDF({
             );
           })}
 
-          {/* Lago Paranoá */}
+          {/* Lago Paranoá - desenho mais detalhado */}
           {mostrarLago && (
             <g className="pointer-events-none">
               {/* Lago principal */}
               <path
                 d={LAGO_PARANOA_PATH}
                 fill="url(#lagoGradient)"
-                stroke="#2563eb"
+                stroke="#1d4ed8"
                 strokeWidth="1.5"
                 filter="url(#waterEffect)"
-                opacity="0.9"
+                opacity="0.92"
               />
-              {/* Padrão de ondas */}
+              {/* Padrão de ondas no lago principal */}
               <path
                 d={LAGO_PARANOA_PATH}
                 fill="url(#waterPattern)"
-                opacity="0.5"
+                opacity="0.4"
               />
-              {/* Braços do lago */}
+              {/* Braço Norte do lago */}
               <path
                 d={LAGO_NORTE_BRACO}
                 fill="url(#lagoGradient)"
-                stroke="#2563eb"
+                stroke="#1d4ed8"
                 strokeWidth="1"
-                opacity="0.8"
+                filter="url(#waterEffect)"
+                opacity="0.88"
               />
+              {/* Braço Sul do lago */}
               <path
                 d={LAGO_SUL_BRACO}
                 fill="url(#lagoGradient)"
-                stroke="#2563eb"
+                stroke="#1d4ed8"
                 strokeWidth="1"
-                opacity="0.8"
+                filter="url(#waterEffect)"
+                opacity="0.88"
               />
-              {/* Nome do lago */}
+              {/* Braço Leste do lago (direção Paranoá) */}
+              <path
+                d={LAGO_LESTE_BRACO}
+                fill="url(#lagoGradient)"
+                stroke="#1d4ed8"
+                strokeWidth="1"
+                filter="url(#waterEffect)"
+                opacity="0.85"
+              />
+              {/* Nome do lago com fundo para legibilidade */}
+              <rect
+                x="950"
+                y="393"
+                width="70"
+                height="14"
+                rx="3"
+                fill="white"
+                opacity="0.75"
+              />
               <text
                 x="985"
-                y="390"
+                y="404"
                 textAnchor="middle"
                 style={{
-                  fontSize: '9px',
-                  fontWeight: 600,
+                  fontSize: '10px',
+                  fontWeight: 700,
                   fill: '#1e40af',
                   fontStyle: 'italic',
                   letterSpacing: '0.5px',
@@ -517,33 +585,80 @@ export function MapaCalorDF({
             </g>
           )}
 
-          {/* Contorno do Plano Piloto */}
+          {/* Contorno do Plano Piloto (forma icônica de avião) */}
           {mostrarContornoPlano && (
             <g className="pointer-events-none">
+              {/* Forma de avião do Plano Piloto */}
               <path
                 d={PLANO_PILOTO_CONTORNO}
+                fill="rgba(99, 102, 241, 0.15)"
+                stroke="#6366f1"
+                strokeWidth="2"
+                strokeDasharray="6,3"
+                opacity="0.75"
+              />
+              {/* Eixo Monumental - linha central */}
+              <path
+                d={EIXO_MONUMENTAL}
                 fill="none"
                 stroke="#6366f1"
-                strokeWidth="1.5"
-                strokeDasharray="4,2"
+                strokeWidth="2.5"
+                strokeLinecap="round"
                 opacity="0.6"
+              />
+              {/* Legenda do Eixo Monumental com fundo */}
+              <rect
+                x="882"
+                y="355"
+                width="60"
+                height="12"
+                rx="2"
+                fill="white"
+                opacity="0.8"
               />
               <text
                 x="912"
-                y="363"
+                y="364"
                 textAnchor="middle"
                 style={{
-                  fontSize: '6px',
+                  fontSize: '7px',
                   fill: '#6366f1',
-                  fontWeight: 500,
+                  fontWeight: 600,
                 }}
               >
                 Eixo Monumental
               </text>
+              {/* Indicação de Asa Norte e Asa Sul */}
+              <text
+                x="875"
+                y="378"
+                textAnchor="middle"
+                style={{
+                  fontSize: '5.5px',
+                  fill: '#6366f1',
+                  fontWeight: 500,
+                  opacity: 0.8,
+                }}
+              >
+                Asa Norte
+              </text>
+              <text
+                x="875"
+                y="395"
+                textAnchor="middle"
+                style={{
+                  fontSize: '5.5px',
+                  fill: '#6366f1',
+                  fontWeight: 500,
+                  opacity: 0.8,
+                }}
+              >
+                Asa Sul
+              </text>
             </g>
           )}
 
-          {/* Nomes das principais cidades */}
+          {/* Nomes das principais cidades - melhorado para maior legibilidade */}
           {mostrarNomesCidades && (
             <g className="pointer-events-none">
               {Object.entries(CENTROS_CIDADES)
@@ -554,37 +669,59 @@ export function MapaCalorDF({
                 )
                 .map(([id, info]) => {
                   const isHovered = regiaoHover === id;
-                  const fontSize = info.prioridade === 1 ? '11px' : info.prioridade === 2 ? '9px' : '7px';
-                  const fontWeight = info.prioridade === 1 ? 700 : info.prioridade === 2 ? 600 : 500;
+                  // Tamanhos de fonte maiores para melhor legibilidade
+                  const fontSize = info.prioridade === 1 ? '13px' : info.prioridade === 2 ? '10px' : '8px';
+                  const fontWeight = info.prioridade === 1 ? 800 : info.prioridade === 2 ? 700 : 600;
+                  const dotRadius = info.prioridade === 1 ? 4 : info.prioridade === 2 ? 3 : 2.5;
+                  const dotOffset = info.prioridade === 1 ? 14 : info.prioridade === 2 ? 11 : 9;
 
                   return (
                     <g key={`label-${id}`}>
-                      {/* Ponto da cidade */}
+                      {/* Ponto marcador da cidade */}
                       <circle
                         cx={info.x}
-                        cy={info.y - (info.prioridade === 1 ? 10 : 7)}
-                        r={info.prioridade === 1 ? 3 : 2}
-                        fill={isHovered ? '#1e40af' : '#374151'}
+                        cy={info.y - dotOffset}
+                        r={dotRadius}
+                        fill={isHovered ? '#dc2626' : info.prioridade === 1 ? '#1e40af' : '#374151'}
                         stroke="white"
-                        strokeWidth="1"
+                        strokeWidth="1.5"
+                        style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))' }}
                       />
-                      {/* Fundo do texto para melhor legibilidade */}
-                      <text
-                        x={info.x}
-                        y={info.y}
-                        textAnchor="middle"
-                        dominantBaseline="hanging"
-                        style={{
-                          fontSize,
-                          fontWeight,
-                          fill: 'white',
-                          stroke: 'white',
-                          strokeWidth: 4,
-                          paintOrder: 'stroke',
-                        }}
-                      >
-                        {info.nome}
-                      </text>
+
+                      {/* Fundo do texto (retângulo arredondado para legibilidade máxima) */}
+                      {info.prioridade <= 2 && (
+                        <rect
+                          x={info.x - (info.nome.length * (info.prioridade === 1 ? 4 : 3.2))}
+                          y={info.y - 2}
+                          width={info.nome.length * (info.prioridade === 1 ? 8 : 6.4)}
+                          height={info.prioridade === 1 ? 16 : 13}
+                          rx="3"
+                          fill="white"
+                          opacity="0.9"
+                          style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.15))' }}
+                        />
+                      )}
+
+                      {/* Contorno branco do texto para prioridade 3 */}
+                      {info.prioridade === 3 && (
+                        <text
+                          x={info.x}
+                          y={info.y}
+                          textAnchor="middle"
+                          dominantBaseline="hanging"
+                          style={{
+                            fontSize,
+                            fontWeight,
+                            fill: 'white',
+                            stroke: 'white',
+                            strokeWidth: 5,
+                            paintOrder: 'stroke',
+                          }}
+                        >
+                          {info.nome}
+                        </text>
+                      )}
+
                       {/* Texto principal */}
                       <text
                         x={info.x}
@@ -594,7 +731,8 @@ export function MapaCalorDF({
                         style={{
                           fontSize,
                           fontWeight,
-                          fill: isHovered ? '#1e40af' : '#1f2937',
+                          fill: isHovered ? '#dc2626' : info.prioridade === 1 ? '#1e3a8a' : '#1f2937',
+                          letterSpacing: info.prioridade === 1 ? '0.5px' : '0px',
                           filter: isHovered ? 'url(#glow)' : 'none',
                         }}
                       >
@@ -606,51 +744,74 @@ export function MapaCalorDF({
             </g>
           )}
 
-          {/* Pontos de referência */}
+          {/* Pontos de referência melhorados */}
           {mostrarPontosReferencia && (
             <g className="pointer-events-none">
               {PONTOS_REFERENCIA
-                .filter(p => nivelDetalhe === 'completo' || p.tipo === 'principal')
-                .map((ponto) => (
-                <g key={ponto.id}>
-                  {/* Círculo de fundo */}
-                  <circle
-                    cx={ponto.x}
-                    cy={ponto.y}
-                    r={ponto.tipo === 'principal' ? 10 : 7}
-                    fill="white"
-                    stroke="#6b7280"
-                    strokeWidth="0.5"
-                    opacity="0.95"
-                    style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}
-                  />
-                  {/* Emoji/ícone */}
-                  <text
-                    x={ponto.x}
-                    y={ponto.y + 1}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    style={{ fontSize: ponto.tipo === 'principal' ? '10px' : '8px' }}
-                  >
-                    {ponto.icone}
-                  </text>
-                  {/* Nome do ponto (apenas principais e em nível completo) */}
-                  {nivelDetalhe === 'completo' && ponto.tipo === 'principal' && (
-                    <text
-                      x={ponto.x}
-                      y={ponto.y + 18}
-                      textAnchor="middle"
-                      style={{
-                        fontSize: '6px',
-                        fill: '#6b7280',
-                        fontWeight: 500,
-                      }}
-                    >
-                      {ponto.nome}
-                    </text>
-                  )}
-                </g>
-              ))}
+                .filter(p =>
+                  nivelDetalhe === 'completo' ||
+                  (nivelDetalhe === 'medio' && (p.tipo === 'principal' || p.tipo === 'secundario')) ||
+                  (nivelDetalhe === 'minimo' && p.tipo === 'principal')
+                )
+                .map((ponto) => {
+                  const radius = ponto.tipo === 'principal' ? 12 : ponto.tipo === 'secundario' ? 9 : 7;
+                  const fontSize = ponto.tipo === 'principal' ? '12px' : ponto.tipo === 'secundario' ? '9px' : '7px';
+                  const showLabel = nivelDetalhe === 'completo' ||
+                    (nivelDetalhe === 'medio' && ponto.tipo === 'principal');
+
+                  return (
+                    <g key={ponto.id}>
+                      {/* Círculo de fundo com sombra */}
+                      <circle
+                        cx={ponto.x}
+                        cy={ponto.y}
+                        r={radius}
+                        fill="white"
+                        stroke={ponto.tipo === 'principal' ? '#1e40af' : '#6b7280'}
+                        strokeWidth={ponto.tipo === 'principal' ? 1.5 : 0.75}
+                        opacity="0.98"
+                        style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))' }}
+                      />
+                      {/* Emoji/ícone */}
+                      <text
+                        x={ponto.x}
+                        y={ponto.y + 1}
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        style={{ fontSize }}
+                      >
+                        {ponto.icone}
+                      </text>
+                      {/* Nome do ponto de referência */}
+                      {showLabel && (
+                        <>
+                          {/* Fundo para legibilidade */}
+                          <rect
+                            x={ponto.x - (ponto.nome.length * 2.2)}
+                            y={ponto.y + radius + 2}
+                            width={ponto.nome.length * 4.4}
+                            height={10}
+                            rx="2"
+                            fill="white"
+                            opacity="0.85"
+                          />
+                          <text
+                            x={ponto.x}
+                            y={ponto.y + radius + 10}
+                            textAnchor="middle"
+                            style={{
+                              fontSize: '7px',
+                              fill: ponto.tipo === 'principal' ? '#1e3a8a' : '#4b5563',
+                              fontWeight: ponto.tipo === 'principal' ? 600 : 500,
+                            }}
+                          >
+                            {ponto.nome}
+                          </text>
+                        </>
+                      )}
+                    </g>
+                  );
+                })}
             </g>
           )}
 
