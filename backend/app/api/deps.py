@@ -5,6 +5,7 @@ Funções de dependência para injeção em rotas.
 Inclui suporte a Row Level Security (RLS) no PostgreSQL.
 """
 
+import logging
 from typing import AsyncGenerator, Optional
 
 from fastapi import Depends, HTTPException, status
@@ -14,6 +15,29 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.seguranca import DadosToken, verificar_token
 from app.db.session import AsyncSessionLocal
+
+logger = logging.getLogger(__name__)
+
+# Flag global para indicar se o banco está disponível
+_db_disponivel: Optional[bool] = None
+
+
+async def verificar_db_disponivel() -> bool:
+    """Verifica se o banco de dados está disponível."""
+    global _db_disponivel
+    if _db_disponivel is not None:
+        return _db_disponivel
+
+    try:
+        async with AsyncSessionLocal() as session:
+            await session.execute(text("SELECT 1"))
+            _db_disponivel = True
+            logger.info("Banco de dados disponível")
+    except Exception as e:
+        _db_disponivel = False
+        logger.warning(f"Banco de dados não disponível: {e}")
+
+    return _db_disponivel
 
 # Esquema OAuth2
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")

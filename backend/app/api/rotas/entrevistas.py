@@ -133,12 +133,13 @@ async def iniciar_execucao(
     config: IniciarEntrevistaRequest,
     background_tasks: BackgroundTasks,
     servico: EntrevistaServico = Depends(get_servico),
-    _: DadosToken = Depends(obter_usuario_atual),
+    usuario: DadosToken = Depends(obter_usuario_atual),
 ):
     """
     Inicia a execução de uma entrevista.
 
     A execução ocorre em background e pode ser monitorada via endpoint de progresso.
+    As memórias geradas são associadas ao usuário que iniciou a execução.
     """
     entrevista = servico.obter_por_id(entrevista_id)
     if not entrevista:
@@ -153,6 +154,10 @@ async def iniciar_execucao(
             detail="Entrevista já está em execução",
         )
 
+    # Capturar dados do usuário para passar ao background task
+    usuario_id = usuario.usuario_id
+    usuario_nome = usuario.nome
+
     # Iniciar execução em background
     async def executar():
         try:
@@ -161,6 +166,8 @@ async def iniciar_execucao(
                 limite_custo=config.limite_custo_reais,
                 batch_size=config.batch_size,
                 delay_ms=config.delay_entre_batches_ms,
+                usuario_id=usuario_id,
+                usuario_nome=usuario_nome,
             )
         except Exception as e:
             print(f"Erro na execução: {e}")
@@ -171,6 +178,7 @@ async def iniciar_execucao(
         "mensagem": "Execução iniciada",
         "entrevista_id": entrevista_id,
         "config": config.model_dump(),
+        "executado_por": usuario_nome,
     }
 
 

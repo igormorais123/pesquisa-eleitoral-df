@@ -32,8 +32,19 @@ logger = logging.getLogger(__name__)
 def obter_url_async(url: str) -> str:
     """Converte URL síncrona para assíncrona (asyncpg)."""
     if url.startswith("postgresql://"):
-        return url.replace("postgresql://", "postgresql+asyncpg://", 1)
+        url = url.replace("postgresql://", "postgresql+asyncpg://", 1)
+    # Remove parâmetros SSL da URL pois asyncpg os trata via connect_args
+    if "?ssl=" in url:
+        url = url.split("?ssl=")[0]
+    elif "&ssl=" in url:
+        url = url.replace("&ssl=require", "").replace("&ssl=true", "")
     return url
+
+
+def _requer_ssl() -> bool:
+    """Verifica se a URL do banco requer SSL (ex: Render, Heroku)."""
+    url = configuracoes.DATABASE_URL.lower()
+    return "render.com" in url or "ssl=require" in url or "ssl=true" in url
 
 
 # Configurações do pool baseadas no ambiente
@@ -53,10 +64,21 @@ def _obter_config_pool() -> dict:
     }
 
 
+# Configuração de SSL para asyncpg
+def _obter_connect_args() -> dict:
+    """Retorna connect_args com SSL se necessário."""
+    if _requer_ssl():
+        logger.info("SSL habilitado para conexão com banco de dados")
+        # Usar ssl="require" para Render/Heroku
+        return {"ssl": "require"}
+    return {}
+
+
 # Engine assíncrono para conexões com o PostgreSQL
 engine = create_async_engine(
     obter_url_async(configuracoes.DATABASE_URL),
     echo=configuracoes.AMBIENTE == "development",  # Log SQL em dev
+    connect_args=_obter_connect_args(),
     **_obter_config_pool(),
 )
 
