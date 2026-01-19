@@ -24,6 +24,59 @@ export interface RegiaoPath {
 }
 
 // ============================================
+// PONTOS DE REFERÊNCIA DO DF
+// ============================================
+
+const PONTOS_REFERENCIA = [
+  { id: 'congresso', nome: 'Congresso Nacional', x: 930, y: 385, icone: '🏛️' },
+  { id: 'torre-tv', nome: 'Torre de TV', x: 890, y: 390, icone: '📡' },
+  { id: 'aeroporto', nome: 'Aeroporto JK', x: 1080, y: 360, icone: '✈️' },
+  { id: 'rodoviaria', nome: 'Rodoviária', x: 905, y: 390, icone: '🚌' },
+  { id: 'catedral', nome: 'Catedral', x: 920, y: 380, icone: '⛪' },
+];
+
+// Coordenadas principais das cidades para labels
+const CENTROS_CIDADES: Record<string, { x: number; y: number; prioridade: number }> = {
+  'ceilandia': { x: 640, y: 440, prioridade: 1 },
+  'taguatinga': { x: 700, y: 425, prioridade: 1 },
+  'samambaia': { x: 640, y: 500, prioridade: 1 },
+  'plano-piloto': { x: 910, y: 375, prioridade: 1 },
+  'gama': { x: 615, y: 580, prioridade: 1 },
+  'planaltina': { x: 1180, y: 220, prioridade: 1 },
+  'sobradinho': { x: 1020, y: 220, prioridade: 2 },
+  'brazlandia': { x: 560, y: 265, prioridade: 2 },
+  'paranoa': { x: 1120, y: 370, prioridade: 2 },
+  'lago-sul': { x: 970, y: 460, prioridade: 2 },
+  'lago-norte': { x: 990, y: 320, prioridade: 2 },
+  'guara': { x: 810, y: 420, prioridade: 2 },
+  'aguas-claras': { x: 740, y: 430, prioridade: 2 },
+  'recanto-das-emas': { x: 580, y: 530, prioridade: 2 },
+  'santa-maria': { x: 700, y: 560, prioridade: 2 },
+  'sao-sebastiao': { x: 1080, y: 460, prioridade: 2 },
+};
+
+// Path do Lago Paranoá (simplificado)
+const LAGO_PARANOA_PATH = `
+  M 940,340
+  C 950,335 965,335 980,340
+  L 1010,360
+  C 1030,375 1040,390 1035,405
+  L 1020,430
+  C 1010,445 995,455 980,450
+  L 950,435
+  C 935,428 928,415 932,400
+  L 940,370
+  C 942,355 940,345 940,340
+  Z
+`;
+
+// Path simplificado do formato do Plano Piloto (asas do avião)
+const PLANO_PILOTO_CONTORNO = `
+  M 870,380 L 950,370 L 970,375 L 950,380 L 870,390 Z
+  M 920,350 L 930,400 L 935,400 L 925,350 Z
+`;
+
+// ============================================
 // MAPEAMENTO DE NOMES PARA IDs
 // ============================================
 
@@ -188,6 +241,10 @@ interface MapaCalorDFProps {
   onRegiaoClick?: (regiao: string) => void;
   mostrarLegenda?: boolean;
   mostrarRotulos?: boolean;
+  mostrarLago?: boolean;
+  mostrarPontosReferencia?: boolean;
+  mostrarNomesCidades?: boolean;
+  nivelDetalhe?: 'minimo' | 'medio' | 'completo';
   altura?: number;
   className?: string;
 }
@@ -201,6 +258,10 @@ export function MapaCalorDF({
   onRegiaoClick,
   mostrarLegenda = true,
   mostrarRotulos = false,
+  mostrarLago = true,
+  mostrarPontosReferencia = true,
+  mostrarNomesCidades = true,
+  nivelDetalhe = 'completo',
   altura = 500,
   className
 }: MapaCalorDFProps) {
@@ -263,6 +324,24 @@ export function MapaCalorDF({
           preserveAspectRatio="xMidYMid meet"
           style={{ background: 'transparent' }}
         >
+          {/* Definições de filtros e gradientes */}
+          <defs>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <linearGradient id="lagoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.6"/>
+              <stop offset="100%" stopColor="#1d4ed8" stopOpacity="0.4"/>
+            </linearGradient>
+            <filter id="waterEffect">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+            </filter>
+          </defs>
+
           {/* Renderizar regiões */}
           {PATHS_RAS_DF.map((regiao: PathRA) => {
             const dado = dadosPorId.get(regiao.id);
@@ -312,6 +391,136 @@ export function MapaCalorDF({
               </g>
             );
           })}
+
+          {/* Lago Paranoá */}
+          {mostrarLago && (
+            <g className="pointer-events-none">
+              <path
+                d={LAGO_PARANOA_PATH}
+                fill="url(#lagoGradient)"
+                stroke="#2563eb"
+                strokeWidth="1"
+                filter="url(#waterEffect)"
+                opacity="0.85"
+              />
+              <text
+                x="980"
+                y="395"
+                textAnchor="middle"
+                style={{
+                  fontSize: '7px',
+                  fontWeight: 500,
+                  fill: '#1e40af',
+                  fontStyle: 'italic',
+                }}
+              >
+                Lago Paranoá
+              </text>
+            </g>
+          )}
+
+          {/* Nomes das principais cidades */}
+          {mostrarNomesCidades && (
+            <g className="pointer-events-none">
+              {Object.entries(CENTROS_CIDADES)
+                .filter(([, info]) =>
+                  nivelDetalhe === 'completo' ||
+                  (nivelDetalhe === 'medio' && info.prioridade <= 2) ||
+                  (nivelDetalhe === 'minimo' && info.prioridade === 1)
+                )
+                .map(([id, info]) => {
+                  const regiao = PATHS_RAS_DF.find((r: PathRA) => r.id === id);
+                  if (!regiao) return null;
+
+                  const isHovered = regiaoHover === id;
+                  const fontSize = info.prioridade === 1 ? '10px' : '8px';
+
+                  return (
+                    <g key={`label-${id}`}>
+                      {/* Fundo do texto para melhor legibilidade */}
+                      <text
+                        x={info.x}
+                        y={info.y}
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        style={{
+                          fontSize,
+                          fontWeight: 700,
+                          fill: 'white',
+                          stroke: 'white',
+                          strokeWidth: 3,
+                          paintOrder: 'stroke',
+                        }}
+                      >
+                        {regiao.nome}
+                      </text>
+                      {/* Texto principal */}
+                      <text
+                        x={info.x}
+                        y={info.y}
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        style={{
+                          fontSize,
+                          fontWeight: 700,
+                          fill: isHovered ? '#1e40af' : '#1f2937',
+                          filter: isHovered ? 'url(#glow)' : 'none',
+                        }}
+                      >
+                        {regiao.nome}
+                      </text>
+                    </g>
+                  );
+                })}
+            </g>
+          )}
+
+          {/* Pontos de referência */}
+          {mostrarPontosReferencia && nivelDetalhe === 'completo' && (
+            <g className="pointer-events-none">
+              {PONTOS_REFERENCIA.map((ponto) => (
+                <g key={ponto.id}>
+                  {/* Círculo de fundo */}
+                  <circle
+                    cx={ponto.x}
+                    cy={ponto.y}
+                    r="8"
+                    fill="white"
+                    stroke="#6b7280"
+                    strokeWidth="0.5"
+                    opacity="0.9"
+                  />
+                  {/* Emoji/ícone */}
+                  <text
+                    x={ponto.x}
+                    y={ponto.y + 1}
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    style={{ fontSize: '8px' }}
+                  >
+                    {ponto.icone}
+                  </text>
+                </g>
+              ))}
+            </g>
+          )}
+
+          {/* Bússola / Indicador Norte */}
+          <g transform="translate(1420, 150)" className="pointer-events-none">
+            <circle cx="0" cy="0" r="20" fill="white" stroke="#6b7280" strokeWidth="1" opacity="0.9"/>
+            <polygon points="0,-15 -5,5 0,0 5,5" fill="#ef4444"/>
+            <polygon points="0,15 -5,-5 0,0 5,-5" fill="#6b7280"/>
+            <text x="0" y="-8" textAnchor="middle" style={{ fontSize: '6px', fontWeight: 700, fill: '#1f2937' }}>N</text>
+          </g>
+
+          {/* Escala de distância */}
+          <g transform="translate(500, 680)" className="pointer-events-none">
+            <rect x="0" y="0" width="80" height="4" fill="#1f2937"/>
+            <rect x="0" y="0" width="40" height="4" fill="#fff" stroke="#1f2937" strokeWidth="0.5"/>
+            <text x="0" y="12" style={{ fontSize: '6px', fill: '#6b7280' }}>0</text>
+            <text x="40" y="12" textAnchor="middle" style={{ fontSize: '6px', fill: '#6b7280' }}>15km</text>
+            <text x="80" y="12" textAnchor="end" style={{ fontSize: '6px', fill: '#6b7280' }}>30km</text>
+          </g>
         </svg>
 
         {/* Tooltip */}

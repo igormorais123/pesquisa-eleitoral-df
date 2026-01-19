@@ -1,11 +1,22 @@
 /**
  * Funções de Exportação para Excel
  * Pesquisa Eleitoral DF 2026
+ *
+ * IMPORTANTE: Essas funções devem ser executadas apenas no client-side
+ * pois usam xlsx que depende do objeto window/document
  */
 
-import * as XLSX from 'xlsx';
-import type { Eleitor, RespostaEleitor } from '@/types';
+import type { Eleitor } from '@/types';
 import type { SessaoEntrevista } from '@/lib/db/dexie';
+
+// Importar dinamicamente para evitar erros de SSR
+async function getXLSX() {
+  if (typeof window === 'undefined') {
+    throw new Error('Excel export can only be used in the browser');
+  }
+  const XLSX = await import('xlsx');
+  return XLSX;
+}
 
 // Tipos para exportação
 interface DadosExportacao {
@@ -17,7 +28,8 @@ interface DadosExportacao {
 /**
  * Exporta lista de eleitores para Excel
  */
-export function exportarEleitoresExcel(eleitores: Eleitor[], nomeArquivo?: string): void {
+export async function exportarEleitoresExcel(eleitores: Eleitor[], nomeArquivo?: string): Promise<void> {
+  const XLSX = await getXLSX();
   // Mapear campos para formato legível
   const dados = eleitores.map((e) => ({
     ID: e.id,
@@ -105,7 +117,8 @@ export function exportarEleitoresExcel(eleitores: Eleitor[], nomeArquivo?: strin
 /**
  * Exporta resultado de entrevista para Excel
  */
-export function exportarResultadoExcel(sessao: SessaoEntrevista, nomeArquivo?: string): void {
+export async function exportarResultadoExcel(sessao: SessaoEntrevista, nomeArquivo?: string): Promise<void> {
+  const XLSX = await getXLSX();
   const wb = XLSX.utils.book_new();
 
   // Planilha 1: Resumo
@@ -184,7 +197,8 @@ export function exportarResultadoExcel(sessao: SessaoEntrevista, nomeArquivo?: s
 /**
  * Exporta dados completos para Excel (múltiplas planilhas)
  */
-export function exportarDadosCompletos(dados: DadosExportacao, nomeArquivo?: string): void {
+export async function exportarDadosCompletos(dados: DadosExportacao, nomeArquivo?: string): Promise<void> {
+  const XLSX = await getXLSX();
   const wb = XLSX.utils.book_new();
 
   // Adicionar eleitores se existirem

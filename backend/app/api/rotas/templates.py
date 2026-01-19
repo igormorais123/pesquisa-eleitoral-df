@@ -226,6 +226,10 @@ async def listar_templates(
     tag: Optional[str] = Query(
         None,
         description="Filtrar por tag específica"
+    ),
+    secao: Optional[str] = Query(
+        None,
+        description="Filtrar por seção (gestores, eleitores, parlamentares)"
     )
 ):
     """Lista todos os templates disponíveis com filtros opcionais."""
@@ -236,6 +240,9 @@ async def listar_templates(
 
     for tpl in templates:
         # Aplicar filtros
+        if secao and tpl.get("secao") != secao:
+            continue
+
         if categoria and tpl.get("categoria") != categoria.value:
             continue
 

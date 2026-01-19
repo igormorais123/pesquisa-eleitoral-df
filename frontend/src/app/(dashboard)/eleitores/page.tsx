@@ -23,7 +23,7 @@ import {
   Home,
 } from 'lucide-react';
 import { useEleitores } from '@/hooks/useEleitores';
-import { exportarEleitoresCSV, exportarEleitoresExcel, exportarEleitoresPDF } from '@/lib/export';
+import { exportarEleitoresCSV, exportarEleitoresExcel, exportarEleitoresPDF, exportarEleitoresMD } from '@/lib/export';
 import { AgenteCard } from '@/components/agentes/AgenteCard';
 import { AgentesFilters } from '@/components/agentes/AgentesFilters';
 import { AgentesCharts } from '@/components/agentes/AgentesCharts';
@@ -159,7 +159,13 @@ function EleitoresContent() {
               </button>
               <div className="absolute right-0 mt-2 w-48 bg-secondary/95 backdrop-blur border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
                 <button
-                  onClick={() => exportarEleitoresExcel(eleitoresFiltrados)}
+                  onClick={async () => {
+                    try {
+                      await exportarEleitoresExcel(eleitoresFiltrados);
+                    } catch (error) {
+                      console.error('Erro ao exportar Excel:', error);
+                    }
+                  }}
                   className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-t-lg transition-colors"
                 >
                   <FileSpreadsheet className="w-4 h-4 text-green-400" />
@@ -173,11 +179,24 @@ function EleitoresContent() {
                   CSV ({eleitoresFiltrados.length})
                 </button>
                 <button
-                  onClick={() => exportarEleitoresPDF(eleitoresFiltrados)}
-                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-b-lg transition-colors"
+                  onClick={async () => {
+                    try {
+                      await exportarEleitoresPDF(eleitoresFiltrados);
+                    } catch (error) {
+                      console.error('Erro ao exportar PDF:', error);
+                    }
+                  }}
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 transition-colors"
                 >
                   <FileDown className="w-4 h-4 text-red-400" />
                   PDF ({eleitoresFiltrados.length})
+                </button>
+                <button
+                  onClick={() => exportarEleitoresMD(eleitoresFiltrados, `eleitores-df-${new Date().toISOString().split('T')[0]}`)}
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-b-lg transition-colors"
+                >
+                  <FileText className="w-4 h-4 text-cyan-400" />
+                  MD p/ IA ({eleitoresFiltrados.length})
                 </button>
               </div>
             </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -25,13 +25,48 @@ import {
   Target,
   FileText,
   Sparkles,
+  Loader2,
+  RefreshCw,
 } from 'lucide-react';
 import { useGestores } from '@/hooks/useGestores';
 import { usePesquisaPODCStore } from '@/stores/pesquisa-podc-store';
 import { cn, formatarMoeda, formatarNumero } from '@/lib/utils';
+import { api } from '@/services/api';
 import type { TipoPergunta, Pergunta, SetorGestor, NivelHierarquico } from '@/types';
 
 type Etapa = 'template' | 'perguntas' | 'selecao' | 'revisao';
+
+// Interface para templates da API
+interface TemplateAPI {
+  id: string;
+  nome: string;
+  descricao: string;
+  categoria: string;
+  tags: string[];
+  total_perguntas: number;
+}
+
+interface TemplateCompletoAPI {
+  id: string;
+  nome: string;
+  descricao: string;
+  categoria: string;
+  tags: string[];
+  perguntas: {
+    codigo: string;
+    texto: string;
+    tipo: TipoPergunta;
+    categoria: string;
+    obrigatoria: boolean;
+    ordem: number;
+    escala_min?: number;
+    escala_max?: number;
+    opcoes?: string[];
+    instrucoes?: string;
+    insight_esperado?: string;
+    bloco?: string;
+  }[];
+}
 
 const TIPOS_PERGUNTA: { tipo: TipoPergunta; rotulo: string; descricao: string }[] = [
   { tipo: 'aberta', rotulo: 'Aberta', descricao: 'Resposta livre em texto' },
@@ -40,135 +75,14 @@ const TIPOS_PERGUNTA: { tipo: TipoPergunta; rotulo: string; descricao: string }[
   { tipo: 'sim_nao', rotulo: 'Sim/Nao', descricao: 'Resposta binaria' },
 ];
 
-// Templates de pesquisa PODC pré-definidos
-const TEMPLATES_PODC = [
-  {
-    id: 'podc_basico',
-    titulo: 'Pesquisa PODC Basica',
-    descricao: 'Questionario fundamental sobre distribuicao de tempo nas funcoes administrativas (Planejar, Organizar, Dirigir, Controlar)',
-    perguntas: [
-      {
-        texto: 'Como voce distribui seu tempo entre as funcoes de planejar, organizar, dirigir e controlar? Por favor, indique a porcentagem aproximada para cada funcao (deve somar 100%).',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-      {
-        texto: 'Qual funcao administrativa voce considera mais critica para o sucesso da sua area de atuacao?',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-      {
-        texto: 'Quais fatores mais influenciam a forma como voce aloca seu tempo entre as funcoes administrativas?',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-      {
-        texto: 'Como a hierarquia e o setor de atuacao (publico/privado) afetam sua autonomia decisoria?',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-    ],
-  },
-  {
-    id: 'podc_detalhado',
-    titulo: 'Pesquisa PODC Detalhada',
-    descricao: 'Questionario completo com analise aprofundada de cada funcao administrativa',
-    perguntas: [
-      {
-        texto: 'PLANEJAR: Quanto do seu tempo voce dedica a atividades de planejamento (definicao de metas, estrategias, previsoes)? Descreva as principais atividades.',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-      {
-        texto: 'ORGANIZAR: Quanto do seu tempo voce dedica a atividades de organizacao (estruturacao, alocacao de recursos, divisao de trabalho)? Descreva as principais atividades.',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-      {
-        texto: 'DIRIGIR: Quanto do seu tempo voce dedica a atividades de direcao (lideranca, motivacao, comunicacao com equipe)? Descreva as principais atividades.',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-      {
-        texto: 'CONTROLAR: Quanto do seu tempo voce dedica a atividades de controle (monitoramento, avaliacao, correcoes)? Descreva as principais atividades.',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-      {
-        texto: 'Se voce pudesse redistribuir seu tempo entre essas funcoes de forma ideal, como seria essa distribuicao? O que impede essa configuracao ideal hoje?',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-    ],
-  },
-  {
-    id: 'podc_comparativo',
-    titulo: 'Pesquisa Comparativa Publico x Privado',
-    descricao: 'Questionario focado em comparar as diferencas entre gestao publica e privada',
-    perguntas: [
-      {
-        texto: 'Como voce distribui seu tempo entre planejar, organizar, dirigir e controlar? Indique porcentagens aproximadas.',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-      {
-        texto: 'Quais sao as principais restricoes ou facilidades que seu setor (publico ou privado) impoe para a execucao de cada funcao administrativa?',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-      {
-        texto: 'Em sua opiniao, como a burocracia e os processos formais afetam a distribuicao do seu tempo entre as funcoes PODC?',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-      {
-        texto: 'Se voce migrasse para o setor oposto (publico->privado ou privado->publico), como imagina que sua distribuicao de tempo mudaria?',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-    ],
-  },
-  {
-    id: 'podc_iad',
-    titulo: 'Pesquisa IAD - Indice de Autonomia Decisoria',
-    descricao: 'Questionario focado na analise do Indice de Autonomia Decisoria IAD = (P+O)/(D+C)',
-    perguntas: [
-      {
-        texto: 'Qual porcentagem do seu tempo voce dedica a atividades de PLANEJAR (definir objetivos, estrategias)?',
-        tipo: 'escala' as TipoPergunta,
-        obrigatoria: true,
-        escala_min: 0,
-        escala_max: 100,
-      },
-      {
-        texto: 'Qual porcentagem do seu tempo voce dedica a atividades de ORGANIZAR (estruturar, alocar recursos)?',
-        tipo: 'escala' as TipoPergunta,
-        obrigatoria: true,
-        escala_min: 0,
-        escala_max: 100,
-      },
-      {
-        texto: 'Qual porcentagem do seu tempo voce dedica a atividades de DIRIGIR (liderar, motivar equipe)?',
-        tipo: 'escala' as TipoPergunta,
-        obrigatoria: true,
-        escala_min: 0,
-        escala_max: 100,
-      },
-      {
-        texto: 'Qual porcentagem do seu tempo voce dedica a atividades de CONTROLAR (monitorar, avaliar)?',
-        tipo: 'escala' as TipoPergunta,
-        obrigatoria: true,
-        escala_min: 0,
-        escala_max: 100,
-      },
-      {
-        texto: 'Voce se sente mais como um formulador de estrategias (autonomo) ou como um executor de tarefas pre-definidas (supervisionado)? Explique.',
-        tipo: 'aberta' as TipoPergunta,
-        obrigatoria: true,
-      },
-    ],
-  },
-];
+// Cores das categorias PODC
+const CORES_CATEGORIA: Record<string, string> = {
+  podc_planejar: 'bg-blue-600',
+  podc_organizar: 'bg-green-600',
+  podc_dirigir: 'bg-orange-500',
+  podc_controlar: 'bg-red-600',
+  podc_consolidado: 'bg-purple-600',
+};
 
 // Opções de setor
 const SETORES = [
@@ -193,6 +107,11 @@ export default function PaginaEntrevistasGestores() {
   ]);
   const [mostrarFiltros, setMostrarFiltros] = useState(false);
 
+  // Templates da API
+  const [templatesAPI, setTemplatesAPI] = useState<TemplateAPI[]>([]);
+  const [carregandoTemplates, setCarregandoTemplates] = useState(true);
+  const [erroTemplates, setErroTemplates] = useState<string | null>(null);
+
   // Filtros locais
   const [filtroSetores, setFiltroSetores] = useState<SetorGestor[]>([]);
   const [filtroNiveis, setFiltroNiveis] = useState<NivelHierarquico[]>([]);
@@ -216,13 +135,48 @@ export default function PaginaEntrevistasGestores() {
     setGestoresSelecionados,
   } = usePesquisaPODCStore();
 
-  // Selecionar template
-  const selecionarTemplate = useCallback((templateId: string) => {
-    const template = TEMPLATES_PODC.find((t) => t.id === templateId);
-    if (template) {
+  // Carregar templates da API ao montar
+  useEffect(() => {
+    const carregarTemplates = async () => {
+      setCarregandoTemplates(true);
+      setErroTemplates(null);
+      try {
+        const response = await api.get('/templates/', {
+          params: { secao: 'gestores' }
+        });
+        setTemplatesAPI(response.data);
+      } catch (error: any) {
+        console.error('Erro ao carregar templates:', error);
+        setErroTemplates(error.response?.data?.detail || 'Erro ao carregar templates');
+      } finally {
+        setCarregandoTemplates(false);
+      }
+    };
+    carregarTemplates();
+  }, []);
+
+  // Selecionar template - busca template completo da API
+  const selecionarTemplate = useCallback(async (templateId: string) => {
+    try {
+      const response = await api.get(`/templates/${templateId}`);
+      const templateCompleto: TemplateCompletoAPI = response.data;
+
       setTemplateSelecionado(templateId);
-      setTitulo(template.titulo);
-      setPerguntas(template.perguntas);
+      setTitulo(templateCompleto.nome);
+
+      // Converter perguntas do formato da API para formato do componente
+      const perguntasConvertidas: Partial<Pergunta>[] = templateCompleto.perguntas.map((p) => ({
+        texto: p.texto,
+        tipo: p.tipo,
+        obrigatoria: p.obrigatoria,
+        escala_min: p.escala_min,
+        escala_max: p.escala_max,
+      }));
+
+      setPerguntas(perguntasConvertidas);
+    } catch (error: any) {
+      console.error('Erro ao carregar template:', error);
+      setErroTemplates(error.response?.data?.detail || 'Erro ao carregar template');
     }
   }, []);
 
@@ -328,46 +282,104 @@ export default function PaginaEntrevistasGestores() {
       {etapa === 'template' && (
         <div className="space-y-6">
           <div className="glass-card rounded-xl p-6">
-            <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-primary" />
-              Selecione um Template de Pesquisa PODC
-            </h2>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-primary" />
+                Selecione um Template de Pesquisa PODC
+              </h2>
+              {!carregandoTemplates && (
+                <button
+                  onClick={() => {
+                    setCarregandoTemplates(true);
+                    api.get('/templates/', { params: { secao: 'gestores' } })
+                      .then((res) => setTemplatesAPI(res.data))
+                      .catch((err) => setErroTemplates(err.response?.data?.detail || 'Erro'))
+                      .finally(() => setCarregandoTemplates(false));
+                  }}
+                  className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <RefreshCw className="w-4 h-4" />
+                  Atualizar
+                </button>
+              )}
+            </div>
             <p className="text-sm text-muted-foreground mb-6">
               Escolha um modelo pre-configurado baseado na metodologia da pesquisa sobre distribuicao
-              de tempo entre as funcoes administrativas de Fayol.
+              de tempo entre as funcoes administrativas de Fayol. Templates carregados do banco de dados.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {TEMPLATES_PODC.map((template) => (
-                <div
-                  key={template.id}
-                  onClick={() => selecionarTemplate(template.id)}
-                  className={cn(
-                    'p-4 rounded-lg border-2 cursor-pointer transition-all',
-                    templateSelecionado === template.id
-                      ? 'border-primary bg-primary/10'
-                      : 'border-border hover:border-primary/50 bg-secondary/50'
-                  )}
-                >
-                  <div className="flex items-start gap-3">
-                    <div className={cn(
-                      'w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0',
-                      templateSelecionado === template.id ? 'bg-primary' : 'bg-secondary'
-                    )}>
-                      <FileText className={cn(
-                        'w-5 h-5',
-                        templateSelecionado === template.id ? 'text-primary-foreground' : 'text-muted-foreground'
-                      )} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground">{template.titulo}</h3>
-                      <p className="text-xs text-muted-foreground mt-1">{template.descricao}</p>
-                      <p className="text-xs text-primary mt-2">{template.perguntas.length} perguntas</p>
+            {/* Estado de carregamento */}
+            {carregandoTemplates && (
+              <div className="flex items-center justify-center py-12">
+                <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                <span className="ml-3 text-muted-foreground">Carregando templates...</span>
+              </div>
+            )}
+
+            {/* Erro */}
+            {erroTemplates && !carregandoTemplates && (
+              <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg mb-4">
+                <p className="text-red-400 text-sm">{erroTemplates}</p>
+              </div>
+            )}
+
+            {/* Lista de templates */}
+            {!carregandoTemplates && templatesAPI.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {templatesAPI.map((template) => (
+                  <div
+                    key={template.id}
+                    onClick={() => selecionarTemplate(template.id)}
+                    className={cn(
+                      'p-4 rounded-lg border-2 cursor-pointer transition-all',
+                      templateSelecionado === template.id
+                        ? 'border-primary bg-primary/10'
+                        : 'border-border hover:border-primary/50 bg-secondary/50'
+                    )}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className={cn(
+                        'w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0',
+                        templateSelecionado === template.id
+                          ? 'bg-primary'
+                          : CORES_CATEGORIA[template.categoria] || 'bg-secondary'
+                      )}>
+                        <FileText className={cn(
+                          'w-5 h-5',
+                          templateSelecionado === template.id || CORES_CATEGORIA[template.categoria]
+                            ? 'text-white'
+                            : 'text-muted-foreground'
+                        )} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-foreground">{template.nome}</h3>
+                        <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{template.descricao}</p>
+                        <div className="flex items-center gap-2 mt-2">
+                          <span className="text-xs text-primary font-medium">
+                            {template.total_perguntas} perguntas
+                          </span>
+                          {template.tags.slice(0, 2).map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-1.5 py-0.5 bg-secondary text-[10px] text-muted-foreground rounded"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
+
+            {/* Nenhum template */}
+            {!carregandoTemplates && templatesAPI.length === 0 && !erroTemplates && (
+              <div className="text-center py-8 text-muted-foreground">
+                Nenhum template de gestores encontrado.
+              </div>
+            )}
           </div>
 
           <div className="glass-card rounded-xl p-6">

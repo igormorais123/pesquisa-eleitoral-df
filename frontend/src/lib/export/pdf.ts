@@ -1,12 +1,23 @@
 /**
  * Funções de Exportação para PDF
  * Pesquisa Eleitoral DF 2026
+ *
+ * IMPORTANTE: Essas funções devem ser executadas apenas no client-side
+ * pois usam jsPDF que depende do objeto window/document
  */
 
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
 import type { Eleitor } from '@/types';
 import type { SessaoEntrevista } from '@/lib/db/dexie';
+
+// Importar dinamicamente para evitar erros de SSR
+async function getJsPDF() {
+  if (typeof window === 'undefined') {
+    throw new Error('PDF export can only be used in the browser');
+  }
+  const jsPDF = (await import('jspdf')).default;
+  const autoTable = (await import('jspdf-autotable')).default;
+  return { jsPDF, autoTable };
+}
 
 // Cores do tema
 const CORES = {
@@ -22,11 +33,12 @@ const CORES = {
 /**
  * Gera PDF com relatório de resultado da pesquisa
  */
-export function exportarResultadoPDF(
+export async function exportarResultadoPDF(
   sessao: SessaoEntrevista,
   relatorio?: unknown,
   nomeArquivo?: string
-): void {
+): Promise<void> {
+  const { jsPDF, autoTable } = await getJsPDF();
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.width;
   let y = 20;
@@ -196,7 +208,8 @@ export function exportarResultadoPDF(
 /**
  * Gera PDF com lista de eleitores
  */
-export function exportarEleitoresPDF(eleitores: Eleitor[], nomeArquivo?: string): void {
+export async function exportarEleitoresPDF(eleitores: Eleitor[], nomeArquivo?: string): Promise<void> {
+  const { jsPDF, autoTable } = await getJsPDF();
   const doc = new jsPDF('landscape');
   const pageWidth = doc.internal.pageSize.width;
   let y = 20;
@@ -269,7 +282,7 @@ export function exportarEleitoresPDF(eleitores: Eleitor[], nomeArquivo?: string)
 /**
  * Gera PDF do relatório de inteligência política
  */
-export function exportarRelatorioInteligenciaPDF(
+export async function exportarRelatorioInteligenciaPDF(
   sessao: SessaoEntrevista,
   relatorio: {
     sumarioExecutivo: {
@@ -301,7 +314,8 @@ export function exportarRelatorioInteligenciaPDF(
     conclusaoAnalitica: string;
   },
   nomeArquivo?: string
-): void {
+): Promise<void> {
+  const { jsPDF } = await getJsPDF();
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.width;
   let y = 20;

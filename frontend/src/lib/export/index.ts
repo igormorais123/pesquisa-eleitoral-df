@@ -16,3 +16,20 @@ export {
   exportarEleitoresPDF,
   exportarRelatorioInteligenciaPDF,
 } from './pdf';
+
+export {
+  exportarEleitorMD,
+  exportarEleitoresMD,
+  exportarResultadoMD,
+  exportarInsightsMD,
+  exportarCandidatoMD,
+  exportarCandidatosMD,
+  exportarGraficosMD,
+  gerarMarkdownEleitor,
+  gerarMarkdownEleitores,
+  gerarMarkdownResultado,
+  gerarMarkdownInsights,
+  gerarMarkdownCandidato,
+  gerarMarkdownCandidatos,
+  gerarMarkdownGrafico,
+} from './markdown';

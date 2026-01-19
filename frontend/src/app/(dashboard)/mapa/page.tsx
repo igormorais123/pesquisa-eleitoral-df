@@ -44,6 +44,7 @@ import {
   Layers,
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
 
 // Lista completa das RAs do DF
 const REGIOES_DF = [
@@ -113,13 +114,106 @@ const gerarDadosAvaliacaoGoverno = (): DadoRegiao[] => {
   });
 };
 
-type TipoDados = 'intencao_voto' | 'rejeicao' | 'avaliacao_governo';
+type TipoDados = 'intencao_voto' | 'rejeicao' | 'avaliacao_governo' | 'quantidade_eleitores' | 'participacao' | 'renda_media';
 type EscalaCor = 'azul' | 'verde_vermelho' | 'azul_vermelho';
+type NivelDetalhe = 'minimo' | 'medio' | 'completo';
+
+// População por RA para dados de quantidade de eleitores
+const POPULACAO_RA: Record<string, number> = {
+  'Ceilândia': 430000,
+  'Samambaia': 270000,
+  'Taguatinga': 225000,
+  'Plano Piloto': 220000,
+  'Planaltina': 195000,
+  'Águas Claras': 160000,
+  'Recanto das Emas': 150000,
+  'Gama': 145000,
+  'Guará': 135000,
+  'Santa Maria': 135000,
+  'São Sebastião': 115000,
+  'Sobradinho II': 105000,
+  'Sol Nascente/Pôr do Sol': 90000,
+  'Sobradinho': 85000,
+  'Vicente Pires': 75000,
+  'Arniqueira': 70000,
+  'Itapoã': 68000,
+  'Paranoá': 65000,
+  'Riacho Fundo II': 55000,
+  'Brazlândia': 55000,
+  'Sudoeste/Octogonal': 55000,
+  'Riacho Fundo': 45000,
+  'SCIA/Estrutural': 40000,
+  'Lago Norte': 38000,
+  'Cruzeiro': 35000,
+  'Lago Sul': 30000,
+  'Jardim Botânico': 28000,
+  'Núcleo Bandeirante': 25000,
+  'Park Way': 22000,
+  'Candangolândia': 18000,
+  'Fercal': 10000,
+  'Varjão': 10000,
+  'SIA': 2000,
+};
+
+// Gerar dados de quantidade de eleitores
+const gerarDadosQuantidadeEleitores = (): DadoRegiao[] => {
+  return REGIOES_DF.map((regiao) => {
+    const populacao = POPULACAO_RA[regiao] || 50000;
+    // Aproximadamente 70% são eleitores
+    const eleitores = Math.round(populacao * (0.65 + Math.random() * 0.1));
+    return {
+      regiao,
+      valor: eleitores,
+      label: `${(eleitores / 1000).toFixed(0)}k eleitores`,
+    };
+  });
+};
+
+// Gerar dados de participação
+const gerarDadosParticipacao = (): DadoRegiao[] => {
+  return REGIOES_DF.map((regiao) => {
+    const isAreaNobre = ['Plano Piloto', 'Lago Sul', 'Lago Norte', 'Sudoeste/Octogonal', 'Park Way'].includes(regiao);
+    let baseValor = 70 + Math.random() * 15;
+    if (isAreaNobre) baseValor += 8;
+    return {
+      regiao,
+      valor: Math.min(95, baseValor),
+      label: baseValor > 85 ? 'Alta participação' : baseValor > 75 ? 'Participação média' : 'Baixa participação',
+    };
+  });
+};
+
+// Gerar dados de renda média
+const gerarDadosRendaMedia = (): DadoRegiao[] => {
+  const rendaPorRegiao: Record<string, number> = {
+    'Lago Sul': 25000, 'Lago Norte': 18000, 'Park Way': 16000, 'Jardim Botânico': 14000,
+    'Sudoeste/Octogonal': 12000, 'Plano Piloto': 10000, 'Águas Claras': 8000, 'Guará': 6500,
+    'Cruzeiro': 6000, 'Núcleo Bandeirante': 5000, 'Taguatinga': 4500, 'Vicente Pires': 4500,
+    'Sobradinho': 4000, 'Sobradinho II': 3800, 'Gama': 3500, 'Samambaia': 3000,
+    'Ceilândia': 2800, 'Planaltina': 2500, 'Santa Maria': 2400, 'Recanto das Emas': 2300,
+    'Riacho Fundo': 2800, 'Riacho Fundo II': 2500, 'Candangolândia': 3000, 'Brazlândia': 2200,
+    'São Sebastião': 2600, 'Paranoá': 2400, 'Itapoã': 2200, 'Varjão': 1800,
+    'SCIA/Estrutural': 1500, 'Fercal': 1800, 'Sol Nascente/Pôr do Sol': 1600,
+    'Arniqueira': 3500, 'SIA': 5000,
+  };
+  return REGIOES_DF.map((regiao) => {
+    const renda = rendaPorRegiao[regiao] || 3000;
+    return {
+      regiao,
+      valor: renda,
+      label: renda > 8000 ? 'Renda alta' : renda > 4000 ? 'Renda média' : 'Renda baixa',
+    };
+  });
+};
 
 export default function MapaPage() {
   const router = useRouter();
   const [tipoDados, setTipoDados] = useState<TipoDados>('intencao_voto');
   const [escalaCor, setEscalaCor] = useState<EscalaCor>('azul');
+  const [nivelDetalhe, setNivelDetalhe] = useState<NivelDetalhe>('completo');
+  const [mostrarLago, setMostrarLago] = useState(true);
+  const [mostrarNomes, setMostrarNomes] = useState(true);
+  const [mostrarReferencias, setMostrarReferencias] = useState(true);
   const [dadosMapa, setDadosMapa] = useState<DadoRegiao[]>([]);
   const [carregando, setCarregando] = useState(false);
   const [regiaoSelecionada, setRegiaoSelecionada] = useState<string | null>(null);
@@ -145,6 +239,15 @@ export default function MapaPage() {
           break;
         case 'avaliacao_governo':
           dados = gerarDadosAvaliacaoGoverno();
+          break;
+        case 'quantidade_eleitores':
+          dados = gerarDadosQuantidadeEleitores();
+          break;
+        case 'participacao':
+          dados = gerarDadosParticipacao();
+          break;
+        case 'renda_media':
+          dados = gerarDadosRendaMedia();
           break;
         default:
           dados = gerarDadosIntencaoVoto();
@@ -195,8 +298,26 @@ export default function MapaPage() {
         return 'Taxa de Rejeição por Região';
       case 'avaliacao_governo':
         return 'Avaliação do Governo por Região';
+      case 'quantidade_eleitores':
+        return 'Quantidade de Eleitores por Região';
+      case 'participacao':
+        return 'Taxa de Participação por Região';
+      case 'renda_media':
+        return 'Renda Média por Região';
       default:
         return 'Intenção de Voto por Região';
+    }
+  };
+
+  // Formatar valor baseado no tipo de dados
+  const getFormatarValor = () => {
+    switch (tipoDados) {
+      case 'quantidade_eleitores':
+        return (v: number) => `${(v / 1000).toFixed(0)}k`;
+      case 'renda_media':
+        return (v: number) => `R$ ${v.toLocaleString('pt-BR')}`;
+      default:
+        return (v: number) => `${v.toFixed(1)}%`;
     }
   };
 
@@ -247,6 +368,9 @@ export default function MapaPage() {
                   <SelectItem value="intencao_voto">Intenção de Voto</SelectItem>
                   <SelectItem value="rejeicao">Taxa de Rejeição</SelectItem>
                   <SelectItem value="avaliacao_governo">Avaliação do Governo</SelectItem>
+                  <SelectItem value="quantidade_eleitores">Qtd. de Eleitores</SelectItem>
+                  <SelectItem value="participacao">Participação Eleitoral</SelectItem>
+                  <SelectItem value="renda_media">Renda Média</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -264,6 +388,52 @@ export default function MapaPage() {
                 </SelectContent>
               </Select>
             </div>
+
+            <div className="space-y-1">
+              <Label>Nível de Detalhe</Label>
+              <Select value={nivelDetalhe} onValueChange={(v) => setNivelDetalhe(v as NivelDetalhe)}>
+                <SelectTrigger className="w-36">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="minimo">Mínimo</SelectItem>
+                  <SelectItem value="medio">Médio</SelectItem>
+                  <SelectItem value="completo">Completo</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          {/* Toggles de visualização */}
+          <div className="flex flex-wrap items-center gap-4 mt-4 pt-4 border-t">
+            <Label className="text-muted-foreground">Elementos do mapa:</Label>
+            <button
+              onClick={() => setMostrarLago(!mostrarLago)}
+              className={cn(
+                "px-3 py-1.5 rounded-full text-sm font-medium transition-colors",
+                mostrarLago ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300" : "bg-muted text-muted-foreground"
+              )}
+            >
+              🌊 Lago Paranoá
+            </button>
+            <button
+              onClick={() => setMostrarNomes(!mostrarNomes)}
+              className={cn(
+                "px-3 py-1.5 rounded-full text-sm font-medium transition-colors",
+                mostrarNomes ? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300" : "bg-muted text-muted-foreground"
+              )}
+            >
+              🏷️ Nomes das Cidades
+            </button>
+            <button
+              onClick={() => setMostrarReferencias(!mostrarReferencias)}
+              className={cn(
+                "px-3 py-1.5 rounded-full text-sm font-medium transition-colors",
+                mostrarReferencias ? "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300" : "bg-muted text-muted-foreground"
+              )}
+            >
+              📍 Pontos de Referência
+            </button>
           </div>
         </CardContent>
       </Card>
@@ -322,8 +492,13 @@ export default function MapaPage() {
         titulo={getTituloMapa()}
         subtitulo={`Governador do DF 2026 • Dados simulados para demonstração`}
         escala={escalaCor}
-        altura={550}
+        altura={600}
         onRegiaoClick={handleRegiaoClick}
+        formatarValor={getFormatarValor()}
+        mostrarLago={mostrarLago}
+        mostrarNomesCidades={mostrarNomes}
+        mostrarPontosReferencia={mostrarReferencias}
+        nivelDetalhe={nivelDetalhe}
       />
 
       {/* Detalhes da Região Selecionada */}
