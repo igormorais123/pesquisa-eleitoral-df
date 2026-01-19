@@ -23,7 +23,9 @@ export type FilterType =
   | 'estilos_decisao'
   | 'tolerancias_nuance'
   | 'meios_transporte'
-  | 'susceptibilidade_desinformacao';
+  | 'susceptibilidade_desinformacao'
+  | 'voto_facultativo'
+  | 'conflito_identitario';
 
 // Mapeamento de valores internos para valores legíveis (para exibição)
 export const FILTER_LABELS: Record<FilterType, Record<string, string>> = {
@@ -140,6 +142,14 @@ export const FILTER_LABELS: Record<FilterType, Record<string, string>> = {
     '4-6': 'Média (4-6)',
     '7-10': 'Alta (7-10)',
   },
+  voto_facultativo: {
+    sim: 'Voto Facultativo',
+    nao: 'Voto Obrigatório',
+  },
+  conflito_identitario: {
+    sim: 'Com Conflito',
+    nao: 'Sem Conflito',
+  },
 };
 
 // Hook para navegar para a página de eleitores com filtros
@@ -250,6 +260,8 @@ export function useUrlFilters() {
       'tolerancias_nuance',
       'meios_transporte',
       'susceptibilidade_desinformacao',
+      'voto_facultativo',
+      'conflito_identitario',
     ];
 
     let hasFilters = false;

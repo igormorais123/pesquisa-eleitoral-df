@@ -175,6 +175,20 @@ export function useEleitores() {
     // Valores e preocupações
     porValores: calcularDistribuicaoArray(eleitoresFiltrados, 'valores'),
     porPreocupacoes: calcularDistribuicaoArray(eleitoresFiltrados, 'preocupacoes'),
+    porMedos: calcularDistribuicaoArray(eleitoresFiltrados, 'medos'),
+
+    // Comportamentais
+    porVotoFacultativo: {
+      'Sim': eleitoresFiltrados.filter((e) => e.voto_facultativo === true).length,
+      'Não': eleitoresFiltrados.filter((e) => e.voto_facultativo === false).length,
+      'Não informado': eleitoresFiltrados.filter((e) => e.voto_facultativo === undefined).length,
+    },
+    porConflitoIdentitario: {
+      'Com conflito': eleitoresFiltrados.filter((e) => e.conflito_identitario === true).length,
+      'Sem conflito': eleitoresFiltrados.filter((e) => e.conflito_identitario === false).length,
+      'Não informado': eleitoresFiltrados.filter((e) => e.conflito_identitario === undefined).length,
+    },
+    porTempoDeslocamento: calcularDistribuicao(eleitoresFiltrados, 'tempo_deslocamento_trabalho'),
   };
 
   return {

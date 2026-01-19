@@ -21,7 +21,7 @@ import {
   Chrome,
 } from 'lucide-react';
 import { api } from '@/services/api';
-import { useAuthStore, useIsAdmin } from '@/stores/auth-store';
+import { useAuthStore, useIsAdmin, useAuthHidratado } from '@/stores/auth-store';
 
 interface Usuario {
   id: string;
@@ -59,6 +59,7 @@ const papelColors: Record<string, string> = {
 export default function AdminUsuariosPage() {
   const router = useRouter();
   const isAdmin = useIsAdmin();
+  const hidratado = useAuthHidratado();
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
   const [estatisticas, setEstatisticas] = useState<Estatisticas | null>(null);
   const [carregando, setCarregando] = useState(true);
@@ -69,13 +70,13 @@ export default function AdminUsuariosPage() {
   const [totalPaginas, setTotalPaginas] = useState(1);
   const [menuAberto, setMenuAberto] = useState<string | null>(null);
 
-  // Verificar se é admin
+  // Verificar se é admin (somente após hidratação do estado)
   useEffect(() => {
-    if (!isAdmin) {
+    if (hidratado && !isAdmin) {
       toast.error('Acesso restrito a administradores');
       router.push('/');
     }
-  }, [isAdmin, router]);
+  }, [isAdmin, hidratado, router]);
 
   // Carregar dados
   useEffect(() => {
@@ -183,6 +184,18 @@ export default function AdminUsuariosPage() {
       toast.error(error.response?.data?.detail || 'Erro ao excluir usuário');
     }
   };
+
+  // Mostrar loading enquanto não hidratou
+  if (!hidratado) {
+    return (
+      <div className="flex items-center justify-center h-96">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="mt-4 text-muted-foreground">Verificando permissões...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!isAdmin) {
     return null;

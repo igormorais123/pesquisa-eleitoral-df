@@ -249,26 +249,37 @@ export function GraficosComparativos({ eleitores }: GraficosComparativosProps) {
     [eleitores]
   );
 
-  // Selecionar algumas variáveis principais para exibir
-  const variaveisPrincipais = validacao.resumos.filter((r) =>
-    ['genero', 'cor_raca', 'cluster_socioeconomico', 'orientacao_politica', 'religiao', 'escolaridade'].includes(r.variavel)
+  // Ordenar resumos por desvio médio (do menor para o maior)
+  const resumosOrdenados = useMemo(() =>
+    [...validacao.resumos].sort((a, b) => b.mediaDesvio - a.mediaDesvio),
+    [validacao.resumos]
   );
 
   return (
     <div className="space-y-6">
-      <h3 className="text-lg font-semibold text-foreground">Gráficos Comparativos</h3>
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-semibold text-foreground">Gráficos Comparativos</h3>
+        <p className="text-sm text-muted-foreground">
+          {validacao.resumos.length} características analisadas
+        </p>
+      </div>
 
       {/* Gráfico de desvios (visão geral) */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <GraficoDesvios resumos={validacao.resumos} />
-        <GraficoRadarComparativo resumos={validacao.resumos.slice(0, 8)} />
+        <GraficoRadarComparativo resumos={resumosOrdenados.slice(0, 10)} />
       </div>
 
-      {/* Gráficos individuais por variável */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {variaveisPrincipais.map((resumo) => (
-          <GraficoBarrasComparativo key={resumo.variavel} resumo={resumo} />
-        ))}
+      {/* Gráficos individuais por variável - TODAS as variáveis */}
+      <div>
+        <h4 className="text-md font-medium text-foreground mb-4">
+          Comparativo Detalhado por Característica ({validacao.resumos.length} gráficos)
+        </h4>
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          {resumosOrdenados.map((resumo) => (
+            <GraficoBarrasComparativo key={resumo.variavel} resumo={resumo} />
+          ))}
+        </div>
       </div>
     </div>
   );

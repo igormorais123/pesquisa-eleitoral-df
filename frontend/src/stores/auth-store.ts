@@ -19,10 +19,12 @@ interface AuthState {
   token: string | null;
   autenticado: boolean;
   carregando: boolean;
+  hidratado: boolean; // Indica se o estado foi restaurado do localStorage
   login: (usuario: string, senha: string) => Promise<void>;
   logout: () => void;
   verificarToken: () => Promise<boolean>;
   setAuth: (token: string, usuario: Usuario) => void;
+  setHidratado: () => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -32,6 +34,9 @@ export const useAuthStore = create<AuthState>()(
       token: null,
       autenticado: false,
       carregando: false,
+      hidratado: false,
+
+      setHidratado: () => set({ hidratado: true }),
 
       login: async (usuario: string, senha: string) => {
         set({ carregando: true });
@@ -134,6 +139,12 @@ export const useAuthStore = create<AuthState>()(
         token: state.token,
         autenticado: state.autenticado,
       }),
+      onRehydrateStorage: () => (state) => {
+        // Marcar como hidratado quando o estado for restaurado do localStorage
+        if (state) {
+          state.setHidratado();
+        }
+      },
     }
   )
 );
@@ -142,6 +153,11 @@ export const useAuthStore = create<AuthState>()(
 export const useIsAdmin = () => {
   const usuario = useAuthStore((state) => state.usuario);
   return usuario?.papel === 'admin';
+};
+
+// Verifica se o estado foi hidratado do localStorage
+export const useAuthHidratado = () => {
+  return useAuthStore((state) => state.hidratado);
 };
 
 export const useCanUsarAPI = () => {
