@@ -22,6 +22,7 @@ from app.api.rotas import (
     geracao,
     memorias,
     mensagens,
+    pesquisas,
     resultados,
     rls,
     templates,
@@ -51,6 +52,7 @@ async def lifespan(app: FastAPI):
         from app.modelos.candidato import Candidato  # noqa: F401
         from app.modelos.cenario_eleitoral import CenarioEleitoral  # noqa: F401
         from app.modelos.pesquisa_podc import PesquisaPODC, RespostaPODC, EstatisticasPODC  # noqa: F401
+        from app.db.modelos.pesquisa import Pesquisa, PerguntaPesquisa, RespostaPesquisa, MetricasGlobais  # noqa: F401
 
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
@@ -125,6 +127,32 @@ Criação e execução de pesquisas eleitorais.
 - Limite de custo em R$
 - Pausar/retomar/cancelar
 - Batch size e delay configuráveis
+        """,
+    },
+    {
+        "name": "Pesquisas",
+        "description": """
+Gerenciamento de pesquisas eleitorais persistentes.
+
+**Funcionalidades:**
+- CRUD completo de pesquisas
+- Controle de execução (iniciar, pausar, retomar, finalizar)
+- Gerenciamento de perguntas e respostas
+- Estatísticas globais
+
+**Fluxo de pesquisa:**
+1. Criar pesquisa com título, descrição e perguntas
+2. Adicionar eleitores à pesquisa
+3. Iniciar execução
+4. Monitorar progresso
+5. Visualizar resultados
+
+**Status disponíveis:**
+- `rascunho`: Pesquisa em criação
+- `executando`: Em execução
+- `pausada`: Execução pausada
+- `concluida`: Finalizada com sucesso
+- `erro`: Finalizada com erro
         """,
     },
     {
@@ -543,6 +571,12 @@ app.include_router(
     resultados.router,
     prefix="/api/v1/resultados",
     tags=["Resultados"],
+)
+
+app.include_router(
+    pesquisas.router,
+    prefix="/api/v1/pesquisas",
+    tags=["Pesquisas"],
 )
 
 app.include_router(

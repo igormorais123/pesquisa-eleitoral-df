@@ -317,6 +317,7 @@ export default function MapaPage() {
   const [mostrarLago, setMostrarLago] = useState(true);
   const [mostrarNomes, setMostrarNomes] = useState(true);
   const [mostrarReferencias, setMostrarReferencias] = useState(true);
+  const [mostrarContornoPlano, setMostrarContornoPlano] = useState(true);
   const [dadosMapa, setDadosMapa] = useState<DadoRegiao[]>([]);
   const [carregando, setCarregando] = useState(false);
   const [regiaoSelecionada, setRegiaoSelecionada] = useState<string | null>(null);
@@ -559,7 +560,7 @@ export default function MapaPage() {
           </div>
 
           {/* Toggles de visualização */}
-          <div className="flex flex-wrap items-center gap-4 mt-4 pt-4 border-t">
+          <div className="flex flex-wrap items-center gap-3 mt-4 pt-4 border-t">
             <Label className="text-muted-foreground">Elementos do mapa:</Label>
             <button
               onClick={() => setMostrarLago(!mostrarLago)}
@@ -569,6 +570,15 @@ export default function MapaPage() {
               )}
             >
               🌊 Lago Paranoá
+            </button>
+            <button
+              onClick={() => setMostrarContornoPlano(!mostrarContornoPlano)}
+              className={cn(
+                "px-3 py-1.5 rounded-full text-sm font-medium transition-colors",
+                mostrarContornoPlano ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300" : "bg-muted text-muted-foreground"
+              )}
+            >
+              ✈️ Plano Piloto
             </button>
             <button
               onClick={() => setMostrarNomes(!mostrarNomes)}
@@ -650,6 +660,7 @@ export default function MapaPage() {
         onRegiaoClick={handleRegiaoClick}
         formatarValor={getFormatarValor()}
         mostrarLago={mostrarLago}
+        mostrarContornoPlano={mostrarContornoPlano}
         mostrarNomesCidades={mostrarNomes}
         mostrarPontosReferencia={mostrarReferencias}
         nivelDetalhe={nivelDetalhe}
