@@ -45,6 +45,18 @@ class ClaudeServico:
         if not self.client:
             raise ValueError("API Key do Claude não configurada")
 
+    def _parece_candidato(self, opcao: str) -> bool:
+        """Verifica se uma opção parece ser um nome de candidato."""
+        opcao_lower = opcao.lower()
+        # Se tem nome e sobrenome ou palavras típicas de candidatos
+        palavras = opcao.split()
+        if len(palavras) >= 2:
+            # Provavelmente é um nome de pessoa
+            return True
+        # Palavras comuns em nomes de candidatos
+        indicadores = ['candidato', 'deputado', 'senador', 'governador', 'prefeito']
+        return any(ind in opcao_lower for ind in indicadores)
+
     def selecionar_modelo(
         self, tipo_pergunta: str, eleitor: Dict[str, Any], tarefa: str = "entrevista"
     ) -> str:
@@ -85,6 +97,83 @@ class ClaudeServico:
 
         return (custo_entrada + custo_saida) * TAXA_CONVERSAO
 
+    def _gerar_instrucoes_tipo_pergunta(
+        self,
+        tipo_pergunta: str,
+        opcoes: Optional[List[str]] = None,
+    ) -> tuple[str, str]:
+        """
+        Gera instruções específicas baseadas no tipo de pergunta.
+
+        Returns:
+            Tupla com (instrucoes_especificas, campos_json_adicionais)
+        """
+        if tipo_pergunta == "sim_nao":
+            instrucoes = """
+⚠️ TIPO DE PERGUNTA: SIM/NÃO
+   Você DEVE escolher APENAS uma opção: "sim" ou "nao"
+   Não aceito "talvez", "depende" ou "não sei" - ESCOLHA UM LADO.
+   Sua justificativa vai no campo "texto", mas a resposta OBRIGATÓRIA vai em "opcao".
+
+   FORMATO DO TEXTO: "Sim. [justificativa breve]" ou "Não. [justificativa breve]"
+"""
+            campos = '"opcao": "sim" ou "nao",'
+        elif tipo_pergunta == "escala_likert" or tipo_pergunta == "escala":
+            instrucoes = """
+⚠️ TIPO DE PERGUNTA: ESCALA NUMÉRICA (0 a 10)
+   Você DEVE dar uma nota de 0 a 10.
+   0 = discordo totalmente / péssimo / muito insatisfeito
+   10 = concordo totalmente / excelente / muito satisfeito
+   Sua justificativa vai no campo "texto", mas a NOTA OBRIGATÓRIA vai em "escala".
+
+   FORMATO DO TEXTO: "7. [justificativa breve]" - COMECE COM O NÚMERO!
+"""
+            campos = '"escala": <número de 0 a 10>,'
+        elif tipo_pergunta == "multipla_escolha" and opcoes:
+            opcoes_formatadas = "\n".join([f"   • {i+1}. {op}" for i, op in enumerate(opcoes)])
+            instrucoes = f"""
+⚠️ TIPO DE PERGUNTA: MÚLTIPLA ESCOLHA
+   Você DEVE escolher UMA das opções abaixo:
+{opcoes_formatadas}
+
+   Copie EXATAMENTE o texto da opção escolhida para "opcao".
+
+   FORMATO DO TEXTO: "[Opção escolhida]. [justificativa breve]"
+"""
+            campos = '"opcao": "texto exato da opção escolhida",'
+        elif tipo_pergunta == "ranking" and opcoes:
+            opcoes_formatadas = "\n".join([f"   • {op}" for op in opcoes])
+            instrucoes = f"""
+⚠️ TIPO DE PERGUNTA: RANKING (ordenar por preferência)
+   Você DEVE ordenar as opções da MAIS preferida para a MENOS preferida:
+{opcoes_formatadas}
+
+   Coloque a lista ordenada em "ranking" (primeiro = favorito).
+
+   FORMATO DO TEXTO: "1. [item], 2. [item], 3. [item]. [comentário]"
+"""
+            campos = '"ranking": ["1º lugar", "2º lugar", "3º lugar", ...],'
+        elif tipo_pergunta == "intencao_voto" or (opcoes and any(self._parece_candidato(op) for op in opcoes)):
+            instrucoes = """
+⚠️ TIPO DE PERGUNTA: INTENÇÃO DE VOTO
+   Você DEVE informar em quem pretende votar.
+   Se indeciso, diga "Indeciso" mas também indique para qual lado PENDE.
+   Se vai votar em branco/nulo, diga explicitamente.
+   O nome do candidato/opção vai em "opcao".
+
+   FORMATO DO TEXTO: "[Nome do candidato]. [justificativa breve]"
+"""
+            campos = '"opcao": "nome do candidato ou Indeciso/Branco/Nulo",'
+        else:
+            # Pergunta aberta - mantém comportamento atual
+            instrucoes = """
+📝 TIPO DE PERGUNTA: ABERTA
+   Responda naturalmente no campo "texto".
+"""
+            campos = ""
+
+        return instrucoes, campos
+
     def construir_prompt_cognitivo(
         self,
         eleitor: Dict[str, Any],
@@ -104,6 +193,16 @@ class ClaudeServico:
         Returns:
             Prompt formatado
         """
+        # Gerar instruções específicas do tipo de pergunta
+        instrucoes_tipo, campos_json_tipo = self._gerar_instrucoes_tipo_pergunta(
+            tipo_pergunta, opcoes
+        )
+
+        # Construir string de resposta estruturada
+        if campos_json_tipo:
+            resposta_estruturada_str = "{ " + campos_json_tipo.rstrip(',') + " }"
+        else:
+            resposta_estruturada_str = "null"
         # Formatar listas com bullets
         valores = "\n".join([f"   • {v}" for v in eleitor.get("valores", [])]) or "   • Não especificado"
         preocupacoes = "\n".join([f"   • {p}" for p in eleitor.get("preocupacoes", [])]) or "   • Não especificado"
@@ -230,10 +329,7 @@ Se sua susceptibilidade à desinformação é alta ({susceptibilidade}/10), voc�
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
 "{pergunta}"
-"""
-
-        if opcoes:
-            prompt += f"\nOPÇÕES DISPONÍVEIS: {', '.join(opcoes)}\n"
+{instrucoes_tipo}"""
 
         prompt += f"""
 ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -322,10 +418,11 @@ Responda APENAS com JSON válido no seguinte formato:
     }}
   }},
   "resposta": {{
-    "texto": "SUA RESPOSTA AQUI - em primeira pessoa, como conversa real, no tom do seu perfil",
+    "texto": "SUA RESPOSTA - COMECE com o valor pedido (Sim/Não, número, opção), depois justificativa breve",
     "tom": "direto|evasivo|agressivo|indiferente|entusiasmado|desconfiado",
     "certeza": 1-10
   }},
+  "resposta_estruturada": {resposta_estruturada_str},
   "meta": {{
     "muda_intencao_voto": true/false,
     "aumenta_cinismo": true/false,
@@ -440,17 +537,40 @@ Responda APENAS com JSON válido no seguinte formato:
 
         # Extrair resposta do novo formato ou tentar formato legado
         if "resposta" in resposta_json and isinstance(resposta_json["resposta"], dict):
-            resposta_final = resposta_json["resposta"].get("texto", "")
+            resposta_obj = resposta_json["resposta"]
+            resposta_final = resposta_obj.get("texto", "")
         elif "decisao" in resposta_json:
             # Compatibilidade com formato legado
-            resposta_final = resposta_json["decisao"].get("resposta_final", "")
+            resposta_obj = resposta_json.get("decisao", {})
+            resposta_final = resposta_obj.get("resposta_final", "")
         else:
+            resposta_obj = {}
             resposta_final = resposta_texto
+
+        # Extrair campos estruturados para análise quantitativa
+        # Primeiro verifica se há resposta_estruturada separada, senão usa campos da resposta
+        resp_estrut_json = resposta_json.get("resposta_estruturada", {})
+        if not isinstance(resp_estrut_json, dict):
+            resp_estrut_json = {}
+
+        # Compatível com formato do frontend (opcao, escala, ranking)
+        resposta_estruturada = {
+            "opcao": resp_estrut_json.get("opcao") or resposta_obj.get("opcao"),
+            "escala": resp_estrut_json.get("escala") or resposta_obj.get("escala"),
+            "ranking": resp_estrut_json.get("ranking") or resposta_obj.get("ranking"),
+            "lista": resp_estrut_json.get("lista") or resposta_obj.get("lista"),
+            "certeza": resposta_obj.get("certeza"),
+            "tom": resposta_obj.get("tom"),
+        }
+
+        # Limpar campos nulos
+        resposta_estruturada = {k: v for k, v in resposta_estruturada.items() if v is not None}
 
         return {
             "eleitor_id": eleitor.get("id"),
             "eleitor_nome": eleitor.get("nome"),
             "resposta_texto": resposta_final,
+            "resposta_estruturada": resposta_estruturada,
             "fluxo_cognitivo": resposta_json,
             "modelo_usado": modelo,
             "tokens_entrada": tokens_entrada,

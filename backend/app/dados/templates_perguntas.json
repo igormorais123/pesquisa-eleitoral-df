@@ -1,2781 +1,841 @@
 {
-  "versao": "2.0.0",
+  "versao": "3.0.0",
   "ultima_atualizacao": "2026-01-18",
+  "autor": "Equipe de Ciência Política - Pesquisa Eleitoral DF",
+  "nota_metodologica": "Templates desenvolvidos com base em metodologias de pesquisa eleitoral avançada, combinando técnicas de ciência política, psicologia social e comportamento do eleitor. Priorizam perguntas abertas para capturar nuances que escalas não conseguem.",
+  "categorias": [
+    {"id": "intencao_voto", "nome": "Intenção de Voto", "cor": "#1976D2", "descricao": "Perguntas sobre escolha eleitoral"},
+    {"id": "rejeicao", "nome": "Rejeição", "cor": "#D32F2F", "descricao": "Análise de rejeição a candidatos"},
+    {"id": "avaliacao_governo", "nome": "Avaliação de Governo", "cor": "#388E3C", "descricao": "Percepção sobre gestão atual"},
+    {"id": "imagem_candidato", "nome": "Imagem de Candidato", "cor": "#7B1FA2", "descricao": "Percepção sobre candidatos"},
+    {"id": "comportamento_eleitoral", "nome": "Comportamento Eleitoral", "cor": "#00796B", "descricao": "Padrões de decisão do eleitor"},
+    {"id": "opiniao_publica", "nome": "Opinião Pública", "cor": "#F57C00", "descricao": "Temas e problemas públicos"},
+    {"id": "perfil_psicografico", "nome": "Perfil Psicográfico", "cor": "#5D4037", "descricao": "Valores, medos e aspirações"},
+    {"id": "analise_discurso", "nome": "Análise de Discurso", "cor": "#455A64", "descricao": "Reações a mensagens e propostas"},
+    {"id": "memoria_politica", "nome": "Memória Política", "cor": "#C2185B", "descricao": "Experiências passadas com política"},
+    {"id": "redes_influencia", "nome": "Redes de Influência", "cor": "#512DA8", "descricao": "Quem influencia o voto"}
+  ],
+  "tipos_eleicao": [
+    {"id": "governador", "nome": "Governador"},
+    {"id": "senador", "nome": "Senador"},
+    {"id": "deputado_federal", "nome": "Deputado Federal"},
+    {"id": "deputado_distrital", "nome": "Deputado Distrital"},
+    {"id": "presidente", "nome": "Presidente"},
+    {"id": "prefeito", "nome": "Prefeito"},
+    {"id": "vereador", "nome": "Vereador"},
+    {"id": "geral", "nome": "Geral (qualquer cargo)"}
+  ],
   "templates": [
     {
-      "id": "tpl-intencao-voto-governador",
-      "nome": "Intenção de Voto - Governador",
-      "descricao": "Template padrão para pesquisa de intenção de voto para Governador do DF",
+      "id": "tpl-avancado-decisao-voto",
+      "nome": "Análise Profunda de Decisão de Voto",
+      "descricao": "Template avançado para entender os mecanismos psicológicos e sociais por trás da decisão de voto. Desenvolvido por cientistas políticos especializados em comportamento eleitoral.",
+      "categoria": "comportamento_eleitoral",
+      "tipo_eleicao": "geral",
+      "nivel": "avancado",
+      "tags": ["decisao", "psicologia", "avancado", "qualitativo", "profundo"],
+      "perguntas": [
+        {
+          "codigo": "DV-NARR-01",
+          "texto": "Me conta como você decide seu voto. Pense na última eleição importante pra você - o que passou pela sua cabeça desde o início até o momento de apertar o botão na urna?",
+          "tipo": "aberta",
+          "categoria": "comportamento_eleitoral",
+          "obrigatoria": true,
+          "ordem": 1,
+          "instrucoes": "Deixar o entrevistado narrar livremente. Essa pergunta revela o processo cognitivo real, não o declarado. Anotar pausas, hesitações e mudanças de tom.",
+          "insight_esperado": "Revela se a decisão é racional, emocional, por identificação ou por exclusão",
+          "opcoes": []
+        },
+        {
+          "codigo": "DV-MOMENTO-02",
+          "texto": "Você lembra de algum momento específico em que mudou de ideia sobre um candidato ou político? O que aconteceu?",
+          "tipo": "aberta",
+          "categoria": "comportamento_eleitoral",
+          "obrigatoria": true,
+          "ordem": 2,
+          "instrucoes": "Buscar eventos concretos. Momentos de ruptura revelam os verdadeiros gatilhos de mudança de opinião.",
+          "insight_esperado": "Identifica gatilhos de mudança - escândalos, promessas quebradas, performance em debates, influência de pessoas próximas",
+          "opcoes": []
+        },
+        {
+          "codigo": "DV-ARREPENDIMENTO-03",
+          "texto": "Você já se arrependeu de algum voto que deu? Se sim, o que te fez perceber que errou?",
+          "tipo": "aberta",
+          "categoria": "memoria_politica",
+          "obrigatoria": true,
+          "ordem": 3,
+          "instrucoes": "Pergunta que revela critérios reais de avaliação retrospectiva. O arrependimento mostra o que realmente importa pro eleitor.",
+          "insight_esperado": "Revela critérios de avaliação de mandato e expectativas não atendidas",
+          "opcoes": []
+        },
+        {
+          "codigo": "DV-FAMILIA-04",
+          "texto": "Na sua casa, vocês conversam sobre política? Como são essas conversas? Todo mundo pensa parecido ou tem discussão?",
+          "tipo": "aberta",
+          "categoria": "redes_influencia",
+          "obrigatoria": true,
+          "ordem": 4,
+          "instrucoes": "Mapear dinâmica familiar. Eleitor que discorda da família tem perfil diferente de quem segue consenso familiar.",
+          "insight_esperado": "Identifica se o voto é influenciado por pressão familiar ou se há autonomia",
+          "opcoes": []
+        },
+        {
+          "codigo": "DV-VERGONHA-05",
+          "texto": "Tem algum candidato ou partido que você votaria mas teria vergonha de admitir publicamente? Por que essa vergonha existe?",
+          "tipo": "aberta",
+          "categoria": "perfil_psicografico",
+          "obrigatoria": false,
+          "ordem": 5,
+          "instrucoes": "Pergunta sensível que revela o voto oculto. Essencial para calibrar pesquisas. Garantir confidencialidade.",
+          "insight_esperado": "Captura o 'voto envergonhado' - diferença entre intenção declarada e real",
+          "opcoes": []
+        },
+        {
+          "codigo": "DV-DESISTENCIA-06",
+          "texto": "O que um candidato que você apoia precisaria fazer pra você desistir de votar nele? Qual seria a gota d'água?",
+          "tipo": "aberta",
+          "categoria": "comportamento_eleitoral",
+          "obrigatoria": true,
+          "ordem": 6,
+          "instrucoes": "Revela os limites morais e políticos do eleitor. Importante para entender lealdade partidária.",
+          "insight_esperado": "Identifica linhas vermelhas - o que é inaceitável mesmo para apoiadores",
+          "opcoes": []
+        }
+      ]
+    },
+    {
+      "id": "tpl-avancado-rejeicao-profunda",
+      "nome": "Análise Profunda de Rejeição Eleitoral",
+      "descricao": "Template especializado para entender as raízes da rejeição a candidatos e partidos. Vai além da rejeição declarada para entender motivações inconscientes.",
+      "categoria": "rejeicao",
+      "tipo_eleicao": "geral",
+      "nivel": "avancado",
+      "tags": ["rejeicao", "psicologia", "avancado", "motivacoes", "profundo"],
+      "perguntas": [
+        {
+          "codigo": "REJ-VISCERAL-01",
+          "texto": "Quando você pensa em [CANDIDATO/PARTIDO], qual é a primeira sensação que vem? Não o pensamento racional, mas a sensação no corpo, a emoção imediata.",
+          "tipo": "aberta",
+          "categoria": "rejeicao",
+          "obrigatoria": true,
+          "ordem": 1,
+          "instrucoes": "Buscar resposta visceral, não racionalizada. As emoções primárias são melhores preditores que argumentos.",
+          "insight_esperado": "Revela se rejeição é racional (baseada em fatos) ou emocional (baseada em identidade/valores)",
+          "opcoes": []
+        },
+        {
+          "codigo": "REJ-ORIGEM-02",
+          "texto": "Você lembra quando começou a não gostar desse candidato/partido? Teve algum evento específico ou sempre foi assim?",
+          "tipo": "aberta",
+          "categoria": "rejeicao",
+          "obrigatoria": true,
+          "ordem": 2,
+          "instrucoes": "Mapear a arqueologia da rejeição. Rejeições antigas são mais difíceis de reverter.",
+          "insight_esperado": "Identifica se rejeição é conjuntural (pode mudar) ou estrutural (dificilmente muda)",
+          "opcoes": []
+        },
+        {
+          "codigo": "REJ-CONHECIDOS-03",
+          "texto": "Você conhece alguém que vota nesse candidato/partido que você rejeita? O que você acha dessas pessoas? Como você explica o voto delas?",
+          "tipo": "aberta",
+          "categoria": "rejeicao",
+          "obrigatoria": true,
+          "ordem": 3,
+          "instrucoes": "Revela se há demonização do outro lado ou compreensão. Importante para medir polarização.",
+          "insight_esperado": "Mede nível de polarização e capacidade de empatia com eleitor adversário",
+          "opcoes": []
+        },
+        {
+          "codigo": "REJ-HIPOTETICO-04",
+          "texto": "Imagina que esse candidato que você rejeita fizesse algo muito bom, tipo resolver um problema grave que te afeta. Isso mudaria sua opinião sobre ele?",
+          "tipo": "aberta",
+          "categoria": "rejeicao",
+          "obrigatoria": true,
+          "ordem": 4,
+          "instrucoes": "Teste de maleabilidade da rejeição. Rejeição que resiste a evidências positivas é identitária.",
+          "insight_esperado": "Revela se rejeição é baseada em desempenho (mutável) ou identidade (rígida)",
+          "opcoes": []
+        },
+        {
+          "codigo": "REJ-HERANCA-05",
+          "texto": "Seus pais também rejeitam esse candidato/partido? E seus amigos mais próximos? Ou você é diferente do seu círculo nisso?",
+          "tipo": "aberta",
+          "categoria": "redes_influencia",
+          "obrigatoria": false,
+          "ordem": 5,
+          "instrucoes": "Mapear se rejeição é herdada/social ou construída individualmente.",
+          "insight_esperado": "Identifica rejeição por conformidade social vs convicção pessoal",
+          "opcoes": []
+        }
+      ]
+    },
+    {
+      "id": "tpl-avancado-governador-df",
+      "nome": "Pesquisa Avançada - Governador do DF",
+      "descricao": "Template completo para eleição de Governador do DF, com perguntas que capturam nuances específicas do eleitorado brasiliense.",
       "categoria": "intencao_voto",
       "tipo_eleicao": "governador",
-      "tags": ["governador", "intencao_voto", "estimulada", "espontanea"],
+      "nivel": "avancado",
+      "tags": ["governador", "df", "avancado", "completo", "brasilia"],
       "perguntas": [
         {
-          "codigo": "IV-GOV-ESP-01",
-          "texto": "Se a eleição para Governador do Distrito Federal fosse hoje, em quem você votaria? (ESPONTÂNEA)",
+          "codigo": "GOV-DF-VIDA-01",
+          "texto": "Pensando na sua vida aqui no DF nos últimos 4 anos - o que melhorou, o que piorou, e o que ficou na mesma? Me conta com exemplos concretos do seu dia a dia.",
           "tipo": "aberta",
-          "categoria": "intencao_voto",
+          "categoria": "avaliacao_governo",
           "obrigatoria": true,
           "ordem": 1,
-          "instrucoes": "NÃO LER OPÇÕES. Anotar exatamente o que o entrevistado responder.",
+          "instrucoes": "Buscar exemplos concretos, não opiniões genéricas. A vida cotidiana revela mais que avaliações abstratas.",
+          "insight_esperado": "Conecta avaliação de governo com experiência vivida, não com narrativa midiática",
           "opcoes": []
         },
         {
-          "codigo": "IV-GOV-EST-01",
-          "texto": "Se a eleição para Governador do DF fosse hoje e os candidatos fossem estes, em qual você votaria? (ESTIMULADA)",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
+          "codigo": "GOV-DF-RA-02",
+          "texto": "Você mora em qual Região Administrativa? Como você compara sua RA com outras regiões do DF em termos de atenção do governo?",
+          "tipo": "aberta",
+          "categoria": "avaliacao_governo",
           "obrigatoria": true,
           "ordem": 2,
-          "instrucoes": "MOSTRAR CARTÃO COM NOMES DOS CANDIDATOS. Ler todos os nomes se necessário.",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 3},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 4},
-            {"valor": "candidato_e", "texto": "[CANDIDATO E]", "ordem": 5},
-            {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 96},
-            {"valor": "nenhum", "texto": "Nenhum/Não votaria", "ordem": 97},
-            {"valor": "indeciso", "texto": "Indeciso/Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
+          "instrucoes": "Captura percepção de desigualdade territorial, tema central no DF.",
+          "insight_esperado": "Revela se eleitor se sente cidadão de primeira ou segunda classe no DF",
+          "opcoes": []
         },
         {
-          "codigo": "IV-GOV-REJ-01",
-          "texto": "Em qual destes candidatos você NÃO votaria de jeito nenhum para Governador? (REJEIÇÃO)",
-          "tipo": "multipla",
-          "categoria": "rejeicao",
+          "codigo": "GOV-DF-SERVIDOR-03",
+          "texto": "Você ou alguém da sua família é servidor público? Como isso influencia sua visão sobre o governo do DF?",
+          "tipo": "aberta",
+          "categoria": "perfil_psicografico",
           "obrigatoria": true,
           "ordem": 3,
-          "instrucoes": "MOSTRAR CARTÃO. Pode marcar mais de um candidato.",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 3},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 4},
-            {"valor": "candidato_e", "texto": "[CANDIDATO E]", "ordem": 5},
-            {"valor": "votaria_qualquer", "texto": "Votaria em qualquer um", "ordem": 96},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
+          "instrucoes": "No DF, relação com funcionalismo público é central. Capturar se há viés corporativo.",
+          "insight_esperado": "Identifica viés de interesse próprio no voto do funcionalismo",
+          "opcoes": []
         },
         {
-          "codigo": "IV-GOV-2T-01",
-          "texto": "Se a eleição fosse hoje e no 2º turno os candidatos fossem [CANDIDATO A] e [CANDIDATO B], em qual você votaria?",
-          "tipo": "unica",
+          "codigo": "GOV-DF-ESPONTANEA-04",
+          "texto": "Se a eleição fosse hoje, em quem você votaria pra Governador? Me explica por que essa pessoa e não outra.",
+          "tipo": "aberta",
           "categoria": "intencao_voto",
-          "obrigatoria": false,
+          "obrigatoria": true,
           "ordem": 4,
-          "instrucoes": "Cenário de segundo turno. Adaptar nomes conforme pesquisa.",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
-            {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 96},
-            {"valor": "indeciso", "texto": "Indeciso/Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-intencao-voto-presidente",
-      "nome": "Intenção de Voto - Presidente",
-      "descricao": "Template padrão para pesquisa de intenção de voto para Presidente da República",
-      "categoria": "intencao_voto",
-      "tipo_eleicao": "presidente",
-      "tags": ["presidente", "intencao_voto", "federal"],
-      "perguntas": [
-        {
-          "codigo": "IV-PRES-ESP-01",
-          "texto": "Se a eleição para Presidente da República fosse hoje, em quem você votaria? (ESPONTÂNEA)",
-          "tipo": "aberta",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "NÃO LER OPÇÕES. Anotar exatamente o que o entrevistado responder.",
+          "instrucoes": "Não mostrar lista. Anotar nome e justificativa completa.",
+          "insight_esperado": "Captura voto espontâneo com justificativa - revela atributos valorizados",
           "opcoes": []
         },
         {
-          "codigo": "IV-PRES-EST-01",
-          "texto": "Se a eleição para Presidente fosse hoje e os candidatos fossem estes, em qual você votaria? (ESTIMULADA)",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
+          "codigo": "GOV-DF-ATRIBUTO-05",
+          "texto": "Qual característica é mais importante pra você num Governador do DF? Pode ser qualquer coisa - competência, honestidade, ser da sua região, entender seu problema...",
+          "tipo": "aberta",
+          "categoria": "comportamento_eleitoral",
           "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "MOSTRAR CARTÃO COM NOMES DOS CANDIDATOS.",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 3},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 4},
-            {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 96},
-            {"valor": "indeciso", "texto": "Indeciso/Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
+          "ordem": 5,
+          "instrucoes": "Deixar livre, não induzir. Os atributos espontâneos são mais reveladores.",
+          "insight_esperado": "Hierarquia de atributos valorizados - técnicos vs morais vs identitários",
+          "opcoes": []
         },
         {
-          "codigo": "IV-PRES-REJ-01",
-          "texto": "Em qual destes candidatos você NÃO votaria de jeito nenhum para Presidente?",
-          "tipo": "multipla",
+          "codigo": "GOV-DF-FEDERAL-06",
+          "texto": "Quanto o governo federal influencia sua escolha pro governo do DF? Você votaria diferente se tivesse outro presidente?",
+          "tipo": "aberta",
+          "categoria": "comportamento_eleitoral",
+          "obrigatoria": true,
+          "ordem": 6,
+          "instrucoes": "Importante pro DF onde política federal e local se misturam muito.",
+          "insight_esperado": "Mede nacionalização do voto local - se eleitor separa ou mistura esferas",
+          "opcoes": []
+        },
+        {
+          "codigo": "GOV-DF-REJEICAO-07",
+          "texto": "Tem algum candidato a Governador que você não votaria de jeito nenhum? Por quê? O que essa pessoa representa pra você?",
+          "tipo": "aberta",
           "categoria": "rejeicao",
           "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "MOSTRAR CARTÃO. Pode marcar mais de um.",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 3},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 4},
-            {"valor": "votaria_qualquer", "texto": "Votaria em qualquer um", "ordem": 96},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-intencao-voto-senador",
-      "nome": "Intenção de Voto - Senador",
-      "descricao": "Template para pesquisa de intenção de voto para Senador",
-      "categoria": "intencao_voto",
-      "tipo_eleicao": "senador",
-      "tags": ["senador", "intencao_voto", "federal"],
-      "perguntas": [
-        {
-          "codigo": "IV-SEN-ESP-01",
-          "texto": "Se a eleição para Senador fosse hoje, em quem você votaria? (ESPONTÂNEA)",
-          "tipo": "aberta",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "NÃO LER OPÇÕES.",
+          "ordem": 7,
+          "instrucoes": "Buscar rejeição com justificativa. A justificativa revela valores do eleitor.",
+          "insight_esperado": "Mapeia teto eleitoral dos candidatos e razões da rejeição",
           "opcoes": []
-        },
-        {
-          "codigo": "IV-SEN-EST-01",
-          "texto": "Se a eleição para Senador fosse hoje e os candidatos fossem estes, em qual você votaria? (ESTIMULADA)",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "MOSTRAR CARTÃO COM NOMES DOS CANDIDATOS.",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 3},
-            {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 96},
-            {"valor": "indeciso", "texto": "Indeciso/Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
         }
       ]
     },
     {
-      "id": "tpl-intencao-voto-deputado-distrital",
-      "nome": "Intenção de Voto - Deputado Distrital",
-      "descricao": "Template para pesquisa de intenção de voto para Deputado Distrital",
+      "id": "tpl-avancado-parlamentar",
+      "nome": "Pesquisa Avançada - Voto Parlamentar",
+      "descricao": "Template especializado para entender o voto em cargos proporcionais (deputados, vereadores), que tem lógica diferente do voto majoritário.",
       "categoria": "intencao_voto",
       "tipo_eleicao": "deputado_distrital",
-      "tags": ["deputado", "distrital", "intencao_voto", "df"],
+      "nivel": "avancado",
+      "tags": ["deputado", "parlamentar", "proporcional", "avancado", "legenda"],
       "perguntas": [
         {
-          "codigo": "IV-DD-ESP-01",
-          "texto": "Se a eleição para Deputado Distrital fosse hoje, em quem você votaria? (ESPONTÂNEA)",
+          "codigo": "PARL-CONHECE-01",
+          "texto": "Você lembra em quem votou pra Deputado na última eleição? Se lembra, esse deputado fez alguma coisa que você ficou sabendo?",
           "tipo": "aberta",
-          "categoria": "intencao_voto",
+          "categoria": "memoria_politica",
           "obrigatoria": true,
           "ordem": 1,
-          "instrucoes": "NÃO LER OPÇÕES. Anotar nome completo se possível.",
+          "instrucoes": "Teste de memória eleitoral. Maioria não lembra - isso revela desconexão com representante.",
+          "insight_esperado": "Mede accountability parlamentar e conexão eleitor-eleito",
           "opcoes": []
         },
         {
-          "codigo": "IV-DD-PART-01",
-          "texto": "E em qual partido você votaria para Deputado Distrital?",
+          "codigo": "PARL-CRITERIO-02",
+          "texto": "Quando você vai votar pra Deputado, o que pesa mais: a pessoa do candidato, o partido, ou alguém te indicou? Me explica como você decide.",
           "tipo": "aberta",
-          "categoria": "intencao_voto",
-          "obrigatoria": false,
-          "ordem": 2,
-          "instrucoes": "Anotar sigla do partido.",
-          "opcoes": []
-        }
-      ]
-    },
-    {
-      "id": "tpl-avaliacao-governo-federal",
-      "nome": "Avaliação do Governo Federal",
-      "descricao": "Template completo para avaliação do governo federal (Presidente)",
-      "categoria": "avaliacao_governo",
-      "tipo_eleicao": "presidente",
-      "tags": ["avaliacao", "governo", "federal", "presidente"],
-      "perguntas": [
-        {
-          "codigo": "AV-GOV-FED-01",
-          "texto": "Como você avalia a administração do Presidente [NOME] até o momento?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
+          "categoria": "comportamento_eleitoral",
           "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "LER TODAS AS OPÇÕES.",
-          "opcoes": [
-            {"valor": "otima", "texto": "Ótima", "ordem": 1},
-            {"valor": "boa", "texto": "Boa", "ordem": 2},
-            {"valor": "regular", "texto": "Regular", "ordem": 3},
-            {"valor": "ruim", "texto": "Ruim", "ordem": 4},
-            {"valor": "pessima", "texto": "Péssima", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "AV-GOV-FED-02",
-          "texto": "Comparando com o início do mandato, você acha que o governo está melhor, igual ou pior?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": false,
           "ordem": 2,
-          "instrucoes": "LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "muito_melhor", "texto": "Muito melhor", "ordem": 1},
-            {"valor": "melhor", "texto": "Melhor", "ordem": 2},
-            {"valor": "igual", "texto": "Igual", "ordem": 3},
-            {"valor": "pior", "texto": "Pior", "ordem": 4},
-            {"valor": "muito_pior", "texto": "Muito pior", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
+          "instrucoes": "Identificar se voto é personalista, partidário ou por indicação. Cada tipo tem estratégia diferente.",
+          "insight_esperado": "Classifica tipo de voto proporcional - personalista, partidário ou clientelista",
+          "opcoes": []
         },
         {
-          "codigo": "AV-GOV-FED-03",
-          "texto": "Você aprova ou desaprova a maneira como o Presidente está conduzindo o seu governo?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
+          "codigo": "PARL-FUNCAO-03",
+          "texto": "Pra você, qual é o trabalho de um Deputado? O que ele deveria fazer no dia a dia?",
+          "tipo": "aberta",
+          "categoria": "opiniao_publica",
           "obrigatoria": true,
           "ordem": 3,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "aprova_totalmente", "texto": "Aprova totalmente", "ordem": 1},
-            {"valor": "aprova_parcialmente", "texto": "Aprova parcialmente", "ordem": 2},
-            {"valor": "desaprova_parcialmente", "texto": "Desaprova parcialmente", "ordem": 3},
-            {"valor": "desaprova_totalmente", "texto": "Desaprova totalmente", "ordem": 4},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "AV-GOV-FED-04",
-          "texto": "Na sua opinião, qual é o principal ponto positivo do atual governo federal?",
-          "tipo": "aberta",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": false,
-          "ordem": 4,
-          "instrucoes": "NÃO LER OPÇÕES. Anotar literalmente.",
+          "instrucoes": "Revela expectativa sobre papel do legislador. Muitos confundem com executivo.",
+          "insight_esperado": "Identifica se eleitor entende função legislativa ou espera assistencialismo",
           "opcoes": []
         },
         {
-          "codigo": "AV-GOV-FED-05",
-          "texto": "E qual é o principal ponto negativo do atual governo federal?",
+          "codigo": "PARL-ACESSO-04",
+          "texto": "Você já precisou de ajuda de político ou gabinete de deputado pra resolver algum problema? Como foi essa experiência?",
           "tipo": "aberta",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": false,
-          "ordem": 5,
-          "instrucoes": "NÃO LER OPÇÕES. Anotar literalmente.",
-          "opcoes": []
-        }
-      ]
-    },
-    {
-      "id": "tpl-avaliacao-governo-distrital",
-      "nome": "Avaliação do Governo do DF",
-      "descricao": "Template completo para avaliação do governo distrital (Governador)",
-      "categoria": "avaliacao_governo",
-      "tipo_eleicao": "governador",
-      "tags": ["avaliacao", "governo", "distrital", "governador", "df"],
-      "perguntas": [
-        {
-          "codigo": "AV-GOV-DF-01",
-          "texto": "Como você avalia a administração do Governador [NOME] até o momento?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "LER TODAS AS OPÇÕES.",
-          "opcoes": [
-            {"valor": "otima", "texto": "Ótima", "ordem": 1},
-            {"valor": "boa", "texto": "Boa", "ordem": 2},
-            {"valor": "regular", "texto": "Regular", "ordem": 3},
-            {"valor": "ruim", "texto": "Ruim", "ordem": 4},
-            {"valor": "pessima", "texto": "Péssima", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "AV-GOV-DF-02",
-          "texto": "Você aprova ou desaprova a maneira como o Governador está conduzindo o governo do DF?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "aprova_totalmente", "texto": "Aprova totalmente", "ordem": 1},
-            {"valor": "aprova_parcialmente", "texto": "Aprova parcialmente", "ordem": 2},
-            {"valor": "desaprova_parcialmente", "texto": "Desaprova parcialmente", "ordem": 3},
-            {"valor": "desaprova_totalmente", "texto": "Desaprova totalmente", "ordem": 4},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "AV-GOV-DF-03",
-          "texto": "Comparando com o governo anterior, você acha que o governo atual está melhor, igual ou pior?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": false,
-          "ordem": 3,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "muito_melhor", "texto": "Muito melhor", "ordem": 1},
-            {"valor": "melhor", "texto": "Melhor", "ordem": 2},
-            {"valor": "igual", "texto": "Igual", "ordem": 3},
-            {"valor": "pior", "texto": "Pior", "ordem": 4},
-            {"valor": "muito_pior", "texto": "Muito pior", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-avaliacao-areas-governo",
-      "nome": "Avaliação por Áreas - Governo",
-      "descricao": "Avaliação detalhada do governo por área de atuação",
-      "categoria": "avaliacao_governo",
-      "tipo_eleicao": "governador",
-      "tags": ["avaliacao", "areas", "setorial", "governo"],
-      "perguntas": [
-        {
-          "codigo": "AV-AREA-SAUDE",
-          "texto": "Como você avalia a atuação do governo na área da SAÚDE?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "otima", "texto": "Ótima", "ordem": 1},
-            {"valor": "boa", "texto": "Boa", "ordem": 2},
-            {"valor": "regular", "texto": "Regular", "ordem": 3},
-            {"valor": "ruim", "texto": "Ruim", "ordem": 4},
-            {"valor": "pessima", "texto": "Péssima", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "AV-AREA-EDUCACAO",
-          "texto": "Como você avalia a atuação do governo na área da EDUCAÇÃO?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "otima", "texto": "Ótima", "ordem": 1},
-            {"valor": "boa", "texto": "Boa", "ordem": 2},
-            {"valor": "regular", "texto": "Regular", "ordem": 3},
-            {"valor": "ruim", "texto": "Ruim", "ordem": 4},
-            {"valor": "pessima", "texto": "Péssima", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "AV-AREA-SEGURANCA",
-          "texto": "Como você avalia a atuação do governo na área da SEGURANÇA PÚBLICA?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "otima", "texto": "Ótima", "ordem": 1},
-            {"valor": "boa", "texto": "Boa", "ordem": 2},
-            {"valor": "regular", "texto": "Regular", "ordem": 3},
-            {"valor": "ruim", "texto": "Ruim", "ordem": 4},
-            {"valor": "pessima", "texto": "Péssima", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "AV-AREA-TRANSPORTE",
-          "texto": "Como você avalia a atuação do governo na área de TRANSPORTE PÚBLICO?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
+          "categoria": "comportamento_eleitoral",
           "obrigatoria": true,
           "ordem": 4,
-          "instrucoes": "LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "otima", "texto": "Ótima", "ordem": 1},
-            {"valor": "boa", "texto": "Boa", "ordem": 2},
-            {"valor": "regular", "texto": "Regular", "ordem": 3},
-            {"valor": "ruim", "texto": "Ruim", "ordem": 4},
-            {"valor": "pessima", "texto": "Péssima", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "AV-AREA-EMPREGO",
-          "texto": "Como você avalia a atuação do governo na GERAÇÃO DE EMPREGO E RENDA?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": true,
-          "ordem": 5,
-          "instrucoes": "LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "otima", "texto": "Ótima", "ordem": 1},
-            {"valor": "boa", "texto": "Boa", "ordem": 2},
-            {"valor": "regular", "texto": "Regular", "ordem": 3},
-            {"valor": "ruim", "texto": "Ruim", "ordem": 4},
-            {"valor": "pessima", "texto": "Péssima", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "AV-AREA-INFRAESTRUTURA",
-          "texto": "Como você avalia a atuação do governo na INFRAESTRUTURA (ruas, obras)?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": true,
-          "ordem": 6,
-          "instrucoes": "LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "otima", "texto": "Ótima", "ordem": 1},
-            {"valor": "boa", "texto": "Boa", "ordem": 2},
-            {"valor": "regular", "texto": "Regular", "ordem": 3},
-            {"valor": "ruim", "texto": "Ruim", "ordem": 4},
-            {"valor": "pessima", "texto": "Péssima", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "AV-AREA-HABITACAO",
-          "texto": "Como você avalia a atuação do governo na área de HABITAÇÃO?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": false,
-          "ordem": 7,
-          "instrucoes": "LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "otima", "texto": "Ótima", "ordem": 1},
-            {"valor": "boa", "texto": "Boa", "ordem": 2},
-            {"valor": "regular", "texto": "Regular", "ordem": 3},
-            {"valor": "ruim", "texto": "Ruim", "ordem": 4},
-            {"valor": "pessima", "texto": "Péssima", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "AV-AREA-MEIOAMBIENTE",
-          "texto": "Como você avalia a atuação do governo na área de MEIO AMBIENTE?",
-          "tipo": "unica",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": false,
-          "ordem": 8,
-          "instrucoes": "LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "otima", "texto": "Ótima", "ordem": 1},
-            {"valor": "boa", "texto": "Boa", "ordem": 2},
-            {"valor": "regular", "texto": "Regular", "ordem": 3},
-            {"valor": "ruim", "texto": "Ruim", "ordem": 4},
-            {"valor": "pessima", "texto": "Péssima", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-perfil-sociodemografico-completo",
-      "nome": "Perfil Sociodemográfico Completo",
-      "descricao": "Template completo de perguntas sociodemográficas para caracterização da amostra",
-      "categoria": "dados_demograficos",
-      "tipo_eleicao": "geral",
-      "tags": ["sociodemografico", "perfil", "amostra", "demografico"],
-      "perguntas": [
-        {
-          "codigo": "DEMO-SEXO",
-          "texto": "Sexo do entrevistado:",
-          "tipo": "unica",
-          "categoria": "dados_demograficos",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "OBSERVAR E MARCAR. Perguntar apenas se houver dúvida.",
-          "opcoes": [
-            {"valor": "masculino", "texto": "Masculino", "ordem": 1},
-            {"valor": "feminino", "texto": "Feminino", "ordem": 2},
-            {"valor": "outro", "texto": "Outro", "ordem": 3},
-            {"valor": "nao_respondeu", "texto": "Preferiu não responder", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "DEMO-IDADE",
-          "texto": "Qual a sua idade?",
-          "tipo": "numerica",
-          "categoria": "dados_demograficos",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "Anotar idade em anos completos.",
+          "instrucoes": "Mapear relação clientelista. Quem usa gabinete tende a votar diferente.",
+          "insight_esperado": "Identifica eleitor clientelista vs eleitor ideológico",
           "opcoes": []
         },
         {
-          "codigo": "DEMO-FAIXA-ETARIA",
-          "texto": "Faixa etária do entrevistado:",
-          "tipo": "unica",
-          "categoria": "dados_demograficos",
-          "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "Usar se não conseguir idade exata.",
-          "opcoes": [
-            {"valor": "16_17", "texto": "16 a 17 anos", "ordem": 1},
-            {"valor": "18_24", "texto": "18 a 24 anos", "ordem": 2},
-            {"valor": "25_34", "texto": "25 a 34 anos", "ordem": 3},
-            {"valor": "35_44", "texto": "35 a 44 anos", "ordem": 4},
-            {"valor": "45_59", "texto": "45 a 59 anos", "ordem": 5},
-            {"valor": "60_mais", "texto": "60 anos ou mais", "ordem": 6},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "DEMO-ESCOLARIDADE",
-          "texto": "Até que ano da escola você estudou?",
-          "tipo": "unica",
-          "categoria": "dados_demograficos",
-          "obrigatoria": true,
-          "ordem": 4,
-          "instrucoes": "LER OPÇÕES SE NECESSÁRIO.",
-          "opcoes": [
-            {"valor": "analfabeto", "texto": "Analfabeto / Nunca estudou", "ordem": 1},
-            {"valor": "fundamental_incompleto", "texto": "Ensino Fundamental incompleto", "ordem": 2},
-            {"valor": "fundamental_completo", "texto": "Ensino Fundamental completo", "ordem": 3},
-            {"valor": "medio_incompleto", "texto": "Ensino Médio incompleto", "ordem": 4},
-            {"valor": "medio_completo", "texto": "Ensino Médio completo", "ordem": 5},
-            {"valor": "superior_incompleto", "texto": "Ensino Superior incompleto", "ordem": 6},
-            {"valor": "superior_completo", "texto": "Ensino Superior completo", "ordem": 7},
-            {"valor": "pos_graduacao", "texto": "Pós-graduação", "ordem": 8},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "DEMO-RENDA-FAMILIAR",
-          "texto": "Qual a renda TOTAL da sua família por mês, somando a renda de todos que moram na sua casa?",
-          "tipo": "unica",
-          "categoria": "dados_demograficos",
+          "codigo": "PARL-LEGENDA-05",
+          "texto": "Se você não conhece nenhum candidato, você vota na legenda do partido ou vota nulo/branco? Por quê?",
+          "tipo": "aberta",
+          "categoria": "comportamento_eleitoral",
           "obrigatoria": true,
           "ordem": 5,
-          "instrucoes": "MOSTRAR CARTÃO com faixas. Valor do salário mínimo: R$ 1.518,00 (2025).",
-          "opcoes": [
-            {"valor": "ate_1sm", "texto": "Até 1 salário mínimo (até R$ 1.518)", "ordem": 1},
-            {"valor": "1_2sm", "texto": "De 1 a 2 salários mínimos (R$ 1.518 a R$ 3.036)", "ordem": 2},
-            {"valor": "2_3sm", "texto": "De 2 a 3 salários mínimos (R$ 3.036 a R$ 4.554)", "ordem": 3},
-            {"valor": "3_5sm", "texto": "De 3 a 5 salários mínimos (R$ 4.554 a R$ 7.590)", "ordem": 4},
-            {"valor": "5_10sm", "texto": "De 5 a 10 salários mínimos (R$ 7.590 a R$ 15.180)", "ordem": 5},
-            {"valor": "10_20sm", "texto": "De 10 a 20 salários mínimos (R$ 15.180 a R$ 30.360)", "ordem": 6},
-            {"valor": "mais_20sm", "texto": "Mais de 20 salários mínimos (acima de R$ 30.360)", "ordem": 7},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
+          "instrucoes": "Teste de identidade partidária. Quem vota na legenda tem perfil diferente.",
+          "insight_esperado": "Mede força da identidade partidária vs personalismo",
+          "opcoes": []
         },
         {
-          "codigo": "DEMO-RELIGIAO",
-          "texto": "Qual a sua religião?",
-          "tipo": "unica",
-          "categoria": "dados_demograficos",
+          "codigo": "PARL-CATEGORIA-06",
+          "texto": "Você prefere votar em candidato que defende causas gerais (educação, saúde) ou causas específicas (sua profissão, sua religião, sua região)?",
+          "tipo": "aberta",
+          "categoria": "comportamento_eleitoral",
           "obrigatoria": false,
           "ordem": 6,
-          "instrucoes": "NÃO LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "catolica", "texto": "Católica", "ordem": 1},
-            {"valor": "evangelica_pentecostal", "texto": "Evangélica Pentecostal", "ordem": 2},
-            {"valor": "evangelica_tradicional", "texto": "Evangélica Tradicional/Histórica", "ordem": 3},
-            {"valor": "espirita", "texto": "Espírita", "ordem": 4},
-            {"valor": "umbanda_candomble", "texto": "Umbanda/Candomblé", "ordem": 5},
-            {"valor": "judaica", "texto": "Judaica", "ordem": 6},
-            {"valor": "budista", "texto": "Budista", "ordem": 7},
-            {"valor": "sem_religiao", "texto": "Sem religião/Ateu/Agnóstico", "ordem": 8},
-            {"valor": "outra", "texto": "Outra", "ordem": 9},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
+          "instrucoes": "Identifica se eleitor busca representação universal ou corporativa/identitária.",
+          "insight_esperado": "Perfil de representação desejada - universalista vs particularista",
+          "opcoes": []
+        }
+      ]
+    },
+    {
+      "id": "tpl-avancado-perfil-psicografico",
+      "nome": "Perfil Psicográfico do Eleitor",
+      "descricao": "Template para mapear valores, medos, aspirações e visão de mundo do eleitor. Essencial para segmentação avançada e comunicação de campanha.",
+      "categoria": "perfil_psicografico",
+      "tipo_eleicao": "geral",
+      "nivel": "avancado",
+      "tags": ["psicografico", "valores", "medos", "aspiracoes", "segmentacao"],
+      "perguntas": [
+        {
+          "codigo": "PSI-BRASIL-01",
+          "texto": "Quando você pensa no Brasil daqui a 10 anos, o que você imagina? Melhor, pior, ou igual? Me descreve como você vê o futuro do país.",
+          "tipo": "aberta",
+          "categoria": "perfil_psicografico",
+          "obrigatoria": true,
+          "ordem": 1,
+          "instrucoes": "Captura otimismo/pessimismo estrutural. Pessimistas e otimistas votam diferente.",
+          "insight_esperado": "Nível de esperança no futuro - influencia receptividade a mensagens de mudança vs estabilidade",
+          "opcoes": []
         },
         {
-          "codigo": "DEMO-COR-RACA",
-          "texto": "Como você se declara em relação à sua cor ou raça?",
-          "tipo": "unica",
-          "categoria": "dados_demograficos",
+          "codigo": "PSI-MEDO-02",
+          "texto": "Qual é seu maior medo pro futuro da sua família? Pode ser qualquer coisa - econômico, segurança, saúde, valores...",
+          "tipo": "aberta",
+          "categoria": "perfil_psicografico",
+          "obrigatoria": true,
+          "ordem": 2,
+          "instrucoes": "Medos são preditores poderosos de voto. Não induzir categorias.",
+          "insight_esperado": "Hierarquia de medos - econômicos, de segurança, morais/culturais",
+          "opcoes": []
+        },
+        {
+          "codigo": "PSI-VALORES-03",
+          "texto": "O que você acha mais importante pra criar filhos bem: que eles aprendam a obedecer e respeitar autoridade, ou que aprendam a questionar e pensar por conta própria?",
+          "tipo": "aberta",
+          "categoria": "perfil_psicografico",
+          "obrigatoria": true,
+          "ordem": 3,
+          "instrucoes": "Pergunta clássica de autoritarismo. Resposta correlaciona fortemente com preferência política.",
+          "insight_esperado": "Mede tendência autoritária vs libertária - preditor forte de voto",
+          "opcoes": []
+        },
+        {
+          "codigo": "PSI-MUDANCA-04",
+          "texto": "Você acha que o Brasil precisa de mudanças profundas ou que as coisas estão mais ou menos no caminho certo e só precisam de ajustes?",
+          "tipo": "aberta",
+          "categoria": "perfil_psicografico",
+          "obrigatoria": true,
+          "ordem": 4,
+          "instrucoes": "Mede apetite por mudança vs conservação. Importante pra posicionamento de candidato.",
+          "insight_esperado": "Perfil de risco - conservador/status quo vs mudancista",
+          "opcoes": []
+        },
+        {
+          "codigo": "PSI-MERITO-05",
+          "texto": "Na sua opinião, uma pessoa que trabalha duro consegue vencer na vida no Brasil de hoje, ou o sistema é muito injusto e não adianta só esforço?",
+          "tipo": "aberta",
+          "categoria": "perfil_psicografico",
+          "obrigatoria": true,
+          "ordem": 5,
+          "instrucoes": "Teste de meritocracia. Correlaciona com visão sobre políticas redistributivas.",
+          "insight_esperado": "Crença em meritocracia vs estruturalismo - influencia visão sobre papel do Estado",
+          "opcoes": []
+        },
+        {
+          "codigo": "PSI-RELIGIAO-06",
+          "texto": "A religião influencia suas escolhas políticas? De que forma? Tem coisas que você não votaria por causa da sua fé?",
+          "tipo": "aberta",
+          "categoria": "perfil_psicografico",
+          "obrigatoria": true,
+          "ordem": 6,
+          "instrucoes": "Brasil é muito religioso. Mapear influência real, não declarada.",
+          "insight_esperado": "Peso do voto religioso e issues específicos (aborto, costumes, etc)",
+          "opcoes": []
+        },
+        {
+          "codigo": "PSI-ELITE-07",
+          "texto": "Você se sente representado pelos políticos em geral? Você acha que eles entendem a vida de pessoas como você?",
+          "tipo": "aberta",
+          "categoria": "perfil_psicografico",
           "obrigatoria": true,
           "ordem": 7,
-          "instrucoes": "LER OPÇÕES (categorias do IBGE).",
-          "opcoes": [
-            {"valor": "branca", "texto": "Branca", "ordem": 1},
-            {"valor": "preta", "texto": "Preta", "ordem": 2},
-            {"valor": "parda", "texto": "Parda", "ordem": 3},
-            {"valor": "amarela", "texto": "Amarela", "ordem": 4},
-            {"valor": "indigena", "texto": "Indígena", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "DEMO-ESTADO-CIVIL",
-          "texto": "Qual o seu estado civil?",
-          "tipo": "unica",
-          "categoria": "dados_demograficos",
-          "obrigatoria": false,
-          "ordem": 8,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "solteiro", "texto": "Solteiro(a)", "ordem": 1},
-            {"valor": "casado", "texto": "Casado(a)", "ordem": 2},
-            {"valor": "uniao_estavel", "texto": "União estável", "ordem": 3},
-            {"valor": "divorciado", "texto": "Divorciado(a)/Separado(a)", "ordem": 4},
-            {"valor": "viuvo", "texto": "Viúvo(a)", "ordem": 5},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "DEMO-OCUPACAO",
-          "texto": "Qual a sua ocupação/situação de trabalho atual?",
-          "tipo": "unica",
-          "categoria": "dados_demograficos",
-          "obrigatoria": true,
-          "ordem": 9,
-          "instrucoes": "LER OPÇÕES SE NECESSÁRIO.",
-          "opcoes": [
-            {"valor": "empregado_carteira", "texto": "Empregado com carteira assinada", "ordem": 1},
-            {"valor": "empregado_sem_carteira", "texto": "Empregado sem carteira assinada", "ordem": 2},
-            {"valor": "servidor_publico", "texto": "Servidor público", "ordem": 3},
-            {"valor": "autonomo", "texto": "Autônomo/Trabalha por conta própria", "ordem": 4},
-            {"valor": "empresario", "texto": "Empresário/Empregador", "ordem": 5},
-            {"valor": "desempregado", "texto": "Desempregado", "ordem": 6},
-            {"valor": "estudante", "texto": "Estudante", "ordem": 7},
-            {"valor": "aposentado", "texto": "Aposentado/Pensionista", "ordem": 8},
-            {"valor": "do_lar", "texto": "Do lar", "ordem": 9},
-            {"valor": "outro", "texto": "Outro", "ordem": 10},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "DEMO-RA",
-          "texto": "Em qual Região Administrativa do DF você mora?",
-          "tipo": "unica",
-          "categoria": "dados_demograficos",
-          "obrigatoria": true,
-          "ordem": 10,
-          "instrucoes": "Verificar lista completa de RAs do DF.",
-          "opcoes": [
-            {"valor": "plano_piloto", "texto": "Plano Piloto (Brasília)", "ordem": 1},
-            {"valor": "gama", "texto": "Gama", "ordem": 2},
-            {"valor": "taguatinga", "texto": "Taguatinga", "ordem": 3},
-            {"valor": "brazlandia", "texto": "Brazlândia", "ordem": 4},
-            {"valor": "sobradinho", "texto": "Sobradinho", "ordem": 5},
-            {"valor": "planaltina", "texto": "Planaltina", "ordem": 6},
-            {"valor": "paranoa", "texto": "Paranoá", "ordem": 7},
-            {"valor": "nucleo_bandeirante", "texto": "Núcleo Bandeirante", "ordem": 8},
-            {"valor": "ceilandia", "texto": "Ceilândia", "ordem": 9},
-            {"valor": "guara", "texto": "Guará", "ordem": 10},
-            {"valor": "cruzeiro", "texto": "Cruzeiro", "ordem": 11},
-            {"valor": "samambaia", "texto": "Samambaia", "ordem": 12},
-            {"valor": "santa_maria", "texto": "Santa Maria", "ordem": 13},
-            {"valor": "sao_sebastiao", "texto": "São Sebastião", "ordem": 14},
-            {"valor": "recanto_emas", "texto": "Recanto das Emas", "ordem": 15},
-            {"valor": "lago_sul", "texto": "Lago Sul", "ordem": 16},
-            {"valor": "riacho_fundo", "texto": "Riacho Fundo", "ordem": 17},
-            {"valor": "lago_norte", "texto": "Lago Norte", "ordem": 18},
-            {"valor": "candangolandia", "texto": "Candangolândia", "ordem": 19},
-            {"valor": "aguas_claras", "texto": "Águas Claras", "ordem": 20},
-            {"valor": "riacho_fundo_ii", "texto": "Riacho Fundo II", "ordem": 21},
-            {"valor": "sudoeste_octogonal", "texto": "Sudoeste/Octogonal", "ordem": 22},
-            {"valor": "varjao", "texto": "Varjão", "ordem": 23},
-            {"valor": "park_way", "texto": "Park Way", "ordem": 24},
-            {"valor": "scia_estrutural", "texto": "SCIA/Estrutural", "ordem": 25},
-            {"valor": "sobradinho_ii", "texto": "Sobradinho II", "ordem": 26},
-            {"valor": "jardim_botanico", "texto": "Jardim Botânico", "ordem": 27},
-            {"valor": "itapoa", "texto": "Itapoã", "ordem": 28},
-            {"valor": "sia", "texto": "SIA", "ordem": 29},
-            {"valor": "vicente_pires", "texto": "Vicente Pires", "ordem": 30},
-            {"valor": "fercal", "texto": "Fercal", "ordem": 31},
-            {"valor": "sol_nascente_por_sol", "texto": "Sol Nascente/Pôr do Sol", "ordem": 32},
-            {"valor": "arniqueira", "texto": "Arniqueira", "ordem": 33},
-            {"valor": "outra", "texto": "Outra/Entorno", "ordem": 90},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
+          "instrucoes": "Mede sentimento antiestablishment. Correlaciona com voto em outsiders.",
+          "insight_esperado": "Nível de alienação política - receptividade a candidatos antissistema",
+          "opcoes": []
         }
       ]
     },
     {
-      "id": "tpl-comportamento-eleitoral",
-      "nome": "Comportamento Eleitoral",
-      "descricao": "Perguntas sobre histórico e comportamento eleitoral do entrevistado",
-      "categoria": "comportamento_eleitoral",
+      "id": "tpl-avancado-comunicacao-campanha",
+      "nome": "Teste de Mensagens de Campanha",
+      "descricao": "Template para testar eficácia de mensagens, slogans e propostas de campanha. Permite calibrar comunicação antes de gastar em mídia.",
+      "categoria": "analise_discurso",
       "tipo_eleicao": "geral",
-      "tags": ["comportamento", "historico", "voto", "eleitoral"],
+      "nivel": "avancado",
+      "tags": ["comunicacao", "mensagem", "slogan", "teste", "campanha"],
       "perguntas": [
         {
-          "codigo": "CE-VOTO-2022-PRES",
-          "texto": "Na eleição de 2022 para Presidente, em quem você votou no 2º turno?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": false,
+          "codigo": "MSG-REACAO-01",
+          "texto": "[LER MENSAGEM/PROPOSTA DO CANDIDATO] - Qual foi sua reação imediata a essa mensagem? O que você sentiu?",
+          "tipo": "aberta",
+          "categoria": "analise_discurso",
+          "obrigatoria": true,
           "ordem": 1,
-          "instrucoes": "LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "lula", "texto": "Lula (PT)", "ordem": 1},
-            {"valor": "bolsonaro", "texto": "Bolsonaro (PL)", "ordem": 2},
-            {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 3},
-            {"valor": "nao_votou", "texto": "Não votou", "ordem": 4},
-            {"valor": "nao_lembra", "texto": "Não lembra", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
+          "instrucoes": "Capturar reação emocional antes da racionalização. Anotar expressões faciais se presencial.",
+          "insight_esperado": "Impacto emocional da mensagem - positivo, negativo, indiferente",
+          "opcoes": []
         },
         {
-          "codigo": "CE-INTERESSE-POLITICA",
-          "texto": "Qual o seu nível de interesse por política?",
-          "tipo": "unica",
+          "codigo": "MSG-CREDIBILIDADE-02",
+          "texto": "Você acredita que esse candidato realmente vai fazer isso se eleito? Por que sim ou por que não?",
+          "tipo": "aberta",
+          "categoria": "analise_discurso",
+          "obrigatoria": true,
+          "ordem": 2,
+          "instrucoes": "Teste de credibilidade. Promessa sem credibilidade é pior que não prometer.",
+          "insight_esperado": "Nível de credibilidade do candidato/proposta",
+          "opcoes": []
+        },
+        {
+          "codigo": "MSG-RELEVANCIA-03",
+          "texto": "Essa proposta/mensagem tem a ver com sua vida? Resolve algum problema que você enfrenta?",
+          "tipo": "aberta",
+          "categoria": "analise_discurso",
+          "obrigatoria": true,
+          "ordem": 3,
+          "instrucoes": "Teste de relevância pessoal. Mensagem precisa conectar com vida real.",
+          "insight_esperado": "Conexão da mensagem com problemas reais do eleitor",
+          "opcoes": []
+        },
+        {
+          "codigo": "MSG-DIFERENCIAL-04",
+          "texto": "Essa proposta faz esse candidato parecer diferente dos outros? Ou é mais do mesmo?",
+          "tipo": "aberta",
+          "categoria": "analise_discurso",
+          "obrigatoria": true,
+          "ordem": 4,
+          "instrucoes": "Teste de diferenciação. Mensagem genérica não move voto.",
+          "insight_esperado": "Capacidade de diferenciação do candidato",
+          "opcoes": []
+        },
+        {
+          "codigo": "MSG-LEMBRANCA-05",
+          "texto": "[APÓS ALGUMAS PERGUNTAS] Você lembra qual era a proposta/mensagem que eu li no início? O que ficou na sua cabeça?",
+          "tipo": "aberta",
+          "categoria": "analise_discurso",
+          "obrigatoria": false,
+          "ordem": 5,
+          "instrucoes": "Teste de memorabilidade. Mensagem esquecida não funciona.",
+          "insight_esperado": "Memorabilidade e recall da mensagem",
+          "opcoes": []
+        }
+      ]
+    },
+    {
+      "id": "tpl-avancado-influencia-midia",
+      "nome": "Redes de Influência e Mídia",
+      "descricao": "Template para mapear fontes de informação e influenciadores do eleitor. Essencial para estratégia de mídia e comunicação.",
+      "categoria": "redes_influencia",
+      "tipo_eleicao": "geral",
+      "nivel": "avancado",
+      "tags": ["midia", "influencia", "redes", "informacao", "whatsapp"],
+      "perguntas": [
+        {
+          "codigo": "INF-FONTE-01",
+          "texto": "Onde você se informa sobre política? Me conta sua rotina - o que você vê/lê/ouve no dia a dia sobre política.",
+          "tipo": "aberta",
+          "categoria": "redes_influencia",
+          "obrigatoria": true,
+          "ordem": 1,
+          "instrucoes": "Mapear ecossistema informacional completo, não só mídia principal.",
+          "insight_esperado": "Dieta de mídia do eleitor - TV, redes, WhatsApp, conversa",
+          "opcoes": []
+        },
+        {
+          "codigo": "INF-CONFIANCA-02",
+          "texto": "Quando você lê/vê uma notícia sobre política, como você sabe se é verdade ou mentira? O que te faz confiar ou desconfiar?",
+          "tipo": "aberta",
+          "categoria": "redes_influencia",
+          "obrigatoria": true,
+          "ordem": 2,
+          "instrucoes": "Entender processo de validação de informação. Revela vulnerabilidade a desinformação.",
+          "insight_esperado": "Nível de literacia midiática e critérios de credibilidade",
+          "opcoes": []
+        },
+        {
+          "codigo": "INF-WHATSAPP-03",
+          "texto": "Você recebe mensagens políticas no WhatsApp? De quem? Você costuma repassar ou só lê?",
+          "tipo": "aberta",
+          "categoria": "redes_influencia",
+          "obrigatoria": true,
+          "ordem": 3,
+          "instrucoes": "WhatsApp é central no Brasil. Mapear se é consumidor passivo ou disseminador.",
+          "insight_esperado": "Papel no ecossistema de WhatsApp - receptor vs multiplicador",
+          "opcoes": []
+        },
+        {
+          "codigo": "INF-PESSOA-04",
+          "texto": "Tem alguém cuja opinião política você respeita muito? Quem é essa pessoa e por que você confia nela?",
+          "tipo": "aberta",
+          "categoria": "redes_influencia",
+          "obrigatoria": true,
+          "ordem": 4,
+          "instrucoes": "Identificar influenciadores pessoais. Podem ser líderes comunitários, religiosos, familiares.",
+          "insight_esperado": "Mapear formadores de opinião na rede pessoal do eleitor",
+          "opcoes": []
+        },
+        {
+          "codigo": "INF-POLARIZACAO-05",
+          "texto": "Você acompanha gente que pensa diferente de você na política? Ou prefere evitar esse tipo de conteúdo?",
+          "tipo": "aberta",
+          "categoria": "redes_influencia",
+          "obrigatoria": false,
+          "ordem": 5,
+          "instrucoes": "Teste de bolha informacional. Quem só vê um lado está mais radicalizado.",
+          "insight_esperado": "Grau de exposição a visões diferentes - bolha ou pluralidade",
+          "opcoes": []
+        }
+      ]
+    },
+    {
+      "id": "tpl-avancado-gestores",
+      "nome": "Avaliação Avançada de Gestores Públicos",
+      "descricao": "Template especializado para avaliar prefeitos e governadores em exercício. Vai além de aprovação/reprovação genérica.",
+      "categoria": "avaliacao_governo",
+      "tipo_eleicao": "governador",
+      "nivel": "avancado",
+      "tags": ["avaliacao", "gestor", "governador", "prefeito", "gestao"],
+      "perguntas": [
+        {
+          "codigo": "GEST-COTIDIANO-01",
+          "texto": "No seu dia a dia, você percebe a presença do governo? Em quais momentos? Me dá exemplos de quando você sente que o governo está presente ou ausente.",
+          "tipo": "aberta",
+          "categoria": "avaliacao_governo",
+          "obrigatoria": true,
+          "ordem": 1,
+          "instrucoes": "Tangibilizar governo no cotidiano. Avaliação abstrata é menos reveladora.",
+          "insight_esperado": "Pontos de contato governo-cidadão e qualidade percebida",
+          "opcoes": []
+        },
+        {
+          "codigo": "GEST-ANTES-DEPOIS-02",
+          "texto": "Comparando com o governo anterior, o que mudou pra melhor e o que mudou pra pior? Me dá exemplos concretos.",
+          "tipo": "aberta",
+          "categoria": "avaliacao_governo",
+          "obrigatoria": true,
+          "ordem": 2,
+          "instrucoes": "Comparação temporal com exemplos. Evita avaliação enviesada pelo momento.",
+          "insight_esperado": "Avaliação comparativa - ganhos e perdas percebidos",
+          "opcoes": []
+        },
+        {
+          "codigo": "GEST-PROMESSA-03",
+          "texto": "Você lembra de alguma promessa de campanha desse governante? Ele cumpriu ou não cumpriu?",
+          "tipo": "aberta",
+          "categoria": "avaliacao_governo",
+          "obrigatoria": true,
+          "ordem": 3,
+          "instrucoes": "Teste de accountability. Se não lembra promessa, não há como cobrar.",
+          "insight_esperado": "Nível de cobrança do eleitor e memória de promessas",
+          "opcoes": []
+        },
+        {
+          "codigo": "GEST-MERITO-04",
+          "texto": "Tem alguma coisa boa que aconteceu que você acha que foi mérito desse governante? E alguma coisa ruim que foi culpa dele?",
+          "tipo": "aberta",
+          "categoria": "avaliacao_governo",
+          "obrigatoria": true,
+          "ordem": 4,
+          "instrucoes": "Teste de atribuição de responsabilidade. Eleitor pode não ligar causa e efeito.",
+          "insight_esperado": "Atribuição de responsabilidade - o que credita e o que culpa o gestor",
+          "opcoes": []
+        },
+        {
+          "codigo": "GEST-PRIORIDADE-05",
+          "texto": "Se você pudesse dar um conselho pro governante sobre o que ele deveria fazer diferente, o que você diria?",
+          "tipo": "aberta",
+          "categoria": "avaliacao_governo",
+          "obrigatoria": true,
+          "ordem": 5,
+          "instrucoes": "Revela prioridade do eleitor em forma construtiva. Menos defensivo que crítica direta.",
+          "insight_esperado": "Agenda prioritária do eleitor - o que ele mais quer ver mudado",
+          "opcoes": []
+        }
+      ]
+    },
+    {
+      "id": "tpl-avancado-voto-oculto",
+      "nome": "Detecção de Voto Oculto",
+      "descricao": "Template especializado para capturar o voto que o eleitor tem vergonha de declarar. Usa técnicas indiretas para reduzir viés de desejabilidade social.",
+      "categoria": "comportamento_eleitoral",
+      "tipo_eleicao": "geral",
+      "nivel": "avancado",
+      "tags": ["voto_oculto", "desejabilidade_social", "metodologia", "avancado"],
+      "perguntas": [
+        {
+          "codigo": "OCULTO-VIZINHO-01",
+          "texto": "Na sua rua/prédio/vizinhança, você acha que a maioria vai votar em quem? E por que você acha isso?",
+          "tipo": "aberta",
+          "categoria": "comportamento_eleitoral",
+          "obrigatoria": true,
+          "ordem": 1,
+          "instrucoes": "Técnica de projeção. Eleitor projeta no vizinho o que tem vergonha de declarar.",
+          "insight_esperado": "Voto projetado - pode revelar intenção real mascarada",
+          "opcoes": []
+        },
+        {
+          "codigo": "OCULTO-SURPRESA-02",
+          "texto": "Você acha que a eleição vai ter surpresa? Tem algum candidato que pode ir melhor ou pior nas urnas do que as pesquisas mostram?",
+          "tipo": "aberta",
           "categoria": "comportamento_eleitoral",
           "obrigatoria": true,
           "ordem": 2,
-          "instrucoes": "LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "muito_interessado", "texto": "Muito interessado", "ordem": 1},
-            {"valor": "interessado", "texto": "Interessado", "ordem": 2},
-            {"valor": "pouco_interessado", "texto": "Pouco interessado", "ordem": 3},
-            {"valor": "nada_interessado", "texto": "Nada interessado", "ordem": 4},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
+          "instrucoes": "Captura percepção de voto oculto de outros. Pode revelar próprio voto oculto.",
+          "insight_esperado": "Percepção de viés nas pesquisas e voto envergonhado",
+          "opcoes": []
         },
         {
-          "codigo": "CE-POSICAO-IDEOLOGICA",
-          "texto": "Em uma escala de 0 a 10, onde 0 é ESQUERDA e 10 é DIREITA, onde você se posiciona politicamente?",
-          "tipo": "escala",
+          "codigo": "OCULTO-ADMITIR-03",
+          "texto": "Você conhece alguém que você sabe que vota em [CANDIDATO X] mas não admite publicamente? Por que você acha que a pessoa esconde?",
+          "tipo": "aberta",
           "categoria": "comportamento_eleitoral",
-          "obrigatoria": false,
+          "obrigatoria": true,
           "ordem": 3,
-          "instrucoes": "MOSTRAR ESCALA. Pode usar valores intermediários.",
-          "opcoes": [
-            {"valor": "0", "texto": "0 - Esquerda", "ordem": 0},
-            {"valor": "5", "texto": "5 - Centro", "ordem": 5},
-            {"valor": "10", "texto": "10 - Direita", "ordem": 10},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
+          "instrucoes": "Pergunta sobre terceiros para revelar padrão de ocultação.",
+          "insight_esperado": "Entender razões da ocultação de voto no ambiente social",
+          "opcoes": []
         },
         {
-          "codigo": "CE-DECISAO-VOTO",
-          "texto": "Como você define seu voto?",
-          "tipo": "unica",
+          "codigo": "OCULTO-PRESSAO-04",
+          "texto": "Você já sentiu pressão pra votar de um jeito ou de outro? De quem? Como você lidou com isso?",
+          "tipo": "aberta",
           "categoria": "comportamento_eleitoral",
           "obrigatoria": true,
           "ordem": 4,
-          "instrucoes": "LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "decidido_nao_muda", "texto": "Já decidi e não mudo de jeito nenhum", "ordem": 1},
-            {"valor": "decidido_pode_mudar", "texto": "Já decidi mas ainda posso mudar", "ordem": 2},
-            {"valor": "indeciso_tendencia", "texto": "Estou indeciso, mas tenho uma tendência", "ordem": 3},
-            {"valor": "totalmente_indeciso", "texto": "Estou totalmente indeciso", "ordem": 4},
-            {"valor": "nao_vai_votar", "texto": "Não pretendo votar", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-principais-problemas",
-      "nome": "Principais Problemas",
-      "descricao": "Identificação dos principais problemas na visão do eleitor",
-      "categoria": "opiniao_publica",
-      "tipo_eleicao": "geral",
-      "tags": ["problemas", "prioridades", "opiniao"],
-      "perguntas": [
-        {
-          "codigo": "PROB-PRINCIPAL-DF",
-          "texto": "Na sua opinião, qual é o PRINCIPAL problema do Distrito Federal atualmente?",
-          "tipo": "aberta",
-          "categoria": "opiniao_publica",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "NÃO LER OPÇÕES. Anotar literalmente a primeira resposta.",
+          "instrucoes": "Mapear pressão social sobre voto. Pressão gera ocultação.",
+          "insight_esperado": "Fontes de pressão social e estratégias de resistência",
           "opcoes": []
         },
         {
-          "codigo": "PROB-SEGUNDO-DF",
-          "texto": "E qual seria o SEGUNDO principal problema?",
+          "codigo": "OCULTO-ULTIMA-HORA-05",
+          "texto": "Você já mudou de voto na última hora, já dentro da cabine? O que te fez mudar?",
           "tipo": "aberta",
-          "categoria": "opiniao_publica",
-          "obrigatoria": false,
-          "ordem": 2,
-          "instrucoes": "NÃO LER OPÇÕES.",
-          "opcoes": []
-        },
-        {
-          "codigo": "PROB-AREA-PRIORITARIA",
-          "texto": "Se você pudesse escolher UMA área para o governo investir mais, qual seria?",
-          "tipo": "unica",
-          "categoria": "opiniao_publica",
-          "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "LER OPÇÕES. Apenas uma resposta.",
-          "opcoes": [
-            {"valor": "saude", "texto": "Saúde", "ordem": 1},
-            {"valor": "educacao", "texto": "Educação", "ordem": 2},
-            {"valor": "seguranca", "texto": "Segurança Pública", "ordem": 3},
-            {"valor": "emprego", "texto": "Geração de Emprego", "ordem": 4},
-            {"valor": "transporte", "texto": "Transporte Público", "ordem": 5},
-            {"valor": "habitacao", "texto": "Habitação", "ordem": 6},
-            {"valor": "assistencia_social", "texto": "Assistência Social", "ordem": 7},
-            {"valor": "infraestrutura", "texto": "Infraestrutura/Obras", "ordem": 8},
-            {"valor": "meio_ambiente", "texto": "Meio Ambiente", "ordem": 9},
-            {"valor": "cultura_lazer", "texto": "Cultura e Lazer", "ordem": 10},
-            {"valor": "outro", "texto": "Outro", "ordem": 11},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-conhecimento-candidatos",
-      "nome": "Conhecimento de Candidatos",
-      "descricao": "Avaliação do conhecimento e imagem dos candidatos",
-      "categoria": "imagem_candidato",
-      "tipo_eleicao": "geral",
-      "tags": ["conhecimento", "imagem", "candidatos"],
-      "perguntas": [
-        {
-          "codigo": "CONH-CONHECE-01",
-          "texto": "Você conhece ou já ouviu falar de [CANDIDATO A]?",
-          "tipo": "unica",
-          "categoria": "imagem_candidato",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "Repetir para cada candidato.",
-          "opcoes": [
-            {"valor": "conhece_bem", "texto": "Conhece bem", "ordem": 1},
-            {"valor": "conhece_pouco", "texto": "Conhece pouco/Já ouviu falar", "ordem": 2},
-            {"valor": "nao_conhece", "texto": "Não conhece", "ordem": 3},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "CONH-AVALIACAO-01",
-          "texto": "De uma maneira geral, você tem uma imagem positiva, negativa ou neutra de [CANDIDATO A]?",
-          "tipo": "unica",
-          "categoria": "imagem_candidato",
-          "obrigatoria": false,
-          "ordem": 2,
-          "instrucoes": "Aplicar apenas se conhece o candidato.",
-          "opcoes": [
-            {"valor": "muito_positiva", "texto": "Muito positiva", "ordem": 1},
-            {"valor": "positiva", "texto": "Positiva", "ordem": 2},
-            {"valor": "neutra", "texto": "Neutra", "ordem": 3},
-            {"valor": "negativa", "texto": "Negativa", "ordem": 4},
-            {"valor": "muito_negativa", "texto": "Muito negativa", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-situacao-economica",
-      "nome": "Percepção Econômica",
-      "descricao": "Avaliação da situação econômica pessoal e do país/DF",
-      "categoria": "opiniao_publica",
-      "tipo_eleicao": "geral",
-      "tags": ["economia", "percepcao", "situacao_economica"],
-      "perguntas": [
-        {
-          "codigo": "ECON-SITUACAO-PESSOAL",
-          "texto": "Como você avalia a sua situação econômica pessoal/familiar atual?",
-          "tipo": "unica",
-          "categoria": "opiniao_publica",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "LER OPÇÕES.",
-          "opcoes": [
-            {"valor": "muito_boa", "texto": "Muito boa", "ordem": 1},
-            {"valor": "boa", "texto": "Boa", "ordem": 2},
-            {"valor": "regular", "texto": "Regular", "ordem": 3},
-            {"valor": "ruim", "texto": "Ruim", "ordem": 4},
-            {"valor": "muito_ruim", "texto": "Muito ruim", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "ECON-EVOLUCAO-PESSOAL",
-          "texto": "Comparando com há 1 ano, sua situação econômica está melhor, igual ou pior?",
-          "tipo": "unica",
-          "categoria": "opiniao_publica",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "muito_melhor", "texto": "Muito melhor", "ordem": 1},
-            {"valor": "melhor", "texto": "Melhor", "ordem": 2},
-            {"valor": "igual", "texto": "Igual", "ordem": 3},
-            {"valor": "pior", "texto": "Pior", "ordem": 4},
-            {"valor": "muito_pior", "texto": "Muito pior", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "ECON-DIRECAO-PAIS",
-          "texto": "De uma maneira geral, você acha que o Brasil está indo na direção certa ou na direção errada?",
-          "tipo": "unica",
-          "categoria": "opiniao_publica",
-          "obrigatoria": false,
-          "ordem": 3,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "direcao_certa", "texto": "Direção certa", "ordem": 1},
-            {"valor": "direcao_errada", "texto": "Direção errada", "ordem": 2},
-            {"valor": "nem_certa_errada", "texto": "Nem uma nem outra", "ordem": 3},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-informacao-midia",
-      "nome": "Consumo de Informação e Mídia",
-      "descricao": "Como o eleitor se informa sobre política",
-      "categoria": "comportamento_eleitoral",
-      "tipo_eleicao": "geral",
-      "tags": ["midia", "informacao", "redes_sociais", "consumo"],
-      "perguntas": [
-        {
-          "codigo": "INFO-FONTE-PRINCIPAL",
-          "texto": "Qual a sua PRINCIPAL fonte de informação sobre política?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "NÃO LER OPÇÕES. Anotar primeira resposta.",
-          "opcoes": [
-            {"valor": "tv_aberta", "texto": "TV aberta (Globo, SBT, Record, etc.)", "ordem": 1},
-            {"valor": "tv_cabo", "texto": "TV por assinatura/Cabo", "ordem": 2},
-            {"valor": "radio", "texto": "Rádio", "ordem": 3},
-            {"valor": "jornal_impresso", "texto": "Jornal impresso", "ordem": 4},
-            {"valor": "sites_noticias", "texto": "Sites de notícias na internet", "ordem": 5},
-            {"valor": "youtube", "texto": "YouTube", "ordem": 6},
-            {"valor": "facebook", "texto": "Facebook", "ordem": 7},
-            {"valor": "instagram", "texto": "Instagram", "ordem": 8},
-            {"valor": "twitter_x", "texto": "Twitter/X", "ordem": 9},
-            {"valor": "tiktok", "texto": "TikTok", "ordem": 10},
-            {"valor": "whatsapp", "texto": "WhatsApp/Telegram", "ordem": 11},
-            {"valor": "conversa_pessoas", "texto": "Conversa com pessoas", "ordem": 12},
-            {"valor": "podcast", "texto": "Podcasts", "ordem": 13},
-            {"valor": "nao_se_informa", "texto": "Não se informa sobre política", "ordem": 14},
-            {"valor": "outro", "texto": "Outro", "ordem": 15},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "INFO-REDES-SOCIAIS",
-          "texto": "Quais redes sociais você usa regularmente?",
-          "tipo": "multipla",
           "categoria": "comportamento_eleitoral",
           "obrigatoria": false,
-          "ordem": 2,
-          "instrucoes": "LER OPÇÕES. Pode marcar várias.",
-          "opcoes": [
-            {"valor": "whatsapp", "texto": "WhatsApp", "ordem": 1},
-            {"valor": "instagram", "texto": "Instagram", "ordem": 2},
-            {"valor": "facebook", "texto": "Facebook", "ordem": 3},
-            {"valor": "youtube", "texto": "YouTube", "ordem": 4},
-            {"valor": "tiktok", "texto": "TikTok", "ordem": 5},
-            {"valor": "twitter_x", "texto": "Twitter/X", "ordem": 6},
-            {"valor": "telegram", "texto": "Telegram", "ordem": 7},
-            {"valor": "linkedin", "texto": "LinkedIn", "ordem": 8},
-            {"valor": "nenhuma", "texto": "Nenhuma", "ordem": 9},
-            {"valor": "outra", "texto": "Outra", "ordem": 10},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-encerramento-verificacao",
-      "nome": "Encerramento e Verificação",
-      "descricao": "Perguntas de controle e encerramento da entrevista",
-      "categoria": "controle_qualidade",
-      "tipo_eleicao": "geral",
-      "tags": ["encerramento", "verificacao", "controle", "qualidade"],
-      "perguntas": [
-        {
-          "codigo": "CTRL-TITULO-ELEITOR",
-          "texto": "Você possui título de eleitor?",
-          "tipo": "unica",
-          "categoria": "controle_qualidade",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "sim", "texto": "Sim", "ordem": 1},
-            {"valor": "nao", "texto": "Não", "ordem": 2},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "CTRL-DOMICILIO-ELEITORAL",
-          "texto": "Seu título de eleitor é do Distrito Federal?",
-          "tipo": "unica",
-          "categoria": "controle_qualidade",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "sim", "texto": "Sim", "ordem": 1},
-            {"valor": "nao", "texto": "Não", "ordem": 2},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "CTRL-TELEFONE",
-          "texto": "Para fins de verificação, poderia informar um telefone de contato?",
-          "tipo": "aberta",
-          "categoria": "controle_qualidade",
-          "obrigatoria": false,
-          "ordem": 3,
-          "instrucoes": "Opcional. Explicar que é apenas para verificação da pesquisa.",
-          "opcoes": []
-        },
-        {
-          "codigo": "CTRL-OBSERVACOES",
-          "texto": "Observações do entrevistador:",
-          "tipo": "aberta",
-          "categoria": "controle_qualidade",
-          "obrigatoria": false,
-          "ordem": 4,
-          "instrucoes": "Anotar qualquer observação relevante sobre a entrevista.",
+          "ordem": 5,
+          "instrucoes": "Captura voto volátil e influência da cabine de votação.",
+          "insight_esperado": "Perfil de eleitor volátil e gatilhos de mudança de última hora",
           "opcoes": []
         }
       ]
     },
     {
-      "id": "tpl-pesquisa-completa-governador",
-      "nome": "Pesquisa Completa - Eleição Governador DF",
-      "descricao": "Questionário completo padrão para pesquisa eleitoral de Governador do DF, com todas as seções necessárias",
+      "id": "tpl-basico-intencao-voto",
+      "nome": "Intenção de Voto - Básico",
+      "descricao": "Template básico para pesquisa de intenção de voto. Formato tradicional com pergunta espontânea e estimulada.",
       "categoria": "intencao_voto",
-      "tipo_eleicao": "governador",
-      "tags": ["completo", "governador", "padrao", "df"],
+      "tipo_eleicao": "geral",
+      "nivel": "basico",
+      "tags": ["basico", "intencao_voto", "tradicional"],
       "perguntas": [
         {
-          "codigo": "FULL-INTRO",
-          "texto": "Bom dia/tarde/noite! Meu nome é [NOME] e estou realizando uma pesquisa de opinião pública para o Instituto [NOME]. Esta pesquisa é registrada no TSE. Posso fazer algumas perguntas? Levará cerca de 10 minutos.",
-          "tipo": "unica",
-          "categoria": "controle_qualidade",
+          "codigo": "BAS-ESP-01",
+          "texto": "Se a eleição fosse hoje, em quem você votaria?",
+          "tipo": "aberta",
+          "categoria": "intencao_voto",
           "obrigatoria": true,
           "ordem": 1,
-          "instrucoes": "Se recusar, agradecer e encerrar.",
-          "opcoes": [
-            {"valor": "aceita", "texto": "Aceita participar", "ordem": 1},
-            {"valor": "recusa", "texto": "Recusa participar", "ordem": 2}
-          ]
+          "instrucoes": "Pergunta espontânea. Não mostrar lista de candidatos.",
+          "opcoes": []
         },
         {
-          "codigo": "FULL-AV-GOV-DF",
-          "texto": "Como você avalia a administração do Governador [NOME] até o momento?",
+          "codigo": "BAS-EST-02",
+          "texto": "E considerando estes candidatos [MOSTRAR LISTA], em qual você votaria?",
           "tipo": "unica",
-          "categoria": "avaliacao_governo",
+          "categoria": "intencao_voto",
           "obrigatoria": true,
           "ordem": 2,
-          "instrucoes": "LER TODAS AS OPÇÕES.",
-          "opcoes": [
-            {"valor": "otima", "texto": "Ótima", "ordem": 1},
-            {"valor": "boa", "texto": "Boa", "ordem": 2},
-            {"valor": "regular", "texto": "Regular", "ordem": 3},
-            {"valor": "ruim", "texto": "Ruim", "ordem": 4},
-            {"valor": "pessima", "texto": "Péssima", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
-          ]
-        },
-        {
-          "codigo": "FULL-PROB-DF",
-          "texto": "Na sua opinião, qual é o principal problema do DF atualmente?",
-          "tipo": "aberta",
-          "categoria": "opiniao_publica",
-          "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "NÃO LER OPÇÕES. Anotar literalmente.",
-          "opcoes": []
-        },
-        {
-          "codigo": "FULL-IV-ESP",
-          "texto": "Se a eleição para Governador do DF fosse hoje, em quem você votaria? (ESPONTÂNEA)",
-          "tipo": "aberta",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 4,
-          "instrucoes": "NÃO LER OPÇÕES.",
-          "opcoes": []
-        },
-        {
-          "codigo": "FULL-IV-EST",
-          "texto": "Se a eleição para Governador do DF fosse hoje e os candidatos fossem estes, em qual você votaria? (ESTIMULADA)",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 5,
-          "instrucoes": "MOSTRAR CARTÃO.",
+          "instrucoes": "Pergunta estimulada. Mostrar lista completa de candidatos.",
           "opcoes": [
             {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
             {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
             {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 3},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 4},
-            {"valor": "candidato_e", "texto": "[CANDIDATO E]", "ordem": 5},
             {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 96},
-            {"valor": "nenhum", "texto": "Nenhum", "ordem": 97},
-            {"valor": "indeciso", "texto": "Indeciso", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
+            {"valor": "indeciso", "texto": "Indeciso", "ordem": 98}
           ]
         },
         {
-          "codigo": "FULL-REJ",
+          "codigo": "BAS-REJ-03",
           "texto": "Em qual destes candidatos você NÃO votaria de jeito nenhum?",
           "tipo": "multipla",
           "categoria": "rejeicao",
           "obrigatoria": true,
-          "ordem": 6,
-          "instrucoes": "MOSTRAR CARTÃO. Pode marcar mais de um.",
+          "ordem": 3,
+          "instrucoes": "Pode marcar mais de um candidato.",
           "opcoes": [
             {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
             {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
             {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 3},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 4},
-            {"valor": "candidato_e", "texto": "[CANDIDATO E]", "ordem": 5},
             {"valor": "votaria_qualquer", "texto": "Votaria em qualquer um", "ordem": 96},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98},
-            {"valor": "nao_respondeu", "texto": "Não respondeu", "ordem": 99}
+            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": "tpl-basico-avaliacao-governo",
+      "nome": "Avaliação de Governo - Básico",
+      "descricao": "Template básico para avaliação de governo. Formato tradicional ótimo/bom/regular/ruim/péssimo.",
+      "categoria": "avaliacao_governo",
+      "tipo_eleicao": "geral",
+      "nivel": "basico",
+      "tags": ["basico", "avaliacao", "governo", "tradicional"],
+      "perguntas": [
         {
-          "codigo": "FULL-SEXO",
-          "texto": "Sexo:",
+          "codigo": "AVAL-BAS-01",
+          "texto": "Como você avalia o governo atual?",
           "tipo": "unica",
-          "categoria": "dados_demograficos",
+          "categoria": "avaliacao_governo",
           "obrigatoria": true,
-          "ordem": 7,
-          "instrucoes": "OBSERVAR.",
+          "ordem": 1,
+          "instrucoes": "Escala tradicional de 5 pontos.",
           "opcoes": [
-            {"valor": "masculino", "texto": "Masculino", "ordem": 1},
-            {"valor": "feminino", "texto": "Feminino", "ordem": 2}
+            {"valor": "otimo", "texto": "Ótimo", "ordem": 1},
+            {"valor": "bom", "texto": "Bom", "ordem": 2},
+            {"valor": "regular", "texto": "Regular", "ordem": 3},
+            {"valor": "ruim", "texto": "Ruim", "ordem": 4},
+            {"valor": "pessimo", "texto": "Péssimo", "ordem": 5},
+            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
           ]
         },
         {
-          "codigo": "FULL-IDADE",
-          "texto": "Qual a sua idade?",
-          "tipo": "numerica",
-          "categoria": "dados_demograficos",
+          "codigo": "AVAL-BAS-02",
+          "texto": "O governo está no caminho certo ou no caminho errado?",
+          "tipo": "unica",
+          "categoria": "avaliacao_governo",
           "obrigatoria": true,
-          "ordem": 8,
-          "instrucoes": "",
+          "ordem": 2,
+          "instrucoes": "Pergunta binária de direção.",
+          "opcoes": [
+            {"valor": "caminho_certo", "texto": "Caminho certo", "ordem": 1},
+            {"valor": "caminho_errado", "texto": "Caminho errado", "ordem": 2},
+            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tpl-basico-perfil-eleitor",
+      "nome": "Perfil do Eleitor - Básico",
+      "descricao": "Template básico para coleta de dados demográficos e perfil do eleitor.",
+      "categoria": "perfil_psicografico",
+      "tipo_eleicao": "geral",
+      "nivel": "basico",
+      "tags": ["basico", "demografico", "perfil"],
+      "perguntas": [
+        {
+          "codigo": "PERF-BAS-01",
+          "texto": "Qual sua idade?",
+          "tipo": "aberta",
+          "categoria": "perfil_psicografico",
+          "obrigatoria": true,
+          "ordem": 1,
+          "instrucoes": "Anotar idade em anos.",
           "opcoes": []
         },
         {
-          "codigo": "FULL-ESCOLARIDADE",
-          "texto": "Até que ano você estudou?",
+          "codigo": "PERF-BAS-02",
+          "texto": "Qual sua escolaridade?",
           "tipo": "unica",
-          "categoria": "dados_demograficos",
+          "categoria": "perfil_psicografico",
           "obrigatoria": true,
-          "ordem": 9,
-          "instrucoes": "",
+          "ordem": 2,
+          "instrucoes": "Nivel mais alto completo.",
           "opcoes": [
-            {"valor": "fundamental_inc", "texto": "Fundamental incompleto", "ordem": 1},
-            {"valor": "fundamental_comp", "texto": "Fundamental completo", "ordem": 2},
-            {"valor": "medio_inc", "texto": "Médio incompleto", "ordem": 3},
-            {"valor": "medio_comp", "texto": "Médio completo", "ordem": 4},
-            {"valor": "superior_inc", "texto": "Superior incompleto", "ordem": 5},
-            {"valor": "superior_comp", "texto": "Superior completo", "ordem": 6},
+            {"valor": "fundamental_incompleto", "texto": "Fundamental incompleto", "ordem": 1},
+            {"valor": "fundamental_completo", "texto": "Fundamental completo", "ordem": 2},
+            {"valor": "medio_incompleto", "texto": "Médio incompleto", "ordem": 3},
+            {"valor": "medio_completo", "texto": "Médio completo", "ordem": 4},
+            {"valor": "superior_incompleto", "texto": "Superior incompleto", "ordem": 5},
+            {"valor": "superior_completo", "texto": "Superior completo", "ordem": 6},
             {"valor": "pos_graduacao", "texto": "Pós-graduação", "ordem": 7}
           ]
         },
         {
-          "codigo": "FULL-RENDA",
-          "texto": "Qual a renda familiar mensal?",
+          "codigo": "PERF-BAS-03",
+          "texto": "Qual sua renda familiar mensal aproximada?",
           "tipo": "unica",
-          "categoria": "dados_demograficos",
-          "obrigatoria": true,
-          "ordem": 10,
-          "instrucoes": "MOSTRAR CARTÃO.",
-          "opcoes": [
-            {"valor": "ate_2sm", "texto": "Até 2 salários mínimos", "ordem": 1},
-            {"valor": "2_5sm", "texto": "De 2 a 5 salários mínimos", "ordem": 2},
-            {"valor": "5_10sm", "texto": "De 5 a 10 salários mínimos", "ordem": 3},
-            {"valor": "mais_10sm", "texto": "Mais de 10 salários mínimos", "ordem": 4},
-            {"valor": "nao_sabe", "texto": "Não sabe/Não respondeu", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "FULL-RA",
-          "texto": "Em qual RA você mora?",
-          "tipo": "aberta",
-          "categoria": "dados_demograficos",
-          "obrigatoria": true,
-          "ordem": 11,
-          "instrucoes": "Anotar nome da Região Administrativa.",
-          "opcoes": []
-        },
-        {
-          "codigo": "FULL-ENCERRAMENTO",
-          "texto": "A pesquisa terminou. Muito obrigado pela sua participação!",
-          "tipo": "unica",
-          "categoria": "controle_qualidade",
-          "obrigatoria": true,
-          "ordem": 12,
-          "instrucoes": "Agradecer e encerrar.",
-          "opcoes": [
-            {"valor": "concluida", "texto": "Entrevista concluída", "ordem": 1}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-voto-oculto-tecnicas-indiretas",
-      "nome": "Voto Oculto - Técnicas Indiretas",
-      "descricao": "Técnicas avançadas para capturar o 'voto envergonhado' e intenções reais de voto usando métodos indiretos como projeção em terceiros e experimentos de lista",
-      "categoria": "intencao_voto",
-      "tipo_eleicao": "geral",
-      "tags": ["voto_oculto", "tecnicas_avancadas", "shy_voter", "projecao", "metodologia"],
-      "perguntas": [
-        {
-          "codigo": "VO-PROJ-VIZINHO",
-          "texto": "Pensando nos seus vizinhos e pessoas que você conhece no bairro, em quem você acha que a MAIORIA deles vai votar para Governador?",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "TÉCNICA DE PROJEÇÃO EM TERCEIROS - permite capturar voto oculto ao projetar em outros.",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 3},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 4},
-            {"valor": "dividido", "texto": "Está muito dividido", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "VO-PROJ-TRABALHO",
-          "texto": "E no seu ambiente de trabalho, em quem você acha que a maioria das pessoas vai votar?",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": false,
-          "ordem": 2,
-          "instrucoes": "TÉCNICA DE PROJEÇÃO - ambiente de trabalho.",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 3},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 4},
-            {"valor": "dividido", "texto": "Está muito dividido", "ordem": 5},
-            {"valor": "nao_trabalha", "texto": "Não trabalha/Não se aplica", "ordem": 90},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "VO-CERTEZA-VOTO",
-          "texto": "Em uma escala de 0 a 10, qual a certeza de que você vai votar no candidato que mencionou?",
-          "tipo": "escala",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "ESCALA DE CERTEZA - 0 = nenhuma certeza, 10 = certeza absoluta. Valores baixos indicam possível voto diferente.",
-          "opcoes": []
-        },
-        {
-          "codigo": "VO-MUDA-ULTIMO",
-          "texto": "Nas eleições passadas, você já mudou de voto nos últimos dias antes da eleição?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 4,
-          "instrucoes": "HISTÓRICO DE MUDANÇA - identifica eleitores voláteis.",
-          "opcoes": [
-            {"valor": "sim_varias", "texto": "Sim, várias vezes", "ordem": 1},
-            {"valor": "sim_uma_vez", "texto": "Sim, uma vez", "ordem": 2},
-            {"valor": "nao_nunca", "texto": "Não, nunca mudei", "ordem": 3},
-            {"valor": "nao_lembra", "texto": "Não lembra", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "VO-CONFESSA-FAMILIA",
-          "texto": "Você se sente à vontade para dizer em quem vai votar para sua família?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 5,
-          "instrucoes": "INDICADOR DE VOTO OCULTO - desconforto pode indicar voto envergonhado.",
-          "opcoes": [
-            {"valor": "muito_vontade", "texto": "Muito à vontade", "ordem": 1},
-            {"valor": "vontade", "texto": "À vontade", "ordem": 2},
-            {"valor": "pouco_vontade", "texto": "Pouco à vontade", "ordem": 3},
-            {"valor": "nada_vontade", "texto": "Nada à vontade", "ordem": 4},
-            {"valor": "prefere_nao_falar", "texto": "Prefere não falar sobre política", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "VO-PRESSAO-SOCIAL",
-          "texto": "Você sente alguma pressão de amigos, família ou redes sociais para votar em determinado candidato?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 6,
-          "instrucoes": "PRESSÃO SOCIAL - indica possível distorção nas respostas.",
-          "opcoes": [
-            {"valor": "muita_pressao", "texto": "Muita pressão", "ordem": 1},
-            {"valor": "alguma_pressao", "texto": "Alguma pressão", "ordem": 2},
-            {"valor": "pouca_pressao", "texto": "Pouca pressão", "ordem": 3},
-            {"valor": "nenhuma_pressao", "texto": "Nenhuma pressão", "ordem": 4}
-          ]
-        },
-        {
-          "codigo": "VO-VOTO-SEGREDO",
-          "texto": "Se ninguém ficasse sabendo do seu voto, você votaria no mesmo candidato que declarou?",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 7,
-          "instrucoes": "PERGUNTA CHAVE - captura divergência entre voto declarado e real.",
-          "opcoes": [
-            {"valor": "sim_mesmo", "texto": "Sim, votaria no mesmo", "ordem": 1},
-            {"valor": "talvez_outro", "texto": "Talvez votasse em outro", "ordem": 2},
-            {"valor": "votaria_outro", "texto": "Votaria em outro candidato", "ordem": 3},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "VO-ELEICAO-APERTADA",
-          "texto": "Se a eleição estiver muito apertada entre [CANDIDATO A] e [CANDIDATO B], você manteria seu voto ou votaria no 'menos pior' para evitar que outro ganhe?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": false,
-          "ordem": 8,
-          "instrucoes": "VOTO ÚTIL/ESTRATÉGICO - identifica possível migração de votos.",
-          "opcoes": [
-            {"valor": "mantem_voto", "texto": "Manteria meu voto atual", "ordem": 1},
-            {"valor": "vota_util_a", "texto": "Votaria em [CANDIDATO A] para evitar [CANDIDATO B]", "ordem": 2},
-            {"valor": "vota_util_b", "texto": "Votaria em [CANDIDATO B] para evitar [CANDIDATO A]", "ordem": 3},
-            {"valor": "branco_nulo", "texto": "Votaria branco/nulo", "ordem": 4},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-polarizacao-politica",
-      "nome": "Polarização Política",
-      "descricao": "Mede o grau de polarização do eleitorado, identifica eleitores de centro e analisa tolerância política",
-      "categoria": "comportamento_eleitoral",
-      "tipo_eleicao": "geral",
-      "tags": ["polarizacao", "centro", "tolerancia", "divisao", "analise_avancada"],
-      "perguntas": [
-        {
-          "codigo": "POL-TERMOMETRO-A",
-          "texto": "Em uma escala de 0 a 100, sendo 0 = sentimento muito negativo e 100 = sentimento muito positivo, qual seu sentimento em relação a [CANDIDATO A]?",
-          "tipo": "numerica",
-          "categoria": "imagem_candidato",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "TERMÔMETRO DE SENTIMENTO - permite calcular índice de polarização afetiva.",
-          "opcoes": []
-        },
-        {
-          "codigo": "POL-TERMOMETRO-B",
-          "texto": "E em relação a [CANDIDATO B], qual seu sentimento de 0 a 100?",
-          "tipo": "numerica",
-          "categoria": "imagem_candidato",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "TERMÔMETRO DE SENTIMENTO - comparar com candidato anterior.",
-          "opcoes": []
-        },
-        {
-          "codigo": "POL-AMIZADE-VOTO",
-          "texto": "Você consegue manter amizade com alguém que vota em um candidato oposto ao seu?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "TOLERÂNCIA POLÍTICA - indicador de polarização social.",
-          "opcoes": [
-            {"valor": "sim_normal", "texto": "Sim, sem nenhum problema", "ordem": 1},
-            {"valor": "sim_dificil", "texto": "Sim, mas com dificuldade", "ordem": 2},
-            {"valor": "evito", "texto": "Prefiro evitar o assunto", "ordem": 3},
-            {"valor": "afastei", "texto": "Já me afastei de amigos por isso", "ordem": 4},
-            {"valor": "impossivel", "texto": "Não conseguiria manter amizade", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "POL-FAMILIA-DIVERGENCIA",
-          "texto": "Há divergência de voto dentro da sua família?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 4,
-          "instrucoes": "POLARIZAÇÃO FAMILIAR - impacto nas relações.",
-          "opcoes": [
-            {"valor": "nao_diverge", "texto": "Não, todos votam igual", "ordem": 1},
-            {"valor": "diverge_tranquilo", "texto": "Sim, mas convivemos bem", "ordem": 2},
-            {"valor": "diverge_tensao", "texto": "Sim, e há tensão", "ordem": 3},
-            {"valor": "diverge_conflito", "texto": "Sim, já houve brigas/conflitos", "ordem": 4},
-            {"valor": "nao_fala", "texto": "Não falamos sobre política", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "POL-ADMITE-QUALIDADES",
-          "texto": "Você consegue reconhecer alguma qualidade no candidato em que você NÃO votaria?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 5,
-          "instrucoes": "CAPACIDADE DE RECONHECIMENTO - indicador de pensamento tribal.",
-          "opcoes": [
-            {"valor": "sim_varias", "texto": "Sim, várias qualidades", "ordem": 1},
-            {"valor": "sim_algumas", "texto": "Sim, algumas qualidades", "ordem": 2},
-            {"valor": "talvez_uma", "texto": "Talvez uma ou outra", "ordem": 3},
-            {"valor": "nenhuma", "texto": "Não, nenhuma qualidade", "ordem": 4},
-            {"valor": "prefere_nao_pensar", "texto": "Prefere não pensar nisso", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "POL-ADMITE-DEFEITOS",
-          "texto": "E você consegue reconhecer algum defeito no candidato em que você VOTARIA?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 6,
-          "instrucoes": "AUTOCRÍTICA - baixa autocrítica indica polarização.",
-          "opcoes": [
-            {"valor": "sim_varios", "texto": "Sim, vários defeitos", "ordem": 1},
-            {"valor": "sim_alguns", "texto": "Sim, alguns defeitos", "ordem": 2},
-            {"valor": "talvez_um", "texto": "Talvez um ou outro", "ordem": 3},
-            {"valor": "nenhum", "texto": "Não, nenhum defeito", "ordem": 4}
-          ]
-        },
-        {
-          "codigo": "POL-CONFIANCA-ELEICAO",
-          "texto": "Se o candidato em que você NÃO vota ganhar a eleição, você vai:",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 7,
-          "instrucoes": "ACEITAÇÃO DO RESULTADO - indicador de saúde democrática.",
-          "opcoes": [
-            {"valor": "aceita_normal", "texto": "Aceitar normalmente, faz parte da democracia", "ordem": 1},
-            {"valor": "aceita_contrariado", "texto": "Aceitar, mas ficar contrariado", "ordem": 2},
-            {"valor": "questionar", "texto": "Questionar se a eleição foi justa", "ordem": 3},
-            {"valor": "nao_aceitar", "texto": "Não aceitar o resultado", "ordem": 4},
-            {"valor": "protestar", "texto": "Protestar ativamente contra", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "POL-BOLHA-INFORMACAO",
-          "texto": "Com que frequência você vê notícias ou opiniões favoráveis ao candidato em que você NÃO vota?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 8,
-          "instrucoes": "BOLHA DE INFORMAÇÃO - indicador de exposição a opiniões diversas.",
-          "opcoes": [
-            {"valor": "frequentemente", "texto": "Frequentemente", "ordem": 1},
-            {"valor": "as_vezes", "texto": "Às vezes", "ordem": 2},
-            {"valor": "raramente", "texto": "Raramente", "ordem": 3},
-            {"valor": "nunca", "texto": "Nunca/Quase nunca", "ordem": 4},
-            {"valor": "evito", "texto": "Evito propositalmente", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "POL-VIOLENCIA-JUSTIFICA",
-          "texto": "Em alguma situação, a violência política pode ser justificada?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": false,
-          "ordem": 9,
-          "instrucoes": "RADICALIZAÇÃO - pergunta sensível, avaliar contexto.",
-          "opcoes": [
-            {"valor": "nunca", "texto": "Nunca, em hipótese alguma", "ordem": 1},
-            {"valor": "apenas_extremo", "texto": "Apenas em situações extremas (ditadura, golpe)", "ordem": 2},
-            {"valor": "defesa", "texto": "Se for em defesa da democracia", "ordem": 3},
-            {"valor": "as_vezes", "texto": "Às vezes pode ser necessário", "ordem": 4},
-            {"valor": "nao_sabe", "texto": "Não sabe/Prefere não responder", "ordem": 98}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-cenarios-segundo-turno",
-      "nome": "Cenários de Segundo Turno",
-      "descricao": "Múltiplos cenários hipotéticos de segundo turno para análise de transferência de votos e cenários competitivos",
-      "categoria": "intencao_voto",
-      "tipo_eleicao": "geral",
-      "tags": ["segundo_turno", "cenarios", "simulacao", "transferencia", "hipotetico"],
-      "perguntas": [
-        {
-          "codigo": "2T-CEN-AB",
-          "texto": "Se no 2º turno os candidatos fossem [CANDIDATO A] e [CANDIDATO B], em qual você votaria?",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "CENÁRIO 1 - Principais candidatos.",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
-            {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 3},
-            {"valor": "nao_votaria", "texto": "Não votaria", "ordem": 4},
-            {"valor": "indeciso", "texto": "Indeciso", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "2T-CEN-AC",
-          "texto": "E se no 2º turno fossem [CANDIDATO A] e [CANDIDATO C], em qual você votaria?",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "CENÁRIO 2",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 2},
-            {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 3},
-            {"valor": "nao_votaria", "texto": "Não votaria", "ordem": 4},
-            {"valor": "indeciso", "texto": "Indeciso", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "2T-CEN-BC",
-          "texto": "E se no 2º turno fossem [CANDIDATO B] e [CANDIDATO C], em qual você votaria?",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "CENÁRIO 3",
-          "opcoes": [
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 1},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 2},
-            {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 3},
-            {"valor": "nao_votaria", "texto": "Não votaria", "ordem": 4},
-            {"valor": "indeciso", "texto": "Indeciso", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "2T-CEN-AD",
-          "texto": "E se no 2º turno fossem [CANDIDATO A] e [CANDIDATO D], em qual você votaria?",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": false,
-          "ordem": 4,
-          "instrucoes": "CENÁRIO 4 - Opcional.",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 2},
-            {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 3},
-            {"valor": "nao_votaria", "texto": "Não votaria", "ordem": 4},
-            {"valor": "indeciso", "texto": "Indeciso", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "2T-VOTO-GARANTIDO",
-          "texto": "Se seu candidato preferido não for para o 2º turno, você já sabe em quem votaria?",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 5,
-          "instrucoes": "VOTO GARANTIDO - identifica eleitores com 'segunda opção' definida.",
-          "opcoes": [
-            {"valor": "sim_definido", "texto": "Sim, já sei em quem votaria", "ordem": 1},
-            {"valor": "tendencia", "texto": "Tenho uma tendência, mas não tenho certeza", "ordem": 2},
-            {"valor": "depende", "texto": "Depende de quem for", "ordem": 3},
-            {"valor": "branco_nulo", "texto": "Votaria branco/nulo", "ordem": 4},
-            {"valor": "nao_sabe", "texto": "Não sei ainda", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "2T-SEGUNDA-OPCAO",
-          "texto": "Quem seria sua segunda opção de voto, caso seu candidato preferido não participe do 2º turno?",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 6,
-          "instrucoes": "SEGUNDA OPÇÃO - para análise de transferência.",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 3},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 4},
-            {"valor": "nenhum", "texto": "Nenhum destes", "ordem": 5},
-            {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 96}
-          ]
-        },
-        {
-          "codigo": "2T-REJEICAO-2T",
-          "texto": "Existe algum candidato que você NÃO votaria de jeito nenhum no 2º turno, mesmo que seja o único contra o candidato que você mais rejeita?",
-          "tipo": "multipla",
-          "categoria": "rejeicao",
-          "obrigatoria": true,
-          "ordem": 7,
-          "instrucoes": "REJEIÇÃO ABSOLUTA - não vota mesmo como 'mal menor'.",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 3},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 4},
-            {"valor": "nenhum", "texto": "Votaria em qualquer um como mal menor", "ordem": 96}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-transferencia-votos",
-      "nome": "Transferência de Votos",
-      "descricao": "Análise de para onde vão os votos se determinado candidato desistir ou for impedido de concorrer",
-      "categoria": "intencao_voto",
-      "tipo_eleicao": "geral",
-      "tags": ["transferencia", "migracao", "fluxo", "desistencia", "cenarios"],
-      "perguntas": [
-        {
-          "codigo": "TRANSF-A-DESISTE",
-          "texto": "Se [CANDIDATO A] desistir da eleição ou for impedido de concorrer, em quem você votaria?",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "CENÁRIO SEM CANDIDATO A",
-          "opcoes": [
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 1},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 2},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 3},
-            {"valor": "candidato_e", "texto": "[CANDIDATO E]", "ordem": 4},
-            {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 96},
-            {"valor": "nao_votaria", "texto": "Não votaria", "ordem": 97},
-            {"valor": "indeciso", "texto": "Não sei ainda", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "TRANSF-B-DESISTE",
-          "texto": "Se [CANDIDATO B] desistir da eleição ou for impedido de concorrer, em quem você votaria?",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "CENÁRIO SEM CANDIDATO B",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 2},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 3},
-            {"valor": "candidato_e", "texto": "[CANDIDATO E]", "ordem": 4},
-            {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 96},
-            {"valor": "nao_votaria", "texto": "Não votaria", "ordem": 97},
-            {"valor": "indeciso", "texto": "Não sei ainda", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "TRANSF-C-DESISTE",
-          "texto": "Se [CANDIDATO C] desistir da eleição, em quem você votaria?",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
+          "categoria": "perfil_psicografico",
           "obrigatoria": false,
           "ordem": 3,
-          "instrucoes": "CENÁRIO SEM CANDIDATO C",
+          "instrucoes": "Faixas de renda em salários mínimos.",
           "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 3},
-            {"valor": "candidato_e", "texto": "[CANDIDATO E]", "ordem": 4},
-            {"valor": "branco_nulo", "texto": "Branco/Nulo", "ordem": 96},
-            {"valor": "indeciso", "texto": "Não sei ainda", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "TRANSF-APOIO-MIGRA",
-          "texto": "Se [CANDIDATO X] declarar apoio a [CANDIDATO Y], isso influenciaria seu voto?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 4,
-          "instrucoes": "INFLUÊNCIA DE APOIO - medir poder de transferência de cabos eleitorais.",
-          "opcoes": [
-            {"valor": "votaria_y", "texto": "Sim, passaria a votar em [CANDIDATO Y]", "ordem": 1},
-            {"valor": "consideraria", "texto": "Consideraria votar em [CANDIDATO Y]", "ordem": 2},
-            {"valor": "nao_influencia", "texto": "Não influenciaria, tenho minha própria opinião", "ordem": 3},
-            {"valor": "efeito_contrario", "texto": "Teria efeito contrário, não votaria em Y", "ordem": 4},
-            {"valor": "depende", "texto": "Depende de quem apoiar quem", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "TRANSF-VOTO-PARTIDO",
-          "texto": "Se seu candidato preferido não puder concorrer, você votaria em outro candidato do mesmo partido?",
-          "tipo": "unica",
-          "categoria": "intencao_voto",
-          "obrigatoria": true,
-          "ordem": 5,
-          "instrucoes": "VOTO PARTIDÁRIO vs PERSONALISTA",
-          "opcoes": [
-            {"valor": "sim_certeza", "texto": "Sim, com certeza", "ordem": 1},
-            {"valor": "provavelmente", "texto": "Provavelmente sim", "ordem": 2},
-            {"valor": "depende_quem", "texto": "Depende de quem for o candidato", "ordem": 3},
-            {"valor": "provavelmente_nao", "texto": "Provavelmente não", "ordem": 4},
-            {"valor": "nao_vota_partido", "texto": "Não, meu voto é na pessoa, não no partido", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "TRANSF-LEALDADE",
-          "texto": "Qual fator mais influenciaria você a transferir seu voto para outro candidato?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 6,
-          "instrucoes": "FATORES DE TRANSFERÊNCIA - entender motivações.",
-          "opcoes": [
-            {"valor": "pedido_candidato", "texto": "Pedido do meu candidato original", "ordem": 1},
-            {"valor": "propostas", "texto": "Propostas semelhantes às do meu candidato", "ordem": 2},
-            {"valor": "partido", "texto": "Ser do mesmo partido/aliança", "ordem": 3},
-            {"valor": "ideologia", "texto": "Ter ideologia similar", "ordem": 4},
-            {"valor": "evitar_outro", "texto": "Evitar que um candidato que rejeito ganhe", "ordem": 5},
-            {"valor": "nao_transferiria", "texto": "Não transferiria, votaria nulo", "ordem": 6}
+            {"valor": "ate_1sm", "texto": "Até 1 salário mínimo", "ordem": 1},
+            {"valor": "1_a_2sm", "texto": "De 1 a 2 salários mínimos", "ordem": 2},
+            {"valor": "2_a_5sm", "texto": "De 2 a 5 salários mínimos", "ordem": 3},
+            {"valor": "5_a_10sm", "texto": "De 5 a 10 salários mínimos", "ordem": 4},
+            {"valor": "mais_10sm", "texto": "Mais de 10 salários mínimos", "ordem": 5},
+            {"valor": "nao_respondeu", "texto": "Prefere não responder", "ordem": 99}
           ]
         }
       ]
-    },
-    {
-      "id": "tpl-fake-news-desinformacao",
-      "nome": "Fake News e Desinformação",
-      "descricao": "Avalia exposição, susceptibilidade e impacto da desinformação no comportamento eleitoral",
-      "categoria": "comportamento_eleitoral",
-      "tipo_eleicao": "geral",
-      "tags": ["fake_news", "desinformacao", "midia", "redes_sociais", "checagem"],
-      "perguntas": [
-        {
-          "codigo": "FN-RECEBE-NOTICIAS",
-          "texto": "Com que frequência você recebe notícias sobre política pelo WhatsApp ou Telegram?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "EXPOSIÇÃO A MENSAGENS - frequência de recebimento.",
-          "opcoes": [
-            {"valor": "varias_dia", "texto": "Várias vezes ao dia", "ordem": 1},
-            {"valor": "todo_dia", "texto": "Todo dia", "ordem": 2},
-            {"valor": "algumas_semana", "texto": "Algumas vezes por semana", "ordem": 3},
-            {"valor": "raramente", "texto": "Raramente", "ordem": 4},
-            {"valor": "nunca", "texto": "Nunca", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "FN-COMPARTILHA",
-          "texto": "Com que frequência você compartilha notícias políticas nas redes sociais ou grupos?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "COMPORTAMENTO DE COMPARTILHAMENTO",
-          "opcoes": [
-            {"valor": "sempre", "texto": "Sempre que acho importante", "ordem": 1},
-            {"valor": "frequentemente", "texto": "Frequentemente", "ordem": 2},
-            {"valor": "as_vezes", "texto": "Às vezes", "ordem": 3},
-            {"valor": "raramente", "texto": "Raramente", "ordem": 4},
-            {"valor": "nunca", "texto": "Nunca compartilho", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "FN-VERIFICA-ANTES",
-          "texto": "Antes de acreditar ou compartilhar uma notícia política, você costuma verificar se é verdadeira?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "HÁBITO DE VERIFICAÇÃO",
-          "opcoes": [
-            {"valor": "sempre", "texto": "Sempre verifico", "ordem": 1},
-            {"valor": "maioria", "texto": "Na maioria das vezes", "ordem": 2},
-            {"valor": "as_vezes", "texto": "Às vezes", "ordem": 3},
-            {"valor": "raramente", "texto": "Raramente", "ordem": 4},
-            {"valor": "nunca", "texto": "Nunca verifico", "ordem": 5},
-            {"valor": "nao_sei_como", "texto": "Não sei como verificar", "ordem": 6}
-          ]
-        },
-        {
-          "codigo": "FN-CONHECE-CHECAGEM",
-          "texto": "Você conhece algum site ou serviço de checagem de fatos (fact-checking)?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 4,
-          "instrucoes": "CONHECIMENTO DE CHECAGEM",
-          "opcoes": [
-            {"valor": "sim_usa", "texto": "Sim, conheço e uso regularmente", "ordem": 1},
-            {"valor": "sim_as_vezes", "texto": "Sim, conheço e uso às vezes", "ordem": 2},
-            {"valor": "sim_nao_usa", "texto": "Sim, conheço mas não uso", "ordem": 3},
-            {"valor": "ja_ouvi", "texto": "Já ouvi falar mas não conheço bem", "ordem": 4},
-            {"valor": "nao_conhece", "texto": "Não conheço", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "FN-CONFIA-CHECAGEM",
-          "texto": "Você confia nos sites de checagem de fatos?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 5,
-          "instrucoes": "CONFIANÇA NA CHECAGEM - alguns eleitores desconfiam dos checadores.",
-          "opcoes": [
-            {"valor": "confia_muito", "texto": "Confio muito", "ordem": 1},
-            {"valor": "confia", "texto": "Confio", "ordem": 2},
-            {"valor": "depende", "texto": "Depende do site", "ordem": 3},
-            {"valor": "desconfia", "texto": "Desconfio", "ordem": 4},
-            {"valor": "desconfia_muito", "texto": "Desconfio muito, acho que são tendenciosos", "ordem": 5},
-            {"valor": "nao_conhece", "texto": "Não conheço para opinar", "ordem": 6}
-          ]
-        },
-        {
-          "codigo": "FN-FAKE-CANDIDATO",
-          "texto": "Você já viu alguma notícia que descobriu depois ser falsa sobre algum candidato?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 6,
-          "instrucoes": "EXPERIÊNCIA COM FAKE NEWS",
-          "opcoes": [
-            {"valor": "sim_varios", "texto": "Sim, várias vezes", "ordem": 1},
-            {"valor": "sim_algumas", "texto": "Sim, algumas vezes", "ordem": 2},
-            {"valor": "sim_poucas", "texto": "Sim, uma ou duas vezes", "ordem": 3},
-            {"valor": "nao_que_saiba", "texto": "Não que eu saiba", "ordem": 4},
-            {"valor": "dificil_saber", "texto": "É difícil saber o que é verdade", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "FN-FAKE-INFLUENCIA",
-          "texto": "Você acredita que notícias falsas podem influenciar o resultado das eleições?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 7,
-          "instrucoes": "PERCEPÇÃO DE IMPACTO",
-          "opcoes": [
-            {"valor": "influencia_muito", "texto": "Sim, influenciam muito", "ordem": 1},
-            {"valor": "influencia_algo", "texto": "Sim, influenciam um pouco", "ordem": 2},
-            {"valor": "influencia_pouco", "texto": "Influenciam pouco", "ordem": 3},
-            {"valor": "nao_influencia", "texto": "Não influenciam", "ordem": 4},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "FN-MUDOU-OPINIAO",
-          "texto": "Você já mudou de opinião sobre um candidato por causa de uma notícia que viu nas redes sociais?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 8,
-          "instrucoes": "IMPACTO PESSOAL DA INFORMAÇÃO",
-          "opcoes": [
-            {"valor": "sim_positivo", "texto": "Sim, para melhor (passei a gostar mais)", "ordem": 1},
-            {"valor": "sim_negativo", "texto": "Sim, para pior (passei a gostar menos)", "ordem": 2},
-            {"valor": "sim_ambos", "texto": "Sim, já aconteceu os dois", "ordem": 3},
-            {"valor": "nao", "texto": "Não, mantenho minha opinião", "ordem": 4},
-            {"valor": "nao_sabe", "texto": "Não sei dizer", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "FN-FONTE-CONFIAVEL",
-          "texto": "Qual destas fontes você considera MAIS confiável para informação política?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 9,
-          "instrucoes": "HIERARQUIA DE CONFIANÇA - apenas uma opção.",
-          "opcoes": [
-            {"valor": "tv_aberta", "texto": "TV aberta (Globo, SBT, Record)", "ordem": 1},
-            {"valor": "jornais", "texto": "Jornais tradicionais (Folha, Estadão, O Globo)", "ordem": 2},
-            {"valor": "sites_noticias", "texto": "Sites de notícias da internet", "ordem": 3},
-            {"valor": "influenciadores", "texto": "Influenciadores e youtubers", "ordem": 4},
-            {"valor": "redes_sociais", "texto": "Redes sociais em geral", "ordem": 5},
-            {"valor": "whatsapp", "texto": "Grupos de WhatsApp/Telegram", "ordem": 6},
-            {"valor": "pessoas_conhecidas", "texto": "Pessoas que conheço pessoalmente", "ordem": 7},
-            {"valor": "nenhuma", "texto": "Não confio em nenhuma", "ordem": 8}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-campanha-propaganda",
-      "nome": "Campanha e Propaganda Eleitoral",
-      "descricao": "Avalia recall de propaganda, impacto de debates e elementos de campanha que influenciam o voto",
-      "categoria": "comportamento_eleitoral",
-      "tipo_eleicao": "geral",
-      "tags": ["campanha", "propaganda", "debate", "horario_eleitoral", "marketing"],
-      "perguntas": [
-        {
-          "codigo": "CAMP-ASSISTE-HE",
-          "texto": "Com que frequência você assiste ao Horário Eleitoral Gratuito (propaganda na TV)?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "CONSUMO DE HORÁRIO ELEITORAL",
-          "opcoes": [
-            {"valor": "sempre", "texto": "Sempre assisto", "ordem": 1},
-            {"valor": "maioria", "texto": "Assisto na maioria das vezes", "ordem": 2},
-            {"valor": "as_vezes", "texto": "Às vezes assisto", "ordem": 3},
-            {"valor": "raramente", "texto": "Raramente assisto", "ordem": 4},
-            {"valor": "nunca", "texto": "Nunca assisto", "ordem": 5},
-            {"valor": "nao_tem_tv", "texto": "Não tenho TV / Não assisto TV", "ordem": 6}
-          ]
-        },
-        {
-          "codigo": "CAMP-HE-INFLUENCIA",
-          "texto": "O Horário Eleitoral influencia ou já influenciou sua decisão de voto?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "IMPACTO DO HORÁRIO ELEITORAL",
-          "opcoes": [
-            {"valor": "influencia_muito", "texto": "Sim, influencia muito", "ordem": 1},
-            {"valor": "influencia_algo", "texto": "Influencia um pouco", "ordem": 2},
-            {"valor": "influencia_pouco", "texto": "Influencia muito pouco", "ordem": 3},
-            {"valor": "nao_influencia", "texto": "Não influencia nada", "ordem": 4},
-            {"valor": "nao_assiste", "texto": "Não assisto", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "CAMP-VIU-DEBATE",
-          "texto": "Você assistiu a algum debate entre os candidatos nesta eleição?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "CONSUMO DE DEBATES",
-          "opcoes": [
-            {"valor": "sim_todos", "texto": "Sim, todos ou quase todos", "ordem": 1},
-            {"valor": "sim_alguns", "texto": "Sim, alguns", "ordem": 2},
-            {"valor": "sim_um", "texto": "Sim, apenas um", "ordem": 3},
-            {"valor": "so_trechos", "texto": "Só vi trechos nas redes sociais", "ordem": 4},
-            {"valor": "nao_viu", "texto": "Não vi nenhum", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "CAMP-DEBATE-VENCEDOR",
-          "texto": "Na sua opinião, quem teve o melhor desempenho no último debate que você assistiu?",
-          "tipo": "unica",
-          "categoria": "imagem_candidato",
-          "obrigatoria": false,
-          "ordem": 4,
-          "instrucoes": "PERCEPÇÃO DE DESEMPENHO - aplicar apenas se assistiu debates.",
-          "opcoes": [
-            {"valor": "candidato_a", "texto": "[CANDIDATO A]", "ordem": 1},
-            {"valor": "candidato_b", "texto": "[CANDIDATO B]", "ordem": 2},
-            {"valor": "candidato_c", "texto": "[CANDIDATO C]", "ordem": 3},
-            {"valor": "candidato_d", "texto": "[CANDIDATO D]", "ordem": 4},
-            {"valor": "nenhum_destaque", "texto": "Nenhum se destacou", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe avaliar", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "CAMP-DEBATE-MUDOU",
-          "texto": "O debate mudou sua opinião sobre algum candidato?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": false,
-          "ordem": 5,
-          "instrucoes": "IMPACTO DO DEBATE - aplicar apenas se assistiu.",
-          "opcoes": [
-            {"valor": "sim_positivo", "texto": "Sim, melhorou minha opinião sobre um candidato", "ordem": 1},
-            {"valor": "sim_negativo", "texto": "Sim, piorou minha opinião sobre um candidato", "ordem": 2},
-            {"valor": "sim_ambos", "texto": "Sim, mudou sobre mais de um (positivo e negativo)", "ordem": 3},
-            {"valor": "nao_mudou", "texto": "Não, mantive a mesma opinião", "ordem": 4},
-            {"valor": "confirmou", "texto": "Confirmou o que eu já pensava", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "CAMP-LEMBRA-SLOGAN",
-          "texto": "Você lembra de algum slogan ou frase de campanha de algum candidato?",
-          "tipo": "aberta",
-          "categoria": "imagem_candidato",
-          "obrigatoria": false,
-          "ordem": 6,
-          "instrucoes": "RECALL DE CAMPANHA - teste de memorização de propaganda.",
-          "opcoes": []
-        },
-        {
-          "codigo": "CAMP-PROPOSTA-MARCANTE",
-          "texto": "Qual proposta de campanha mais chamou sua atenção (de qualquer candidato)?",
-          "tipo": "aberta",
-          "categoria": "opiniao_publica",
-          "obrigatoria": false,
-          "ordem": 7,
-          "instrucoes": "RECALL DE PROPOSTAS - identificar temas que ressoam.",
-          "opcoes": []
-        },
-        {
-          "codigo": "CAMP-CONTATO-CAMPANHA",
-          "texto": "Algum candidato ou representante de campanha já entrou em contato com você?",
-          "tipo": "multipla",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 8,
-          "instrucoes": "ALCANCE DA CAMPANHA - pode marcar mais de um.",
-          "opcoes": [
-            {"valor": "visita_casa", "texto": "Visita em casa (cabo eleitoral)", "ordem": 1},
-            {"valor": "telefone", "texto": "Ligação telefônica", "ordem": 2},
-            {"valor": "whatsapp", "texto": "Mensagem no WhatsApp", "ordem": 3},
-            {"valor": "email", "texto": "Email", "ordem": 4},
-            {"valor": "santinho", "texto": "Santinho/material impresso", "ordem": 5},
-            {"valor": "comicio", "texto": "Comício ou evento de campanha", "ordem": 6},
-            {"valor": "redes_sociais", "texto": "Propaganda nas redes sociais", "ordem": 7},
-            {"valor": "nenhum", "texto": "Nenhum contato", "ordem": 8}
-          ]
-        },
-        {
-          "codigo": "CAMP-FATOR-DECISIVO",
-          "texto": "Qual fator mais influencia sua decisão de voto?",
-          "tipo": "ranking",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 9,
-          "instrucoes": "FATORES DE DECISÃO - ordenar do mais importante ao menos importante.",
-          "opcoes": [
-            {"valor": "propostas", "texto": "Propostas e plano de governo", "ordem": 1},
-            {"valor": "partido", "texto": "Partido político", "ordem": 2},
-            {"valor": "historico", "texto": "Histórico e experiência do candidato", "ordem": 3},
-            {"valor": "honestidade", "texto": "Honestidade/combate à corrupção", "ordem": 4},
-            {"valor": "carisma", "texto": "Carisma e personalidade", "ordem": 5},
-            {"valor": "indicacao", "texto": "Indicação de alguém que confia", "ordem": 6},
-            {"valor": "redes_sociais", "texto": "O que vejo nas redes sociais", "ordem": 7},
-            {"valor": "propaganda", "texto": "Propaganda eleitoral", "ordem": 8}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-motivacao-voto",
-      "nome": "Motivação e Justificativa do Voto",
-      "descricao": "Investiga os motivos profundos e racionais por trás da escolha do candidato",
-      "categoria": "comportamento_eleitoral",
-      "tipo_eleicao": "geral",
-      "tags": ["motivacao", "justificativa", "razoes", "voto_racional", "voto_emocional"],
-      "perguntas": [
-        {
-          "codigo": "MOT-PRINCIPAL-RAZAO",
-          "texto": "Qual a PRINCIPAL razão para você votar no candidato que escolheu?",
-          "tipo": "aberta",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "NÃO LER OPÇÕES - capturar razão espontânea.",
-          "opcoes": []
-        },
-        {
-          "codigo": "MOT-VOTO-FAVOR-CONTRA",
-          "texto": "Seu voto é mais A FAVOR do seu candidato ou CONTRA outro candidato?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "NATUREZA DO VOTO - positivo vs negativo.",
-          "opcoes": [
-            {"valor": "totalmente_favor", "texto": "Totalmente a favor do meu candidato", "ordem": 1},
-            {"valor": "mais_favor", "texto": "Mais a favor do que contra outros", "ordem": 2},
-            {"valor": "equilibrado", "texto": "Equilibrado entre os dois", "ordem": 3},
-            {"valor": "mais_contra", "texto": "Mais contra outros do que a favor", "ordem": 4},
-            {"valor": "totalmente_contra", "texto": "Totalmente para evitar que outro ganhe", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "MOT-TIPO-DECISAO",
-          "texto": "Você diria que sua escolha de voto é mais racional (baseada em análise) ou mais emocional (baseada em sentimento)?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "TIPO DE DECISÃO",
-          "opcoes": [
-            {"valor": "muito_racional", "texto": "Muito racional, analiso tudo", "ordem": 1},
-            {"valor": "mais_racional", "texto": "Mais racional do que emocional", "ordem": 2},
-            {"valor": "equilibrado", "texto": "Equilibrado entre os dois", "ordem": 3},
-            {"valor": "mais_emocional", "texto": "Mais emocional do que racional", "ordem": 4},
-            {"valor": "muito_emocional", "texto": "Muito emocional, voto com o coração", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "MOT-PROPOSTA-IMPORTANTE",
-          "texto": "Qual proposta do seu candidato é mais importante para você?",
-          "tipo": "aberta",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 4,
-          "instrucoes": "PROPOSTA DESTACADA - anotar literalmente.",
-          "opcoes": []
-        },
-        {
-          "codigo": "MOT-QUALIDADE-CANDIDATO",
-          "texto": "Qual a principal qualidade do candidato em que você vai votar?",
-          "tipo": "unica",
-          "categoria": "imagem_candidato",
-          "obrigatoria": true,
-          "ordem": 5,
-          "instrucoes": "ATRIBUTO POSITIVO PRINCIPAL",
-          "opcoes": [
-            {"valor": "honestidade", "texto": "Honestidade/Ética", "ordem": 1},
-            {"valor": "competencia", "texto": "Competência/Capacidade", "ordem": 2},
-            {"valor": "experiencia", "texto": "Experiência", "ordem": 3},
-            {"valor": "proximidade_povo", "texto": "Proximidade com o povo", "ordem": 4},
-            {"valor": "lideranca", "texto": "Liderança", "ordem": 5},
-            {"valor": "carisma", "texto": "Carisma", "ordem": 6},
-            {"valor": "propostas", "texto": "Boas propostas", "ordem": 7},
-            {"valor": "coragem", "texto": "Coragem para mudar", "ordem": 8},
-            {"valor": "novo", "texto": "É alguém novo/diferente", "ordem": 9},
-            {"valor": "outro", "texto": "Outro", "ordem": 10}
-          ]
-        },
-        {
-          "codigo": "MOT-DEFEITO-RELEVA",
-          "texto": "Qual defeito do seu candidato você está disposto a relevar?",
-          "tipo": "aberta",
-          "categoria": "imagem_candidato",
-          "obrigatoria": false,
-          "ordem": 6,
-          "instrucoes": "DEFEITO TOLERADO - teste de consciência crítica.",
-          "opcoes": []
-        },
-        {
-          "codigo": "MOT-SE-DECEPCIONASSE",
-          "texto": "O que faria você se decepcionar com seu candidato após a eleição?",
-          "tipo": "aberta",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": false,
-          "ordem": 7,
-          "instrucoes": "EXPECTATIVAS - o que espera do candidato.",
-          "opcoes": []
-        },
-        {
-          "codigo": "MOT-CONFIA-PROMESSA",
-          "texto": "Você acredita que seu candidato vai cumprir as promessas de campanha?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 8,
-          "instrucoes": "CONFIANÇA NAS PROMESSAS",
-          "opcoes": [
-            {"valor": "todas", "texto": "Vai cumprir todas ou quase todas", "ordem": 1},
-            {"valor": "maioria", "texto": "Vai cumprir a maioria", "ordem": 2},
-            {"valor": "algumas", "texto": "Vai cumprir algumas", "ordem": 3},
-            {"valor": "poucas", "texto": "Vai cumprir poucas", "ordem": 4},
-            {"valor": "nenhuma", "texto": "Não vai cumprir nenhuma", "ordem": 5},
-            {"valor": "nao_importa", "texto": "Não importa, voto por outras razões", "ordem": 6}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-nps-politico",
-      "nome": "NPS Político - Net Promoter Score",
-      "descricao": "Aplica metodologia NPS para medir lealdade e engajamento político dos eleitores",
-      "categoria": "comportamento_eleitoral",
-      "tipo_eleicao": "geral",
-      "tags": ["nps", "lealdade", "engajamento", "recomendacao", "metodologia_avancada"],
-      "perguntas": [
-        {
-          "codigo": "NPS-RECOMENDA-CANDIDATO",
-          "texto": "Em uma escala de 0 a 10, qual a probabilidade de você RECOMENDAR seu candidato para um amigo ou familiar votar nele?",
-          "tipo": "escala",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "NPS DO CANDIDATO - 0 = nunca recomendaria, 10 = recomendaria com certeza. Promotores (9-10), Neutros (7-8), Detratores (0-6).",
-          "opcoes": []
-        },
-        {
-          "codigo": "NPS-RECOMENDA-GOVERNO",
-          "texto": "Em uma escala de 0 a 10, qual a probabilidade de você recomendar o atual governo para alguém que está avaliando mudar para o DF?",
-          "tipo": "escala",
-          "categoria": "avaliacao_governo",
-          "obrigatoria": false,
-          "ordem": 2,
-          "instrucoes": "NPS DO GOVERNO ATUAL",
-          "opcoes": []
-        },
-        {
-          "codigo": "NPS-DEFENDE-CANDIDATO",
-          "texto": "Você defende publicamente seu candidato quando alguém critica?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "ENGAJAMENTO ATIVO - indicador de intensidade do apoio.",
-          "opcoes": [
-            {"valor": "sempre", "texto": "Sempre defendo ativamente", "ordem": 1},
-            {"valor": "as_vezes", "texto": "Às vezes defendo", "ordem": 2},
-            {"valor": "prefiro_nao", "texto": "Prefiro não me envolver", "ordem": 3},
-            {"valor": "escondo", "texto": "Prefiro não revelar meu voto", "ordem": 4},
-            {"valor": "concordo_critica", "texto": "Às vezes concordo com as críticas", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "NPS-CONVENCE-OUTROS",
-          "texto": "Você já tentou convencer alguém a votar no seu candidato?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 4,
-          "instrucoes": "AÇÃO DE PROMOÇÃO",
-          "opcoes": [
-            {"valor": "sim_varios", "texto": "Sim, várias pessoas", "ordem": 1},
-            {"valor": "sim_alguns", "texto": "Sim, algumas pessoas", "ordem": 2},
-            {"valor": "sim_familia", "texto": "Sim, apenas família próxima", "ordem": 3},
-            {"valor": "nao_respeito", "texto": "Não, respeito a opinião de cada um", "ordem": 4},
-            {"valor": "nao_escondo", "texto": "Não, prefiro não falar do meu voto", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "NPS-ARREPENDIMENTO",
-          "texto": "Você já se arrependeu de algum voto que deu em eleições passadas?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 5,
-          "instrucoes": "HISTÓRICO DE ARREPENDIMENTO",
-          "opcoes": [
-            {"valor": "sim_muito", "texto": "Sim, muito arrependido", "ordem": 1},
-            {"valor": "sim_um_pouco", "texto": "Sim, um pouco arrependido", "ordem": 2},
-            {"valor": "nao", "texto": "Não me arrependo", "ordem": 3},
-            {"valor": "normal", "texto": "Faz parte, nem sempre acertamos", "ordem": 4},
-            {"valor": "nao_lembra", "texto": "Não lembra/Primeira eleição", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "NPS-INTENSIDADE-APOIO",
-          "texto": "De 0 a 10, qual a intensidade do seu apoio ao candidato escolhido?",
-          "tipo": "escala",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 6,
-          "instrucoes": "INTENSIDADE - 0 = apoio fraco/por falta de opção, 10 = apoio fervoroso.",
-          "opcoes": []
-        }
-      ]
-    },
-    {
-      "id": "tpl-sentimentos-candidatos",
-      "nome": "Análise de Sentimentos - Candidatos",
-      "descricao": "Captura reações emocionais e sentimentos em relação aos candidatos usando técnicas projetivas",
-      "categoria": "imagem_candidato",
-      "tipo_eleicao": "geral",
-      "tags": ["sentimentos", "emocoes", "psicologia", "projetivo", "imagem"],
-      "perguntas": [
-        {
-          "codigo": "SENT-PALAVRA-A",
-          "texto": "Qual a PRIMEIRA palavra que vem à sua mente quando pensa em [CANDIDATO A]?",
-          "tipo": "aberta",
-          "categoria": "imagem_candidato",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "ASSOCIAÇÃO LIVRE - anotar exatamente a primeira palavra, sem filtro.",
-          "opcoes": []
-        },
-        {
-          "codigo": "SENT-PALAVRA-B",
-          "texto": "Qual a PRIMEIRA palavra que vem à sua mente quando pensa em [CANDIDATO B]?",
-          "tipo": "aberta",
-          "categoria": "imagem_candidato",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "ASSOCIAÇÃO LIVRE",
-          "opcoes": []
-        },
-        {
-          "codigo": "SENT-EMOCAO-A",
-          "texto": "Qual emoção [CANDIDATO A] desperta em você?",
-          "tipo": "multipla",
-          "categoria": "imagem_candidato",
-          "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "EMOÇÕES - pode marcar até 3.",
-          "opcoes": [
-            {"valor": "esperanca", "texto": "Esperança", "ordem": 1},
-            {"valor": "confianca", "texto": "Confiança", "ordem": 2},
-            {"valor": "admiracao", "texto": "Admiração", "ordem": 3},
-            {"valor": "entusiasmo", "texto": "Entusiasmo", "ordem": 4},
-            {"valor": "indiferenca", "texto": "Indiferença", "ordem": 5},
-            {"valor": "desconfianca", "texto": "Desconfiança", "ordem": 6},
-            {"valor": "medo", "texto": "Medo", "ordem": 7},
-            {"valor": "raiva", "texto": "Raiva", "ordem": 8},
-            {"valor": "desprezo", "texto": "Desprezo", "ordem": 9},
-            {"valor": "nojo", "texto": "Nojo", "ordem": 10},
-            {"valor": "tristeza", "texto": "Tristeza", "ordem": 11}
-          ]
-        },
-        {
-          "codigo": "SENT-EMOCAO-B",
-          "texto": "Qual emoção [CANDIDATO B] desperta em você?",
-          "tipo": "multipla",
-          "categoria": "imagem_candidato",
-          "obrigatoria": true,
-          "ordem": 4,
-          "instrucoes": "EMOÇÕES - pode marcar até 3.",
-          "opcoes": [
-            {"valor": "esperanca", "texto": "Esperança", "ordem": 1},
-            {"valor": "confianca", "texto": "Confiança", "ordem": 2},
-            {"valor": "admiracao", "texto": "Admiração", "ordem": 3},
-            {"valor": "entusiasmo", "texto": "Entusiasmo", "ordem": 4},
-            {"valor": "indiferenca", "texto": "Indiferença", "ordem": 5},
-            {"valor": "desconfianca", "texto": "Desconfiança", "ordem": 6},
-            {"valor": "medo", "texto": "Medo", "ordem": 7},
-            {"valor": "raiva", "texto": "Raiva", "ordem": 8},
-            {"valor": "desprezo", "texto": "Desprezo", "ordem": 9},
-            {"valor": "nojo", "texto": "Nojo", "ordem": 10},
-            {"valor": "tristeza", "texto": "Tristeza", "ordem": 11}
-          ]
-        },
-        {
-          "codigo": "SENT-ANIMAL-A",
-          "texto": "Se [CANDIDATO A] fosse um animal, qual seria?",
-          "tipo": "aberta",
-          "categoria": "imagem_candidato",
-          "obrigatoria": false,
-          "ordem": 5,
-          "instrucoes": "TÉCNICA PROJETIVA - associação simbólica.",
-          "opcoes": []
-        },
-        {
-          "codigo": "SENT-ANIMAL-B",
-          "texto": "Se [CANDIDATO B] fosse um animal, qual seria?",
-          "tipo": "aberta",
-          "categoria": "imagem_candidato",
-          "obrigatoria": false,
-          "ordem": 6,
-          "instrucoes": "TÉCNICA PROJETIVA",
-          "opcoes": []
-        },
-        {
-          "codigo": "SENT-CONFIARIA-NEGOCIO",
-          "texto": "Você confiaria em [CANDIDATO A] para ser seu sócio em um negócio?",
-          "tipo": "unica",
-          "categoria": "imagem_candidato",
-          "obrigatoria": false,
-          "ordem": 7,
-          "instrucoes": "CONFIANÇA PESSOAL - transpõe para contexto pessoal.",
-          "opcoes": [
-            {"valor": "sim_certeza", "texto": "Sim, com certeza", "ordem": 1},
-            {"valor": "provavelmente", "texto": "Provavelmente sim", "ordem": 2},
-            {"valor": "talvez", "texto": "Talvez", "ordem": 3},
-            {"valor": "provavelmente_nao", "texto": "Provavelmente não", "ordem": 4},
-            {"valor": "jamais", "texto": "Jamais", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "SENT-VIZINHO",
-          "texto": "Você gostaria de ter [CANDIDATO A] como vizinho?",
-          "tipo": "unica",
-          "categoria": "imagem_candidato",
-          "obrigatoria": false,
-          "ordem": 8,
-          "instrucoes": "SIMPATIA PESSOAL - nível de afinidade.",
-          "opcoes": [
-            {"valor": "adoraria", "texto": "Adoraria", "ordem": 1},
-            {"valor": "nao_problema", "texto": "Não teria problema", "ordem": 2},
-            {"valor": "tanto_faz", "texto": "Tanto faz", "ordem": 3},
-            {"valor": "preferiria_nao", "texto": "Preferiria não ter", "ordem": 4},
-            {"valor": "de_jeito_nenhum", "texto": "De jeito nenhum", "ordem": 5}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-segmentacao-avancada",
-      "nome": "Segmentação Avançada de Eleitores",
-      "descricao": "Perguntas para classificação precisa de eleitores em clusters comportamentais e atitudinais",
-      "categoria": "comportamento_eleitoral",
-      "tipo_eleicao": "geral",
-      "tags": ["segmentacao", "clusters", "perfil", "psicografia", "comportamental"],
-      "perguntas": [
-        {
-          "codigo": "SEG-ACOMPANHA-POLITICA",
-          "texto": "Com que frequência você acompanha notícias sobre política?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 1,
-          "instrucoes": "NÍVEL DE ENGAJAMENTO INFORMACIONAL",
-          "opcoes": [
-            {"valor": "diariamente", "texto": "Diariamente", "ordem": 1},
-            {"valor": "varias_semana", "texto": "Várias vezes por semana", "ordem": 2},
-            {"valor": "uma_semana", "texto": "Uma vez por semana", "ordem": 3},
-            {"valor": "quinzenal", "texto": "A cada 15 dias", "ordem": 4},
-            {"valor": "mensal", "texto": "Uma vez por mês", "ordem": 5},
-            {"valor": "raramente", "texto": "Raramente", "ordem": 6},
-            {"valor": "nunca", "texto": "Nunca acompanho", "ordem": 7}
-          ]
-        },
-        {
-          "codigo": "SEG-PARTICIPACAO-CIVICA",
-          "texto": "Nos últimos 2 anos, você participou de alguma destas atividades?",
-          "tipo": "multipla",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "PARTICIPAÇÃO CÍVICA - pode marcar várias.",
-          "opcoes": [
-            {"valor": "manifestacao", "texto": "Manifestação/Protesto", "ordem": 1},
-            {"valor": "abaixo_assinado", "texto": "Assinatura de abaixo-assinado/petição", "ordem": 2},
-            {"valor": "reuniao_comunidade", "texto": "Reunião de comunidade/bairro", "ordem": 3},
-            {"valor": "trabalho_voluntario", "texto": "Trabalho voluntário", "ordem": 4},
-            {"valor": "partido", "texto": "Filiação ou atividade em partido", "ordem": 5},
-            {"valor": "campanha", "texto": "Trabalho em campanha eleitoral", "ordem": 6},
-            {"valor": "associacao", "texto": "Participação em associação/sindicato", "ordem": 7},
-            {"valor": "doacao", "texto": "Doação para campanha/causa política", "ordem": 8},
-            {"valor": "nenhuma", "texto": "Nenhuma destas", "ordem": 9}
-          ]
-        },
-        {
-          "codigo": "SEG-VALORES-PRIORIDADE",
-          "texto": "Qual destes valores é MAIS importante para você na escolha de um candidato?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 3,
-          "instrucoes": "VALORES PRIORITÁRIOS - apenas um.",
-          "opcoes": [
-            {"valor": "mudanca", "texto": "Mudança/Renovação", "ordem": 1},
-            {"valor": "estabilidade", "texto": "Estabilidade/Continuidade", "ordem": 2},
-            {"valor": "honestidade", "texto": "Honestidade/Ética", "ordem": 3},
-            {"valor": "competencia", "texto": "Competência/Eficiência", "ordem": 4},
-            {"valor": "justica_social", "texto": "Justiça Social/Igualdade", "ordem": 5},
-            {"valor": "seguranca", "texto": "Segurança/Ordem", "ordem": 6},
-            {"valor": "liberdade", "texto": "Liberdade Individual", "ordem": 7},
-            {"valor": "tradicao", "texto": "Tradição/Valores conservadores", "ordem": 8}
-          ]
-        },
-        {
-          "codigo": "SEG-ECONOMIA-ESTADO",
-          "texto": "Sobre o papel do Estado na economia, você acha que o governo deveria:",
-          "tipo": "unica",
-          "categoria": "opiniao_publica",
-          "obrigatoria": true,
-          "ordem": 4,
-          "instrucoes": "POSIÇÃO ECONÔMICA - liberal vs intervencionista.",
-          "opcoes": [
-            {"valor": "muito_menos", "texto": "Intervir muito menos, deixar o mercado livre", "ordem": 1},
-            {"valor": "menos", "texto": "Intervir menos do que hoje", "ordem": 2},
-            {"valor": "igual", "texto": "Manter o nível atual de intervenção", "ordem": 3},
-            {"valor": "mais", "texto": "Intervir mais para proteger as pessoas", "ordem": 4},
-            {"valor": "muito_mais", "texto": "Intervir muito mais, controlar preços e empresas", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe/Não tem opinião", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "SEG-COSTUMES",
-          "texto": "Em relação a temas de costumes e comportamento, você se considera:",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 5,
-          "instrucoes": "POSIÇÃO EM COSTUMES - conservador vs progressista.",
-          "opcoes": [
-            {"valor": "muito_conservador", "texto": "Muito conservador", "ordem": 1},
-            {"valor": "conservador", "texto": "Conservador", "ordem": 2},
-            {"valor": "moderado", "texto": "Moderado/Centro", "ordem": 3},
-            {"valor": "progressista", "texto": "Progressista/Liberal", "ordem": 4},
-            {"valor": "muito_progressista", "texto": "Muito progressista", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe definir", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "SEG-CONFIANCA-INSTITUICOES",
-          "texto": "De 0 a 10, qual seu nível de confiança nas seguintes instituições?",
-          "tipo": "escala",
-          "categoria": "opiniao_publica",
-          "obrigatoria": true,
-          "ordem": 6,
-          "instrucoes": "CONFIANÇA INSTITUCIONAL - perguntar para cada instituição: Congresso, Judiciário, Imprensa, Partidos, Forças Armadas, Igreja.",
-          "opcoes": []
-        },
-        {
-          "codigo": "SEG-PERFIL-ELEITOR",
-          "texto": "Qual destas descrições melhor define você como eleitor?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 7,
-          "instrucoes": "AUTO-CLASSIFICAÇÃO - perfil de eleitor.",
-          "opcoes": [
-            {"valor": "engajado_esquerda", "texto": "Engajado politicamente, mais alinhado à esquerda", "ordem": 1},
-            {"valor": "engajado_direita", "texto": "Engajado politicamente, mais alinhado à direita", "ordem": 2},
-            {"valor": "moderado_engajado", "texto": "Engajado mas sem lado definido (centro)", "ordem": 3},
-            {"valor": "pragmatico", "texto": "Pragmático, voto em quem acho que vai resolver problemas", "ordem": 4},
-            {"valor": "desinteressado", "texto": "Pouco interessado, voto por obrigação", "ordem": 5},
-            {"valor": "anti_sistema", "texto": "Desacreditado, acho que nenhum político presta", "ordem": 6},
-            {"valor": "indefinido", "texto": "Ainda não sei me definir", "ordem": 7}
-          ]
-        },
-        {
-          "codigo": "SEG-VOLATILIDADE",
-          "texto": "Nas últimas eleições, você costuma votar sempre no mesmo espectro político (esquerda ou direita) ou varia?",
-          "tipo": "unica",
-          "categoria": "comportamento_eleitoral",
-          "obrigatoria": true,
-          "ordem": 8,
-          "instrucoes": "VOLATILIDADE DO ELEITOR",
-          "opcoes": [
-            {"valor": "sempre_esquerda", "texto": "Sempre voto em candidatos de esquerda", "ordem": 1},
-            {"valor": "sempre_direita", "texto": "Sempre voto em candidatos de direita", "ordem": 2},
-            {"valor": "sempre_centro", "texto": "Prefiro candidatos de centro", "ordem": 3},
-            {"valor": "varia", "texto": "Vario conforme o candidato e momento", "ordem": 4},
-            {"valor": "nao_ligo", "texto": "Não ligo para esquerda/direita", "ordem": 5},
-            {"valor": "primeira_eleicao", "texto": "Esta é minha primeira eleição", "ordem": 6}
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tpl-issues-temas-quentes",
-      "nome": "Issues e Temas Polêmicos",
-      "descricao": "Posicionamento do eleitor em temas polêmicos e controversos que podem influenciar o voto",
-      "categoria": "opiniao_publica",
-      "tipo_eleicao": "geral",
-      "tags": ["issues", "temas", "polemicas", "posicionamento", "agenda"],
-      "perguntas": [
-        {
-          "codigo": "ISS-ABORTO",
-          "texto": "Qual sua posição sobre a legislação do aborto no Brasil?",
-          "tipo": "unica",
-          "categoria": "opiniao_publica",
-          "obrigatoria": false,
-          "ordem": 1,
-          "instrucoes": "TEMA SENSÍVEL - aplicar com cuidado conforme contexto.",
-          "opcoes": [
-            {"valor": "proibir_total", "texto": "Deveria ser proibido em qualquer caso", "ordem": 1},
-            {"valor": "manter_atual", "texto": "Manter a lei atual (apenas casos específicos)", "ordem": 2},
-            {"valor": "ampliar_casos", "texto": "Ampliar os casos permitidos", "ordem": 3},
-            {"valor": "legalizar", "texto": "Legalizar totalmente", "ordem": 4},
-            {"valor": "nao_sabe", "texto": "Não sabe/Prefere não opinar", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "ISS-ARMAS",
-          "texto": "Sobre posse e porte de armas de fogo, você é a favor de:",
-          "tipo": "unica",
-          "categoria": "opiniao_publica",
-          "obrigatoria": true,
-          "ordem": 2,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "liberar_mais", "texto": "Facilitar o acesso a armas", "ordem": 1},
-            {"valor": "manter", "texto": "Manter as regras atuais", "ordem": 2},
-            {"valor": "restringir_mais", "texto": "Restringir mais o acesso", "ordem": 3},
-            {"valor": "proibir", "texto": "Proibir totalmente para civis", "ordem": 4},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "ISS-DROGAS",
-          "texto": "Qual sua opinião sobre a legalização da maconha?",
-          "tipo": "unica",
-          "categoria": "opiniao_publica",
-          "obrigatoria": false,
-          "ordem": 3,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "contra_total", "texto": "Totalmente contra", "ordem": 1},
-            {"valor": "apenas_medicinal", "texto": "Apenas para uso medicinal", "ordem": 2},
-            {"valor": "descriminalizar", "texto": "Descriminalizar o uso pessoal", "ordem": 3},
-            {"valor": "legalizar_regular", "texto": "Legalizar e regular", "ordem": 4},
-            {"valor": "nao_sabe", "texto": "Não sabe/Não tem opinião", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "ISS-PRIVATIZACAO",
-          "texto": "Você é a favor ou contra a privatização de empresas estatais?",
-          "tipo": "unica",
-          "categoria": "opiniao_publica",
-          "obrigatoria": true,
-          "ordem": 4,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "favor_todas", "texto": "A favor de privatizar todas", "ordem": 1},
-            {"valor": "favor_algumas", "texto": "A favor de privatizar algumas", "ordem": 2},
-            {"valor": "manter", "texto": "Manter como está", "ordem": 3},
-            {"valor": "contra_maioria", "texto": "Contra a maioria das privatizações", "ordem": 4},
-            {"valor": "contra_todas", "texto": "Contra qualquer privatização", "ordem": 5},
-            {"valor": "depende", "texto": "Depende da empresa", "ordem": 6}
-          ]
-        },
-        {
-          "codigo": "ISS-REFORMA-TRIBUTARIA",
-          "texto": "Sobre impostos, você acha que os ricos deveriam pagar:",
-          "tipo": "unica",
-          "categoria": "opiniao_publica",
-          "obrigatoria": true,
-          "ordem": 5,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "muito_mais", "texto": "Muito mais impostos que hoje", "ordem": 1},
-            {"valor": "mais", "texto": "Um pouco mais", "ordem": 2},
-            {"valor": "igual", "texto": "O mesmo que hoje", "ordem": 3},
-            {"valor": "menos", "texto": "Menos impostos", "ordem": 4},
-            {"valor": "imposto_unico", "texto": "Todos deveriam pagar igual", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "ISS-MEIO-AMBIENTE",
-          "texto": "Se houver conflito entre desenvolvimento econômico e proteção ambiental, qual deve prevalecer?",
-          "tipo": "unica",
-          "categoria": "opiniao_publica",
-          "obrigatoria": true,
-          "ordem": 6,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "economia_sempre", "texto": "Sempre a economia", "ordem": 1},
-            {"valor": "economia_maioria", "texto": "Economia na maioria dos casos", "ordem": 2},
-            {"valor": "equilibrio", "texto": "Buscar equilíbrio", "ordem": 3},
-            {"valor": "ambiente_maioria", "texto": "Meio ambiente na maioria dos casos", "ordem": 4},
-            {"valor": "ambiente_sempre", "texto": "Sempre o meio ambiente", "ordem": 5}
-          ]
-        },
-        {
-          "codigo": "ISS-REDUCAO-MAIORIDADE",
-          "texto": "Você é a favor da redução da maioridade penal?",
-          "tipo": "unica",
-          "categoria": "opiniao_publica",
-          "obrigatoria": true,
-          "ordem": 7,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "favor_16", "texto": "Sim, para 16 anos", "ordem": 1},
-            {"valor": "favor_crimes_graves", "texto": "Sim, mas apenas para crimes graves", "ordem": 2},
-            {"valor": "contra", "texto": "Contra, deve manter 18 anos", "ordem": 3},
-            {"valor": "indiferente", "texto": "Indiferente", "ordem": 4},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        },
-        {
-          "codigo": "ISS-BOLSA-FAMILIA",
-          "texto": "Sobre programas de transferência de renda (Bolsa Família), você acha que:",
-          "tipo": "unica",
-          "categoria": "opiniao_publica",
-          "obrigatoria": true,
-          "ordem": 8,
-          "instrucoes": "",
-          "opcoes": [
-            {"valor": "ampliar", "texto": "Deveria ampliar valor e alcance", "ordem": 1},
-            {"valor": "manter", "texto": "Deveria manter como está", "ordem": 2},
-            {"valor": "reformar", "texto": "Precisa de reformas para evitar abusos", "ordem": 3},
-            {"valor": "reduzir", "texto": "Deveria reduzir", "ordem": 4},
-            {"valor": "acabar", "texto": "Deveria acabar", "ordem": 5},
-            {"valor": "nao_sabe", "texto": "Não sabe", "ordem": 98}
-          ]
-        }
-      ]
-    }
-  ],
-  "categorias": [
-    {
-      "id": "intencao_voto",
-      "nome": "Intenção de Voto",
-      "descricao": "Perguntas sobre intenção de voto espontânea e estimulada",
-      "cor": "#1976D2"
-    },
-    {
-      "id": "rejeicao",
-      "nome": "Rejeição",
-      "descricao": "Perguntas sobre rejeição a candidatos",
-      "cor": "#D32F2F"
-    },
-    {
-      "id": "avaliacao_governo",
-      "nome": "Avaliação de Governo",
-      "descricao": "Perguntas sobre avaliação de governos e gestões",
-      "cor": "#388E3C"
-    },
-    {
-      "id": "imagem_candidato",
-      "nome": "Imagem de Candidato",
-      "descricao": "Perguntas sobre conhecimento e imagem de candidatos",
-      "cor": "#7B1FA2"
-    },
-    {
-      "id": "opiniao_publica",
-      "nome": "Opinião Pública",
-      "descricao": "Perguntas sobre temas e problemas públicos",
-      "cor": "#F57C00"
-    },
-    {
-      "id": "comportamento_eleitoral",
-      "nome": "Comportamento Eleitoral",
-      "descricao": "Perguntas sobre histórico e comportamento político",
-      "cor": "#0097A7"
-    },
-    {
-      "id": "dados_demograficos",
-      "nome": "Dados Demográficos",
-      "descricao": "Perguntas sobre perfil sociodemográfico",
-      "cor": "#455A64"
-    },
-    {
-      "id": "controle_qualidade",
-      "nome": "Controle de Qualidade",
-      "descricao": "Perguntas de verificação e controle",
-      "cor": "#795548"
-    }
-  ],
-  "tipos_eleicao": [
-    {
-      "id": "presidente",
-      "nome": "Presidente da República",
-      "descricao": "Eleições presidenciais"
-    },
-    {
-      "id": "governador",
-      "nome": "Governador",
-      "descricao": "Eleições para governador estadual/distrital"
-    },
-    {
-      "id": "senador",
-      "nome": "Senador",
-      "descricao": "Eleições para o Senado Federal"
-    },
-    {
-      "id": "deputado_federal",
-      "nome": "Deputado Federal",
-      "descricao": "Eleições para a Câmara dos Deputados"
-    },
-    {
-      "id": "deputado_distrital",
-      "nome": "Deputado Distrital",
-      "descricao": "Eleições para a Câmara Legislativa do DF"
-    },
-    {
-      "id": "prefeito",
-      "nome": "Prefeito",
-      "descricao": "Eleições municipais para prefeito"
-    },
-    {
-      "id": "vereador",
-      "nome": "Vereador",
-      "descricao": "Eleições municipais para vereador"
-    },
-    {
-      "id": "geral",
-      "nome": "Geral",
-      "descricao": "Templates aplicáveis a qualquer tipo de eleição"
     }
   ]
 }

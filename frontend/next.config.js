@@ -13,6 +13,24 @@ const nextConfig = {
         source: '/api/v1/auth/:path*',
         destination: `${backendUrl}/api/v1/auth/:path*`,
       },
+      // Cenários eleitorais (simulação, rejeição)
+      {
+        source: '/api/v1/cenarios/:path*',
+        destination: `${backendUrl}/api/v1/cenarios/:path*`,
+      },
+      {
+        source: '/api/v1/cenarios',
+        destination: `${backendUrl}/api/v1/cenarios`,
+      },
+      // Templates de perguntas
+      {
+        source: '/api/v1/templates/:path*',
+        destination: `${backendUrl}/api/v1/templates/:path*`,
+      },
+      {
+        source: '/api/v1/templates',
+        destination: `${backendUrl}/api/v1/templates`,
+      },
       // Outras rotas da API
       {
         source: '/api/v1/eleitores/:path*',
