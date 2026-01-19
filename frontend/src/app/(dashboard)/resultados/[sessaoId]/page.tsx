@@ -35,6 +35,8 @@ import {
   exportarResultadoExcel,
   exportarResultadoPDF,
   exportarRelatorioInteligenciaPDF,
+  exportarResultadoMD,
+  exportarInsightsMD,
 } from '@/lib/export';
 import { WordCloudRespostas } from '@/components/charts';
 import { ResultadosPorPergunta, RelatorioInteligenciaVisual, AnalisadorInteligente } from '@/components/resultados';
@@ -488,27 +490,102 @@ export default function PaginaResultadoDetalhe() {
           </button>
           <div className="absolute right-0 mt-2 w-48 bg-secondary/95 backdrop-blur border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
             <button
-              onClick={() => exportarResultadoExcel(sessao)}
+              onClick={async () => {
+                try {
+                  await exportarResultadoExcel(sessao);
+                } catch (error) {
+                  console.error('Erro ao exportar Excel:', error);
+                }
+              }}
               className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-t-lg transition-colors"
             >
               <FileSpreadsheet className="w-4 h-4 text-green-400" />
               Exportar Excel
             </button>
             <button
-              onClick={() => exportarResultadoPDF(sessao)}
+              onClick={async () => {
+                try {
+                  await exportarResultadoPDF(sessao);
+                } catch (error) {
+                  console.error('Erro ao exportar PDF:', error);
+                }
+              }}
               className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 transition-colors"
             >
               <FileDown className="w-4 h-4 text-red-400" />
               Exportar PDF
             </button>
+            <button
+              onClick={() => {
+                exportarResultadoMD(sessao);
+              }}
+              className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 transition-colors"
+            >
+              <FileText className="w-4 h-4 text-cyan-400" />
+              Exportar MD (p/ IA)
+            </button>
             {relatorio && (
-              <button
-                onClick={() => exportarRelatorioInteligenciaPDF(sessao, relatorio)}
-                className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 transition-colors"
-              >
-                <Brain className="w-4 h-4 text-purple-400" />
-                PDF Inteligência
-              </button>
+              <>
+                <button
+                  onClick={async () => {
+                    try {
+                      await exportarRelatorioInteligenciaPDF(sessao, relatorio);
+                    } catch (error) {
+                      console.error('Erro ao exportar PDF:', error);
+                    }
+                  }}
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 transition-colors"
+                >
+                  <Brain className="w-4 h-4 text-purple-400" />
+                  PDF Inteligência
+                </button>
+                <button
+                  onClick={() => {
+                    const insights = {
+                      insights: [
+                        ...relatorio.analiseEstrategica.fortalezas.map((f: string) => ({
+                          tipo: 'fortaleza',
+                          titulo: 'Ponto Forte',
+                          descricao: f,
+                          relevancia: 0.8
+                        })),
+                        ...relatorio.analiseEstrategica.vulnerabilidades.map((v: string) => ({
+                          tipo: 'vulnerabilidade',
+                          titulo: 'Ponto de Atenção',
+                          descricao: v,
+                          relevancia: 0.9
+                        })),
+                        ...relatorio.analiseEstrategica.oportunidades.map((o: string) => ({
+                          tipo: 'oportunidade',
+                          titulo: 'Oportunidade',
+                          descricao: o,
+                          relevancia: 0.7
+                        })),
+                      ],
+                      voto_silencioso: relatorio.votoSilencioso ? {
+                        identificados: relatorio.votoSilencioso.indicadoresIdentificacao || [],
+                        percentual_estimado: relatorio.votoSilencioso.estimativaPercentual || 0,
+                        perfil_tipico: relatorio.votoSilencioso.perfilTipico || ''
+                      } : undefined,
+                      pontos_ruptura: relatorio.pontosRuptura?.map((p: { grupo: string; eventoGatilho: string; probabilidadeMudanca: number }) => ({
+                        grupo: p.grupo,
+                        evento_gatilho: p.eventoGatilho,
+                        probabilidade_mudanca: p.probabilidadeMudanca
+                      })),
+                      conclusoes: [relatorio.conclusaoAnalitica],
+                      implicacoes_politicas: [
+                        ...(relatorio.recomendacoesEstrategicas?.curtoPrazo || []),
+                        ...(relatorio.recomendacoesEstrategicas?.medioPrazo || [])
+                      ]
+                    };
+                    exportarInsightsMD(insights, `insights-${sessao.id}`);
+                  }}
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 transition-colors"
+                >
+                  <Sparkles className="w-4 h-4 text-yellow-400" />
+                  MD Insights (p/ IA)
+                </button>
+              </>
             )}
             <button
               onClick={() => {

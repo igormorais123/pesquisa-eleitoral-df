@@ -179,7 +179,7 @@ export async function exportarResultadoPDF(
 
   // Se houver mais de 20 respostas, adicionar nota
   if (sessao.respostas.length > 20) {
-    const finalY = (doc as jsPDF & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY;
+    const finalY = (doc as InstanceType<typeof jsPDF> & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY;
     doc.setFontSize(9);
     doc.setTextColor(107, 114, 128);
     doc.text(`* Mostrando 20 de ${sessao.respostas.length} respostas. Exporte para Excel para ver todas.`, 20, finalY + 10);

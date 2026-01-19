@@ -8,7 +8,7 @@
  * - Leitura humana
  */
 
-import type { Eleitor, Candidato, RespostaEntrevista } from '@/types';
+import type { Eleitor, Candidato } from '@/types';
 import type { SessaoEntrevista } from '@/lib/db/dexie';
 
 // ============================================
@@ -229,13 +229,18 @@ export function gerarMarkdownResultado(sessao: SessaoEntrevista): string {
 | **ID da Sessão** | ${sessao.id} |
 | **Título** | ${sessao.titulo || 'Pesquisa sem título'} |
 | **Status** | ${sessao.status} |
-| **Início** | ${formatarData(sessao.criado_em)} |
-| **Eleitores Entrevistados** | ${sessao.eleitores_ids.length} |
+| **Início** | ${formatarData(sessao.iniciadaEm)} |
+| **Total de Agentes** | ${sessao.totalAgentes} |
+| **Progresso** | ${sessao.progresso}% |
 | **Respostas Coletadas** | ${respostas.length} |
+| **Custo Total** | $${sessao.custoAtual?.toFixed(4) || '0.0000'} |
 
-## Resumo Executivo
+## Métricas de Uso
 
-${sessao.resumo || '_Resumo não disponível_'}
+| Métrica | Valor |
+|---------|-------|
+| Tokens de Entrada | ${sessao.tokensInput?.toLocaleString('pt-BR') || 0} |
+| Tokens de Saída | ${sessao.tokensOutput?.toLocaleString('pt-BR') || 0} |
 
 ---
 
@@ -244,23 +249,16 @@ ${sessao.resumo || '_Resumo não disponível_'}
 `;
 
   respostas.forEach((resposta, index) => {
-    md += `### Resposta ${index + 1}
+    md += `### Eleitor ${index + 1}: ${resposta.eleitor_nome || resposta.eleitor_id}
 
-**Eleitor:** ${resposta.eleitor_nome || resposta.eleitor_id}
+**Tempo de resposta:** ${resposta.tempo_resposta_ms}ms | **Tokens:** ${resposta.tokens_usados} | **Custo:** $${resposta.custo?.toFixed(4) || '0.0000'}
 
-**Pergunta:** ${resposta.pergunta_texto}
-
-**Resposta:** ${resposta.resposta_texto}
-
-**Tom:** ${resposta.tom || '_Não classificado_'} | **Certeza:** ${resposta.certeza || '_N/A_'}/10
-
-${resposta.raciocinio ? `
-**Raciocínio do Eleitor:**
-- Atenção: ${resposta.raciocinio.atencao?.motivo || '_N/A_'}
-- Sentimento: ${resposta.raciocinio.emocional?.sentimento_primario || '_N/A_'} (intensidade ${resposta.raciocinio.emocional?.intensidade || '_N/A_'})
-- Vieses Ativados: ${resposta.raciocinio.processamento?.vieses_em_acao?.join(', ') || '_Nenhum_'}
-` : ''}
-
+**Respostas:**
+`;
+    resposta.respostas?.forEach((r) => {
+      md += `- **Pergunta ${r.pergunta_id}:** ${Array.isArray(r.resposta) ? r.resposta.join(', ') : r.resposta}\n`;
+    });
+    md += `
 ---
 
 `;
