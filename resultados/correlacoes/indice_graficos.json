@@ -1,0 +1,30 @@
+{
+  "graficos_gerados": [
+    "barras_candidatos.png",
+    "barras_eleitores.png",
+    "barras_gestores.png",
+    "barras_parlamentares.png",
+    "categorias_correlacoes.png",
+    "heatmap_candidatos.png",
+    "heatmap_eleitores.png",
+    "heatmap_gestores.png",
+    "heatmap_parlamentares.png",
+    "indice_graficos.json",
+    "resumo_distribuicao_correlacoes.png",
+    "top_correlacoes_consolidado.png"
+  ],
+  "diretorio": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\resultados\\correlacoes",
+  "grupos": [
+    "eleitores",
+    "parlamentares",
+    "gestores",
+    "candidatos"
+  ],
+  "tipos_graficos": [
+    "barras_horizontais",
+    "heatmap",
+    "distribuicao",
+    "consolidado",
+    "categorias"
+  ]
+}

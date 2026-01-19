@@ -1,0 +1,615 @@
+{
+  "versao": "1.0.0",
+  "atualizado_em": "2026-01-18",
+  "fonte": "Pesquisa web - agregado de fontes jornalísticas",
+  "candidatos": [
+    {
+      "id": "cand-gov-celina-leao",
+      "nome": "Celina Leão de Oliveira Sá",
+      "nome_urna": "CELINA LEÃO",
+      "partido": "PP",
+      "numero_partido": 11,
+      "cargo_pretendido": "governador",
+      "status_candidatura": "pre_candidato",
+      "foto_url": "/candidatos/celina-leao.jpg",
+      "cor_campanha": "#1E3A8A",
+      "slogan": "Experiência e Renovação para o DF",
+      "idade": 48,
+      "data_nascimento": "1976-08-15",
+      "genero": "feminino",
+      "naturalidade": "Brasília, DF",
+      "profissao": "Advogada e Política",
+      "cargo_atual": "Vice-Governadora do Distrito Federal",
+      "historico_politico": [
+        "Vice-Governadora do DF (2023-atual)",
+        "Deputada Federal por 3 mandatos (2007-2022)",
+        "Secretária de Desenvolvimento Social do DF (2006-2007)",
+        "Relatora de diversas comissões na Câmara dos Deputados"
+      ],
+      "biografia": "Advogada formada pela UnB, Celina Leão é uma das políticas mais experientes do Distrito Federal. Iniciou sua carreira pública como Secretária de Desenvolvimento Social e depois foi eleita deputada federal por três mandatos consecutivos. Em 2022, foi eleita vice-governadora na chapa de Ibaneis Rocha. Conhecida por seu perfil conciliador e experiência legislativa.",
+      "propostas_principais": [
+        "Continuidade das políticas de desenvolvimento econômico do DF",
+        "Fortalecimento da segurança pública",
+        "Investimentos em saúde e educação",
+        "Modernização da gestão pública",
+        "Programas de geração de emprego e renda"
+      ],
+      "areas_foco": ["Segurança", "Saúde", "Gestão Pública", "Desenvolvimento Econômico"],
+      "redes_sociais": {
+        "instagram": "celinaleaopp",
+        "twitter": "celinaleao",
+        "facebook": "celinaleaopp"
+      },
+      "site_campanha": "https://celinaleao.com.br",
+      "orientacao_politica": "centro-direita",
+      "posicao_bolsonaro": "apoiador_moderado",
+      "posicao_lula": "opositor_moderado",
+      "eleicoes_anteriores": [
+        {"ano": 2022, "cargo": "Vice-Governador", "votos": 1680000, "resultado": "eleito"},
+        {"ano": 2018, "cargo": "Deputado Federal", "votos": 98000, "resultado": "eleito"},
+        {"ano": 2014, "cargo": "Deputado Federal", "votos": 87000, "resultado": "eleito"},
+        {"ano": 2010, "cargo": "Deputado Federal", "votos": 76000, "resultado": "eleito"}
+      ],
+      "votos_ultima_eleicao": 1680000,
+      "pontos_fortes": [
+        "Experiência administrativa como vice-governadora",
+        "Ampla base política e alianças consolidadas",
+        "Conhecimento profundo da máquina pública do DF",
+        "Perfil moderado que agrada diferentes grupos",
+        "Lidera as pesquisas de intenção de voto"
+      ],
+      "pontos_fracos": [
+        "Vista como continuidade do governo atual",
+        "Pode sofrer desgaste por problemas do governo Ibaneis",
+        "Precisa se diferenciar para conquistar eleitorado independente"
+      ],
+      "controversias": [],
+      "rejeicao_estimada": 15,
+      "conhecimento_estimado": 65,
+      "ativo": true,
+      "ordem_exibicao": 1
+    },
+    {
+      "id": "cand-gov-izalci-lucas",
+      "nome": "Izalci Lucas Ferreira",
+      "nome_urna": "IZALCI LUCAS",
+      "partido": "PL",
+      "numero_partido": 22,
+      "cargo_pretendido": "governador",
+      "status_candidatura": "pre_candidato",
+      "foto_url": "/candidatos/izalci-lucas.jpg",
+      "cor_campanha": "#0066CC",
+      "slogan": "Renovação com Experiência",
+      "idade": 68,
+      "data_nascimento": "1956-02-20",
+      "genero": "masculino",
+      "naturalidade": "Minas Gerais",
+      "profissao": "Empresário e Político",
+      "cargo_atual": "Senador da República",
+      "historico_politico": [
+        "Senador pelo DF (2019-atual)",
+        "Deputado Federal por 4 mandatos",
+        "Presidente da Comissão de Educação do Senado",
+        "Empresário do setor educacional"
+      ],
+      "biografia": "Empresário do setor educacional, Izalci Lucas é fundador de uma rede de escolas técnicas no DF. Foi deputado federal por quatro mandatos antes de ser eleito senador em 2018. Alinhado ao bolsonarismo, busca apoio de Paulo Octávio e Ibaneis para disputar o governo do DF.",
+      "propostas_principais": [
+        "Reforma administrativa do governo",
+        "Fortalecimento da educação técnica e profissionalizante",
+        "Desburocratização para empresários",
+        "Segurança pública com mão firme",
+        "Apoio ao agronegócio do entorno"
+      ],
+      "areas_foco": ["Educação", "Segurança", "Economia", "Desburocratização"],
+      "redes_sociais": {
+        "instagram": "izalcilucas",
+        "twitter": "izalcilucas",
+        "facebook": "senizalcilucas"
+      },
+      "site_campanha": "https://izalcilucas.com.br",
+      "orientacao_politica": "direita",
+      "posicao_bolsonaro": "apoiador_forte",
+      "posicao_lula": "opositor_forte",
+      "eleicoes_anteriores": [
+        {"ano": 2018, "cargo": "Senador", "votos": 650000, "resultado": "eleito"},
+        {"ano": 2014, "cargo": "Deputado Federal", "votos": 89000, "resultado": "eleito"},
+        {"ano": 2010, "cargo": "Deputado Federal", "votos": 82000, "resultado": "eleito"}
+      ],
+      "votos_ultima_eleicao": 650000,
+      "pontos_fortes": [
+        "Alinhamento com o bolsonarismo garante base fiel",
+        "Experiência legislativa extensa",
+        "Rede de contatos no empresariado",
+        "Apoio potencial de Ibaneis"
+      ],
+      "pontos_fracos": [
+        "Idade avançada pode ser questionada",
+        "Perfil muito identificado com um lado pode afastar moderados",
+        "Menos conhecido que Celina Leão"
+      ],
+      "controversias": [],
+      "rejeicao_estimada": 25,
+      "conhecimento_estimado": 45,
+      "ativo": true,
+      "ordem_exibicao": 2
+    },
+    {
+      "id": "cand-gov-ricardo-cappelli",
+      "nome": "Ricardo Cappelli",
+      "nome_urna": "RICARDO CAPPELLI",
+      "partido": "PSB",
+      "numero_partido": 40,
+      "cargo_pretendido": "governador",
+      "status_candidatura": "pre_candidato",
+      "foto_url": "/candidatos/ricardo-cappelli.jpg",
+      "cor_campanha": "#FF6B00",
+      "slogan": "DF para Todos",
+      "idade": 52,
+      "data_nascimento": "1972-05-10",
+      "genero": "masculino",
+      "naturalidade": "Brasília, DF",
+      "profissao": "Gestor Público",
+      "cargo_atual": "Secretário-Executivo do Ministério da Justiça",
+      "historico_politico": [
+        "Secretário-Executivo do Ministério da Justiça (2023-atual)",
+        "Interventor Federal na Segurança Pública do DF (2023)",
+        "Carreira na gestão pública federal"
+      ],
+      "biografia": "Ricardo Cappelli ganhou notoriedade ao ser nomeado interventor federal na segurança pública do DF após os atos de 8 de janeiro de 2023. Atualmente ocupa cargo no Ministério da Justiça. Foi confirmado como pré-candidato ao governo pelo PSB-DF.",
+      "propostas_principais": [
+        "Segurança pública baseada em inteligência",
+        "Fortalecimento dos serviços públicos",
+        "Combate às desigualdades regionais no DF",
+        "Transparência na gestão pública",
+        "Investimentos em mobilidade urbana"
+      ],
+      "areas_foco": ["Segurança Pública", "Gestão Pública", "Desigualdade", "Mobilidade"],
+      "redes_sociais": {
+        "instagram": "ricardocappelli",
+        "twitter": "RicardoCappelli"
+      },
+      "site_campanha": null,
+      "orientacao_politica": "centro-esquerda",
+      "posicao_bolsonaro": "opositor_forte",
+      "posicao_lula": "apoiador_forte",
+      "eleicoes_anteriores": [],
+      "votos_ultima_eleicao": 0,
+      "pontos_fortes": [
+        "Experiência em segurança pública",
+        "Visibilidade nacional após intervenção no DF",
+        "Apoio do governo federal",
+        "Perfil técnico e gestor"
+      ],
+      "pontos_fracos": [
+        "Nunca disputou eleição antes",
+        "Pouco conhecido pelo eleitorado do DF",
+        "Associação com governo Lula pode afastar conservadores"
+      ],
+      "controversias": [],
+      "rejeicao_estimada": 20,
+      "conhecimento_estimado": 25,
+      "ativo": true,
+      "ordem_exibicao": 3
+    },
+    {
+      "id": "cand-gov-leandro-grass",
+      "nome": "Leandro Grass Peixoto",
+      "nome_urna": "LEANDRO GRASS",
+      "partido": "PV",
+      "numero_partido": 43,
+      "cargo_pretendido": "governador",
+      "status_candidatura": "pre_candidato",
+      "foto_url": "/candidatos/leandro-grass.jpg",
+      "cor_campanha": "#00AA00",
+      "slogan": "DF Sustentável",
+      "idade": 44,
+      "data_nascimento": "1980-03-25",
+      "genero": "masculino",
+      "naturalidade": "Brasília, DF",
+      "profissao": "Gestor Público e Ambientalista",
+      "cargo_atual": "Presidente do IPHAN",
+      "historico_politico": [
+        "Presidente do IPHAN (2023-atual)",
+        "Deputado Distrital (2019-2023)",
+        "Militante do movimento ambiental"
+      ],
+      "biografia": "Leandro Grass é um dos principais nomes da esquerda ambientalista no DF. Foi deputado distrital e atualmente preside o IPHAN. Defende pautas ligadas ao meio ambiente, patrimônio histórico e justiça social.",
+      "propostas_principais": [
+        "Desenvolvimento sustentável do DF",
+        "Preservação ambiental e áreas verdes",
+        "Transporte público de qualidade",
+        "Políticas de inclusão social",
+        "Proteção do patrimônio histórico"
+      ],
+      "areas_foco": ["Meio Ambiente", "Patrimônio Histórico", "Transporte", "Inclusão Social"],
+      "redes_sociais": {
+        "instagram": "leandrograss",
+        "twitter": "LeandrOGrass"
+      },
+      "site_campanha": null,
+      "orientacao_politica": "esquerda",
+      "posicao_bolsonaro": "opositor_forte",
+      "posicao_lula": "apoiador_forte",
+      "eleicoes_anteriores": [
+        {"ano": 2018, "cargo": "Deputado Distrital", "votos": 28000, "resultado": "eleito"}
+      ],
+      "votos_ultima_eleicao": 28000,
+      "pontos_fortes": [
+        "Perfil jovem e renovador",
+        "Base entre ambientalistas e progressistas",
+        "Experiência legislativa como deputado distrital",
+        "Apoio de movimentos sociais"
+      ],
+      "pontos_fracos": [
+        "Base eleitoral limitada",
+        "Dificuldade em dialogar com eleitorado conservador",
+        "Precisa de alianças amplas para ser competitivo"
+      ],
+      "controversias": [],
+      "rejeicao_estimada": 30,
+      "conhecimento_estimado": 35,
+      "ativo": true,
+      "ordem_exibicao": 4
+    },
+    {
+      "id": "cand-gov-fred-linhares",
+      "nome": "Fred Linhares",
+      "nome_urna": "FRED LINHARES",
+      "partido": "REPUBLICANOS",
+      "numero_partido": 10,
+      "cargo_pretendido": "governador",
+      "status_candidatura": "pre_candidato",
+      "foto_url": "/candidatos/fred-linhares.jpg",
+      "cor_campanha": "#0033AA",
+      "slogan": "Compromisso com o DF",
+      "idade": 50,
+      "data_nascimento": "1974-11-08",
+      "genero": "masculino",
+      "naturalidade": "Brasília, DF",
+      "profissao": "Político",
+      "cargo_atual": "Deputado Distrital",
+      "historico_politico": [
+        "Deputado Distrital (2023-atual)",
+        "Líder do governo na CLDF",
+        "Atuação na base aliada de Ibaneis"
+      ],
+      "biografia": "Fred Linhares é deputado distrital e líder do governo Ibaneis na Câmara Legislativa do DF. Membro do Republicanos, partido com forte base evangélica, surge como alternativa da direita religiosa para o governo do DF.",
+      "propostas_principais": [
+        "Fortalecimento dos valores da família",
+        "Segurança pública",
+        "Apoio às comunidades religiosas",
+        "Desenvolvimento das cidades satélites"
+      ],
+      "areas_foco": ["Família", "Segurança", "Comunidades Religiosas", "Periferia"],
+      "redes_sociais": {
+        "instagram": "fredlinhares"
+      },
+      "site_campanha": null,
+      "orientacao_politica": "direita",
+      "posicao_bolsonaro": "apoiador_moderado",
+      "posicao_lula": "opositor_forte",
+      "eleicoes_anteriores": [
+        {"ano": 2022, "cargo": "Deputado Distrital", "votos": 22000, "resultado": "eleito"}
+      ],
+      "votos_ultima_eleicao": 22000,
+      "pontos_fortes": [
+        "Apoio de comunidades evangélicas",
+        "Ligação com o governo atual",
+        "Segundo colocado nas pesquisas"
+      ],
+      "pontos_fracos": [
+        "Menos conhecido que outros nomes",
+        "Pode dividir votos com outros candidatos de direita"
+      ],
+      "controversias": [],
+      "rejeicao_estimada": 20,
+      "conhecimento_estimado": 30,
+      "ativo": true,
+      "ordem_exibicao": 5
+    },
+    {
+      "id": "cand-sen-michelle-bolsonaro",
+      "nome": "Michelle de Paula Firmo Reinaldo Bolsonaro",
+      "nome_urna": "MICHELLE BOLSONARO",
+      "partido": "PL",
+      "numero_partido": 22,
+      "cargo_pretendido": "senador",
+      "status_candidatura": "pre_candidato",
+      "foto_url": "/candidatos/michelle-bolsonaro.jpg",
+      "cor_campanha": "#0066CC",
+      "slogan": "A Voz das Famílias Brasileiras",
+      "idade": 43,
+      "data_nascimento": "1982-03-22",
+      "genero": "feminino",
+      "naturalidade": "Brasília, DF",
+      "profissao": "Ex-Primeira-Dama",
+      "cargo_atual": null,
+      "historico_politico": [
+        "Primeira-Dama do Brasil (2019-2023)",
+        "Atuação em causas de pessoas com deficiência",
+        "Protagonista em eventos do governo Bolsonaro"
+      ],
+      "biografia": "Michelle Bolsonaro foi primeira-dama do Brasil durante o governo de seu marido, Jair Bolsonaro. Natural de Brasília, ganhou projeção por suas aparições em cultos evangélicos e defesa de pautas conservadoras. Lidera as pesquisas para o Senado pelo DF.",
+      "propostas_principais": [
+        "Defesa da família tradicional",
+        "Apoio a pessoas com deficiência",
+        "Fortalecimento das comunidades evangélicas",
+        "Oposição às pautas progressistas"
+      ],
+      "areas_foco": ["Família", "Pessoas com Deficiência", "Valores Cristãos"],
+      "redes_sociais": {
+        "instagram": "michellebolsonaro",
+        "twitter": "micaboronaro"
+      },
+      "site_campanha": null,
+      "orientacao_politica": "direita",
+      "posicao_bolsonaro": "apoiador_forte",
+      "posicao_lula": "opositor_forte",
+      "eleicoes_anteriores": [],
+      "votos_ultima_eleicao": 0,
+      "pontos_fortes": [
+        "Altíssimo conhecimento público",
+        "Base evangélica forte",
+        "Lidera as pesquisas com folga",
+        "Capital político do bolsonarismo"
+      ],
+      "pontos_fracos": [
+        "Alta rejeição entre eleitores de esquerda",
+        "Nunca disputou eleição",
+        "Dependente da imagem do marido"
+      ],
+      "controversias": [
+        "Investigações envolvendo joias sauditas",
+        "Cartão corporativo durante período presidencial"
+      ],
+      "rejeicao_estimada": 40,
+      "conhecimento_estimado": 95,
+      "ativo": true,
+      "ordem_exibicao": 1
+    },
+    {
+      "id": "cand-sen-ibaneis-rocha",
+      "nome": "Ibaneis Rocha Barros Júnior",
+      "nome_urna": "IBANEIS ROCHA",
+      "partido": "MDB",
+      "numero_partido": 15,
+      "cargo_pretendido": "senador",
+      "status_candidatura": "pre_candidato",
+      "foto_url": "/candidatos/ibaneis-rocha.jpg",
+      "cor_campanha": "#00AA55",
+      "slogan": "Experiência e Resultados",
+      "idade": 57,
+      "data_nascimento": "1967-01-10",
+      "genero": "masculino",
+      "naturalidade": "Brasília, DF",
+      "profissao": "Advogado e Político",
+      "cargo_atual": "Governador do Distrito Federal",
+      "historico_politico": [
+        "Governador do DF (2019-atual, reeleito em 2022)",
+        "Presidente da OAB-DF (2010-2018)",
+        "Advogado de destaque no DF"
+      ],
+      "biografia": "Ibaneis Rocha é governador do Distrito Federal, eleito em 2018 e reeleito em 2022 no primeiro turno. Advogado de formação, foi presidente da OAB-DF por 8 anos antes de entrar na política. Para 2026, projeta candidatura ao Senado.",
+      "propostas_principais": [
+        "Continuidade das políticas implementadas como governador",
+        "Representação forte do DF no Senado",
+        "Defesa de investimentos federais para a capital"
+      ],
+      "areas_foco": ["Gestão Pública", "Investimentos Federais", "Desenvolvimento do DF"],
+      "redes_sociais": {
+        "instagram": "iloibaneis",
+        "twitter": "IbaneisOficial"
+      },
+      "site_campanha": "https://ibaneisrocha.com.br",
+      "orientacao_politica": "centro-direita",
+      "posicao_bolsonaro": "apoiador_moderado",
+      "posicao_lula": "neutro",
+      "eleicoes_anteriores": [
+        {"ano": 2022, "cargo": "Governador", "votos": 1680000, "resultado": "eleito"},
+        {"ano": 2018, "cargo": "Governador", "votos": 1400000, "resultado": "eleito"}
+      ],
+      "votos_ultima_eleicao": 1680000,
+      "pontos_fortes": [
+        "Alta popularidade como governador",
+        "Experiência em gestão pública",
+        "Ampla rede de alianças políticas",
+        "Recursos e estrutura de campanha"
+      ],
+      "pontos_fracos": [
+        "Afastamento temporário após 8 de janeiro",
+        "Desgaste natural de dois mandatos",
+        "Pode dividir votos com Celina Leão"
+      ],
+      "controversias": [
+        "Afastamento temporário do cargo em 2023",
+        "Gestão da segurança pública no 8 de janeiro"
+      ],
+      "rejeicao_estimada": 25,
+      "conhecimento_estimado": 90,
+      "ativo": true,
+      "ordem_exibicao": 2
+    },
+    {
+      "id": "cand-sen-leila-barros",
+      "nome": "Maria Leila do Nascimento Barros",
+      "nome_urna": "LEILA DO VÔLEI",
+      "partido": "PDT",
+      "numero_partido": 12,
+      "cargo_pretendido": "senador",
+      "status_candidatura": "pre_candidato",
+      "foto_url": "/candidatos/leila-barros.jpg",
+      "cor_campanha": "#FF0000",
+      "slogan": "Garra pelo Distrito Federal",
+      "idade": 59,
+      "data_nascimento": "1964-07-02",
+      "genero": "feminino",
+      "naturalidade": "Taguatinga, DF",
+      "profissao": "Ex-Atleta e Política",
+      "cargo_atual": "Senadora da República",
+      "historico_politico": [
+        "Senadora pelo DF (2019-atual)",
+        "Ex-atleta da seleção brasileira de vôlei",
+        "Medalhista olímpica"
+      ],
+      "biografia": "Leila Barros é senadora pelo DF e ex-jogadora de vôlei da seleção brasileira. Medalhista olímpica, foi eleita senadora em 2018. Conhecida como 'Leila do Vôlei', busca renovar seu mandato em 2026.",
+      "propostas_principais": [
+        "Fortalecimento do esporte e juventude",
+        "Defesa das mulheres",
+        "Educação e saúde pública",
+        "Políticas para o esporte"
+      ],
+      "areas_foco": ["Esporte", "Juventude", "Mulheres", "Educação"],
+      "redes_sociais": {
+        "instagram": "leilabarros",
+        "twitter": "LeiladoVolei"
+      },
+      "site_campanha": "https://leilabarros.com.br",
+      "orientacao_politica": "centro",
+      "posicao_bolsonaro": "opositor_moderado",
+      "posicao_lula": "apoiador_moderado",
+      "eleicoes_anteriores": [
+        {"ano": 2018, "cargo": "Senador", "votos": 520000, "resultado": "eleito"}
+      ],
+      "votos_ultima_eleicao": 520000,
+      "pontos_fortes": [
+        "Reconhecimento como atleta de renome",
+        "Experiência como senadora",
+        "Perfil apartidário que agrada moderados"
+      ],
+      "pontos_fracos": [
+        "Atuação legislativa menos expressiva",
+        "Concorrência forte de outros nomes"
+      ],
+      "controversias": [],
+      "rejeicao_estimada": 20,
+      "conhecimento_estimado": 70,
+      "ativo": true,
+      "ordem_exibicao": 3
+    },
+    {
+      "id": "cand-sen-erika-kokay",
+      "nome": "Érika Kokay",
+      "nome_urna": "ÉRIKA KOKAY",
+      "partido": "PT",
+      "numero_partido": 13,
+      "cargo_pretendido": "senador",
+      "status_candidatura": "pre_candidato",
+      "foto_url": "/candidatos/erika-kokay.jpg",
+      "cor_campanha": "#FF0000",
+      "slogan": "Luta Popular no Senado",
+      "idade": 62,
+      "data_nascimento": "1962-09-18",
+      "genero": "feminino",
+      "naturalidade": "São Paulo, SP",
+      "profissao": "Bancária e Política",
+      "cargo_atual": "Deputada Federal",
+      "historico_politico": [
+        "Deputada Federal por múltiplos mandatos",
+        "Deputada Distrital (2003-2006)",
+        "Líder sindical dos bancários do DF",
+        "Militante histórica do PT"
+      ],
+      "biografia": "Érika Kokay é uma das principais lideranças do PT no Distrito Federal. Ex-líder sindical dos bancários, foi deputada distrital e atualmente é deputada federal. Conhecida por sua atuação em pautas sociais e defesa dos servidores públicos.",
+      "propostas_principais": [
+        "Defesa dos servidores públicos",
+        "Direitos das mulheres e LGBTQIA+",
+        "Combate às desigualdades",
+        "Fortalecimento do SUS e educação pública"
+      ],
+      "areas_foco": ["Servidores Públicos", "Direitos Humanos", "Saúde", "Educação"],
+      "redes_sociais": {
+        "instagram": "erikakokay",
+        "twitter": "erikakokay"
+      },
+      "site_campanha": "https://erikakokay.com.br",
+      "orientacao_politica": "esquerda",
+      "posicao_bolsonaro": "opositor_forte",
+      "posicao_lula": "apoiador_forte",
+      "eleicoes_anteriores": [
+        {"ano": 2022, "cargo": "Deputado Federal", "votos": 95000, "resultado": "eleito"},
+        {"ano": 2018, "cargo": "Deputado Federal", "votos": 88000, "resultado": "eleito"},
+        {"ano": 2014, "cargo": "Deputado Federal", "votos": 82000, "resultado": "eleito"}
+      ],
+      "votos_ultima_eleicao": 95000,
+      "pontos_fortes": [
+        "Base forte entre servidores públicos",
+        "Experiência legislativa",
+        "Apoio do movimento sindical",
+        "Reconhecimento da militância petista"
+      ],
+      "pontos_fracos": [
+        "Perfil muito à esquerda pode afastar moderados",
+        "Alta rejeição entre conservadores",
+        "Dificuldade em ampliar eleitorado"
+      ],
+      "controversias": [],
+      "rejeicao_estimada": 35,
+      "conhecimento_estimado": 50,
+      "ativo": true,
+      "ordem_exibicao": 4
+    },
+    {
+      "id": "cand-sen-bia-kicis",
+      "nome": "Beatrix Sybille Margarete Kicis Torrents de Sordi",
+      "nome_urna": "BIA KICIS",
+      "partido": "PL",
+      "numero_partido": 22,
+      "cargo_pretendido": "deputado_federal",
+      "status_candidatura": "pre_candidato",
+      "foto_url": "/candidatos/bia-kicis.jpg",
+      "cor_campanha": "#0066CC",
+      "slogan": "Brasil Acima de Tudo",
+      "idade": 62,
+      "data_nascimento": "1962-08-10",
+      "genero": "feminino",
+      "naturalidade": "São Paulo, SP",
+      "profissao": "Procuradora e Política",
+      "cargo_atual": "Deputada Federal",
+      "historico_politico": [
+        "Deputada Federal (2019-atual, 2º mandato)",
+        "Procuradora do Distrito Federal",
+        "Campeã de votos no DF em 2022"
+      ],
+      "biografia": "Bia Kicis é deputada federal e uma das principais vozes do bolsonarismo no Congresso. Procuradora aposentada, foi a mais votada do DF em 2022. Conhecida por posições conservadoras firmes e defesa do ex-presidente Bolsonaro.",
+      "propostas_principais": [
+        "Defesa da família tradicional",
+        "Liberdade de expressão",
+        "Combate ao 'ativismo judicial'",
+        "Apoio às forças de segurança"
+      ],
+      "areas_foco": ["Valores Conservadores", "Liberdade de Expressão", "Segurança"],
+      "redes_sociais": {
+        "instagram": "biakicis",
+        "twitter": "biikiicis"
+      },
+      "site_campanha": "https://biakicis.com.br",
+      "orientacao_politica": "direita",
+      "posicao_bolsonaro": "apoiador_forte",
+      "posicao_lula": "opositor_forte",
+      "eleicoes_anteriores": [
+        {"ano": 2022, "cargo": "Deputado Federal", "votos": 220000, "resultado": "eleito"},
+        {"ano": 2018, "cargo": "Deputado Federal", "votos": 155000, "resultado": "eleito"}
+      ],
+      "votos_ultima_eleicao": 220000,
+      "pontos_fortes": [
+        "Maior votação do DF em 2022",
+        "Base bolsonarista fiel",
+        "Alta visibilidade nas redes sociais",
+        "Perfil combativo que agrada sua base"
+      ],
+      "pontos_fracos": [
+        "Altíssima rejeição fora da base",
+        "Processos no STF",
+        "Dificuldade em ampliar eleitorado"
+      ],
+      "controversias": [
+        "Indiciada por incitação aos atos de 8 de janeiro",
+        "Processos no STF relacionados a fake news"
+      ],
+      "rejeicao_estimada": 45,
+      "conhecimento_estimado": 75,
+      "ativo": true,
+      "ordem_exibicao": 5
+    }
+  ]
+}

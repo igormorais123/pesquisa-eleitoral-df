@@ -18,6 +18,8 @@ import {
   Shield,
   BarChart3,
   RefreshCw,
+  Building2,
+  Vote,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { db } from '@/lib/db/dexie';
@@ -26,6 +28,8 @@ import type { Eleitor, ClusterSocioeconomico } from '@/types';
 import { cn } from '@/lib/utils';
 import { calcularValidacaoEstatistica } from '@/services/validacao-estatistica';
 import { labelsVariaveis, labelsValores } from '@/data/dados-referencia-oficiais';
+
+type TipoAgente = 'eleitor' | 'gestor';
 
 const REGIOES_DF = [
   'Ceilandia',
@@ -56,6 +60,43 @@ const CLUSTERS = [
   { value: 'G4_baixa', label: 'Baixa (G4)', description: 'Renda ate 2 SM' },
 ];
 
+const TIPOS_AGENTE = [
+  {
+    value: 'eleitor' as TipoAgente,
+    label: 'Eleitores',
+    description: 'Cidadãos do DF com perfil político e demográfico',
+    icon: Vote,
+    cor: 'primary',
+  },
+  {
+    value: 'gestor' as TipoAgente,
+    label: 'Gestores',
+    description: 'Gestores públicos e privados do DF',
+    icon: Building2,
+    cor: 'blue',
+  },
+];
+
+const SETORES_GESTOR = [
+  { value: 'governo_federal', label: 'Governo Federal' },
+  { value: 'governo_distrital', label: 'Governo Distrital' },
+  { value: 'legislativo', label: 'Legislativo' },
+  { value: 'judiciario', label: 'Judiciário' },
+  { value: 'autarquia', label: 'Autarquia' },
+  { value: 'empresa_publica', label: 'Empresa Pública' },
+  { value: 'iniciativa_privada', label: 'Iniciativa Privada' },
+  { value: 'terceiro_setor', label: 'Terceiro Setor' },
+];
+
+const NIVEIS_CARGO = [
+  { value: 'diretor', label: 'Diretor' },
+  { value: 'gerente', label: 'Gerente' },
+  { value: 'coordenador', label: 'Coordenador' },
+  { value: 'supervisor', label: 'Supervisor' },
+  { value: 'assessor', label: 'Assessor' },
+  { value: 'secretario', label: 'Secretário' },
+];
+
 interface DivergenciaCorretiva {
   variavel: string;
   labelVariavel: string;
@@ -65,7 +106,7 @@ interface DivergenciaCorretiva {
   diferenca: number;
 }
 
-export default function PaginaGerarEleitores() {
+export default function PaginaGerarAgentes() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { adicionarEleitores, eleitores: eleitoresAtuais } = useEleitoresStore();
@@ -76,16 +117,27 @@ export default function PaginaGerarEleitores() {
   const corrigirCategoria = searchParams.get('categoria');
   const quantidadeSugerida = searchParams.get('quantidade');
 
+  // Estados principais
+  const [tipoAgente, setTipoAgente] = useState<TipoAgente>('eleitor');
   const [quantidade, setQuantidade] = useState(quantidadeSugerida ? parseInt(quantidadeSugerida) : 10);
   const [regiao, setRegiao] = useState<string>('');
   const [cluster, setCluster] = useState<ClusterSocioeconomico | ''>('');
   const [manterProporcoes, setManterProporcoes] = useState(!modoCorretivo && !corrigirVariavel);
   const [usarModoCorretivo, setUsarModoCorretivo] = useState(modoCorretivo || !!corrigirVariavel);
   const [divergenciasSelecionadas, setDivergenciasSelecionadas] = useState<DivergenciaCorretiva[]>([]);
+
+  // Estados específicos para gestores
+  const [setorGestor, setSetorGestor] = useState<string>('');
+  const [nivelCargo, setNivelCargo] = useState<string>('');
+
   const [resultado, setResultado] = useState<{
     eleitores: Eleitor[];
     custoReais: number;
   } | null>(null);
+
+  // Labels dinâmicos baseados no tipo
+  const labelAgente = tipoAgente === 'eleitor' ? 'eleitores' : 'gestores';
+  const labelAgenteSingular = tipoAgente === 'eleitor' ? 'eleitor' : 'gestor';
 
   // Calcular validação atual
   const validacao = useMemo(
@@ -129,54 +181,63 @@ export default function PaginaGerarEleitores() {
     }
   }, [corrigirVariavel, corrigirCategoria, quantidadeSugerida]);
 
-  // Mutation para gerar eleitores
+  // Mutation para gerar agentes
   const mutationGerar = useMutation({
     mutationFn: async () => {
       const response = await fetch('/api/claude/gerar-agentes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          tipoAgente,
           quantidade,
           cluster: cluster || undefined,
           regiao: regiao || undefined,
           manterProporcoes: !usarModoCorretivo && manterProporcoes,
           modoCorretivo: usarModoCorretivo,
           divergenciasParaCorrigir: usarModoCorretivo ? divergenciasSelecionadas : undefined,
+          // Parâmetros específicos de gestores
+          setorGestor: tipoAgente === 'gestor' ? setorGestor || undefined : undefined,
+          nivelCargo: tipoAgente === 'gestor' ? nivelCargo || undefined : undefined,
         }),
       });
 
       if (!response.ok) {
         const erro = await response.json();
-        throw new Error(erro.erro || 'Erro ao gerar eleitores');
+        throw new Error(erro.erro || `Erro ao gerar ${labelAgente}`);
       }
 
       return response.json();
     },
     onSuccess: (data) => {
       setResultado({
-        eleitores: data.eleitores,
+        eleitores: data.eleitores || data.gestores,
         custoReais: data.custoReais,
       });
-      toast.success(`${data.eleitores.length} eleitores gerados com sucesso!`);
+      toast.success(`${(data.eleitores || data.gestores).length} ${labelAgente} gerados com sucesso!`);
     },
     onError: (error) => {
-      toast.error(error instanceof Error ? error.message : 'Erro ao gerar eleitores');
+      toast.error(error instanceof Error ? error.message : `Erro ao gerar ${labelAgente}`);
     },
   });
 
-  // Mutation para salvar eleitores
+  // Mutation para salvar agentes
   const mutationSalvar = useMutation({
-    mutationFn: async (eleitores: Eleitor[]) => {
-      await db.eleitores.bulkAdd(eleitores);
-      return eleitores;
+    mutationFn: async (agentes: Eleitor[]) => {
+      if (tipoAgente === 'eleitor') {
+        await db.eleitores.bulkAdd(agentes);
+      } else {
+        // Salvar gestores em tabela separada ou adicionar flag
+        await db.eleitores.bulkAdd(agentes.map(g => ({ ...g, tipoAgente: 'gestor' })));
+      }
+      return agentes;
     },
-    onSuccess: (eleitores) => {
-      adicionarEleitores(eleitores);
-      toast.success(`${eleitores.length} eleitores salvos no banco!`);
-      router.push('/eleitores');
+    onSuccess: (agentes) => {
+      adicionarEleitores(agentes);
+      toast.success(`${agentes.length} ${labelAgente} salvos no banco!`);
+      router.push(tipoAgente === 'eleitor' ? '/eleitores' : '/gestores');
     },
     onError: () => {
-      toast.error('Erro ao salvar eleitores');
+      toast.error(`Erro ao salvar ${labelAgente}`);
     },
   });
 
@@ -190,22 +251,22 @@ export default function PaginaGerarEleitores() {
       {/* Header */}
       <div className="flex items-center gap-4 mb-8">
         <Link
-          href="/eleitores"
+          href={tipoAgente === 'eleitor' ? '/eleitores' : '/gestores'}
           className="text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div className="flex-1">
           <h1 className="text-2xl font-bold text-foreground">
-            {usarModoCorretivo ? 'Gerar Eleitores Corretivos' : 'Gerar Eleitores com IA'}
+            {usarModoCorretivo ? `Gerar ${labelAgente.charAt(0).toUpperCase() + labelAgente.slice(1)} Corretivos` : 'Gerar Agentes com IA'}
           </h1>
           <p className="text-muted-foreground">
             {usarModoCorretivo
-              ? 'Gerar eleitores para corrigir vieses na amostra'
-              : 'Use Claude Opus 4.5 para criar novos perfis sinteticos'}
+              ? `Gerar ${labelAgente} para corrigir vieses na amostra`
+              : 'Use Claude Opus 4.5 para criar novos perfis sintéticos'}
           </p>
         </div>
-        {!resultado && (
+        {!resultado && tipoAgente === 'eleitor' && (
           <button
             onClick={() => setUsarModoCorretivo(!usarModoCorretivo)}
             className={cn(
@@ -220,6 +281,64 @@ export default function PaginaGerarEleitores() {
           </button>
         )}
       </div>
+
+      {/* Seletor de Tipo de Agente */}
+      {!resultado && (
+        <div className="glass-card rounded-xl p-6 mb-6">
+          <h3 className="font-medium text-foreground mb-4">Tipo de Agente</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {TIPOS_AGENTE.map((tipo) => {
+              const Icone = tipo.icon;
+              const selecionado = tipoAgente === tipo.value;
+              return (
+                <button
+                  key={tipo.value}
+                  onClick={() => {
+                    setTipoAgente(tipo.value);
+                    if (tipo.value === 'gestor') {
+                      setUsarModoCorretivo(false);
+                    }
+                  }}
+                  className={cn(
+                    'p-4 rounded-xl border text-left transition-all flex items-center gap-4',
+                    selecionado
+                      ? tipo.cor === 'primary'
+                        ? 'bg-primary/20 border-primary'
+                        : 'bg-blue-500/20 border-blue-500'
+                      : 'bg-secondary border-border hover:border-primary/50'
+                  )}
+                >
+                  <div
+                    className={cn(
+                      'w-12 h-12 rounded-lg flex items-center justify-center',
+                      selecionado
+                        ? tipo.cor === 'primary'
+                          ? 'bg-primary/30'
+                          : 'bg-blue-500/30'
+                        : 'bg-muted'
+                    )}
+                  >
+                    <Icone
+                      className={cn(
+                        'w-6 h-6',
+                        selecionado
+                          ? tipo.cor === 'primary'
+                            ? 'text-primary'
+                            : 'text-blue-400'
+                          : 'text-muted-foreground'
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground">{tipo.label}</p>
+                    <p className="text-xs text-muted-foreground">{tipo.description}</p>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {!resultado ? (
         <div className="space-y-6">
@@ -361,63 +480,117 @@ export default function PaginaGerarEleitores() {
           {/* Filtros opcionais (apenas em modo normal) */}
           {!usarModoCorretivo && (
             <div className="glass-card rounded-xl p-6">
-              <h3 className="font-medium text-foreground mb-4">Filtros Opcionais</h3>
+              <h3 className="font-medium text-foreground mb-4">
+                Filtros Opcionais {tipoAgente === 'gestor' && '- Gestores'}
+              </h3>
 
-              {/* Regiao */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-foreground mb-2">
-                  <MapPin className="w-4 h-4 inline mr-1" />
-                  Regiao Administrativa (opcional)
-                </label>
-                <select
-                  value={regiao}
-                  onChange={(e) => setRegiao(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg bg-secondary border border-border focus:border-primary outline-none text-foreground"
-                >
-                  <option value="">Todas as regioes</option>
-                  {REGIOES_DF.map((r) => (
-                    <option key={r} value={r}>{r}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Cluster */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-foreground mb-2">
-                  <Wallet className="w-4 h-4 inline mr-1" />
-                  Cluster Socioeconomico (opcional)
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {CLUSTERS.map((c) => (
-                    <button
-                      key={c.value}
-                      onClick={() => setCluster(cluster === c.value ? '' : c.value as ClusterSocioeconomico)}
-                      className={cn(
-                        'p-3 rounded-lg border text-left transition-all',
-                        cluster === c.value
-                          ? 'bg-primary/20 border-primary text-foreground'
-                          : 'bg-secondary border-border hover:border-primary/50 text-muted-foreground'
-                      )}
+              {/* Filtros específicos para Gestores */}
+              {tipoAgente === 'gestor' && (
+                <>
+                  {/* Setor */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      <Building2 className="w-4 h-4 inline mr-1" />
+                      Setor (opcional)
+                    </label>
+                    <select
+                      value={setorGestor}
+                      onChange={(e) => setSetorGestor(e.target.value)}
+                      className="w-full px-4 py-2 rounded-lg bg-secondary border border-border focus:border-primary outline-none text-foreground"
                     >
-                      <p className="font-medium text-sm">{c.label}</p>
-                      <p className="text-xs opacity-70">{c.description}</p>
-                    </button>
-                  ))}
-                </div>
-              </div>
+                      <option value="">Todos os setores</option>
+                      {SETORES_GESTOR.map((s) => (
+                        <option key={s.value} value={s.value}>{s.label}</option>
+                      ))}
+                    </select>
+                  </div>
 
-              {/* Manter proporcoes */}
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={manterProporcoes}
-                  onChange={(e) => setManterProporcoes(e.target.checked)}
-                  className="w-4 h-4 rounded border-border bg-secondary"
-                />
-                <span className="text-sm text-muted-foreground">
-                  Manter proporcoes demograficas do DF
-                </span>
-              </label>
+                  {/* Nível de Cargo */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      <Users className="w-4 h-4 inline mr-1" />
+                      Nível de Cargo (opcional)
+                    </label>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                      {NIVEIS_CARGO.map((n) => (
+                        <button
+                          key={n.value}
+                          onClick={() => setNivelCargo(nivelCargo === n.value ? '' : n.value)}
+                          className={cn(
+                            'p-2 rounded-lg border text-center transition-all text-sm',
+                            nivelCargo === n.value
+                              ? 'bg-blue-500/20 border-blue-500 text-blue-400'
+                              : 'bg-secondary border-border hover:border-blue-500/50 text-muted-foreground'
+                          )}
+                        >
+                          {n.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {/* Filtros para Eleitores */}
+              {tipoAgente === 'eleitor' && (
+                <>
+                  {/* Regiao */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      <MapPin className="w-4 h-4 inline mr-1" />
+                      Região Administrativa (opcional)
+                    </label>
+                    <select
+                      value={regiao}
+                      onChange={(e) => setRegiao(e.target.value)}
+                      className="w-full px-4 py-2 rounded-lg bg-secondary border border-border focus:border-primary outline-none text-foreground"
+                    >
+                      <option value="">Todas as regiões</option>
+                      {REGIOES_DF.map((r) => (
+                        <option key={r} value={r}>{r}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Cluster */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      <Wallet className="w-4 h-4 inline mr-1" />
+                      Cluster Socioeconômico (opcional)
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {CLUSTERS.map((c) => (
+                        <button
+                          key={c.value}
+                          onClick={() => setCluster(cluster === c.value ? '' : c.value as ClusterSocioeconomico)}
+                          className={cn(
+                            'p-3 rounded-lg border text-left transition-all',
+                            cluster === c.value
+                              ? 'bg-primary/20 border-primary text-foreground'
+                              : 'bg-secondary border-border hover:border-primary/50 text-muted-foreground'
+                          )}
+                        >
+                          <p className="font-medium text-sm">{c.label}</p>
+                          <p className="text-xs opacity-70">{c.description}</p>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Manter proporcoes */}
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={manterProporcoes}
+                      onChange={(e) => setManterProporcoes(e.target.checked)}
+                      className="w-4 h-4 rounded border-border bg-secondary"
+                    />
+                    <span className="text-sm text-muted-foreground">
+                      Manter proporções demográficas do DF
+                    </span>
+                  </label>
+                </>
+              )}
             </div>
           )}
 
@@ -450,23 +623,25 @@ export default function PaginaGerarEleitores() {
               'w-full py-4 px-6 rounded-xl font-medium transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed',
               usarModoCorretivo
                 ? 'bg-orange-500 hover:bg-orange-600 text-white'
-                : 'bg-primary hover:bg-primary/90 text-primary-foreground'
+                : tipoAgente === 'gestor'
+                  ? 'bg-blue-500 hover:bg-blue-600 text-white'
+                  : 'bg-primary hover:bg-primary/90 text-primary-foreground'
             )}
           >
             {mutationGerar.isPending ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                Gerando {quantidade} eleitores...
+                Gerando {quantidade} {labelAgente}...
               </>
             ) : usarModoCorretivo ? (
               <>
                 <RefreshCw className="w-5 h-5" />
-                Gerar {quantidade} Eleitores Corretivos
+                Gerar {quantidade} {labelAgente.charAt(0).toUpperCase() + labelAgente.slice(1)} Corretivos
               </>
             ) : (
               <>
                 <Sparkles className="w-5 h-5" />
-                Gerar {quantidade} Eleitores
+                Gerar {quantidade} {labelAgente.charAt(0).toUpperCase() + labelAgente.slice(1)}
               </>
             )}
           </button>
@@ -475,16 +650,19 @@ export default function PaginaGerarEleitores() {
         <div className="space-y-6">
           {/* Resultado */}
           <div className="glass-card rounded-xl p-6 text-center">
-            <CheckCircle className="w-16 h-16 mx-auto text-green-400 mb-4" />
+            <CheckCircle className={cn(
+              'w-16 h-16 mx-auto mb-4',
+              tipoAgente === 'gestor' ? 'text-blue-400' : 'text-green-400'
+            )} />
             <h2 className="text-xl font-bold text-foreground mb-2">
-              {resultado.eleitores.length} Eleitores Gerados!
+              {resultado.eleitores.length} {labelAgente.charAt(0).toUpperCase() + labelAgente.slice(1)} Gerados!
             </h2>
             <p className="text-muted-foreground">
               Custo total: R$ {resultado.custoReais.toFixed(2)}
             </p>
             {usarModoCorretivo && (
               <p className="text-sm text-orange-400 mt-2">
-                Eleitores gerados para corrigir vieses na amostra
+                {labelAgente.charAt(0).toUpperCase() + labelAgente.slice(1)} gerados para corrigir vieses na amostra
               </p>
             )}
           </div>
@@ -492,29 +670,40 @@ export default function PaginaGerarEleitores() {
           {/* Preview */}
           <div className="glass-card rounded-xl p-6">
             <h3 className="font-medium text-foreground mb-4 flex items-center gap-2">
-              <Users className="w-5 h-5 text-primary" />
-              Eleitores Gerados
+              {tipoAgente === 'gestor' ? (
+                <Building2 className="w-5 h-5 text-blue-400" />
+              ) : (
+                <Users className="w-5 h-5 text-primary" />
+              )}
+              {labelAgente.charAt(0).toUpperCase() + labelAgente.slice(1)} Gerados
             </h3>
             <div className="space-y-2 max-h-64 overflow-y-auto">
-              {resultado.eleitores.slice(0, 10).map((eleitor) => (
+              {resultado.eleitores.slice(0, 10).map((agente) => (
                 <div
-                  key={eleitor.id}
+                  key={agente.id}
                   className="p-3 bg-secondary/50 rounded-lg flex items-center justify-between"
                 >
                   <div>
-                    <p className="font-medium text-foreground">{eleitor.nome}</p>
+                    <p className="font-medium text-foreground">{agente.nome}</p>
                     <p className="text-xs text-muted-foreground">
-                      {eleitor.idade} anos | {eleitor.regiao_administrativa} | {eleitor.orientacao_politica}
+                      {tipoAgente === 'gestor' ? (
+                        <>{(agente as any).cargo || 'Gestor'} | {(agente as any).setor || 'Setor'}</>
+                      ) : (
+                        <>{agente.idade} anos | {agente.regiao_administrativa} | {agente.orientacao_politica}</>
+                      )}
                     </p>
                   </div>
-                  <span className="text-xs text-muted-foreground bg-secondary px-2 py-1 rounded">
-                    {eleitor.cluster_socioeconomico}
+                  <span className={cn(
+                    'text-xs px-2 py-1 rounded',
+                    tipoAgente === 'gestor' ? 'bg-blue-500/20 text-blue-400' : 'bg-secondary text-muted-foreground'
+                  )}>
+                    {tipoAgente === 'gestor' ? (agente as any).nivel_cargo || 'Gestor' : agente.cluster_socioeconomico}
                   </span>
                 </div>
               ))}
               {resultado.eleitores.length > 10 && (
                 <p className="text-center text-sm text-muted-foreground py-2">
-                  ... e mais {resultado.eleitores.length - 10} eleitores
+                  ... e mais {resultado.eleitores.length - 10} {labelAgente}
                 </p>
               )}
             </div>

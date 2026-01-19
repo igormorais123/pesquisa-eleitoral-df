@@ -10,10 +10,8 @@ import {
   Home,
   Menu,
   X,
-  Settings,
   Upload,
   Sparkles,
-  FileText,
   Vote,
   Landmark,
 } from 'lucide-react';
@@ -55,22 +53,10 @@ const menuSecundario = [
     descricao: 'Carregar arquivo JSON',
   },
   {
-    titulo: 'Gerar Eleitores',
+    titulo: 'Gerar Agentes',
     href: '/eleitores/gerar',
     icone: Sparkles,
-    descricao: 'Criar eleitores com IA',
-  },
-  {
-    titulo: 'Nova Entrevista',
-    href: '/entrevistas/nova',
-    icone: FileText,
-    descricao: 'Criar nova pesquisa',
-  },
-  {
-    titulo: 'Configurações',
-    href: '/configuracoes',
-    icone: Settings,
-    descricao: 'Ajustes do sistema',
+    descricao: 'Criar eleitores e gestores com IA',
   },
 ];
 

@@ -4,11 +4,13 @@
  * Página de Templates de Perguntas Eleitorais
  *
  * Permite visualizar, gerenciar e criar pesquisas a partir de templates pré-definidos.
+ * Inclui geração de perguntas com IA.
  */
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useMutation } from '@tanstack/react-query';
 import { TemplateSelector } from '@/components/templates';
 import { TemplatePerguntas, Pergunta } from '@/types';
 import { useEntrevistasStore } from '@/stores/entrevistas-store';
@@ -31,8 +33,13 @@ import {
   ToggleLeft,
   Sliders,
   MessageSquare,
+  Sparkles,
+  Loader2,
+  Wand2,
+  X,
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
 
 // Ícones para tipos de perguntas
 const TIPO_PERGUNTA_ICONE: Record<string, React.ElementType> = {
@@ -42,11 +49,75 @@ const TIPO_PERGUNTA_ICONE: Record<string, React.ElementType> = {
   aberta: MessageSquare,
 };
 
+// Temas sugeridos para geração de perguntas com IA
+const TEMAS_SUGERIDOS = [
+  { id: 'avaliacao_governo', label: 'Avaliação do Governo', desc: 'Perguntas sobre aprovação e desempenho' },
+  { id: 'intencao_voto', label: 'Intenção de Voto', desc: 'Cenários eleitorais e preferências' },
+  { id: 'economia', label: 'Economia', desc: 'Emprego, inflação, custo de vida' },
+  { id: 'saude', label: 'Saúde Pública', desc: 'SUS, hospitais, vacinas' },
+  { id: 'seguranca', label: 'Segurança Pública', desc: 'Criminalidade, polícia, violência' },
+  { id: 'educacao', label: 'Educação', desc: 'Escolas, universidades, qualidade' },
+  { id: 'transporte', label: 'Transporte', desc: 'Mobilidade urbana, metrô, ônibus' },
+  { id: 'meio_ambiente', label: 'Meio Ambiente', desc: 'Sustentabilidade, clima, poluição' },
+];
+
 export default function TemplatesPage() {
   const router = useRouter();
   const { setPerguntas, novaEntrevista, setTitulo } = useEntrevistasStore();
   const [perguntasSelecionadas, setPerguntasSelecionadas] = useState<Pergunta[]>([]);
   const [templatesSelecionados, setTemplatesSelecionados] = useState<string[]>([]);
+
+  // Estados para geração com IA
+  const [modalIAAberto, setModalIAAberto] = useState(false);
+  const [temaPersonalizado, setTemaPersonalizado] = useState('');
+  const [temaSelecionado, setTemaSelecionado] = useState('');
+  const [quantidadePerguntas, setQuantidadePerguntas] = useState(5);
+  const [tiposPerguntas, setTiposPerguntas] = useState<string[]>(['multipla_escolha', 'escala']);
+
+  // Mutation para gerar perguntas com IA
+  const mutationGerarIA = useMutation({
+    mutationFn: async () => {
+      const tema = temaPersonalizado || TEMAS_SUGERIDOS.find(t => t.id === temaSelecionado)?.label || 'Pesquisa eleitoral';
+
+      const response = await fetch('/api/claude/gerar-perguntas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tema,
+          quantidade: quantidadePerguntas,
+          tiposPerguntas,
+          contexto: 'Pesquisa eleitoral no Distrito Federal para eleições 2026',
+        }),
+      });
+
+      if (!response.ok) {
+        const erro = await response.json();
+        throw new Error(erro.erro || 'Erro ao gerar perguntas');
+      }
+
+      return response.json();
+    },
+    onSuccess: (data) => {
+      const novasPerguntas: Pergunta[] = data.perguntas.map((p: any, index: number) => ({
+        id: `ia-${Date.now()}-${index}`,
+        texto: p.texto,
+        tipo: p.tipo || 'multipla_escolha',
+        obrigatoria: true,
+        opcoes: p.opcoes || [],
+        escala_min: p.escala_min || 1,
+        escala_max: p.escala_max || 10,
+      }));
+
+      setPerguntasSelecionadas((prev) => [...prev, ...novasPerguntas]);
+      setModalIAAberto(false);
+      setTemaPersonalizado('');
+      setTemaSelecionado('');
+      toast.success(`${novasPerguntas.length} perguntas geradas com IA!`);
+    },
+    onError: (error) => {
+      toast.error(error instanceof Error ? error.message : 'Erro ao gerar perguntas');
+    },
+  });
 
   // Handler para quando um template é selecionado
   const handleSelectTemplate = (template: TemplatePerguntas) => {
@@ -128,23 +199,23 @@ export default function TemplatesPage() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Templates de Perguntas</h1>
           <p className="text-muted-foreground">
-            Selecione templates pré-definidos para criar pesquisas eleitorais rapidamente
+            Selecione templates pré-definidos ou gere perguntas com IA
           </p>
         </div>
         <div className="flex items-center gap-2">
+          <Button
+            onClick={() => setModalIAAberto(true)}
+            className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white"
+          >
+            <Sparkles className="w-4 h-4 mr-2" />
+            Gerar com IA
+          </Button>
           <Link
             href="/entrevistas"
             className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors"
           >
             <MessageSquare className="w-4 h-4" />
             Ver Entrevistas
-          </Link>
-          <Link
-            href="/resultados"
-            className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors"
-          >
-            <FileText className="w-4 h-4" />
-            Ver Resultados
           </Link>
         </div>
       </div>
@@ -241,6 +312,171 @@ export default function TemplatesPage() {
           </Card>
         </div>
       </div>
+
+      {/* Modal de Geração com IA */}
+      {modalIAAberto && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+            onClick={() => setModalIAAberto(false)}
+          />
+
+          {/* Modal */}
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div className="bg-card border border-border rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-hidden">
+              {/* Header */}
+              <div className="flex items-center justify-between p-6 border-b border-border bg-gradient-to-r from-violet-500/10 to-purple-600/10">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-violet-500 to-purple-600 flex items-center justify-center">
+                    <Wand2 className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="font-bold text-foreground text-lg">Gerar Perguntas com IA</h2>
+                    <p className="text-xs text-muted-foreground">Usando Claude Opus 4.5</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setModalIAAberto(false)}
+                  className="p-2 rounded-lg hover:bg-secondary transition-colors"
+                >
+                  <X className="w-5 h-5 text-muted-foreground" />
+                </button>
+              </div>
+
+              {/* Conteúdo */}
+              <div className="p-6 space-y-5 overflow-y-auto max-h-[60vh]">
+                {/* Tema */}
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Tema da Pesquisa
+                  </label>
+                  <input
+                    type="text"
+                    value={temaPersonalizado}
+                    onChange={(e) => {
+                      setTemaPersonalizado(e.target.value);
+                      setTemaSelecionado('');
+                    }}
+                    placeholder="Digite um tema personalizado ou selecione abaixo..."
+                    className="w-full px-4 py-2.5 rounded-lg bg-secondary border border-border focus:border-primary outline-none text-foreground text-sm"
+                  />
+
+                  {/* Sugestões de Tema */}
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {TEMAS_SUGERIDOS.map((tema) => (
+                      <button
+                        key={tema.id}
+                        onClick={() => {
+                          setTemaSelecionado(tema.id);
+                          setTemaPersonalizado('');
+                        }}
+                        className={cn(
+                          'px-3 py-1.5 rounded-lg text-xs font-medium transition-all',
+                          temaSelecionado === tema.id
+                            ? 'bg-gradient-to-r from-violet-500 to-purple-600 text-white'
+                            : 'bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80'
+                        )}
+                      >
+                        {tema.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Quantidade */}
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Quantidade de Perguntas: <span className="text-primary font-bold">{quantidadePerguntas}</span>
+                  </label>
+                  <input
+                    type="range"
+                    min="1"
+                    max="15"
+                    value={quantidadePerguntas}
+                    onChange={(e) => setQuantidadePerguntas(Number(e.target.value))}
+                    className="w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer"
+                  />
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                    <span>1</span>
+                    <span>15</span>
+                  </div>
+                </div>
+
+                {/* Tipos de Pergunta */}
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Tipos de Perguntas
+                  </label>
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { value: 'multipla_escolha', label: 'Múltipla Escolha', icon: HelpCircle },
+                      { value: 'escala', label: 'Escala (1-10)', icon: Sliders },
+                      { value: 'sim_nao', label: 'Sim/Não', icon: ToggleLeft },
+                      { value: 'aberta', label: 'Aberta', icon: MessageSquare },
+                    ].map((tipo) => {
+                      const Icone = tipo.icon;
+                      const selecionado = tiposPerguntas.includes(tipo.value);
+                      return (
+                        <button
+                          key={tipo.value}
+                          onClick={() => {
+                            if (selecionado) {
+                              setTiposPerguntas(tiposPerguntas.filter(t => t !== tipo.value));
+                            } else {
+                              setTiposPerguntas([...tiposPerguntas, tipo.value]);
+                            }
+                          }}
+                          className={cn(
+                            'flex items-center gap-2 p-3 rounded-lg border text-sm transition-all',
+                            selecionado
+                              ? 'bg-primary/20 border-primary text-foreground'
+                              : 'bg-secondary border-border text-muted-foreground hover:border-primary/50'
+                          )}
+                        >
+                          <Icone className="w-4 h-4" />
+                          {tipo.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Custo Estimado */}
+                <div className="p-3 rounded-lg bg-yellow-500/10 border border-yellow-500/30">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">Custo estimado:</span>
+                    <span className="text-sm font-bold text-yellow-400">
+                      ~R$ {(quantidadePerguntas * 0.05).toFixed(2)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="p-6 border-t border-border bg-secondary/30">
+                <Button
+                  onClick={() => mutationGerarIA.mutate()}
+                  disabled={mutationGerarIA.isPending || (!temaPersonalizado && !temaSelecionado) || tiposPerguntas.length === 0}
+                  className="w-full bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white disabled:opacity-50"
+                >
+                  {mutationGerarIA.isPending ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Gerando {quantidadePerguntas} perguntas...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Gerar {quantidadePerguntas} Perguntas
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

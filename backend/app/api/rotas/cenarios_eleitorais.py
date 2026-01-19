@@ -29,7 +29,9 @@ from app.servicos.cenario_eleitoral_servico import CenarioEleitoralServico
 
 router = APIRouter()
 
-# Caminho para o arquivo de eleitores
+# Caminho para o arquivo de eleitores (na raiz do projeto, fora de backend)
+# __file__ = backend/app/api/rotas/cenarios_eleitorais.py
+# 5 parents = pesquisa-eleitoral-df/
 ELEITORES_PATH = Path(__file__).parent.parent.parent.parent.parent / "agentes" / "banco-eleitores-df.json"
 
 
@@ -43,7 +45,8 @@ def carregar_eleitores(filtros: Optional[dict] = None, limite: Optional[int] = N
     try:
         with open(ELEITORES_PATH, "r", encoding="utf-8") as f:
             data = json.load(f)
-            eleitores = data.get("eleitores", [])
+            # Suporta tanto lista direta quanto objeto com chave "eleitores"
+            eleitores = data if isinstance(data, list) else data.get("eleitores", [])
 
             # Aplicar filtros se fornecidos
             if filtros:

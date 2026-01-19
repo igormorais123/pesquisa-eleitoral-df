@@ -392,7 +392,7 @@
       "setor": "publico",
       "nivel_hierarquico": "estrategico",
       "idade": 48,
-      "genero": "masculino",
+      "genero": "feminino",
       "formacao_academica": [
         "Direito (UERJ)",
         "Especialização em Direito Constitucional (IDP)",
@@ -669,7 +669,7 @@
       "setor": "publico",
       "nivel_hierarquico": "estrategico",
       "idade": 43,
-      "genero": "masculino",
+      "genero": "feminino",
       "formacao_academica": [
         "Direito (UFBA)",
         "Especialização em Direito Processual (PUC-SP)",
@@ -950,7 +950,7 @@
       "setor": "publico",
       "nivel_hierarquico": "estrategico",
       "idade": 52,
-      "genero": "masculino",
+      "genero": "feminino",
       "formacao_academica": [
         "Agronomia (ESALQ/USP)",
         "Mestrado em Economia Agrícola (Unicamp)",
@@ -1138,7 +1138,7 @@
       "setor": "publico",
       "nivel_hierarquico": "estrategico",
       "idade": 44,
-      "genero": "masculino",
+      "genero": "feminino",
       "formacao_academica": [
         "Comunicação Social (UFMG)",
         "Mestrado em Comunicação Política (UnB)",
@@ -1326,7 +1326,7 @@
       "setor": "publico",
       "nivel_hierarquico": "estrategico",
       "idade": 47,
-      "genero": "masculino",
+      "genero": "feminino",
       "formacao_academica": [
         "Economia (UFRGS)",
         "Mestrado em Economia do Desenvolvimento (UFRGS)",
@@ -1609,7 +1609,7 @@
       "setor": "publico",
       "nivel_hierarquico": "tatico",
       "idade": 44,
-      "genero": "masculino",
+      "genero": "feminino",
       "formacao_academica": [
         "Ciências Sociais (USP)",
         "Especialização em Avaliação de Políticas Públicas (ENAP)",
@@ -1704,7 +1704,7 @@
       "setor": "publico",
       "nivel_hierarquico": "tatico",
       "idade": 45,
-      "genero": "masculino",
+      "genero": "feminino",
       "formacao_academica": [
         "Enfermagem (UFMG)",
         "Especialização em Saúde Pública (ENSP/Fiocruz)",
@@ -2315,7 +2315,7 @@
       "setor": "publico",
       "nivel_hierarquico": "operacional",
       "idade": 58,
-      "genero": "masculino",
+      "genero": "feminino",
       "formacao_academica": [
         "Ensino fundamental completo"
       ],
@@ -2446,7 +2446,7 @@
         "Graduação em Administração",
         "MBA em Gestão"
       ],
-      "cargo": "Coordenador de Área",
+      "cargo": "Coordenadora de Área",
       "instituicao": "Autarquia",
       "area_atuacao": "operacoes",
       "tempo_no_cargo": "8 anos",
@@ -2528,7 +2528,7 @@
         "Graduação em Administração",
         "MBA em Gestão"
       ],
-      "cargo": "Coordenador-Geral",
+      "cargo": "Coordenadora-Geral",
       "instituicao": "Ministério",
       "area_atuacao": "gestao_pessoas",
       "tempo_no_cargo": "2 anos",
@@ -2692,7 +2692,7 @@
         "Graduação em Administração",
         "MBA em Gestão"
       ],
-      "cargo": "Diretor de Divisão",
+      "cargo": "Diretora de Divisão",
       "instituicao": "Secretaria",
       "area_atuacao": "estrategia",
       "tempo_no_cargo": "7 anos",
@@ -2856,7 +2856,7 @@
         "Graduação em Administração",
         "MBA em Gestão"
       ],
-      "cargo": "Coordenador de Área",
+      "cargo": "Coordenadora de Área",
       "instituicao": "Autarquia",
       "area_atuacao": "operacoes",
       "tempo_no_cargo": "4 anos",
@@ -2938,7 +2938,7 @@
         "Graduação em Administração",
         "MBA em Gestão"
       ],
-      "cargo": "Coordenador-Geral",
+      "cargo": "Coordenadora-Geral",
       "instituicao": "Ministério",
       "area_atuacao": "gestao_pessoas",
       "tempo_no_cargo": "3 anos",
@@ -4142,7 +4142,7 @@
       "setor": "privado",
       "nivel_hierarquico": "estrategico",
       "idade": 45,
-      "genero": "masculino",
+      "genero": "feminino",
       "formacao_academica": [
         "Publicidade (ESPM)",
         "MBA em Marketing (Kellogg)",
@@ -4987,7 +4987,7 @@
         "Graduação em Administração",
         "MBA em Gestão"
       ],
-      "cargo": "Diretor-Presidente",
+      "cargo": "Diretora-Presidente",
       "instituicao": "Empresa de Tecnologia",
       "area_atuacao": "tecnologia_informacao",
       "tempo_no_cargo": "5 anos",
@@ -5407,7 +5407,7 @@
         "Graduação em Administração",
         "MBA em Gestão"
       ],
-      "cargo": "Diretor-Presidente",
+      "cargo": "Diretora-Presidente",
       "instituicao": "Empresa de Tecnologia",
       "area_atuacao": "tecnologia_informacao",
       "tempo_no_cargo": "5 anos",

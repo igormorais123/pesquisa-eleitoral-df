@@ -7,7 +7,6 @@ import {
   Users,
   MessageSquare,
   BarChart3,
-  Settings,
   Vote,
   Home,
   FileText,
@@ -122,12 +121,6 @@ const menuItems = [
     icone: History,
     descricao: 'Pesquisas anteriores',
   },
-  {
-    titulo: 'Configurações',
-    href: '/configuracoes',
-    icone: Settings,
-    descricao: 'Ajustes do sistema',
-  },
 ];
 
 const acoesRapidas = [
@@ -137,14 +130,9 @@ const acoesRapidas = [
     icone: Upload,
   },
   {
-    titulo: 'Gerar Eleitores',
+    titulo: 'Gerar Agentes',
     href: '/eleitores/gerar',
     icone: Sparkles,
-  },
-  {
-    titulo: 'Nova Entrevista',
-    href: '/entrevistas/nova',
-    icone: FileText,
   },
 ];
 

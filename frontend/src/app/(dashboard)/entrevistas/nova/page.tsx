@@ -23,11 +23,23 @@ import {
   Briefcase,
   FileText,
   Sparkles,
+  Bot,
+  Zap,
+  DollarSign,
+  Info,
+  ExternalLink,
 } from 'lucide-react';
 import { TemplateSelectorAPI } from '@/components/templates';
 import { TemplateCompleto, PerguntaTemplate as PerguntaTemplateType } from '@/types';
 import { useEleitores } from '@/hooks/useEleitores';
 import { useEntrevistasStore } from '@/stores/entrevistas-store';
+import {
+  useModelosIAStore,
+  CATALOGO_MODELOS,
+  estimarCustoEntrevistas,
+  usdParaBrl,
+  type ModeloIA,
+} from '@/stores/modelos-ia-store';
 import { cn, formatarMoeda, formatarNumero } from '@/lib/utils';
 import type { Pergunta, TipoPergunta } from '@/types';
 
@@ -84,6 +96,29 @@ export default function PaginaNovaEntrevista() {
   ]);
   const [mostrarFiltros, setMostrarFiltros] = useState(false);
   const [mostrarTemplates, setMostrarTemplates] = useState(false);
+  const [modeloSelecionadoId, setModeloSelecionadoId] = useState<string>('');
+  const [mostrarSeletorIA, setMostrarSeletorIA] = useState(false);
+
+  // Store de modelos de IA
+  const { configuracaoTarefas, getModeloParaTarefa, chavesAPI } = useModelosIAStore();
+
+  // Modelo padrão da configuração de entrevistas ou o primeiro disponível
+  const modeloPadrao = getModeloParaTarefa('entrevistas');
+  const modeloSelecionado: ModeloIA | undefined = modeloSelecionadoId
+    ? CATALOGO_MODELOS.find(m => m.id === modeloSelecionadoId)
+    : modeloPadrao;
+
+  // Inicializar o modelo selecionado com o padrão
+  useState(() => {
+    if (!modeloSelecionadoId && modeloPadrao) {
+      setModeloSelecionadoId(modeloPadrao.id);
+    }
+  });
+
+  // Modelos recomendados para entrevistas (rápidos e econômicos)
+  const modelosRecomendados = CATALOGO_MODELOS.filter(m =>
+    m.recomendadoPara.includes('entrevistas')
+  ).sort((a, b) => (a.precoInput + a.precoOutput) - (b.precoInput + b.precoOutput));
 
   const {
     eleitoresFiltrados,
@@ -167,8 +202,21 @@ export default function PaginaNovaEntrevista() {
     setMostrarTemplates(false);
   }, []);
 
-  // Calcular custo estimado
-  const custoEstimado = eleitoresSelecionados.length * perguntas.length * 0.15; // R$ 0.15 por resposta (média)
+  // Calcular custo estimado com base no modelo selecionado
+  const custoEstimadoInfo = modeloSelecionado
+    ? estimarCustoEntrevistas(
+        modeloSelecionado,
+        eleitoresSelecionados.length || 1,
+        perguntas.length || 1,
+        800,  // tokens input por pergunta (contexto + persona + pergunta)
+        500   // tokens output por pergunta (resposta)
+      )
+    : { custoBase: 0, custoComMargem: 0, custoPorEntrevista: 0 };
+
+  // Converter para BRL e aplicar margem extra de segurança (25% total)
+  const custoEstimadoBRL = usdParaBrl(custoEstimadoInfo.custoComMargem);
+  const custoPorRespostaBRL = usdParaBrl(custoEstimadoInfo.custoPorEntrevista);
+  const custoEstimado = custoEstimadoBRL; // Para manter compatibilidade
 
   // Validar etapa
   const validarEtapaPerguntas = () => {
@@ -722,7 +770,147 @@ export default function PaginaNovaEntrevista() {
       {/* Etapa 3: Revisão */}
       {etapa === 'revisao' && (
         <div className="space-y-6">
-          {/* Resumo */}
+          {/* Seleção de Modelo de IA */}
+          <div className="glass-card rounded-xl p-6 bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-primary/20">
+                  <Bot className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">Modelo de IA para Entrevistas</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Escolha qual IA vai responder como os eleitores
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setMostrarSeletorIA(!mostrarSeletorIA)}
+                className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors text-sm"
+              >
+                {mostrarSeletorIA ? 'Fechar' : 'Alterar Modelo'}
+              </button>
+            </div>
+
+            {/* Modelo atual selecionado */}
+            {modeloSelecionado && (
+              <div className="p-4 bg-background/50 rounded-lg border border-border">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className={cn(
+                      'w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-sm',
+                      modeloSelecionado.categoria === 'gratuito' || modeloSelecionado.categoria === 'local'
+                        ? 'bg-green-500'
+                        : modeloSelecionado.categoria === 'economico'
+                        ? 'bg-blue-500'
+                        : modeloSelecionado.categoria === 'balanceado'
+                        ? 'bg-purple-500'
+                        : 'bg-amber-500'
+                    )}>
+                      {modeloSelecionado.provedor.substring(0, 2).toUpperCase()}
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground">{modeloSelecionado.nome}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {modeloSelecionado.descricao}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    {modeloSelecionado.gratuito ? (
+                      <span className="px-3 py-1 bg-green-500/20 text-green-400 text-sm font-medium rounded-full">
+                        🎉 GRÁTIS
+                      </span>
+                    ) : (
+                      <div>
+                        <p className="text-sm font-medium text-foreground">
+                          ${modeloSelecionado.precoInput.toFixed(2)} / ${modeloSelecionado.precoOutput.toFixed(2)}
+                        </p>
+                        <p className="text-xs text-muted-foreground">input / output por 1M tokens</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                {modeloSelecionado.tierGratuito && (
+                  <div className="mt-3 p-2 bg-green-500/10 border border-green-500/20 rounded text-xs text-green-400">
+                    💡 {modeloSelecionado.tierGratuito}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Seletor expandido de modelos */}
+            {mostrarSeletorIA && (
+              <div className="mt-4 space-y-3 max-h-80 overflow-y-auto">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
+                  Modelos recomendados para entrevistas (ordenados por preço):
+                </p>
+                {modelosRecomendados.map((modelo) => (
+                  <button
+                    key={modelo.id}
+                    onClick={() => {
+                      setModeloSelecionadoId(modelo.id);
+                      setMostrarSeletorIA(false);
+                    }}
+                    className={cn(
+                      'w-full p-3 rounded-lg border transition-all text-left',
+                      modeloSelecionadoId === modelo.id
+                        ? 'border-primary bg-primary/10'
+                        : 'border-border bg-secondary/30 hover:bg-secondary/50'
+                    )}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className={cn(
+                          'w-8 h-8 rounded flex items-center justify-center text-white text-xs font-bold',
+                          modelo.categoria === 'gratuito' || modelo.categoria === 'local'
+                            ? 'bg-green-500'
+                            : modelo.categoria === 'economico'
+                            ? 'bg-blue-500'
+                            : modelo.categoria === 'balanceado'
+                            ? 'bg-purple-500'
+                            : 'bg-amber-500'
+                        )}>
+                          {modelo.provedor.substring(0, 2).toUpperCase()}
+                        </div>
+                        <div>
+                          <p className="font-medium text-foreground text-sm">{modelo.nome}</p>
+                          <p className="text-xs text-muted-foreground">{modelo.versao}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        {modelo.gratuito ? (
+                          <span className="text-green-400 text-sm font-medium">GRÁTIS</span>
+                        ) : (
+                          <p className="text-sm font-medium text-foreground">
+                            ~R${usdParaBrl(modelo.precoInput + modelo.precoOutput).toFixed(2)}/M
+                          </p>
+                        )}
+                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                          <Zap className={cn(
+                            'w-3 h-3',
+                            modelo.velocidade === 'ultra-rapido' ? 'text-yellow-400' :
+                            modelo.velocidade === 'rapido' ? 'text-green-400' :
+                            modelo.velocidade === 'medio' ? 'text-blue-400' : 'text-gray-400'
+                          )} />
+                          {modelo.velocidade}
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+                <a
+                  href="/configuracoes"
+                  className="flex items-center justify-center gap-2 p-3 text-sm text-primary hover:text-primary/80 transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Configurar mais modelos e chaves de API
+                </a>
+              </div>
+            )}
+          </div>
+
+          {/* Resumo da Entrevista */}
           <div className="glass-card rounded-xl p-6">
             <h2 className="text-lg font-semibold text-foreground mb-6">Resumo da Entrevista</h2>
 
@@ -735,12 +923,33 @@ export default function PaginaNovaEntrevista() {
                 <span className="font-medium text-foreground">{titulo}</span>
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-secondary/50 rounded-lg">
-                <div className="flex items-center gap-3">
+              {/* Perguntas com títulos */}
+              <div className="p-4 bg-secondary/50 rounded-lg">
+                <div className="flex items-center gap-3 mb-3">
                   <MessageSquare className="w-5 h-5 text-primary" />
-                  <span className="text-foreground">Perguntas</span>
+                  <span className="text-foreground font-medium">
+                    {perguntas.length} Perguntas
+                  </span>
                 </div>
-                <span className="font-medium text-foreground">{perguntas.length}</span>
+                <div className="space-y-2 pl-8">
+                  {perguntas.map((p, i) => (
+                    <div key={i} className="flex items-start gap-2 text-sm">
+                      <span className="text-muted-foreground font-mono">{i + 1}.</span>
+                      <span className="text-foreground line-clamp-1">
+                        {p.texto || '(pergunta vazia)'}
+                      </span>
+                      <span className={cn(
+                        'px-2 py-0.5 rounded text-xs ml-auto flex-shrink-0',
+                        p.tipo === 'aberta' ? 'bg-blue-500/20 text-blue-400' :
+                        p.tipo === 'escala' ? 'bg-purple-500/20 text-purple-400' :
+                        p.tipo === 'multipla_escolha' ? 'bg-green-500/20 text-green-400' :
+                        'bg-yellow-500/20 text-yellow-400'
+                      )}>
+                        {p.tipo}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div className="flex items-center justify-between p-4 bg-secondary/50 rounded-lg">
@@ -749,20 +958,79 @@ export default function PaginaNovaEntrevista() {
                   <span className="text-foreground">Respondentes</span>
                 </div>
                 <span className="font-medium text-foreground">
-                  {eleitoresSelecionados.length}
-                </span>
-              </div>
-
-              <div className="flex items-center justify-between p-4 bg-secondary/50 rounded-lg">
-                <div className="flex items-center gap-3">
-                  <Coins className="w-5 h-5 text-yellow-400" />
-                  <span className="text-foreground">Custo Estimado</span>
-                </div>
-                <span className="font-medium text-yellow-400">
-                  {formatarMoeda(custoEstimado)}
+                  {eleitoresSelecionados.length} eleitores
                 </span>
               </div>
             </div>
+          </div>
+
+          {/* Custo Estimado Detalhado */}
+          <div className="glass-card rounded-xl p-6 bg-gradient-to-r from-yellow-500/5 to-amber-500/10 border border-yellow-500/20">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 rounded-lg bg-yellow-500/20">
+                <DollarSign className="w-5 h-5 text-yellow-400" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground">Custo Estimado</h3>
+                <p className="text-sm text-muted-foreground">
+                  Baseado no modelo {modeloSelecionado?.nome || 'selecionado'}
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="p-4 bg-background/50 rounded-lg">
+                <p className="text-sm text-muted-foreground mb-1">Custo Total (c/ margem 20%)</p>
+                <p className={cn(
+                  'text-3xl font-bold',
+                  modeloSelecionado?.gratuito ? 'text-green-400' : 'text-yellow-400'
+                )}>
+                  {modeloSelecionado?.gratuito ? 'GRÁTIS' : formatarMoeda(custoEstimadoBRL)}
+                </p>
+              </div>
+              <div className="p-4 bg-background/50 rounded-lg">
+                <p className="text-sm text-muted-foreground mb-1">Custo por Eleitor</p>
+                <p className={cn(
+                  'text-3xl font-bold',
+                  modeloSelecionado?.gratuito ? 'text-green-400' : 'text-foreground'
+                )}>
+                  {modeloSelecionado?.gratuito ? 'R$0,00' : formatarMoeda(custoPorRespostaBRL)}
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Tokens input estimados:</span>
+                <span className="text-foreground">
+                  ~{formatarNumero((eleitoresSelecionados.length || 1) * (perguntas.length || 1) * 800)}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Tokens output estimados:</span>
+                <span className="text-foreground">
+                  ~{formatarNumero((eleitoresSelecionados.length || 1) * (perguntas.length || 1) * 500)}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Total de chamadas à API:</span>
+                <span className="text-foreground">
+                  {formatarNumero((eleitoresSelecionados.length || 0) * (perguntas.length || 0))}
+                </span>
+              </div>
+            </div>
+
+            {/* Dica de modelo mais barato */}
+            {!modeloSelecionado?.gratuito && (
+              <div className="mt-4 p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
+                <p className="text-sm text-green-400 flex items-center gap-2">
+                  <Info className="w-4 h-4" />
+                  <span>
+                    Dica: Use modelos locais (Ollama) ou gratuitos (OpenRouter) para custo zero!
+                  </span>
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Aviso de custo */}
@@ -772,8 +1040,9 @@ export default function PaginaNovaEntrevista() {
               <p className="font-medium text-yellow-400">Atenção ao custo</p>
               <p className="text-sm text-muted-foreground mt-1">
                 Esta entrevista consumirá aproximadamente{' '}
-                {formatarMoeda(custoEstimado)} em tokens da API Claude.
-                O limite por sessão é de R$ 100,00.
+                <strong className="text-foreground">{formatarMoeda(custoEstimadoBRL)}</strong> usando{' '}
+                <strong className="text-foreground">{modeloSelecionado?.nome}</strong>.
+                O limite por sessão é de R$ 100,00. A margem de segurança de 20% já está incluída.
               </p>
             </div>
           </div>

@@ -1,0 +1,1810 @@
+{
+  "eleitores": {
+    "n": 1000,
+    "variaveis": 31,
+    "correlacoes": [
+      {
+        "vars": [
+          "renda_mensal",
+          "renda_faixa"
+        ],
+        "r": 0.790386481139033,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "qtd_valores",
+          "valor_Família"
+        ],
+        "r": 0.5063949300098244,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "escolaridade",
+          "renda_faixa"
+        ],
+        "r": 0.45677571637344117,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "voto_facultativo"
+        ],
+        "r": 0.32984949057766416,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "renda_mensal",
+          "escolaridade"
+        ],
+        "r": 0.31814411229085393,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "suscept_desinformacao",
+          "escolaridade"
+        ],
+        "r": -0.3180513220009018,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "valor_Trabalho",
+          "valor_Liberdade"
+        ],
+        "r": -0.2894523034403938,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "valor_Segurança",
+          "valor_Fé e religião"
+        ],
+        "r": -0.28210564377388186,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "valor_Segurança",
+          "valor_Igualdade"
+        ],
+        "r": -0.2753814752618281,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "valor_Trabalho",
+          "valor_Fé e religião"
+        ],
+        "r": -0.2699764418623843,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "tempo_deslocamento"
+        ],
+        "r": -0.26820414119952596,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "valor_Trabalho",
+          "valor_Segurança"
+        ],
+        "r": -0.25339581159175184,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "orientacao_politica",
+          "posicao_bolsonaro"
+        ],
+        "r": 0.2460781341429009,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "valor_Fé e religião",
+          "valor_Igualdade"
+        ],
+        "r": -0.23804425789202158,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "suscept_desinformacao",
+          "renda_faixa"
+        ],
+        "r": -0.23773962302840554,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "valor_Fé e religião",
+          "valor_Liberdade"
+        ],
+        "r": -0.23585728518174304,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Corrupção",
+          "preoc_Desemprego"
+        ],
+        "r": -0.23056716335328437,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "valor_Segurança",
+          "valor_Liberdade"
+        ],
+        "r": -0.22525861367502464,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "valor_Trabalho",
+          "valor_Igualdade"
+        ],
+        "r": -0.22340926185024015,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Segurança pública",
+          "preoc_Educação"
+        ],
+        "r": -0.20903199195570354,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "valor_Liberdade",
+          "valor_Igualdade"
+        ],
+        "r": -0.2035720709401716,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "qtd_preocupacoes",
+          "preoc_Economia"
+        ],
+        "r": 0.2026062931122267,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "religiao",
+          "valor_Fé e religião"
+        ],
+        "r": 0.199052269791655,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Segurança pública",
+          "preoc_Desemprego"
+        ],
+        "r": -0.1949853089556482,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "qtd_preocupacoes",
+          "preoc_Corrupção"
+        ],
+        "r": 0.19481560003193285,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "tempo_deslocamento",
+          "voto_facultativo"
+        ],
+        "r": -0.17814558482567805,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "renda_faixa",
+          "preoc_Desemprego"
+        ],
+        "r": -0.17799282360710691,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Economia",
+          "preoc_Educação"
+        ],
+        "r": -0.17558788102364437,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Segurança pública",
+          "preoc_Economia"
+        ],
+        "r": -0.17429031358571528,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "qtd_preocupacoes",
+          "preoc_Segurança pública"
+        ],
+        "r": 0.17328874672271402,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Economia",
+          "preoc_Corrupção"
+        ],
+        "r": -0.17271890298076167,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "qtd_preocupacoes",
+          "preoc_Educação"
+        ],
+        "r": 0.17209819272430987,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Economia",
+          "preoc_Desemprego"
+        ],
+        "r": -0.17081495189937632,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Educação",
+          "preoc_Desemprego"
+        ],
+        "r": -0.16753787635040437,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Corrupção",
+          "preoc_Educação"
+        ],
+        "r": -0.16672247527197182,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Saúde",
+          "preoc_Educação"
+        ],
+        "r": -0.1660656484248345,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "qtd_preocupacoes",
+          "preoc_Saúde"
+        ],
+        "r": 0.16022600849076551,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "qtd_preocupacoes",
+          "preoc_Desemprego"
+        ],
+        "r": 0.1541278109009006,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "renda_mensal",
+          "suscept_desinformacao"
+        ],
+        "r": -0.15054186006044964,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "orientacao_politica",
+          "valor_Igualdade"
+        ],
+        "r": -0.14073940171918373,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Segurança pública",
+          "preoc_Corrupção"
+        ],
+        "r": -0.1387442191572287,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Saúde",
+          "preoc_Corrupção"
+        ],
+        "r": -0.13760362855218566,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "suscept_desinformacao",
+          "interesse_politico"
+        ],
+        "r": -0.12892529940515557,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Saúde",
+          "preoc_Desemprego"
+        ],
+        "r": -0.1289033870586156,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "filhos"
+        ],
+        "r": 0.1156636376030165,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "renda_mensal",
+          "preoc_Desemprego"
+        ],
+        "r": -0.1136873079784201,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "renda_faixa",
+          "interesse_politico"
+        ],
+        "r": 0.1081717848272929,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "preoc_Saúde",
+          "preoc_Economia"
+        ],
+        "r": -0.10301207279877424,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "renda_faixa",
+          "preoc_Segurança pública"
+        ],
+        "r": 0.1028198854425557,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "renda_faixa"
+        ],
+        "r": 0.10218290918085508,
+        "p": 0.05
+      }
+    ]
+  },
+  "parlamentares": {
+    "n": 35,
+    "variaveis": 25,
+    "correlacoes": [
+      {
+        "vars": [
+          "seguidores",
+          "mencoes_midia"
+        ],
+        "r": 0.9884997852308526,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "mencoes_midia",
+          "fake_news"
+        ],
+        "r": 0.9564584642411648,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "seguidores",
+          "fake_news"
+        ],
+        "r": 0.9492563700936593,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "orientacao_politica",
+          "posicao_bolsonaro"
+        ],
+        "r": 0.9422497317602376,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "total_projetos",
+          "projetos_aprovados"
+        ],
+        "r": 0.9409577121385311,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "posicao_bolsonaro",
+          "posicao_lula"
+        ],
+        "r": -0.930516949428764,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "orientacao_politica",
+          "posicao_lula"
+        ],
+        "r": -0.8955634109515592,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_abertura",
+          "orientacao_politica"
+        ],
+        "r": -0.8778343332893781,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_abertura",
+          "posicao_bolsonaro"
+        ],
+        "r": -0.8644724374607762,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "seguidores"
+        ],
+        "r": 0.8410907380676373,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_abertura",
+          "posicao_lula"
+        ],
+        "r": 0.8172753093650327,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "mencoes_midia"
+        ],
+        "r": 0.7902222358109339,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "patrimonio",
+          "gastos_gabinete"
+        ],
+        "r": 0.7741596036412868,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "votos_eleicao",
+          "mencoes_midia"
+        ],
+        "r": 0.7622153355594443,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "votos_eleicao",
+          "gastos_gabinete"
+        ],
+        "r": 0.7618402569908148,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "fake_news"
+        ],
+        "r": 0.7610580087398214,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "votos_eleicao",
+          "seguidores"
+        ],
+        "r": 0.7288080180791692,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "intelig_emocional",
+          "big5_amabilidade"
+        ],
+        "r": 0.7173567678671391,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_abertura",
+          "big5_amabilidade"
+        ],
+        "r": 0.7091357861639692,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_amabilidade",
+          "orientacao_politica"
+        ],
+        "r": -0.6903904658359328,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_amabilidade",
+          "big5_neuroticismo"
+        ],
+        "r": -0.6891129332417686,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_amabilidade",
+          "posicao_bolsonaro"
+        ],
+        "r": -0.6817816267708338,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "tendencia_populismo",
+          "big5_neuroticismo"
+        ],
+        "r": 0.6637602285105847,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "gastos_gabinete",
+          "mencoes_midia"
+        ],
+        "r": 0.663161704711483,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "tendencia_populismo",
+          "fake_news"
+        ],
+        "r": 0.6526888740063895,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "seguidores",
+          "tendencia_populismo"
+        ],
+        "r": 0.6512009949874559,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "total_projetos"
+        ],
+        "r": 0.6342233968633533,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "projetos_aprovados"
+        ],
+        "r": 0.625789483662747,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_amabilidade",
+          "posicao_lula"
+        ],
+        "r": 0.6215082136336803,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "tendencia_populismo",
+          "big5_extroversao"
+        ],
+        "r": 0.6160502795631144,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "gastos_gabinete",
+          "seguidores"
+        ],
+        "r": 0.6122276356293139,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "seguidores",
+          "big5_extroversao"
+        ],
+        "r": 0.6100023003993241,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "mencoes_midia",
+          "tendencia_populismo"
+        ],
+        "r": 0.6065754130630019,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "big5_neuroticismo"
+        ],
+        "r": 0.6036500037957561,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "mencoes_midia",
+          "big5_extroversao"
+        ],
+        "r": 0.5968761014485109,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "votos_eleicao",
+          "evolucao_patrimonial"
+        ],
+        "r": 0.5904242346386515,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "votos_eleicao",
+          "fake_news"
+        ],
+        "r": 0.5903227792759485,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "tendencia_populismo"
+        ],
+        "r": 0.5872707118380937,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_extroversao",
+          "big5_neuroticismo"
+        ],
+        "r": 0.5640243486933971,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "taxa_presenca"
+        ],
+        "r": -0.5628968026822315,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_neuroticismo",
+          "fake_news"
+        ],
+        "r": 0.5563817577591055,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "intelig_emocional",
+          "big5_abertura"
+        ],
+        "r": 0.5526392332833862,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "patrimonio",
+          "projetos_aprovados"
+        ],
+        "r": 0.5520407193186566,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "gastos_gabinete",
+          "fake_news"
+        ],
+        "r": 0.5448056243471656,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_abertura",
+          "big5_neuroticismo"
+        ],
+        "r": -0.5413506568315323,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_neuroticismo",
+          "posicao_bolsonaro"
+        ],
+        "r": 0.5413060936595351,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_extroversao",
+          "fake_news"
+        ],
+        "r": 0.5402927888163572,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "intelig_emocional",
+          "orientacao_politica"
+        ],
+        "r": -0.5376403051281691,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "gastos_gabinete"
+        ],
+        "r": 0.5311793963957682,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "seguidores",
+          "big5_neuroticismo"
+        ],
+        "r": 0.5261201187802267,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "intelig_emocional",
+          "posicao_bolsonaro"
+        ],
+        "r": -0.5250062043624287,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "tendencia_populismo",
+          "big5_amabilidade"
+        ],
+        "r": -0.5146551543277113,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "big5_abertura"
+        ],
+        "r": -0.5111200284568382,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "votos_eleicao",
+          "patrimonio"
+        ],
+        "r": 0.5031631961927825,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "tendencia_populismo",
+          "posicao_bolsonaro"
+        ],
+        "r": 0.5011700840381134,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "intelig_emocional",
+          "big5_neuroticismo"
+        ],
+        "r": -0.5004861054730668,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "nivel_carisma",
+          "big5_extroversao"
+        ],
+        "r": 0.4998880605354588,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "mencoes_midia",
+          "big5_neuroticismo"
+        ],
+        "r": 0.496641948194473,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_neuroticismo",
+          "orientacao_politica"
+        ],
+        "r": 0.4884377077534065,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "gastos_gabinete",
+          "posicao_lula"
+        ],
+        "r": -0.48687235201610196,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "intelig_emocional",
+          "tendencia_populismo"
+        ],
+        "r": -0.4770215403322808,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "mencoes_midia",
+          "genero"
+        ],
+        "r": 0.47520746781986384,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "tendencia_populismo",
+          "posicao_lula"
+        ],
+        "r": -0.4711757089785411,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "taxa_presenca",
+          "gastos_gabinete"
+        ],
+        "r": -0.462390566053727,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "patrimonio",
+          "total_projetos"
+        ],
+        "r": 0.46150994538538703,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "posicao_lula"
+        ],
+        "r": -0.45612676523852663,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "gastos_gabinete"
+        ],
+        "r": 0.45561715532334757,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "projetos_aprovados",
+          "gastos_gabinete"
+        ],
+        "r": 0.4547637878526265,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_amabilidade",
+          "fake_news"
+        ],
+        "r": -0.45413503666419275,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "genero",
+          "fake_news"
+        ],
+        "r": 0.4522670168666453,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "patrimonio",
+          "posicao_lula"
+        ],
+        "r": -0.4506918207555028,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "seguidores",
+          "nivel_carisma"
+        ],
+        "r": 0.45054980711556075,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "seguidores",
+          "genero"
+        ],
+        "r": 0.44562000091919135,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "big5_extroversao"
+        ],
+        "r": 0.44553534584333326,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "posicao_bolsonaro"
+        ],
+        "r": 0.44356195407234,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "total_projetos",
+          "gastos_gabinete"
+        ],
+        "r": 0.4388383036299009,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "mencoes_midia",
+          "nivel_carisma"
+        ],
+        "r": 0.4369500932375882,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "intelig_emocional",
+          "posicao_lula"
+        ],
+        "r": 0.4297207066177001,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "mencoes_midia",
+          "influencia_partido"
+        ],
+        "r": 0.42418110551494226,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "taxa_presenca",
+          "big5_abertura"
+        ],
+        "r": 0.4201654538624853,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_neuroticismo",
+          "posicao_lula"
+        ],
+        "r": -0.4191121904470754,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "tendencia_populismo",
+          "big5_abertura"
+        ],
+        "r": -0.4079658633871928,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "gastos_gabinete",
+          "posicao_bolsonaro"
+        ],
+        "r": 0.4065734521538062,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "patrimonio",
+          "taxa_presenca"
+        ],
+        "r": -0.40485836782611617,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "gastos_gabinete",
+          "influencia_partido"
+        ],
+        "r": 0.4015104532415606,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "projetos_aprovados",
+          "big5_conscienciosidade"
+        ],
+        "r": 0.4008291912980178,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "orientacao_politica"
+        ],
+        "r": 0.39713297022203525,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "taxa_presenca",
+          "posicao_lula"
+        ],
+        "r": 0.3919325042060219,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "votos_eleicao",
+          "genero"
+        ],
+        "r": 0.3910987376969075,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "votos_eleicao",
+          "big5_extroversao"
+        ],
+        "r": 0.38864418820673613,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "influencia_partido",
+          "genero"
+        ],
+        "r": 0.38531659126231266,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "seguidores",
+          "influencia_partido"
+        ],
+        "r": 0.38415483353368196,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_abertura",
+          "fake_news"
+        ],
+        "r": -0.3838051553931985,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "gastos_gabinete",
+          "big5_abertura"
+        ],
+        "r": -0.37883239176533884,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "votos_eleicao",
+          "influencia_partido"
+        ],
+        "r": 0.3771573032590276,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_conscienciosidade",
+          "big5_extroversao"
+        ],
+        "r": -0.3770153638485074,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "nivel_carisma",
+          "big5_conscienciosidade"
+        ],
+        "r": -0.37637716218166123,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "influencia_partido",
+          "fake_news"
+        ],
+        "r": 0.37534212214031204,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "big5_amabilidade"
+        ],
+        "r": -0.3730087363059133,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "patrimonio"
+        ],
+        "r": 0.37300319510606883,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "taxa_presenca",
+          "seguidores"
+        ],
+        "r": -0.36631708466773955,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "posicao_lula",
+          "fake_news"
+        ],
+        "r": -0.3656548190309351,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "nivel_carisma",
+          "fake_news"
+        ],
+        "r": 0.3643262080314642,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "patrimonio",
+          "posicao_bolsonaro"
+        ],
+        "r": 0.36228125308358,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "gastos_gabinete",
+          "orientacao_politica"
+        ],
+        "r": 0.35869386224349864,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "patrimonio",
+          "mencoes_midia"
+        ],
+        "r": 0.3561188062620673,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "seguidores",
+          "big5_abertura"
+        ],
+        "r": -0.35537405691037866,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "intelig_emocional",
+          "big5_conscienciosidade"
+        ],
+        "r": 0.34937641995580937,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "patrimonio",
+          "big5_abertura"
+        ],
+        "r": -0.3474562350433182,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "influencia_partido"
+        ],
+        "r": 0.34362859302798665,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "patrimonio",
+          "orientacao_politica"
+        ],
+        "r": 0.34344716309319623,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "posicao_bolsonaro",
+          "fake_news"
+        ],
+        "r": 0.3412686632839924,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "taxa_presenca",
+          "big5_conscienciosidade"
+        ],
+        "r": 0.3409008075919975,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "gastos_gabinete",
+          "big5_extroversao"
+        ],
+        "r": 0.33933876310977873,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "patrimonio",
+          "influencia_partido"
+        ],
+        "r": 0.33711827552332285,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "mencoes_midia",
+          "big5_abertura"
+        ],
+        "r": -0.33655384482418127,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "tendencia_populismo",
+          "big5_conscienciosidade"
+        ],
+        "r": -0.3363107024335534,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "taxa_presenca",
+          "mencoes_midia"
+        ],
+        "r": -0.3334096416139704,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "nivel_carisma",
+          "tendencia_populismo"
+        ],
+        "r": 0.3320883562375347,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "seguidores",
+          "posicao_lula"
+        ],
+        "r": -0.3299555953571314,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "tendencia_populismo",
+          "orientacao_politica"
+        ],
+        "r": 0.3273312843627873,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "big5_conscienciosidade"
+        ],
+        "r": -0.32677452063950924,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "mencoes_midia",
+          "posicao_lula"
+        ],
+        "r": -0.3197034018884416,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "total_projetos",
+          "big5_conscienciosidade"
+        ],
+        "r": 0.31355318358383427,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "taxa_presenca",
+          "orientacao_politica"
+        ],
+        "r": -0.31319317474900593,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "taxa_presenca",
+          "posicao_bolsonaro"
+        ],
+        "r": -0.3110825661908535,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "evolucao_patrimonial",
+          "nivel_carisma"
+        ],
+        "r": 0.30889737219931407,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "mencoes_midia",
+          "big5_amabilidade"
+        ],
+        "r": -0.307197716275983,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "seguidores",
+          "posicao_bolsonaro"
+        ],
+        "r": 0.30593887711172973,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "patrimonio",
+          "fake_news"
+        ],
+        "r": 0.305624117125699,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "votos_eleicao",
+          "intelig_emocional"
+        ],
+        "r": 0.30475227939177696,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "votos_eleicao",
+          "projetos_aprovados"
+        ],
+        "r": 0.304186631867411,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "big5_extroversao",
+          "genero"
+        ],
+        "r": 0.3023002479012246,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "votos_eleicao",
+          "nivel_carisma"
+        ],
+        "r": 0.301317581360106,
+        "p": 0.05
+      }
+    ]
+  },
+  "gestores": {
+    "n": 180,
+    "variaveis": 10,
+    "correlacoes": [
+      {
+        "vars": [
+          "iad",
+          "podc_planejar"
+        ],
+        "r": 0.945370536514781,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "podc_planejar",
+          "nivel_hierarquico"
+        ],
+        "r": 0.9259895107836552,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "iad",
+          "nivel_hierarquico"
+        ],
+        "r": 0.9204538422135514,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "podc_dirigir",
+          "nivel_hierarquico"
+        ],
+        "r": -0.9025825650423996,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "iad",
+          "podc_organizar"
+        ],
+        "r": 0.885770293520358,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "iad",
+          "podc_dirigir"
+        ],
+        "r": -0.8822350920151362,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "podc_planejar",
+          "podc_dirigir"
+        ],
+        "r": -0.8802090180938594,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "iad",
+          "podc_controlar"
+        ],
+        "r": -0.8280417933261212,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "podc_organizar",
+          "podc_dirigir"
+        ],
+        "r": -0.8107265761774628,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "podc_organizar",
+          "nivel_hierarquico"
+        ],
+        "r": 0.8039924822303623,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "podc_planejar",
+          "podc_controlar"
+        ],
+        "r": -0.7947899728721044,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "podc_organizar",
+          "podc_controlar"
+        ],
+        "r": -0.7889529410835143,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "podc_planejar",
+          "podc_organizar"
+        ],
+        "r": 0.7640199626328325,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "nivel_hierarquico"
+        ],
+        "r": 0.7249026528766139,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "podc_controlar",
+          "nivel_hierarquico"
+        ],
+        "r": -0.707687751323949,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "podc_planejar"
+        ],
+        "r": 0.6734773612399467,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "podc_dirigir"
+        ],
+        "r": -0.6628540995649874,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "iad"
+        ],
+        "r": 0.6362602917050434,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "podc_dirigir",
+          "podc_controlar"
+        ],
+        "r": 0.532275001332222,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "podc_controlar",
+          "setor"
+        ],
+        "r": -0.5235906937099544,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "podc_organizar"
+        ],
+        "r": 0.511076440063096,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "podc_controlar"
+        ],
+        "r": -0.4433647795254458,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "podc_organizar",
+          "setor"
+        ],
+        "r": 0.2784000614903355,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "iad",
+          "setor"
+        ],
+        "r": 0.25833686491594965,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "podc_planejar",
+          "setor"
+        ],
+        "r": 0.19069082077089483,
+        "p": 0.05
+      }
+    ]
+  },
+  "candidatos": {
+    "n": 10,
+    "variaveis": 10,
+    "correlacoes": [
+      {
+        "vars": [
+          "orientacao_politica",
+          "posicao_lula"
+        ],
+        "r": -0.9648218050597179,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "rejeicao",
+          "conhecimento"
+        ],
+        "r": 0.9463447498565943,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "intencao_voto",
+          "prob_candidatura"
+        ],
+        "r": 0.8039605392875714,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "orientacao_politica",
+          "posicao_bolsonaro"
+        ],
+        "r": 0.7568892626614565,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "posicao_bolsonaro",
+          "posicao_lula"
+        ],
+        "r": -0.7155813982969741,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "conhecimento",
+          "posicao_bolsonaro"
+        ],
+        "r": 0.6256821632302894,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "idade",
+          "posicao_bolsonaro"
+        ],
+        "r": 0.607681548611971,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "rejeicao",
+          "posicao_bolsonaro"
+        ],
+        "r": 0.5420385067085474,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "conhecimento",
+          "elegivel"
+        ],
+        "r": -0.5389851550551326,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "rejeicao",
+          "elegivel"
+        ],
+        "r": -0.5258439557884856,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "posicao_lula",
+          "genero"
+        ],
+        "r": -0.48132991492077026,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "intencao_voto",
+          "conhecimento"
+        ],
+        "r": 0.4783649523370603,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "orientacao_politica",
+          "prob_candidatura"
+        ],
+        "r": -0.4497435106610278,
+        "p": 0.05
+      },
+      {
+        "vars": [
+          "genero",
+          "elegivel"
+        ],
+        "r": 0.40824829046386313,
+        "p": 0.05
+      }
+    ]
+  }
+}

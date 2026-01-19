@@ -21,7 +21,14 @@ import {
   AlertTriangle,
   XCircle,
   ExternalLink,
+  Settings,
+  Shield,
+  ChevronDown,
+  CreditCard,
+  HelpCircle,
+  Keyboard,
 } from 'lucide-react';
+import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -298,39 +305,142 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
           {/* Separador */}
           <div className="w-px h-8 bg-border mx-2" />
 
-          {/* Usuário */}
-          <div className="flex items-center gap-3">
-            <div className="hidden sm:block text-right">
-              <p className="text-sm font-medium text-foreground">
-                {usuario?.nome || 'Usuário'}
-              </p>
-              <p className="text-xs text-muted-foreground capitalize">
-                {usuario?.papel || 'admin'}
-              </p>
-            </div>
-
-            <div className="relative group">
-              <button className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors">
-                <User className="w-5 h-5 text-primary" />
-              </button>
-
-              {/* Dropdown */}
-              <div className="absolute right-0 top-full mt-2 w-48 py-2 bg-card border border-border rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                <div className="px-4 py-2 border-b border-border">
-                  <p className="text-sm font-medium text-foreground">
-                    {usuario?.nome || 'Usuário'}
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {usuario?.email || 'email'}
-                  </p>
+          {/* Perfil do Usuário - Estilo SaaS */}
+          <div className="relative group">
+            <button className="flex items-center gap-3 p-1.5 pr-3 rounded-xl hover:bg-secondary transition-colors">
+              {/* Avatar */}
+              <div className="relative">
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground font-semibold text-sm">
+                  {usuario?.nome ? usuario.nome.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase() : 'US'}
                 </div>
+                {/* Status online */}
+                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-card rounded-full" />
+              </div>
+
+              {/* Info */}
+              <div className="hidden sm:block text-left">
+                <p className="text-sm font-medium text-foreground leading-tight">
+                  {usuario?.nome?.split(' ')[0] || 'Usuário'}
+                </p>
+                <p className="text-[10px] text-muted-foreground leading-tight capitalize">
+                  {usuario?.papel === 'admin' ? 'Administrador' : 'Usuário'}
+                </p>
+              </div>
+
+              <ChevronDown className="w-4 h-4 text-muted-foreground hidden sm:block" />
+            </button>
+
+            {/* Dropdown Menu - Estilo SaaS */}
+            <div className="absolute right-0 top-full mt-2 w-72 bg-card border border-border rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+              {/* Header do Perfil */}
+              <div className="p-4 border-b border-border">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground font-bold text-lg">
+                    {usuario?.nome ? usuario.nome.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase() : 'US'}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-foreground truncate">
+                      {usuario?.nome || 'Usuário'}
+                    </p>
+                    <p className="text-xs text-muted-foreground truncate">
+                      {usuario?.email || 'email@exemplo.com'}
+                    </p>
+                    {usuario?.papel === 'admin' && (
+                      <span className="inline-flex items-center gap-1 mt-1 px-2 py-0.5 text-[10px] font-medium bg-primary/20 text-primary rounded-full">
+                        <Shield className="w-3 h-3" />
+                        Administrador
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Opções do Menu */}
+              <div className="py-2">
+                {/* Admin Usuários - apenas para admins */}
+                {usuario?.papel === 'admin' && (
+                  <Link
+                    href="/admin/usuarios"
+                    className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground hover:bg-secondary transition-colors"
+                  >
+                    <Shield className="w-4 h-4 text-red-400" />
+                    <div>
+                      <p className="font-medium">Admin Usuários</p>
+                      <p className="text-[10px] text-muted-foreground">Gerenciar e aprovar contas</p>
+                    </div>
+                  </Link>
+                )}
+
+                <Link
+                  href="/perfil"
+                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground hover:bg-secondary transition-colors"
+                >
+                  <User className="w-4 h-4 text-muted-foreground" />
+                  <div>
+                    <p className="font-medium">Meu Perfil</p>
+                    <p className="text-[10px] text-muted-foreground">Editar informações</p>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/configuracoes"
+                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground hover:bg-secondary transition-colors"
+                >
+                  <Settings className="w-4 h-4 text-muted-foreground" />
+                  <div>
+                    <p className="font-medium">Configurações</p>
+                    <p className="text-[10px] text-muted-foreground">Ajustes do sistema</p>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/assinatura"
+                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground hover:bg-secondary transition-colors"
+                >
+                  <CreditCard className="w-4 h-4 text-muted-foreground" />
+                  <div>
+                    <p className="font-medium">Assinatura</p>
+                    <p className="text-[10px] text-muted-foreground">Plano e faturamento</p>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Separador */}
+              <div className="border-t border-border" />
+
+              {/* Seção de ajuda */}
+              <div className="py-2">
+                <Link
+                  href="/ajuda"
+                  className="flex items-center gap-3 px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                >
+                  <HelpCircle className="w-4 h-4" />
+                  <span>Central de Ajuda</span>
+                </Link>
 
                 <button
+                  onClick={abrirBuscaGlobal}
+                  className="w-full flex items-center justify-between px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <Keyboard className="w-4 h-4" />
+                    <span>Busca Rápida</span>
+                  </div>
+                  <kbd className="text-[10px] px-1.5 py-0.5 bg-secondary border border-border rounded">⌘K</kbd>
+                </button>
+              </div>
+
+              {/* Separador */}
+              <div className="border-t border-border" />
+
+              {/* Logout */}
+              <div className="py-2">
+                <button
                   onClick={logout}
-                  className="w-full flex items-center gap-2 px-4 py-2 text-sm text-destructive hover:bg-destructive/10 transition-colors"
+                  className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-destructive hover:bg-destructive/10 transition-colors"
                 >
                   <LogOut className="w-4 h-4" />
-                  Sair
+                  <span className="font-medium">Sair da conta</span>
                 </button>
               </div>
             </div>
