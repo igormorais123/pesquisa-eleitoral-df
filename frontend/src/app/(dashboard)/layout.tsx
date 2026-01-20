@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { Header } from '@/components/layout/Header';
 import { MobileNav } from '@/components/layout/MobileNav';
 import { useAuthStore } from '@/stores/auth-store';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { cn } from '@/lib/utils';
+import { Globe, Shield, Zap } from 'lucide-react';
 
 export default function DashboardLayout({
   children,
@@ -21,20 +23,17 @@ export default function DashboardLayout({
 
   useEffect(() => {
     const verificar = async () => {
-      // Se já está autenticado e tem token, não precisa verificar API
       if (autenticado && token) {
         setVerificando(false);
         return;
       }
 
-      // Se tem token mas não está marcado como autenticado, verifica
       if (token) {
         const valido = await verificarToken();
         if (!valido) {
           router.push('/login');
         }
       } else {
-        // Sem token, redireciona para login
         router.push('/login');
       }
       setVerificando(false);
@@ -45,11 +44,32 @@ export default function DashboardLayout({
 
   if (verificando) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
-          <p className="text-muted-foreground">Carregando...</p>
-        </div>
+      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center relative overflow-hidden">
+        {/* Background effects */}
+        <div className="absolute inset-0 bg-grid opacity-50" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px]" />
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="flex flex-col items-center gap-6 relative z-10"
+        >
+          <div className="relative">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-blue-500/25">
+              <Globe className="w-8 h-8 text-white" />
+            </div>
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-400 animate-ping opacity-20" />
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-white font-semibold text-lg">Carregando Sistema</p>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+              <div className="w-2 h-2 bg-teal-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+            </div>
+          </div>
+        </motion.div>
       </div>
     );
   }
@@ -59,24 +79,77 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-background bg-pattern">
+    <div className="min-h-screen bg-[#0a0a0f] relative">
+      {/* Background pattern */}
+      <div className="fixed inset-0 bg-grid pointer-events-none" />
+      <div className="fixed top-0 left-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="fixed bottom-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none" />
+
       <Sidebar />
-      {/* Em mobile (< lg): sem margin, conteúdo ocupa tela toda */}
-      {/* Em desktop (lg+): margin-left baseado no estado recolhido */}
+
       <div
         className={cn(
-          'transition-all duration-300',
+          'transition-all duration-300 flex flex-col min-h-screen',
           recolhido ? 'lg:ml-20' : 'lg:ml-64'
         )}
       >
         <Header />
-        {/* Main content - Padding extra no bottom para mobile nav */}
-        <main className="p-4 sm:p-6 bg-gradient-subtle min-h-[calc(100vh-4rem)] pb-20 lg:pb-6">
-          {children}
+
+        {/* Main content */}
+        <main className="flex-1 p-4 sm:p-6 pb-24 lg:pb-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {children}
+          </motion.div>
         </main>
+
+        {/* Footer com créditos */}
+        <footer className="hidden lg:block border-t border-zinc-800/50 bg-zinc-900/30 backdrop-blur-sm relative z-10">
+          <div className="px-6 py-4">
+            <div className="flex items-center justify-between">
+              {/* Créditos */}
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/30 flex items-center justify-center">
+                    <Globe className="w-4 h-4 text-blue-400" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-zinc-500">Produzido por</p>
+                    <p className="text-sm font-semibold text-zinc-300">Igor Morais Vasconcelos</p>
+                  </div>
+                </div>
+                <div className="w-px h-8 bg-zinc-800" />
+                <p className="text-xs text-zinc-500">
+                  © 2024-2026 Todos os direitos reservados
+                </p>
+              </div>
+
+              {/* Status e Info */}
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-4 text-xs text-zinc-500">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
+                    <span>Sistema Online</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Shield className="w-3.5 h-3.5" />
+                    <span>Dados Seguros</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Zap className="w-3.5 h-3.5" />
+                    <span>v2.0.0</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
 
-      {/* Mobile Navigation - Visível apenas em mobile */}
+      {/* Mobile Navigation */}
       <MobileNav />
     </div>
   );

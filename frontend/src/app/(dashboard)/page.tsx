@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   Users,
   MessageSquare,
@@ -27,6 +28,10 @@ import {
   ChevronDown,
   ChevronUp,
   RotateCcw,
+  Sparkles,
+  Zap,
+  Database,
+  Globe,
 } from 'lucide-react';
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
@@ -71,7 +76,7 @@ const CORES = {
   interesse: ['#fca5a5', '#fdba74', '#4ade80'],
 };
 
-// Card de estatística
+// Card de estatística - Design Futurista
 function CardEstatistica({
   titulo,
   valor,
@@ -88,18 +93,26 @@ function CardEstatistica({
   tendencia?: { valor: number; positivo: boolean };
 }) {
   return (
-    <div className="glass-card rounded-xl p-6 hover:shadow-primary-glow transition-all duration-300">
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-sm text-muted-foreground">{titulo}</p>
-          <p className="text-3xl font-bold text-foreground mt-1">{valor}</p>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -2, borderColor: 'rgba(59, 130, 246, 0.3)' }}
+      className="relative bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-6 transition-all duration-300 overflow-hidden group"
+    >
+      {/* Glow effect on hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+      <div className="relative flex items-start justify-between">
+        <div className="space-y-1">
+          <p className="text-sm text-zinc-500 font-medium">{titulo}</p>
+          <p className="text-3xl font-bold font-mono text-white tracking-tight">{valor}</p>
           {subtitulo && (
-            <p className="text-xs text-muted-foreground mt-1">{subtitulo}</p>
+            <p className="text-xs text-zinc-600">{subtitulo}</p>
           )}
           {tendencia && (
             <div
-              className={`flex items-center gap-1 mt-2 text-sm ${
-                tendencia.positivo ? 'text-green-400' : 'text-red-400'
+              className={`flex items-center gap-1 mt-2 text-sm font-medium ${
+                tendencia.positivo ? 'text-emerald-400' : 'text-red-400'
               }`}
             >
               {tendencia.positivo ? (
@@ -111,15 +124,15 @@ function CardEstatistica({
             </div>
           )}
         </div>
-        <div className={`w-12 h-12 rounded-xl ${corIcone} flex items-center justify-center`}>
+        <div className={`w-12 h-12 rounded-xl ${corIcone} flex items-center justify-center shadow-lg`}>
           <Icone className="w-6 h-6 text-white" />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
-// Card de ação rápida
+// Card de ação rápida - Design Futurista
 function CardAcaoRapida({
   titulo,
   descricao,
@@ -134,26 +147,34 @@ function CardAcaoRapida({
   cor: string;
 }) {
   return (
-    <Link
-      href={href}
-      className="glass-card rounded-xl p-5 hover:border-primary/50 transition-all duration-300 group"
-    >
-      <div className="flex items-center gap-4">
-        <div className={`w-12 h-12 rounded-xl ${cor} flex items-center justify-center group-hover:scale-110 transition-transform`}>
-          <Icone className="w-6 h-6 text-white" />
+    <Link href={href}>
+      <motion.div
+        whileHover={{ y: -4, scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="relative bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-5 transition-all duration-300 group cursor-pointer overflow-hidden"
+      >
+        {/* Gradient overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+        <div className="relative flex items-center gap-4">
+          <div className={`w-12 h-12 rounded-xl ${cor} flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg`}>
+            <Icone className="w-6 h-6 text-white" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-semibold text-white group-hover:text-blue-400 transition-colors flex items-center gap-2">
+              {titulo}
+              <Zap className="w-4 h-4 text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </h3>
+            <p className="text-sm text-zinc-500">{descricao}</p>
+          </div>
+          <ExternalLink className="w-4 h-4 text-zinc-600 group-hover:text-blue-400 transition-colors" />
         </div>
-        <div>
-          <h3 className="font-medium text-foreground group-hover:text-primary transition-colors">
-            {titulo}
-          </h3>
-          <p className="text-sm text-muted-foreground">{descricao}</p>
-        </div>
-      </div>
+      </motion.div>
     </Link>
   );
 }
 
-// Componente de Card de Gráfico com link opcional
+// Componente de Card de Gráfico - Design Futurista
 function GraficoCard({
   titulo,
   subtitulo,
@@ -172,26 +193,36 @@ function GraficoCard({
   href?: string;
 }) {
   const content = (
-    <div className={`glass-card rounded-xl p-6 ${className} ${href ? 'cursor-pointer hover:border-primary/50 transition-all group' : ''}`}>
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className={`w-10 h-10 rounded-lg ${corIcone} flex items-center justify-center`}>
-            <Icone className="w-5 h-5 text-white" />
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={href ? { y: -2 } : undefined}
+      className={`relative bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-6 ${className} ${href ? 'cursor-pointer hover:border-blue-500/30 transition-all group' : ''} overflow-hidden`}
+    >
+      {/* Subtle gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/50 to-zinc-950/50 pointer-events-none" />
+
+      <div className="relative">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className={`w-10 h-10 rounded-xl ${corIcone} flex items-center justify-center shadow-lg`}>
+              <Icone className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-white">{titulo}</h3>
+              {subtitulo && <p className="text-xs text-zinc-500">{subtitulo}</p>}
+            </div>
           </div>
-          <div>
-            <h3 className="font-medium text-foreground">{titulo}</h3>
-            {subtitulo && <p className="text-xs text-muted-foreground">{subtitulo}</p>}
-          </div>
+          {href && (
+            <span className="flex items-center gap-1 text-xs text-zinc-500 opacity-0 group-hover:opacity-100 transition-opacity bg-blue-500/10 text-blue-400 px-2.5 py-1 rounded-lg">
+              <ExternalLink className="w-3 h-3" />
+              Ver detalhes
+            </span>
+          )}
         </div>
-        {href && (
-          <span className="flex items-center gap-1 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity bg-primary/10 px-2 py-1 rounded">
-            <ExternalLink className="w-3 h-3" />
-            Ver eleitores
-          </span>
-        )}
+        {children}
       </div>
-      {children}
-    </div>
+    </motion.div>
   );
 
   if (href) {
@@ -360,7 +391,7 @@ const INTERESSES_POLITICOS = [
   { valor: 'alto', rotulo: 'Alto' },
 ];
 
-// Componente de Filtro Rápido para o Dashboard
+// Componente de Filtro Rápido - Design Futurista
 function FiltroRapidoDashboard({
   titulo,
   opcoes,
@@ -388,16 +419,16 @@ function FiltroRapidoDashboard({
     <div className="relative">
       <button
         onClick={() => setAberto(!aberto)}
-        className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all ${
+        className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition-all ${
           selecionados.length > 0
-            ? 'bg-primary text-white'
-            : 'bg-card border border-border hover:border-primary/50'
+            ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+            : 'bg-zinc-800/50 border border-zinc-700/50 text-zinc-400 hover:border-zinc-600 hover:text-zinc-300'
         }`}
       >
         <Icone className="w-4 h-4" />
         <span>{titulo}</span>
         {selecionados.length > 0 && (
-          <span className="bg-white/20 px-1.5 py-0.5 rounded text-xs">
+          <span className="bg-blue-500/30 px-1.5 py-0.5 rounded text-[10px] font-bold">
             {selecionados.length}
           </span>
         )}
@@ -405,21 +436,25 @@ function FiltroRapidoDashboard({
       </button>
 
       {aberto && (
-        <div className="absolute top-full left-0 mt-2 z-50 bg-card border border-border rounded-lg shadow-lg p-2 min-w-[180px]">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="absolute top-full left-0 mt-2 z-50 bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl p-2 min-w-[180px]"
+        >
           {opcoes.map((opcao) => (
             <button
               key={opcao.valor}
               onClick={() => toggleOpcao(opcao.valor)}
-              className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
+              className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
                 selecionados.includes(opcao.valor)
-                  ? 'bg-primary/20 text-primary'
-                  : 'hover:bg-muted'
+                  ? 'bg-blue-500/20 text-blue-400'
+                  : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
               }`}
             >
               {opcao.rotulo}
             </button>
           ))}
-        </div>
+        </motion.div>
       )}
     </div>
   );
