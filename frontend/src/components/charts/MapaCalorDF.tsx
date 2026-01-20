@@ -55,44 +55,44 @@ const PONTOS_REFERENCIA = [
 // ============================================
 
 const CENTROS_CIDADES: Record<string, { x: number; y: number; prioridade: number; nome: string; nomeCompleto?: string }> = {
-  // Regiões principais (prioridade 1) - sempre visíveis
-  'ceilandia': { x: 640, y: 445, prioridade: 1, nome: 'CEILÂNDIA', nomeCompleto: 'Ceilândia - RA IX' },
-  'taguatinga': { x: 695, y: 425, prioridade: 1, nome: 'TAGUATINGA', nomeCompleto: 'Taguatinga - RA III' },
-  'samambaia': { x: 640, y: 510, prioridade: 1, nome: 'SAMAMBAIA', nomeCompleto: 'Samambaia - RA XII' },
-  'plano-piloto': { x: 920, y: 365, prioridade: 1, nome: 'PLANO PILOTO', nomeCompleto: 'Brasília/Plano Piloto - RA I' },
-  'gama': { x: 615, y: 585, prioridade: 1, nome: 'GAMA', nomeCompleto: 'Gama - RA II' },
-  'planaltina': { x: 1180, y: 225, prioridade: 1, nome: 'PLANALTINA', nomeCompleto: 'Planaltina - RA VI' },
+  // Regiões principais (prioridade 1) - sempre visíveis - COORDENADAS AJUSTADAS PARA EVITAR SOBREPOSIÇÃO
+  'ceilandia': { x: 620, y: 430, prioridade: 1, nome: 'Ceilândia', nomeCompleto: 'Ceilândia - RA IX' },
+  'taguatinga': { x: 700, y: 400, prioridade: 1, nome: 'Taguatinga', nomeCompleto: 'Taguatinga - RA III' },
+  'samambaia': { x: 620, y: 520, prioridade: 1, nome: 'Samambaia', nomeCompleto: 'Samambaia - RA XII' },
+  'plano-piloto': { x: 920, y: 380, prioridade: 1, nome: 'Plano Piloto', nomeCompleto: 'Brasília/Plano Piloto - RA I' },
+  'gama': { x: 615, y: 600, prioridade: 1, nome: 'Gama', nomeCompleto: 'Gama - RA II' },
+  'planaltina': { x: 1200, y: 230, prioridade: 1, nome: 'Planaltina', nomeCompleto: 'Planaltina - RA VI' },
 
   // Regiões secundárias (prioridade 2) - visíveis em médio e completo
-  'sobradinho': { x: 1015, y: 220, prioridade: 2, nome: 'SOBRADINHO', nomeCompleto: 'Sobradinho - RA V' },
-  'sobradinho-ii': { x: 1065, y: 260, prioridade: 2, nome: 'SOBRADINHO II', nomeCompleto: 'Sobradinho II - RA XXVI' },
-  'brazlandia': { x: 560, y: 270, prioridade: 2, nome: 'BRAZLÂNDIA', nomeCompleto: 'Brazlândia - RA IV' },
-  'paranoa': { x: 1125, y: 375, prioridade: 2, nome: 'PARANOÁ', nomeCompleto: 'Paranoá - RA VII' },
-  'lago-sul': { x: 990, y: 465, prioridade: 2, nome: 'LAGO SUL', nomeCompleto: 'Lago Sul - RA XVI' },
-  'lago-norte': { x: 1010, y: 315, prioridade: 2, nome: 'LAGO NORTE', nomeCompleto: 'Lago Norte - RA XVIII' },
-  'guara': { x: 810, y: 420, prioridade: 2, nome: 'GUARÁ', nomeCompleto: 'Guará - RA X' },
-  'aguas-claras': { x: 745, y: 438, prioridade: 2, nome: 'ÁGUAS CLARAS', nomeCompleto: 'Águas Claras - RA XX' },
-  'recanto-das-emas': { x: 575, y: 540, prioridade: 2, nome: 'RECANTO DAS EMAS', nomeCompleto: 'Recanto das Emas - RA XV' },
-  'santa-maria': { x: 705, y: 568, prioridade: 2, nome: 'SANTA MARIA', nomeCompleto: 'Santa Maria - RA XIII' },
-  'sao-sebastiao': { x: 1090, y: 468, prioridade: 2, nome: 'SÃO SEBASTIÃO', nomeCompleto: 'São Sebastião - RA XIV' },
-  'sol-nascente-por-do-sol': { x: 595, y: 445, prioridade: 2, nome: 'SOL NASCENTE', nomeCompleto: 'Sol Nascente/Pôr do Sol - RA XXXII' },
+  'sobradinho': { x: 1000, y: 195, prioridade: 2, nome: 'Sobradinho', nomeCompleto: 'Sobradinho - RA V' },
+  'sobradinho-ii': { x: 1100, y: 255, prioridade: 2, nome: 'Sobradinho II', nomeCompleto: 'Sobradinho II - RA XXVI' },
+  'brazlandia': { x: 545, y: 280, prioridade: 2, nome: 'Brazlândia', nomeCompleto: 'Brazlândia - RA IV' },
+  'paranoa': { x: 1150, y: 380, prioridade: 2, nome: 'Paranoá', nomeCompleto: 'Paranoá - RA VII' },
+  'lago-sul': { x: 1000, y: 480, prioridade: 2, nome: 'Lago Sul', nomeCompleto: 'Lago Sul - RA XVI' },
+  'lago-norte': { x: 1030, y: 320, prioridade: 2, nome: 'Lago Norte', nomeCompleto: 'Lago Norte - RA XVIII' },
+  'guara': { x: 800, y: 440, prioridade: 2, nome: 'Guará', nomeCompleto: 'Guará - RA X' },
+  'aguas-claras': { x: 755, y: 455, prioridade: 2, nome: 'Águas Claras', nomeCompleto: 'Águas Claras - RA XX' },
+  'recanto-das-emas': { x: 555, y: 555, prioridade: 2, nome: 'Recanto das Emas', nomeCompleto: 'Recanto das Emas - RA XV' },
+  'santa-maria': { x: 720, y: 580, prioridade: 2, nome: 'Santa Maria', nomeCompleto: 'Santa Maria - RA XIII' },
+  'sao-sebastiao': { x: 1110, y: 490, prioridade: 2, nome: 'São Sebastião', nomeCompleto: 'São Sebastião - RA XIV' },
+  'sol-nascente-por-do-sol': { x: 565, y: 460, prioridade: 2, nome: 'Sol Nascente', nomeCompleto: 'Sol Nascente/Pôr do Sol - RA XXXII' },
 
-  // Regiões terciárias (prioridade 3) - visíveis apenas em completo
-  'nucleo-bandeirante': { x: 850, y: 448, prioridade: 3, nome: 'N. BANDEIRANTE', nomeCompleto: 'Núcleo Bandeirante - RA VIII' },
-  'riacho-fundo': { x: 778, y: 472, prioridade: 3, nome: 'R. FUNDO', nomeCompleto: 'Riacho Fundo - RA XVII' },
-  'riacho-fundo-ii': { x: 748, y: 498, prioridade: 3, nome: 'R. FUNDO II', nomeCompleto: 'Riacho Fundo II - RA XXI' },
-  'candangolandia': { x: 870, y: 438, prioridade: 3, nome: 'CANDANGOLÂNDIA', nomeCompleto: 'Candangolândia - RA XIX' },
-  'cruzeiro': { x: 875, y: 398, prioridade: 3, nome: 'CRUZEIRO', nomeCompleto: 'Cruzeiro - RA XI' },
-  'sudoeste-octogonal': { x: 862, y: 382, prioridade: 3, nome: 'SUDOESTE', nomeCompleto: 'Sudoeste/Octogonal - RA XXII' },
-  'jardim-botanico': { x: 1050, y: 495, prioridade: 3, nome: 'JD. BOTÂNICO', nomeCompleto: 'Jardim Botânico - RA XXVII' },
-  'vicente-pires': { x: 768, y: 412, prioridade: 3, nome: 'V. PIRES', nomeCompleto: 'Vicente Pires - RA XXX' },
-  'itapoa': { x: 1150, y: 322, prioridade: 3, nome: 'ITAPOÃ', nomeCompleto: 'Itapoã - RA XXVIII' },
-  'varjao': { x: 1022, y: 305, prioridade: 3, nome: 'VARJÃO', nomeCompleto: 'Varjão - RA XXIII' },
-  'fercal': { x: 1050, y: 172, prioridade: 3, nome: 'FERCAL', nomeCompleto: 'Fercal - RA XXXI' },
-  'arniqueira': { x: 718, y: 452, prioridade: 3, nome: 'ARNIQUEIRA', nomeCompleto: 'Arniqueira - RA XXXIII' },
-  'park-way': { x: 902, y: 482, prioridade: 3, nome: 'PARK WAY', nomeCompleto: 'Park Way - RA XXIV' },
-  'scia-estrutural': { x: 832, y: 372, prioridade: 3, nome: 'ESTRUTURAL', nomeCompleto: 'SCIA/Estrutural - RA XXV' },
-  'sia': { x: 828, y: 402, prioridade: 3, nome: 'SIA', nomeCompleto: 'SIA - RA XXIX' },
+  // Regiões terciárias (prioridade 3) - visíveis apenas em completo - POSIÇÕES AJUSTADAS
+  'nucleo-bandeirante': { x: 855, y: 465, prioridade: 3, nome: 'N.Bandeirante', nomeCompleto: 'Núcleo Bandeirante - RA VIII' },
+  'riacho-fundo': { x: 765, y: 490, prioridade: 3, nome: 'R.Fundo', nomeCompleto: 'Riacho Fundo - RA XVII' },
+  'riacho-fundo-ii': { x: 715, y: 515, prioridade: 3, nome: 'R.Fundo II', nomeCompleto: 'Riacho Fundo II - RA XXI' },
+  'candangolandia': { x: 870, y: 450, prioridade: 3, nome: 'Candangolândia', nomeCompleto: 'Candangolândia - RA XIX' },
+  'cruzeiro': { x: 865, y: 405, prioridade: 3, nome: 'Cruzeiro', nomeCompleto: 'Cruzeiro - RA XI' },
+  'sudoeste-octogonal': { x: 850, y: 385, prioridade: 3, nome: 'Sudoeste', nomeCompleto: 'Sudoeste/Octogonal - RA XXII' },
+  'jardim-botanico': { x: 1060, y: 515, prioridade: 3, nome: 'Jd.Botânico', nomeCompleto: 'Jardim Botânico - RA XXVII' },
+  'vicente-pires': { x: 755, y: 420, prioridade: 3, nome: 'V.Pires', nomeCompleto: 'Vicente Pires - RA XXX' },
+  'itapoa': { x: 1175, y: 330, prioridade: 3, nome: 'Itapoã', nomeCompleto: 'Itapoã - RA XXVIII' },
+  'varjao': { x: 1055, y: 295, prioridade: 3, nome: 'Varjão', nomeCompleto: 'Varjão - RA XXIII' },
+  'fercal': { x: 1050, y: 165, prioridade: 3, nome: 'Fercal', nomeCompleto: 'Fercal - RA XXXI' },
+  'arniqueira': { x: 710, y: 475, prioridade: 3, nome: 'Arniqueira', nomeCompleto: 'Arniqueira - RA XXXIII' },
+  'park-way': { x: 910, y: 500, prioridade: 3, nome: 'Park Way', nomeCompleto: 'Park Way - RA XXIV' },
+  'scia-estrutural': { x: 815, y: 365, prioridade: 3, nome: 'Estrutural', nomeCompleto: 'SCIA/Estrutural - RA XXV' },
+  'sia': { x: 818, y: 415, prioridade: 3, nome: 'SIA', nomeCompleto: 'SIA - RA XXIX' },
 };
 
 // ============================================
@@ -365,7 +365,7 @@ export function MapaCalorDF({
   mostrarLegenda = true,
   mostrarRotulos = false,
   mostrarLago = true,
-  mostrarPontosReferencia = true,
+  mostrarPontosReferencia = false,
   mostrarNomesCidades = true,
   mostrarContornoPlano = true,
   mostrarBussola = true,
@@ -585,80 +585,22 @@ export function MapaCalorDF({
             </g>
           )}
 
-          {/* Contorno do Plano Piloto (forma icônica de avião) */}
+          {/* Contorno do Plano Piloto (forma icônica de avião) - VERSÃO LIMPA */}
           {mostrarContornoPlano && (
             <g className="pointer-events-none">
-              {/* Forma de avião do Plano Piloto */}
+              {/* Forma de avião do Plano Piloto - apenas contorno sutil */}
               <path
                 d={PLANO_PILOTO_CONTORNO}
-                fill="rgba(99, 102, 241, 0.15)"
+                fill="rgba(99, 102, 241, 0.08)"
                 stroke="#6366f1"
-                strokeWidth="2"
-                strokeDasharray="6,3"
-                opacity="0.75"
+                strokeWidth="1.5"
+                strokeDasharray="4,2"
+                opacity="0.5"
               />
-              {/* Eixo Monumental - linha central */}
-              <path
-                d={EIXO_MONUMENTAL}
-                fill="none"
-                stroke="#6366f1"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                opacity="0.6"
-              />
-              {/* Legenda do Eixo Monumental com fundo */}
-              <rect
-                x="882"
-                y="355"
-                width="60"
-                height="12"
-                rx="2"
-                fill="white"
-                opacity="0.8"
-              />
-              <text
-                x="912"
-                y="364"
-                textAnchor="middle"
-                style={{
-                  fontSize: '7px',
-                  fill: '#6366f1',
-                  fontWeight: 600,
-                }}
-              >
-                Eixo Monumental
-              </text>
-              {/* Indicação de Asa Norte e Asa Sul */}
-              <text
-                x="875"
-                y="378"
-                textAnchor="middle"
-                style={{
-                  fontSize: '5.5px',
-                  fill: '#6366f1',
-                  fontWeight: 500,
-                  opacity: 0.8,
-                }}
-              >
-                Asa Norte
-              </text>
-              <text
-                x="875"
-                y="395"
-                textAnchor="middle"
-                style={{
-                  fontSize: '5.5px',
-                  fill: '#6366f1',
-                  fontWeight: 500,
-                  opacity: 0.8,
-                }}
-              >
-                Asa Sul
-              </text>
             </g>
           )}
 
-          {/* Nomes das principais cidades - melhorado para maior legibilidade */}
+          {/* Nomes das cidades - VERSÃO LIMPA SEM SOBREPOSIÇÃO */}
           {mostrarNomesCidades && (
             <g className="pointer-events-none">
               {Object.entries(CENTROS_CIDADES)
@@ -669,71 +611,40 @@ export function MapaCalorDF({
                 )
                 .map(([id, info]) => {
                   const isHovered = regiaoHover === id;
-                  // Tamanhos de fonte maiores para melhor legibilidade
-                  const fontSize = info.prioridade === 1 ? '13px' : info.prioridade === 2 ? '10px' : '8px';
-                  const fontWeight = info.prioridade === 1 ? 800 : info.prioridade === 2 ? 700 : 600;
-                  const dotRadius = info.prioridade === 1 ? 4 : info.prioridade === 2 ? 3 : 2.5;
-                  const dotOffset = info.prioridade === 1 ? 14 : info.prioridade === 2 ? 11 : 9;
+                  // Fonte única e limpa para todas as regiões
+                  const fontSize = info.prioridade === 1 ? '11px' : info.prioridade === 2 ? '9px' : '7px';
+                  const fontWeight = 600;
 
                   return (
                     <g key={`label-${id}`}>
-                      {/* Ponto marcador da cidade */}
-                      <circle
-                        cx={info.x}
-                        cy={info.y - dotOffset}
-                        r={dotRadius}
-                        fill={isHovered ? '#dc2626' : info.prioridade === 1 ? '#1e40af' : '#374151'}
-                        stroke="white"
-                        strokeWidth="1.5"
-                        style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))' }}
-                      />
-
-                      {/* Fundo do texto (retângulo arredondado para legibilidade máxima) */}
-                      {info.prioridade <= 2 && (
-                        <rect
-                          x={info.x - (info.nome.length * (info.prioridade === 1 ? 4 : 3.2))}
-                          y={info.y - 2}
-                          width={info.nome.length * (info.prioridade === 1 ? 8 : 6.4)}
-                          height={info.prioridade === 1 ? 16 : 13}
-                          rx="3"
-                          fill="white"
-                          opacity="0.9"
-                          style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.15))' }}
-                        />
-                      )}
-
-                      {/* Contorno branco do texto para prioridade 3 */}
-                      {info.prioridade === 3 && (
-                        <text
-                          x={info.x}
-                          y={info.y}
-                          textAnchor="middle"
-                          dominantBaseline="hanging"
-                          style={{
-                            fontSize,
-                            fontWeight,
-                            fill: 'white',
-                            stroke: 'white',
-                            strokeWidth: 5,
-                            paintOrder: 'stroke',
-                          }}
-                        >
-                          {info.nome}
-                        </text>
-                      )}
-
+                      {/* Stroke branco para legibilidade */}
+                      <text
+                        x={info.x}
+                        y={info.y}
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        style={{
+                          fontSize,
+                          fontWeight,
+                          fill: 'white',
+                          stroke: 'white',
+                          strokeWidth: 3,
+                          strokeLinejoin: 'round',
+                          paintOrder: 'stroke',
+                        }}
+                      >
+                        {info.nome}
+                      </text>
                       {/* Texto principal */}
                       <text
                         x={info.x}
                         y={info.y}
                         textAnchor="middle"
-                        dominantBaseline="hanging"
+                        dominantBaseline="middle"
                         style={{
                           fontSize,
                           fontWeight,
-                          fill: isHovered ? '#dc2626' : info.prioridade === 1 ? '#1e3a8a' : '#1f2937',
-                          letterSpacing: info.prioridade === 1 ? '0.5px' : '0px',
-                          filter: isHovered ? 'url(#glow)' : 'none',
+                          fill: isHovered ? '#dc2626' : '#1e3a8a',
                         }}
                       >
                         {info.nome}
