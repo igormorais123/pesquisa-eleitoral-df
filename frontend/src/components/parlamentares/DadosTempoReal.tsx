@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import {
   RefreshCw,
   Vote,
@@ -235,10 +236,13 @@ export function DadosTempoReal({ className }: DadosTempoRealProps) {
                   className="flex items-center gap-3 p-2 bg-secondary/50 rounded-lg"
                 >
                   {dep.urlFoto && (
-                    <img
+                    <Image
                       src={dep.urlFoto}
                       alt={dep.nome}
+                      width={40}
+                      height={40}
                       className="w-10 h-10 rounded-full object-cover"
+                      unoptimized
                     />
                   )}
                   <div className="flex-1 min-w-0">
@@ -297,10 +301,13 @@ export function DadosTempoReal({ className }: DadosTempoRealProps) {
                     className="flex items-center gap-3 p-2 bg-secondary/50 rounded-lg"
                   >
                     {sen.IdentificacaoParlamentar?.UrlFotoParlamentar && (
-                      <img
+                      <Image
                         src={sen.IdentificacaoParlamentar.UrlFotoParlamentar}
                         alt={sen.IdentificacaoParlamentar.NomeParlamentar}
+                        width={40}
+                        height={40}
                         className="w-10 h-10 rounded-full object-cover"
+                        unoptimized
                       />
                     )}
                     <div className="flex-1 min-w-0">

@@ -6,6 +6,7 @@
  * Exibe informações resumidas de um candidato em formato de card.
  */
 
+import Image from 'next/image';
 import { Candidato } from '@/types';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -80,10 +81,13 @@ export function CandidatoCard({
           {/* Foto ou Avatar */}
           <div className="flex-shrink-0">
             {candidato.foto_url ? (
-              <img
+              <Image
                 src={candidato.foto_url}
                 alt={candidato.nome_urna}
+                width={64}
+                height={64}
                 className="w-16 h-16 rounded-full object-cover border-2 border-gray-200"
+                unoptimized
               />
             ) : (
               <div

@@ -7,6 +7,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import {
   CargoPretendido,
   Candidato,
@@ -283,10 +284,13 @@ export function SimuladorCenario({ onResultado }: SimuladorCenarioProps) {
 
                       {/* Foto ou Avatar */}
                       {candidato.foto_url ? (
-                        <img
+                        <Image
                           src={candidato.foto_url}
                           alt={candidato.nome_urna}
+                          width={40}
+                          height={40}
                           className="w-10 h-10 rounded-full object-cover"
+                          unoptimized
                         />
                       ) : (
                         <div

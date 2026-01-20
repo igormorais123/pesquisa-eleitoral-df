@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { toast } from 'sonner';
 import {
   Users,
@@ -339,10 +340,13 @@ export default function AdminUsuariosPage() {
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
                         {usuario.avatar_url ? (
-                          <img
+                          <Image
                             src={usuario.avatar_url}
                             alt={usuario.nome}
+                            width={40}
+                            height={40}
                             className="w-10 h-10 rounded-full"
+                            unoptimized
                           />
                         ) : (
                           <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">

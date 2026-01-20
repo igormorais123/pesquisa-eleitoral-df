@@ -73,11 +73,20 @@
 
 ## PRÓXIMOS PASSOS
 
-1. **URGENTE:** Corrigir erro de build em `/mapa/page.tsx`
-2. Corrigir warnings de hooks (adicionar dependências ou usar eslint-disable)
-3. Substituir `<img>` por `<Image />` do Next.js
-4. Testar todas as rotas do dashboard
-5. Verificar integração com backend
+1. ~~**URGENTE:** Corrigir erro de build em `/mapa/page.tsx`~~ ✅ FEITO
+2. ~~Corrigir warnings críticos de hooks~~ ✅ FEITO (principais páginas)
+3. Substituir `<img>` por `<Image />` do Next.js (6 arquivos)
+4. Corrigir warnings restantes em componentes de Charts (40+ warnings)
+5. Testar todas as rotas do dashboard
+6. Verificar integração com backend
+
+## STATUS ATUAL
+
+- **Build:** ✅ Passando
+- **Dev Server:** ✅ Funcionando (localhost:3000)
+- **Páginas verificadas:** 36 páginas encontradas
+- **Dados:** ✅ Arquivos JSON de eleitores/candidatos presentes
+- **Navegação:** ✅ Sidebar com 14 itens de menu principais
 
 ---
 

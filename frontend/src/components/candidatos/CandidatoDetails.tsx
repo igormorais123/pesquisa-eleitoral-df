@@ -6,6 +6,7 @@
  * Modal com informações completas do candidato.
  */
 
+import Image from 'next/image';
 import { Candidato } from '@/types';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -120,11 +121,14 @@ export function CandidatoDetails({
             {/* Foto */}
             <div className="flex-shrink-0">
               {candidato.foto_url ? (
-                <img
+                <Image
                   src={candidato.foto_url}
                   alt={candidato.nome_urna}
+                  width={128}
+                  height={128}
                   className="w-32 h-32 rounded-lg object-cover border-4"
                   style={{ borderColor: candidato.cor_campanha || '#E5E7EB' }}
+                  unoptimized
                 />
               ) : (
                 <div
