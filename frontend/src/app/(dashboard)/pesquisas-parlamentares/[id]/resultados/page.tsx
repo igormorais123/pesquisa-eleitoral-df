@@ -89,6 +89,7 @@ export default function PaginaResultadosParlamentares() {
 
   useEffect(() => {
     carregarDados();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pesquisaId]);
 
   async function carregarDados() {

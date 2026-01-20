@@ -126,7 +126,6 @@ type TipoDados =
   | 'densidade_demografica'
   | 'cluster_socioeconomico';
 type EscalaCor = 'azul' | 'verde_vermelho' | 'azul_vermelho' | 'quantidade';
-type NivelDetalhe = 'minimo' | 'medio' | 'completo';
 
 // População por RA para dados de quantidade de eleitores
 const POPULACAO_RA: Record<string, number> = {
@@ -313,11 +312,8 @@ export default function MapaPage() {
   const router = useRouter();
   const [tipoDados, setTipoDados] = useState<TipoDados>('intencao_voto');
   const [escalaCor, setEscalaCor] = useState<EscalaCor>('azul');
-  const [nivelDetalhe, setNivelDetalhe] = useState<NivelDetalhe>('completo');
   const [mostrarLago, setMostrarLago] = useState(true);
   const [mostrarNomes, setMostrarNomes] = useState(true);
-  const [mostrarReferencias, setMostrarReferencias] = useState(true);
-  const [mostrarContornoPlano, setMostrarContornoPlano] = useState(true);
   const [dadosMapa, setDadosMapa] = useState<DadoRegiao[]>([]);
   const [carregando, setCarregando] = useState(false);
   const [regiaoSelecionada, setRegiaoSelecionada] = useState<string | null>(null);
@@ -377,6 +373,7 @@ export default function MapaPage() {
   // Carregar dados iniciais
   useEffect(() => {
     carregarDados();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tipoDados]);
 
   // Handler para clique na região
@@ -544,20 +541,7 @@ export default function MapaPage() {
               </Select>
             </div>
 
-            <div className="space-y-1">
-              <Label>Nível de Detalhe</Label>
-              <Select value={nivelDetalhe} onValueChange={(v) => setNivelDetalhe(v as NivelDetalhe)}>
-                <SelectTrigger className="w-36">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="minimo">Mínimo</SelectItem>
-                  <SelectItem value="medio">Médio</SelectItem>
-                  <SelectItem value="completo">Completo</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
+                      </div>
 
           {/* Toggles de visualização */}
           <div className="flex flex-wrap items-center gap-3 mt-4 pt-4 border-t">
@@ -572,31 +556,13 @@ export default function MapaPage() {
               🌊 Lago Paranoá
             </button>
             <button
-              onClick={() => setMostrarContornoPlano(!mostrarContornoPlano)}
-              className={cn(
-                "px-3 py-1.5 rounded-full text-sm font-medium transition-colors",
-                mostrarContornoPlano ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300" : "bg-muted text-muted-foreground"
-              )}
-            >
-              ✈️ Plano Piloto
-            </button>
-            <button
               onClick={() => setMostrarNomes(!mostrarNomes)}
               className={cn(
                 "px-3 py-1.5 rounded-full text-sm font-medium transition-colors",
                 mostrarNomes ? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300" : "bg-muted text-muted-foreground"
               )}
             >
-              🏷️ Nomes das Cidades
-            </button>
-            <button
-              onClick={() => setMostrarReferencias(!mostrarReferencias)}
-              className={cn(
-                "px-3 py-1.5 rounded-full text-sm font-medium transition-colors",
-                mostrarReferencias ? "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300" : "bg-muted text-muted-foreground"
-              )}
-            >
-              📍 Pontos de Referência
+              🏷️ Nomes das RAs
             </button>
           </div>
         </CardContent>
@@ -660,10 +626,7 @@ export default function MapaPage() {
         onRegiaoClick={handleRegiaoClick}
         formatarValor={getFormatarValor()}
         mostrarLago={mostrarLago}
-        mostrarContornoPlano={mostrarContornoPlano}
         mostrarNomesCidades={mostrarNomes}
-        mostrarPontosReferencia={mostrarReferencias}
-        nivelDetalhe={nivelDetalhe}
       />
 
       {/* Detalhes da Região Selecionada */}

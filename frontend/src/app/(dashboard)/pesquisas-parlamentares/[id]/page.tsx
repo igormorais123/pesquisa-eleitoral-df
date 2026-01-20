@@ -71,6 +71,7 @@ export default function PaginaDetalhesPesquisaParlamentar() {
 
   useEffect(() => {
     carregarPesquisa();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pesquisaId]);
 
   useEffect(() => {
@@ -79,6 +80,7 @@ export default function PaginaDetalhesPesquisaParlamentar() {
       const interval = setInterval(carregarPesquisa, 3000);
       return () => clearInterval(interval);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pesquisa?.status]);
 
   async function carregarPesquisa() {

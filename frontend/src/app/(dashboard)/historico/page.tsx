@@ -315,6 +315,7 @@ export default function HistoricoPage() {
 
   useEffect(() => {
     carregarPesquisas();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

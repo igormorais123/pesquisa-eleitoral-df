@@ -67,12 +67,9 @@ export default function TesteMapaPage() {
             altura={700}
             onRegiaoClick={(regiao: string) => setRegiaoSelecionada(regiao)}
             mostrarLago={true}
-            mostrarContornoPlano={false}
             mostrarNomesCidades={true}
-            mostrarPontosReferencia={false}
             mostrarBussola={false}
             mostrarEscala={false}
-            nivelDetalhe="medio"
           />
         </div>
 

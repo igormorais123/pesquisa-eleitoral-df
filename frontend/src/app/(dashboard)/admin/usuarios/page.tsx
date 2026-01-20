@@ -81,6 +81,7 @@ export default function AdminUsuariosPage() {
   // Carregar dados
   useEffect(() => {
     carregarDados();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagina, busca, filtroAprovado, filtroPapel]);
 
   useEffect(() => {
