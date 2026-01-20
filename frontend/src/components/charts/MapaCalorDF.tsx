@@ -25,74 +25,44 @@ export interface RegiaoPath {
 }
 
 // ============================================
-// PONTOS DE REFERÊNCIA DO DF (melhorado)
+// CENTROS DAS RAs - POSIÇÕES OTIMIZADAS PARA NÃO SOBREPOR
 // ============================================
 
-const PONTOS_REFERENCIA = [
-  // Pontos principais - sempre visíveis
-  { id: 'congresso', nome: 'Congresso Nacional', x: 940, y: 375, icone: '🏛️', tipo: 'principal' },
-  { id: 'torre-tv', nome: 'Torre de TV', x: 895, y: 388, icone: '📡', tipo: 'principal' },
-  { id: 'aeroporto', nome: 'Aeroporto JK', x: 1100, y: 342, icone: '✈️', tipo: 'principal' },
-
-  // Pontos secundários - visíveis em nível médio e completo
-  { id: 'rodoviaria', nome: 'Rodoviária do Plano Piloto', x: 912, y: 388, icone: '🚌', tipo: 'secundario' },
-  { id: 'catedral', nome: 'Catedral de Brasília', x: 930, y: 375, icone: '⛪', tipo: 'secundario' },
-  { id: 'ponte-jk', nome: 'Ponte JK', x: 985, y: 432, icone: '🌉', tipo: 'secundario' },
-  { id: 'estadio-mane', nome: 'Estádio Mané Garrincha', x: 880, y: 368, icone: '⚽', tipo: 'secundario' },
-  { id: 'palacio-planalto', nome: 'Palácio do Planalto', x: 945, y: 378, icone: '🏛️', tipo: 'secundario' },
-
-  // Pontos terciários - visíveis apenas em nível completo
-  { id: 'unb', nome: 'UnB - Universidade de Brasília', x: 1000, y: 345, icone: '🎓', tipo: 'terciario' },
-  { id: 'shopping-conjunto', nome: 'Conjunto Nacional', x: 905, y: 382, icone: '🛒', tipo: 'terciario' },
-  { id: 'parque-cidade', nome: 'Parque da Cidade', x: 890, y: 405, icone: '🌳', tipo: 'terciario' },
-  { id: 'zoo', nome: 'Zoológico de Brasília', x: 870, y: 430, icone: '🦁', tipo: 'terciario' },
-  { id: 'jk-memorial', nome: 'Memorial JK', x: 885, y: 398, icone: '🏛️', tipo: 'terciario' },
-  { id: 'taguapark', nome: 'Taguapark', x: 680, y: 440, icone: '🛒', tipo: 'terciario' },
-];
-
-// ============================================
-// CENTROS DAS CIDADES (coordenadas ajustadas)
-// ============================================
-
-const CENTROS_CIDADES: Record<string, { x: number; y: number; prioridade: number; nome: string; nomeCompleto?: string }> = {
-  // Regiões principais (prioridade 1) - sempre visíveis - COORDENADAS AJUSTADAS PARA EVITAR SOBREPOSIÇÃO
-  'ceilandia': { x: 620, y: 430, prioridade: 1, nome: 'Ceilândia', nomeCompleto: 'Ceilândia - RA IX' },
-  'taguatinga': { x: 700, y: 400, prioridade: 1, nome: 'Taguatinga', nomeCompleto: 'Taguatinga - RA III' },
-  'samambaia': { x: 620, y: 520, prioridade: 1, nome: 'Samambaia', nomeCompleto: 'Samambaia - RA XII' },
-  'plano-piloto': { x: 920, y: 380, prioridade: 1, nome: 'Plano Piloto', nomeCompleto: 'Brasília/Plano Piloto - RA I' },
-  'gama': { x: 615, y: 600, prioridade: 1, nome: 'Gama', nomeCompleto: 'Gama - RA II' },
-  'planaltina': { x: 1200, y: 230, prioridade: 1, nome: 'Planaltina', nomeCompleto: 'Planaltina - RA VI' },
-
-  // Regiões secundárias (prioridade 2) - visíveis em médio e completo
-  'sobradinho': { x: 1000, y: 195, prioridade: 2, nome: 'Sobradinho', nomeCompleto: 'Sobradinho - RA V' },
-  'sobradinho-ii': { x: 1100, y: 255, prioridade: 2, nome: 'Sobradinho II', nomeCompleto: 'Sobradinho II - RA XXVI' },
-  'brazlandia': { x: 545, y: 280, prioridade: 2, nome: 'Brazlândia', nomeCompleto: 'Brazlândia - RA IV' },
-  'paranoa': { x: 1150, y: 380, prioridade: 2, nome: 'Paranoá', nomeCompleto: 'Paranoá - RA VII' },
-  'lago-sul': { x: 1000, y: 480, prioridade: 2, nome: 'Lago Sul', nomeCompleto: 'Lago Sul - RA XVI' },
-  'lago-norte': { x: 1030, y: 320, prioridade: 2, nome: 'Lago Norte', nomeCompleto: 'Lago Norte - RA XVIII' },
-  'guara': { x: 800, y: 440, prioridade: 2, nome: 'Guará', nomeCompleto: 'Guará - RA X' },
-  'aguas-claras': { x: 755, y: 455, prioridade: 2, nome: 'Águas Claras', nomeCompleto: 'Águas Claras - RA XX' },
-  'recanto-das-emas': { x: 555, y: 555, prioridade: 2, nome: 'Recanto das Emas', nomeCompleto: 'Recanto das Emas - RA XV' },
-  'santa-maria': { x: 720, y: 580, prioridade: 2, nome: 'Santa Maria', nomeCompleto: 'Santa Maria - RA XIII' },
-  'sao-sebastiao': { x: 1110, y: 490, prioridade: 2, nome: 'São Sebastião', nomeCompleto: 'São Sebastião - RA XIV' },
-  'sol-nascente-por-do-sol': { x: 565, y: 460, prioridade: 2, nome: 'Sol Nascente', nomeCompleto: 'Sol Nascente/Pôr do Sol - RA XXXII' },
-
-  // Regiões terciárias (prioridade 3) - visíveis apenas em completo - POSIÇÕES AJUSTADAS
-  'nucleo-bandeirante': { x: 855, y: 465, prioridade: 3, nome: 'N.Bandeirante', nomeCompleto: 'Núcleo Bandeirante - RA VIII' },
-  'riacho-fundo': { x: 765, y: 490, prioridade: 3, nome: 'R.Fundo', nomeCompleto: 'Riacho Fundo - RA XVII' },
-  'riacho-fundo-ii': { x: 715, y: 515, prioridade: 3, nome: 'R.Fundo II', nomeCompleto: 'Riacho Fundo II - RA XXI' },
-  'candangolandia': { x: 870, y: 450, prioridade: 3, nome: 'Candangolândia', nomeCompleto: 'Candangolândia - RA XIX' },
-  'cruzeiro': { x: 865, y: 405, prioridade: 3, nome: 'Cruzeiro', nomeCompleto: 'Cruzeiro - RA XI' },
-  'sudoeste-octogonal': { x: 850, y: 385, prioridade: 3, nome: 'Sudoeste', nomeCompleto: 'Sudoeste/Octogonal - RA XXII' },
-  'jardim-botanico': { x: 1060, y: 515, prioridade: 3, nome: 'Jd.Botânico', nomeCompleto: 'Jardim Botânico - RA XXVII' },
-  'vicente-pires': { x: 755, y: 420, prioridade: 3, nome: 'V.Pires', nomeCompleto: 'Vicente Pires - RA XXX' },
-  'itapoa': { x: 1175, y: 330, prioridade: 3, nome: 'Itapoã', nomeCompleto: 'Itapoã - RA XXVIII' },
-  'varjao': { x: 1055, y: 295, prioridade: 3, nome: 'Varjão', nomeCompleto: 'Varjão - RA XXIII' },
-  'fercal': { x: 1050, y: 165, prioridade: 3, nome: 'Fercal', nomeCompleto: 'Fercal - RA XXXI' },
-  'arniqueira': { x: 710, y: 475, prioridade: 3, nome: 'Arniqueira', nomeCompleto: 'Arniqueira - RA XXXIII' },
-  'park-way': { x: 910, y: 500, prioridade: 3, nome: 'Park Way', nomeCompleto: 'Park Way - RA XXIV' },
-  'scia-estrutural': { x: 815, y: 365, prioridade: 3, nome: 'Estrutural', nomeCompleto: 'SCIA/Estrutural - RA XXV' },
-  'sia': { x: 818, y: 415, prioridade: 3, nome: 'SIA', nomeCompleto: 'SIA - RA XXIX' },
+const CENTROS_RAS: Record<string, { x: number; y: number; nome: string }> = {
+  // Regiões grandes - bem espaçadas
+  'plano-piloto': { x: 920, y: 375, nome: 'Plano Piloto' },
+  'ceilandia': { x: 590, y: 420, nome: 'Ceilândia' },
+  'taguatinga': { x: 700, y: 385, nome: 'Taguatinga' },
+  'samambaia': { x: 600, y: 530, nome: 'Samambaia' },
+  'gama': { x: 620, y: 620, nome: 'Gama' },
+  'planaltina': { x: 1220, y: 220, nome: 'Planaltina' },
+  'sobradinho': { x: 1000, y: 180, nome: 'Sobradinho' },
+  'sobradinho-ii': { x: 1120, y: 250, nome: 'Sobradinho II' },
+  'brazlandia': { x: 530, y: 270, nome: 'Brazlândia' },
+  'paranoa': { x: 1170, y: 380, nome: 'Paranoá' },
+  'lago-sul': { x: 1020, y: 500, nome: 'Lago Sul' },
+  'lago-norte': { x: 1050, y: 310, nome: 'Lago Norte' },
+  'guara': { x: 810, y: 450, nome: 'Guará' },
+  'aguas-claras': { x: 745, y: 470, nome: 'Águas Claras' },
+  'recanto-das-emas': { x: 530, y: 560, nome: 'Recanto das Emas' },
+  'santa-maria': { x: 730, y: 600, nome: 'Santa Maria' },
+  'sao-sebastiao': { x: 1130, y: 510, nome: 'São Sebastião' },
+  'sol-nascente-por-do-sol': { x: 540, y: 460, nome: 'Sol Nascente' },
+  'nucleo-bandeirante': { x: 870, y: 480, nome: 'N. Bandeirante' },
+  'riacho-fundo': { x: 780, y: 510, nome: 'Riacho Fundo' },
+  'riacho-fundo-ii': { x: 700, y: 540, nome: 'Riacho Fundo II' },
+  'candangolandia': { x: 880, y: 445, nome: 'Candangolândia' },
+  'cruzeiro': { x: 865, y: 395, nome: 'Cruzeiro' },
+  'sudoeste-octogonal': { x: 840, y: 370, nome: 'Sudoeste' },
+  'jardim-botanico': { x: 1080, y: 540, nome: 'Jd. Botânico' },
+  'vicente-pires': { x: 750, y: 410, nome: 'Vicente Pires' },
+  'itapoa': { x: 1190, y: 330, nome: 'Itapoã' },
+  'varjao': { x: 1070, y: 285, nome: 'Varjão' },
+  'fercal': { x: 1060, y: 155, nome: 'Fercal' },
+  'arniqueira': { x: 680, y: 490, nome: 'Arniqueira' },
+  'park-way': { x: 920, y: 530, nome: 'Park Way' },
+  'scia-estrutural': { x: 800, y: 355, nome: 'Estrutural' },
+  'sia': { x: 820, y: 420, nome: 'SIA' },
 };
 
 // ============================================
@@ -187,10 +157,9 @@ const POPULACAO_RA: Record<string, number> = {
 };
 
 // ============================================
-// LAGO PARANOÁ (path mais detalhado e realista)
+// LAGO PARANOÁ
 // ============================================
 
-// Corpo principal do lago - forma mais realista
 const LAGO_PARANOA_PATH = `
   M 945,345
   C 950,340 965,335 985,338
@@ -207,76 +176,9 @@ const LAGO_PARANOA_PATH = `
   Z
 `;
 
-// Braço Norte do lago - direção ao Lago Norte
-const LAGO_NORTE_BRACO = `
-  M 980,345
-  Q 992,335 1008,330
-  L 1025,334
-  Q 1032,345 1020,358
-  L 998,360
-  Q 985,356 980,345
-  Z
-`;
-
-// Braço Sul do lago - direção ao Lago Sul
-const LAGO_SUL_BRACO = `
-  M 965,445
-  Q 978,458 972,475
-  L 960,488
-  Q 948,482 952,465
-  L 965,445
-  Z
-`;
-
-// Braço Leste - Paranoá
-const LAGO_LESTE_BRACO = `
-  M 1040,395
-  Q 1055,398 1068,405
-  L 1075,418
-  Q 1070,428 1055,425
-  L 1042,412
-  Q 1038,402 1040,395
-  Z
-`;
-
-// Contorno estilizado do Plano Piloto (forma icônica de avião)
-// Representa a forma característica de Brasília vista de cima
-const PLANO_PILOTO_CONTORNO = `
-  M 858,388
-  L 870,385
-  L 905,375
-  L 925,372
-  L 950,373
-  L 958,376
-  L 950,379
-  L 925,378
-  L 905,381
-  L 870,391
-  L 858,388
-  Z
-`;
-
-// Eixo Monumental (linha central do Plano Piloto)
-const EIXO_MONUMENTAL = `
-  M 890,382 L 945,375
-`;
-
 // ============================================
 // FUNÇÕES AUXILIARES
 // ============================================
-
-function calcularCentroPath(pathD: string): { x: number; y: number } {
-  const coords = pathD.match(/\d+/g)?.map(Number) || [];
-  if (coords.length < 4) return { x: 0, y: 0 };
-
-  const xs = coords.filter((_, i) => i % 2 === 0);
-  const ys = coords.filter((_, i) => i % 2 === 1);
-
-  return {
-    x: (Math.min(...xs) + Math.max(...xs)) / 2,
-    y: (Math.min(...ys) + Math.max(...ys)) / 2
-  };
-}
 
 function getCorPorValor(
   valor: number,
@@ -308,8 +210,7 @@ function getCorPorValor(
       return `rgb(${255 - intensity}, ${255 - intensity * 0.6}, 255)`;
 
     case 'quantidade':
-      // Escala especial para quantidade de eleitores (tons de roxo/violeta)
-      const h = 270 - normalizado * 40; // 270 (violeta) -> 230 (azul)
+      const h = 270 - normalizado * 40;
       const s = 50 + normalizado * 40;
       const l = 80 - normalizado * 45;
       return `hsl(${h}, ${s}%, ${l}%)`;
@@ -332,7 +233,7 @@ function getCorTexto(corFundo: string): string {
 }
 
 // ============================================
-// COMPONENTE PRINCIPAL - MAPA DE CALOR DO DF
+// COMPONENTE PRINCIPAL
 // ============================================
 
 interface MapaCalorDFProps {
@@ -345,12 +246,9 @@ interface MapaCalorDFProps {
   mostrarLegenda?: boolean;
   mostrarRotulos?: boolean;
   mostrarLago?: boolean;
-  mostrarPontosReferencia?: boolean;
   mostrarNomesCidades?: boolean;
-  mostrarContornoPlano?: boolean;
   mostrarBussola?: boolean;
   mostrarEscala?: boolean;
-  nivelDetalhe?: 'minimo' | 'medio' | 'completo';
   altura?: number;
   className?: string;
 }
@@ -365,12 +263,9 @@ export function MapaCalorDF({
   mostrarLegenda = true,
   mostrarRotulos = false,
   mostrarLago = true,
-  mostrarPontosReferencia = false,
   mostrarNomesCidades = true,
-  mostrarContornoPlano = true,
   mostrarBussola = true,
   mostrarEscala = true,
-  nivelDetalhe = 'completo',
   altura = 500,
   className
 }: MapaCalorDFProps) {
@@ -393,7 +288,7 @@ export function MapaCalorDF({
     return mapa;
   }, [dados]);
 
-  // Calcular min e max para escala de cores
+  // Calcular min e max
   const { min, max } = useMemo(() => {
     if (dados.length === 0) return { min: 0, max: 100 };
     const valores = dados.map(d => d.valor);
@@ -433,39 +328,15 @@ export function MapaCalorDF({
           preserveAspectRatio="xMidYMid meet"
           style={{ background: 'transparent' }}
         >
-          {/* Definições de filtros e gradientes */}
+          {/* Definições */}
           <defs>
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-              <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
             <linearGradient id="lagoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.7"/>
-              <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.5"/>
-              <stop offset="100%" stopColor="#1d4ed8" stopOpacity="0.4"/>
+              <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.6"/>
+              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.4"/>
             </linearGradient>
-            <filter id="waterEffect">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="0.8"/>
-            </filter>
-            <filter id="textShadow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
-              <feOffset dx="0" dy="1" result="offsetblur"/>
-              <feFlood floodColor="white" floodOpacity="0.8"/>
-              <feComposite in2="offsetblur" operator="in"/>
-              <feMerge>
-                <feMergeNode/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-            <pattern id="waterPattern" patternUnits="userSpaceOnUse" width="10" height="10">
-              <path d="M 0 5 Q 2.5 3 5 5 Q 7.5 7 10 5" stroke="#93c5fd" strokeWidth="0.5" fill="none" opacity="0.3"/>
-            </pattern>
           </defs>
 
-          {/* Renderizar regiões */}
+          {/* Regiões */}
           {PATHS_RAS_DF.map((regiao: PathRA) => {
             const dado = dadosPorId.get(regiao.id);
             const valor = dado?.valor ?? 0;
@@ -473,299 +344,106 @@ export function MapaCalorDF({
               ? getCorPorValor(valor, min, max, escala)
               : 'rgba(156, 163, 175, 0.3)';
             const isHovered = regiaoHover === regiao.id;
-            const centro = calcularCentroPath(regiao.path);
 
             return (
-              <g key={regiao.id}>
-                <path
-                  d={regiao.path}
-                  fill={corFundo}
-                  stroke={isHovered ? '#1e40af' : '#6b7280'}
-                  strokeWidth={isHovered ? 2.5 : 0.5}
-                  className="cursor-pointer transition-all duration-150"
-                  style={{
-                    filter: isHovered ? 'brightness(1.15) drop-shadow(0 3px 6px rgba(0,0,0,0.25))' : 'none'
-                  }}
-                  onMouseMove={(e) => handleMouseMove(e, regiao.id)}
-                  onMouseLeave={() => setRegiaoHover(null)}
-                  onClick={() => onRegiaoClick?.(regiao.nome)}
-                />
-
-                {/* Rótulo da região (valores) */}
-                {mostrarRotulos && dado && (
-                  <text
-                    x={centro.x}
-                    y={centro.y}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    className="pointer-events-none select-none"
-                    style={{
-                      fontSize: '7px',
-                      fontWeight: 700,
-                      fill: getCorTexto(corFundo),
-                      textShadow: '0 1px 2px rgba(255,255,255,0.9)'
-                    }}
-                  >
-                    {formatarValor(dado.valor)}
-                  </text>
-                )}
-              </g>
+              <path
+                key={regiao.id}
+                d={regiao.path}
+                fill={corFundo}
+                stroke={isHovered ? '#1e40af' : '#9ca3af'}
+                strokeWidth={isHovered ? 2 : 0.5}
+                className="cursor-pointer transition-all duration-150"
+                style={{
+                  filter: isHovered ? 'brightness(1.1)' : 'none'
+                }}
+                onMouseMove={(e) => handleMouseMove(e, regiao.id)}
+                onMouseLeave={() => setRegiaoHover(null)}
+                onClick={() => onRegiaoClick?.(regiao.nome)}
+              />
             );
           })}
 
-          {/* Lago Paranoá - desenho mais detalhado */}
+          {/* Lago Paranoá */}
           {mostrarLago && (
-            <g className="pointer-events-none">
-              {/* Lago principal */}
-              <path
-                d={LAGO_PARANOA_PATH}
-                fill="url(#lagoGradient)"
-                stroke="#1d4ed8"
-                strokeWidth="1.5"
-                filter="url(#waterEffect)"
-                opacity="0.92"
-              />
-              {/* Padrão de ondas no lago principal */}
-              <path
-                d={LAGO_PARANOA_PATH}
-                fill="url(#waterPattern)"
-                opacity="0.4"
-              />
-              {/* Braço Norte do lago */}
-              <path
-                d={LAGO_NORTE_BRACO}
-                fill="url(#lagoGradient)"
-                stroke="#1d4ed8"
-                strokeWidth="1"
-                filter="url(#waterEffect)"
-                opacity="0.88"
-              />
-              {/* Braço Sul do lago */}
-              <path
-                d={LAGO_SUL_BRACO}
-                fill="url(#lagoGradient)"
-                stroke="#1d4ed8"
-                strokeWidth="1"
-                filter="url(#waterEffect)"
-                opacity="0.88"
-              />
-              {/* Braço Leste do lago (direção Paranoá) */}
-              <path
-                d={LAGO_LESTE_BRACO}
-                fill="url(#lagoGradient)"
-                stroke="#1d4ed8"
-                strokeWidth="1"
-                filter="url(#waterEffect)"
-                opacity="0.85"
-              />
-              {/* Nome do lago com fundo para legibilidade */}
-              <rect
-                x="950"
-                y="393"
-                width="70"
-                height="14"
-                rx="3"
-                fill="white"
-                opacity="0.75"
-              />
-              <text
-                x="985"
-                y="404"
-                textAnchor="middle"
-                style={{
-                  fontSize: '10px',
-                  fontWeight: 700,
-                  fill: '#1e40af',
-                  fontStyle: 'italic',
-                  letterSpacing: '0.5px',
-                }}
-              >
-                Lago Paranoá
-              </text>
-            </g>
+            <path
+              d={LAGO_PARANOA_PATH}
+              fill="url(#lagoGradient)"
+              stroke="#3b82f6"
+              strokeWidth="1"
+              className="pointer-events-none"
+            />
           )}
 
-          {/* Contorno do Plano Piloto (forma icônica de avião) - VERSÃO LIMPA */}
-          {mostrarContornoPlano && (
-            <g className="pointer-events-none">
-              {/* Forma de avião do Plano Piloto - apenas contorno sutil */}
-              <path
-                d={PLANO_PILOTO_CONTORNO}
-                fill="rgba(99, 102, 241, 0.08)"
-                stroke="#6366f1"
-                strokeWidth="1.5"
-                strokeDasharray="4,2"
-                opacity="0.5"
-              />
-            </g>
-          )}
-
-          {/* Nomes das cidades - VERSÃO LIMPA SEM SOBREPOSIÇÃO */}
+          {/* Nomes das RAs - LIMPO: apenas ponto + nome */}
           {mostrarNomesCidades && (
             <g className="pointer-events-none">
-              {Object.entries(CENTROS_CIDADES)
-                .filter(([, info]) =>
-                  nivelDetalhe === 'completo' ||
-                  (nivelDetalhe === 'medio' && info.prioridade <= 2) ||
-                  (nivelDetalhe === 'minimo' && info.prioridade === 1)
-                )
-                .map(([id, info]) => {
-                  const isHovered = regiaoHover === id;
-                  // Fonte única e limpa para todas as regiões
-                  const fontSize = info.prioridade === 1 ? '11px' : info.prioridade === 2 ? '9px' : '7px';
-                  const fontWeight = 600;
+              {Object.entries(CENTROS_RAS).map(([id, info]) => {
+                const isHovered = regiaoHover === id;
 
-                  return (
-                    <g key={`label-${id}`}>
-                      {/* Stroke branco para legibilidade */}
-                      <text
-                        x={info.x}
-                        y={info.y}
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        style={{
-                          fontSize,
-                          fontWeight,
-                          fill: 'white',
-                          stroke: 'white',
-                          strokeWidth: 3,
-                          strokeLinejoin: 'round',
-                          paintOrder: 'stroke',
-                        }}
-                      >
-                        {info.nome}
-                      </text>
-                      {/* Texto principal */}
-                      <text
-                        x={info.x}
-                        y={info.y}
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        style={{
-                          fontSize,
-                          fontWeight,
-                          fill: isHovered ? '#dc2626' : '#1e3a8a',
-                        }}
-                      >
-                        {info.nome}
-                      </text>
-                    </g>
-                  );
-                })}
+                return (
+                  <g key={`label-${id}`}>
+                    {/* Ponto */}
+                    <circle
+                      cx={info.x}
+                      cy={info.y}
+                      r="3"
+                      fill={isHovered ? '#dc2626' : '#1e3a8a'}
+                    />
+                    {/* Nome com fundo branco */}
+                    <text
+                      x={info.x + 6}
+                      y={info.y + 3}
+                      style={{
+                        fontSize: '8px',
+                        fontWeight: 600,
+                        fill: 'white',
+                        stroke: 'white',
+                        strokeWidth: 3,
+                        strokeLinejoin: 'round',
+                        paintOrder: 'stroke',
+                      }}
+                    >
+                      {info.nome}
+                    </text>
+                    <text
+                      x={info.x + 6}
+                      y={info.y + 3}
+                      style={{
+                        fontSize: '8px',
+                        fontWeight: 600,
+                        fill: isHovered ? '#dc2626' : '#1e3a8a',
+                      }}
+                    >
+                      {info.nome}
+                    </text>
+                  </g>
+                );
+              })}
             </g>
           )}
 
-          {/* Pontos de referência melhorados */}
-          {mostrarPontosReferencia && (
-            <g className="pointer-events-none">
-              {PONTOS_REFERENCIA
-                .filter(p =>
-                  nivelDetalhe === 'completo' ||
-                  (nivelDetalhe === 'medio' && (p.tipo === 'principal' || p.tipo === 'secundario')) ||
-                  (nivelDetalhe === 'minimo' && p.tipo === 'principal')
-                )
-                .map((ponto) => {
-                  const radius = ponto.tipo === 'principal' ? 12 : ponto.tipo === 'secundario' ? 9 : 7;
-                  const fontSize = ponto.tipo === 'principal' ? '12px' : ponto.tipo === 'secundario' ? '9px' : '7px';
-                  const showLabel = nivelDetalhe === 'completo' ||
-                    (nivelDetalhe === 'medio' && ponto.tipo === 'principal');
-
-                  return (
-                    <g key={ponto.id}>
-                      {/* Círculo de fundo com sombra */}
-                      <circle
-                        cx={ponto.x}
-                        cy={ponto.y}
-                        r={radius}
-                        fill="white"
-                        stroke={ponto.tipo === 'principal' ? '#1e40af' : '#6b7280'}
-                        strokeWidth={ponto.tipo === 'principal' ? 1.5 : 0.75}
-                        opacity="0.98"
-                        style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))' }}
-                      />
-                      {/* Emoji/ícone */}
-                      <text
-                        x={ponto.x}
-                        y={ponto.y + 1}
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        style={{ fontSize }}
-                      >
-                        {ponto.icone}
-                      </text>
-                      {/* Nome do ponto de referência */}
-                      {showLabel && (
-                        <>
-                          {/* Fundo para legibilidade */}
-                          <rect
-                            x={ponto.x - (ponto.nome.length * 2.2)}
-                            y={ponto.y + radius + 2}
-                            width={ponto.nome.length * 4.4}
-                            height={10}
-                            rx="2"
-                            fill="white"
-                            opacity="0.85"
-                          />
-                          <text
-                            x={ponto.x}
-                            y={ponto.y + radius + 10}
-                            textAnchor="middle"
-                            style={{
-                              fontSize: '7px',
-                              fill: ponto.tipo === 'principal' ? '#1e3a8a' : '#4b5563',
-                              fontWeight: ponto.tipo === 'principal' ? 600 : 500,
-                            }}
-                          >
-                            {ponto.nome}
-                          </text>
-                        </>
-                      )}
-                    </g>
-                  );
-                })}
-            </g>
-          )}
-
-          {/* Bússola / Indicador Norte */}
+          {/* Bússola */}
           {mostrarBussola && (
             <g transform="translate(1420, 160)" className="pointer-events-none">
-              <circle cx="0" cy="0" r="22" fill="white" stroke="#d1d5db" strokeWidth="1" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.1))' }}/>
-              <circle cx="0" cy="0" r="18" fill="none" stroke="#e5e7eb" strokeWidth="0.5"/>
-              {/* Seta Norte */}
-              <polygon points="0,-14 -4,4 0,0 4,4" fill="#dc2626"/>
-              {/* Seta Sul */}
-              <polygon points="0,14 -4,-4 0,0 4,-4" fill="#9ca3af"/>
-              {/* Letras cardeais */}
-              <text x="0" y="-6" textAnchor="middle" style={{ fontSize: '7px', fontWeight: 700, fill: '#1f2937' }}>N</text>
-              <text x="0" y="11" textAnchor="middle" style={{ fontSize: '5px', fontWeight: 500, fill: '#9ca3af' }}>S</text>
-              <text x="11" y="2" textAnchor="middle" style={{ fontSize: '5px', fontWeight: 500, fill: '#9ca3af' }}>L</text>
-              <text x="-11" y="2" textAnchor="middle" style={{ fontSize: '5px', fontWeight: 500, fill: '#9ca3af' }}>O</text>
-              {/* Label */}
-              <text x="0" y="32" textAnchor="middle" style={{ fontSize: '6px', fill: '#6b7280' }}>Bússola</text>
+              <circle cx="0" cy="0" r="18" fill="white" stroke="#d1d5db" strokeWidth="1"/>
+              <polygon points="0,-12 -3,3 0,0 3,3" fill="#dc2626"/>
+              <polygon points="0,12 -3,-3 0,0 3,-3" fill="#9ca3af"/>
+              <text x="0" y="-5" textAnchor="middle" style={{ fontSize: '6px', fontWeight: 700, fill: '#1f2937' }}>N</text>
             </g>
           )}
 
-          {/* Escala de distância */}
+          {/* Escala */}
           {mostrarEscala && (
             <g transform="translate(500, 680)" className="pointer-events-none">
-              <rect x="0" y="-2" width="100" height="8" fill="white" rx="2" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.1))' }}/>
-              <rect x="5" y="0" width="90" height="4" fill="#1f2937"/>
-              <rect x="5" y="0" width="30" height="4" fill="white" stroke="#1f2937" strokeWidth="0.5"/>
-              <rect x="35" y="0" width="30" height="4" fill="#1f2937"/>
-              <rect x="65" y="0" width="30" height="4" fill="white" stroke="#1f2937" strokeWidth="0.5"/>
-              <text x="5" y="12" style={{ fontSize: '7px', fill: '#374151', fontWeight: 500 }}>0</text>
-              <text x="35" y="12" textAnchor="middle" style={{ fontSize: '7px', fill: '#374151', fontWeight: 500 }}>10km</text>
-              <text x="65" y="12" textAnchor="middle" style={{ fontSize: '7px', fill: '#374151', fontWeight: 500 }}>20km</text>
-              <text x="95" y="12" textAnchor="end" style={{ fontSize: '7px', fill: '#374151', fontWeight: 500 }}>30km</text>
+              <rect x="0" y="-2" width="80" height="6" fill="white" rx="2"/>
+              <rect x="5" y="0" width="70" height="3" fill="#1f2937"/>
+              <rect x="5" y="0" width="23" height="3" fill="white"/>
+              <rect x="51" y="0" width="24" height="3" fill="white"/>
+              <text x="5" y="10" style={{ fontSize: '6px', fill: '#374151' }}>0</text>
+              <text x="40" y="10" textAnchor="middle" style={{ fontSize: '6px', fill: '#374151' }}>15km</text>
+              <text x="75" y="10" textAnchor="end" style={{ fontSize: '6px', fill: '#374151' }}>30km</text>
             </g>
           )}
-
-          {/* Título do mapa no SVG */}
-          <g transform="translate(490, 140)" className="pointer-events-none">
-            <text style={{ fontSize: '10px', fill: '#6b7280', fontWeight: 500 }}>
-              Distrito Federal - Regiões Administrativas
-            </text>
-          </g>
         </svg>
 
         {/* Tooltip */}
@@ -775,50 +453,39 @@ export function MapaCalorDF({
             style={{
               left: Math.min(Math.max(tooltipPos.x, 100), 300),
               top: Math.max(tooltipPos.y - 10, 80),
-              minWidth: '200px'
+              minWidth: '180px'
             }}
           >
             {(() => {
               const regiao = PATHS_RAS_DF.find((r: PathRA) => r.id === regiaoHover);
               const dado = dadosPorId.get(regiaoHover);
-              const cidadeInfo = CENTROS_CIDADES[regiaoHover];
+              const raInfo = CENTROS_RAS[regiaoHover];
               if (!regiao) return null;
 
               return (
                 <>
-                  <p className="font-bold text-foreground text-lg">{cidadeInfo?.nome || regiao.nome}</p>
+                  <p className="font-bold text-foreground">{raInfo?.nome || regiao.nome}</p>
                   {dado ? (
                     <>
-                      <p className="text-2xl font-bold text-primary mt-1">
+                      <p className="text-xl font-bold text-primary mt-1">
                         {formatarValor(dado.valor)}
                       </p>
                       {dado.variacao !== undefined && (
                         <p className={cn(
-                          "text-sm font-medium mt-1",
+                          "text-sm font-medium",
                           dado.variacao > 0 ? "text-green-600" : dado.variacao < 0 ? "text-red-600" : "text-muted-foreground"
                         )}>
-                          {dado.variacao > 0 ? '↑' : dado.variacao < 0 ? '↓' : '→'} {Math.abs(dado.variacao).toFixed(1)}% vs anterior
+                          {dado.variacao > 0 ? '↑' : dado.variacao < 0 ? '↓' : '→'} {Math.abs(dado.variacao).toFixed(1)}%
                         </p>
-                      )}
-                      {dado.label && (
-                        <p className="text-xs text-muted-foreground mt-1">{dado.label}</p>
                       )}
                     </>
                   ) : (
-                    <p className="text-sm text-muted-foreground">Sem dados disponíveis</p>
+                    <p className="text-sm text-muted-foreground">Sem dados</p>
                   )}
-                  {/* Info de população */}
                   {POPULACAO_RA[regiaoHover] && (
-                    <div className="mt-2 pt-2 border-t border-border">
-                      <p className="text-xs text-muted-foreground flex items-center gap-1">
-                        <span>👥</span>
-                        <span>População: ~{(POPULACAO_RA[regiaoHover]).toLocaleString('pt-BR')} hab.</span>
-                      </p>
-                      <p className="text-xs text-muted-foreground flex items-center gap-1">
-                        <span>🗳️</span>
-                        <span>Eleitores: ~{Math.round(POPULACAO_RA[regiaoHover] * 0.7).toLocaleString('pt-BR')}</span>
-                      </p>
-                    </div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Pop: ~{POPULACAO_RA[regiaoHover].toLocaleString('pt-BR')}
+                    </p>
                   )}
                 </>
               );
@@ -832,12 +499,12 @@ export function MapaCalorDF({
         <div className="mt-4 flex items-center justify-center gap-4">
           <div className="flex items-center gap-2">
             <div
-              className="w-5 h-5 rounded"
+              className="w-4 h-4 rounded"
               style={{ backgroundColor: getCorPorValor(min, min, max, escala) }}
             />
-            <span className="text-sm text-muted-foreground font-medium">{formatarValor(min)}</span>
+            <span className="text-sm text-muted-foreground">{formatarValor(min)}</span>
           </div>
-          <div className="flex-1 h-4 rounded-full max-w-[200px]"
+          <div className="flex-1 h-3 rounded-full max-w-[150px]"
             style={{
               background: escala === 'verde_vermelho'
                 ? 'linear-gradient(to right, rgb(80, 200, 80), rgb(255, 255, 80), rgb(255, 80, 80))'
@@ -850,24 +517,24 @@ export function MapaCalorDF({
           />
           <div className="flex items-center gap-2">
             <div
-              className="w-5 h-5 rounded"
+              className="w-4 h-4 rounded"
               style={{ backgroundColor: getCorPorValor(max, min, max, escala) }}
             />
-            <span className="text-sm text-muted-foreground font-medium">{formatarValor(max)}</span>
+            <span className="text-sm text-muted-foreground">{formatarValor(max)}</span>
           </div>
         </div>
       )}
 
       {/* Rodapé */}
-      <p className="text-center text-xs text-muted-foreground mt-3">
-        Distrito Federal - {PATHS_RAS_DF.length} Regiões Administrativas • Fonte: GDF/CODEPLAN
+      <p className="text-center text-xs text-muted-foreground mt-2">
+        DF - {PATHS_RAS_DF.length} Regiões Administrativas
       </p>
     </div>
   );
 }
 
 // ============================================
-// COMPONENTE DE COMPARAÇÃO (ANTES/DEPOIS)
+// COMPONENTE DE COMPARAÇÃO
 // ============================================
 
 interface MapaComparacaoProps {
@@ -945,7 +612,6 @@ export function MapaMultiplasMetricas({ metricas, className }: MapaMultiplasMetr
 
   return (
     <div className={cn("space-y-4", className)}>
-      {/* Seletor de métrica */}
       <div className="flex flex-wrap gap-2 justify-center">
         {metricas.map((m, i) => (
           <button
@@ -963,7 +629,6 @@ export function MapaMultiplasMetricas({ metricas, className }: MapaMultiplasMetr
         ))}
       </div>
 
-      {/* Mapa da métrica selecionada */}
       <MapaCalorDF
         dados={metricaAtual.dados}
         titulo={metricaAtual.nome}
@@ -975,7 +640,7 @@ export function MapaMultiplasMetricas({ metricas, className }: MapaMultiplasMetr
 }
 
 // ============================================
-// EXPORTAÇÕES LEGADAS (compatibilidade)
+// EXPORTAÇÕES LEGADAS
 // ============================================
 
 export const REGIOES_DF: Record<string, number> = Object.fromEntries(
@@ -984,5 +649,5 @@ export const REGIOES_DF: Record<string, number> = Object.fromEntries(
 
 export const REGIOES_DF_PATHS = PATHS_RAS_DF.map((r: PathRA) => ({
   ...r,
-  centro: calcularCentroPath(r.path)
+  centro: CENTROS_RAS[r.id] || { x: 0, y: 0 }
 }));
