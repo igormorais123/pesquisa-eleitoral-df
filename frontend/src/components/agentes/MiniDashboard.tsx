@@ -63,7 +63,7 @@ function calcularDistribuicao(eleitores: Eleitor[], campo: keyof Eleitor): Recor
 function MiniBar({ valor, max, cor }: { valor: number; max: number; cor: string }) {
   const percentual = max > 0 ? (valor / max) * 100 : 0;
   return (
-    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+    <div className="h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
       <div
         className="h-full rounded-full transition-all duration-500 ease-out"
         style={{ width: `${percentual}%`, backgroundColor: cor }}
@@ -99,7 +99,7 @@ function CircleIndicator({
             fill="none"
             stroke="currentColor"
             strokeWidth="3"
-            className="text-white/5"
+            className="text-slate-200 dark:text-slate-700"
           />
           <circle
             cx="24"
@@ -159,7 +159,7 @@ export function MiniDashboard({ eleitores, totalGeral }: MiniDashboardProps) {
 
   if (!stats || eleitores.length === 0) {
     return (
-      <div className="glass-card rounded-2xl p-6 text-center">
+      <div className="bg-card border border-border rounded-2xl p-6 text-center shadow-sm">
         <div className="flex flex-col items-center gap-3 py-8">
           <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
             <Target className="w-6 h-6 text-primary/50" />
@@ -175,9 +175,9 @@ export function MiniDashboard({ eleitores, totalGeral }: MiniDashboardProps) {
   const maxOrientacao = Math.max(...stats.orientacao.map(o => o.value));
 
   return (
-    <div className="glass-card rounded-2xl overflow-hidden animate-in fade-in slide-in-from-right-4 duration-500">
+    <div className="bg-card border border-border rounded-2xl overflow-hidden animate-in fade-in slide-in-from-right-4 duration-500 shadow-sm">
       {/* Header com efeito gradiente */}
-      <div className="relative px-5 py-4 bg-gradient-to-r from-primary/10 via-purple-500/5 to-transparent border-b border-white/5">
+      <div className="relative px-5 py-4 bg-gradient-to-r from-primary/10 via-purple-500/5 to-transparent border-b border-border">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
         <div className="relative flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -203,16 +203,16 @@ export function MiniDashboard({ eleitores, totalGeral }: MiniDashboardProps) {
       <div className="p-5 space-y-5">
         {/* Números principais */}
         <div className="grid grid-cols-2 gap-4">
-          <div className="text-center p-3 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/5 border border-white/5">
+          <div className="text-center p-3 rounded-xl bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20">
             <div className="flex items-center justify-center gap-1.5 mb-1">
-              <Users className="w-4 h-4 text-blue-400" />
+              <Users className="w-4 h-4 text-blue-600 dark:text-blue-400" />
             </div>
             <p className="text-2xl font-bold text-foreground">{stats.total}</p>
             <p className="text-[10px] text-muted-foreground">eleitores</p>
           </div>
-          <div className="text-center p-3 rounded-xl bg-gradient-to-br from-orange-500/10 to-red-500/5 border border-white/5">
+          <div className="text-center p-3 rounded-xl bg-orange-50 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20">
             <div className="flex items-center justify-center gap-1.5 mb-1">
-              <Activity className="w-4 h-4 text-orange-400" />
+              <Activity className="w-4 h-4 text-orange-600 dark:text-orange-400" />
             </div>
             <p className="text-2xl font-bold text-foreground">{stats.mediaIdade.toFixed(0)}</p>
             <p className="text-[10px] text-muted-foreground">idade média</p>
@@ -220,7 +220,7 @@ export function MiniDashboard({ eleitores, totalGeral }: MiniDashboardProps) {
         </div>
 
         {/* Gênero - círculos */}
-        <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+        <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
           <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
             <span className="w-1 h-1 rounded-full bg-pink-500" />
             Gênero
@@ -242,7 +242,7 @@ export function MiniDashboard({ eleitores, totalGeral }: MiniDashboardProps) {
         </div>
 
         {/* Espectro político - barras horizontais */}
-        <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+        <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
           <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
             <span className="w-1 h-1 rounded-full bg-red-500" />
             Espectro Político
@@ -265,7 +265,7 @@ export function MiniDashboard({ eleitores, totalGeral }: MiniDashboardProps) {
         </div>
 
         {/* Classe social - chips */}
-        <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+        <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
           <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
             <span className="w-1 h-1 rounded-full bg-emerald-500" />
             Classe Social
@@ -280,7 +280,7 @@ export function MiniDashboard({ eleitores, totalGeral }: MiniDashboardProps) {
                     key={key}
                     className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium"
                     style={{
-                      backgroundColor: `${CORES_CLUSTER[key] || '#888'}15`,
+                      backgroundColor: `${CORES_CLUSTER[key] || '#888'}20`,
                       color: CORES_CLUSTER[key] || '#888'
                     }}
                   >
@@ -293,7 +293,7 @@ export function MiniDashboard({ eleitores, totalGeral }: MiniDashboardProps) {
         </div>
 
         {/* Top regiões */}
-        <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+        <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
           <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
             <MapPin className="w-3 h-3" />
             Top Regiões
@@ -303,9 +303,9 @@ export function MiniDashboard({ eleitores, totalGeral }: MiniDashboardProps) {
               <div key={nome} className="flex items-center gap-2">
                 <span className={cn(
                   "w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold",
-                  index === 0 ? "bg-yellow-500/20 text-yellow-400" :
-                  index === 1 ? "bg-slate-400/20 text-slate-400" :
-                  "bg-orange-700/20 text-orange-600"
+                  index === 0 ? "bg-yellow-100 dark:bg-yellow-500/20 text-yellow-600 dark:text-yellow-400" :
+                  index === 1 ? "bg-slate-200 dark:bg-slate-600/30 text-slate-600 dark:text-slate-400" :
+                  "bg-orange-100 dark:bg-orange-700/20 text-orange-600 dark:text-orange-500"
                 )}>
                   {index + 1}
                 </span>
@@ -324,7 +324,7 @@ export function MiniDashboard({ eleitores, totalGeral }: MiniDashboardProps) {
           className={cn(
             "flex items-center justify-center gap-2 w-full py-2.5 rounded-xl",
             "bg-gradient-to-r from-primary/20 to-purple-500/20",
-            "border border-primary/20 hover:border-primary/40",
+            "border border-primary/30 hover:border-primary/50",
             "text-sm font-medium text-primary",
             "transition-all duration-300 hover:scale-[1.02]",
             "group"
