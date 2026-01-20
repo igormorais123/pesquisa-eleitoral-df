@@ -90,7 +90,7 @@ export default function DashboardLayout({
       <div
         className={cn(
           'transition-all duration-300 flex flex-col min-h-screen',
-          recolhido ? 'lg:ml-20' : 'lg:ml-64'
+          recolhido ? 'lg:ml-16' : 'lg:ml-56'
         )}
       >
         <Header />

@@ -134,16 +134,15 @@ function EleitoresContent() {
       <div className="flex-shrink-0 mb-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
-              <Users className="w-7 h-7 text-primary" />
-              Eleitores Sintéticos
+            <h1 className="text-2xl font-semibold text-foreground">
+              Eleitores
             </h1>
             <p className="text-muted-foreground mt-1">
-              <span className="font-semibold text-foreground">{formatarNumero(estatisticas.filtrados)}</span>
-              {' '}de {formatarNumero(estatisticas.total)} eleitores
+              <span className="font-medium text-foreground">{formatarNumero(estatisticas.filtrados)}</span>
+              {' '}de {formatarNumero(estatisticas.total)} perfis sintéticos
               {eleitoresSelecionados.length > 0 && (
-                <span className="ml-2 text-primary">
-                  • {formatarNumero(eleitoresSelecionados.length)} selecionados
+                <span className="ml-2 text-foreground">
+                  • {eleitoresSelecionados.length} selecionados
                 </span>
               )}
             </p>
@@ -152,12 +151,12 @@ function EleitoresContent() {
           <div className="flex items-center gap-2">
             {/* Dropdown de Exportação */}
             <div className="relative group">
-              <button className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors">
+              <button className="flex items-center gap-2 px-4 py-2 bg-muted hover:bg-muted/80 text-foreground rounded-full text-sm transition-colors">
                 <Download className="w-4 h-4" />
                 Exportar
                 <ChevronDown className="w-4 h-4" />
               </button>
-              <div className="absolute right-0 mt-2 w-48 bg-secondary/95 backdrop-blur border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+              <div className="absolute right-0 mt-2 w-48 bg-card border border-border rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
                 <button
                   onClick={async () => {
                     try {
@@ -166,17 +165,17 @@ function EleitoresContent() {
                       console.error('Erro ao exportar Excel:', error);
                     }
                   }}
-                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-t-lg transition-colors"
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-muted rounded-t-xl transition-colors"
                 >
-                  <FileSpreadsheet className="w-4 h-4 text-green-400" />
-                  Excel ({eleitoresFiltrados.length})
+                  <FileSpreadsheet className="w-4 h-4 text-green-500" />
+                  Excel
                 </button>
                 <button
                   onClick={() => exportarEleitoresCSV(eleitoresFiltrados)}
-                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 transition-colors"
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-muted transition-colors"
                 >
-                  <FileText className="w-4 h-4 text-blue-400" />
-                  CSV ({eleitoresFiltrados.length})
+                  <FileText className="w-4 h-4 text-blue-500" />
+                  CSV
                 </button>
                 <button
                   onClick={async () => {
@@ -186,24 +185,24 @@ function EleitoresContent() {
                       console.error('Erro ao exportar PDF:', error);
                     }
                   }}
-                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 transition-colors"
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-muted transition-colors"
                 >
-                  <FileDown className="w-4 h-4 text-red-400" />
-                  PDF ({eleitoresFiltrados.length})
+                  <FileDown className="w-4 h-4 text-red-500" />
+                  PDF
                 </button>
                 <button
                   onClick={() => exportarEleitoresMD(eleitoresFiltrados, `eleitores-df-${new Date().toISOString().split('T')[0]}`)}
-                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-b-lg transition-colors"
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-muted rounded-b-xl transition-colors"
                 >
-                  <FileText className="w-4 h-4 text-cyan-400" />
-                  MD p/ IA ({eleitoresFiltrados.length})
+                  <FileText className="w-4 h-4 text-cyan-500" />
+                  Markdown
                 </button>
               </div>
             </div>
             {/* Upload */}
             <Link
               href="/eleitores/upload"
-              className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-muted hover:bg-muted/80 text-foreground rounded-full text-sm transition-colors"
             >
               <Upload className="w-4 h-4" />
               Upload
@@ -211,10 +210,10 @@ function EleitoresContent() {
             <Link
               href="/entrevistas/nova"
               className={cn(
-                'flex items-center gap-2 px-4 py-2 rounded-lg transition-colors',
+                'flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-colors',
                 eleitoresSelecionados.length > 0
-                  ? 'bg-primary text-primary-foreground hover:bg-primary/90'
-                  : 'bg-secondary text-foreground hover:bg-secondary/80'
+                  ? 'bg-foreground text-background hover:opacity-90'
+                  : 'bg-muted text-foreground hover:bg-muted/80'
               )}
             >
               <Sparkles className="w-4 h-4" />
@@ -226,7 +225,7 @@ function EleitoresContent() {
         </div>
 
         {/* Barra de ações */}
-        <div className="flex items-center justify-between mt-4 py-3 px-4 bg-secondary/50 rounded-lg">
+        <div className="flex items-center justify-between mt-4 py-3 px-4 bg-muted/50 rounded-xl">
           <div className="flex items-center gap-4">
             {/* Link para Dashboard */}
             <Link
