@@ -76,7 +76,7 @@ const CORES = {
   interesse: ['#fca5a5', '#fdba74', '#4ade80'],
 };
 
-// Card de estatística - Design Futurista
+// Card de estatística - Design Limpo
 function CardEstatistica({
   titulo,
   valor,
@@ -96,23 +96,20 @@ function CardEstatistica({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -2, borderColor: 'rgba(59, 130, 246, 0.3)' }}
-      className="relative bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-6 transition-all duration-300 overflow-hidden group"
+      whileHover={{ y: -2 }}
+      className="relative bg-card border border-border rounded-2xl p-6 transition-all duration-300 overflow-hidden group hover:shadow-lg hover:border-primary/30"
     >
-      {/* Glow effect on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-
       <div className="relative flex items-start justify-between">
         <div className="space-y-1">
-          <p className="text-sm text-zinc-500 font-medium">{titulo}</p>
-          <p className="text-3xl font-bold font-mono text-white tracking-tight">{valor}</p>
+          <p className="text-sm text-muted-foreground font-medium">{titulo}</p>
+          <p className="text-3xl font-bold font-mono text-foreground tracking-tight">{valor}</p>
           {subtitulo && (
-            <p className="text-xs text-zinc-600">{subtitulo}</p>
+            <p className="text-xs text-muted-foreground/70">{subtitulo}</p>
           )}
           {tendencia && (
             <div
               className={`flex items-center gap-1 mt-2 text-sm font-medium ${
-                tendencia.positivo ? 'text-emerald-400' : 'text-red-400'
+                tendencia.positivo ? 'text-emerald-500' : 'text-red-500'
               }`}
             >
               {tendencia.positivo ? (
@@ -132,7 +129,7 @@ function CardEstatistica({
   );
 }
 
-// Card de ação rápida - Design Futurista
+// Card de ação rápida - Design Limpo
 function CardAcaoRapida({
   titulo,
   descricao,
@@ -151,30 +148,27 @@ function CardAcaoRapida({
       <motion.div
         whileHover={{ y: -4, scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="relative bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-5 transition-all duration-300 group cursor-pointer overflow-hidden"
+        className="relative bg-card border border-border rounded-2xl p-5 transition-all duration-300 group cursor-pointer overflow-hidden hover:shadow-lg hover:border-primary/30"
       >
-        {/* Gradient overlay on hover */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-
         <div className="relative flex items-center gap-4">
           <div className={`w-12 h-12 rounded-xl ${cor} flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg`}>
             <Icone className="w-6 h-6 text-white" />
           </div>
           <div className="flex-1">
-            <h3 className="font-semibold text-white group-hover:text-blue-400 transition-colors flex items-center gap-2">
+            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-2">
               {titulo}
-              <Zap className="w-4 h-4 text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <Zap className="w-4 h-4 text-amber-500 opacity-0 group-hover:opacity-100 transition-opacity" />
             </h3>
-            <p className="text-sm text-zinc-500">{descricao}</p>
+            <p className="text-sm text-muted-foreground">{descricao}</p>
           </div>
-          <ExternalLink className="w-4 h-4 text-zinc-600 group-hover:text-blue-400 transition-colors" />
+          <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
         </div>
       </motion.div>
     </Link>
   );
 }
 
-// Componente de Card de Gráfico - Design Futurista
+// Componente de Card de Gráfico - Design Limpo
 function GraficoCard({
   titulo,
   subtitulo,
@@ -197,11 +191,8 @@ function GraficoCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={href ? { y: -2 } : undefined}
-      className={`relative bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-6 ${className} ${href ? 'cursor-pointer hover:border-blue-500/30 transition-all group' : ''} overflow-hidden`}
+      className={`relative bg-card border border-border rounded-2xl p-6 ${className} ${href ? 'cursor-pointer hover:border-primary/30 hover:shadow-lg transition-all group' : ''} overflow-hidden`}
     >
-      {/* Subtle gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/50 to-zinc-950/50 pointer-events-none" />
-
       <div className="relative">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
@@ -209,12 +200,12 @@ function GraficoCard({
               <Icone className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h3 className="font-semibold text-white">{titulo}</h3>
-              {subtitulo && <p className="text-xs text-zinc-500">{subtitulo}</p>}
+              <h3 className="font-semibold text-foreground">{titulo}</h3>
+              {subtitulo && <p className="text-xs text-muted-foreground">{subtitulo}</p>}
             </div>
           </div>
           {href && (
-            <span className="flex items-center gap-1 text-xs text-zinc-500 opacity-0 group-hover:opacity-100 transition-opacity bg-blue-500/10 text-blue-400 px-2.5 py-1 rounded-lg">
+            <span className="flex items-center gap-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity bg-primary/10 text-primary px-2.5 py-1 rounded-lg">
               <ExternalLink className="w-3 h-3" />
               Ver detalhes
             </span>
@@ -391,7 +382,7 @@ const INTERESSES_POLITICOS = [
   { valor: 'alto', rotulo: 'Alto' },
 ];
 
-// Componente de Filtro Rápido - Design Futurista
+// Componente de Filtro Rápido - Design Limpo
 function FiltroRapidoDashboard({
   titulo,
   opcoes,
@@ -421,14 +412,14 @@ function FiltroRapidoDashboard({
         onClick={() => setAberto(!aberto)}
         className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition-all ${
           selecionados.length > 0
-            ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-            : 'bg-zinc-800/50 border border-zinc-700/50 text-zinc-400 hover:border-zinc-600 hover:text-zinc-300'
+            ? 'bg-primary/10 text-primary border border-primary/30'
+            : 'bg-muted border border-border text-muted-foreground hover:border-primary/30 hover:text-foreground'
         }`}
       >
         <Icone className="w-4 h-4" />
         <span>{titulo}</span>
         {selecionados.length > 0 && (
-          <span className="bg-blue-500/30 px-1.5 py-0.5 rounded text-[10px] font-bold">
+          <span className="bg-primary/20 px-1.5 py-0.5 rounded text-[10px] font-bold">
             {selecionados.length}
           </span>
         )}
@@ -439,7 +430,7 @@ function FiltroRapidoDashboard({
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="absolute top-full left-0 mt-2 z-50 bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl p-2 min-w-[180px]"
+          className="absolute top-full left-0 mt-2 z-50 bg-card border border-border rounded-xl shadow-2xl p-2 min-w-[180px]"
         >
           {opcoes.map((opcao) => (
             <button
@@ -447,8 +438,8 @@ function FiltroRapidoDashboard({
               onClick={() => toggleOpcao(opcao.valor)}
               className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
                 selecionados.includes(opcao.valor)
-                  ? 'bg-blue-500/20 text-blue-400'
-                  : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
               }`}
             >
               {opcao.rotulo}
@@ -763,24 +754,70 @@ export default function PaginaInicial() {
 
   return (
     <div className="space-y-8 animate-fade-in">
-      {/* Cabeçalho */}
+      {/* Hero - Apresentação do Projeto */}
+      <div className="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 text-white shadow-xl">
+        <div className="flex items-start justify-between">
+          <div className="space-y-4 max-w-3xl">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                <Globe className="w-7 h-7" />
+              </div>
+              <div>
+                <h1 className="text-2xl sm:text-3xl font-bold">
+                  Pesquisa Eleitoral DF 2026
+                </h1>
+                <p className="text-blue-100 text-sm">Sistema de Simulação com Agentes de IA</p>
+              </div>
+            </div>
+
+            <p className="text-blue-50 leading-relaxed">
+              Plataforma inovadora que utiliza <strong>inteligência artificial</strong> para simular pesquisas eleitorais
+              com <strong>1.000 eleitores sintéticos</strong> do Distrito Federal. Cada agente possui perfil demográfico,
+              socioeconômico e psicológico único, respondendo a entrevistas como cidadãos reais.
+            </p>
+
+            <div className="flex flex-wrap gap-3 pt-2">
+              <div className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-lg text-sm">
+                <Users className="w-4 h-4" />
+                <span>1.000 Eleitores IA</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-lg text-sm">
+                <Brain className="w-4 h-4" />
+                <span>60+ Atributos por Perfil</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-lg text-sm">
+                <MapPin className="w-4 h-4" />
+                <span>35 Regiões do DF</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-lg text-sm">
+                <Sparkles className="w-4 h-4" />
+                <span>Claude AI (Anthropic)</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden lg:flex flex-col items-center gap-2 text-center">
+            <div className="text-5xl font-bold">{formatarNumero(stats.total)}</div>
+            <div className="text-blue-100 text-sm">Eleitores Ativos</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Subtítulo de contexto */}
       <div>
-        <h1 className="text-3xl font-bold text-foreground">
-          Dashboard de Análise Eleitoral
-        </h1>
-        <p className="text-muted-foreground mt-2">
+        <p className="text-muted-foreground">
           {temFiltrosAtivos(filtros) ? (
             <>
               Analisando <span className="text-primary font-semibold">{stats.total}</span> de {totalGeral} eleitores ({((stats.total / totalGeral) * 100).toFixed(1)}% da amostra)
             </>
           ) : (
-            <>Visão completa do perfil dos {stats.total} eleitores sintéticos do Distrito Federal para as eleições de 2026.</>
+            <>Explore os dados demográficos, políticos e comportamentais dos agentes sintéticos.</>
           )}
         </p>
       </div>
 
       {/* Painel de Filtros */}
-      <div className="glass-card rounded-xl p-4">
+      <div className="bg-card border border-border rounded-xl p-4">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
