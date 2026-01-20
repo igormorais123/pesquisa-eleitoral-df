@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, Suspense, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import Link from 'next/link';
 import {
@@ -15,10 +16,10 @@ import {
   FileDown,
   ChevronDown,
   Activity,
-  Home,
   Building2,
   Landmark,
   ExternalLink,
+  X,
 } from 'lucide-react';
 import { useParlamentares } from '@/hooks/useParlamentares';
 import { ParlamentarCard } from '@/components/parlamentares/ParlamentarCard';
@@ -27,9 +28,22 @@ import { ParlamentaresCharts } from '@/components/parlamentares/ParlamentaresCha
 import { ParlamentaresInsights } from '@/components/parlamentares/ParlamentaresInsights';
 import { ParlamentaresMiniDashboard } from '@/components/parlamentares/ParlamentaresMiniDashboard';
 import { cn, formatarNumero } from '@/lib/utils';
-import type { CasaLegislativa } from '@/types';
 
 type VisualizacaoTipo = 'cards' | 'lista' | 'graficos' | 'insights';
+
+// Animações suaves estilo Apple
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
+  }
+};
+
+const stagger = {
+  animate: { transition: { staggerChildren: 0.08 } }
+};
 
 function ParlamentaresContent() {
   const {
@@ -53,11 +67,11 @@ function ParlamentaresContent() {
   const [visualizacao, setVisualizacao] = useState<VisualizacaoTipo>('cards');
   const [painelFiltros, setPainelFiltros] = useState(true);
   const [mostrarMiniDashboard, setMostrarMiniDashboard] = useState(true);
+  const [exportMenuAberto, setExportMenuAberto] = useState(false);
+  const [dadosMenuAberto, setDadosMenuAberto] = useState(false);
 
-  // Referência para virtualização
   const parentRef = useRef<HTMLDivElement>(null);
 
-  // Virtualização para cards
   const rowVirtualizer = useVirtualizer({
     count: Math.ceil(parlamentaresFiltrados.length / 3),
     getScrollElement: () => parentRef.current,
@@ -65,7 +79,6 @@ function ParlamentaresContent() {
     overscan: 5,
   });
 
-  // Virtualização para lista
   const listVirtualizer = useVirtualizer({
     count: parlamentaresFiltrados.length,
     getScrollElement: () => parentRef.current,
@@ -73,7 +86,6 @@ function ParlamentaresContent() {
     overscan: 10,
   });
 
-  // Handlers
   const handleToggleSelecao = useCallback(
     (id: string) => {
       toggleSelecionarParaPesquisa(id);
@@ -81,164 +93,117 @@ function ParlamentaresContent() {
     [toggleSelecionarParaPesquisa]
   );
 
-  // Loading state
+  // Loading elegante
   if (carregando) {
     return (
-      <div className="flex items-center justify-center h-96">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="mt-4 text-muted-foreground">Carregando parlamentares...</p>
-        </div>
+      <div className="flex items-center justify-center h-[60vh]">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center"
+        >
+          <div className="w-10 h-10 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin mx-auto" />
+          <p className="mt-6 text-muted-foreground text-lg">Carregando parlamentares...</p>
+        </motion.div>
       </div>
     );
   }
 
-  // Error state
+  // Error elegante
   if (erro) {
     return (
-      <div className="flex items-center justify-center h-96">
-        <div className="text-center text-red-500">
-          <p className="text-lg font-medium">Erro ao carregar parlamentares</p>
-          <p className="text-sm mt-2">{erro}</p>
-        </div>
+      <div className="flex items-center justify-center h-[60vh]">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="text-center max-w-md"
+        >
+          <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4">
+            <X className="w-8 h-8 text-red-500" />
+          </div>
+          <h2 className="text-xl font-semibold text-foreground mb-2">Erro ao carregar</h2>
+          <p className="text-muted-foreground">{erro}</p>
+        </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="h-full flex flex-col">
-      {/* Header */}
-      <div className="flex-shrink-0 mb-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
-              <Landmark className="w-7 h-7 text-primary" />
-              Parlamentares do Congresso Nacional
-            </h1>
-            <p className="text-muted-foreground mt-1">
-              <span className="font-semibold text-foreground">{formatarNumero(estatisticas.filtrados)}</span>
-              {' '}de {formatarNumero(estatisticas.total)} parlamentares
-              {parlamentaresSelecionados.length > 0 && (
-                <span className="ml-2 text-primary">
-                  • {formatarNumero(parlamentaresSelecionados.length)} selecionados
-                </span>
-              )}
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            {/* Links externos para dados abertos */}
-            <div className="relative group">
-              <button className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors">
-                <ExternalLink className="w-4 h-4" />
-                Dados Abertos
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              <div className="absolute right-0 mt-2 w-56 bg-secondary/95 backdrop-blur border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                <a
-                  href="https://dadosabertos.camara.leg.br/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-t-lg transition-colors"
-                >
-                  <Building2 className="w-4 h-4 text-green-400" />
-                  Câmara dos Deputados
-                </a>
-                <a
-                  href="https://legis.senado.leg.br/dadosabertos/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 transition-colors"
-                >
-                  <Landmark className="w-4 h-4 text-blue-400" />
-                  Senado Federal
-                </a>
-                <a
-                  href="https://www.cl.df.gov.br/transparencia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-b-lg transition-colors"
-                >
-                  <Building2 className="w-4 h-4 text-yellow-400" />
-                  CLDF
-                </a>
-              </div>
-            </div>
-
-            {/* Dropdown de Exportação */}
-            <div className="relative group">
-              <button className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors">
-                <Download className="w-4 h-4" />
-                Exportar
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              <div className="absolute right-0 mt-2 w-48 bg-secondary/95 backdrop-blur border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                <button
-                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-t-lg transition-colors"
-                >
-                  <FileSpreadsheet className="w-4 h-4 text-green-400" />
-                  Excel ({parlamentaresFiltrados.length})
-                </button>
-                <button
-                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-b-lg transition-colors"
-                >
-                  <FileDown className="w-4 h-4 text-red-400" />
-                  PDF ({parlamentaresFiltrados.length})
-                </button>
-              </div>
-            </div>
-
-            <Link
-              href={`/entrevistas/nova?tipo=parlamentar${parlamentaresSelecionados.length > 0 ? `&selecionados=${parlamentaresSelecionados.join(',')}` : ''}`}
-              className={cn(
-                'flex items-center gap-2 px-4 py-2 rounded-lg transition-colors',
-                parlamentaresSelecionados.length > 0
-                  ? 'bg-primary text-primary-foreground hover:bg-primary/90'
-                  : 'bg-secondary text-foreground hover:bg-secondary/80'
-              )}
-            >
-              <Sparkles className="w-4 h-4" />
-              {parlamentaresSelecionados.length > 0
-                ? `Pesquisar ${parlamentaresSelecionados.length}`
-                : 'Nova Pesquisa'}
-            </Link>
-          </div>
+    <motion.div
+      initial="initial"
+      animate="animate"
+      variants={stagger}
+      className="h-full flex flex-col"
+    >
+      {/* Hero Header - Estilo Apple */}
+      <motion.header variants={fadeIn} className="mb-8">
+        {/* Título principal */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground">
+            Parlamentares
+          </h1>
+          <p className="text-xl text-muted-foreground mt-3 max-w-2xl mx-auto">
+            Congresso Nacional e Câmara Legislativa do DF
+          </p>
         </div>
 
-        {/* Barra de ações */}
-        <div className="flex items-center justify-between mt-4 py-3 px-4 bg-secondary/50 rounded-lg">
-          <div className="flex items-center gap-4">
-            {/* Link para Dashboard */}
-            <Link
-              href="/"
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Home className="w-4 h-4" />
-              Dashboard
-            </Link>
+        {/* Números em destaque */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto mb-8">
+          <motion.div variants={fadeIn} className="text-center">
+            <div className="text-3xl sm:text-4xl font-semibold text-foreground">
+              {formatarNumero(estatisticas.filtrados)}
+            </div>
+            <div className="text-sm text-muted-foreground mt-1">Exibindo</div>
+          </motion.div>
+          <motion.div variants={fadeIn} className="text-center">
+            <div className="text-3xl sm:text-4xl font-semibold text-foreground">
+              {contagemPorCasa.camara_federal || 0}
+            </div>
+            <div className="text-sm text-muted-foreground mt-1">Câmara</div>
+          </motion.div>
+          <motion.div variants={fadeIn} className="text-center">
+            <div className="text-3xl sm:text-4xl font-semibold text-foreground">
+              {contagemPorCasa.senado || 0}
+            </div>
+            <div className="text-sm text-muted-foreground mt-1">Senado</div>
+          </motion.div>
+          <motion.div variants={fadeIn} className="text-center">
+            <div className="text-3xl sm:text-4xl font-semibold text-foreground">
+              {parlamentaresSelecionados.length}
+            </div>
+            <div className="text-sm text-muted-foreground mt-1">Selecionados</div>
+          </motion.div>
+        </div>
 
+        {/* Barra de ações - Design limpo */}
+        <motion.div
+          variants={fadeIn}
+          className="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-border"
+        >
+          {/* Lado esquerdo - Controles */}
+          <div className="flex items-center gap-2">
             {/* Toggle Filtros */}
             <button
               onClick={() => setPainelFiltros(!painelFiltros)}
               className={cn(
-                'flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-colors',
+                'flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all',
                 painelFiltros
-                  ? 'bg-primary/20 text-primary'
-                  : 'text-muted-foreground hover:text-foreground'
+                  ? 'bg-foreground text-background'
+                  : 'bg-muted text-foreground hover:bg-muted/80'
               )}
             >
               <Filter className="w-4 h-4" />
               Filtros
             </button>
 
-            {/* Toggle Mini Dashboard */}
+            {/* Toggle Resumo */}
             <button
               onClick={() => setMostrarMiniDashboard(!mostrarMiniDashboard)}
               className={cn(
-                'flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-colors',
+                'flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all',
                 mostrarMiniDashboard
-                  ? 'bg-primary/20 text-primary'
-                  : 'text-muted-foreground hover:text-foreground'
+                  ? 'bg-foreground text-background'
+                  : 'bg-muted text-foreground hover:bg-muted/80'
               )}
             >
               <Activity className="w-4 h-4" />
@@ -246,86 +211,193 @@ function ParlamentaresContent() {
             </button>
 
             {/* Seleção */}
-            <div className="flex items-center gap-2 text-sm">
+            <div className="hidden sm:flex items-center gap-3 ml-4 pl-4 border-l border-border">
               <button
                 onClick={selecionarTodos}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                Selecionar todos ({parlamentaresFiltrados.length})
+                Selecionar todos
               </button>
               {parlamentaresSelecionados.length > 0 && (
-                <>
-                  <span className="text-muted-foreground">•</span>
-                  <button
-                    onClick={limparSelecao}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Limpar seleção
-                  </button>
-                </>
+                <button
+                  onClick={limparSelecao}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Limpar ({parlamentaresSelecionados.length})
+                </button>
               )}
             </div>
           </div>
 
-          {/* Visualização */}
-          <div className="flex items-center gap-1 bg-background rounded-lg p-1">
-            <button
-              onClick={() => setVisualizacao('cards')}
-              className={cn(
-                'p-2 rounded-md transition-colors',
-                visualizacao === 'cards'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
+          {/* Lado direito - Ações e Visualização */}
+          <div className="flex items-center gap-3">
+            {/* Dropdown Dados Abertos */}
+            <div className="relative">
+              <button
+                onClick={() => setDadosMenuAberto(!dadosMenuAberto)}
+                className="flex items-center gap-2 px-4 py-2 bg-muted hover:bg-muted/80 text-foreground rounded-full text-sm font-medium transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                <span className="hidden sm:inline">Dados Abertos</span>
+                <ChevronDown className={cn('w-4 h-4 transition-transform', dadosMenuAberto && 'rotate-180')} />
+              </button>
+
+              {dadosMenuAberto && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="absolute right-0 mt-2 w-52 bg-card border border-border rounded-2xl shadow-xl overflow-hidden z-50"
+                >
+                  <a
+                    href="https://dadosabertos.camara.leg.br/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-muted transition-colors"
+                  >
+                    <Building2 className="w-4 h-4 text-emerald-500" />
+                    Câmara dos Deputados
+                  </a>
+                  <a
+                    href="https://legis.senado.leg.br/dadosabertos/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-muted transition-colors"
+                  >
+                    <Landmark className="w-4 h-4 text-blue-500" />
+                    Senado Federal
+                  </a>
+                  <a
+                    href="https://www.cl.df.gov.br/transparencia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-muted transition-colors"
+                  >
+                    <Building2 className="w-4 h-4 text-amber-500" />
+                    CLDF
+                  </a>
+                </motion.div>
               )}
-              title="Visualização em cards"
-            >
-              <Grid3X3 className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => setVisualizacao('lista')}
-              className={cn(
-                'p-2 rounded-md transition-colors',
-                visualizacao === 'lista'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
+            </div>
+
+            {/* Dropdown Exportar */}
+            <div className="relative">
+              <button
+                onClick={() => setExportMenuAberto(!exportMenuAberto)}
+                className="flex items-center gap-2 px-4 py-2 bg-muted hover:bg-muted/80 text-foreground rounded-full text-sm font-medium transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                <span className="hidden sm:inline">Exportar</span>
+                <ChevronDown className={cn('w-4 h-4 transition-transform', exportMenuAberto && 'rotate-180')} />
+              </button>
+
+              {exportMenuAberto && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="absolute right-0 mt-2 w-44 bg-card border border-border rounded-2xl shadow-xl overflow-hidden z-50"
+                >
+                  <button
+                    onClick={() => setExportMenuAberto(false)}
+                    className="w-full flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-muted transition-colors"
+                  >
+                    <FileSpreadsheet className="w-4 h-4 text-emerald-500" />
+                    Excel
+                  </button>
+                  <button
+                    onClick={() => setExportMenuAberto(false)}
+                    className="w-full flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-muted transition-colors"
+                  >
+                    <FileDown className="w-4 h-4 text-red-500" />
+                    PDF
+                  </button>
+                </motion.div>
               )}
-              title="Visualização em lista"
-            >
-              <List className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => setVisualizacao('graficos')}
+            </div>
+
+            {/* Nova Pesquisa - CTA Principal */}
+            <Link
+              href={`/entrevistas/nova?tipo=parlamentar${parlamentaresSelecionados.length > 0 ? `&selecionados=${parlamentaresSelecionados.join(',')}` : ''}`}
               className={cn(
-                'p-2 rounded-md transition-colors',
-                visualizacao === 'graficos'
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
+                'flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all',
+                parlamentaresSelecionados.length > 0
+                  ? 'bg-foreground text-background hover:opacity-90'
+                  : 'bg-blue-600 text-white hover:bg-blue-700'
               )}
-              title="Visualização em gráficos"
             >
-              <BarChart3 className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => setVisualizacao('insights')}
-              className={cn(
-                'p-2 rounded-md transition-colors',
-                visualizacao === 'insights'
-                  ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
-                  : 'text-muted-foreground hover:text-foreground'
-              )}
-              title="Insights Inteligentes"
-            >
-              <Lightbulb className="w-4 h-4" />
-            </button>
+              <Sparkles className="w-4 h-4" />
+              {parlamentaresSelecionados.length > 0
+                ? `Pesquisar ${parlamentaresSelecionados.length}`
+                : 'Nova Pesquisa'}
+            </Link>
+
+            {/* Separador */}
+            <div className="w-px h-8 bg-border hidden sm:block" />
+
+            {/* Visualização */}
+            <div className="flex items-center bg-muted rounded-full p-1">
+              <button
+                onClick={() => setVisualizacao('cards')}
+                className={cn(
+                  'p-2 rounded-full transition-all',
+                  visualizacao === 'cards'
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+                title="Cards"
+              >
+                <Grid3X3 className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setVisualizacao('lista')}
+                className={cn(
+                  'p-2 rounded-full transition-all',
+                  visualizacao === 'lista'
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+                title="Lista"
+              >
+                <List className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setVisualizacao('graficos')}
+                className={cn(
+                  'p-2 rounded-full transition-all',
+                  visualizacao === 'graficos'
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+                title="Gráficos"
+              >
+                <BarChart3 className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setVisualizacao('insights')}
+                className={cn(
+                  'p-2 rounded-full transition-all',
+                  visualizacao === 'insights'
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+                title="Insights"
+              >
+                <Lightbulb className="w-4 h-4" />
+              </button>
+            </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.header>
 
       {/* Conteúdo principal */}
-      <div className="flex-1 flex gap-6 min-h-0">
+      <motion.div variants={fadeIn} className="flex-1 flex gap-6 min-h-0">
         {/* Painel de Filtros */}
         {painelFiltros && (
-          <div className="w-80 flex-shrink-0 glass-card rounded-xl p-4 overflow-y-auto">
+          <motion.aside
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="w-80 flex-shrink-0 bg-card border border-border rounded-2xl p-5 overflow-y-auto"
+          >
             <ParlamentaresFilters
               filtros={filtros}
               onFiltrosChange={setFiltros}
@@ -336,11 +408,11 @@ function ParlamentaresContent() {
               totalFiltrados={estatisticas.filtrados}
               contagemPorCasa={contagemPorCasa}
             />
-          </div>
+          </motion.aside>
         )}
 
         {/* Lista/Grid/Gráficos/Insights */}
-        <div className="flex-1 min-w-0 flex gap-4">
+        <div className="flex-1 min-w-0 flex gap-5">
           <div className="flex-1 min-w-0">
             {visualizacao === 'graficos' ? (
               <ParlamentaresCharts parlamentares={parlamentaresFiltrados} />
@@ -349,11 +421,10 @@ function ParlamentaresContent() {
             ) : (
               <div
                 ref={parentRef}
-                className="h-full overflow-y-auto pr-2"
+                className="h-full overflow-y-auto pr-2 scrollbar-thin"
                 style={{ contain: 'strict' }}
               >
                 {visualizacao === 'cards' ? (
-                  // Grid de Cards Virtualizado
                   <div
                     style={{
                       height: `${rowVirtualizer.getTotalSize()}px`,
@@ -392,7 +463,6 @@ function ParlamentaresContent() {
                     })}
                   </div>
                 ) : (
-                  // Lista Virtualizada
                   <div
                     style={{
                       height: `${listVirtualizer.getTotalSize()}px`,
@@ -430,18 +500,22 @@ function ParlamentaresContent() {
             )}
           </div>
 
-          {/* Mini Dashboard - Resumo do grupo filtrado */}
+          {/* Mini Dashboard */}
           {mostrarMiniDashboard && visualizacao !== 'graficos' && visualizacao !== 'insights' && (
-            <div className="w-72 flex-shrink-0">
+            <motion.aside
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="w-72 flex-shrink-0"
+            >
               <ParlamentaresMiniDashboard
                 parlamentares={parlamentaresFiltrados}
                 totalGeral={estatisticas.total}
               />
-            </div>
+            </motion.aside>
           )}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -450,10 +524,10 @@ export default function PaginaParlamentares() {
   return (
     <Suspense
       fallback={
-        <div className="flex items-center justify-center h-96">
+        <div className="flex items-center justify-center h-[60vh]">
           <div className="text-center">
-            <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
-            <p className="mt-4 text-muted-foreground">Carregando...</p>
+            <div className="w-10 h-10 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin mx-auto" />
+            <p className="mt-6 text-muted-foreground text-lg">Carregando...</p>
           </div>
         </div>
       }
