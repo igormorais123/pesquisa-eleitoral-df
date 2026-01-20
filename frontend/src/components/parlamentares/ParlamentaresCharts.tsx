@@ -401,32 +401,34 @@ export function ParlamentaresCharts({ parlamentares }: ParlamentaresChartsProps)
     };
   }, [parlamentares, total]);
 
-  // Dados formatados
-  const dadosGenero = useMemo(() => formatarDados(estatisticas.porGenero), [estatisticas.porGenero]);
-  const dadosCasa = useMemo(() => formatarDados(estatisticas.porCasa, LABELS.casa), [estatisticas.porCasa]);
-  const dadosPartido = useMemo(() => formatarDados(estatisticas.porPartido).slice(0, 15), [estatisticas.porPartido]);
-  const dadosUF = useMemo(() => formatarDados(estatisticas.porUF).slice(0, 15), [estatisticas.porUF]);
-  const dadosRegiao = useMemo(() => formatarDados(estatisticas.porRegiao), [estatisticas.porRegiao]);
-  const dadosOrientacao = useMemo(() => formatarDados(estatisticas.porOrientacao, LABELS.orientacao), [estatisticas.porOrientacao]);
-  const dadosBolsonaro = useMemo(() => formatarDados(estatisticas.porBolsonaro, LABELS.bolsonaro), [estatisticas.porBolsonaro]);
-  const dadosLula = useMemo(() => formatarDados(estatisticas.porLula, LABELS.lula), [estatisticas.porLula]);
-  const dadosRelacaoGoverno = useMemo(() => formatarDados(estatisticas.porRelacaoGoverno, LABELS.relacao_governo), [estatisticas.porRelacaoGoverno]);
-  const dadosReligiao = useMemo(() => formatarDados(estatisticas.porReligiao).slice(0, 8), [estatisticas.porReligiao]);
-  const dadosEstiloComunicacao = useMemo(() => formatarDados(estatisticas.porEstiloComunicacao, LABELS.estilo_comunicacao).slice(0, 10), [estatisticas.porEstiloComunicacao]);
-  const dadosEstiloDecisao = useMemo(() => formatarDados(estatisticas.porEstiloDecisao, LABELS.estilo_decisao), [estatisticas.porEstiloDecisao]);
-  const dadosInteresse = useMemo(() => formatarDados(estatisticas.porInteresse, LABELS.interesse), [estatisticas.porInteresse]);
-  const dadosCorRaca = useMemo(() => formatarDados(estatisticas.porCorRaca), [estatisticas.porCorRaca]);
-  const dadosEstadoCivil = useMemo(() => formatarDados(estatisticas.porEstadoCivil), [estatisticas.porEstadoCivil]);
-  const dadosBancada = useMemo(() => formatarDados(estatisticas.porBancada).slice(0, 10), [estatisticas.porBancada]);
-  const dadosEngajamento = useMemo(() => formatarDados(estatisticas.porEngajamento, LABELS.engajamento), [estatisticas.porEngajamento]);
-  const dadosCapitalPolitico = useMemo(() => formatarDados(estatisticas.porCapitalPolitico, LABELS.capital_politico), [estatisticas.porCapitalPolitico]);
-  const dadosMotivacao = useMemo(() => formatarDados(estatisticas.porMotivacao, LABELS.motivacao), [estatisticas.porMotivacao]);
-  const dadosEstiloLideranca = useMemo(() => formatarDados(estatisticas.porEstiloLideranca, LABELS.estilo_lideranca), [estatisticas.porEstiloLideranca]);
-  const dadosFichaLimpa = useMemo(() => formatarDados(estatisticas.porFichaLimpa), [estatisticas.porFichaLimpa]);
-  const dadosEscolaridade = useMemo(() => formatarDados(estatisticas.porEscolaridade), [estatisticas.porEscolaridade]);
-  const dadosTemaAtuacao = useMemo(() => formatarDados(estatisticas.porTemaAtuacao).slice(0, 12), [estatisticas.porTemaAtuacao]);
-  const dadosValores = useMemo(() => formatarDados(estatisticas.porValores).slice(0, 10), [estatisticas.porValores]);
-  const dadosPreocupacoes = useMemo(() => formatarDados(estatisticas.porPreocupacoes).slice(0, 10), [estatisticas.porPreocupacoes]);
+  // Dados formatados - eslint-disable para formatarDados que depende de total
+  /* eslint-disable react-hooks/exhaustive-deps */
+  const dadosGenero = useMemo(() => formatarDados(estatisticas.porGenero), [estatisticas.porGenero, total]);
+  const dadosCasa = useMemo(() => formatarDados(estatisticas.porCasa, LABELS.casa), [estatisticas.porCasa, total]);
+  const dadosPartido = useMemo(() => formatarDados(estatisticas.porPartido).slice(0, 15), [estatisticas.porPartido, total]);
+  const dadosUF = useMemo(() => formatarDados(estatisticas.porUF).slice(0, 15), [estatisticas.porUF, total]);
+  const dadosRegiao = useMemo(() => formatarDados(estatisticas.porRegiao), [estatisticas.porRegiao, total]);
+  const dadosOrientacao = useMemo(() => formatarDados(estatisticas.porOrientacao, LABELS.orientacao), [estatisticas.porOrientacao, total]);
+  const dadosBolsonaro = useMemo(() => formatarDados(estatisticas.porBolsonaro, LABELS.bolsonaro), [estatisticas.porBolsonaro, total]);
+  const dadosLula = useMemo(() => formatarDados(estatisticas.porLula, LABELS.lula), [estatisticas.porLula, total]);
+  const dadosRelacaoGoverno = useMemo(() => formatarDados(estatisticas.porRelacaoGoverno, LABELS.relacao_governo), [estatisticas.porRelacaoGoverno, total]);
+  const dadosReligiao = useMemo(() => formatarDados(estatisticas.porReligiao).slice(0, 8), [estatisticas.porReligiao, total]);
+  const dadosEstiloComunicacao = useMemo(() => formatarDados(estatisticas.porEstiloComunicacao, LABELS.estilo_comunicacao).slice(0, 10), [estatisticas.porEstiloComunicacao, total]);
+  const dadosEstiloDecisao = useMemo(() => formatarDados(estatisticas.porEstiloDecisao, LABELS.estilo_decisao), [estatisticas.porEstiloDecisao, total]);
+  const dadosInteresse = useMemo(() => formatarDados(estatisticas.porInteresse, LABELS.interesse), [estatisticas.porInteresse, total]);
+  const dadosCorRaca = useMemo(() => formatarDados(estatisticas.porCorRaca), [estatisticas.porCorRaca, total]);
+  const dadosEstadoCivil = useMemo(() => formatarDados(estatisticas.porEstadoCivil), [estatisticas.porEstadoCivil, total]);
+  const dadosBancada = useMemo(() => formatarDados(estatisticas.porBancada).slice(0, 10), [estatisticas.porBancada, total]);
+  const dadosEngajamento = useMemo(() => formatarDados(estatisticas.porEngajamento, LABELS.engajamento), [estatisticas.porEngajamento, total]);
+  const dadosCapitalPolitico = useMemo(() => formatarDados(estatisticas.porCapitalPolitico, LABELS.capital_politico), [estatisticas.porCapitalPolitico, total]);
+  const dadosMotivacao = useMemo(() => formatarDados(estatisticas.porMotivacao, LABELS.motivacao), [estatisticas.porMotivacao, total]);
+  const dadosEstiloLideranca = useMemo(() => formatarDados(estatisticas.porEstiloLideranca, LABELS.estilo_lideranca), [estatisticas.porEstiloLideranca, total]);
+  const dadosFichaLimpa = useMemo(() => formatarDados(estatisticas.porFichaLimpa), [estatisticas.porFichaLimpa, total]);
+  const dadosEscolaridade = useMemo(() => formatarDados(estatisticas.porEscolaridade), [estatisticas.porEscolaridade, total]);
+  const dadosTemaAtuacao = useMemo(() => formatarDados(estatisticas.porTemaAtuacao).slice(0, 12), [estatisticas.porTemaAtuacao, total]);
+  const dadosValores = useMemo(() => formatarDados(estatisticas.porValores).slice(0, 10), [estatisticas.porValores, total]);
+  const dadosPreocupacoes = useMemo(() => formatarDados(estatisticas.porPreocupacoes).slice(0, 10), [estatisticas.porPreocupacoes, total]);
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   const dadosFilhos = useMemo(() => [
     { nome: 'Com filhos', valor: estatisticas.comFilhos, percentual: ((estatisticas.comFilhos / total) * 100).toFixed(1) },

@@ -295,21 +295,36 @@ export function GestoresCharts({ gestores }: GestoresChartsProps) {
   }, [gestores, total]);
 
   // Dados formatados
-  const dadosGenero = useMemo(() => formatarDados(estatisticas.porGenero), [estatisticas.porGenero]);
-  const dadosSetor = useMemo(() => formatarDados(estatisticas.porSetor, LABELS.setor), [estatisticas.porSetor]);
-  const dadosNivel = useMemo(() => formatarDados(estatisticas.porNivel, LABELS.nivel_hierarquico), [estatisticas.porNivel]);
-  const dadosAreaAtuacao = useMemo(() => formatarDados(estatisticas.porAreaAtuacao, LABELS.area_atuacao).slice(0, 12), [estatisticas.porAreaAtuacao]);
-  const dadosTipoOrgao = useMemo(() => formatarDados(estatisticas.porTipoOrgao, LABELS.tipo_orgao).slice(0, 10), [estatisticas.porTipoOrgao]);
-  const dadosSetorPrivado = useMemo(() => formatarDados(estatisticas.porSetorPrivado, LABELS.setor_privado).slice(0, 10), [estatisticas.porSetorPrivado]);
-  const dadosPorteEmpresa = useMemo(() => formatarDados(estatisticas.porPorteEmpresa, LABELS.porte_empresa), [estatisticas.porPorteEmpresa]);
-  const dadosEstiloLideranca = useMemo(() => formatarDados(estatisticas.porEstiloLideranca, LABELS.estilo_lideranca).slice(0, 10), [estatisticas.porEstiloLideranca]);
-  const dadosLocalizacao = useMemo(() => formatarDados(estatisticas.porLocalizacao).slice(0, 10), [estatisticas.porLocalizacao]);
-  const dadosRegiao = useMemo(() => formatarDados(estatisticas.porRegiao), [estatisticas.porRegiao]);
-  const dadosFormacao = useMemo(() => formatarDados(estatisticas.porFormacao).slice(0, 10), [estatisticas.porFormacao]);
-  const dadosDesafio = useMemo(() => formatarDados(estatisticas.porDesafio).slice(0, 10), [estatisticas.porDesafio]);
-  const dadosCompetencia = useMemo(() => formatarDados(estatisticas.porCompetencia).slice(0, 10), [estatisticas.porCompetencia]);
-  const dadosMotivacao = useMemo(() => formatarDados(estatisticas.porMotivacao).slice(0, 8), [estatisticas.porMotivacao]);
-  const dadosFrustracao = useMemo(() => formatarDados(estatisticas.porFrustracao).slice(0, 8), [estatisticas.porFrustracao]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosGenero = useMemo(() => formatarDados(estatisticas.porGenero), [estatisticas.porGenero, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosSetor = useMemo(() => formatarDados(estatisticas.porSetor, LABELS.setor), [estatisticas.porSetor, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosNivel = useMemo(() => formatarDados(estatisticas.porNivel, LABELS.nivel_hierarquico), [estatisticas.porNivel, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosAreaAtuacao = useMemo(() => formatarDados(estatisticas.porAreaAtuacao, LABELS.area_atuacao).slice(0, 12), [estatisticas.porAreaAtuacao, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosTipoOrgao = useMemo(() => formatarDados(estatisticas.porTipoOrgao, LABELS.tipo_orgao).slice(0, 10), [estatisticas.porTipoOrgao, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosSetorPrivado = useMemo(() => formatarDados(estatisticas.porSetorPrivado, LABELS.setor_privado).slice(0, 10), [estatisticas.porSetorPrivado, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosPorteEmpresa = useMemo(() => formatarDados(estatisticas.porPorteEmpresa, LABELS.porte_empresa), [estatisticas.porPorteEmpresa, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosEstiloLideranca = useMemo(() => formatarDados(estatisticas.porEstiloLideranca, LABELS.estilo_lideranca).slice(0, 10), [estatisticas.porEstiloLideranca, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosLocalizacao = useMemo(() => formatarDados(estatisticas.porLocalizacao).slice(0, 10), [estatisticas.porLocalizacao, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosRegiao = useMemo(() => formatarDados(estatisticas.porRegiao), [estatisticas.porRegiao, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosFormacao = useMemo(() => formatarDados(estatisticas.porFormacao).slice(0, 10), [estatisticas.porFormacao, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosDesafio = useMemo(() => formatarDados(estatisticas.porDesafio).slice(0, 10), [estatisticas.porDesafio, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosCompetencia = useMemo(() => formatarDados(estatisticas.porCompetencia).slice(0, 10), [estatisticas.porCompetencia, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosMotivacao = useMemo(() => formatarDados(estatisticas.porMotivacao).slice(0, 8), [estatisticas.porMotivacao, total]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const dadosFrustracao = useMemo(() => formatarDados(estatisticas.porFrustracao).slice(0, 8), [estatisticas.porFrustracao, total]);
 
   // Dados PODC para radar
   const dadosPODC = useMemo(() => {

@@ -112,7 +112,7 @@ export default function PaginaPesquisasParlamentares() {
         </div>
 
         <Link
-          href="/pesquisas-parlamentares/nova"
+          href="/parlamentares"
           className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
         >
           <Plus className="w-4 h-4" />
@@ -159,7 +159,7 @@ export default function PaginaPesquisasParlamentares() {
           </p>
           {!busca && !filtroStatus && (
             <Link
-              href="/pesquisas-parlamentares/nova"
+              href="/parlamentares"
               className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
             >
               <Plus className="w-4 h-4" />

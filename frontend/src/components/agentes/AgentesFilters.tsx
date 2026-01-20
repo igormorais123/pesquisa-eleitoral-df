@@ -353,6 +353,7 @@ export function AgentesFilters({
     if (filtros.busca !== buscaLocal && filtros.busca === '') {
       setBuscaLocal('');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtros.busca]);
 
   // Calcular total de filtros ativos

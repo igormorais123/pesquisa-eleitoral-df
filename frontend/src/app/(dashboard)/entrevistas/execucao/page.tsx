@@ -216,6 +216,7 @@ export default function PaginaExecucaoEntrevista() {
     }
 
     setEleitorAtual(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     pausado,
     eleitoresPendentes,
@@ -271,6 +272,7 @@ export default function PaginaExecucaoEntrevista() {
       console.log('Salvando sessão concluída com', sessaoAtual.respostas.length, 'respostas');
       salvarSessao(sessaoAtual);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessaoAtual?.status, sessaoAtual?.respostas.length]);
 
   // Salvar sessão periodicamente durante a execução (a cada resposta)

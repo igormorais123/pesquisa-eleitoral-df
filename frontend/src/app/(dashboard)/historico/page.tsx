@@ -202,7 +202,7 @@ function PesquisaRow({
               />
               <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-20">
                 <Link
-                  href={`/pesquisas/${pesquisa.id}`}
+                  href={`/resultados/${pesquisa.id}`}
                   className="flex items-center gap-2 px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                 >
                   <Eye className="w-4 h-4" />

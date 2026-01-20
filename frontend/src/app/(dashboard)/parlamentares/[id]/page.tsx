@@ -192,7 +192,7 @@ export default function PaginaPerfilParlamentar() {
 
             {/* Botão de pesquisa */}
             <Link
-              href={`/pesquisas/nova?tipo=parlamentar&ids=${parlamentar.id}`}
+              href={`/entrevistas/nova?tipo=parlamentar&selecionados=${parlamentar.id}`}
               className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
             >
               <Sparkles className="w-4 h-4" />

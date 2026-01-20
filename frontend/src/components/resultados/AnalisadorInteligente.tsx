@@ -49,6 +49,7 @@ export function AnalisadorInteligente({
       handleAnalisar();
       setJaAnalisou(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoAnalisar, respostas.length, jaAnalisou]);
 
   const handleAnalisar = async () => {

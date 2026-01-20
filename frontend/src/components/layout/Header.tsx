@@ -372,7 +372,7 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                 )}
 
                 <Link
-                  href="/perfil"
+                  href="/configuracoes"
                   className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground hover:bg-secondary transition-colors"
                 >
                   <User className="w-4 h-4 text-muted-foreground" />
@@ -392,17 +392,6 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                     <p className="text-[10px] text-muted-foreground">Ajustes do sistema</p>
                   </div>
                 </Link>
-
-                <Link
-                  href="/assinatura"
-                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground hover:bg-secondary transition-colors"
-                >
-                  <CreditCard className="w-4 h-4 text-muted-foreground" />
-                  <div>
-                    <p className="font-medium">Assinatura</p>
-                    <p className="text-[10px] text-muted-foreground">Plano e faturamento</p>
-                  </div>
-                </Link>
               </div>
 
               {/* Separador */}
@@ -410,13 +399,15 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
 
               {/* Seção de ajuda */}
               <div className="py-2">
-                <Link
-                  href="/ajuda"
+                <a
+                  href="https://github.com/anthropics/claude-code/issues"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-3 px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
                 >
                   <HelpCircle className="w-4 h-4" />
                   <span>Central de Ajuda</span>
-                </Link>
+                </a>
 
                 <button
                   onClick={abrirBuscaGlobal}

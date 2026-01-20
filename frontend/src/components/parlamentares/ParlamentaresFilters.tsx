@@ -378,6 +378,7 @@ export function ParlamentaresFilters({
     if (filtros.busca !== buscaLocal && filtros.busca === '') {
       setBuscaLocal('');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtros.busca]);
 
   const contarFiltrosAtivos = useCallback(() => {

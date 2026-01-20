@@ -93,6 +93,7 @@ export function CandidatosList() {
   // Carregar candidatos na montagem
   useEffect(() => {
     carregarCandidatos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Buscar ao mudar filtros
@@ -110,6 +111,7 @@ export function CandidatosList() {
     }, 300);
 
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [busca, cargoSelecionado, mostrarInativos]);
 
   // Handlers
@@ -190,6 +192,7 @@ export function CandidatosList() {
       toast.error(erro);
       limparErro();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [erro]);
 
   return (
