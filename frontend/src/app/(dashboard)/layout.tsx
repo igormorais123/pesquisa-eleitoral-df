@@ -44,11 +44,11 @@ export default function DashboardLayout({
 
   if (verificando) {
     return (
-      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center relative overflow-hidden">
+      <div className="min-h-screen bg-background flex items-center justify-center relative overflow-hidden">
         {/* Background effects */}
-        <div className="absolute inset-0 bg-grid opacity-50" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px]" />
+        <div className="absolute inset-0 bg-grid opacity-30 dark:opacity-50" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px]" />
 
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -56,17 +56,17 @@ export default function DashboardLayout({
           className="flex flex-col items-center gap-6 relative z-10"
         >
           <div className="relative">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-blue-500/25">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-blue-400 flex items-center justify-center shadow-lg shadow-primary/25">
               <Globe className="w-8 h-8 text-white" />
             </div>
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-400 animate-ping opacity-20" />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary to-blue-400 animate-ping opacity-20" />
           </div>
           <div className="flex flex-col items-center gap-2">
-            <p className="text-white font-semibold text-lg">Carregando Sistema</p>
+            <p className="text-foreground font-semibold text-lg">Carregando Sistema</p>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-              <div className="w-2 h-2 bg-teal-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+              <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+              <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+              <div className="w-2 h-2 bg-blue-300 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
             </div>
           </div>
         </motion.div>
@@ -79,11 +79,11 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] relative">
+    <div className="min-h-screen bg-background relative">
       {/* Background pattern */}
-      <div className="fixed inset-0 bg-grid pointer-events-none" />
-      <div className="fixed top-0 left-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="fixed bottom-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="fixed inset-0 bg-grid pointer-events-none opacity-30 dark:opacity-50" />
+      <div className="fixed top-0 left-0 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[150px] pointer-events-none" />
+      <div className="fixed bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/3 rounded-full blur-[120px] pointer-events-none" />
 
       <Sidebar />
 
@@ -107,31 +107,31 @@ export default function DashboardLayout({
         </main>
 
         {/* Footer com créditos */}
-        <footer className="hidden lg:block border-t border-zinc-800/50 bg-zinc-900/30 backdrop-blur-sm relative z-10">
+        <footer className="hidden lg:block border-t border-border bg-card/50 backdrop-blur-sm relative z-10">
           <div className="px-6 py-4">
             <div className="flex items-center justify-between">
               {/* Créditos */}
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/30 flex items-center justify-center">
-                    <Globe className="w-4 h-4 text-blue-400" />
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary/20 to-blue-500/20 border border-primary/30 flex items-center justify-center">
+                    <Globe className="w-4 h-4 text-primary" />
                   </div>
                   <div>
-                    <p className="text-xs text-zinc-500">Produzido por</p>
-                    <p className="text-sm font-semibold text-zinc-300">Igor Morais Vasconcelos</p>
+                    <p className="text-xs text-muted-foreground">Produzido por</p>
+                    <p className="text-sm font-semibold text-foreground">Igor Morais Vasconcelos</p>
                   </div>
                 </div>
-                <div className="w-px h-8 bg-zinc-800" />
-                <p className="text-xs text-zinc-500">
-                  © 2024-2026 Todos os direitos reservados
+                <div className="w-px h-8 bg-border" />
+                <p className="text-xs text-muted-foreground">
+                  2024-2026 Todos os direitos reservados
                 </p>
               </div>
 
               {/* Status e Info */}
               <div className="flex items-center gap-6">
-                <div className="flex items-center gap-4 text-xs text-zinc-500">
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
                   <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
+                    <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
                     <span>Sistema Online</span>
                   </div>
                   <div className="flex items-center gap-1.5">

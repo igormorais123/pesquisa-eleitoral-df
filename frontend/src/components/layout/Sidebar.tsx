@@ -137,14 +137,14 @@ const menuItems = [
     href: '/historico',
     icone: History,
     descricao: 'Pesquisas anteriores',
-    cor: 'zinc',
+    cor: 'slate',
   },
   {
     titulo: 'Configurações',
     href: '/configuracoes',
     icone: Settings,
     descricao: 'Preferências do sistema',
-    cor: 'zinc',
+    cor: 'slate',
   },
 ];
 
@@ -164,56 +164,66 @@ const acoesRapidas = [
 ];
 
 const getCorClasses = (cor: string, ativo: boolean) => {
-  const cores: Record<string, { ativo: string; hover: string; icon: string }> = {
+  const cores: Record<string, { ativo: string; hover: string; icon: string; iconActive: string }> = {
     blue: {
-      ativo: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-      hover: 'hover:bg-blue-500/10 hover:text-blue-400',
-      icon: 'text-blue-400',
+      ativo: 'bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-500/30',
+      hover: 'hover:bg-blue-50 dark:hover:bg-blue-500/10 hover:text-blue-700 dark:hover:text-blue-300',
+      icon: 'text-blue-600 dark:text-blue-400',
+      iconActive: 'text-blue-700 dark:text-blue-300',
     },
     cyan: {
-      ativo: 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
-      hover: 'hover:bg-cyan-500/10 hover:text-cyan-400',
-      icon: 'text-cyan-400',
+      ativo: 'bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-500/30',
+      hover: 'hover:bg-cyan-50 dark:hover:bg-cyan-500/10 hover:text-cyan-700 dark:hover:text-cyan-300',
+      icon: 'text-cyan-600 dark:text-cyan-400',
+      iconActive: 'text-cyan-700 dark:text-cyan-300',
     },
     emerald: {
-      ativo: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
-      hover: 'hover:bg-emerald-500/10 hover:text-emerald-400',
-      icon: 'text-emerald-400',
+      ativo: 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-500/30',
+      hover: 'hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-300',
+      icon: 'text-emerald-600 dark:text-emerald-400',
+      iconActive: 'text-emerald-700 dark:text-emerald-300',
     },
     violet: {
-      ativo: 'bg-violet-500/20 text-violet-400 border-violet-500/30',
-      hover: 'hover:bg-violet-500/10 hover:text-violet-400',
-      icon: 'text-violet-400',
+      ativo: 'bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 border-violet-200 dark:border-violet-500/30',
+      hover: 'hover:bg-violet-50 dark:hover:bg-violet-500/10 hover:text-violet-700 dark:hover:text-violet-300',
+      icon: 'text-violet-600 dark:text-violet-400',
+      iconActive: 'text-violet-700 dark:text-violet-300',
     },
     amber: {
-      ativo: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
-      hover: 'hover:bg-amber-500/10 hover:text-amber-400',
-      icon: 'text-amber-400',
+      ativo: 'bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-500/30',
+      hover: 'hover:bg-amber-50 dark:hover:bg-amber-500/10 hover:text-amber-700 dark:hover:text-amber-300',
+      icon: 'text-amber-600 dark:text-amber-400',
+      iconActive: 'text-amber-700 dark:text-amber-300',
     },
     pink: {
-      ativo: 'bg-pink-500/20 text-pink-400 border-pink-500/30',
-      hover: 'hover:bg-pink-500/10 hover:text-pink-400',
-      icon: 'text-pink-400',
+      ativo: 'bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-300 border-pink-200 dark:border-pink-500/30',
+      hover: 'hover:bg-pink-50 dark:hover:bg-pink-500/10 hover:text-pink-700 dark:hover:text-pink-300',
+      icon: 'text-pink-600 dark:text-pink-400',
+      iconActive: 'text-pink-700 dark:text-pink-300',
     },
     orange: {
-      ativo: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
-      hover: 'hover:bg-orange-500/10 hover:text-orange-400',
-      icon: 'text-orange-400',
+      ativo: 'bg-orange-100 dark:bg-orange-500/20 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-500/30',
+      hover: 'hover:bg-orange-50 dark:hover:bg-orange-500/10 hover:text-orange-700 dark:hover:text-orange-300',
+      icon: 'text-orange-600 dark:text-orange-400',
+      iconActive: 'text-orange-700 dark:text-orange-300',
     },
     teal: {
-      ativo: 'bg-teal-500/20 text-teal-400 border-teal-500/30',
-      hover: 'hover:bg-teal-500/10 hover:text-teal-400',
-      icon: 'text-teal-400',
+      ativo: 'bg-teal-100 dark:bg-teal-500/20 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-500/30',
+      hover: 'hover:bg-teal-50 dark:hover:bg-teal-500/10 hover:text-teal-700 dark:hover:text-teal-300',
+      icon: 'text-teal-600 dark:text-teal-400',
+      iconActive: 'text-teal-700 dark:text-teal-300',
     },
     red: {
-      ativo: 'bg-red-500/20 text-red-400 border-red-500/30',
-      hover: 'hover:bg-red-500/10 hover:text-red-400',
-      icon: 'text-red-400',
+      ativo: 'bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-300 border-red-200 dark:border-red-500/30',
+      hover: 'hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-700 dark:hover:text-red-300',
+      icon: 'text-red-600 dark:text-red-400',
+      iconActive: 'text-red-700 dark:text-red-300',
     },
-    zinc: {
-      ativo: 'bg-zinc-500/20 text-zinc-300 border-zinc-500/30',
-      hover: 'hover:bg-zinc-500/10 hover:text-zinc-300',
-      icon: 'text-zinc-400',
+    slate: {
+      ativo: 'bg-slate-100 dark:bg-slate-500/20 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-500/30',
+      hover: 'hover:bg-slate-50 dark:hover:bg-slate-500/10 hover:text-slate-700 dark:hover:text-slate-300',
+      icon: 'text-slate-600 dark:text-slate-400',
+      iconActive: 'text-slate-700 dark:text-slate-300',
     },
   };
 
@@ -243,9 +253,9 @@ export function Sidebar() {
   const sidebarContent = (
     <>
       {/* Logo */}
-      <div className="p-4 border-b border-zinc-800/50">
+      <div className="p-4 border-b border-border">
         <Link href="/" className="flex items-center gap-3" onClick={fecharMobile}>
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/20">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-blue-400 flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/20">
             <Globe className="w-5 h-5 text-white" />
           </div>
           {!recolhido && (
@@ -254,8 +264,8 @@ export function Sidebar() {
               animate={{ opacity: 1, x: 0 }}
               className="overflow-hidden"
             >
-              <h1 className="font-bold text-white text-sm">Pesquisa Eleitoral</h1>
-              <p className="text-[10px] text-zinc-500 font-mono">DF 2026 • v2.0</p>
+              <h1 className="font-bold text-foreground text-sm">Pesquisa Eleitoral</h1>
+              <p className="text-[10px] text-muted-foreground font-mono">DF 2026 v2.0</p>
             </motion.div>
           )}
         </Link>
@@ -264,7 +274,7 @@ export function Sidebar() {
       {/* Menu Principal */}
       <nav className="flex-1 p-3 space-y-1 overflow-y-auto scrollbar-hide">
         {!recolhido && (
-          <p className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider px-3 mb-2">
+          <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider px-3 mb-2">
             Menu Principal
           </p>
         )}
@@ -289,8 +299,8 @@ export function Sidebar() {
                   className={cn(
                     'flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group relative',
                     ativo
-                      ? `${corClasses.ativo} border`
-                      : `text-zinc-400 ${corClasses.hover} border border-transparent`
+                      ? `${corClasses.ativo} border font-medium`
+                      : `text-foreground/70 ${corClasses.hover} border border-transparent`
                   )}
                   title={recolhido ? item.titulo : undefined}
                 >
@@ -304,15 +314,15 @@ export function Sidebar() {
                   <Icone
                     className={cn(
                       'w-5 h-5 flex-shrink-0 transition-colors',
-                      ativo ? corClasses.icon : `text-zinc-500 group-hover:${corClasses.icon}`
+                      ativo ? corClasses.iconActive : corClasses.icon
                     )}
                   />
                   {!recolhido && (
                     <div className="overflow-hidden flex-1">
-                      <span className="block text-sm font-medium">{item.titulo}</span>
+                      <span className="block text-sm">{item.titulo}</span>
                       <span className={cn(
                         'block text-[10px] truncate',
-                        ativo ? 'opacity-70' : 'text-zinc-600'
+                        ativo ? 'opacity-80' : 'text-muted-foreground'
                       )}>
                         {item.descricao}
                       </span>
@@ -330,7 +340,7 @@ export function Sidebar() {
         {!recolhido && (
           <>
             <div className="pt-4 pb-2">
-              <p className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider px-3">
+              <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider px-3">
                 Ações Rápidas
               </p>
             </div>
@@ -351,17 +361,17 @@ export function Sidebar() {
                     onClick={fecharMobile}
                     className={cn(
                       'flex items-center gap-3 px-3 py-2 rounded-xl transition-all group',
-                      'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50 border border-transparent hover:border-zinc-700/50'
+                      'text-foreground/70 hover:text-foreground hover:bg-muted border border-transparent hover:border-border'
                     )}
                   >
                     <div className={cn(
                       'w-8 h-8 rounded-lg flex items-center justify-center transition-colors',
-                      'bg-zinc-800/50 group-hover:bg-zinc-700/50'
+                      'bg-muted group-hover:bg-background'
                     )}>
                       <Icone className={cn('w-4 h-4', corClasses.icon)} />
                     </div>
                     <span className="text-sm">{acao.titulo}</span>
-                    <Zap className="w-3 h-3 ml-auto text-zinc-600 group-hover:text-amber-400 transition-colors" />
+                    <Zap className="w-3 h-3 ml-auto text-muted-foreground group-hover:text-amber-500 transition-colors" />
                   </Link>
                 </motion.div>
               );
@@ -371,13 +381,13 @@ export function Sidebar() {
       </nav>
 
       {/* Footer da Sidebar */}
-      <div className="p-3 border-t border-zinc-800/50">
+      <div className="p-3 border-t border-border">
         {/* Status do Sistema */}
         {!recolhido && (
-          <div className="mb-3 px-3 py-2 rounded-xl bg-zinc-800/30 border border-zinc-700/30">
+          <div className="mb-3 px-3 py-2 rounded-xl bg-muted/50 border border-border">
             <div className="flex items-center gap-2 text-xs">
-              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-              <span className="text-zinc-400">Sistema Online</span>
+              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+              <span className="text-muted-foreground">Sistema Online</span>
             </div>
           </div>
         )}
@@ -387,7 +397,7 @@ export function Sidebar() {
           onClick={toggleRecolhido}
           className={cn(
             'w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl transition-all',
-            'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50 border border-zinc-800/50 hover:border-zinc-700/50'
+            'text-muted-foreground hover:text-foreground hover:bg-muted border border-border'
           )}
         >
           {recolhido ? (
@@ -409,7 +419,7 @@ export function Sidebar() {
       <aside
         className={cn(
           'hidden lg:flex fixed left-0 top-0 z-40 h-screen transition-all duration-300 flex-col',
-          'bg-zinc-900/80 backdrop-blur-xl border-r border-zinc-800/50',
+          'bg-card/95 backdrop-blur-xl border-r border-border shadow-lg',
           recolhido ? 'w-20' : 'w-64'
         )}
       >
@@ -423,7 +433,7 @@ export function Sidebar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="lg:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+            className="lg:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
             onClick={fecharMobile}
           />
         )}
@@ -433,16 +443,16 @@ export function Sidebar() {
       <aside
         className={cn(
           'lg:hidden fixed left-0 top-0 z-50 h-screen w-72 flex flex-col transition-transform duration-300 ease-out',
-          'bg-zinc-900/95 backdrop-blur-xl border-r border-zinc-800/50',
+          'bg-card backdrop-blur-xl border-r border-border shadow-2xl',
           mobileAberto ? 'translate-x-0' : '-translate-x-full'
         )}
       >
         <button
           onClick={fecharMobile}
-          className="absolute top-4 right-4 p-2 rounded-xl hover:bg-zinc-800/50 transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-xl hover:bg-muted transition-colors"
           aria-label="Fechar menu"
         >
-          <X className="w-5 h-5 text-zinc-400" />
+          <X className="w-5 h-5 text-muted-foreground" />
         </button>
         {sidebarContent}
       </aside>

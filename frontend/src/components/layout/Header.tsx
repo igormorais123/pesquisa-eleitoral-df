@@ -27,8 +27,6 @@ import {
   ChevronDown,
   HelpCircle,
   Keyboard,
-  Sparkles,
-  Zap,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
@@ -42,10 +40,10 @@ interface HeaderProps {
 }
 
 const notificationStyles: Record<Notification['type'], { icon: typeof Info; color: string; bg: string }> = {
-  info: { icon: Info, color: 'text-blue-400', bg: 'bg-blue-500/20' },
-  success: { icon: CheckCircle, color: 'text-emerald-400', bg: 'bg-emerald-500/20' },
-  warning: { icon: AlertTriangle, color: 'text-amber-400', bg: 'bg-amber-500/20' },
-  error: { icon: XCircle, color: 'text-red-400', bg: 'bg-red-500/20' },
+  info: { icon: Info, color: 'text-blue-500 dark:text-blue-400', bg: 'bg-blue-100 dark:bg-blue-500/20' },
+  success: { icon: CheckCircle, color: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-100 dark:bg-emerald-500/20' },
+  warning: { icon: AlertTriangle, color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-100 dark:bg-amber-500/20' },
+  error: { icon: XCircle, color: 'text-red-600 dark:text-red-400', bg: 'bg-red-100 dark:bg-red-500/20' },
 };
 
 export function Header({ titulo, subtitulo }: HeaderProps) {
@@ -102,19 +100,19 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
   }, []);
 
   return (
-    <header className="sticky top-0 z-30 bg-zinc-900/80 backdrop-blur-xl border-b border-zinc-800/50">
+    <header className="sticky top-0 z-30 bg-card/95 backdrop-blur-xl border-b border-border shadow-sm">
       <div className="flex items-center justify-between h-16 px-4 lg:px-6">
         {/* Lado Esquerdo */}
         <div className="flex items-center gap-4">
           <button
-            className="lg:hidden p-2 rounded-xl hover:bg-zinc-800/50 transition-colors"
+            className="lg:hidden p-2 rounded-xl hover:bg-accent transition-colors"
             onClick={toggleMobile}
             aria-label={mobileAberto ? 'Fechar menu' : 'Abrir menu'}
           >
             {mobileAberto ? (
-              <X className="w-5 h-5 text-zinc-400" />
+              <X className="w-5 h-5 text-muted-foreground" />
             ) : (
-              <Menu className="w-5 h-5 text-zinc-400" />
+              <Menu className="w-5 h-5 text-muted-foreground" />
             )}
           </button>
 
@@ -123,9 +121,9 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <h1 className="text-lg font-semibold text-white">{titulo}</h1>
+              <h1 className="text-lg font-semibold text-foreground">{titulo}</h1>
               {subtitulo && (
-                <p className="text-xs text-zinc-500">{subtitulo}</p>
+                <p className="text-xs text-muted-foreground">{subtitulo}</p>
               )}
             </motion.div>
           )}
@@ -137,12 +135,12 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
             onClick={abrirBuscaGlobal}
             className="relative w-full group"
           >
-            <div className="flex items-center gap-3 w-full px-4 py-2.5 rounded-xl bg-zinc-800/50 border border-zinc-700/50 hover:border-zinc-600/50 transition-all">
-              <Search className="w-4 h-4 text-zinc-500 group-hover:text-zinc-400 transition-colors" />
-              <span className="text-sm text-zinc-500 group-hover:text-zinc-400 transition-colors">
+            <div className="flex items-center gap-3 w-full px-4 py-2.5 rounded-xl bg-muted/50 border border-border hover:border-primary/30 hover:bg-muted transition-all">
+              <Search className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+              <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
                 Buscar eleitores, entrevistas...
               </span>
-              <kbd className="ml-auto hidden lg:flex items-center gap-1 px-2 py-1 text-[10px] font-mono text-zinc-600 bg-zinc-800 border border-zinc-700 rounded-lg">
+              <kbd className="ml-auto hidden lg:flex items-center gap-1 px-2 py-1 text-[10px] font-mono text-muted-foreground bg-background border border-border rounded-lg">
                 <span>⌘</span>
                 <span>K</span>
               </kbd>
@@ -154,25 +152,25 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
         <div className="flex items-center gap-1">
           {/* Busca mobile */}
           <button
-            className="md:hidden p-2.5 rounded-xl hover:bg-zinc-800/50 transition-colors"
+            className="md:hidden p-2.5 rounded-xl hover:bg-accent transition-colors"
             onClick={abrirBuscaGlobal}
           >
-            <Search className="w-5 h-5 text-zinc-400" />
+            <Search className="w-5 h-5 text-muted-foreground" />
           </button>
 
           {/* Notificações */}
           <div className="relative" ref={notificacoesRef}>
             <button
-              className="relative p-2.5 rounded-xl hover:bg-zinc-800/50 transition-colors"
+              className="relative p-2.5 rounded-xl hover:bg-accent transition-colors"
               onClick={toggleNotificacoes}
               aria-label="Notificações"
             >
-              <Bell className="w-5 h-5 text-zinc-400" />
+              <Bell className="w-5 h-5 text-muted-foreground" />
               {unreadCount > 0 && (
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="absolute top-1 right-1 min-w-[16px] h-4 flex items-center justify-center text-[10px] font-bold text-white bg-blue-500 rounded-full px-1"
+                  className="absolute top-1 right-1 min-w-[16px] h-4 flex items-center justify-center text-[10px] font-bold text-white bg-primary rounded-full px-1"
                 >
                   {unreadCount > 9 ? '9+' : unreadCount}
                 </motion.span>
@@ -187,18 +185,18 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute right-0 top-full mt-2 w-80 sm:w-96 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden z-50"
+                  className="absolute right-0 top-full mt-2 w-80 sm:w-96 bg-card border border-border rounded-2xl shadow-2xl overflow-hidden z-50"
                 >
                   {/* Header */}
-                  <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-800/30">
+                  <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/30">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                        <Bell className="w-4 h-4 text-blue-400" />
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <Bell className="w-4 h-4 text-primary" />
                       </div>
                       <div>
-                        <span className="font-semibold text-white text-sm">Notificações</span>
+                        <span className="font-semibold text-foreground text-sm">Notificações</span>
                         {unreadCount > 0 && (
-                          <span className="ml-2 px-1.5 py-0.5 text-[10px] font-medium bg-blue-500/20 text-blue-400 rounded-full">
+                          <span className="ml-2 px-1.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full">
                             {unreadCount} nova{unreadCount !== 1 && 's'}
                           </span>
                         )}
@@ -208,19 +206,19 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                       {unreadCount > 0 && (
                         <button
                           onClick={markAllAsRead}
-                          className="p-1.5 rounded-lg hover:bg-zinc-700/50 transition-colors"
+                          className="p-1.5 rounded-lg hover:bg-accent transition-colors"
                           title="Marcar todas como lidas"
                         >
-                          <CheckCheck className="w-4 h-4 text-zinc-500" />
+                          <CheckCheck className="w-4 h-4 text-muted-foreground" />
                         </button>
                       )}
                       {notifications.length > 0 && (
                         <button
                           onClick={clearAll}
-                          className="p-1.5 rounded-lg hover:bg-zinc-700/50 transition-colors"
+                          className="p-1.5 rounded-lg hover:bg-accent transition-colors"
                           title="Limpar todas"
                         >
-                          <Trash2 className="w-4 h-4 text-zinc-500" />
+                          <Trash2 className="w-4 h-4 text-muted-foreground" />
                         </button>
                       )}
                     </div>
@@ -230,11 +228,11 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                   <div className="max-h-[400px] overflow-y-auto scrollbar-hide">
                     {notifications.length === 0 ? (
                       <div className="py-12 text-center">
-                        <div className="w-16 h-16 rounded-2xl bg-zinc-800/50 flex items-center justify-center mx-auto mb-4">
-                          <Bell className="w-8 h-8 text-zinc-600" />
+                        <div className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center mx-auto mb-4">
+                          <Bell className="w-8 h-8 text-muted-foreground/50" />
                         </div>
-                        <p className="text-sm text-zinc-400">Nenhuma notificação</p>
-                        <p className="text-xs text-zinc-600 mt-1">
+                        <p className="text-sm text-muted-foreground">Nenhuma notificação</p>
+                        <p className="text-xs text-muted-foreground/70 mt-1">
                           Você será notificado sobre atualizações
                         </p>
                       </div>
@@ -245,8 +243,8 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                         return (
                           <div
                             key={notif.id}
-                            className={`relative px-4 py-3 border-b border-zinc-800/50 last:border-0 hover:bg-zinc-800/30 transition-colors ${
-                              !notif.read ? 'bg-blue-500/5' : ''
+                            className={`relative px-4 py-3 border-b border-border/50 last:border-0 hover:bg-muted/30 transition-colors ${
+                              !notif.read ? 'bg-primary/5' : ''
                             }`}
                           >
                             <div className="flex gap-3">
@@ -255,33 +253,33 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-start justify-between gap-2">
-                                  <p className={`text-sm font-medium ${notif.read ? 'text-zinc-400' : 'text-white'}`}>
+                                  <p className={`text-sm font-medium ${notif.read ? 'text-muted-foreground' : 'text-foreground'}`}>
                                     {notif.title}
                                   </p>
                                   <div className="flex items-center gap-1 flex-shrink-0">
                                     {!notif.read && (
                                       <button
                                         onClick={() => markAsRead(notif.id)}
-                                        className="p-1 rounded hover:bg-zinc-700/50 transition-colors"
+                                        className="p-1 rounded hover:bg-accent transition-colors"
                                         title="Marcar como lida"
                                       >
-                                        <Check className="w-3 h-3 text-zinc-500" />
+                                        <Check className="w-3 h-3 text-muted-foreground" />
                                       </button>
                                     )}
                                     <button
                                       onClick={() => removeNotification(notif.id)}
-                                      className="p-1 rounded hover:bg-zinc-700/50 transition-colors"
+                                      className="p-1 rounded hover:bg-accent transition-colors"
                                       title="Remover"
                                     >
-                                      <X className="w-3 h-3 text-zinc-500" />
+                                      <X className="w-3 h-3 text-muted-foreground" />
                                     </button>
                                   </div>
                                 </div>
-                                <p className="text-xs text-zinc-500 mt-0.5 line-clamp-2">
+                                <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
                                   {notif.message}
                                 </p>
                                 <div className="flex items-center justify-between mt-2">
-                                  <span className="text-[10px] text-zinc-600">
+                                  <span className="text-[10px] text-muted-foreground/70">
                                     {formatDistanceToNow(new Date(notif.timestamp), {
                                       addSuffix: true,
                                       locale: ptBR,
@@ -290,7 +288,7 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                                   {notif.action && (
                                     <a
                                       href={notif.action.href}
-                                      className="flex items-center gap-1 text-[10px] text-blue-400 hover:underline"
+                                      className="flex items-center gap-1 text-[10px] text-primary hover:underline"
                                     >
                                       {notif.action.label}
                                       <ExternalLink className="w-3 h-3" />
@@ -300,7 +298,7 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                               </div>
                             </div>
                             {!notif.read && (
-                              <span className="absolute left-1.5 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-blue-400 rounded-full" />
+                              <span className="absolute left-1.5 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-primary rounded-full" />
                             )}
                           </div>
                         );
@@ -314,43 +312,43 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
 
           {/* Tema */}
           <button
-            className="p-2.5 rounded-xl hover:bg-zinc-800/50 transition-colors"
+            className="p-2.5 rounded-xl hover:bg-accent transition-colors"
             onClick={toggleTheme}
             aria-label={theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro'}
           >
             {theme === 'dark' ? (
-              <Sun className="w-5 h-5 text-amber-400" />
+              <Sun className="w-5 h-5 text-amber-500" />
             ) : (
-              <Moon className="w-5 h-5 text-zinc-400" />
+              <Moon className="w-5 h-5 text-slate-600" />
             )}
           </button>
 
           {/* Separador */}
-          <div className="w-px h-8 bg-zinc-800 mx-2 hidden sm:block" />
+          <div className="w-px h-8 bg-border mx-2 hidden sm:block" />
 
           {/* Perfil */}
           <div className="relative" ref={perfilRef}>
             <button
               onClick={() => setPerfilAberto(!perfilAberto)}
-              className="flex items-center gap-3 p-1.5 pr-3 rounded-xl hover:bg-zinc-800/50 transition-colors"
+              className="flex items-center gap-3 p-1.5 pr-3 rounded-xl hover:bg-accent transition-colors"
             >
               <div className="relative">
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white font-semibold text-sm shadow-lg shadow-blue-500/20">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-blue-400 flex items-center justify-center text-white font-semibold text-sm shadow-lg shadow-primary/20">
                   {usuario?.nome ? usuario.nome.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase() : 'US'}
                 </div>
-                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-400 border-2 border-zinc-900 rounded-full" />
+                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-card rounded-full" />
               </div>
 
               <div className="hidden sm:block text-left">
-                <p className="text-sm font-medium text-white leading-tight">
+                <p className="text-sm font-medium text-foreground leading-tight">
                   {usuario?.nome?.split(' ')[0] || 'Usuário'}
                 </p>
-                <p className="text-[10px] text-zinc-500 leading-tight capitalize">
+                <p className="text-[10px] text-muted-foreground leading-tight capitalize">
                   {usuario?.papel === 'admin' ? 'Administrador' : 'Usuário'}
                 </p>
               </div>
 
-              <ChevronDown className={`w-4 h-4 text-zinc-500 hidden sm:block transition-transform ${perfilAberto ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-4 h-4 text-muted-foreground hidden sm:block transition-transform ${perfilAberto ? 'rotate-180' : ''}`} />
             </button>
 
             {/* Dropdown Perfil */}
@@ -361,23 +359,23 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute right-0 top-full mt-2 w-72 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden z-50"
+                  className="absolute right-0 top-full mt-2 w-72 bg-card border border-border rounded-2xl shadow-2xl overflow-hidden z-50"
                 >
                   {/* Header */}
-                  <div className="p-4 border-b border-zinc-800 bg-zinc-800/30">
+                  <div className="p-4 border-b border-border bg-muted/30">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-500/20">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-blue-400 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-primary/20">
                         {usuario?.nome ? usuario.nome.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase() : 'US'}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-white truncate">
+                        <p className="font-semibold text-foreground truncate">
                           {usuario?.nome || 'Usuário'}
                         </p>
-                        <p className="text-xs text-zinc-500 truncate">
+                        <p className="text-xs text-muted-foreground truncate">
                           {usuario?.email || 'email@exemplo.com'}
                         </p>
                         {usuario?.papel === 'admin' && (
-                          <span className="inline-flex items-center gap-1 mt-1 px-2 py-0.5 text-[10px] font-medium bg-red-500/20 text-red-400 rounded-full">
+                          <span className="inline-flex items-center gap-1 mt-1 px-2 py-0.5 text-[10px] font-medium bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400 rounded-full">
                             <Shield className="w-3 h-3" />
                             Admin
                           </span>
@@ -392,14 +390,14 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                       <Link
                         href="/admin/usuarios"
                         onClick={() => setPerfilAberto(false)}
-                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-white hover:bg-zinc-800/50 transition-colors"
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground hover:bg-accent transition-colors"
                       >
-                        <div className="w-8 h-8 rounded-lg bg-red-500/20 flex items-center justify-center">
-                          <Shield className="w-4 h-4 text-red-400" />
+                        <div className="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-500/20 flex items-center justify-center">
+                          <Shield className="w-4 h-4 text-red-600 dark:text-red-400" />
                         </div>
                         <div>
                           <p className="font-medium">Admin Usuários</p>
-                          <p className="text-[10px] text-zinc-500">Gerenciar contas</p>
+                          <p className="text-[10px] text-muted-foreground">Gerenciar contas</p>
                         </div>
                       </Link>
                     )}
@@ -407,33 +405,33 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                     <Link
                       href="/configuracoes"
                       onClick={() => setPerfilAberto(false)}
-                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-white hover:bg-zinc-800/50 transition-colors"
+                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground hover:bg-accent transition-colors"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center">
-                        <User className="w-4 h-4 text-zinc-400" />
+                      <div className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center">
+                        <User className="w-4 h-4 text-muted-foreground" />
                       </div>
                       <div>
                         <p className="font-medium">Meu Perfil</p>
-                        <p className="text-[10px] text-zinc-500">Editar informações</p>
+                        <p className="text-[10px] text-muted-foreground">Editar informações</p>
                       </div>
                     </Link>
 
                     <Link
                       href="/configuracoes"
                       onClick={() => setPerfilAberto(false)}
-                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-white hover:bg-zinc-800/50 transition-colors"
+                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground hover:bg-accent transition-colors"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center">
-                        <Settings className="w-4 h-4 text-zinc-400" />
+                      <div className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center">
+                        <Settings className="w-4 h-4 text-muted-foreground" />
                       </div>
                       <div>
                         <p className="font-medium">Configurações</p>
-                        <p className="text-[10px] text-zinc-500">Ajustes do sistema</p>
+                        <p className="text-[10px] text-muted-foreground">Ajustes do sistema</p>
                       </div>
                     </Link>
                   </div>
 
-                  <div className="border-t border-zinc-800" />
+                  <div className="border-t border-border" />
 
                   {/* Ajuda */}
                   <div className="py-2">
@@ -441,7 +439,7 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
                       href="https://github.com/anthropics/claude-code/issues"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 px-4 py-2 text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/50 transition-colors"
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
                     >
                       <HelpCircle className="w-4 h-4" />
                       <span>Central de Ajuda</span>
@@ -450,23 +448,23 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
 
                     <button
                       onClick={() => { abrirBuscaGlobal(); setPerfilAberto(false); }}
-                      className="w-full flex items-center justify-between px-4 py-2 text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/50 transition-colors"
+                      className="w-full flex items-center justify-between px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
                     >
                       <div className="flex items-center gap-3">
                         <Keyboard className="w-4 h-4" />
                         <span>Busca Rápida</span>
                       </div>
-                      <kbd className="text-[10px] px-1.5 py-0.5 font-mono bg-zinc-800 border border-zinc-700 rounded">⌘K</kbd>
+                      <kbd className="text-[10px] px-1.5 py-0.5 font-mono bg-muted border border-border rounded">⌘K</kbd>
                     </button>
                   </div>
 
-                  <div className="border-t border-zinc-800" />
+                  <div className="border-t border-border" />
 
                   {/* Logout */}
                   <div className="py-2">
                     <button
                       onClick={logout}
-                      className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-400 hover:bg-red-500/10 transition-colors"
+                      className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors"
                     >
                       <LogOut className="w-4 h-4" />
                       <span className="font-medium">Sair da conta</span>
