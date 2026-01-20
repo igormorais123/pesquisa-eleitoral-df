@@ -75,8 +75,8 @@
 
 1. ~~**URGENTE:** Corrigir erro de build em `/mapa/page.tsx`~~ ✅ FEITO
 2. ~~Corrigir warnings críticos de hooks~~ ✅ FEITO (principais páginas)
-3. Substituir `<img>` por `<Image />` do Next.js (6 arquivos)
-4. Corrigir warnings restantes em componentes de Charts (40+ warnings)
+3. ~~Substituir `<img>` por `<Image />` do Next.js~~ ✅ FEITO (6 arquivos)
+4. Corrigir warnings restantes em componentes de Charts (49 warnings)
 5. Testar todas as rotas do dashboard
 6. Verificar integração com backend
 
