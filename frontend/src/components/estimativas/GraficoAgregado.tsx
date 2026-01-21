@@ -68,13 +68,19 @@ export function GraficoAgregado({
     });
   }, [candidatosSelecionados]);
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload }: any) => {
     if (!active || !payload?.length) return null;
+
+    // Buscar a data original do payload
+    const dataOriginal = payload[0]?.payload?.data;
+    const dataFormatada = dataOriginal
+      ? format(parseISO(dataOriginal), "dd 'de' MMMM 'de' yyyy", { locale: ptBR })
+      : '';
 
     return (
       <div className="bg-card/95 backdrop-blur-xl border border-border rounded-xl p-4 shadow-xl">
         <p className="text-sm font-medium text-muted-foreground mb-3">
-          {format(parseISO(label), "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}
+          {dataFormatada}
         </p>
         <div className="space-y-2">
           {payload

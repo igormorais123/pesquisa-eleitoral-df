@@ -126,43 +126,52 @@ function EstimativasContent() {
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight">
               Estimativas
-              <span className="block text-gradient">Eleitorais 2026</span>
+              <span className="block bg-gradient-to-r from-blue-600 via-indigo-500 to-violet-500 bg-clip-text text-transparent">
+                Eleitorais 2026
+              </span>
             </h1>
 
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-4 text-sm font-medium tracking-widest uppercase text-blue-500/80">
+              Cenário Nacional
+            </p>
+
+            <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Agregação inteligente de pesquisas eleitorais registradas no TSE.
               Análise preditiva, cenários de 1º e 2º turno, rejeição e avaliação de governo.
             </p>
 
-            {/* Quick Stats */}
-            <div className="flex items-center justify-center gap-8 mt-10">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-foreground number">
+            {/* Quick Stats - cores estratégicas estilo Apple */}
+            <div className="flex items-center justify-center gap-6 md:gap-10 mt-10 flex-wrap">
+              <div className="text-center group">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-b from-blue-500 to-blue-600 bg-clip-text text-transparent number transition-transform group-hover:scale-105">
                   {PESQUISAS_2026.length}
                 </div>
-                <div className="text-sm text-muted-foreground">Pesquisas</div>
+                <div className="text-xs md:text-sm text-muted-foreground mt-1">Pesquisas</div>
               </div>
-              <div className="w-px h-10 bg-border" />
-              <div className="text-center">
-                <div className="text-3xl font-bold text-foreground number">
+              <div className="w-px h-12 bg-gradient-to-b from-transparent via-border to-transparent hidden md:block" />
+              <div className="text-center group">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-b from-violet-500 to-purple-600 bg-clip-text text-transparent number transition-transform group-hover:scale-105">
                   {(
                     PESQUISAS_2026.reduce((acc, p) => acc + p.entrevistados, 0) / 1000
-                  ).toFixed(1)}
-                  k
+                  ).toFixed(1)}k
                 </div>
-                <div className="text-sm text-muted-foreground">Entrevistados</div>
+                <div className="text-xs md:text-sm text-muted-foreground mt-1">Entrevistados</div>
               </div>
-              <div className="w-px h-10 bg-border" />
-              <div className="text-center">
-                <div className="text-3xl font-bold text-emerald-500 number">
+              <div className="w-px h-12 bg-gradient-to-b from-transparent via-border to-transparent hidden md:block" />
+              <div className="text-center group">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-b from-emerald-400 to-green-600 bg-clip-text text-transparent number transition-transform group-hover:scale-105">
                   {rankingCandidatos[0]?.media.toFixed(1)}%
                 </div>
-                <div className="text-sm text-muted-foreground">Líder atual</div>
+                <div className="text-xs md:text-sm text-muted-foreground mt-1">
+                  <span className="text-emerald-500">{rankingCandidatos[0]?.candidato}</span>
+                </div>
               </div>
-              <div className="w-px h-10 bg-border" />
-              <div className="text-center">
-                <div className="text-3xl font-bold text-foreground number">6</div>
-                <div className="text-sm text-muted-foreground">Institutos</div>
+              <div className="w-px h-12 bg-gradient-to-b from-transparent via-border to-transparent hidden md:block" />
+              <div className="text-center group">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-b from-amber-400 to-orange-500 bg-clip-text text-transparent number transition-transform group-hover:scale-105">
+                  6
+                </div>
+                <div className="text-xs md:text-sm text-muted-foreground mt-1">Institutos</div>
               </div>
             </div>
           </motion.div>
@@ -188,56 +197,56 @@ function EstimativasContent() {
               <TabsList className="inline-flex h-12 items-center justify-start rounded-xl bg-muted/50 p-1 mb-8 min-w-max">
                 <TabsTrigger
                   value="panorama"
-                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm data-[state=active]:text-blue-600 whitespace-nowrap"
                 >
                   <LineChart className="w-4 h-4" />
                   Panorama
                 </TabsTrigger>
                 <TabsTrigger
                   value="ranking"
-                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm data-[state=active]:text-emerald-600 whitespace-nowrap"
                 >
                   <Users2 className="w-4 h-4" />
                   Ranking
                 </TabsTrigger>
                 <TabsTrigger
                   value="segundo-turno"
-                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm data-[state=active]:text-violet-600 whitespace-nowrap"
                 >
                   <GitCompare className="w-4 h-4" />
                   2º Turno
                 </TabsTrigger>
                 <TabsTrigger
                   value="modelo"
-                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm data-[state=active]:text-amber-600 whitespace-nowrap"
                 >
                   <Brain className="w-4 h-4" />
                   Previsão
                 </TabsTrigger>
                 <TabsTrigger
                   value="rejeicao"
-                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm data-[state=active]:text-red-500 whitespace-nowrap"
                 >
                   <ThumbsDown className="w-4 h-4" />
                   Rejeição
                 </TabsTrigger>
                 <TabsTrigger
                   value="governo"
-                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm data-[state=active]:text-sky-600 whitespace-nowrap"
                 >
                   <BarChart3 className="w-4 h-4" />
                   Governo
                 </TabsTrigger>
                 <TabsTrigger
                   value="institutos"
-                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm data-[state=active]:text-indigo-600 whitespace-nowrap"
                 >
                   <Building2 className="w-4 h-4" />
                   Institutos
                 </TabsTrigger>
                 <TabsTrigger
                   value="pesquisas"
-                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm data-[state=active]:text-slate-700 dark:data-[state=active]:text-slate-300 whitespace-nowrap"
                 >
                   <Newspaper className="w-4 h-4" />
                   Pesquisas

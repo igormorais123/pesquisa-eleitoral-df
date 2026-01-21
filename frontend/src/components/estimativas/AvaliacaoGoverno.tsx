@@ -73,10 +73,10 @@ export function AvaliacaoGoverno() {
         <div>
           <h2 className="text-2xl font-bold text-foreground">Avaliação do Governo Lula</h2>
           <p className="text-muted-foreground mt-1">
-            {ultimaPesquisa?.instituto} •{' '}
-            {format(parseISO(ultimaPesquisa?.publicacao || ''), "dd 'de' MMMM 'de' yyyy", {
-              locale: ptBR,
-            })}
+            {ultimaPesquisa?.instituto}
+            {ultimaPesquisa?.publicacao && (
+              <> • {format(parseISO(ultimaPesquisa.publicacao), "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}</>
+            )}
           </p>
         </div>
       </div>
