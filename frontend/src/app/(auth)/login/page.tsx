@@ -15,7 +15,6 @@ import {
   CheckCircle, TrendingUp, Globe, Shield,
   Zap, Database, LineChart, Vote,
   Building2, UserCircle, Map, History,
-  Award, GraduationCap, Lightbulb
 } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { api } from '@/services/api';
@@ -504,29 +503,51 @@ export default function LoginPage() {
         </div>
       </section>
 
-      {/* Sobre Igor */}
-      <section id="igor" className="py-32 px-6 bg-slate-900">
+      {/* A Metodologia */}
+      <section id="metodologia" className="py-32 px-6 bg-slate-900">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Foto/Visual */}
+            {/* Visual da Metodologia */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-square rounded-3xl bg-gradient-to-br from-blue-600/30 to-purple-600/30 border border-white/10 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-40 h-40 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center mb-6">
-                    <GraduationCap className="w-20 h-20 text-white" />
+              <div className="aspect-square rounded-3xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-white/10 p-8 flex flex-col justify-center">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                      <Globe className="w-6 h-6 text-blue-400" />
+                    </div>
+                    <div>
+                      <p className="text-white/50 text-sm">Origem</p>
+                      <p className="text-white font-medium">Stanford University</p>
+                    </div>
                   </div>
-                  <p className="text-2xl font-semibold">Igor Morais Vasconcelos</p>
-                  <p className="text-white/50 mt-2">Doutorando em Administração Pública - IDP</p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center">
+                      <Sparkles className="w-6 h-6 text-purple-400" />
+                    </div>
+                    <div>
+                      <p className="text-white/50 text-sm">Tecnologia</p>
+                      <p className="text-white font-medium">Claude AI (Anthropic)</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center">
+                      <Target className="w-6 h-6 text-cyan-400" />
+                    </div>
+                    <div>
+                      <p className="text-white/50 text-sm">Aplicação</p>
+                      <p className="text-white font-medium">Contexto Eleitoral Brasileiro</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Bio */}
+            {/* Narrativa */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -534,32 +555,28 @@ export default function LoginPage() {
               className="space-y-8"
             >
               <div>
-                <p className="text-blue-400 text-lg mb-4">O Criador</p>
+                <p className="text-blue-400 text-lg mb-4">A Metodologia</p>
                 <h2 className="text-4xl sm:text-5xl font-semibold leading-tight">
-                  Precursor no Brasil em<br />
-                  <span className="text-white/50">simulações agênticas.</span>
+                  De Stanford para<br />
+                  <span className="text-white/50">o Distrito Federal.</span>
                 </h2>
               </div>
 
               <p className="text-xl text-white/70 leading-relaxed">
-                Igor Morais Vasconcelos, doutorando em Administração Pública pelo IDP com foco em IA na Gestão Pública,
-                trouxe para o Brasil as descobertas revolucionárias de Stanford sobre simulação agêntica sintética.
-                Com mais de 15 anos de experiência em gestão pública, adaptou a metodologia para a realidade eleitoral brasileira.
+                Em 2023, pesquisadores de Stanford demonstraram que agentes de IA podem simular
+                comportamento humano com precisão surpreendente. Essa descoberta abriu novas
+                possibilidades para pesquisa social.
               </p>
 
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { icon: Award, label: 'Mestre em Adm. Pública (IDP)' },
-                  { icon: Globe, label: 'Metodologia Stanford' },
-                  { icon: Lightbulb, label: 'Prof. IA no IDP' },
-                  { icon: Zap, label: 'Certificado IBM & USP' },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10">
-                    <item.icon className="w-5 h-5 text-blue-400" />
-                    <span className="text-sm text-white/80">{item.label}</span>
-                  </div>
-                ))}
-              </div>
+              <p className="text-lg text-white/50 leading-relaxed">
+                Adaptamos essa metodologia para o contexto eleitoral brasileiro. Cada perfil
+                sintético carrega 60+ atributos calibrados com dados demográficos reais do DF,
+                permitindo simulações que refletem a complexidade do eleitorado local.
+              </p>
+
+              <p className="text-sm text-white/30">
+                Desenvolvido por Igor Morais Vasconcelos
+              </p>
             </motion.div>
           </div>
         </div>
@@ -609,6 +626,45 @@ export default function LoginPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Sobre o Criador */}
+      <section className="py-24 px-6 bg-slate-900/50">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-center gap-12"
+          >
+            {/* Foto */}
+            <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600/30 to-purple-600/30 border border-white/10 flex-shrink-0">
+              <img
+                src="/images/igor-morais-vasconcelos.png"
+                alt="Igor Morais Vasconcelos"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
+
+            {/* Texto */}
+            <div className="text-center md:text-left">
+              <p className="text-white/40 text-sm uppercase tracking-wider mb-3">Sobre o Criador</p>
+              <p className="text-lg text-white/70 leading-relaxed mb-4">
+                Em 2024, <span className="text-white font-medium">Igor Morais Vasconcelos</span> identificou
+                nas pesquisas de Stanford sobre simulação de comportamento humano uma oportunidade única:
+                aplicar essa metodologia ao contexto eleitoral brasileiro.
+              </p>
+              <p className="text-white/50 leading-relaxed">
+                O resultado é uma ferramenta que permite simular pesquisas com milhares de perfis
+                sintéticos calibrados com dados reais do Distrito Federal — cada um respondendo
+                de forma coerente com sua história, valores e posição política.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 

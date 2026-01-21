@@ -577,17 +577,9 @@ export default function PaginaInicial() {
 
       {/* Footer Info */}
       <section className="py-8 border-t border-border">
-        <div className="text-center space-y-2">
-          <p className="text-sm text-muted-foreground">
-            Desenvolvido por <span className="text-foreground font-medium">Igor Morais Vasconcelos</span>
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Doutorando em Administração Pública (IDP) • Mestre em Adm. Pública • Prof. IA
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Powered by Claude AI (Anthropic) • Metodologia Stanford
-          </p>
-        </div>
+        <p className="text-sm text-muted-foreground text-center">
+          Metodologia Stanford adaptada para o Brasil • Powered by Claude AI
+        </p>
       </section>
     </div>
   );

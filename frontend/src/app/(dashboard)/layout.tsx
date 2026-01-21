@@ -9,7 +9,7 @@ import { MobileNav } from '@/components/layout/MobileNav';
 import { useAuthStore } from '@/stores/auth-store';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { cn } from '@/lib/utils';
-import { Globe, Shield, Zap } from 'lucide-react';
+import { Globe } from 'lucide-react';
 
 export default function DashboardLayout({
   children,
@@ -106,43 +106,17 @@ export default function DashboardLayout({
           </motion.div>
         </main>
 
-        {/* Footer com créditos */}
+        {/* Footer */}
         <footer className="hidden lg:block border-t border-border bg-card/50 backdrop-blur-sm relative z-10">
-          <div className="px-6 py-4">
-            <div className="flex items-center justify-between">
-              {/* Créditos */}
+          <div className="px-6 py-3">
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <span>Metodologia Stanford • Claude AI</span>
               <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary/20 to-blue-500/20 border border-primary/30 flex items-center justify-center">
-                    <Globe className="w-4 h-4 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Produzido por</p>
-                    <p className="text-sm font-semibold text-foreground">Igor Morais Vasconcelos</p>
-                  </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                  <span>Online</span>
                 </div>
-                <div className="w-px h-8 bg-border" />
-                <p className="text-xs text-muted-foreground">
-                  2024-2026 Todos os direitos reservados
-                </p>
-              </div>
-
-              {/* Status e Info */}
-              <div className="flex items-center gap-6">
-                <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-                    <span>Sistema Online</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Shield className="w-3.5 h-3.5" />
-                    <span>Dados Seguros</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Zap className="w-3.5 h-3.5" />
-                    <span>v2.0.0</span>
-                  </div>
-                </div>
+                <span>v2.0</span>
               </div>
             </div>
           </div>
