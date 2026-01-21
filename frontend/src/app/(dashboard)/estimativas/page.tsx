@@ -5,6 +5,8 @@
  *
  * Agregação de pesquisas eleitorais com análise preditiva.
  * Design inspirado em Apple - minimalista, elegante, funcional.
+ *
+ * Fontes: TSE, Quaest, Datafolha, AtlasIntel, Paraná Pesquisas, Ipsos-Ipec, Meio/Ideia
  */
 
 import { Suspense, useState, useMemo } from 'react';
@@ -17,6 +19,9 @@ import {
   SimuladorSegundoTurno,
   PrevisaoModelo,
   MetricasResumo,
+  AvaliacaoGoverno,
+  GraficoRejeicao,
+  ComparadorInstitutos,
 } from '@/components/estimativas';
 import {
   PESQUISAS_2026,
@@ -33,10 +38,16 @@ import {
   GitCompare,
   Brain,
   Newspaper,
-  RefreshCw,
+  ThumbsDown,
+  Building2,
+  BarChart3,
   ExternalLink,
+  RefreshCw,
+  Clock,
 } from 'lucide-react';
 import { Toaster } from 'sonner';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 function EstimativasContent() {
   const [abaAtiva, setAbaAtiva] = useState('panorama');
@@ -49,6 +60,8 @@ function EstimativasContent() {
       'Ratinho Junior',
       'Ronaldo Caiado',
       'Romeu Zema',
+      'Michelle Bolsonaro',
+      'Eduardo Leite',
     ];
 
     const pesquisasRecentes = [...PESQUISAS_2026]
@@ -80,7 +93,6 @@ function EstimativasContent() {
       cor: string;
     }>[];
 
-    // Adicionar probabilidade de vitória
     return ranking.map((c, i) => {
       const distancia = i === 0 ? c.media - (ranking[1]?.media || 0) : c.media - ranking[0].media;
       const probVitoria = i === 0 ? calcularProbabilidadeVitoria(c.media, 2, distancia) : 0;
@@ -88,11 +100,17 @@ function EstimativasContent() {
     });
   }, []);
 
+  const ultimaAtualizacao = useMemo(() => {
+    const maisRecente = PESQUISAS_2026.reduce((mais, p) =>
+      new Date(p.publicacao) > new Date(mais.publicacao) ? p : mais
+    );
+    return format(new Date(maisRecente.publicacao), "dd 'de' MMMM 'de' yyyy", { locale: ptBR });
+  }, []);
+
   return (
     <div className="min-h-full bg-gradient-subtle">
       {/* Hero Section - Estilo Apple */}
       <div className="relative overflow-hidden">
-        {/* Background Pattern */}
         <div className="absolute inset-0 bg-grid opacity-50" />
 
         <div className="relative px-6 py-12 md:py-16">
@@ -103,7 +121,7 @@ function EstimativasContent() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
               <Activity className="w-4 h-4" />
-              Atualizado em tempo real
+              Atualizado em {ultimaAtualizacao}
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight">
@@ -113,7 +131,7 @@ function EstimativasContent() {
 
             <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Agregação inteligente de pesquisas eleitorais registradas no TSE.
-              Análise preditiva e cenários de 1º e 2º turno para presidente.
+              Análise preditiva, cenários de 1º e 2º turno, rejeição e avaliação de governo.
             </p>
 
             {/* Quick Stats */}
@@ -141,6 +159,11 @@ function EstimativasContent() {
                 </div>
                 <div className="text-sm text-muted-foreground">Líder atual</div>
               </div>
+              <div className="w-px h-10 bg-border" />
+              <div className="text-center">
+                <div className="text-3xl font-bold text-foreground number">6</div>
+                <div className="text-sm text-muted-foreground">Institutos</div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -161,43 +184,66 @@ function EstimativasContent() {
 
           {/* Tabs */}
           <Tabs value={abaAtiva} onValueChange={setAbaAtiva}>
-            <TabsList className="inline-flex h-12 items-center justify-center rounded-xl bg-muted/50 p-1 mb-8">
-              <TabsTrigger
-                value="panorama"
-                className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm"
-              >
-                <LineChart className="w-4 h-4" />
-                Panorama
-              </TabsTrigger>
-              <TabsTrigger
-                value="ranking"
-                className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm"
-              >
-                <Users2 className="w-4 h-4" />
-                Ranking
-              </TabsTrigger>
-              <TabsTrigger
-                value="segundo-turno"
-                className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm"
-              >
-                <GitCompare className="w-4 h-4" />
-                2º Turno
-              </TabsTrigger>
-              <TabsTrigger
-                value="modelo"
-                className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm"
-              >
-                <Brain className="w-4 h-4" />
-                Previsão
-              </TabsTrigger>
-              <TabsTrigger
-                value="pesquisas"
-                className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm"
-              >
-                <Newspaper className="w-4 h-4" />
-                Pesquisas
-              </TabsTrigger>
-            </TabsList>
+            <div className="overflow-x-auto pb-2 -mx-2 px-2">
+              <TabsList className="inline-flex h-12 items-center justify-start rounded-xl bg-muted/50 p-1 mb-8 min-w-max">
+                <TabsTrigger
+                  value="panorama"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                >
+                  <LineChart className="w-4 h-4" />
+                  Panorama
+                </TabsTrigger>
+                <TabsTrigger
+                  value="ranking"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                >
+                  <Users2 className="w-4 h-4" />
+                  Ranking
+                </TabsTrigger>
+                <TabsTrigger
+                  value="segundo-turno"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                >
+                  <GitCompare className="w-4 h-4" />
+                  2º Turno
+                </TabsTrigger>
+                <TabsTrigger
+                  value="modelo"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                >
+                  <Brain className="w-4 h-4" />
+                  Previsão
+                </TabsTrigger>
+                <TabsTrigger
+                  value="rejeicao"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                >
+                  <ThumbsDown className="w-4 h-4" />
+                  Rejeição
+                </TabsTrigger>
+                <TabsTrigger
+                  value="governo"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                >
+                  <BarChart3 className="w-4 h-4" />
+                  Governo
+                </TabsTrigger>
+                <TabsTrigger
+                  value="institutos"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                >
+                  <Building2 className="w-4 h-4" />
+                  Institutos
+                </TabsTrigger>
+                <TabsTrigger
+                  value="pesquisas"
+                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-card data-[state=active]:shadow-sm whitespace-nowrap"
+                >
+                  <Newspaper className="w-4 h-4" />
+                  Pesquisas
+                </TabsTrigger>
+              </TabsList>
+            </div>
 
             <AnimatePresence mode="wait">
               {/* Panorama */}
@@ -321,6 +367,42 @@ function EstimativasContent() {
                 </motion.div>
               </TabsContent>
 
+              {/* Rejeição */}
+              <TabsContent value="rejeicao">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="rounded-3xl bg-card border border-border/50 p-8"
+                >
+                  <GraficoRejeicao />
+                </motion.div>
+              </TabsContent>
+
+              {/* Avaliação do Governo */}
+              <TabsContent value="governo">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="rounded-3xl bg-card border border-border/50 p-8"
+                >
+                  <AvaliacaoGoverno />
+                </motion.div>
+              </TabsContent>
+
+              {/* Comparação entre Institutos */}
+              <TabsContent value="institutos">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="rounded-3xl bg-card border border-border/50 p-8"
+                >
+                  <ComparadorInstitutos />
+                </motion.div>
+              </TabsContent>
+
               {/* Pesquisas */}
               <TabsContent value="pesquisas">
                 <motion.div
@@ -361,7 +443,8 @@ function EstimativasContent() {
       <div className="px-6 py-8 border-t border-border/50">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <div>
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4" />
               Dados de pesquisas eleitorais registradas no TSE. Agregação e análise preditiva.
             </div>
             <div className="flex items-center gap-4">
@@ -388,6 +471,22 @@ function EstimativasContent() {
                 className="hover:text-foreground transition-colors"
               >
                 Datafolha
+              </a>
+              <a
+                href="https://atlasintel.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground transition-colors"
+              >
+                AtlasIntel
+              </a>
+              <a
+                href="https://www.paranaPesquisas.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground transition-colors"
+              >
+                Paraná Pesquisas
               </a>
             </div>
           </div>

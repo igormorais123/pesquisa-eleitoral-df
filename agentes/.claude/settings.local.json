@@ -1,11 +1,13 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(git status:*)",
+      "Bash(git add:*)"
+    ]
+  },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "render"
-  ],
-  "permissions": {
-    "allow": [
-      "Bash(ls:*)"
-    ]
-  }
+  ]
 }

@@ -88,7 +88,7 @@ export function GraficoRejeicao() {
                 </TooltipUI>
               </h3>
               <p className="text-sm text-muted-foreground">
-                "Não votaria de jeito nenhum" - Média das pesquisas
+                &ldquo;Não votaria de jeito nenhum&rdquo; - Média das pesquisas
               </p>
             </div>
           </div>

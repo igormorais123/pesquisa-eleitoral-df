@@ -521,7 +521,7 @@ export default function LoginPage() {
                     <GraduationCap className="w-20 h-20 text-white" />
                   </div>
                   <p className="text-2xl font-semibold">Igor Morais Vasconcelos</p>
-                  <p className="text-white/50 mt-2">Doutorando em Gestão</p>
+                  <p className="text-white/50 mt-2">Doutorando em Administração Pública - IDP</p>
                 </div>
               </div>
             </motion.div>
@@ -542,17 +542,17 @@ export default function LoginPage() {
               </div>
 
               <p className="text-xl text-white/70 leading-relaxed">
-                Igor Morais Vasconcelos trouxe para o Brasil as descobertas revolucionárias de Stanford
-                sobre simulação agêntica sintética. Com doutorado em Gestão, adaptou a metodologia
-                para a realidade eleitoral brasileira.
+                Igor Morais Vasconcelos, doutorando em Administração Pública pelo IDP com foco em IA na Gestão Pública,
+                trouxe para o Brasil as descobertas revolucionárias de Stanford sobre simulação agêntica sintética.
+                Com mais de 15 anos de experiência em gestão pública, adaptou a metodologia para a realidade eleitoral brasileira.
               </p>
 
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { icon: Award, label: 'Doutorado em Gestão' },
+                  { icon: Award, label: 'Mestre em Adm. Pública (IDP)' },
                   { icon: Globe, label: 'Metodologia Stanford' },
-                  { icon: Lightbulb, label: 'Pioneiro no Brasil' },
-                  { icon: Zap, label: 'IA Generativa' },
+                  { icon: Lightbulb, label: 'Prof. IA no IDP' },
+                  { icon: Zap, label: 'Certificado IBM & USP' },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10">
                     <item.icon className="w-5 h-5 text-blue-400" />
