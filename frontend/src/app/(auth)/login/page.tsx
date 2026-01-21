@@ -641,7 +641,7 @@ export default function LoginPage() {
             {/* Foto */}
             <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600/30 to-purple-600/30 border border-white/10 flex-shrink-0">
               <img
-                src="/images/igor-morais-vasconcelos.png"
+                src="/images/igor-morais-vasconcelos.jpg"
                 alt="Igor Morais Vasconcelos"
                 className="w-full h-full object-cover"
                 onError={(e) => {
