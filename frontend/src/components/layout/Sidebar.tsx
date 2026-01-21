@@ -25,6 +25,7 @@ import {
   Map,
   Building2,
   Settings,
+  Activity,
 } from 'lucide-react';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { useAuthStore } from '@/stores/auth-store';
@@ -34,6 +35,7 @@ const menuItems = [
   { titulo: 'Início', href: '/', icone: Home },
   { titulo: 'Admin Usuários', href: '/admin/usuarios', icone: Shield, adminOnly: true },
   { titulo: 'Validação', href: '/validacao', icone: CheckSquare },
+  { titulo: 'Estimativas', href: '/estimativas', icone: Activity },
   { titulo: 'Eleitores', href: '/eleitores', icone: Users },
   { titulo: 'Parlamentares', href: '/parlamentares', icone: Landmark },
   { titulo: 'Gestores', href: '/gestores', icone: Building2 },

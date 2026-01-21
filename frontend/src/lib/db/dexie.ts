@@ -79,6 +79,21 @@ export class BancoEleitoral extends Dexie {
       parlamentares: 'id, nome, nome_parlamentar, casa_legislativa, partido, orientacao_politica, genero, cargo',
       gestores: 'id, nome, setor, nivel_hierarquico, cargo, instituicao, area_atuacao, genero, idade, localizacao',
     });
+
+    // Versão 5: Força recarga dos eleitores (corrige problema de cache com 400 vs 1000+)
+    this.version(5).stores({
+      eleitores: 'id, nome, regiao_administrativa, cluster_socioeconomico, orientacao_politica, genero, religiao, idade',
+      memorias: 'id, eleitor_id, data, tema',
+      entrevistas: 'id, titulo, status, criado_em',
+      sessoes: 'id, entrevistaId, status, iniciadaEm, usuarioId',
+      configuracoes: 'chave',
+      parlamentares: 'id, nome, nome_parlamentar, casa_legislativa, partido, orientacao_politica, genero, cargo',
+      gestores: 'id, nome, setor, nivel_hierarquico, cargo, instituicao, area_atuacao, genero, idade, localizacao',
+    }).upgrade(async tx => {
+      // Limpa os eleitores para forçar recarga dos 1000+
+      await tx.table('eleitores').clear();
+      console.log('Banco atualizado para v5: eleitores serão recarregados');
+    });
   }
 }
 
