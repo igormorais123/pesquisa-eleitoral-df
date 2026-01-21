@@ -12,3 +12,4 @@ export { ResultadosPorPergunta } from './ResultadosPorPergunta';
 export { RelatorioInteligenciaVisual } from './RelatorioInteligenciaVisual';
 export { DashboardConsolidado } from './DashboardConsolidado';
 export { AnalisadorInteligente } from './AnalisadorInteligente';
+export { ChatResultados } from './ChatResultados';

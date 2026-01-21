@@ -14,6 +14,14 @@ import {
   Sparkles,
   Vote,
   Landmark,
+  Target,
+  Map,
+  TrendingUp,
+  FileText,
+  Settings,
+  Building2,
+  UserCircle,
+  Activity,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -47,16 +55,49 @@ const menuPrincipal = [
 
 const menuSecundario = [
   {
-    titulo: 'Upload Eleitores',
-    href: '/eleitores/upload',
-    icone: Upload,
-    descricao: 'Carregar arquivo JSON',
+    titulo: 'Nova Entrevista',
+    href: '/entrevistas/nova',
+    icone: MessageSquare,
+    descricao: 'Criar nova pesquisa com IA',
   },
   {
     titulo: 'Gerar Agentes',
     href: '/eleitores/gerar',
     icone: Sparkles,
     descricao: 'Criar eleitores e gestores com IA',
+  },
+  {
+    titulo: 'Upload Eleitores',
+    href: '/eleitores/upload',
+    icone: Upload,
+    descricao: 'Carregar arquivo JSON',
+  },
+];
+
+const menuCompleto = [
+  {
+    categoria: 'Agentes',
+    itens: [
+      { titulo: 'Gestores', href: '/gestores', icone: Building2 },
+      { titulo: 'Candidatos', href: '/candidatos', icone: UserCircle },
+    ],
+  },
+  {
+    categoria: 'Análise',
+    itens: [
+      { titulo: 'Cenários', href: '/cenarios', icone: Target },
+      { titulo: 'Estimativas', href: '/estimativas', icone: Activity },
+      { titulo: 'Analytics', href: '/analytics', icone: TrendingUp },
+      { titulo: 'Mapa', href: '/mapa', icone: Map },
+    ],
+  },
+  {
+    categoria: 'Ferramentas',
+    itens: [
+      { titulo: 'Templates', href: '/templates', icone: FileText },
+      { titulo: 'Mensagens', href: '/mensagens', icone: Sparkles },
+      { titulo: 'Configurações', href: '/configuracoes', icone: Settings },
+    ],
   },
 ];
 
@@ -135,49 +176,85 @@ export function MobileNav() {
             </div>
 
             {/* Menu Items */}
-            <div className="p-4 space-y-2 overflow-y-auto max-h-[50vh]">
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-2 mb-3">
-                Ações Rápidas
-              </p>
+            <div className="p-4 space-y-4 overflow-y-auto max-h-[60vh]">
+              {/* Ações Rápidas */}
+              <div>
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-2 mb-3">
+                  Ações Rápidas
+                </p>
+                <div className="space-y-2">
+                  {menuSecundario.map((item) => {
+                    const Icone = item.icone;
+                    const ativo = pathname === item.href;
 
-              {menuSecundario.map((item) => {
-                const Icone = item.icone;
-                const ativo = pathname === item.href;
-
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMenuAberto(false)}
-                    className={cn(
-                      'flex items-center gap-4 p-4 rounded-xl transition-all active:scale-[0.98]',
-                      ativo
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-secondary/50 hover:bg-secondary text-foreground'
-                    )}
-                  >
-                    <div
-                      className={cn(
-                        'w-10 h-10 rounded-lg flex items-center justify-center',
-                        ativo ? 'bg-primary-foreground/20' : 'bg-background'
-                      )}
-                    >
-                      <Icone className="w-5 h-5" />
-                    </div>
-                    <div className="flex-1">
-                      <span className="block font-medium">{item.titulo}</span>
-                      <span
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setMenuAberto(false)}
                         className={cn(
-                          'block text-xs',
-                          ativo ? 'text-primary-foreground/70' : 'text-muted-foreground'
+                          'flex items-center gap-4 p-4 rounded-xl transition-all active:scale-[0.98]',
+                          ativo
+                            ? 'bg-primary text-primary-foreground'
+                            : 'bg-secondary/50 hover:bg-secondary text-foreground'
                         )}
                       >
-                        {item.descricao}
-                      </span>
-                    </div>
-                  </Link>
-                );
-              })}
+                        <div
+                          className={cn(
+                            'w-10 h-10 rounded-lg flex items-center justify-center',
+                            ativo ? 'bg-primary-foreground/20' : 'bg-background'
+                          )}
+                        >
+                          <Icone className="w-5 h-5" />
+                        </div>
+                        <div className="flex-1">
+                          <span className="block font-medium">{item.titulo}</span>
+                          <span
+                            className={cn(
+                              'block text-xs',
+                              ativo ? 'text-primary-foreground/70' : 'text-muted-foreground'
+                            )}
+                          >
+                            {item.descricao}
+                          </span>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Menu Completo por Categoria */}
+              {menuCompleto.map((grupo) => (
+                <div key={grupo.categoria}>
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-2 mb-3">
+                    {grupo.categoria}
+                  </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {grupo.itens.map((item) => {
+                      const Icone = item.icone;
+                      const ativo = pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setMenuAberto(false)}
+                          className={cn(
+                            'flex items-center gap-3 p-3 rounded-xl transition-all active:scale-[0.98]',
+                            ativo
+                              ? 'bg-foreground text-background'
+                              : 'bg-secondary/50 text-foreground'
+                          )}
+                        >
+                          <Icone className="w-5 h-5" />
+                          <span className="text-sm font-medium">{item.titulo}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Safe area padding */}

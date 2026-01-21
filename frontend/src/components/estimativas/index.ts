@@ -4,3 +4,6 @@ export { TabelaPesquisas } from './TabelaPesquisas';
 export { SimuladorSegundoTurno } from './SimuladorSegundoTurno';
 export { PrevisaoModelo } from './PrevisaoModelo';
 export { MetricasResumo } from './MetricasResumo';
+export { AvaliacaoGoverno } from './AvaliacaoGoverno';
+export { GraficoRejeicao } from './GraficoRejeicao';
+export { ComparadorInstitutos } from './ComparadorInstitutos';
