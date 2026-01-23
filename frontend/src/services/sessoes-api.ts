@@ -36,7 +36,7 @@ export interface SessaoAPI {
     custo: number;
     tempo_resposta_ms: number;
   }>;
-  resultado?: ResultadoEntrevista | Record<string, unknown>;
+  resultado?: ResultadoEntrevista;
   relatorioIA?: Record<string, unknown>;
   estatisticas?: Record<string, unknown>;
   modeloUsado?: string;
@@ -320,7 +320,7 @@ function converterParaLocal(sessaoAPI: SessaoAPI): SessaoLocal {
     tokensInput: sessaoAPI.tokensInput,
     tokensOutput: sessaoAPI.tokensOutput,
     respostas: sessaoAPI.respostas || [],
-    resultado: sessaoAPI.resultado,
+    resultado: sessaoAPI.resultado as ResultadoEntrevista | undefined,
     iniciadaEm: sessaoAPI.iniciadaEm || new Date().toISOString(),
     atualizadaEm: sessaoAPI.atualizadaEm || new Date().toISOString(),
     finalizadaEm: sessaoAPI.finalizadaEm,
