@@ -5,11 +5,20 @@ Backend FastAPI
 Autor: Professor Igor
 """
 
+import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
+
+# Configurar logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+logger = logging.getLogger(__name__)
 
 from app.api.rotas import (
     analytics,
@@ -41,9 +50,9 @@ from app.db.session import engine
 async def lifespan(app: FastAPI):
     """Gerencia ciclo de vida da aplicação"""
     # Startup
-    print("[STARTUP] Iniciando Sistema de Pesquisa Eleitoral DF 2026...")
-    print(f"[CONFIG] Ambiente: {configuracoes.AMBIENTE}")
-    print(f"[CONFIG] Frontend URL: {configuracoes.FRONTEND_URL}")
+    logger.info("Iniciando Sistema de Pesquisa Eleitoral DF 2026...")
+    logger.info(f"Ambiente: {configuracoes.AMBIENTE}")
+    logger.info(f"Frontend URL: {configuracoes.FRONTEND_URL}")
 
     # Validar configuracoes criticas (falha em producao se inseguras)
     validar_configuracoes()
@@ -70,19 +79,19 @@ async def lifespan(app: FastAPI):
 
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
-        print("[DB] Banco de dados inicializado com sucesso")
-        print("[DB] Tabela 'eleitores' disponível")
-        print(
-            "[DB] Tabelas 'pesquisas_podc', 'respostas_podc', 'estatisticas_podc' disponíveis"
+        logger.info("Banco de dados inicializado com sucesso")
+        logger.info("Tabela 'eleitores' disponível")
+        logger.info(
+            "Tabelas 'pesquisas_podc', 'respostas_podc', 'estatisticas_podc' disponíveis"
         )
     except Exception as e:
-        print(f"[DB] Aviso: Não foi possível conectar ao banco - {e}")
-        print("[DB] Sistema funcionará com autenticação de teste apenas")
+        logger.warning(f"Não foi possível conectar ao banco: {e}")
+        logger.warning("Sistema funcionará com autenticação de teste apenas")
 
     yield
 
     # Shutdown
-    print("[SHUTDOWN] Encerrando aplicacao...")
+    logger.info("Encerrando aplicação...")
 
 
 # Metadata para tags do Swagger

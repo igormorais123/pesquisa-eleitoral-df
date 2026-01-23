@@ -16,6 +16,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { db } from '@/lib/db/dexie';
+import { carregarSessoesDoServidor } from '@/services/sessoes-api';
 import { formatarDataHora, formatarMoeda, cn } from '@/lib/utils';
 import { useAuthStore } from '@/stores/auth-store';
 
@@ -39,6 +40,15 @@ export default function PaginaEntrevistas() {
   const { data: sessoes, isLoading } = useQuery({
     queryKey: ['sessoes', usuario?.id],
     queryFn: async () => {
+      // Sincronizar com servidor primeiro (baixa sessões novas)
+      try {
+        await carregarSessoesDoServidor();
+        console.log('[ENTREVISTAS] Sessões sincronizadas do servidor');
+      } catch (err) {
+        console.warn('[ENTREVISTAS] Erro ao sincronizar:', err);
+      }
+
+      // Buscar do banco local (inclui as do servidor)
       const todas = await db.sessoes.orderBy('iniciadaEm').reverse().toArray();
       return todas.filter((s) => !s.usuarioId || s.usuarioId === usuario?.id);
     },

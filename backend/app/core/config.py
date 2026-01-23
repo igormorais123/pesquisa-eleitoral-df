@@ -4,9 +4,12 @@ Configurações do Sistema
 Carrega variáveis de ambiente e define configurações globais.
 """
 
+import logging
 from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+logger = logging.getLogger(__name__)
 
 
 BASE_DIR = Path(__file__).resolve().parents[3]
@@ -85,13 +88,11 @@ def validar_configuracoes():
             raise ValueError(
                 "SECRET_KEY insegura em producao. Defina uma chave segura no .env"
             )
-        print(
-            "⚠️  AVISO: Usando SECRET_KEY padrão. Defina uma chave segura em produção."
-        )
+        logger.warning("Usando SECRET_KEY padrão. Defina uma chave segura em produção.")
 
     if erros:
         for erro in erros:
-            print(f"❌ Erro de configuração: {erro}")
+            logger.error(f"Erro de configuração: {erro}")
         # Não levanta exceção para permitir desenvolvimento sem API key
         # raise ValueError("Configurações inválidas")
 

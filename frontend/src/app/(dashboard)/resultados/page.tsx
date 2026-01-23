@@ -14,6 +14,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { db } from '@/lib/db/dexie';
+import { listarSessoes, carregarSessoesDoServidor } from '@/services/sessoes-api';
 import { formatarDataHora, formatarMoeda } from '@/lib/utils';
 import { useAuthStore } from '@/stores/auth-store';
 
@@ -37,6 +38,15 @@ export default function PaginaResultados() {
   const { data: sessoes, isLoading } = useQuery({
     queryKey: ['sessoes-concluidas', usuario?.id],
     queryFn: async () => {
+      // 1. Primeiro, tentar sincronizar com o servidor (baixa sessões que não existem localmente)
+      try {
+        await carregarSessoesDoServidor();
+        console.log('[RESULTADOS] Sessões sincronizadas do servidor');
+      } catch (err) {
+        console.warn('[RESULTADOS] Erro ao sincronizar do servidor, usando dados locais:', err);
+      }
+
+      // 2. Agora buscar do banco local (que já inclui as do servidor)
       const todas = await db.sessoes.toArray();
       const filtradas = todas.filter((s) => {
         const pertenceAoUsuario = !s.usuarioId || s.usuarioId === usuario?.id;

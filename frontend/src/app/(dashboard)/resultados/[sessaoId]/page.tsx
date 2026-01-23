@@ -55,6 +55,7 @@ import {
 } from 'recharts';
 import { db } from '@/lib/db/dexie';
 import type { SessaoEntrevista } from '@/lib/db/dexie';
+import { obterSessao as obterSessaoServidor } from '@/services/sessoes-api';
 import { cn, formatarDataHora, formatarMoeda, formatarNumero } from '@/lib/utils';
 
 // Tipos do Relatório de Inteligência
@@ -207,11 +208,47 @@ export default function PaginaResultadoDetalhe() {
   const [erroRelatorio, setErroRelatorio] = useState<string | null>(null);
   const [mostrarThinking, setMostrarThinking] = useState(false);
 
-  // Carregar sessão
+  // Carregar sessão (tenta local primeiro, depois servidor)
   useEffect(() => {
     async function carregar() {
       try {
-        const dados = await db.sessoes.get(sessaoId);
+        // 1. Tentar buscar localmente primeiro (mais rápido)
+        let dados = await db.sessoes.get(sessaoId);
+
+        // 2. Se não encontrou localmente, buscar do servidor
+        if (!dados) {
+          console.log('[RESULTADOS] Sessão não encontrada localmente, buscando do servidor...');
+          try {
+            const sessaoServidor = await obterSessaoServidor(sessaoId);
+            if (sessaoServidor) {
+              // Converter e salvar localmente para cache
+              dados = {
+                id: sessaoServidor.id,
+                entrevistaId: sessaoServidor.entrevistaId,
+                titulo: sessaoServidor.titulo,
+                status: sessaoServidor.status,
+                progresso: sessaoServidor.progresso,
+                totalAgentes: sessaoServidor.totalAgentes,
+                custoAtual: sessaoServidor.custoAtual,
+                tokensInput: sessaoServidor.tokensInput,
+                tokensOutput: sessaoServidor.tokensOutput,
+                respostas: sessaoServidor.respostas || [],
+                resultado: sessaoServidor.resultado as SessaoEntrevista['resultado'],
+                iniciadaEm: sessaoServidor.iniciadaEm || new Date().toISOString(),
+                atualizadaEm: sessaoServidor.atualizadaEm || new Date().toISOString(),
+                finalizadaEm: sessaoServidor.finalizadaEm,
+                usuarioId: sessaoServidor.usuarioId,
+                usuarioNome: sessaoServidor.usuarioNome,
+              };
+              // Salvar no cache local
+              await db.sessoes.put(dados);
+              console.log('[RESULTADOS] Sessão carregada do servidor e salva localmente');
+            }
+          } catch (serverErr) {
+            console.warn('[RESULTADOS] Erro ao buscar do servidor:', serverErr);
+          }
+        }
+
         setSessao(dados || null);
 
         // Tentar carregar relatório salvo
