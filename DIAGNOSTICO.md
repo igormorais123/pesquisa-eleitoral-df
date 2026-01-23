@@ -119,3 +119,64 @@ npm run dev --prefix frontend
 - MapaCalorDF foi simplificado (apenas ponto + nome da RA)
 - Todas as imagens usam `<Image />` do Next.js com `unoptimized` para URLs externas
 - Warnings de hooks foram silenciados com eslint-disable (dependências intencionais)
+
+---
+
+## DIAGNOSTICO PROFUNDO (2026-01-23)
+
+### 1) Banco e modelos duplicados (RISCO ALTO)
+- Existem **dois conjuntos de modelos** e **duas classes Base**:
+  - `app/modelos/*` (ex.: `Pesquisa.id` **inteiro**)
+  - `app/db/modelos/*` (ex.: `Pesquisa.id` **string**)
+- Isso causa **schema inconsistente** e erro real em `respostas_pesquisa` (FK não cria).
+- Rotas usam os dois lados: exemplo `app/api/rotas/memorias.py` importa `app.modelos.pesquisa`.
+
+**Sugestao:** escolher **um único conjunto de modelos/Base** e remover o outro.
+
+### 2) Duas camadas de conexão ao banco (RISCO MEDIO)
+- `app/db/session.py` e `app/core/database.py` têm engines diferentes.
+- Algumas rotas usam `get_db` (db/session), outras usam `obter_sessao` (core/database).
+- Um módulo tem SSL/pool, o outro não.
+
+**Sugestao:** padronizar tudo em um único módulo de conexão.
+
+### 3) Autenticação com fallback inseguro (RISCO ALTO em produção)
+- Backend e frontend têm **usuário admin de teste** embutido.
+- Se `SECRET_KEY` padrão estiver ativo, tokens podem ser falsificados.
+
+**Sugestao:**
+- Em produção, **desligar fallback** e exigir banco/usuários reais.
+- Forçar `SECRET_KEY` via env (sem padrão fixo).
+
+### 4) Tokens no navegador (RISCO MEDIO)
+- Token fica em `localStorage` (mais simples, mas vulnerável a XSS).
+
+**Sugestao:** em produção, usar cookie HttpOnly.
+
+### 5) Dados sensíveis em JSON local
+- Google OAuth salva dados em `agentes/dados-usuarios-google.json`.
+- Esse arquivo **não está no .gitignore** e pode vazar dados pessoais.
+
+**Sugestao:** ignorar no git ou salvar fora do repo.
+
+### 6) SQL com f-string
+- `deps.py` e `memorias.py` usam `text(f"SET LOCAL ...")`.
+- Mesmo com escape, é melhor usar parâmetros.
+
+**Sugestao:** usar bind params do SQLAlchemy.
+
+### 7) Logs e prints em produção
+- Muitos `print()` e `console.log()` espalhados.
+- Pode vazar dados e poluir logs.
+
+**Sugestao:** substituir por logging com níveis (info/warn/error) e desativar em produção.
+
+### 8) Warnings de Pydantic e datetime
+- `class Config` deprecated e `datetime.utcnow()` deprecated.
+
+**Sugestao:** migrar para `ConfigDict` e `datetime.now(datetime.UTC)`.
+
+### 9) Dependências com vulnerabilidades
+- `npm audit` aponta vulnerabilidades (inclui `xlsx` sem fix automático).
+
+**Sugestao:** revisar dependências com cuidado e planejar upgrade controlado.

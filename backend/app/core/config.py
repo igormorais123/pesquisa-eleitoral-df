@@ -4,14 +4,25 @@ Configurações do Sistema
 Carrega variáveis de ambiente e define configurações globais.
 """
 
+from pathlib import Path
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+BASE_DIR = Path(__file__).resolve().parents[3]
+BACKEND_DIR = Path(__file__).resolve().parents[2]
 
 
 class Configuracoes(BaseSettings):
     """Configurações da aplicação carregadas do .env"""
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=(
+            BACKEND_DIR / ".env.local",
+            BACKEND_DIR / ".env",
+            BASE_DIR / ".env.local",
+            BASE_DIR / ".env",
+        ),
         env_file_encoding="utf-8",
         case_sensitive=True,
         extra="ignore",
@@ -26,7 +37,9 @@ class Configuracoes(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
 
     # Banco de dados
-    DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/pesquisa_eleitoral"
+    DATABASE_URL: str = (
+        "postgresql://postgres:postgres@localhost:5432/pesquisa_eleitoral"
+    )
 
     # URLs
     FRONTEND_URL: str = "http://localhost:3000"
@@ -49,7 +62,9 @@ class Configuracoes(BaseSettings):
     ADMIN_NAME: str = "Professor Igor"
     ADMIN_EMAIL: str = "admin@exemplo.com"
     # Hash da senha padrao "professorigor"
-    ADMIN_PASSWORD_HASH: str = "$2b$12$J6KfB1mVkGLAXyksmR6w6eh.C3fQGRuSMOxsoDeYoVweShfhJy22y"
+    ADMIN_PASSWORD_HASH: str = (
+        "$2b$12$J6KfB1mVkGLAXyksmR6w6eh.C3fQGRuSMOxsoDeYoVweShfhJy22y"
+    )
 
 
 # Instância global de configurações
@@ -65,7 +80,9 @@ def validar_configuracoes():
         erros.append("CLAUDE_API_KEY não está definida")
 
     if configuracoes.SECRET_KEY == "chave-secreta-padrao-desenvolvimento":
-        print("⚠️  AVISO: Usando SECRET_KEY padrão. Defina uma chave segura em produção.")
+        print(
+            "⚠️  AVISO: Usando SECRET_KEY padrão. Defina uma chave segura em produção."
+        )
 
     if erros:
         for erro in erros:
