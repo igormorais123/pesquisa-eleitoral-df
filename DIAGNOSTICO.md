@@ -1,8 +1,8 @@
 # DIAGNÓSTICO DO PROJETO - Pesquisa Eleitoral DF
 
-**Data:** 2026-01-20
-**Status:** ✅ Funcionando
-**Última atualização:** Todos os warnings corrigidos
+**Data:** 2026-01-23
+**Status:** ⚠️ Atenção (riscos estruturais)
+**Última atualização:** Diagnóstico profundo + decisões aplicadas
 
 ---
 
@@ -180,3 +180,12 @@ npm run dev --prefix frontend
 - `npm audit` aponta vulnerabilidades (inclui `xlsx` sem fix automático).
 
 **Sugestao:** revisar dependências com cuidado e planejar upgrade controlado.
+
+---
+
+## Decisoes aplicadas nesta rodada
+- Backend valida `SECRET_KEY` em producao e bloqueia fallback de login legado.
+- Frontend proxia `/api/v1/auth/login` e `/api/v1/auth/me` para o backend em producao.
+- `.gitignore` agora ignora `agentes/dados-usuarios-google.json`.
+- Login agora usa `next/image` (lint sem avisos).
+- Testes backend: `pytest` passou (67 testes) com warnings de Pydantic/datetime.

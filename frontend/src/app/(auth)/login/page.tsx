@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -639,11 +640,13 @@ export default function LoginPage() {
             className="flex flex-col md:flex-row items-center gap-12"
           >
             {/* Foto */}
-            <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600/30 to-purple-600/30 border border-white/10 flex-shrink-0">
-              <img
+            <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600/30 to-purple-600/30 border border-white/10 flex-shrink-0">
+              <Image
                 src="/images/igor-morais-vasconcelos.jpg"
                 alt="Igor Morais Vasconcelos"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(min-width: 768px) 224px, 192px"
+                className="object-cover"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
                 }}

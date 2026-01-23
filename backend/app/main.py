@@ -32,7 +32,7 @@ from app.api.rotas import (
     pesquisas_podc,
 )
 from app.parlamentares.routes import router as parlamentares_router
-from app.core.config import configuracoes
+from app.core.config import configuracoes, validar_configuracoes
 from app.db.base import Base
 from app.db.session import engine
 
@@ -45,6 +45,9 @@ async def lifespan(app: FastAPI):
     print(f"[CONFIG] Ambiente: {configuracoes.AMBIENTE}")
     print(f"[CONFIG] Frontend URL: {configuracoes.FRONTEND_URL}")
 
+    # Validar configuracoes criticas (falha em producao se inseguras)
+    validar_configuracoes()
+
     # Inicializar banco de dados (criar tabelas se não existirem)
     try:
         # Importar modelos para registrar no metadata
@@ -52,15 +55,26 @@ async def lifespan(app: FastAPI):
         from app.modelos.eleitor import Eleitor  # noqa: F401
         from app.modelos.candidato import Candidato  # noqa: F401
         from app.modelos.cenario_eleitoral import CenarioEleitoral  # noqa: F401
-        from app.modelos.pesquisa_podc import PesquisaPODC, RespostaPODC, EstatisticasPODC  # noqa: F401
+        from app.modelos.pesquisa_podc import (
+            PesquisaPODC,
+            RespostaPODC,
+            EstatisticasPODC,
+        )  # noqa: F401
         from app.modelos.sessao_entrevista import SessaoEntrevista  # noqa: F401
-        from app.db.modelos.pesquisa import Pesquisa, PerguntaPesquisa, RespostaPesquisa, MetricasGlobais  # noqa: F401
+        from app.db.modelos.pesquisa import (
+            Pesquisa,
+            PerguntaPesquisa,
+            RespostaPesquisa,
+            MetricasGlobais,
+        )  # noqa: F401
 
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
         print("[DB] Banco de dados inicializado com sucesso")
         print("[DB] Tabela 'eleitores' disponível")
-        print("[DB] Tabelas 'pesquisas_podc', 'respostas_podc', 'estatisticas_podc' disponíveis")
+        print(
+            "[DB] Tabelas 'pesquisas_podc', 'respostas_podc', 'estatisticas_podc' disponíveis"
+        )
     except Exception as e:
         print(f"[DB] Aviso: Não foi possível conectar ao banco - {e}")
         print("[DB] Sistema funcionará com autenticação de teste apenas")

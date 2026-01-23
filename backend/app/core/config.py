@@ -11,6 +11,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BASE_DIR = Path(__file__).resolve().parents[3]
 BACKEND_DIR = Path(__file__).resolve().parents[2]
+DEFAULT_SECRET_KEY = "chave-secreta-padrao-desenvolvimento"
 
 
 class Configuracoes(BaseSettings):
@@ -32,7 +33,7 @@ class Configuracoes(BaseSettings):
     CLAUDE_API_KEY: str = ""
 
     # JWT
-    SECRET_KEY: str = "chave-secreta-padrao-desenvolvimento"
+    SECRET_KEY: str = DEFAULT_SECRET_KEY
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
 
@@ -79,7 +80,11 @@ def validar_configuracoes():
     if not configuracoes.CLAUDE_API_KEY:
         erros.append("CLAUDE_API_KEY não está definida")
 
-    if configuracoes.SECRET_KEY == "chave-secreta-padrao-desenvolvimento":
+    if configuracoes.SECRET_KEY == DEFAULT_SECRET_KEY:
+        if configuracoes.AMBIENTE == "production":
+            raise ValueError(
+                "SECRET_KEY insegura em producao. Defina uma chave segura no .env"
+            )
         print(
             "⚠️  AVISO: Usando SECRET_KEY padrão. Defina uma chave segura em produção."
         )

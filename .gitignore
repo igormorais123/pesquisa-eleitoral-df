@@ -27,6 +27,8 @@ tmpclaude-*-cwd
 
 # runtime data
 memorias/*.json
+agentes/dados-usuarios-google.json
+agentes/dados-usuarios-google*.json
 
 # misc
 .tmp.driveupload/

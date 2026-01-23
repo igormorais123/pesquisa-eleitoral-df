@@ -10,9 +10,12 @@ import { SignJWT } from 'jose';
 import bcrypt from 'bcryptjs';
 
 // Configuracoes de autenticacao
-const SECRET_KEY = process.env.SECRET_KEY || 'chave-secreta-padrao-desenvolvimento';
+const DEFAULT_SECRET_KEY = 'chave-secreta-padrao-desenvolvimento';
+const SECRET_KEY = process.env.SECRET_KEY || DEFAULT_SECRET_KEY;
 const ALGORITHM = 'HS256';
 const ACCESS_TOKEN_EXPIRE_MINUTES = parseInt(process.env.ACCESS_TOKEN_EXPIRE_MINUTES || '60', 10);
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || process.env.BACKEND_URL || 'http://localhost:8000';
 
 // Usuario de teste (mesmo do backend)
 // Hash da senha "professorigor" - deve ser igual ao backend
@@ -72,6 +75,24 @@ export async function POST(request: NextRequest) {
   try {
     const body: LoginRequest = await request.json();
     const { usuario, senha } = body;
+
+    if (IS_PRODUCTION) {
+      const response = await fetch(`${BACKEND_URL}/api/v1/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usuario, senha }),
+        cache: 'no-store',
+      });
+
+      const data = await response.json();
+      const headers = new Headers();
+      const wwwAuth = response.headers.get('WWW-Authenticate');
+      if (wwwAuth) {
+        headers.set('WWW-Authenticate', wwwAuth);
+      }
+
+      return NextResponse.json(data, { status: response.status, headers });
+    }
 
     // Validar campos obrigatorios
     if (!usuario || !senha) {

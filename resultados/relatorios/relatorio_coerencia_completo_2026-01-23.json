@@ -6,21 +6,21 @@
   ],
   "resumo_geral": {
     "total_registros": 1594,
-    "total_inconsistencias": 118,
-    "total_individuos_afetados": 114,
+    "total_inconsistencias": 117,
+    "total_individuos_afetados": 113,
     "por_severidade": {
       "grave": 41,
-      "medio": 18,
+      "medio": 17,
       "leve": 59
     }
   },
   "eleitores": {
     "total": 1000,
-    "total_inconsistencias": 75,
-    "individuos_afetados": 71,
+    "total_inconsistencias": 74,
+    "individuos_afetados": 70,
     "por_severidade": {
       "grave": 0,
-      "medio": 16,
+      "medio": 15,
       "leve": 59
     },
     "por_categoria": {
@@ -29,8 +29,7 @@
       "Idade vs Filhos": 7,
       "Regiao vs Cluster": 4,
       "Idade vs Profissao": 2,
-      "Escolaridade vs Profissao": 1,
-      "Idade vs Escolaridade": 1
+      "Escolaridade vs Profissao": 1
     },
     "indice_qualidade": 99.5,
     "top_incoerencias": [
@@ -426,13 +425,6 @@
         "categoria": "Escolaridade vs Renda",
         "severidade": "leve",
         "erro": "Superior completo com renda ate 1 SM e ocupacao 'informal'"
-      },
-      {
-        "id": "df-0444",
-        "nome": "Eduarda Gomes Moura",
-        "categoria": "Idade vs Escolaridade",
-        "severidade": "medio",
-        "erro": "Idade 19 com superior completo (muito improvavel)"
       },
       {
         "id": "df-0445",

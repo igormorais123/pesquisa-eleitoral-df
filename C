@@ -1,0 +1,40 @@
+DIAGNOSTICO DO PROJETO (para IA)
+
+Ultima revisao: 2026-01-23
+Contexto: testes locais com banco local via Docker.
+
+Resumo rapido:
+- Pytest passou (67 testes). Avisos de Pydantic e datetime.
+- Lint frontend: 1 aviso de <img> em `frontend/src/app/(auth)/login/page.tsx`.
+- npm audit: 10 vulnerabilidades (9 altas, 1 moderada).
+
+Problemas confirmados:
+1) Schema do banco local desatualizado
+   - Erro nos logs do Postgres: FK nao criada porque `pesquisas.id` e integer
+     e `respostas_pesquisa.pesquisa_id` e varchar.
+   - Impacto: tabelas de respostas nao criam corretamente.
+2) Configuracao de banco pode apontar para o Render
+   - Impacto: testes locais falham ou ficam lentos quando o banco remoto nao responde.
+
+Sugestoes recomendadas (ordem simples):
+1) Manter `.env.local` com DATABASE_URL local (nao commitar).
+2) Recriar o banco local ou aplicar migracao que alinhe os tipos da tabela `pesquisas`.
+   - Atenção: recriar apaga dados locais.
+3) Atualizar Pydantic v2
+   - Trocar `class Config` por `ConfigDict`.
+   - Substituir `datetime.utcnow()` por `datetime.now(datetime.UTC)`.
+4) Frontend: trocar `<img>` por `next/image` no login.
+5) Revisar vulnerabilidades do `npm audit` com cuidado.
+
+Se faltar dados no banco local:
+- Importar eleitores com `backend/scripts/migrar_eleitores.py`.
+
+Comandos uteis (nao executar agora):
+- docker-compose up -d
+- python -m pytest
+- npm run lint
+- npm audit
+
+Notas para IA:
+- Evitar usar o banco remoto em desenvolvimento local.
+- Sempre explicar escolhas em linguagem simples para iniciantes.

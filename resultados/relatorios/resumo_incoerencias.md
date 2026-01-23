@@ -2,12 +2,12 @@
 
 ## Visao geral
 - Registros analisados: 1594
-- Inconsistencias encontradas: 118
-- Individuos afetados: 114
-- Severidade: grave=41, medio=18, leve=59
+- Inconsistencias encontradas: 117
+- Individuos afetados: 113
+- Severidade: grave=41, medio=17, leve=59
 
 ## Eleitores
-- Total: 1000 | Afetados: 71 | Inconsistencias: 75
+- Total: 1000 | Afetados: 70 | Inconsistencias: 74
 - Indice de qualidade: 99.5%
 - Top categorias: Escolaridade vs Renda (50), Idade vs Estado Civil (10), Idade vs Filhos (7), Regiao vs Cluster (4), Idade vs Profissao (2)
 - Mais recorrentes: df-0256 - Aline Ramos Freitas (3 erros) | df-0561 - Nathan Nascimento Batista (2 erros) | df-0801 - André Pereira Costa (2 erros) | df-0019 - Francisca Almeida Oliveira (1 erros) | df-0026 - Leandro Pinto Araújo (1 erros)
