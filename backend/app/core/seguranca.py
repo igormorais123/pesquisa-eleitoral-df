@@ -151,8 +151,8 @@ def autenticar_usuario_legado(usuario: str, senha: str) -> Optional[dict]:
     """
     Autentica usuário usando o usuário de teste.
 
-    NOTA: Esta função é um fallback para desenvolvimento.
-    Em produção, use autenticação via banco de dados (UsuarioServico.autenticar).
+    NOTA: Esta função é um fallback temporário para testes.
+    TODO: Remover após migrar todos os usuários para o banco.
 
     Args:
         usuario: Nome de usuário
@@ -161,9 +161,7 @@ def autenticar_usuario_legado(usuario: str, senha: str) -> Optional[dict]:
     Returns:
         Dados do usuário se autenticado, None caso contrário
     """
-    if configuracoes.AMBIENTE == "production":
-        return None
-
+    # TEMPORÁRIO: Mantido ativo para testes beta (remover depois)
     usuario_teste = get_usuario_teste()
 
     # Apenas usuário de teste (fallback para desenvolvimento)
