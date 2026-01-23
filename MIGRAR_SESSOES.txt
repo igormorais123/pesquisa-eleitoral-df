@@ -1,0 +1,185 @@
+============================================================
+COMO MIGRAR SUAS SESSOES PARA O SERVIDOR
+============================================================
+
+PROBLEMA: Suas entrevistas/sessoes estao salvas apenas no 
+navegador do computador onde foram criadas. Para ve-las em
+outros computadores, precisamos envia-las para o servidor.
+
+============================================================
+PASSO A PASSO
+============================================================
+
+1. Abra o site: https://pesquisa-eleitoral-df.vercel.app
+
+2. Faca login com: professorigor / professorigor
+
+3. Aperte F12 no teclado (abre o console do navegador)
+
+4. Clique na aba "Console" (se nao estiver la)
+
+5. Cole o codigo abaixo e aperte ENTER:
+
+------------------------------------------------------------
+COPIE DAQUI:
+------------------------------------------------------------
+
+(async function() {
+  try {
+    // Importar funcao de migracao
+    const { migrarSessoesLocais } = await import('/src/services/sessoes-api.ts');
+    
+    // Migrar todas as sessoes locais para o servidor
+    const resultado = await migrarSessoesLocais(true);
+    
+    console.log('=== RESULTADO DA MIGRACAO ===');
+    console.log('Sessoes migradas:', resultado.migradas);
+    console.log('Sessoes ignoradas:', resultado.ignoradas);
+    console.log('Erros:', resultado.erros);
+    
+    if (resultado.migradas > 0) {
+      alert('Sucesso! ' + resultado.migradas + ' sessoes migradas para o servidor.');
+    } else {
+      alert('Nenhuma sessao nova para migrar.');
+    }
+  } catch (e) {
+    console.error('Erro:', e);
+    alert('Erro ao migrar. Tente o metodo alternativo abaixo.');
+  }
+})();
+
+------------------------------------------------------------
+FIM DO CODIGO
+------------------------------------------------------------
+
+============================================================
+METODO ALTERNATIVO (se o de cima nao funcionar)
+============================================================
+
+Cole este codigo no console:
+
+------------------------------------------------------------
+COPIE DAQUI:
+------------------------------------------------------------
+
+(async function() {
+  // Pegar token de autenticacao
+  const authData = localStorage.getItem('pesquisa-eleitoral-auth');
+  if (!authData) {
+    alert('Voce precisa estar logado! Faca login primeiro.');
+    return;
+  }
+  
+  const { state } = JSON.parse(authData);
+  const token = state.token;
+  
+  if (!token) {
+    alert('Token nao encontrado. Faca login novamente.');
+    return;
+  }
+  
+  // Abrir IndexedDB
+  const request = indexedDB.open('PesquisaEleitoralDF');
+  
+  request.onsuccess = async function(event) {
+    const db = event.target.result;
+    
+    // Verificar se a tabela sessoes existe
+    if (!db.objectStoreNames.contains('sessoes')) {
+      alert('Nenhuma sessao encontrada neste navegador.');
+      return;
+    }
+    
+    const transaction = db.transaction(['sessoes'], 'readonly');
+    const store = transaction.objectStore('sessoes');
+    const getAllRequest = store.getAll();
+    
+    getAllRequest.onsuccess = async function() {
+      const sessoes = getAllRequest.result;
+      
+      if (sessoes.length === 0) {
+        alert('Nenhuma sessao encontrada neste navegador.');
+        return;
+      }
+      
+      console.log('Encontradas ' + sessoes.length + ' sessoes locais');
+      
+      // Converter para formato da API
+      const sessoesAPI = sessoes.map(s => ({
+        id: s.id,
+        entrevistaId: s.entrevistaId,
+        titulo: s.titulo,
+        status: s.status,
+        progresso: s.progresso,
+        totalAgentes: s.totalAgentes,
+        custoAtual: s.custoAtual,
+        tokensInput: s.tokensInput,
+        tokensOutput: s.tokensOutput,
+        respostas: s.respostas,
+        resultado: s.resultado,
+        iniciadaEm: s.iniciadaEm,
+        atualizadaEm: s.atualizadaEm,
+        finalizadaEm: s.finalizadaEm,
+        usuarioId: s.usuarioId,
+        usuarioNome: s.usuarioNome
+      }));
+      
+      // Enviar para o servidor
+      try {
+        const response = await fetch('https://pesquisa-eleitoral-df-1.onrender.com/api/v1/sessoes/migrar', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+          },
+          body: JSON.stringify({
+            sessoes: sessoesAPI,
+            substituir_existentes: true
+          })
+        });
+        
+        const resultado = await response.json();
+        
+        console.log('=== RESULTADO ===');
+        console.log(resultado);
+        
+        if (resultado.sucesso !== false) {
+          alert('Sucesso! Migradas: ' + resultado.migradas + ', Ignoradas: ' + resultado.ignoradas);
+        } else {
+          alert('Erro na migracao. Veja o console (F12) para detalhes.');
+        }
+      } catch (err) {
+        console.error('Erro ao enviar:', err);
+        alert('Erro ao conectar com o servidor: ' + err.message);
+      }
+    };
+  };
+  
+  request.onerror = function() {
+    alert('Erro ao abrir banco de dados local.');
+  };
+})();
+
+------------------------------------------------------------
+FIM DO CODIGO
+------------------------------------------------------------
+
+============================================================
+APOS MIGRAR
+============================================================
+
+Depois de migrar no computador que TEM as sessoes:
+
+1. Va para o OUTRO computador
+2. Faca login com professorigor / professorigor
+3. Abra a pagina de Entrevistas ou Resultados
+4. As sessoes devem aparecer automaticamente!
+
+============================================================
+DUVIDAS?
+============================================================
+
+Se der erro, copie a mensagem de erro do console (F12) e 
+me envie para eu ajudar.
+
+============================================================
