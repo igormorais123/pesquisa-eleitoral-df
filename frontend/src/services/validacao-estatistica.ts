@@ -316,11 +316,32 @@ function calcularDistribuicaoFilhos(
 function calcularDistribuicaoTempoDeslocamento(
   eleitores: Eleitor[]
 ): Record<string, { contagem: number; percentual: number }> {
-  const total = eleitores.length;
+  const ocupacoesAtivas = new Set([
+    'clt',
+    'servidor_publico',
+    'autonomo',
+    'empresario',
+    'informal',
+  ]);
+
+  const mapeamento: Record<string, string> = {
+    'mais_60': '60_75',
+    '60+': '60_75',
+    '30min_1h': '45_60',
+    'menos_30min': '15_30',
+  };
+
+  const eleitoresAtivos = eleitores.filter((e) => {
+    const ocupacao = String((e as unknown as Record<string, unknown>).ocupacao_vinculo || '');
+    return ocupacoesAtivas.has(ocupacao);
+  });
+
+  const total = eleitoresAtivos.length || 1;
   const contagem: Record<string, number> = {};
 
-  eleitores.forEach((e) => {
-    const valor = String((e as unknown as Record<string, unknown>).tempo_deslocamento_trabalho || 'nao_se_aplica');
+  eleitoresAtivos.forEach((e) => {
+    let valor = String((e as unknown as Record<string, unknown>).tempo_deslocamento_trabalho || 'nao_se_aplica');
+    valor = mapeamento[valor] || valor;
     contagem[valor] = (contagem[valor] || 0) + 1;
   });
 
