@@ -113,14 +113,22 @@ async def listar_politicas_rls(
         if tabela not in por_tabela:
             por_tabela[tabela] = []
 
-        por_tabela[tabela].append({
-            "nome": row.policyname,
-            "tipo": "PERMISSIVE" if row.permissive == "PERMISSIVE" else "RESTRICTIVE",
-            "comando": row.cmd,
-            "roles": row.roles,
-            "using": row.using_expression[:100] + "..." if row.using_expression and len(row.using_expression) > 100 else row.using_expression,
-            "with_check": row.with_check[:100] + "..." if row.with_check and len(row.with_check) > 100 else row.with_check,
-        })
+        por_tabela[tabela].append(
+            {
+                "nome": row.policyname,
+                "tipo": "PERMISSIVE"
+                if row.permissive == "PERMISSIVE"
+                else "RESTRICTIVE",
+                "comando": row.cmd,
+                "roles": row.roles,
+                "using": row.using_expression[:100] + "..."
+                if row.using_expression and len(row.using_expression) > 100
+                else row.using_expression,
+                "with_check": row.with_check[:100] + "..."
+                if row.with_check and len(row.with_check) > 100
+                else row.with_check,
+            }
+        )
 
     return {
         "total_politicas": len(rows),
@@ -191,6 +199,15 @@ async def testar_isolamento_rls(
     - Contagem de registros por tabela
     - Indicação se isolamento está funcionando
     """
+    # Tabelas permitidas para teste (whitelist - evita SQL injection)
+    tabelas_permitidas = {
+        "usuarios",
+        "memorias",
+        "uso_api",
+        "pesquisas",
+        "respostas",
+        "analises",
+    }
     tabelas_teste = [
         ("usuarios", "id"),
         ("memorias", "id"),
@@ -202,20 +219,27 @@ async def testar_isolamento_rls(
 
     resultados = []
     for tabela, pk in tabelas_teste:
+        # Validação extra de segurança (whitelist)
+        if tabela not in tabelas_permitidas:
+            continue
         try:
             result = await db.execute(text(f"SELECT COUNT(*) as total FROM {tabela}"))
             count = result.scalar()
-            resultados.append({
-                "tabela": tabela,
-                "registros_visiveis": count,
-                "status": "✅ Acessível",
-            })
+            resultados.append(
+                {
+                    "tabela": tabela,
+                    "registros_visiveis": count,
+                    "status": "✅ Acessível",
+                }
+            )
         except Exception as e:
-            resultados.append({
-                "tabela": tabela,
-                "registros_visiveis": 0,
-                "status": f"❌ Erro: {str(e)[:50]}",
-            })
+            resultados.append(
+                {
+                    "tabela": tabela,
+                    "registros_visiveis": 0,
+                    "status": f"❌ Erro: {str(e)[:50]}",
+                }
+            )
 
     return {
         "usuario_teste": {
@@ -257,7 +281,9 @@ async def listar_funcoes_rls(
         "funcoes": [
             {
                 "nome": row.nome,
-                "definicao": row.definicao[:500] + "..." if len(row.definicao) > 500 else row.definicao,
+                "definicao": row.definicao[:500] + "..."
+                if len(row.definicao) > 500
+                else row.definicao,
             }
             for row in rows
         ],

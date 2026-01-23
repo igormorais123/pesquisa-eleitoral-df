@@ -23,6 +23,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
 from app.api.deps import (
+    escape_sql_string,
     get_db_rls,
     get_db_admin,
     obter_usuario_atual,
@@ -137,9 +138,11 @@ async def listar_memorias(
 
     async with AsyncSessionLocal() as db:
         try:
-            # Configurar RLS
-            await db.execute(text(f"SET LOCAL app.current_user_id = '{usuario.usuario_id}'"))
-            await db.execute(text(f"SET LOCAL app.current_user_role = '{usuario.papel}'"))
+            # Configurar RLS (usando escape para evitar SQL injection)
+            safe_user_id = escape_sql_string(str(usuario.usuario_id or ""))
+            safe_role = escape_sql_string(str(usuario.papel or ""))
+            await db.execute(text(f"SET LOCAL app.current_user_id = '{safe_user_id}'"))
+            await db.execute(text(f"SET LOCAL app.current_user_role = '{safe_role}'"))
 
             # Construir query base
             query = select(Memoria)
@@ -175,7 +178,11 @@ async def listar_memorias(
 
             # Aplicar paginação e ordenação
             offset = (pagina - 1) * por_pagina
-            query = query.order_by(Memoria.criado_em.desc()).offset(offset).limit(por_pagina)
+            query = (
+                query.order_by(Memoria.criado_em.desc())
+                .offset(offset)
+                .limit(por_pagina)
+            )
 
             # Executar query
             result = await db.execute(query)
@@ -189,7 +196,9 @@ async def listar_memorias(
                     eleitor_id=m.eleitor_id,
                     eleitor_nome=m.eleitor_nome,
                     pesquisa_id=m.pesquisa_id,
-                    resposta_texto=m.resposta_texto[:200] if len(m.resposta_texto) > 200 else m.resposta_texto,
+                    resposta_texto=m.resposta_texto[:200]
+                    if len(m.resposta_texto) > 200
+                    else m.resposta_texto,
                     modelo_usado=m.modelo_usado,
                     tokens_total=m.tokens_total,
                     custo=m.custo,
@@ -307,7 +316,9 @@ async def obter_historico_eleitor(
             eleitor_id=m.eleitor_id,
             eleitor_nome=m.eleitor_nome,
             pesquisa_id=m.pesquisa_id,
-            resposta_texto=m.resposta_texto[:200] if len(m.resposta_texto) > 200 else m.resposta_texto,
+            resposta_texto=m.resposta_texto[:200]
+            if len(m.resposta_texto) > 200
+            else m.resposta_texto,
             modelo_usado=m.modelo_usado,
             tokens_total=m.tokens_total,
             custo=m.custo,
@@ -377,12 +388,15 @@ async def obter_analytics_globais(
 
     # Executar com sessão
     from app.db.session import AsyncSessionLocal
+    from sqlalchemy import text
 
     try:
         async with AsyncSessionLocal() as db:
-            # Configurar RLS
-            await db.execute(text(f"SET LOCAL app.current_user_id = '{usuario.usuario_id}'"))
-            await db.execute(text(f"SET LOCAL app.current_user_role = '{usuario.papel}'"))
+            # Configurar RLS (usando escape para evitar SQL injection)
+            safe_user_id = escape_sql_string(str(usuario.usuario_id or ""))
+            safe_role = escape_sql_string(str(usuario.papel or ""))
+            await db.execute(text(f"SET LOCAL app.current_user_id = '{safe_user_id}'"))
+            await db.execute(text(f"SET LOCAL app.current_user_role = '{safe_role}'"))
 
             data_inicio = datetime.now() - timedelta(days=dias)
 
@@ -447,8 +461,12 @@ async def obter_analytics_globais(
             eleitores_unicos = stats.eleitores_unicos or 0
             custo_total = float(stats.custo_total or 0)
 
-            custo_medio_resposta = custo_total / total_respostas if total_respostas > 0 else 0
-            custo_medio_eleitor = custo_total / eleitores_unicos if eleitores_unicos > 0 else 0
+            custo_medio_resposta = (
+                custo_total / total_respostas if total_respostas > 0 else 0
+            )
+            custo_medio_eleitor = (
+                custo_total / eleitores_unicos if eleitores_unicos > 0 else 0
+            )
 
             return AnalyticsGlobais(
                 total_memorias=total_memorias,
@@ -497,11 +515,7 @@ async def obter_uso_api(
     if usuario.papel != "admin":
         filtros.append(UsoAPI.usuario_id == usuario.usuario_id)
 
-    query = (
-        select(UsoAPI)
-        .where(and_(*filtros))
-        .order_by(UsoAPI.periodo.asc())
-    )
+    query = select(UsoAPI).where(and_(*filtros)).order_by(UsoAPI.periodo.asc())
 
     result = await db.execute(query)
     usos = result.scalars().all()
@@ -561,7 +575,10 @@ async def obter_analytics_pesquisa(
         .group_by(Memoria.modelo_usado)
     )
     modelo_result = await db.execute(modelo_query)
-    modelos = {m.modelo_usado: {"total": m.total, "custo": float(m.custo or 0)} for m in modelo_result.all()}
+    modelos = {
+        m.modelo_usado: {"total": m.total, "custo": float(m.custo or 0)}
+        for m in modelo_result.all()
+    }
 
     return {
         "pesquisa_id": pesquisa_id,
