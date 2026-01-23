@@ -25,6 +25,7 @@ from app.api.rotas import (
     pesquisas,
     resultados,
     rls,
+    sessoes,
     templates,
     usuarios,
     pesquisas_parlamentares,
@@ -52,6 +53,7 @@ async def lifespan(app: FastAPI):
         from app.modelos.candidato import Candidato  # noqa: F401
         from app.modelos.cenario_eleitoral import CenarioEleitoral  # noqa: F401
         from app.modelos.pesquisa_podc import PesquisaPODC, RespostaPODC, EstatisticasPODC  # noqa: F401
+        from app.modelos.sessao_entrevista import SessaoEntrevista  # noqa: F401
         from app.db.modelos.pesquisa import Pesquisa, PerguntaPesquisa, RespostaPesquisa, MetricasGlobais  # noqa: F401
 
         async with engine.begin() as conn:
@@ -648,4 +650,10 @@ app.include_router(
     analytics.router,
     prefix="/api/v1/analytics",
     tags=["Analytics"],
+)
+
+app.include_router(
+    sessoes.router,
+    prefix="/api/v1/sessoes",
+    tags=["Sessões de Entrevista"],
 )

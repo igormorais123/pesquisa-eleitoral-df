@@ -3,7 +3,9 @@
     "allow": [
       "Bash(ls:*)",
       "Bash(git status:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git diff:*)",
+      "Bash(vercel --prod:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
