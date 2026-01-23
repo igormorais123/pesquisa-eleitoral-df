@@ -8,7 +8,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 # ============================================
@@ -84,8 +84,7 @@ class MemoriaResponse(MemoriaBase):
     criado_em: datetime
     atualizado_em: Optional[datetime] = None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class MemoriaResumo(BaseModel):
@@ -102,8 +101,7 @@ class MemoriaResumo(BaseModel):
     custo: float
     criado_em: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # ============================================
@@ -190,8 +188,7 @@ class UsoAPIResponse(BaseModel):
     custo_medio_por_chamada: float = 0.0
     tokens_medio_por_chamada: float = 0.0
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class AnalyticsGlobais(BaseModel):
