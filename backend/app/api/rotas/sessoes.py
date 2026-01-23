@@ -4,7 +4,7 @@ Rotas de Sessões de Entrevista
 Endpoints para CRUD e sincronização de sessões.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -204,7 +204,7 @@ async def atualizar_sessao(
 
     # Incrementar versão
     sessao.versao += 1
-    sessao.atualizada_em = datetime.utcnow()
+    sessao.atualizada_em = datetime.now(timezone.utc)
 
     await db.commit()
     await db.refresh(sessao)
@@ -290,7 +290,7 @@ async def sincronizar_sessoes(
                     setattr(existente, field, value)
 
                 existente.versao += 1
-                existente.atualizada_em = datetime.utcnow()
+                existente.atualizada_em = datetime.now(timezone.utc)
                 sessoes_response.append(_sessao_to_response(existente))
             else:
                 # Criar nova

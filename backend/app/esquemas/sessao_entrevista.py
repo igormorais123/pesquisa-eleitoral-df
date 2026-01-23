@@ -8,11 +8,12 @@ from datetime import datetime
 from enum import Enum
 from typing import Optional, List, Dict, Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class StatusSessao(str, Enum):
     """Status possíveis de uma sessão"""
+
     EM_ANDAMENTO = "em_andamento"
     PAUSADA = "pausada"
     CONCLUIDA = "concluida"
@@ -23,8 +24,10 @@ class StatusSessao(str, Enum):
 # SCHEMAS DE RESPOSTA
 # ============================================
 
+
 class RespostaEleitorSchema(BaseModel):
     """Schema para resposta de um eleitor"""
+
     eleitor_id: str
     eleitor_nome: str
     respostas: List[Dict[str, Any]]
@@ -35,6 +38,7 @@ class RespostaEleitorSchema(BaseModel):
 
 class PerguntaSchema(BaseModel):
     """Schema para pergunta"""
+
     id: str
     texto: str
     tipo: str
@@ -49,8 +53,10 @@ class PerguntaSchema(BaseModel):
 # SCHEMAS DE SESSÃO
 # ============================================
 
+
 class SessaoBase(BaseModel):
     """Schema base para sessão"""
+
     id: str
     entrevista_id: str = Field(alias="entrevistaId")
     titulo: str
@@ -61,12 +67,12 @@ class SessaoBase(BaseModel):
     tokens_input: int = Field(default=0, alias="tokensInput")
     tokens_output: int = Field(default=0, alias="tokensOutput")
 
-    class Config:
-        populate_by_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 class SessaoCreate(SessaoBase):
     """Schema para criar sessão"""
+
     perguntas: Optional[List[Dict[str, Any]]] = None
     respostas: Optional[List[Dict[str, Any]]] = None
     resultado: Optional[Dict[str, Any]] = None
@@ -78,12 +84,12 @@ class SessaoCreate(SessaoBase):
     atualizada_em: Optional[str] = Field(default=None, alias="atualizadaEm")
     finalizada_em: Optional[str] = Field(default=None, alias="finalizadaEm")
 
-    class Config:
-        populate_by_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 class SessaoUpdate(BaseModel):
     """Schema para atualizar sessão"""
+
     titulo: Optional[str] = None
     status: Optional[StatusSessao] = None
     progresso: Optional[int] = None
@@ -100,12 +106,12 @@ class SessaoUpdate(BaseModel):
     configuracoes: Optional[Dict[str, Any]] = None
     finalizada_em: Optional[str] = Field(default=None, alias="finalizadaEm")
 
-    class Config:
-        populate_by_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 class SessaoResponse(BaseModel):
     """Schema de resposta para sessão"""
+
     id: str
     entrevista_id: str = Field(alias="entrevistaId")
     titulo: str
@@ -130,13 +136,12 @@ class SessaoResponse(BaseModel):
     sincronizado: bool = True
     versao: int = 1
 
-    class Config:
-        populate_by_name = True
-        from_attributes = True
+    model_config = ConfigDict(populate_by_name=True, from_attributes=True)
 
 
 class SessaoListResponse(BaseModel):
     """Schema para lista de sessões"""
+
     sessoes: List[SessaoResponse]
     total: int
     pagina: int = 1
@@ -146,6 +151,7 @@ class SessaoListResponse(BaseModel):
 
 class SessaoResumo(BaseModel):
     """Schema resumido de sessão para listagem"""
+
     id: str
     titulo: str
     status: str
@@ -155,22 +161,23 @@ class SessaoResumo(BaseModel):
     iniciada_em: Optional[str] = Field(default=None, alias="iniciadaEm")
     finalizada_em: Optional[str] = Field(default=None, alias="finalizadaEm")
 
-    class Config:
-        populate_by_name = True
-        from_attributes = True
+    model_config = ConfigDict(populate_by_name=True, from_attributes=True)
 
 
 # ============================================
 # SCHEMAS DE SINCRONIZAÇÃO
 # ============================================
 
+
 class SincronizarSessoesRequest(BaseModel):
     """Request para sincronizar múltiplas sessões"""
+
     sessoes: List[SessaoCreate]
 
 
 class SincronizarSessoesResponse(BaseModel):
     """Response da sincronização"""
+
     sucesso: bool
     sincronizadas: int
     erros: List[Dict[str, str]] = []
@@ -179,12 +186,14 @@ class SincronizarSessoesResponse(BaseModel):
 
 class MigrarSessoesRequest(BaseModel):
     """Request para migrar sessões do IndexedDB para PostgreSQL"""
+
     sessoes: List[SessaoCreate]
     substituir_existentes: bool = False
 
 
 class MigrarSessoesResponse(BaseModel):
     """Response da migração"""
+
     sucesso: bool
     total_recebidas: int
     migradas: int

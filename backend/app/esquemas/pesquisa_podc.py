@@ -7,7 +7,7 @@ Validação e serialização de dados para a API de pesquisas PODC.
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 # ============================================
@@ -23,12 +23,17 @@ class DistribuicaoPODC(BaseModel):
     dirigir: float = Field(..., ge=0, le=100, description="Percentual em Dirigir")
     controlar: float = Field(..., ge=0, le=100, description="Percentual em Controlar")
 
-    @field_validator('controlar')
+    @field_validator("controlar")
     @classmethod
     def validar_soma(cls, v, info):
         """Valida que a soma é 100%."""
         valores = info.data
-        soma = valores.get('planejar', 0) + valores.get('organizar', 0) + valores.get('dirigir', 0) + v
+        soma = (
+            valores.get("planejar", 0)
+            + valores.get("organizar", 0)
+            + valores.get("dirigir", 0)
+            + v
+        )
         if abs(soma - 100) > 1:  # Tolerância de 1%
             raise ValueError(f"A soma das distribuições deve ser 100%, atual: {soma}%")
         return v
@@ -106,8 +111,7 @@ class PesquisaPODCResponse(BaseModel):
     iniciado_em: Optional[datetime]
     finalizado_em: Optional[datetime]
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # ============================================
@@ -184,8 +188,7 @@ class RespostaPODCResponse(BaseModel):
     criado_em: datetime
     processado_em: Optional[datetime]
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # ============================================
@@ -213,8 +216,7 @@ class EstatisticasPODCResponse(BaseModel):
     media_horas_total: Optional[float]
     calculado_em: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class ComparativoSetores(BaseModel):

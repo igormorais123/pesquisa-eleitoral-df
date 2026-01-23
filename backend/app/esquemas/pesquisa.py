@@ -8,7 +8,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 # ============================================
@@ -93,8 +93,7 @@ class PerguntaPesquisaResponse(PerguntaPesquisaBase):
     pesquisa_id: str
     criado_em: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # ============================================
@@ -149,8 +148,7 @@ class RespostaPesquisaResponse(RespostaPesquisaBase):
     tempo_resposta_ms: int
     criado_em: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # Alias para compatibilidade
@@ -167,14 +165,18 @@ class RespostaPesquisaDetalhada(RespostaPesquisaResponse):
     mudaria_voto: Optional[bool] = None
 
     @classmethod
-    def from_resposta(cls, resposta: "RespostaPesquisaResponse") -> "RespostaPesquisaDetalhada":
+    def from_resposta(
+        cls, resposta: "RespostaPesquisaResponse"
+    ) -> "RespostaPesquisaDetalhada":
         """Cria RespostaPesquisaDetalhada a partir de RespostaPesquisaResponse."""
         dados = resposta.model_dump()
 
         # Extrair dados do fluxo cognitivo
         fluxo = resposta.fluxo_cognitivo or {}
         if "emocional" in fluxo:
-            dados["sentimento_dominante"] = fluxo["emocional"].get("sentimento_dominante")
+            dados["sentimento_dominante"] = fluxo["emocional"].get(
+                "sentimento_dominante"
+            )
             dados["intensidade_emocional"] = fluxo["emocional"].get("intensidade")
         if "decisao" in fluxo:
             dados["mudaria_voto"] = fluxo["decisao"].get("muda_intencao_voto")
@@ -239,8 +241,7 @@ class PesquisaResumo(BaseModel):
     criado_em: datetime
     concluido_em: Optional[datetime] = None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class PesquisaResponse(PesquisaBase):
@@ -277,8 +278,7 @@ class PesquisaResponse(PesquisaBase):
     # Relacionamentos
     perguntas: List[PerguntaPesquisaResponse] = []
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class PesquisaCompleta(PesquisaResponse):
@@ -423,7 +423,9 @@ class HistoricoPergunta(BaseModel):
 
     texto_pergunta: str
     total_ocorrencias: int
-    pesquisas: List[Dict[str, Any]]  # Lista de {pesquisa_id, titulo, total_respostas, sentimento}
+    pesquisas: List[
+        Dict[str, Any]
+    ]  # Lista de {pesquisa_id, titulo, total_respostas, sentimento}
     evolucao_sentimento: Optional[List[Dict[str, Any]]] = None
 
 

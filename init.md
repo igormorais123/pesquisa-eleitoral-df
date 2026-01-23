@@ -36,7 +36,7 @@ Diagnostico atual (nao executar agora):
 - Dados sensiveis: Google OAuth salva dados em JSON local e esse arquivo nao esta no .gitignore.
 - Frontend: lint atualmente sem avisos.
 - Dependencias: `npm audit` apontou vulnerabilidades (inclui `xlsx` sem fix automatico).
-- Warnings: Pydantic v2 reclama de `class Config` e `datetime.utcnow()` esta obsoleto.
+- Warnings: ainda aparecem avisos de `datetime.utcnow()` vindos do Pydantic durante o pytest.
 
 Sugestoes recomendadas (ordem simples):
 - 1) Garantir banco local ativo e usar `.env.local`.

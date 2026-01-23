@@ -188,4 +188,6 @@ npm run dev --prefix frontend
 - Frontend proxia `/api/v1/auth/login` e `/api/v1/auth/me` para o backend em producao.
 - `.gitignore` agora ignora `agentes/dados-usuarios-google.json`.
 - Login agora usa `next/image` (lint sem avisos).
-- Testes backend: `pytest` passou (67 testes) com warnings de Pydantic/datetime.
+- Esquemas Pydantic migrados para `ConfigDict`.
+- `datetime.utcnow()` trocado por `datetime.now(timezone.utc)` nas rotas PODC e sessoes.
+- Testes backend: `pytest` passou (67 testes) com warnings restantes do Pydantic.

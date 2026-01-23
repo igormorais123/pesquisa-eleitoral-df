@@ -7,7 +7,7 @@ distribuição de tempo nas funções administrativas de gestores.
 IMPORTANTE: Os dados são persistidos no banco de dados PostgreSQL.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Optional
 from uuid import uuid4
 
@@ -45,7 +45,7 @@ async def criar_pesquisa(
     Os dados são persistidos no banco de dados.
     """
     pesquisa_id = str(uuid4())
-    agora = datetime.utcnow()
+    agora = datetime.now(timezone.utc)
 
     pesquisa = PesquisaPODC(
         id=pesquisa_id,
@@ -156,13 +156,13 @@ async def obter_pesquisa(
     if not pesquisa:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Pesquisa {pesquisa_id} não encontrada"
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
     if pesquisa.usuario_id != usuario.usuario_id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Acesso negado a esta pesquisa"
+            detail="Acesso negado a esta pesquisa",
         )
 
     return {
@@ -202,13 +202,13 @@ async def atualizar_pesquisa(
     if not pesquisa:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Pesquisa {pesquisa_id} não encontrada"
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
     if pesquisa.usuario_id != usuario.usuario_id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Acesso negado a esta pesquisa"
+            detail="Acesso negado a esta pesquisa",
         )
 
     # Atualizar campos fornecidos
@@ -219,7 +219,7 @@ async def atualizar_pesquisa(
     if dados.status is not None:
         pesquisa.status = dados.status
 
-    pesquisa.atualizado_em = datetime.utcnow()
+    pesquisa.atualizado_em = datetime.now(timezone.utc)
 
     await db.commit()
     await db.refresh(pesquisa)
@@ -255,13 +255,13 @@ async def deletar_pesquisa(
     if not pesquisa:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Pesquisa {pesquisa_id} não encontrada"
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
     if pesquisa.usuario_id != usuario.usuario_id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Acesso negado a esta pesquisa"
+            detail="Acesso negado a esta pesquisa",
         )
 
     await db.delete(pesquisa)
@@ -292,31 +292,31 @@ async def iniciar_pesquisa(
     if not pesquisa:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Pesquisa {pesquisa_id} não encontrada"
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
     if pesquisa.usuario_id != usuario.usuario_id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Acesso negado a esta pesquisa"
+            detail="Acesso negado a esta pesquisa",
         )
 
     if pesquisa.status not in ["pendente", "pausada"]:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Pesquisa não pode ser iniciada no status '{pesquisa.status}'"
+            detail=f"Pesquisa não pode ser iniciada no status '{pesquisa.status}'",
         )
 
     pesquisa.status = "em_andamento"
-    pesquisa.iniciado_em = datetime.utcnow()
-    pesquisa.atualizado_em = datetime.utcnow()
+    pesquisa.iniciado_em = datetime.now(timezone.utc)
+    pesquisa.atualizado_em = datetime.now(timezone.utc)
 
     await db.commit()
 
     return {
         "mensagem": "Pesquisa iniciada com sucesso",
         "pesquisa_id": pesquisa_id,
-        "status": pesquisa.status
+        "status": pesquisa.status,
     }
 
 
@@ -337,30 +337,30 @@ async def pausar_pesquisa(
     if not pesquisa:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Pesquisa {pesquisa_id} não encontrada"
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
     if pesquisa.usuario_id != usuario.usuario_id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Acesso negado a esta pesquisa"
+            detail="Acesso negado a esta pesquisa",
         )
 
     if pesquisa.status != "em_andamento":
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Pesquisa não pode ser pausada no status '{pesquisa.status}'"
+            detail=f"Pesquisa não pode ser pausada no status '{pesquisa.status}'",
         )
 
     pesquisa.status = "pausada"
-    pesquisa.atualizado_em = datetime.utcnow()
+    pesquisa.atualizado_em = datetime.now(timezone.utc)
 
     await db.commit()
 
     return {
         "mensagem": "Pesquisa pausada com sucesso",
         "pesquisa_id": pesquisa_id,
-        "status": pesquisa.status
+        "status": pesquisa.status,
     }
 
 
@@ -381,18 +381,18 @@ async def finalizar_pesquisa(
     if not pesquisa:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Pesquisa {pesquisa_id} não encontrada"
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
     if pesquisa.usuario_id != usuario.usuario_id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Acesso negado a esta pesquisa"
+            detail="Acesso negado a esta pesquisa",
         )
 
     pesquisa.status = "concluida"
-    pesquisa.finalizado_em = datetime.utcnow()
-    pesquisa.atualizado_em = datetime.utcnow()
+    pesquisa.finalizado_em = datetime.now(timezone.utc)
+    pesquisa.atualizado_em = datetime.now(timezone.utc)
 
     await db.commit()
 
@@ -400,7 +400,7 @@ async def finalizar_pesquisa(
         "mensagem": "Pesquisa finalizada com sucesso",
         "pesquisa_id": pesquisa_id,
         "status": pesquisa.status,
-        "total_respostas": pesquisa.total_respostas
+        "total_respostas": pesquisa.total_respostas,
     }
 
 
@@ -431,19 +431,23 @@ async def criar_resposta(
     if not pesquisa:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Pesquisa {pesquisa_id} não encontrada"
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
     if pesquisa.usuario_id != usuario.usuario_id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Acesso negado a esta pesquisa"
+            detail="Acesso negado a esta pesquisa",
         )
 
     # Calcular IAD
     podc = dados.distribuicao_podc
     denominador = podc.dirigir + podc.controlar
-    iad = round((podc.planejar + podc.organizar) / denominador, 2) if denominador > 0 else 0
+    iad = (
+        round((podc.planejar + podc.organizar) / denominador, 2)
+        if denominador > 0
+        else 0
+    )
 
     # Classificar IAD
     if iad >= 1.5:
@@ -458,7 +462,7 @@ async def criar_resposta(
         iad_classificacao = "Altamente Reativo (Executor)"
 
     resposta_id = str(uuid4())
-    agora = datetime.utcnow()
+    agora = datetime.now(timezone.utc)
 
     resposta = RespostaPODC(
         id=resposta_id,
@@ -473,22 +477,38 @@ async def criar_resposta(
         podc_organizar=podc.organizar,
         podc_dirigir=podc.dirigir,
         podc_controlar=podc.controlar,
-        podc_ideal_planejar=dados.distribuicao_ideal.planejar if dados.distribuicao_ideal else None,
-        podc_ideal_organizar=dados.distribuicao_ideal.organizar if dados.distribuicao_ideal else None,
-        podc_ideal_dirigir=dados.distribuicao_ideal.dirigir if dados.distribuicao_ideal else None,
-        podc_ideal_controlar=dados.distribuicao_ideal.controlar if dados.distribuicao_ideal else None,
+        podc_ideal_planejar=dados.distribuicao_ideal.planejar
+        if dados.distribuicao_ideal
+        else None,
+        podc_ideal_organizar=dados.distribuicao_ideal.organizar
+        if dados.distribuicao_ideal
+        else None,
+        podc_ideal_dirigir=dados.distribuicao_ideal.dirigir
+        if dados.distribuicao_ideal
+        else None,
+        podc_ideal_controlar=dados.distribuicao_ideal.controlar
+        if dados.distribuicao_ideal
+        else None,
         horas_total=dados.horas_semanais.total if dados.horas_semanais else None,
         horas_planejar=dados.horas_semanais.planejar if dados.horas_semanais else None,
-        horas_organizar=dados.horas_semanais.organizar if dados.horas_semanais else None,
+        horas_organizar=dados.horas_semanais.organizar
+        if dados.horas_semanais
+        else None,
         horas_dirigir=dados.horas_semanais.dirigir if dados.horas_semanais else None,
-        horas_controlar=dados.horas_semanais.controlar if dados.horas_semanais else None,
+        horas_controlar=dados.horas_semanais.controlar
+        if dados.horas_semanais
+        else None,
         iad=iad,
         iad_classificacao=iad_classificacao,
         ranking_importancia=dados.ranking_importancia,
         fatores_limitantes=dados.fatores_limitantes,
         justificativa=dados.justificativa,
-        frequencia_atividades=dados.frequencia_atividades.model_dump() if dados.frequencia_atividades else None,
-        respostas_perguntas=[r.model_dump() for r in dados.respostas_perguntas] if dados.respostas_perguntas else None,
+        frequencia_atividades=dados.frequencia_atividades.model_dump()
+        if dados.frequencia_atividades
+        else None,
+        respostas_perguntas=[r.model_dump() for r in dados.respostas_perguntas]
+        if dados.respostas_perguntas
+        else None,
         resposta_bruta=dados.resposta_bruta,
         tokens_input=dados.tokens_input,
         tokens_output=dados.tokens_output,
@@ -565,13 +585,13 @@ async def listar_respostas(
     if not pesquisa:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Pesquisa {pesquisa_id} não encontrada"
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
     if pesquisa.usuario_id != usuario.usuario_id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Acesso negado a esta pesquisa"
+            detail="Acesso negado a esta pesquisa",
         )
 
     # Buscar respostas
@@ -656,13 +676,13 @@ async def obter_estatisticas(
     if not pesquisa:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Pesquisa {pesquisa_id} não encontrada"
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
     if pesquisa.usuario_id != usuario.usuario_id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Acesso negado a esta pesquisa"
+            detail="Acesso negado a esta pesquisa",
         )
 
     # Buscar todas as respostas
@@ -675,7 +695,7 @@ async def obter_estatisticas(
         return {
             "pesquisa_id": pesquisa_id,
             "total_respostas": 0,
-            "mensagem": "Nenhuma resposta encontrada"
+            "mensagem": "Nenhuma resposta encontrada",
         }
 
     import statistics
@@ -704,10 +724,18 @@ async def obter_estatisticas(
         if respostas_setor:
             stats_por_setor[setor] = {
                 "total": len(respostas_setor),
-                "planejar": calcular_stats([r.podc_planejar for r in respostas_setor if r.podc_planejar]),
-                "organizar": calcular_stats([r.podc_organizar for r in respostas_setor if r.podc_organizar]),
-                "dirigir": calcular_stats([r.podc_dirigir for r in respostas_setor if r.podc_dirigir]),
-                "controlar": calcular_stats([r.podc_controlar for r in respostas_setor if r.podc_controlar]),
+                "planejar": calcular_stats(
+                    [r.podc_planejar for r in respostas_setor if r.podc_planejar]
+                ),
+                "organizar": calcular_stats(
+                    [r.podc_organizar for r in respostas_setor if r.podc_organizar]
+                ),
+                "dirigir": calcular_stats(
+                    [r.podc_dirigir for r in respostas_setor if r.podc_dirigir]
+                ),
+                "controlar": calcular_stats(
+                    [r.podc_controlar for r in respostas_setor if r.podc_controlar]
+                ),
                 "iad": calcular_stats([r.iad for r in respostas_setor if r.iad]),
             }
 
@@ -718,10 +746,18 @@ async def obter_estatisticas(
         if respostas_nivel:
             stats_por_nivel[nivel] = {
                 "total": len(respostas_nivel),
-                "planejar": calcular_stats([r.podc_planejar for r in respostas_nivel if r.podc_planejar]),
-                "organizar": calcular_stats([r.podc_organizar for r in respostas_nivel if r.podc_organizar]),
-                "dirigir": calcular_stats([r.podc_dirigir for r in respostas_nivel if r.podc_dirigir]),
-                "controlar": calcular_stats([r.podc_controlar for r in respostas_nivel if r.podc_controlar]),
+                "planejar": calcular_stats(
+                    [r.podc_planejar for r in respostas_nivel if r.podc_planejar]
+                ),
+                "organizar": calcular_stats(
+                    [r.podc_organizar for r in respostas_nivel if r.podc_organizar]
+                ),
+                "dirigir": calcular_stats(
+                    [r.podc_dirigir for r in respostas_nivel if r.podc_dirigir]
+                ),
+                "controlar": calcular_stats(
+                    [r.podc_controlar for r in respostas_nivel if r.podc_controlar]
+                ),
                 "iad": calcular_stats([r.iad for r in respostas_nivel if r.iad]),
             }
 
@@ -738,7 +774,7 @@ async def obter_estatisticas(
         },
         "estatisticas_por_setor": stats_por_setor,
         "estatisticas_por_nivel": stats_por_nivel,
-        "calculado_em": datetime.utcnow().isoformat(),
+        "calculado_em": datetime.now(timezone.utc).isoformat(),
     }
 
 
@@ -764,13 +800,13 @@ async def exportar_pesquisa(
     if not pesquisa:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Pesquisa {pesquisa_id} não encontrada"
+            detail=f"Pesquisa {pesquisa_id} não encontrada",
         )
 
     if pesquisa.usuario_id != usuario.usuario_id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Acesso negado a esta pesquisa"
+            detail="Acesso negado a esta pesquisa",
         )
 
     # Buscar respostas
@@ -790,8 +826,12 @@ async def exportar_pesquisa(
                 "total_respostas": pesquisa.total_respostas,
                 "custo_total": pesquisa.custo_total,
                 "tokens_total": pesquisa.tokens_total,
-                "criado_em": pesquisa.criado_em.isoformat() if pesquisa.criado_em else None,
-                "finalizado_em": pesquisa.finalizado_em.isoformat() if pesquisa.finalizado_em else None,
+                "criado_em": pesquisa.criado_em.isoformat()
+                if pesquisa.criado_em
+                else None,
+                "finalizado_em": pesquisa.finalizado_em.isoformat()
+                if pesquisa.finalizado_em
+                else None,
             },
             "respostas": [
                 {
@@ -809,12 +849,14 @@ async def exportar_pesquisa(
                 }
                 for r in respostas
             ],
-            "exportado_em": datetime.utcnow().isoformat(),
+            "exportado_em": datetime.now(timezone.utc).isoformat(),
         }
 
     elif formato == "csv":
         # Gerar CSV como string
-        linhas = ["gestor_id,gestor_nome,setor,nivel,cargo,planejar,organizar,dirigir,controlar,iad,iad_classificacao"]
+        linhas = [
+            "gestor_id,gestor_nome,setor,nivel,cargo,planejar,organizar,dirigir,controlar,iad,iad_classificacao"
+        ]
 
         for r in respostas:
             linha = f"{r.gestor_id},{r.gestor_nome},{r.gestor_setor},{r.gestor_nivel},{r.gestor_cargo or ''},{r.podc_planejar},{r.podc_organizar},{r.podc_dirigir},{r.podc_controlar},{r.iad},{r.iad_classificacao}"
@@ -823,11 +865,11 @@ async def exportar_pesquisa(
         return {
             "formato": "csv",
             "conteudo": "\n".join(linhas),
-            "exportado_em": datetime.utcnow().isoformat(),
+            "exportado_em": datetime.now(timezone.utc).isoformat(),
         }
 
     else:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Formato '{formato}' não suportado. Use 'json' ou 'csv'."
+            detail=f"Formato '{formato}' não suportado. Use 'json' ou 'csv'.",
         )
