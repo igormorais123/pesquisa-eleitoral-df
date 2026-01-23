@@ -1,0 +1,1151 @@
+{
+  "data_verificacao": "2026-01-23T00:00:00",
+  "escopo": [
+    "eleitores",
+    "parlamentares"
+  ],
+  "resumo_geral": {
+    "total_registros": 1594,
+    "total_inconsistencias": 118,
+    "total_individuos_afetados": 114,
+    "por_severidade": {
+      "grave": 41,
+      "medio": 18,
+      "leve": 59
+    }
+  },
+  "eleitores": {
+    "total": 1000,
+    "total_inconsistencias": 75,
+    "individuos_afetados": 71,
+    "por_severidade": {
+      "grave": 0,
+      "medio": 16,
+      "leve": 59
+    },
+    "por_categoria": {
+      "Escolaridade vs Renda": 50,
+      "Idade vs Estado Civil": 10,
+      "Idade vs Filhos": 7,
+      "Regiao vs Cluster": 4,
+      "Idade vs Profissao": 2,
+      "Escolaridade vs Profissao": 1,
+      "Idade vs Escolaridade": 1
+    },
+    "indice_qualidade": 99.5,
+    "top_incoerencias": [
+      {
+        "id": "df-0256",
+        "nome": "Aline Ramos Freitas",
+        "total_erros": 3,
+        "por_severidade": {
+          "grave": 0,
+          "medio": 2,
+          "leve": 1
+        },
+        "categorias_top": [
+          "Idade vs Filhos (3)"
+        ]
+      },
+      {
+        "id": "df-0561",
+        "nome": "Nathan Nascimento Batista",
+        "total_erros": 2,
+        "por_severidade": {
+          "grave": 0,
+          "medio": 1,
+          "leve": 1
+        },
+        "categorias_top": [
+          "Escolaridade vs Renda (1)",
+          "Regiao vs Cluster (1)"
+        ]
+      },
+      {
+        "id": "df-0801",
+        "nome": "André Pereira Costa",
+        "total_erros": 2,
+        "por_severidade": {
+          "grave": 0,
+          "medio": 2,
+          "leve": 0
+        },
+        "categorias_top": [
+          "Escolaridade vs Profissao (1)",
+          "Idade vs Profissao (1)"
+        ]
+      },
+      {
+        "id": "df-0019",
+        "nome": "Francisca Almeida Oliveira",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 0,
+          "medio": 0,
+          "leve": 1
+        },
+        "categorias_top": [
+          "Escolaridade vs Renda (1)"
+        ]
+      },
+      {
+        "id": "df-0026",
+        "nome": "Leandro Pinto Araújo",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 0,
+          "medio": 0,
+          "leve": 1
+        },
+        "categorias_top": [
+          "Escolaridade vs Renda (1)"
+        ]
+      },
+      {
+        "id": "df-0028",
+        "nome": "Márcia Lima Costa",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 0,
+          "medio": 0,
+          "leve": 1
+        },
+        "categorias_top": [
+          "Regiao vs Cluster (1)"
+        ]
+      },
+      {
+        "id": "df-0034",
+        "nome": "Gabriel Pinto Costa",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 0,
+          "medio": 0,
+          "leve": 1
+        },
+        "categorias_top": [
+          "Escolaridade vs Renda (1)"
+        ]
+      },
+      {
+        "id": "df-0059",
+        "nome": "Gabriela Fernandes Ramos",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 0,
+          "medio": 0,
+          "leve": 1
+        },
+        "categorias_top": [
+          "Escolaridade vs Renda (1)"
+        ]
+      },
+      {
+        "id": "df-0066",
+        "nome": "Pedro Ribeiro Alves",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 0,
+          "medio": 0,
+          "leve": 1
+        },
+        "categorias_top": [
+          "Escolaridade vs Renda (1)"
+        ]
+      },
+      {
+        "id": "df-0080",
+        "nome": "Paula Gomes Costa",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 0,
+          "medio": 0,
+          "leve": 1
+        },
+        "categorias_top": [
+          "Idade vs Profissao (1)"
+        ]
+      }
+    ],
+    "detalhes": [
+      {
+        "id": "df-0019",
+        "nome": "Francisca Almeida Oliveira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0026",
+        "nome": "Leandro Pinto Araújo",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0028",
+        "nome": "Márcia Lima Costa",
+        "categoria": "Regiao vs Cluster",
+        "severidade": "leve",
+        "erro": "Regiao Lago Norte com cluster G4_baixa (incomum)"
+      },
+      {
+        "id": "df-0034",
+        "nome": "Gabriel Pinto Costa",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0059",
+        "nome": "Gabriela Fernandes Ramos",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0066",
+        "nome": "Pedro Ribeiro Alves",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0080",
+        "nome": "Paula Gomes Costa",
+        "categoria": "Idade vs Profissao",
+        "severidade": "leve",
+        "erro": "Aposentado(a) com 40 anos (improvavel)"
+      },
+      {
+        "id": "df-0092",
+        "nome": "Helena Costa Ferreira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'empresario'"
+      },
+      {
+        "id": "df-0106",
+        "nome": "Débora Costa Teixeira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0125",
+        "nome": "Daniel Marques Ribeiro",
+        "categoria": "Idade vs Filhos",
+        "severidade": "leve",
+        "erro": "Idade 21 com 4 filhos (improvavel)"
+      },
+      {
+        "id": "df-0142",
+        "nome": "Amanda Santos Almeida",
+        "categoria": "Regiao vs Cluster",
+        "severidade": "leve",
+        "erro": "Regiao Lago Norte com cluster G4_baixa (incomum)"
+      },
+      {
+        "id": "df-0157",
+        "nome": "André Pinto Mendes",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'informal'"
+      },
+      {
+        "id": "df-0159",
+        "nome": "Fernando Souza Vieira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'empresario'"
+      },
+      {
+        "id": "df-0186",
+        "nome": "Pedro Carvalho Santos",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0224",
+        "nome": "Gabriel Vieira Rodrigues",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0244",
+        "nome": "Thiago Freitas Carvalho",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'informal'"
+      },
+      {
+        "id": "df-0245",
+        "nome": "Simone Andrade Borges",
+        "categoria": "Idade vs Estado Civil",
+        "severidade": "leve",
+        "erro": "Viuvo(a) com 35 anos (incomum)"
+      },
+      {
+        "id": "df-0250",
+        "nome": "Simone Martins Lima",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0251",
+        "nome": "Marcelo Freitas Soares",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0254",
+        "nome": "Regina Lima Rodrigues",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0256",
+        "nome": "Aline Ramos Freitas",
+        "categoria": "Idade vs Filhos",
+        "severidade": "medio",
+        "erro": "Idade 18 com 4 filhos (improvavel)"
+      },
+      {
+        "id": "df-0256",
+        "nome": "Aline Ramos Freitas",
+        "categoria": "Idade vs Filhos",
+        "severidade": "medio",
+        "erro": "Idade 18 com 4 filhos (muito improvavel)"
+      },
+      {
+        "id": "df-0256",
+        "nome": "Aline Ramos Freitas",
+        "categoria": "Idade vs Filhos",
+        "severidade": "leve",
+        "erro": "Idade 18 com 4 filhos (improvavel)"
+      },
+      {
+        "id": "df-0257",
+        "nome": "Gabriela Freitas Oliveira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0265",
+        "nome": "Gilberto Costa Santana",
+        "categoria": "Idade vs Filhos",
+        "severidade": "leve",
+        "erro": "Idade 23 com 5 filhos (improvavel)"
+      },
+      {
+        "id": "df-0284",
+        "nome": "Vanessa Fernandes Mendes",
+        "categoria": "Idade vs Estado Civil",
+        "severidade": "leve",
+        "erro": "Viuvo(a) com 35 anos (incomum)"
+      },
+      {
+        "id": "df-0285",
+        "nome": "Amanda Rocha Santos",
+        "categoria": "Idade vs Filhos",
+        "severidade": "medio",
+        "erro": "Idade 20 com 3 filhos (muito improvavel)"
+      },
+      {
+        "id": "df-0338",
+        "nome": "Vanessa Ramos Ramos",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0343",
+        "nome": "Sílvia Soares Barbosa",
+        "categoria": "Idade vs Estado Civil",
+        "severidade": "medio",
+        "erro": "Viuvo(a) com 22 anos (muito raro)"
+      },
+      {
+        "id": "df-0347",
+        "nome": "Luís Lima Soares",
+        "categoria": "Idade vs Estado Civil",
+        "severidade": "medio",
+        "erro": "Viuvo(a) com 28 anos (muito raro)"
+      },
+      {
+        "id": "df-0349",
+        "nome": "Vanessa Marques Silva",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0375",
+        "nome": "Pedro Nunes Cardoso",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "medio",
+        "erro": "Escolaridade fundamental com renda 'mais_de_10_ate_20' (muito improvavel)"
+      },
+      {
+        "id": "df-0397",
+        "nome": "Paula Martins Campos",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0403",
+        "nome": "Antônio Carvalho Rodrigues",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0415",
+        "nome": "Wesley Pinto Ribeiro",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0422",
+        "nome": "Helena Cardoso Moreira",
+        "categoria": "Idade vs Estado Civil",
+        "severidade": "leve",
+        "erro": "Viuvo(a) com 30 anos (incomum)"
+      },
+      {
+        "id": "df-0424",
+        "nome": "Letícia Ribeiro Gomes",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'informal'"
+      },
+      {
+        "id": "df-0444",
+        "nome": "Eduarda Gomes Moura",
+        "categoria": "Idade vs Escolaridade",
+        "severidade": "medio",
+        "erro": "Idade 19 com superior completo (muito improvavel)"
+      },
+      {
+        "id": "df-0445",
+        "nome": "João Alves Cardoso",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0466",
+        "nome": "Amanda Machado Martins",
+        "categoria": "Idade vs Estado Civil",
+        "severidade": "medio",
+        "erro": "Viuvo(a) com 28 anos (muito raro)"
+      },
+      {
+        "id": "df-0486",
+        "nome": "Simone Freitas Gomes",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0506",
+        "nome": "Samuel Barbosa Oliveira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'empresario'"
+      },
+      {
+        "id": "df-0538",
+        "nome": "Carlos Alves Oliveira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0548",
+        "nome": "Antonio Gomes Alves",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0555",
+        "nome": "José Rocha Santos",
+        "categoria": "Idade vs Estado Civil",
+        "severidade": "medio",
+        "erro": "Viuvo(a) com 23 anos (muito raro)"
+      },
+      {
+        "id": "df-0561",
+        "nome": "Nathan Nascimento Batista",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "medio",
+        "erro": "Escolaridade fundamental com renda 'mais_de_10_ate_20' (muito improvavel)"
+      },
+      {
+        "id": "df-0561",
+        "nome": "Nathan Nascimento Batista",
+        "categoria": "Regiao vs Cluster",
+        "severidade": "leve",
+        "erro": "Regiao Varjão com cluster G1_alta (incomum)"
+      },
+      {
+        "id": "df-0569",
+        "nome": "Anderson Moura Nascimento",
+        "categoria": "Idade vs Estado Civil",
+        "severidade": "leve",
+        "erro": "Viuvo(a) com 32 anos (incomum)"
+      },
+      {
+        "id": "df-0581",
+        "nome": "Roberto Cardoso Santos",
+        "categoria": "Idade vs Estado Civil",
+        "severidade": "leve",
+        "erro": "Viuvo(a) com 38 anos (incomum)"
+      },
+      {
+        "id": "df-0595",
+        "nome": "Jose Pereira Lima",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'informal'"
+      },
+      {
+        "id": "df-0609",
+        "nome": "Daniel Correia Souza",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "medio",
+        "erro": "Escolaridade fundamental com renda 'mais_de_10_ate_20' (muito improvavel)"
+      },
+      {
+        "id": "df-0656",
+        "nome": "Sandra Souza Alves",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0679",
+        "nome": "Henrique Vieira Soares",
+        "categoria": "Regiao vs Cluster",
+        "severidade": "leve",
+        "erro": "Regiao Lago Norte com cluster G4_baixa (incomum)"
+      },
+      {
+        "id": "df-0700",
+        "nome": "Antonio Alves Ferreira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'informal'"
+      },
+      {
+        "id": "df-0708",
+        "nome": "Marcos Rodrigues Costa",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "medio",
+        "erro": "Escolaridade fundamental com renda 'mais_de_20' (muito improvavel)"
+      },
+      {
+        "id": "df-0779",
+        "nome": "Bruno Ribeiro Pereira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0801",
+        "nome": "André Pereira Costa",
+        "categoria": "Escolaridade vs Profissao",
+        "severidade": "medio",
+        "erro": "Profissao 'Médico(a) da SES-DF' requer superior completo"
+      },
+      {
+        "id": "df-0801",
+        "nome": "André Pereira Costa",
+        "categoria": "Idade vs Profissao",
+        "severidade": "medio",
+        "erro": "Profissao 'Médico(a) da SES-DF' com 19 anos (muito jovem)"
+      },
+      {
+        "id": "df-0811",
+        "nome": "Patricia Pereira Rodrigues",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0824",
+        "nome": "Regina Souza Oliveira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'informal'"
+      },
+      {
+        "id": "df-0829",
+        "nome": "Larissa Ferreira Souza",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'servidor_publico'"
+      },
+      {
+        "id": "df-0831",
+        "nome": "Sandra Ferreira Santos",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0835",
+        "nome": "Henrique Alves Gomes",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0849",
+        "nome": "Eduardo Oliveira Rodrigues",
+        "categoria": "Idade vs Estado Civil",
+        "severidade": "medio",
+        "erro": "Divorciado(a) com 18 anos (muito raro)"
+      },
+      {
+        "id": "df-0875",
+        "nome": "José Rodrigues Rodrigues",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'autonomo'"
+      },
+      {
+        "id": "df-0881",
+        "nome": "Rodrigo Martins Oliveira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0886",
+        "nome": "Bruna Martins Ferreira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0904",
+        "nome": "Adriana Almeida Fernandes",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "medio",
+        "erro": "Escolaridade fundamental com renda 'mais_de_20' (muito improvavel)"
+      },
+      {
+        "id": "df-0919",
+        "nome": "Paulo Rodrigues Alves",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0923",
+        "nome": "Carolina Rodrigues Oliveira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0930",
+        "nome": "Gustavo Rodrigues Alves",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      },
+      {
+        "id": "df-0939",
+        "nome": "Helena Costa Oliveira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'servidor_publico'"
+      },
+      {
+        "id": "df-0951",
+        "nome": "Andre Martins Pereira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'servidor_publico'"
+      },
+      {
+        "id": "df-0968",
+        "nome": "Bruna Souza Gomes",
+        "categoria": "Idade vs Filhos",
+        "severidade": "leve",
+        "erro": "Idade 25 com 5 filhos (improvavel)"
+      },
+      {
+        "id": "df-0978",
+        "nome": "Juliana Souza Ferreira",
+        "categoria": "Escolaridade vs Renda",
+        "severidade": "leve",
+        "erro": "Superior completo com renda ate 1 SM e ocupacao 'clt'"
+      }
+    ]
+  },
+  "parlamentares": {
+    "total": 594,
+    "total_inconsistencias": 43,
+    "individuos_afetados": 43,
+    "por_severidade": {
+      "grave": 41,
+      "medio": 2,
+      "leve": 0
+    },
+    "por_categoria": {
+      "Idade vs Nascimento": 41,
+      "Partido vs Lula": 2
+    },
+    "indice_qualidade": 97.9,
+    "top_incoerencias": [
+      {
+        "id": "dep-fed-0155",
+        "nome": "Dr. Frederico",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 0,
+          "medio": 1,
+          "leve": 0
+        },
+        "categorias_top": [
+          "Partido vs Lula (1)"
+        ]
+      },
+      {
+        "id": "dep-fed-0322",
+        "nome": "Magda Mofatto",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 0,
+          "medio": 1,
+          "leve": 0
+        },
+        "categorias_top": [
+          "Partido vs Lula (1)"
+        ]
+      },
+      {
+        "id": "sen-0003",
+        "nome": "Daniella Ribeiro",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 1,
+          "medio": 0,
+          "leve": 0
+        },
+        "categorias_top": [
+          "Idade vs Nascimento (1)"
+        ]
+      },
+      {
+        "id": "sen-0004",
+        "nome": "Irajá",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 1,
+          "medio": 0,
+          "leve": 0
+        },
+        "categorias_top": [
+          "Idade vs Nascimento (1)"
+        ]
+      },
+      {
+        "id": "sen-0007",
+        "nome": "Mara Gabrilli",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 1,
+          "medio": 0,
+          "leve": 0
+        },
+        "categorias_top": [
+          "Idade vs Nascimento (1)"
+        ]
+      },
+      {
+        "id": "sen-0010",
+        "nome": "Omar Aziz",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 1,
+          "medio": 0,
+          "leve": 0
+        },
+        "categorias_top": [
+          "Idade vs Nascimento (1)"
+        ]
+      },
+      {
+        "id": "sen-0011",
+        "nome": "Otto Alencar",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 1,
+          "medio": 0,
+          "leve": 0
+        },
+        "categorias_top": [
+          "Idade vs Nascimento (1)"
+        ]
+      },
+      {
+        "id": "sen-0012",
+        "nome": "Rodrigo Pacheco",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 1,
+          "medio": 0,
+          "leve": 0
+        },
+        "categorias_top": [
+          "Idade vs Nascimento (1)"
+        ]
+      },
+      {
+        "id": "sen-0014",
+        "nome": "Vanderlan Cardoso",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 1,
+          "medio": 0,
+          "leve": 0
+        },
+        "categorias_top": [
+          "Idade vs Nascimento (1)"
+        ]
+      },
+      {
+        "id": "sen-0015",
+        "nome": "Zenaide Maia",
+        "total_erros": 1,
+        "por_severidade": {
+          "grave": 1,
+          "medio": 0,
+          "leve": 0
+        },
+        "categorias_top": [
+          "Idade vs Nascimento (1)"
+        ]
+      }
+    ],
+    "detalhes": [
+      {
+        "id": "dep-fed-0155",
+        "nome": "Dr. Frederico",
+        "categoria": "Partido vs Lula",
+        "severidade": "medio",
+        "erro": "Partido PRD com apoio a Lula (apoiador_moderado)"
+      },
+      {
+        "id": "dep-fed-0322",
+        "nome": "Magda Mofatto",
+        "categoria": "Partido vs Lula",
+        "severidade": "medio",
+        "erro": "Partido PRD com apoio a Lula (apoiador_moderado)"
+      },
+      {
+        "id": "sen-0003",
+        "nome": "Daniella Ribeiro",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 58 nao confere com nascimento 1972-03-26 (calc ~53)"
+      },
+      {
+        "id": "sen-0004",
+        "nome": "Irajá",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 47 nao confere com nascimento 1983-02-03 (calc ~42)"
+      },
+      {
+        "id": "sen-0007",
+        "nome": "Mara Gabrilli",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 64 nao confere com nascimento 1967-09-28 (calc ~58)"
+      },
+      {
+        "id": "sen-0010",
+        "nome": "Omar Aziz",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 54 nao confere com nascimento 1958-08-13 (calc ~67)"
+      },
+      {
+        "id": "sen-0011",
+        "nome": "Otto Alencar",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 46 nao confere com nascimento 1947-08-28 (calc ~78)"
+      },
+      {
+        "id": "sen-0012",
+        "nome": "Rodrigo Pacheco",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 43 nao confere com nascimento 1976-11-03 (calc ~49)"
+      },
+      {
+        "id": "sen-0014",
+        "nome": "Vanderlan Cardoso",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 55 nao confere com nascimento 1962-11-15 (calc ~63)"
+      },
+      {
+        "id": "sen-0015",
+        "nome": "Zenaide Maia",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 63 nao confere com nascimento 1954-11-27 (calc ~71)"
+      },
+      {
+        "id": "sen-0021",
+        "nome": "Izalci Lucas",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 40 nao confere com nascimento 1956-04-07 (calc ~69)"
+      },
+      {
+        "id": "sen-0022",
+        "nome": "Jaime Bagattoli",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 61 nao confere com nascimento 1961-04-26 (calc ~64)"
+      },
+      {
+        "id": "sen-0024",
+        "nome": "Magno Malta",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 62 nao confere com nascimento 1957-10-16 (calc ~68)"
+      },
+      {
+        "id": "sen-0025",
+        "nome": "Marcos Rogério",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 44 nao confere com nascimento 1978-07-07 (calc ~47)"
+      },
+      {
+        "id": "sen-0028",
+        "nome": "Wilder Morais",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 62 nao confere com nascimento 1968-06-29 (calc ~57)"
+      },
+      {
+        "id": "sen-0030",
+        "nome": "Confúcio Moura",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 40 nao confere com nascimento 1948-05-16 (calc ~77)"
+      },
+      {
+        "id": "sen-0032",
+        "nome": "Fernando Dueire",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 62 nao confere com nascimento 1959-04-14 (calc ~66)"
+      },
+      {
+        "id": "sen-0033",
+        "nome": "Fernando Farias",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 57 nao confere com nascimento 1952-02-06 (calc ~73)"
+      },
+      {
+        "id": "sen-0034",
+        "nome": "Giordano",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 64 nao confere com nascimento 1973-06-26 (calc ~52)"
+      },
+      {
+        "id": "sen-0035",
+        "nome": "Ivete da Silveira",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 65 nao confere com nascimento 1943-05-28 (calc ~82)"
+      },
+      {
+        "id": "sen-0036",
+        "nome": "Jader Barbalho",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 40 nao confere com nascimento 1944-10-27 (calc ~81)"
+      },
+      {
+        "id": "sen-0037",
+        "nome": "Marcelo Castro",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 58 nao confere com nascimento 1950-06-09 (calc ~75)"
+      },
+      {
+        "id": "sen-0039",
+        "nome": "Veneziano Vital do Rêgo",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 41 nao confere com nascimento 1970-07-17 (calc ~55)"
+      },
+      {
+        "id": "sen-0041",
+        "nome": "Fabiano Contarato",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 62 nao confere com nascimento 1966-06-20 (calc ~59)"
+      },
+      {
+        "id": "sen-0044",
+        "nome": "Jaques Wagner",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 55 nao confere com nascimento 1951-03-16 (calc ~74)"
+      },
+      {
+        "id": "sen-0045",
+        "nome": "Paulo Paim",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 49 nao confere com nascimento 1950-03-15 (calc ~75)"
+      },
+      {
+        "id": "sen-0047",
+        "nome": "Rogério Carvalho",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 62 nao confere com nascimento 1968-08-02 (calc ~57)"
+      },
+      {
+        "id": "sen-0048",
+        "nome": "Teresa Leitão",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 42 nao confere com nascimento 1951-10-07 (calc ~74)"
+      },
+      {
+        "id": "sen-0050",
+        "nome": "Ciro Nogueira",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 62 nao confere com nascimento 1968-11-21 (calc ~57)"
+      },
+      {
+        "id": "sen-0052",
+        "nome": "Esperidião Amin",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 49 nao confere com nascimento 1947-12-21 (calc ~78)"
+      },
+      {
+        "id": "sen-0055",
+        "nome": "Tereza Cristina",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 54 nao confere com nascimento 1954-07-06 (calc ~71)"
+      },
+      {
+        "id": "sen-0059",
+        "nome": "Jayme Campos",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 43 nao confere com nascimento 1951-09-13 (calc ~74)"
+      },
+      {
+        "id": "sen-0060",
+        "nome": "Marcio Bittar",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 40 nao confere com nascimento 1963-06-28 (calc ~62)"
+      },
+      {
+        "id": "sen-0062",
+        "nome": "Sergio Moro",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 44 nao confere com nascimento 1972-08-01 (calc ~53)"
+      },
+      {
+        "id": "sen-0063",
+        "nome": "Marcos do Val",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 50 nao confere com nascimento 1971-06-15 (calc ~54)"
+      },
+      {
+        "id": "sen-0064",
+        "nome": "Oriovisto Guimarães",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 41 nao confere com nascimento 1945-08-12 (calc ~80)"
+      },
+      {
+        "id": "sen-0067",
+        "nome": "Styvenson Valentim",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 61 nao confere com nascimento 1977-02-07 (calc ~48)"
+      },
+      {
+        "id": "sen-0070",
+        "nome": "Damares Alves",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 53 nao confere com nascimento 1964-03-11 (calc ~61)"
+      },
+      {
+        "id": "sen-0074",
+        "nome": "Cid Gomes",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 44 nao confere com nascimento 1963-04-27 (calc ~62)"
+      },
+      {
+        "id": "sen-0075",
+        "nome": "Flávio Arns",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 64 nao confere com nascimento 1950-11-09 (calc ~75)"
+      },
+      {
+        "id": "sen-0076",
+        "nome": "Jorge Kajuru",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 47 nao confere com nascimento 1961-01-20 (calc ~65)"
+      },
+      {
+        "id": "sen-0079",
+        "nome": "Weverton",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 54 nao confere com nascimento 1979-10-08 (calc ~46)"
+      },
+      {
+        "id": "sen-0081",
+        "nome": "Plínio Valério",
+        "categoria": "Idade vs Nascimento",
+        "severidade": "grave",
+        "erro": "Idade 56 nao confere com nascimento 1955-01-31 (calc ~70)"
+      }
+    ]
+  },
+  "observacoes": [
+    "Entrevistas nao foram analisadas nesta rodada (escopo definido para eleitores e parlamentares)."
+  ]
+}

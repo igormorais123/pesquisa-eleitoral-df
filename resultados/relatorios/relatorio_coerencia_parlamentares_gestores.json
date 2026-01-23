@@ -1,0 +1,32 @@
+{
+  "data_verificacao": "2026-01-18T22:56:47.890948",
+  "resumo": {
+    "candidatos": {
+      "total": 10,
+      "erros": 0
+    },
+    "deputados_federais": {
+      "total": 8,
+      "erros": 0
+    },
+    "senadores": {
+      "total": 3,
+      "erros": 0
+    },
+    "deputados_distritais": {
+      "total": 24,
+      "erros": 0
+    },
+    "gestores": {
+      "total": 180,
+      "erros": 0
+    }
+  },
+  "detalhes": {
+    "candidatos": [],
+    "deputados_federais": [],
+    "senadores": [],
+    "deputados_distritais": [],
+    "gestores": []
+  }
+}
