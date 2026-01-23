@@ -64,6 +64,44 @@ export interface ValidacaoCompleta {
 // FUNÇÕES AUXILIARES
 // ============================================
 
+const normalizacaoCategorias: Record<string, Record<string, string>> = {
+  escolaridade: {
+    'superior_ou_pos': 'superior_completo_ou_pos',
+  },
+  religiao: {
+    'outras': 'outras_religioes',
+  },
+  estado_civil: {
+    'separado(a)': 'divorciado(a)',
+  },
+  posicao_bolsonaro: {
+    'opositor_forte': 'critico_forte',
+    'opositor_moderado': 'critico_moderado',
+  },
+  estilo_decisao: {
+    'ideologico': 'identitario',
+    'emocional_intuitivo': 'emocional',
+    'racional_analitico': 'economico',
+    'influenciavel': 'emocional',
+    'racional': 'pragmatico',
+  },
+};
+
+function normalizarCategoria(campo: string, valor: unknown): string {
+  if (valor === null || valor === undefined || valor === '') {
+    return 'nao_informado';
+  }
+
+  const texto = String(valor).trim();
+  const mapa = normalizacaoCategorias[campo];
+  if (!mapa) {
+    return texto;
+  }
+
+  const textoNormalizado = texto.toLowerCase();
+  return mapa[textoNormalizado] || texto;
+}
+
 /**
  * Calcula a distribuição percentual de uma variável categórica
  */
@@ -75,7 +113,7 @@ function calcularDistribuicao(
   const contagem: Record<string, number> = {};
 
   eleitores.forEach((e) => {
-    const valor = String(e[campo] || 'nao_informado');
+    const valor = normalizarCategoria(String(campo), e[campo]);
     contagem[valor] = (contagem[valor] || 0) + 1;
   });
 

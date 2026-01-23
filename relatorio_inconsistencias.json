@@ -1,226 +1,1274 @@
 {
   "resumo": {
     "total_perfis": 1000,
-    "total_problemas": 34,
-    "eleitores_afetados": 34,
-    "erros_graves": 0,
-    "erros_medios": 0,
-    "erros_leves": 34,
-    "indice_qualidade": 99.8
+    "total_problemas": 208,
+    "eleitores_afetados": 181,
+    "erros_graves": 12,
+    "erros_medios": 42,
+    "erros_leves": 154,
+    "indice_qualidade": 98.2
   },
   "problemas_por_categoria": {
-    "Valores vs Orientação": 20,
-    "Região vs Cluster": 1,
-    "Idade vs Filhos": 1,
-    "Escolaridade vs Renda": 8,
-    "Idade vs Profissão": 4
+    "Orientação vs Bolsonaro": 79,
+    "Escolaridade vs Renda": 43,
+    "Idade vs Profissão": 46,
+    "Idade vs Estado Civil": 13,
+    "Idade vs Escolaridade": 19,
+    "Idade vs Filhos": 4,
+    "Região vs Cluster": 4
   },
-  "erros_graves": [],
-  "erros_medios": [],
+  "erros_graves": [
+    {
+      "id": "df-0054",
+      "nome": "Sandra Soares Cardoso",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 17 com superior completo (impossível)"
+    },
+    {
+      "id": "df-0057",
+      "nome": "Renata Almeida Campos",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 17 com superior completo (impossível)"
+    },
+    {
+      "id": "df-0081",
+      "nome": "Bruna Gomes Souza",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 16 com superior completo (impossível)"
+    },
+    {
+      "id": "df-0115",
+      "nome": "Fernando Cardoso Campos",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 17 com superior completo (impossível)"
+    },
+    {
+      "id": "df-0167",
+      "nome": "Fernanda Santana Martins",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 17 com superior completo (impossível)"
+    },
+    {
+      "id": "df-0191",
+      "nome": "Débora Dias Pereira",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 17 com superior completo (impossível)"
+    },
+    {
+      "id": "df-0215",
+      "nome": "Marcos Nascimento Ramos",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 17 com superior completo (impossível)"
+    },
+    {
+      "id": "df-0268",
+      "nome": "Patrícia Mendes Dias",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 16 com superior completo (impossível)"
+    },
+    {
+      "id": "df-0279",
+      "nome": "Leonardo Soares Rodrigues",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 16 com superior completo (impossível)"
+    },
+    {
+      "id": "df-0342",
+      "nome": "Raquel Andrade Dias",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 16 com superior completo (impossível)"
+    },
+    {
+      "id": "df-0777",
+      "nome": "Gabriela Silva Ribeiro",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 16 com superior completo (impossível)"
+    },
+    {
+      "id": "df-0991",
+      "nome": "Thiago Costa Moreira",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 17 com superior completo (impossível)"
+    }
+  ],
+  "erros_medios": [
+    {
+      "id": "df-0009",
+      "nome": "Amanda Freitas Pinto",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 29 anos (muito improvável)"
+    },
+    {
+      "id": "df-0009",
+      "nome": "Amanda Freitas Pinto",
+      "categoria": "Idade vs Estado Civil",
+      "erro": "Viúvo(a) com 29 anos (muito raro)"
+    },
+    {
+      "id": "df-0013",
+      "nome": "Davi Gomes Rodrigues",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 23 anos (muito improvável)"
+    },
+    {
+      "id": "df-0019",
+      "nome": "Ângela Rocha Marques",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 31 anos (muito improvável)"
+    },
+    {
+      "id": "df-0056",
+      "nome": "Willian Souza Ribeiro",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 28 anos (muito improvável)"
+    },
+    {
+      "id": "df-0057",
+      "nome": "Renata Almeida Campos",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 17 anos (muito improvável)"
+    },
+    {
+      "id": "df-0066",
+      "nome": "Sérgio Silva Pereira",
+      "categoria": "Idade vs Estado Civil",
+      "erro": "Viúvo(a) com 29 anos (muito raro)"
+    },
+    {
+      "id": "df-0070",
+      "nome": "Pedro Almeida Teixeira",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 19 com superior completo (muito improvável)"
+    },
+    {
+      "id": "df-0078",
+      "nome": "Luciana Martins Carvalho",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 18 com superior completo (muito improvável)"
+    },
+    {
+      "id": "df-0085",
+      "nome": "Patrícia Santana Lima",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 23 anos (muito improvável)"
+    },
+    {
+      "id": "df-0089",
+      "nome": "Sérgio Borges Pinto",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 19 com superior completo (muito improvável)"
+    },
+    {
+      "id": "df-0127",
+      "nome": "Marcos Souza Almeida",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 21 anos (muito improvável)"
+    },
+    {
+      "id": "df-0129",
+      "nome": "Leandro Vieira Gomes",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 32 anos (muito improvável)"
+    },
+    {
+      "id": "df-0158",
+      "nome": "Henrique Barbosa Correia",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 22 anos (muito improvável)"
+    },
+    {
+      "id": "df-0233",
+      "nome": "Lucas Ferreira Marques",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 27 anos (muito improvável)"
+    },
+    {
+      "id": "df-0234",
+      "nome": "Débora Alves Oliveira",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 19 anos (muito improvável)"
+    },
+    {
+      "id": "df-0245",
+      "nome": "Simone Andrade Borges",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 35 anos (muito improvável)"
+    },
+    {
+      "id": "df-0259",
+      "nome": "Joana Costa Moreira",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 18 com superior completo (muito improvável)"
+    },
+    {
+      "id": "df-0280",
+      "nome": "Wellington Almeida Gomes",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 27 anos (muito improvável)"
+    },
+    {
+      "id": "df-0284",
+      "nome": "Vanessa Fernandes Mendes",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 35 anos (muito improvável)"
+    },
+    {
+      "id": "df-0285",
+      "nome": "Amanda Rocha Santos",
+      "categoria": "Idade vs Filhos",
+      "erro": "Idade 20 com 3 filhos (muito improvável)"
+    },
+    {
+      "id": "df-0305",
+      "nome": "Rosa Souza Borges",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 19 com superior completo (muito improvável)"
+    },
+    {
+      "id": "df-0347",
+      "nome": "Luís Lima Soares",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 28 anos (muito improvável)"
+    },
+    {
+      "id": "df-0347",
+      "nome": "Luís Lima Soares",
+      "categoria": "Idade vs Estado Civil",
+      "erro": "Viúvo(a) com 28 anos (muito raro)"
+    },
+    {
+      "id": "df-0358",
+      "nome": "Ana Oliveira Silva",
+      "categoria": "Idade vs Estado Civil",
+      "erro": "Viúvo(a) com 26 anos (muito raro)"
+    },
+    {
+      "id": "df-0370",
+      "nome": "Carolina Almeida Santana",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 19 com superior completo (muito improvável)"
+    },
+    {
+      "id": "df-0432",
+      "nome": "Roberta Soares Carvalho",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 28 anos (muito improvável)"
+    },
+    {
+      "id": "df-0466",
+      "nome": "Amanda Machado Martins",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 28 anos (muito improvável)"
+    },
+    {
+      "id": "df-0466",
+      "nome": "Amanda Machado Martins",
+      "categoria": "Idade vs Estado Civil",
+      "erro": "Viúvo(a) com 28 anos (muito raro)"
+    },
+    {
+      "id": "df-0486",
+      "nome": "Simone Freitas Gomes",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 27 anos (muito improvável)"
+    },
+    {
+      "id": "df-0497",
+      "nome": "Leandro Fernandes Nascimento",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 31 anos (muito improvável)"
+    },
+    {
+      "id": "df-0499",
+      "nome": "Vanessa Rodrigues Moreira",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 37 anos (muito improvável)"
+    },
+    {
+      "id": "df-0528",
+      "nome": "Joana Rocha Silva",
+      "categoria": "Idade vs Escolaridade",
+      "erro": "Idade 19 com superior completo (muito improvável)"
+    },
+    {
+      "id": "df-0569",
+      "nome": "Anderson Moura Nascimento",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 32 anos (muito improvável)"
+    },
+    {
+      "id": "df-0579",
+      "nome": "Fábio Rocha Machado",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 20 anos (muito improvável)"
+    },
+    {
+      "id": "df-0581",
+      "nome": "Roberto Cardoso Santos",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 38 anos (muito improvável)"
+    },
+    {
+      "id": "df-0897",
+      "nome": "Henrique Costa Souza",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 28 anos (muito improvável)"
+    },
+    {
+      "id": "df-0929",
+      "nome": "Henrique Carvalho Rodrigues",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 24 anos (muito improvável)"
+    },
+    {
+      "id": "df-0947",
+      "nome": "Jose Costa Rocha",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 29 anos (muito improvável)"
+    },
+    {
+      "id": "df-0951",
+      "nome": "Andre Martins Pereira",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 30 anos (muito improvável)"
+    },
+    {
+      "id": "df-0974",
+      "nome": "Daniela Santos Ribeiro",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 16 anos (muito improvável)"
+    },
+    {
+      "id": "df-0993",
+      "nome": "Carolina Souza Oliveira",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 29 anos (muito improvável)"
+    }
+  ],
   "erros_leves": [
     {
-      "id": "df-0180",
-      "nome": "Simone Ferreira Barbosa",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação direita com múltiplos valores de esquerda: ['diversidade', 'justiça social'] (possível mas raro)"
+      "id": "df-0004",
+      "nome": "Henrique Lopes Rocha",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
-      "id": "df-0318",
-      "nome": "Camila Rodrigues Barbosa",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação direita com múltiplos valores de esquerda: ['igualdade social', 'direitos humanos'] (possível mas raro)"
+      "id": "df-0005",
+      "nome": "Joana Marques Teixeira",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
     },
     {
-      "id": "df-0319",
-      "nome": "Larissa Oliveira Ramos",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação esquerda com múltiplos valores de direita: ['meritocracia', 'empreendedorismo'] (possível mas raro)"
+      "id": "df-0010",
+      "nome": "Letícia Carvalho Souza",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
-      "id": "df-0334",
-      "nome": "Vanessa Gomes Alves",
+      "id": "df-0014",
+      "nome": "Jéssica Nunes Vieira",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'clt' (improvável)"
+    },
+    {
+      "id": "df-0014",
+      "nome": "Jéssica Nunes Vieira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0017",
+      "nome": "Henrique Andrade Pereira",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'servidor_publico' (improvável)"
+    },
+    {
+      "id": "df-0019",
+      "nome": "Ângela Rocha Marques",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'empresario' (improvável)"
+    },
+    {
+      "id": "df-0027",
+      "nome": "Fernanda Nascimento Teixeira",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'servidor_publico' (improvável)"
+    },
+    {
+      "id": "df-0028",
+      "nome": "Anderson Nunes Araújo",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'autonomo' (improvável)"
+    },
+    {
+      "id": "df-0029",
+      "nome": "Joana Lopes Souza",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'autonomo' (improvável)"
+    },
+    {
+      "id": "df-0029",
+      "nome": "Joana Lopes Souza",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0030",
+      "nome": "Daniel Souza Lopes",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0033",
+      "nome": "Bruno Barbosa Marques",
+      "categoria": "Idade vs Estado Civil",
+      "erro": "Viúvo(a) com 34 anos (incomum)"
+    },
+    {
+      "id": "df-0033",
+      "nome": "Bruno Barbosa Marques",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0034",
+      "nome": "Gabriel Pinto Costa",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0040",
+      "nome": "Anderson Araújo Silva",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0044",
+      "nome": "Gisele Correia Teixeira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0045",
+      "nome": "Natália Teixeira Nunes",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'servidor_publico' (improvável)"
+    },
+    {
+      "id": "df-0055",
+      "nome": "Carolina Araújo Cardoso",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'servidor_publico' (improvável)"
+    },
+    {
+      "id": "df-0061",
+      "nome": "Letícia Soares Cardoso",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0065",
+      "nome": "Diego Borges Mendes",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0067",
+      "nome": "Wagner Pereira Nunes",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0070",
+      "nome": "Pedro Almeida Teixeira",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'servidor_publico' (improvável)"
+    },
+    {
+      "id": "df-0073",
+      "nome": "Vera Ferreira Cardoso",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'servidor_publico' (improvável)"
+    },
+    {
+      "id": "df-0078",
+      "nome": "Luciana Martins Carvalho",
+      "categoria": "Idade vs Profissão",
+      "erro": "Profissão 'Engenheiro(a)' com 18 anos (muito jovem)"
+    },
+    {
+      "id": "df-0080",
+      "nome": "Paula Gomes Costa",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 40 anos (improvável, exceto invalidez)"
+    },
+    {
+      "id": "df-0081",
+      "nome": "Bruna Gomes Souza",
+      "categoria": "Idade vs Profissão",
+      "erro": "Profissão 'Engenheiro(a)' com 16 anos (muito jovem)"
+    },
+    {
+      "id": "df-0085",
+      "nome": "Patrícia Santana Lima",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0093",
+      "nome": "Larissa Marques Moreira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0099",
+      "nome": "Francisca Lima Alves",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0108",
+      "nome": "Fernando Nascimento Barbosa",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0110",
+      "nome": "Cláudia Freitas Lima",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0119",
+      "nome": "Gustavo Barbosa Machado",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0132",
+      "nome": "João Carvalho Cardoso",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0133",
+      "nome": "Wagner Borges Ramos",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0141",
+      "nome": "Paulo Borges Borges",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'clt' (improvável)"
+    },
+    {
+      "id": "df-0143",
+      "nome": "Aline Souza Martins",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'autonomo' (improvável)"
+    },
+    {
+      "id": "df-0147",
+      "nome": "Ângela Silva Machado",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0151",
+      "nome": "Wellington Barbosa Marques",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0153",
+      "nome": "Francisca Borges Correia",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'clt' (improvável)"
+    },
+    {
+      "id": "df-0154",
+      "nome": "Sílvia Lopes Nunes",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'autonomo' (improvável)"
+    },
+    {
+      "id": "df-0156",
+      "nome": "Fábio Marques Carvalho",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'clt' (improvável)"
+    },
+    {
+      "id": "df-0167",
+      "nome": "Fernanda Santana Martins",
+      "categoria": "Idade vs Profissão",
+      "erro": "Profissão 'Advogado(a)' com 17 anos (muito jovem)"
+    },
+    {
+      "id": "df-0177",
+      "nome": "Luiz Pinto Ramos",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0192",
+      "nome": "Camila Ferreira Rocha",
+      "categoria": "Idade vs Estado Civil",
+      "erro": "Viúvo(a) com 37 anos (incomum)"
+    },
+    {
+      "id": "df-0201",
+      "nome": "Raquel Correia Alves",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0207",
+      "nome": "Michele Moreira Machado",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 41 anos (improvável, exceto invalidez)"
+    },
+    {
+      "id": "df-0209",
+      "nome": "André Santos Rodrigues",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0219",
+      "nome": "Simone Barbosa Silva",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0233",
+      "nome": "Lucas Ferreira Marques",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'autonomo' (improvável)"
+    },
+    {
+      "id": "df-0244",
+      "nome": "Thiago Freitas Carvalho",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0245",
+      "nome": "Simone Andrade Borges",
+      "categoria": "Idade vs Estado Civil",
+      "erro": "Viúvo(a) com 35 anos (incomum)"
+    },
+    {
+      "id": "df-0250",
+      "nome": "Simone Martins Lima",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'clt' (improvável)"
+    },
+    {
+      "id": "df-0251",
+      "nome": "Marcelo Freitas Soares",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0252",
+      "nome": "Michele Dias Cardoso",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0253",
+      "nome": "Bruna Lopes Carvalho",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'autonomo' (improvável)"
+    },
+    {
+      "id": "df-0254",
+      "nome": "Roberto Andrade Dias",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'clt' (improvável)"
+    },
+    {
+      "id": "df-0257",
+      "nome": "Gabriela Freitas Oliveira",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'clt' (improvável)"
+    },
+    {
+      "id": "df-0258",
+      "nome": "Francisca Campos Nunes",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0263",
+      "nome": "Raquel Mendes Machado",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0265",
+      "nome": "Gilberto Costa Santana",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0266",
+      "nome": "Vanessa Soares Ribeiro",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0274",
+      "nome": "Sandra Mendes Pereira",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0279",
+      "nome": "Leonardo Soares Rodrigues",
+      "categoria": "Idade vs Profissão",
+      "erro": "Profissão 'Contador(a)' com 16 anos (muito jovem)"
+    },
+    {
+      "id": "df-0281",
+      "nome": "Juliana Almeida Fernandes",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0283",
+      "nome": "Patrícia Correia Alves",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 47 anos (improvável, exceto invalidez)"
+    },
+    {
+      "id": "df-0284",
+      "nome": "Vanessa Fernandes Mendes",
+      "categoria": "Idade vs Estado Civil",
+      "erro": "Viúvo(a) com 35 anos (incomum)"
+    },
+    {
+      "id": "df-0287",
+      "nome": "Luciana Nascimento Araújo",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0289",
+      "nome": "Luís Nascimento Ribeiro",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 47 anos (improvável, exceto invalidez)"
+    },
+    {
+      "id": "df-0296",
+      "nome": "Geraldo Araújo Costa",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0300",
+      "nome": "Helena Pereira Teixeira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0305",
+      "nome": "Rosa Souza Borges",
+      "categoria": "Idade vs Profissão",
+      "erro": "Profissão 'Contador(a)' com 19 anos (muito jovem)"
+    },
+    {
+      "id": "df-0315",
+      "nome": "Carlos Gomes Carvalho",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0349",
+      "nome": "Vanessa Marques Silva",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0352",
+      "nome": "Carolina Gonçalves Gomes",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 43 anos (improvável, exceto invalidez)"
+    },
+    {
+      "id": "df-0370",
+      "nome": "Carolina Almeida Santana",
+      "categoria": "Idade vs Profissão",
+      "erro": "Profissão 'Engenheiro(a) do DER-DF' com 19 anos (muito jovem)"
+    },
+    {
+      "id": "df-0378",
+      "nome": "Wellington Gonçalves Araújo",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0378",
+      "nome": "Wellington Gonçalves Araújo",
       "categoria": "Região vs Cluster",
-      "erro": "Região Itapoã (baixa renda) com cluster G1_alta (possível mas raro)"
+      "erro": "Região Lago Norte (alta renda) com cluster G4_baixa (possível mas raro)"
     },
     {
-      "id": "df-0360",
-      "nome": "Ricardo Campos Borges",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação esquerda com múltiplos valores de direita: ['meritocracia', 'empreendedorismo'] (possível mas raro)"
+      "id": "df-0379",
+      "nome": "Jorge Santana Pinto",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
-      "id": "df-0385",
-      "nome": "Davi Alves Vieira",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação esquerda com múltiplos valores de direita: ['empreendedorismo', 'livre iniciativa'] (possível mas raro)"
+      "id": "df-0380",
+      "nome": "Jéssica Lima Nascimento",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
-      "id": "df-0405",
-      "nome": "Bernardo Ferreira Lima",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação esquerda com múltiplos valores de direita: ['empreendedorismo', 'meritocracia', 'livre iniciativa'] (possível mas raro)"
+      "id": "df-0382",
+      "nome": "Leandro Barbosa Ferreira",
+      "categoria": "Idade vs Filhos",
+      "erro": "Idade 23 com 5 filhos (improvável)"
     },
     {
-      "id": "df-0412",
-      "nome": "Fernanda Pinto Andrade",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação direita com múltiplos valores de esquerda: ['diversidade', 'justiça social'] (possível mas raro)"
+      "id": "df-0389",
+      "nome": "Sílvia Silva Ribeiro",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
-      "id": "df-0433",
-      "nome": "Matheus Soares Nunes",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação esquerda com múltiplos valores de direita: ['empreendedorismo', 'livre iniciativa'] (possível mas raro)"
+      "id": "df-0397",
+      "nome": "Paula Martins Campos",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 44 anos (improvável, exceto invalidez)"
     },
     {
-      "id": "df-0493",
-      "nome": "Letícia Andrade Ramos",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação direita com múltiplos valores de esquerda: ['diversidade', 'justiça social'] (possível mas raro)"
+      "id": "df-0401",
+      "nome": "Davi Alves Oliveira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
-      "id": "df-0556",
-      "nome": "Rogério Rocha Santos",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação direita com múltiplos valores de esquerda: ['diversidade', 'justiça social'] (possível mas raro)"
+      "id": "df-0402",
+      "nome": "Heloísa Cardoso Mendes",
+      "categoria": "Idade vs Profissão",
+      "erro": "Profissão 'Engenheiro(a)' com 20 anos (muito jovem)"
     },
     {
-      "id": "df-0563",
-      "nome": "Bernardo Santana Ramos",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação esquerda com múltiplos valores de direita: ['livre iniciativa', 'empreendedorismo'] (possível mas raro)"
+      "id": "df-0402",
+      "nome": "Heloísa Cardoso Mendes",
+      "categoria": "Região vs Cluster",
+      "erro": "Região Lago Norte (alta renda) com cluster G4_baixa (possível mas raro)"
     },
     {
-      "id": "df-0629",
-      "nome": "Gabriel Souza Moura",
+      "id": "df-0406",
+      "nome": "Anderson Dias Oliveira",
       "categoria": "Idade vs Filhos",
       "erro": "Idade 18 com 2 filhos (improvável)"
     },
     {
-      "id": "df-0661",
-      "nome": "Renata Gomes Marques",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação esquerda com múltiplos valores de direita: ['empreendedorismo', 'livre iniciativa'] (possível mas raro)"
+      "id": "df-0408",
+      "nome": "Caio Ferreira Araújo",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
-      "id": "df-0698",
-      "nome": "Juliana Andrade Pinto",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação esquerda com múltiplos valores de direita: ['livre iniciativa', 'empreendedorismo'] (possível mas raro)"
+      "id": "df-0410",
+      "nome": "Joana Ferreira Pinto",
+      "categoria": "Idade vs Estado Civil",
+      "erro": "Viúvo(a) com 39 anos (incomum)"
     },
     {
-      "id": "df-0722",
-      "nome": "Larissa Moreira Lopes",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação esquerda com múltiplos valores de direita: ['meritocracia', 'empreendedorismo'] (possível mas raro)"
+      "id": "df-0411",
+      "nome": "Vanessa Ramos Araújo",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
-      "id": "df-0751",
-      "nome": "Leonardo Alves Silva",
+      "id": "df-0420",
+      "nome": "Laura Moura Pereira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0430",
+      "nome": "Sofia Almeida Gomes",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 46 anos (improvável, exceto invalidez)"
+    },
+    {
+      "id": "df-0436",
+      "nome": "Fábio Mendes Vieira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0445",
+      "nome": "João Alves Cardoso",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0445",
+      "nome": "João Alves Cardoso",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0459",
+      "nome": "Denise Araújo Moura",
       "categoria": "Escolaridade vs Renda",
       "erro": "Superior completo com renda até 1 SM e ocupação 'clt' (improvável)"
     },
     {
-      "id": "df-0754",
-      "nome": "Ana Carvalho Silva",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação direita com múltiplos valores de esquerda: ['igualdade social', 'direitos humanos'] (possível mas raro)"
-    },
-    {
-      "id": "df-0757",
-      "nome": "Marcelo Santos Lima",
+      "id": "df-0463",
+      "nome": "Pedro Santos Ferreira",
       "categoria": "Escolaridade vs Renda",
-      "erro": "Superior completo com renda até 1 SM e ocupação 'clt' (improvável)"
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
     },
     {
-      "id": "df-0763",
-      "nome": "Igor Lima Martins",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação direita com múltiplos valores de esquerda: ['igualdade social', 'direitos humanos'] (possível mas raro)"
-    },
-    {
-      "id": "df-0768",
-      "nome": "Gabriela Alves Souza",
+      "id": "df-0465",
+      "nome": "Rafael Soares Machado",
       "categoria": "Idade vs Profissão",
-      "erro": "Profissão 'Médico(a)' requer superior completo"
+      "erro": "Aposentado(a) com 40 anos (improvável, exceto invalidez)"
     },
     {
-      "id": "df-0791",
-      "nome": "Larissa Ferreira Costa",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação direita com múltiplos valores de esquerda: ['direitos humanos', 'igualdade social'] (possível mas raro)"
+      "id": "df-0468",
+      "nome": "Rodrigo Lopes Dias",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
-      "id": "df-0793",
-      "nome": "Matheus Ferreira Gomes",
-      "categoria": "Idade vs Profissão",
-      "erro": "Profissão 'Médico(a)' requer superior completo"
+      "id": "df-0469",
+      "nome": "Amanda Almeida Araújo",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
-      "id": "df-0797",
-      "nome": "Leonardo Rodrigues Carvalho",
+      "id": "df-0489",
+      "nome": "Vanessa Freitas Teixeira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0516",
+      "nome": "Francisco Freitas Costa",
+      "categoria": "Região vs Cluster",
+      "erro": "Região Lago Norte (alta renda) com cluster G4_baixa (possível mas raro)"
+    },
+    {
+      "id": "df-0520",
+      "nome": "Rosa Ferreira Almeida",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0522",
+      "nome": "Alice Correia Dias",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0524",
+      "nome": "Fabiana Lopes Nascimento",
       "categoria": "Escolaridade vs Renda",
-      "erro": "Superior completo com renda até 1 SM e ocupação 'clt' (improvável)"
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
     },
     {
-      "id": "df-0813",
-      "nome": "Rodrigo Pereira Costa",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação direita com múltiplos valores de esquerda: ['direitos humanos', 'igualdade social'] (possível mas raro)"
-    },
-    {
-      "id": "df-0822",
-      "nome": "Ana Santos Santos",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação direita com múltiplos valores de esquerda: ['igualdade social', 'direitos humanos'] (possível mas raro)"
-    },
-    {
-      "id": "df-0851",
-      "nome": "Larissa Martins Silva",
+      "id": "df-0528",
+      "nome": "Joana Rocha Silva",
       "categoria": "Idade vs Profissão",
-      "erro": "Profissão 'Médico(a)' requer superior completo"
+      "erro": "Profissão 'Advogado(a)' com 19 anos (muito jovem)"
     },
     {
-      "id": "df-0869",
-      "nome": "Gabriel Lima Souza",
-      "categoria": "Idade vs Profissão",
-      "erro": "Profissão 'Psicólogo(a)' requer superior completo"
+      "id": "df-0529",
+      "nome": "Leandro Batista Andrade",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
-      "id": "df-0900",
-      "nome": "Isabella Rodrigues Silva",
-      "categoria": "Valores vs Orientação",
-      "erro": "Orientação direita com múltiplos valores de esquerda: ['igualdade social', 'direitos humanos'] (possível mas raro)"
+      "id": "df-0539",
+      "nome": "Aline Lopes Mendes",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
-      "id": "df-0913",
-      "nome": "Camila Rodrigues Carvalho",
+      "id": "df-0542",
+      "nome": "Pedro Rocha Cardoso",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0549",
+      "nome": "Bruna Nunes Martins",
       "categoria": "Escolaridade vs Renda",
-      "erro": "Superior completo com renda até 1 SM e ocupação 'autonomo' (improvável)"
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
     },
     {
-      "id": "df-0948",
-      "nome": "Gabriel Santos Oliveira",
+      "id": "df-0555",
+      "nome": "José Rocha Santos",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0569",
+      "nome": "Anderson Moura Nascimento",
+      "categoria": "Idade vs Estado Civil",
+      "erro": "Viúvo(a) com 32 anos (incomum)"
+    },
+    {
+      "id": "df-0578",
+      "nome": "Bernardo Silva Ferreira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0581",
+      "nome": "Roberto Cardoso Santos",
+      "categoria": "Idade vs Estado Civil",
+      "erro": "Viúvo(a) com 38 anos (incomum)"
+    },
+    {
+      "id": "df-0582",
+      "nome": "Davi Rocha Freitas",
+      "categoria": "Idade vs Estado Civil",
+      "erro": "Viúvo(a) com 30 anos (incomum)"
+    },
+    {
+      "id": "df-0587",
+      "nome": "Márcia Gonçalves Gomes",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0598",
+      "nome": "Tatiana Moura Fernandes",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0601",
+      "nome": "Fernando Ramos Andrade",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0653",
+      "nome": "Viviane Vieira Araújo",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0669",
+      "nome": "João Santana Ramos",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0670",
+      "nome": "Rosa Pereira Martins",
       "categoria": "Escolaridade vs Renda",
-      "erro": "Superior completo com renda até 1 SM e ocupação 'clt' (improvável)"
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0672",
+      "nome": "Márcio Ferreira Rocha",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0679",
+      "nome": "Henrique Vieira Soares",
+      "categoria": "Escolaridade vs Renda",
+      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+    },
+    {
+      "id": "df-0679",
+      "nome": "Henrique Vieira Soares",
+      "categoria": "Região vs Cluster",
+      "erro": "Região Lago Norte (alta renda) com cluster G4_baixa (possível mas raro)"
+    },
+    {
+      "id": "df-0715",
+      "nome": "Adriana Almeida Souza",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0737",
+      "nome": "Fabiana Ribeiro Mendes",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0749",
+      "nome": "Raissa Ramos Silva",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0769",
+      "nome": "Leonardo Souza Souza",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0772",
+      "nome": "Gabriela Alves Pereira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0773",
+      "nome": "Larissa Oliveira Ferreira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0776",
+      "nome": "Bruna Lima Oliveira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0784",
+      "nome": "Pedro Rodrigues Souza",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0787",
+      "nome": "José Martins Ribeiro",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0796",
+      "nome": "Leonardo Silva Alves",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0798",
+      "nome": "Daniel Pereira Carvalho",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0803",
+      "nome": "Gabriela Alves Lima",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0805",
+      "nome": "Bruno Souza Alves",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0808",
+      "nome": "Juliana Rodrigues Lima",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0846",
+      "nome": "Leandro Souza Carvalho",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0855",
+      "nome": "João Silva Gomes",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0867",
+      "nome": "Fernando Santos Alves",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0868",
+      "nome": "Bruno Alves Rodrigues",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0870",
+      "nome": "José Ribeiro Costa",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0881",
+      "nome": "Rodrigo Martins Oliveira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0888",
+      "nome": "Gabriel Costa Pereira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0891",
+      "nome": "Rodrigo Ferreira Santos",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0926",
+      "nome": "Ana Oliveira Lima",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0929",
+      "nome": "Henrique Carvalho Rodrigues",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
       "id": "df-0956",
       "nome": "Bruna Oliveira Silva",
-      "categoria": "Escolaridade vs Renda",
-      "erro": "Superior completo com renda até 1 SM e ocupação 'clt' (improvável)"
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     },
     {
-      "id": "df-0957",
-      "nome": "Gustavo Carvalho Gomes",
-      "categoria": "Escolaridade vs Renda",
-      "erro": "Superior completo com renda até 1 SM e ocupação 'autonomo' (improvável)"
+      "id": "df-0962",
+      "nome": "Rafael Santos Gomes",
+      "categoria": "Idade vs Profissão",
+      "erro": "Aposentado(a) com 49 anos (improvável, exceto invalidez)"
     },
     {
-      "id": "df-0989",
-      "nome": "Felipe Gomes Gomes",
-      "categoria": "Escolaridade vs Renda",
-      "erro": "Superior completo com renda até 1 SM e ocupação 'informal' (improvável)"
+      "id": "df-0968",
+      "nome": "Bruna Souza Gomes",
+      "categoria": "Idade vs Filhos",
+      "erro": "Idade 25 com 5 filhos (improvável)"
+    },
+    {
+      "id": "df-0977",
+      "nome": "Gabriel Carvalho Martins",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0983",
+      "nome": "Bruna Carvalho Alves",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
+    },
+    {
+      "id": "df-0995",
+      "nome": "Amanda Silva Ferreira",
+      "categoria": "Orientação vs Bolsonaro",
+      "erro": "Orientação direita com crítico forte de Bolsonaro (incomum)"
     }
   ]
 }
