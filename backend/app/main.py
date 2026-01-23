@@ -505,7 +505,6 @@ origens_permitidas = [
     configuracoes.FRONTEND_URL,
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://pesquisa-eleitoral-df.vercel.app",
     "https://pesquisa-eleitoral-df-git-main-igormorais123s-projects.vercel.app",
     "https://pesquisa-eleitoral-df-igormorais123s-projects.vercel.app",
 ]
