@@ -12,6 +12,10 @@ import {
   FileText,
   Download,
   User,
+  Zap,
+  AlertTriangle,
+  Shield,
+  ExternalLink,
 } from 'lucide-react';
 import { db } from '@/lib/db/dexie';
 import { formatarDataHora, formatarMoeda, cn } from '@/lib/utils';
@@ -119,6 +123,83 @@ export default function PaginaResultados() {
               <p className="text-2xl font-bold text-foreground">
                 {(estatisticas.tokensTotal / 1000).toFixed(1)}k
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Seção de Stress Tests */}
+      <div className="glass-card rounded-xl overflow-hidden">
+        <div className="p-4 border-b border-border flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Zap className="w-5 h-5 text-yellow-400" />
+            <h2 className="font-semibold text-foreground">Stress Tests Eleitorais</h2>
+          </div>
+          <Link
+            href="/stress-tests"
+            className="text-sm text-primary hover:underline flex items-center gap-1"
+          >
+            Ver todos <ExternalLink className="w-3 h-3" />
+          </Link>
+        </div>
+        <div className="p-4">
+          <div className="flex flex-wrap gap-4 items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-lg bg-yellow-500/20 flex items-center justify-center">
+                <Zap className="w-7 h-7 text-yellow-400" />
+              </div>
+              <div>
+                <p className="font-medium text-foreground">Stress Test Celina Leão 2026</p>
+                <p className="text-sm text-muted-foreground">490 eleitores • 25/01/2026</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-6">
+              <div className="text-center">
+                <p className="text-lg font-bold text-green-400">82,6%</p>
+                <p className="text-xs text-muted-foreground">Independência</p>
+              </div>
+              <div className="text-center">
+                <p className="text-lg font-bold text-red-400">67,2%</p>
+                <p className="text-xs text-muted-foreground">Risco Corrupção</p>
+              </div>
+              <div className="text-center">
+                <p className="text-lg font-bold text-yellow-400">56,9%</p>
+                <p className="text-xs text-muted-foreground">Migram Centro</p>
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <a
+                href="/resultados-stress-test/index.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg text-sm flex items-center gap-2"
+              >
+                <BarChart3 className="w-4 h-4" />
+                Ver Relatório
+              </a>
+            </div>
+          </div>
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30">
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-red-400" />
+                <p className="text-sm font-medium text-red-400">Maior Ameaça</p>
+              </div>
+              <p className="text-sm text-foreground mt-1">Candidato de centro (57% migrariam)</p>
+            </div>
+            <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/30">
+              <div className="flex items-center gap-2">
+                <Shield className="w-4 h-4 text-green-400" />
+                <p className="text-sm font-medium text-green-400">Força Principal</p>
+              </div>
+              <p className="text-sm text-foreground mt-1">Independência de Arruda (83% resistem)</p>
+            </div>
+            <div className="p-3 rounded-lg bg-yellow-500/10 border border-yellow-500/30">
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-yellow-400" />
+                <p className="text-sm font-medium text-yellow-400">Alerta</p>
+              </div>
+              <p className="text-sm text-foreground mt-1">70% votam contra adversário, não a favor</p>
             </div>
           </div>
         </div>

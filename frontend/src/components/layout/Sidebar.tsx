@@ -24,6 +24,7 @@ import {
   Target,
   Map,
   Building2,
+  Zap,
 } from 'lucide-react';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { useAuthStore } from '@/stores/auth-store';
@@ -96,6 +97,12 @@ const menuItems = [
     href: '/resultados',
     icone: BarChart3,
     descricao: 'Análises e visualizações',
+  },
+  {
+    titulo: 'Stress Tests',
+    href: '/stress-tests',
+    icone: Zap,
+    descricao: 'Testes de resiliência do voto',
   },
   {
     titulo: 'Mapa',

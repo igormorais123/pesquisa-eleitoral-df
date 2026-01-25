@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "id": "stress-test-celina-jan-2026",
+    "titulo": "Stress Test Eleitoral - Celina Leão 2026",
+    "data": "2026-01-25",
+    "autor": "Dra. Helena Montenegro",
+    "total_entrevistados": 490,
+    "metodologia": "Stress test político com 4 módulos de pressão"
+  },
+  "resultados": {
+    "modulo_1_fidelidade_arruda": {
+      "titulo": "Fidelidade ao Padrinho Político",
+      "cenario": "Arruda rompe com Celina e pede votos para outro candidato",
+      "dados": {
+        "ficam_com_celina": { "n": 265, "percentual": 82.6 },
+        "seguem_arruda": { "n": 56, "percentual": 17.4 }
+      },
+      "implicacao": "Base sólida e independente de Arruda"
+    },
+    "modulo_2_elasticidade_moral": {
+      "titulo": "Elasticidade Moral (Corrupção)",
+      "cenario": "Obra benéfica com R$ 50 milhões desviados",
+      "dados": {
+        "corrupcao_inaceitavel": { "n": 219, "percentual": 67.2 },
+        "depende_candidato": { "n": 68, "percentual": 20.9 },
+        "mantem_voto": { "n": 39, "percentual": 11.9 }
+      },
+      "implicacao": "VULNERABILIDADE CRÍTICA - 67% abandonam se escândalo"
+    },
+    "modulo_3_outsider_fred": {
+      "titulo": "Ameaça do Outsider",
+      "cenario": "Candidato 'linha dura' vs Celina técnica",
+      "dados": {
+        "preferem_fred": { "n": 133, "percentual": 41.0 },
+        "preferem_celina": { "n": 115, "percentual": 35.5 },
+        "divididos": { "n": 76, "percentual": 23.5 }
+      },
+      "fator_emocional": {
+        "emocao_prevalece": 65,
+        "razao_prevalece": 20,
+        "equilibrio": 15
+      },
+      "implicacao": "AMEAÇA ALTA - discurso de segurança precisa ajuste"
+    },
+    "modulo_4_voto_silencioso": {
+      "titulo": "Voto Silencioso e Motivação Real",
+      "cenarios": {
+        "celina_vs_pt": {
+          "vota_celina_barrar_pt": { "n": 195, "percentual": 39.8 }
+        },
+        "celina_vs_centro": {
+          "considera_centro": { "n": 279, "percentual": 56.9 },
+          "mantem_celina": { "n": 10, "percentual": 2.0 }
+        }
+      },
+      "motivacao_voto": {
+        "rejeitar_adversario": 70,
+        "apoiar_celina": 30
+      },
+      "implicacao": "ALERTA VERMELHO - 57% migram para candidato de centro"
+    }
+  },
+  "mapa_vulnerabilidades": {
+    "critico": ["Candidato de centro (Reguffe)", "Escândalo de corrupção"],
+    "alto": ["Outsider populista (segurança)", "Voto não-entusiasta"],
+    "moderado": ["Associação com Ibaneis", "Percepção de 'mais do mesmo'"],
+    "baixo": ["Rompimento com Arruda", "Candidato do PT"]
+  },
+  "recomendacoes": {
+    "critica": [
+      "Neutralizar candidaturas de centro ANTES que surjam",
+      "Monitorar movimentações de Reguffe"
+    ],
+    "alta": [
+      "Blindagem total anticorrupção",
+      "Reposicionar discurso de segurança com componente EMOCIONAL"
+    ],
+    "media": [
+      "Construir adesão genuína, não só anti-PT",
+      "Diferenciação clara de Ibaneis"
+    ]
+  },
+  "perfil_amostra": {
+    "orientacao_politica": {
+      "direita": { "n": 327, "percentual": 66.7 },
+      "esquerda": { "n": 163, "percentual": 33.3 }
+    },
+    "top_ras": [
+      { "ra": "Ceilândia", "n": 49 },
+      { "ra": "Plano Piloto", "n": 47 },
+      { "ra": "Taguatinga", "n": 40 },
+      { "ra": "Samambaia", "n": 35 },
+      { "ra": "Gama", "n": 26 }
+    ]
+  }
+}

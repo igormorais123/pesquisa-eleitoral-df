@@ -1,0 +1,251 @@
+[
+  {
+    "id": "res-stress-celina-2026",
+    "entrevista_id": "stress-test-celina-jan-2026",
+    "titulo_entrevista": "Stress Test Eleitoral - Celina Leão 2026",
+    "tipo": "stress_test",
+    "total_respostas": 490,
+    "total_eleitores": 490,
+    "perguntas_analisadas": 7,
+    "custo_total": 12.45,
+    "tempo_execucao_segundos": 3600,
+    "criado_em": "2026-01-25T03:00:00.000Z",
+    "autor": "Dra. Helena Montenegro",
+    "metodologia": "Stress test político com 4 módulos de pressão",
+    "sentimento_geral": "neutro",
+    "proporcao_sentimentos": {
+      "positivo": 35.0,
+      "negativo": 25.0,
+      "neutro": 40.0
+    },
+    "palavras_frequentes": [
+      {"palavra": "corrupção", "frequencia": 328, "percentual": 66.9},
+      {"palavra": "segurança", "frequencia": 245, "percentual": 50.0},
+      {"palavra": "celina", "frequencia": 490, "percentual": 100.0},
+      {"palavra": "arruda", "frequencia": 321, "percentual": 65.5},
+      {"palavra": "economia", "frequencia": 189, "percentual": 38.6},
+      {"palavra": "família", "frequencia": 156, "percentual": 31.8},
+      {"palavra": "reguffe", "frequencia": 134, "percentual": 27.3},
+      {"palavra": "gestão", "frequencia": 112, "percentual": 22.9},
+      {"palavra": "centro", "frequencia": 279, "percentual": 56.9},
+      {"palavra": "voto", "frequencia": 343, "percentual": 70.0}
+    ],
+    "temas_principais": [
+      {"nome": "Corrupção", "frequencia": 328, "percentual": 66.9, "sentimento_medio": -0.45},
+      {"nome": "Segurança", "frequencia": 245, "percentual": 50.0, "sentimento_medio": -0.30},
+      {"nome": "Economia", "frequencia": 189, "percentual": 38.6, "sentimento_medio": 0.10},
+      {"nome": "Política", "frequencia": 343, "percentual": 70.0, "sentimento_medio": -0.15}
+    ],
+    "citacoes_representativas": [
+      {
+        "texto": "A Celina não me empolga, mas pelo menos não é petista.",
+        "eleitor_nome": "Eleitor Anônimo",
+        "regiao": "Plano Piloto",
+        "cluster": "G1",
+        "orientacao_politica": "direita",
+        "sentimento": "neutro"
+      },
+      {
+        "texto": "50 milhões desviados é coisa séria demais. Como católico e pai de família, não posso compactuar com isso.",
+        "eleitor_nome": "José Martins Pinto",
+        "regiao": "Sudoeste/Octogonal",
+        "cluster": "G1",
+        "orientacao_politica": "direita",
+        "sentimento": "negativo"
+      },
+      {
+        "texto": "Se for um cara técnico mesmo, tipo Reguffe, aí já muda a conversa. Valorizo competência.",
+        "eleitor_nome": "Engenheiro Anônimo",
+        "regiao": "Lago Sul",
+        "cluster": "G1",
+        "orientacao_politica": "centro-direita",
+        "sentimento": "positivo"
+      }
+    ],
+    "mapa_calor_emocional": {
+      "pergunta": "Análise por Módulo de Stress Test",
+      "total_respostas": 490,
+      "dados": [
+        {"grupo": "Fidelidade Arruda", "sentimento": "seguranca", "intensidade": 82.6, "quantidade": 265},
+        {"grupo": "Fidelidade Arruda", "sentimento": "indiferenca", "intensidade": 17.4, "quantidade": 56},
+        {"grupo": "Elasticidade Moral", "sentimento": "raiva", "intensidade": 67.2, "quantidade": 219},
+        {"grupo": "Elasticidade Moral", "sentimento": "indiferenca", "intensidade": 20.9, "quantidade": 68},
+        {"grupo": "Outsider Fred", "sentimento": "ameaca", "intensidade": 41.0, "quantidade": 133},
+        {"grupo": "Outsider Fred", "sentimento": "indiferenca", "intensidade": 23.5, "quantidade": 76},
+        {"grupo": "Voto Silencioso", "sentimento": "ameaca", "intensidade": 56.9, "quantidade": 279},
+        {"grupo": "Voto Silencioso", "sentimento": "seguranca", "intensidade": 39.8, "quantidade": 195}
+      ]
+    },
+    "votos_silenciosos": [
+      {
+        "eleitor_id": "anonimo-001",
+        "eleitor_nome": "Eleitor Classe Média Alta",
+        "perfil_resumido": "Profissional liberal do Plano Piloto",
+        "regiao": "Plano Piloto",
+        "cluster": "G1",
+        "concorda_economia": true,
+        "rejeita_costumes": false,
+        "probabilidade_voto_escondido": 70,
+        "citacao_reveladora": "A Celina não me empolga, mas pelo menos não é petista. Voto mais contra o adversário do que a favor dela.",
+        "contradicoes_detectadas": ["Voto defensivo, não entusiasta"],
+        "interpretacao": "70% votam por rejeição ao adversário, não por adesão genuína à candidata"
+      }
+    ],
+    "pontos_ruptura": [
+      {
+        "eleitor_id": "ponto-ruptura-001",
+        "eleitor_nome": "Eleitor Médio",
+        "perfil_resumido": "Católico de classe média",
+        "orientacao_atual": "direita",
+        "linhas_vermelhas": ["Corrupção acima de 5%", "Escândalo público"],
+        "gatilho_mudanca": "Denúncia de corrupção comprovada",
+        "probabilidade_ruptura": 67.2,
+        "citacao_reveladora": "50 milhões desviados? Isso é dinheiro que poderia fazer várias obras ou melhorar a saúde pública.",
+        "valores_em_conflito": ["Honestidade", "Benefício pessoal"],
+        "vulnerabilidade": "alta",
+        "estrategia_persuasao": "Blindagem anticorrupção total"
+      },
+      {
+        "eleitor_id": "ponto-ruptura-002",
+        "eleitor_nome": "Eleitor Técnico",
+        "perfil_resumido": "Profissional liberal",
+        "orientacao_atual": "centro-direita",
+        "linhas_vermelhas": ["Candidato de centro competente"],
+        "gatilho_mudanca": "Candidatura de Reguffe ou similar",
+        "probabilidade_ruptura": 56.9,
+        "citacao_reveladora": "Se for alguém técnico mesmo, tipo Reguffe, aí já muda a conversa.",
+        "valores_em_conflito": ["Competência técnica", "Ideologia"],
+        "vulnerabilidade": "critica",
+        "estrategia_persuasao": "Neutralizar candidaturas de centro antes que surjam"
+      }
+    ],
+    "insights": [
+      {
+        "tipo": "descoberta",
+        "titulo": "Voto Defensivo Predominante",
+        "descricao": "70% dos eleitores votam CONTRA o adversário, não A FAVOR de Celina. Base frágil e vulnerável a alternativas.",
+        "relevancia": "critica",
+        "recomendacao_pratica": "Construir adesão genuína, não apenas posicionamento anti-PT",
+        "dados_suporte": {"percentual_voto_defensivo": 70}
+      },
+      {
+        "tipo": "ruptura",
+        "titulo": "Ameaça do Centro é a Maior",
+        "descricao": "56,9% consideram migrar para candidato de centro (Reguffe). Esta é a maior ameaça, não o PT.",
+        "relevancia": "critica",
+        "recomendacao_pratica": "Neutralizar candidaturas de centro ANTES que surjam. Monitorar movimentações de Reguffe.",
+        "dados_suporte": {"percentual_migram_centro": 56.9}
+      },
+      {
+        "tipo": "ruptura",
+        "titulo": "Corrupção é Linha Vermelha",
+        "descricao": "67,2% abandonam Celina se surgir escândalo de corrupção. Vulnerabilidade crítica.",
+        "relevancia": "critica",
+        "recomendacao_pratica": "Blindagem anticorrupção total. Zero tolerância a irregularidades.",
+        "dados_suporte": {"percentual_abandona_corrupcao": 67.2}
+      },
+      {
+        "tipo": "descoberta",
+        "titulo": "Independência de Arruda",
+        "descricao": "82,6% ficam com Celina mesmo se Arruda romper. Base independente do padrinho político.",
+        "relevancia": "alta",
+        "recomendacao_pratica": "Força política - não depende de alianças tradicionais",
+        "dados_suporte": {"percentual_independente": 82.6}
+      },
+      {
+        "tipo": "alerta",
+        "titulo": "Outsider de Segurança Ameaça",
+        "descricao": "41% preferem candidato 'linha dura' sobre Celina. Discurso técnico não empolga.",
+        "relevancia": "alta",
+        "recomendacao_pratica": "Reposicionar discurso de segurança com componente EMOCIONAL. Menos gestão, mais indignação.",
+        "dados_suporte": {"percentual_preferem_outsider": 41.0}
+      }
+    ],
+    "conclusoes": [
+      "A base de Celina é FRÁGIL - 70% votam por rejeição, não por adesão",
+      "A maior ameaça é o CENTRO (57% migram), não o PT (39% barram)",
+      "Corrupção é linha vermelha absoluta - 67% abandonam imediatamente",
+      "Base é independente de Arruda - 83% resistem a rompimento",
+      "Discurso de segurança precisa de ajuste emocional - 41% preferem outsider"
+    ],
+    "implicacoes_politicas": [
+      "URGENTE: Neutralizar candidaturas de centro antes que surjam",
+      "URGENTE: Blindagem anticorrupção total",
+      "IMPORTANTE: Construir adesão genuína, não só anti-PT",
+      "IMPORTANTE: Endurecer discurso de segurança com componente emocional",
+      "MONITORAR: Movimentações de Reguffe e potenciais candidatos de centro"
+    ],
+    "mapa_vulnerabilidades": {
+      "critico": ["Candidato de centro (Reguffe)", "Escândalo de corrupção"],
+      "alto": ["Outsider populista (segurança)", "Voto não-entusiasta"],
+      "moderado": ["Associação com Ibaneis", "Percepção de 'mais do mesmo'"],
+      "baixo": ["Rompimento com Arruda", "Candidato do PT"]
+    },
+    "modulos_stress_test": {
+      "modulo_1_fidelidade_arruda": {
+        "titulo": "Fidelidade ao Padrinho Político",
+        "cenario": "Arruda rompe com Celina e pede votos para outro candidato",
+        "resultados": {
+          "ficam_com_celina": {"n": 265, "percentual": 82.6},
+          "seguem_arruda": {"n": 56, "percentual": 17.4}
+        },
+        "implicacao": "Base sólida e independente de Arruda"
+      },
+      "modulo_2_elasticidade_moral": {
+        "titulo": "Elasticidade Moral (Corrupção)",
+        "cenario": "Obra benéfica com R$ 50 milhões desviados",
+        "resultados": {
+          "corrupcao_inaceitavel": {"n": 219, "percentual": 67.2},
+          "depende_candidato": {"n": 68, "percentual": 20.9},
+          "mantem_voto": {"n": 39, "percentual": 11.9}
+        },
+        "implicacao": "VULNERABILIDADE CRÍTICA - 67% abandonam se escândalo"
+      },
+      "modulo_3_outsider_fred": {
+        "titulo": "Ameaça do Outsider",
+        "cenario": "Candidato 'linha dura' vs Celina técnica",
+        "resultados": {
+          "preferem_fred": {"n": 133, "percentual": 41.0},
+          "preferem_celina": {"n": 115, "percentual": 35.5},
+          "divididos": {"n": 76, "percentual": 23.5}
+        },
+        "fator_emocional": {
+          "emocao_prevalece": 65,
+          "razao_prevalece": 20,
+          "equilibrio": 15
+        },
+        "implicacao": "AMEAÇA ALTA - discurso de segurança precisa ajuste"
+      },
+      "modulo_4_voto_silencioso": {
+        "titulo": "Voto Silencioso e Motivação Real",
+        "cenarios": {
+          "celina_vs_pt": {
+            "vota_celina_barrar_pt": {"n": 195, "percentual": 39.8}
+          },
+          "celina_vs_centro": {
+            "considera_centro": {"n": 279, "percentual": 56.9},
+            "mantem_celina": {"n": 10, "percentual": 2.0}
+          }
+        },
+        "motivacao_voto": {
+          "rejeitar_adversario": 70,
+          "apoiar_celina": 30
+        },
+        "implicacao": "ALERTA VERMELHO - 57% migram para candidato de centro"
+      }
+    },
+    "perfil_amostra": {
+      "orientacao_politica": {
+        "direita": {"n": 327, "percentual": 66.7},
+        "esquerda": {"n": 163, "percentual": 33.3}
+      },
+      "top_ras": [
+        {"ra": "Ceilândia", "n": 49},
+        {"ra": "Plano Piloto", "n": 47},
+        {"ra": "Taguatinga", "n": 40},
+        {"ra": "Samambaia", "n": 35},
+        {"ra": "Gama", "n": 26}
+      ]
+    }
+  }
+]

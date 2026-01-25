@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stress Test Eleitoral - Celina Leão 2026 | POLARIS</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --accent-blue: #3b82f6;
+            --accent-green: #22c55e;
+            --accent-yellow: #eab308;
+            --accent-red: #ef4444;
+            --accent-purple: #a855f7;
+            --border: #2a2a3a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 3rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        header .meta {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        header .meta span {
+            background: var(--bg-card);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .kpi-card .value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .kpi-card .label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .kpi-card.critical .value { color: var(--accent-red); }
+        .kpi-card.warning .value { color: var(--accent-yellow); }
+        .kpi-card.success .value { color: var(--accent-green); }
+        .kpi-card.info .value { color: var(--accent-blue); }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 1rem;
+        }
+
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .alert.critical {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid var(--accent-red);
+        }
+
+        .alert.warning {
+            background: rgba(234, 179, 8, 0.15);
+            border: 1px solid var(--accent-yellow);
+        }
+
+        .alert .icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .alert h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .alert p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .vulnerability-map {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .vulnerability-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            background: var(--bg-secondary);
+        }
+
+        .vulnerability-item .level {
+            width: 80px;
+            text-align: center;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+
+        .vulnerability-item.critical .level { background: var(--accent-red); }
+        .vulnerability-item.high .level { background: var(--accent-yellow); color: #000; }
+        .vulnerability-item.medium .level { background: var(--accent-blue); }
+        .vulnerability-item.low .level { background: var(--accent-green); }
+
+        .recommendation {
+            padding: 1rem;
+            border-left: 4px solid var(--accent-blue);
+            background: var(--bg-secondary);
+            margin-bottom: 0.75rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .recommendation.critical { border-left-color: var(--accent-red); }
+        .recommendation.high { border-left-color: var(--accent-yellow); }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .quote {
+            font-style: italic;
+            color: var(--text-secondary);
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            border-left: 3px solid var(--accent-purple);
+        }
+
+        .quote .author {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            header h1 { font-size: 1.75rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>STRESS TEST ELEITORAL</h1>
+            <p class="subtitle">Celina Leão - Governador DF 2026</p>
+            <div class="meta">
+                <span>490 eleitores</span>
+                <span>25 de Janeiro de 2026</span>
+                <span>Dra. Helena Montenegro</span>
+                <span>POLARIS Research</span>
+            </div>
+        </header>
+
+        <!-- Alertas Principais -->
+        <div class="alert critical">
+            <span class="icon">🚨</span>
+            <div>
+                <h4>ALERTA VERMELHO: Ameaça de Centro</h4>
+                <p>56,9% dos eleitores consideram migrar para candidato de centro (ex: Reguffe). Esta é a maior vulnerabilidade detectada.</p>
+            </div>
+        </div>
+
+        <div class="alert warning">
+            <span class="icon">⚠️</span>
+            <div>
+                <h4>Voto Defensivo</h4>
+                <p>70% votam CONTRA o adversário, não A FAVOR de Celina. O entusiasmo genuíno é de apenas 30%.</p>
+            </div>
+        </div>
+
+        <!-- KPIs -->
+        <div class="grid-4" style="margin: 2rem 0;">
+            <div class="card kpi-card success">
+                <div class="value">82,6%</div>
+                <div class="label">Resistem sem Arruda</div>
+            </div>
+            <div class="card kpi-card critical">
+                <div class="value">67,2%</div>
+                <div class="label">Abandonam se Corrupção</div>
+            </div>
+            <div class="card kpi-card warning">
+                <div class="value">41%</div>
+                <div class="label">Preferem "Linha Dura"</div>
+            </div>
+            <div class="card kpi-card critical">
+                <div class="value">56,9%</div>
+                <div class="label">Consideram Centro</div>
+            </div>
+        </div>
+
+        <!-- Gráficos -->
+        <h2 class="section-title">Resultados por Módulo</h2>
+
+        <div class="grid-2">
+            <!-- Módulo 1 -->
+            <div class="card">
+                <h2>📊 Módulo 1: Fidelidade Arruda</h2>
+                <h3>Se Arruda rompesse com Celina...</h3>
+                <div class="chart-container">
+                    <canvas id="chart-arruda"></canvas>
+                </div>
+            </div>
+
+            <!-- Módulo 2 -->
+            <div class="card">
+                <h2>⚖️ Módulo 2: Elasticidade Moral</h2>
+                <h3>Obra com R$ 50 milhões desviados</h3>
+                <div class="chart-container">
+                    <canvas id="chart-corrupcao"></canvas>
+                </div>
+            </div>
+
+            <!-- Módulo 3 -->
+            <div class="card">
+                <h2>🔥 Módulo 3: Outsider Populista</h2>
+                <h3>Candidato "linha dura" vs Celina técnica</h3>
+                <div class="chart-container">
+                    <canvas id="chart-seguranca"></canvas>
+                </div>
+            </div>
+
+            <!-- Módulo 4 -->
+            <div class="card">
+                <h2>🎭 Módulo 4: Voto Silencioso</h2>
+                <h3>Motivação real do voto</h3>
+                <div class="chart-container">
+                    <canvas id="chart-motivacao"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fator Emocional -->
+        <div class="card" style="margin-top: 1.5rem;">
+            <h2>🧠 Fator Emocional em Segurança</h2>
+            <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+                <div class="chart-container" style="flex: 1; min-width: 300px;">
+                    <canvas id="chart-emocao"></canvas>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <div class="quote">
+                        "Quando você vê teu vizinho sendo assaltado na porta de casa, não tem razão que segure não. É revolta pura."
+                        <span class="author">— Pedro, 39 anos, SCIA/Estrutural</span>
+                    </div>
+                    <div class="quote">
+                        "Já fui assaltada duas vezes só esse ano. Essa conversa de 'gestão e tecnologia' não resolve nada."
+                        <span class="author">— Lúcia, 45 anos, Samambaia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mapa de Vulnerabilidades -->
+        <h2 class="section-title">Mapa de Vulnerabilidades</h2>
+
+        <div class="card">
+            <div class="vulnerability-map">
+                <div class="vulnerability-item critical">
+                    <span class="level">CRÍTICO</span>
+                    <span>Candidato de centro (Reguffe) - 57% migrariam</span>
+                </div>
+                <div class="vulnerability-item critical">
+                    <span class="level">CRÍTICO</span>
+                    <span>Escândalo de corrupção - 67% abandonam</span>
+                </div>
+                <div class="vulnerability-item high">
+                    <span class="level">ALTO</span>
+                    <span>Outsider populista em segurança - 41% preferem</span>
+                </div>
+                <div class="vulnerability-item high">
+                    <span class="level">ALTO</span>
+                    <span>Voto não-entusiasta - 70% votam "contra"</span>
+                </div>
+                <div class="vulnerability-item medium">
+                    <span class="level">MÉDIO</span>
+                    <span>Associação com Ibaneis - citada negativamente</span>
+                </div>
+                <div class="vulnerability-item low">
+                    <span class="level">BAIXO</span>
+                    <span>Rompimento com Arruda - 83% resistem</span>
+                </div>
+                <div class="vulnerability-item low">
+                    <span class="level">BAIXO</span>
+                    <span>Candidato do PT - barreira consolidada</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recomendações -->
+        <h2 class="section-title">Recomendações Estratégicas</h2>
+
+        <div class="grid-2">
+            <div>
+                <h3 style="margin-bottom: 1rem; color: var(--accent-red);">🔴 Prioridade CRÍTICA</h3>
+                <div class="recommendation critical">
+                    Neutralizar candidaturas de centro ANTES que surjam
+                </div>
+                <div class="recommendation critical">
+                    Cooptar apoiadores do campo de centro
+                </div>
+                <div class="recommendation critical">
+                    Blindagem total anticorrupção
+                </div>
+            </div>
+            <div>
+                <h3 style="margin-bottom: 1rem; color: var(--accent-yellow);">🟡 Prioridade ALTA</h3>
+                <div class="recommendation high">
+                    Reposicionar discurso de segurança com componente EMOCIONAL
+                </div>
+                <div class="recommendation high">
+                    Mostrar resultados concretos (números, casos)
+                </div>
+                <div class="recommendation high">
+                    Presença física em comunidades violentas
+                </div>
+            </div>
+        </div>
+
+        <!-- Citações -->
+        <h2 class="section-title">Vozes do Eleitorado</h2>
+
+        <div class="grid-2">
+            <div class="quote">
+                "A Celina não me empolga muito não, mas ela não é petista e não vai fazer loucura."
+                <span class="author">— Leandro, 25 anos, Plano Piloto</span>
+            </div>
+            <div class="quote">
+                "Se for alguém como o Reguffe, que tem experiência e não tem rabo preso, eu posso pensar sim."
+                <span class="author">— Amanda, 69 anos, Taguatinga</span>
+            </div>
+            <div class="quote">
+                "É mais por rejeitar o adversário mesmo. Meu voto é mais anti-PT do que pró-Celina."
+                <span class="author">— Pedro, 70 anos, Gama</span>
+            </div>
+            <div class="quote">
+                "R$ 50 milhões desviados? Não dá pra passar pano não. Por mais que a obra tenha me ajudado."
+                <span class="author">— Pedro, 70 anos, Gama</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>POLARIS Research Intelligence | Pesquisa Eleitoral com IA</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">Classificação: CONFIDENCIAL - Uso interno campanha</p>
+        </footer>
+    </div>
+
+    <script>
+        // Configuração global dos gráficos
+        Chart.defaults.color = '#a0a0b0';
+        Chart.defaults.borderColor = '#2a2a3a';
+
+        // Módulo 1: Arruda
+        new Chart(document.getElementById('chart-arruda'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Ficam com Celina', 'Seguem Arruda'],
+                datasets: [{
+                    data: [82.6, 17.4],
+                    backgroundColor: ['#22c55e', '#ef4444'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        // Módulo 2: Corrupção
+        new Chart(document.getElementById('chart-corrupcao'), {
+            type: 'bar',
+            data: {
+                labels: ['Inaceitável, muda voto', 'Depende do candidato', 'Mantém voto'],
+                datasets: [{
+                    label: '%',
+                    data: [67.2, 20.9, 11.9],
+                    backgroundColor: ['#ef4444', '#eab308', '#22c55e']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: { max: 100 }
+                }
+            }
+        });
+
+        // Módulo 3: Segurança
+        new Chart(document.getElementById('chart-seguranca'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Preferem "Linha Dura"', 'Preferem Celina', 'Divididos'],
+                datasets: [{
+                    data: [41, 35.5, 23.5],
+                    backgroundColor: ['#ef4444', '#3b82f6', '#6b7280'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        // Módulo 4: Motivação
+        new Chart(document.getElementById('chart-motivacao'), {
+            type: 'bar',
+            data: {
+                labels: ['Voto anti-adversário', 'Apoio genuíno a Celina'],
+                datasets: [{
+                    label: '%',
+                    data: [70, 30],
+                    backgroundColor: ['#eab308', '#22c55e']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { max: 100 }
+                }
+            }
+        });
+
+        // Fator Emocional
+        new Chart(document.getElementById('chart-emocao'), {
+            type: 'pie',
+            data: {
+                labels: ['Emoção prevalece', 'Razão prevalece', 'Equilíbrio'],
+                datasets: [{
+                    data: [65, 20, 15],
+                    backgroundColor: ['#ef4444', '#3b82f6', '#a855f7'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
