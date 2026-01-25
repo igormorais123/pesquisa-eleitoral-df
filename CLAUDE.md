@@ -228,3 +228,40 @@ O token da API Render está salvo em **dois lugares**:
 - Comentários no código em português
 - Nomes de variáveis e termos técnicos podem misturar português e inglês
 - Mensagens de commit e PRs em português
+
+
+---
+
+## GPS DE NAVEGACAO E GESTAO DE CONTEXTO
+
+### Documento Principal
+Ver arquivo: GPS_NAVEGACAO_AGENTES.md
+
+### Regra dos 40 porcento
+Quando o agente atingir 40 porcento da janela de contexto:
+1. PARAR novas leituras de arquivos
+2. COMPILAR descobertas em SESSAO_TEMP.md
+3. SALVAR persistencia em WORK_LOG.md
+4. Considerar REINICIAR sessao com contexto limpo
+
+### Zonas de Operacao
+
+| Zona | Porcent | Acao |
+|------|---------|------|
+| Inteligente | 0-40 | Explorar livremente |
+| Atencao | 40-60 | Compilar e focar |
+| Burra | maior 60 | PARAR imediatamente |
+
+### Arquivos de Persistencia
+- WORK_LOG.md       Log entre sessoes
+- SESSAO_TEMP.md    Compilacao durante sessao
+- GPS_NAVEGACAO_AGENTES.md   Mapa completo do projeto
+
+### Navegacao Rapida
+| Tarefa | Local |
+|--------|-------|
+| API Backend | backend/app/api/rotas/ |
+| Componentes UI | frontend/src/components/ |
+| Dados Eleitores | agentes/banco-eleitores-df.json |
+| Logica IA | backend/app/servicos/claude_servico.py |
+| Scripts Geracao | scripts/gerar_eleitores_df_v4.py |
