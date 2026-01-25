@@ -3,14 +3,15 @@
 Marque com [x] o que já fez:
 
 ## Email Empresarial (Google Workspace)
-- [ ] Criar conta no Google Workspace (workspace.google.com)
-- [ ] Informar domínio inteia.com.br
-- [ ] Criar email igor@inteia.com.br
-- [ ] Copiar código de verificação TXT
+- [x] Criar conta no Google Workspace (workspace.google.com)
+- [x] Informar domínio inteia.com.br
+- [x] Criar email igor@inteia.com.br
+- [x] Copiar código de verificação TXT
 
 ## Registro.br (DNS)
-- [ ] Fazer login no Registro.br
-- [ ] Adicionar registro TXT de verificação do Google
+- [x] Fazer login no Registro.br
+- [x] Ativar modo avançado de DNS
+- [ ] Adicionar registro TXT de verificação do Google (aguardar transição ~2h)
 - [ ] Adicionar 5 registros MX do Google (para email)
 - [ ] Adicionar registro TXT do SPF
 - [ ] Adicionar registro A para Vercel (76.76.21.21)
@@ -37,7 +38,11 @@ Marque com [x] o que já fez:
 
 **Senha do Google Workspace:** _________________ (anote em local seguro!)
 
+**Código de verificação Google:** `google-site-verification=a_stXiaZ9mkLZg-bjRc1erISre7QxCd5SMbXzw75-I0`
+
 **Data de início:** 25/01/2026
+
+**Transição DNS iniciada:** 25/01/2026 ~16:20 (aguardar ~2h para adicionar registros)
 
 **Data de conclusão:** _____________
 

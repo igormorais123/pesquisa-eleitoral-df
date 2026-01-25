@@ -13549,5 +13549,327 @@
       }
     },
     "timestamp": "2026-01-25T16:18:39.372337"
+  },
+  {
+    "id": "df-0234",
+    "nome": "Débora Alves Oliveira",
+    "perfil": {
+      "ra": "Recanto das Emas",
+      "idade": 19,
+      "genero": "feminino",
+      "renda": "mais_de_2_ate_5",
+      "orientacao": "direita",
+      "posicao_bolsonaro": "apoiador_forte",
+      "escolaridade": "medio_completo_ou_sup_incompleto",
+      "religiao": "catolica",
+      "valores": [
+        "Família",
+        "Segurança",
+        "Trabalho"
+      ],
+      "preocupacoes": [
+        "Desemprego",
+        "Segurança pública",
+        "Saúde"
+      ],
+      "estilo_decisao": "identitario"
+    },
+    "respostas": {
+      "modulo_1_fidelidade_arruda": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUduZRkNNMDqgJ4MnXU6'}"
+      },
+      "modulo_2_elasticidade_moral": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUdvNu1ST9bfZCBqCaS1'}"
+      },
+      "modulo_3_outsider_fred": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUdwCBs49sgyNCLYUuoE'}"
+      },
+      "modulo_4_voto_silencioso": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUdx1H433XQqkpEkdmsN'}"
+      }
+    },
+    "timestamp": "2026-01-25T16:19:34.760443"
+  },
+  {
+    "id": "df-0276",
+    "nome": "Maria Silva Alves",
+    "perfil": {
+      "ra": "Águas Claras",
+      "idade": 61,
+      "genero": "feminino",
+      "renda": "ate_1",
+      "orientacao": "direita",
+      "posicao_bolsonaro": "apoiador_moderado",
+      "escolaridade": "medio_completo_ou_sup_incompleto",
+      "religiao": "catolica",
+      "valores": [
+        "Trabalho",
+        "Segurança",
+        "Família"
+      ],
+      "preocupacoes": [
+        "Desemprego",
+        "Corrupção",
+        "Segurança pública"
+      ],
+      "estilo_decisao": "moral"
+    },
+    "respostas": {
+      "modulo_1_fidelidade_arruda": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUdxrqpvsQ6ReLhmThYC'}"
+      },
+      "modulo_2_elasticidade_moral": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUdyg4xjBnLcPnaQBUir'}"
+      },
+      "modulo_3_outsider_fred": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUdzVQ3c5WkXZb3AsHaK'}"
+      },
+      "modulo_4_voto_silencioso": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUe1Jisuc6jJcqE1d2er'}"
+      }
+    },
+    "timestamp": "2026-01-25T16:20:19.460940"
+  },
+  {
+    "id": "df-0229",
+    "nome": "Vanessa Martins Alves",
+    "perfil": {
+      "ra": "Ceilândia",
+      "idade": 77,
+      "genero": "feminino",
+      "renda": "mais_de_1_ate_2",
+      "orientacao": "direita",
+      "posicao_bolsonaro": "apoiador_moderado",
+      "escolaridade": "medio_completo_ou_sup_incompleto",
+      "religiao": "catolica",
+      "valores": [
+        "Saúde",
+        "Trabalho",
+        "Família"
+      ],
+      "preocupacoes": [
+        "Saúde",
+        "Economia",
+        "Corrupção"
+      ],
+      "estilo_decisao": "moral"
+    },
+    "respostas": {
+      "modulo_1_fidelidade_arruda": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUe36so6uiCefW71MEp9'}"
+      },
+      "modulo_2_elasticidade_moral": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUe3urnvkNfpT4yvp2z2'}"
+      },
+      "modulo_3_outsider_fred": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUe4irmx8QariYZdZQ4a'}"
+      },
+      "modulo_4_voto_silencioso": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUe5Ym6A6AUXV5ZL5m31'}"
+      }
+    },
+    "timestamp": "2026-01-25T16:21:17.014460"
+  },
+  {
+    "id": "df-0027",
+    "nome": "Camila Gomes Pereira",
+    "perfil": {
+      "ra": "Águas Claras",
+      "idade": 67,
+      "genero": "feminino",
+      "renda": "mais_de_20",
+      "orientacao": "direita",
+      "posicao_bolsonaro": "apoiador_moderado",
+      "escolaridade": "medio_completo_ou_sup_incompleto",
+      "religiao": "evangelica",
+      "valores": [
+        "Fé e religião",
+        "Trabalho",
+        "Saúde"
+      ],
+      "preocupacoes": [
+        "Segurança pública",
+        "Corrupção",
+        "Saúde"
+      ],
+      "estilo_decisao": "moral"
+    },
+    "respostas": {
+      "modulo_1_fidelidade_arruda": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUe6QDufQiL2Dphc8Yoz'}"
+      },
+      "modulo_2_elasticidade_moral": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUe7DSo7DomtsR9J7Aes'}"
+      },
+      "modulo_3_outsider_fred": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUe83CB5yh8CvFs1xwnX'}"
+      },
+      "modulo_4_voto_silencioso": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUe8rMqSoEm5qR4zvRnK'}"
+      }
+    },
+    "timestamp": "2026-01-25T16:22:01.825404"
+  },
+  {
+    "id": "df-0300",
+    "nome": "Helena Pereira Teixeira",
+    "perfil": {
+      "ra": "Jardim Botânico",
+      "idade": 70,
+      "genero": "feminino",
+      "renda": "mais_de_5_ate_10",
+      "orientacao": "direita",
+      "posicao_bolsonaro": "critico_moderado",
+      "escolaridade": "superior_completo_ou_pos",
+      "religiao": "catolica",
+      "valores": [
+        "Família",
+        "Segurança",
+        "Fé e religião",
+        "Saúde"
+      ],
+      "preocupacoes": [
+        "Economia",
+        "Educação",
+        "Saúde"
+      ],
+      "estilo_decisao": "identitario"
+    },
+    "respostas": {
+      "modulo_1_fidelidade_arruda": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeAXBESrVc4GjEW9uWD'}"
+      },
+      "modulo_2_elasticidade_moral": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeBMGCgypMJ2cEBepqz'}"
+      },
+      "modulo_3_outsider_fred": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeCAf19U4gseMpCZfeu'}"
+      },
+      "modulo_4_voto_silencioso": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeCyhUWcQBQsyiLhGus'}"
+      }
+    },
+    "timestamp": "2026-01-25T16:22:57.730556"
+  },
+  {
+    "id": "df-0529",
+    "nome": "Leandro Batista Andrade",
+    "perfil": {
+      "ra": "Samambaia",
+      "idade": 31,
+      "genero": "masculino",
+      "renda": "mais_de_20",
+      "orientacao": "direita",
+      "posicao_bolsonaro": "neutro",
+      "escolaridade": "medio_completo_ou_sup_incompleto",
+      "religiao": "catolica",
+      "valores": [
+        "Família",
+        "Trabalho",
+        "Fé e religião"
+      ],
+      "preocupacoes": [
+        "Economia",
+        "Educação",
+        "Saúde"
+      ],
+      "estilo_decisao": "identitario"
+    },
+    "respostas": {
+      "modulo_1_fidelidade_arruda": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeDqRv3RMMCwoGU4Eze'}"
+      },
+      "modulo_2_elasticidade_moral": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeEeXrcn5WsHnv581po'}"
+      },
+      "modulo_3_outsider_fred": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeFTjkS4PhqFJqxmLgA'}"
+      },
+      "modulo_4_voto_silencioso": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeGGjyya5H1KJ4MMT6B'}"
+      }
+    },
+    "timestamp": "2026-01-25T16:23:42.592500"
+  },
+  {
+    "id": "df-0727",
+    "nome": "Lucia Costa Silva",
+    "perfil": {
+      "ra": "Plano Piloto",
+      "idade": 53,
+      "genero": "feminino",
+      "renda": "mais_de_1_ate_2",
+      "orientacao": "direita",
+      "posicao_bolsonaro": "neutro",
+      "escolaridade": "medio_completo_ou_sup_incompleto",
+      "religiao": "catolica",
+      "valores": [
+        "Fe e religiao",
+        "Seguranca",
+        "Trabalho"
+      ],
+      "preocupacoes": [
+        "Saude",
+        "Desemprego",
+        "Economia"
+      ],
+      "estilo_decisao": "identitario"
+    },
+    "respostas": {
+      "modulo_1_fidelidade_arruda": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeHvRfAXwG8hxhgayvD'}"
+      },
+      "modulo_2_elasticidade_moral": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeJjRttCg53H9grNaCQ'}"
+      },
+      "modulo_3_outsider_fred": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeKYVMtCuNqtBHeLpvt'}"
+      },
+      "modulo_4_voto_silencioso": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeLMyN3eyueHvM1hVtg'}"
+      }
+    },
+    "timestamp": "2026-01-25T16:24:38.066262"
+  },
+  {
+    "id": "df-0244",
+    "nome": "Thiago Freitas Carvalho",
+    "perfil": {
+      "ra": "Recanto das Emas",
+      "idade": 38,
+      "genero": "masculino",
+      "renda": "ate_1",
+      "orientacao": "direita",
+      "posicao_bolsonaro": "apoiador_forte",
+      "escolaridade": "superior_completo_ou_pos",
+      "religiao": "catolica",
+      "valores": [
+        "Família",
+        "Liberdade",
+        "Segurança",
+        "Ordem"
+      ],
+      "preocupacoes": [
+        "Desemprego",
+        "Corrupção",
+        "Saúde"
+      ],
+      "estilo_decisao": "moral"
+    },
+    "respostas": {
+      "modulo_1_fidelidade_arruda": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeMDi4DRuR7yGsuQzmM'}"
+      },
+      "modulo_2_elasticidade_moral": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeN2vhB2Dxi5SAvqvVV'}"
+      },
+      "modulo_3_outsider_fred": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeNrknoePRZRMbco7XB'}"
+      },
+      "modulo_4_voto_silencioso": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUePfmGcasDdvzJU4MHi'}"
+      }
+    },
+    "timestamp": "2026-01-25T16:25:22.762206"
   }
 ]
