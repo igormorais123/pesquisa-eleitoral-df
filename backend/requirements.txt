@@ -27,6 +27,7 @@ httpx>=0.26.0
 
 # Claude API
 anthropic>=0.70.0
+tiktoken>=0.5.0
 
 # Processamento de dados
 pandas>=2.2.0
