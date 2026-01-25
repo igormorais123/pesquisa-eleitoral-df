@@ -1,856 +1,1295 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stress Test Eleitoral — INTEIA | Celina Leao (DF 2026)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEIA | Stress Test Eleitoral - Celina Leao 2026</title>
+    <meta name="description" content="Relatorio de Stress Test Eleitoral - Analise de Resiliencia do Voto">
+    <meta name="author" content="Igor Morais Vasconcelos, PhD - INTEIA">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        /* ========================================
+           INTEIA Design System - Premium Report
+           Padrao Apple/Claude Clean & Elegant
+        ======================================== */
+
         :root {
-            --side-w: 72px;
-            --bg0: #f6f7fb;
-            --bg1: #ffffff;
-            --paper: rgba(255, 255, 255, 0.92);
-            --paper-strong: #ffffff;
-            --ink: #0b1020;
-            --muted: #4b5563;
-            --muted-2: #6b7280;
-            --line: rgba(12, 18, 38, 0.12);
-            --navy: #102a43;
-            --navy-dark: #0b1734;
-            --blue: #2b6cb0;
-            --indigo: #364fc7;
+            /* Cores Principais */
+            --navy: #0f172a;
+            --navy-light: #1e293b;
+            --navy-dark: #020617;
             --amber: #d69e2e;
+            --amber-light: #f6e05e;
             --amber-dark: #b7791f;
-            --green: #2f855a;
-            --red: #c53030;
-            --shadow: 0 18px 45px rgba(9, 14, 34, 0.12);
-            --shadow-soft: 0 10px 28px rgba(9, 14, 34, 0.1);
-            --radius: 16px;
+
+            /* Cores de Status */
+            --success: #22c55e;
+            --success-bg: rgba(34, 197, 94, 0.1);
+            --warning: #eab308;
+            --warning-bg: rgba(234, 179, 8, 0.1);
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.1);
+            --info: #3b82f6;
+            --info-bg: rgba(59, 130, 246, 0.1);
+
+            /* Neutros */
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+
+            /* Espacamentos */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+
+            /* Bordas */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+
+            /* Sombras */
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+            --shadow-amber: 0 4px 14px rgba(214, 158, 46, 0.25);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        html, body { height: 100%; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            padding-left: var(--side-w);
-            color: var(--ink);
-            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%);
+            color: var(--gray-100);
             line-height: 1.6;
-            background:
-                radial-gradient(1200px 700px at 15% -10%, rgba(214, 158, 46, 0.08), transparent 55%),
-                radial-gradient(900px 600px at 90% 0%, rgba(43, 108, 176, 0.12), transparent 55%),
-                linear-gradient(180deg, var(--bg0), var(--bg1));
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
 
-        a { color: inherit; text-decoration: none; }
-        a:hover { text-decoration: underline; text-underline-offset: 4px; }
+        /* ========================================
+           Side Mark - Branding Vertical
+        ======================================== */
 
-        /* Barra Lateral INTEIA */
         .side-mark {
             position: fixed;
             left: 0;
             top: 0;
             bottom: 0;
-            width: var(--side-w);
-            background: linear-gradient(180deg, #0a1226, #111a35);
-            border-right: 1px solid rgba(214, 158, 46, 0.15);
-            z-index: 50;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .side-mark .side-content {
+            width: 60px;
+            background: linear-gradient(180deg, var(--navy-dark) 0%, var(--navy) 100%);
+            border-right: 1px solid rgba(214, 158, 46, 0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
+            justify-content: center;
+            z-index: 100;
+            padding: var(--space-lg) 0;
         }
 
-        .side-mark .label {
-            letter-spacing: 0.45em;
+        .side-mark .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 12px;
+            color: var(--white);
+            box-shadow: var(--shadow-amber);
+            margin-bottom: var(--space-lg);
+        }
+
+        .side-mark .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
             color: var(--amber);
             text-transform: uppercase;
-            user-select: none;
-            text-shadow: 0 0 20px rgba(214, 158, 46, 0.4);
+        }
+
+        .side-mark .author-info {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            margin-top: auto;
+            text-align: center;
         }
 
         .side-mark .author-name {
             font-size: 9px;
-            letter-spacing: 0.08em;
-            color: rgba(255, 255, 255, 0.75);
-            font-weight: 600;
-            user-select: none;
+            font-weight: 500;
+            color: var(--gray-400);
+            display: block;
+            margin-bottom: 4px;
         }
 
         .side-mark .author-role {
             font-size: 8px;
-            letter-spacing: 0.05em;
-            color: rgba(255, 255, 255, 0.55);
-            font-weight: 500;
-            user-select: none;
+            color: var(--amber);
+            display: block;
         }
 
-        .container {
-            max-width: 1180px;
-            padding: 28px 22px 96px;
+        /* ========================================
+           Main Container
+        ======================================== */
+
+        .main-container {
+            margin-left: 60px;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            max-width: 1400px;
             margin: 0 auto;
+            padding: var(--space-xl);
         }
 
-        /* Hero Header */
-        header.hero {
+        /* ========================================
+           Hero Header
+        ======================================== */
+
+        .hero-header {
+            background: linear-gradient(135deg, rgba(214, 158, 46, 0.05) 0%, transparent 50%);
+            border: 1px solid rgba(214, 158, 46, 0.15);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
             position: relative;
             overflow: hidden;
-            border-radius: calc(var(--radius) + 4px);
-            padding: 34px 34px 28px;
-            color: #f8fafc;
-            background:
-                radial-gradient(900px 500px at 20% 10%, rgba(214, 158, 46, 0.18), transparent 55%),
-                radial-gradient(800px 460px at 90% 0%, rgba(54, 79, 199, 0.22), transparent 55%),
-                linear-gradient(135deg, #0b1734, #102a43 55%, #0b1734);
-            box-shadow: var(--shadow);
         }
 
-        header.hero::after {
-            content: "";
+        .hero-header::before {
+            content: '';
             position: absolute;
-            inset: -40px;
-            background:
-                radial-gradient(400px 220px at 18% 28%, rgba(255, 255, 255, 0.08), transparent 65%),
-                radial-gradient(520px 280px at 82% 18%, rgba(255, 255, 255, 0.07), transparent 68%);
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(214, 158, 46, 0.08) 0%, transparent 70%);
             pointer-events: none;
         }
 
         .hero-top {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 28px;
-            align-items: start;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-xl);
         }
 
-        .logo {
-            font-weight: 900;
-            letter-spacing: 0.2em;
-            font-size: 32px;
-            line-height: 1;
-        }
-
-        .logo .ia {
-            color: var(--amber);
-            text-shadow: 0 0 24px rgba(214, 158, 46, 0.45);
-        }
-
-        .author {
-            margin-top: 14px;
-            display: grid;
-            gap: 8px;
-        }
-
-        .author .name {
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            color: var(--amber);
-        }
-
-        .author .role {
-            font-size: 12px;
-            color: rgba(248, 250, 252, 0.8);
-        }
-
-        .author .meta {
-            color: rgba(248, 250, 252, 0.7);
-            font-size: 11px;
-            margin-top: 4px;
-        }
-
-        .hero-title {
-            text-align: right;
-        }
-
-        .hero-title h1 {
-            margin: 0;
-            font-size: 24px;
-            letter-spacing: 0.02em;
-            font-weight: 800;
-        }
-
-        .hero-title .sub {
-            margin-top: 6px;
-            color: rgba(248, 250, 252, 0.88);
-            font-size: 14px;
-        }
-
-        .hero-title .kicker {
-            margin-top: 14px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 10px;
-            font-size: 12px;
-            color: rgba(248, 250, 252, 0.86);
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 14px;
-            border-radius: 999px;
-            background: rgba(214, 158, 46, 0.16);
-            border: 1px solid rgba(214, 158, 46, 0.35);
-            color: rgba(248, 250, 252, 0.94);
-            font-weight: 700;
-            font-size: 13px;
-        }
-
-        .badge .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 99px;
-            background: var(--amber);
-            box-shadow: 0 0 18px rgba(214, 158, 46, 0.55);
-        }
-
-        /* Cards de KPI */
-        .grid-cards {
-            margin-top: 22px;
-            position: relative;
-            z-index: 1;
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 14px;
-        }
-
-        .card {
-            border-radius: var(--radius);
-            padding: 18px 16px 14px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-            text-align: center;
-            transition: transform 220ms ease, background 220ms ease;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.09);
-        }
-
-        .card .value {
-            font-size: 28px;
-            font-weight: 900;
-            letter-spacing: 0.01em;
-        }
-
-        .card .value.success { color: #48bb78; }
-        .card .value.danger { color: #fc8181; }
-        .card .value.warning { color: var(--amber); }
-
-        .card .label {
-            margin-top: 6px;
-            font-size: 11px;
-            color: rgba(248, 250, 252, 0.8);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Main Content */
-        main { margin-top: 22px; }
-
-        section {
-            margin-top: 18px;
-            background: var(--paper);
-            border: 1px solid rgba(12, 18, 38, 0.1);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-soft);
-            padding: 28px;
-            backdrop-filter: blur(10px);
-        }
-
-        section h2 {
-            margin: 0 0 18px;
+        .logo-section {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--navy);
-            letter-spacing: 0.01em;
+            gap: var(--space-md);
         }
 
-        section h2 .icon {
-            width: 28px;
-            height: 28px;
+        .logo-box {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: var(--radius-xl);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
-            border-radius: 8px;
-            font-size: 14px;
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--white);
+            box-shadow: var(--shadow-amber);
         }
 
-        /* Alertas */
-        .alert {
-            padding: 16px 20px;
-            border-radius: 12px;
-            margin-bottom: 14px;
+        .logo-text {
             display: flex;
-            align-items: flex-start;
-            gap: 14px;
+            flex-direction: column;
         }
 
-        .alert.critical {
-            background: linear-gradient(135deg, rgba(197, 48, 48, 0.08), rgba(197, 48, 48, 0.04));
-            border: 1px solid rgba(197, 48, 48, 0.25);
+        .logo-name {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--white);
         }
 
-        .alert.warning {
-            background: linear-gradient(135deg, rgba(214, 158, 46, 0.1), rgba(214, 158, 46, 0.05));
-            border: 1px solid rgba(214, 158, 46, 0.3);
+        .logo-name .highlight {
+            color: var(--amber);
         }
 
-        .alert .icon-alert {
-            font-size: 20px;
-            line-height: 1;
+        .logo-tagline {
+            font-size: 11px;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 2px;
         }
 
-        .alert h4 {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--navy);
+        .author-section {
+            text-align: right;
+        }
+
+        .author-label {
+            font-size: 10px;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
             margin-bottom: 4px;
         }
 
-        .alert.critical h4 { color: var(--red); }
-        .alert.warning h4 { color: var(--amber-dark); }
-
-        .alert p {
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.5;
+        .author-name-main {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
         }
 
-        /* Grid de Graficos */
-        .grid-2 {
+        .author-title {
+            font-size: 12px;
+            color: var(--gray-400);
+            margin-top: 2px;
+        }
+
+        .author-credential {
+            font-size: 11px;
+            color: var(--amber);
+            margin-top: 4px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: var(--space-2xl);
+            align-items: end;
+        }
+
+        .hero-title-section h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--space-sm);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title-section .subtitle {
+            font-size: 16px;
+            color: var(--gray-400);
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+
+        .meta-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--amber);
+        }
+
+        .classification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: rgba(214, 158, 46, 0.1);
+            border: 1px solid rgba(214, 158, 46, 0.3);
+            border-radius: var(--radius-lg);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--amber);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ========================================
+           KPI Cards
+        ======================================== */
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .kpi-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(214, 158, 46, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .kpi-value {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+        }
+
+        .kpi-value.success { color: var(--success); }
+        .kpi-value.danger { color: var(--danger); }
+        .kpi-value.warning { color: var(--warning); }
+        .kpi-value.info { color: var(--info); }
+
+        .kpi-label {
+            font-size: 12px;
+            color: var(--gray-400);
+            font-weight: 500;
+        }
+
+        /* ========================================
+           Section Headers
+        ======================================== */
+
+        .section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(214, 158, 46, 0.1);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--amber);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--gray-400);
+            margin-top: 2px;
+        }
+
+        /* ========================================
+           Alert Cards
+        ======================================== */
+
+        .alerts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+        }
+
+        .alert-card {
+            padding: var(--space-lg);
+            border-radius: var(--radius-xl);
+            border: 1px solid;
+        }
+
+        .alert-card.danger {
+            background: var(--danger-bg);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .alert-card.success {
+            background: var(--success-bg);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .alert-card.warning {
+            background: var(--warning-bg);
+            border-color: rgba(234, 179, 8, 0.3);
+        }
+
+        .alert-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+        }
+
+        .alert-header svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .alert-card.danger .alert-header { color: var(--danger); }
+        .alert-card.success .alert-header { color: var(--success); }
+        .alert-card.warning .alert-header { color: var(--warning); }
+
+        .alert-title {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .alert-text {
+            font-size: 14px;
+            color: var(--gray-200);
+        }
+
+        /* ========================================
+           Charts Container
+        ======================================== */
+
+        .charts-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
+            gap: var(--space-lg);
         }
 
-        .chart-box {
-            background: var(--paper-strong);
-            border: 1px solid var(--line);
-            border-radius: 12px;
-            padding: 20px;
+        .chart-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
         }
 
-        .chart-box h3 {
+        .chart-title {
             font-size: 14px;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 4px;
-        }
-
-        .chart-box .subtitle {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 16px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: var(--space-md);
         }
 
         .chart-container {
+            height: 280px;
             position: relative;
-            height: 240px;
         }
 
-        /* Mapa de Vulnerabilidades */
+        /* ========================================
+           Vulnerability Map
+        ======================================== */
+
         .vulnerability-map {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
         }
 
-        .vulnerability-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 12px 16px;
-            border-radius: 10px;
-            background: var(--paper-strong);
-            border: 1px solid var(--line);
-            transition: transform 180ms ease;
+        .vuln-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
         }
 
-        .vulnerability-item:hover { transform: translateX(4px); }
-
-        .vulnerability-item .level {
-            min-width: 80px;
+        .vuln-column {
             text-align: center;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 10px;
+        }
+
+        .vuln-level {
+            font-size: 11px;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-md);
         }
 
-        .vulnerability-item.critical .level { background: var(--red); color: white; }
-        .vulnerability-item.high .level { background: var(--amber); color: var(--navy); }
-        .vulnerability-item.medium .level { background: var(--blue); color: white; }
-        .vulnerability-item.low .level { background: var(--green); color: white; }
-
-        .vulnerability-item .desc {
-            font-size: 13px;
-            color: var(--ink);
+        .vuln-level.critical {
+            background: var(--danger-bg);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.3);
         }
 
-        /* Recomendacoes */
+        .vuln-level.high {
+            background: rgba(249, 115, 22, 0.1);
+            color: #f97316;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+
+        .vuln-level.moderate {
+            background: var(--warning-bg);
+            color: var(--warning);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+        }
+
+        .vuln-level.low {
+            background: var(--success-bg);
+            color: var(--success);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .vuln-items {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .vuln-item {
+            font-size: 12px;
+            color: var(--gray-300);
+            padding: var(--space-sm);
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius-sm);
+        }
+
+        /* ========================================
+           Recommendations
+        ======================================== */
+
         .recommendations-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
+            gap: var(--space-lg);
         }
 
-        .rec-group h3 {
-            font-size: 13px;
-            font-weight: 700;
+        .recommendation-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recommendation-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+        }
+
+        .recommendation-card.urgent::before { background: var(--danger); }
+        .recommendation-card.important::before { background: var(--warning); }
+        .recommendation-card.monitor::before { background: var(--info); }
+
+        .rec-priority {
+            display: inline-flex;
+            font-size: 10px;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--space-sm);
         }
 
-        .rec-group.critical h3 { color: var(--red); }
-        .rec-group.high h3 { color: var(--amber-dark); }
+        .recommendation-card.urgent .rec-priority {
+            background: var(--danger-bg);
+            color: var(--danger);
+        }
 
-        .rec-item {
-            padding: 12px 16px;
-            border-left: 4px solid var(--line);
-            background: var(--paper-strong);
-            margin-bottom: 10px;
-            border-radius: 0 8px 8px 0;
+        .recommendation-card.important .rec-priority {
+            background: var(--warning-bg);
+            color: var(--warning);
+        }
+
+        .recommendation-card.monitor .rec-priority {
+            background: var(--info-bg);
+            color: var(--info);
+        }
+
+        .rec-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: var(--space-sm);
+        }
+
+        .rec-description {
             font-size: 13px;
-            color: var(--ink);
+            color: var(--gray-400);
         }
 
-        .rec-group.critical .rec-item { border-left-color: var(--red); }
-        .rec-group.high .rec-item { border-left-color: var(--amber); }
+        /* ========================================
+           Quote Cards
+        ======================================== */
 
-        /* Citacoes */
         .quotes-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
         }
 
-        .quote {
-            padding: 16px 20px;
-            background: linear-gradient(135deg, rgba(16, 42, 67, 0.04), rgba(16, 42, 67, 0.02));
-            border-left: 3px solid var(--amber);
-            border-radius: 0 10px 10px 0;
+        .quote-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            position: relative;
+        }
+
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: var(--space-md);
+            left: var(--space-lg);
+            font-size: 48px;
+            font-weight: 800;
+            color: rgba(214, 158, 46, 0.2);
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-size: 14px;
+            color: var(--gray-200);
             font-style: italic;
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.6;
+            margin-bottom: var(--space-md);
+            padding-top: var(--space-lg);
         }
 
-        .quote .author {
-            display: block;
-            margin-top: 10px;
-            font-style: normal;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--amber-dark);
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 40px;
-            padding: 32px;
-            background: linear-gradient(135deg, var(--navy-dark), var(--navy));
-            border-radius: var(--radius);
-            color: rgba(248, 250, 252, 0.9);
-            text-align: center;
-        }
-
-        footer .logo-footer {
-            font-weight: 900;
-            font-size: 28px;
-            letter-spacing: 0.2em;
-            margin-bottom: 8px;
-        }
-
-        footer .logo-footer .ia { color: var(--amber); }
-
-        footer .company-name {
-            font-size: 12px;
-            color: rgba(248, 250, 252, 0.7);
-            margin-bottom: 16px;
-        }
-
-        footer .company-info {
-            font-size: 10px;
-            color: rgba(248, 250, 252, 0.5);
-            line-height: 1.8;
-        }
-
-        footer .classification {
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--amber);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        /* Botao de Impressao */
-        .print-btn {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            padding: 14px 24px;
-            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
-            color: var(--navy-dark);
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 13px;
-            cursor: pointer;
-            box-shadow: 0 8px 24px rgba(214, 158, 46, 0.35);
-            transition: transform 180ms ease, box-shadow 180ms ease;
+        .quote-author {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: var(--space-sm);
+            font-size: 12px;
+            color: var(--gray-400);
+        }
+
+        .quote-avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 11px;
+            color: var(--white);
+        }
+
+        .quote-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quote-name {
+            font-weight: 500;
+            color: var(--gray-200);
+        }
+
+        .quote-location {
+            font-size: 11px;
+        }
+
+        /* ========================================
+           Footer
+        ======================================== */
+
+        .footer {
+            margin-top: var(--space-3xl);
+            padding: var(--space-xl);
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(214, 158, 46, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .footer-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            color: var(--white);
+        }
+
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .footer-company {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .footer-company .highlight {
+            color: var(--amber);
+        }
+
+        .footer-details {
+            font-size: 11px;
+            color: var(--gray-500);
+        }
+
+        .footer-classification {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .footer-classification .badge {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 12px;
+            background: rgba(214, 158, 46, 0.1);
+            border: 1px solid rgba(214, 158, 46, 0.3);
+            border-radius: var(--radius-sm);
+            color: var(--amber);
+        }
+
+        .footer-copyright {
+            font-size: 10px;
+            color: var(--gray-600);
+        }
+
+        /* ========================================
+           Print Button
+        ======================================== */
+
+        .print-btn {
+            position: fixed;
+            bottom: var(--space-xl);
+            right: var(--space-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 12px 20px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+            cursor: pointer;
+            box-shadow: var(--shadow-amber);
+            transition: all 0.3s ease;
             z-index: 100;
         }
 
         .print-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(214, 158, 46, 0.45);
+            box-shadow: 0 6px 20px rgba(214, 158, 46, 0.4);
         }
 
-        /* Print Styles - A4 */
+        .print-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ========================================
+           Print Styles - A4
+        ======================================== */
+
         @media print {
             @page {
                 size: A4;
-                margin: 20mm 15mm;
+                margin: 15mm;
             }
 
             body {
-                padding-left: 0;
                 background: white;
-                font-size: 11pt;
-            }
-
-            .side-mark, .print-btn { display: none !important; }
-
-            .container {
-                max-width: 100%;
-                padding: 0;
-            }
-
-            header.hero {
-                background: var(--navy) !important;
+                color: #1a1a1a;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
 
-            section {
+            .side-mark,
+            .print-btn {
+                display: none !important;
+            }
+
+            .main-container {
+                margin-left: 0;
+            }
+
+            .hero-header {
+                background: #f8f9fa;
+                border-color: #e0e0e0;
+            }
+
+            .kpi-card,
+            .chart-card,
+            .quote-card,
+            .recommendation-card,
+            .vulnerability-map,
+            .alert-card {
                 break-inside: avoid;
                 page-break-inside: avoid;
-                box-shadow: none;
-                border: 1px solid #ddd;
             }
 
-            .grid-cards, .grid-2, .quotes-grid, .recommendations-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .chart-container { height: 180px; }
-
-            footer {
-                background: var(--navy) !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+            .section {
+                break-inside: avoid;
             }
         }
 
-        /* Mobile */
+        /* ========================================
+           Responsive
+        ======================================== */
+
+        @media (max-width: 1200px) {
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .charts-grid { grid-template-columns: 1fr; }
+            .vuln-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 768px) {
-            body { padding-left: 0; }
             .side-mark { display: none; }
-            .container { padding: 16px; }
-            .hero-top { grid-template-columns: 1fr; }
-            .hero-title { text-align: left; margin-top: 20px; }
-            .grid-cards, .grid-2, .quotes-grid, .recommendations-grid { grid-template-columns: 1fr; }
+            .main-container { margin-left: 0; }
+            .content-wrapper { padding: var(--space-md); }
+            .hero-top { flex-direction: column; gap: var(--space-lg); }
+            .author-section { text-align: left; }
+            .hero-content { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: 1fr; }
+            .alerts-grid { grid-template-columns: 1fr; }
+            .quotes-grid { grid-template-columns: 1fr; }
+            .recommendations-grid { grid-template-columns: 1fr; }
+            .vuln-grid { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; gap: var(--space-lg); text-align: center; }
+            .footer-classification { align-items: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Barra Lateral INTEIA -->
-    <div class="side-mark">
-        <div class="side-content">
-            <span class="label">INTEIA</span>
+    <!-- Side Mark - Branding Vertical -->
+    <aside class="side-mark">
+        <div class="logo-icon">IA</div>
+        <span class="vertical-text">INTEIA</span>
+        <div class="author-info">
             <span class="author-name">Igor Morais Vasconcelos</span>
             <span class="author-role">PhD | Presidente</span>
         </div>
-    </div>
+    </aside>
 
-    <div class="container">
-        <!-- Hero Header -->
-        <header class="hero">
-            <div class="hero-top">
-                <div>
-                    <div class="logo">INTE<span class="ia">IA</span></div>
-                    <div class="author">
-                        <span class="name">Igor Morais Vasconcelos, PhD</span>
-                        <span class="role">Pesquisador Responsavel | Presidente INTEIA</span>
-                        <span class="meta">Responsavel Tecnico do Projeto | OAB 35.376</span>
+    <!-- Main Container -->
+    <div class="main-container">
+        <div class="content-wrapper">
+
+            <!-- Hero Header -->
+            <header class="hero-header">
+                <div class="hero-top">
+                    <div class="logo-section">
+                        <div class="logo-box">IA</div>
+                        <div class="logo-text">
+                            <span class="logo-name">INTE<span class="highlight">IA</span></span>
+                            <span class="logo-tagline">Instituto de Inteligencia Artificial</span>
+                        </div>
+                    </div>
+                    <div class="author-section">
+                        <div class="author-label">Pesquisador Responsavel</div>
+                        <div class="author-name-main">Igor Morais Vasconcelos, PhD</div>
+                        <div class="author-title">Presidente INTEIA</div>
+                        <div class="author-credential">Responsavel Tecnico | OAB 35.376</div>
                     </div>
                 </div>
-                <div class="hero-title">
-                    <h1>STRESS TEST ELEITORAL</h1>
-                    <p class="sub">Celina Leao — Governador DF 2026</p>
-                    <div class="kicker">
-                        <span class="badge">
-                            <span class="dot"></span>
-                            490 Eleitores Sinteticos
-                        </span>
+                <div class="hero-content">
+                    <div class="hero-title-section">
+                        <h1>Stress Test Eleitoral - Celina Leao 2026</h1>
+                        <p class="subtitle">Analise de Resiliencia do Voto sob Cenarios de Pressao Politica</p>
+                        <div class="hero-meta">
+                            <div class="meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span>25 de Janeiro de 2026</span>
+                            </div>
+                            <div class="meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                                <span>490 Eleitores Sinteticos</span>
+                            </div>
+                            <div class="meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
+                                <span>4 Modulos de Stress</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="classification-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        Confidencial
                     </div>
                 </div>
-            </div>
+            </header>
 
-            <div class="grid-cards">
-                <div class="card">
-                    <div class="value success">82,6%</div>
-                    <div class="label">Resistem sem Arruda</div>
+            <!-- KPI Cards -->
+            <section class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-value success">82,6%</div>
+                    <div class="kpi-label">Resistem sem Arruda</div>
                 </div>
-                <div class="card">
-                    <div class="value danger">67,2%</div>
-                    <div class="label">Abandonam se Corrupcao</div>
+                <div class="kpi-card">
+                    <div class="kpi-value danger">67,2%</div>
+                    <div class="kpi-label">Abandonam se Corrupcao</div>
                 </div>
-                <div class="card">
-                    <div class="value warning">41%</div>
-                    <div class="label">Preferem Linha Dura</div>
+                <div class="kpi-card">
+                    <div class="kpi-value warning">41,0%</div>
+                    <div class="kpi-label">Preferem Linha Dura</div>
                 </div>
-                <div class="card">
-                    <div class="value danger">56,9%</div>
-                    <div class="label">Consideram Centro</div>
+                <div class="kpi-card">
+                    <div class="kpi-value danger">56,9%</div>
+                    <div class="kpi-label">Consideram Centro</div>
                 </div>
-            </div>
-        </header>
+            </section>
 
-        <main>
-            <!-- Alertas -->
-            <section>
-                <h2><span class="icon">⚡</span> Alertas Estrategicos</h2>
-
-                <div class="alert critical">
-                    <span class="icon-alert">🚨</span>
+            <!-- Alerts Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </div>
                     <div>
-                        <h4>ALERTA VERMELHO: Ameaca de Centro</h4>
-                        <p>56,9% dos eleitores consideram migrar para candidato de centro (ex: Reguffe). Esta e a maior vulnerabilidade detectada — superior a ameaca do PT.</p>
+                        <h2 class="section-title">Sintese Executiva</h2>
+                        <p class="section-subtitle">Principais descobertas do stress test</p>
                     </div>
                 </div>
-
-                <div class="alert warning">
-                    <span class="icon-alert">⚠️</span>
-                    <div>
-                        <h4>Voto Defensivo Predominante</h4>
-                        <p>70% votam CONTRA o adversario, nao A FAVOR de Celina. O entusiasmo genuino e de apenas 30%. Base fragil e vulneravel a alternativas.</p>
+                <div class="alerts-grid">
+                    <div class="alert-card danger">
+                        <div class="alert-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                            <span class="alert-title">Maior Ameaca</span>
+                        </div>
+                        <p class="alert-text">Candidato de centro (Reguffe) - 57% migrariam. Esta e a maior vulnerabilidade.</p>
+                    </div>
+                    <div class="alert-card success">
+                        <div class="alert-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                            <span class="alert-title">Forca Principal</span>
+                        </div>
+                        <p class="alert-text">Independencia de Arruda - 83% resistem mesmo se padrinho romper.</p>
+                    </div>
+                    <div class="alert-card warning">
+                        <div class="alert-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+                            <span class="alert-title">Alerta Vermelho</span>
+                        </div>
+                        <p class="alert-text">Voto defensivo - 70% votam CONTRA adversario, nao A FAVOR de Celina.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Graficos -->
-            <section>
-                <h2><span class="icon">📊</span> Resultados por Modulo</h2>
-
-                <div class="grid-2">
-                    <div class="chart-box">
-                        <h3>Modulo 1: Fidelidade Arruda</h3>
-                        <p class="subtitle">Se Arruda rompesse com Celina...</p>
+            <!-- Charts Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Resultados por Modulo</h2>
+                        <p class="section-subtitle">Analise detalhada de cada cenario de stress</p>
+                    </div>
+                </div>
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3 class="chart-title">Modulo 1: Fidelidade ao Padrinho (Arruda)</h3>
                         <div class="chart-container">
-                            <canvas id="chart-arruda"></canvas>
+                            <canvas id="chart1"></canvas>
                         </div>
                     </div>
-
-                    <div class="chart-box">
-                        <h3>Modulo 2: Elasticidade Moral</h3>
-                        <p class="subtitle">Obra com R$ 50 milhoes desviados</p>
+                    <div class="chart-card">
+                        <h3 class="chart-title">Modulo 2: Elasticidade Moral (Corrupcao)</h3>
                         <div class="chart-container">
-                            <canvas id="chart-corrupcao"></canvas>
+                            <canvas id="chart2"></canvas>
                         </div>
                     </div>
-
-                    <div class="chart-box">
-                        <h3>Modulo 3: Outsider Populista</h3>
-                        <p class="subtitle">Candidato "linha dura" vs Celina tecnica</p>
+                    <div class="chart-card">
+                        <h3 class="chart-title">Modulo 3: Ameaca do Outsider</h3>
                         <div class="chart-container">
-                            <canvas id="chart-seguranca"></canvas>
+                            <canvas id="chart3"></canvas>
                         </div>
                     </div>
-
-                    <div class="chart-box">
-                        <h3>Modulo 4: Motivacao do Voto</h3>
-                        <p class="subtitle">Apoio genuino vs voto contra adversario</p>
+                    <div class="chart-card">
+                        <h3 class="chart-title">Modulo 4: Motivacao do Voto</h3>
                         <div class="chart-container">
-                            <canvas id="chart-motivacao"></canvas>
+                            <canvas id="chart4"></canvas>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Mapa de Vulnerabilidades -->
-            <section>
-                <h2><span class="icon">🎯</span> Mapa de Vulnerabilidades</h2>
-
+            <!-- Vulnerability Map -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Mapa de Vulnerabilidades</h2>
+                        <p class="section-subtitle">Classificacao por nivel de risco</p>
+                    </div>
+                </div>
                 <div class="vulnerability-map">
-                    <div class="vulnerability-item critical">
-                        <span class="level">Critico</span>
-                        <span class="desc">Candidato de centro (Reguffe) — 57% migrariam</span>
-                    </div>
-                    <div class="vulnerability-item critical">
-                        <span class="level">Critico</span>
-                        <span class="desc">Escandalo de corrupcao — 67% abandonam imediatamente</span>
-                    </div>
-                    <div class="vulnerability-item high">
-                        <span class="level">Alto</span>
-                        <span class="desc">Outsider populista em seguranca — 41% preferem</span>
-                    </div>
-                    <div class="vulnerability-item high">
-                        <span class="level">Alto</span>
-                        <span class="desc">Voto nao-entusiasta — 70% votam "contra" adversario</span>
-                    </div>
-                    <div class="vulnerability-item medium">
-                        <span class="level">Medio</span>
-                        <span class="desc">Associacao com Ibaneis — citada negativamente</span>
-                    </div>
-                    <div class="vulnerability-item low">
-                        <span class="level">Baixo</span>
-                        <span class="desc">Rompimento com Arruda — 83% resistem e mantem voto</span>
-                    </div>
-                    <div class="vulnerability-item low">
-                        <span class="level">Baixo</span>
-                        <span class="desc">Candidato do PT — barreira consolidada</span>
+                    <div class="vuln-grid">
+                        <div class="vuln-column">
+                            <div class="vuln-level critical">Critico</div>
+                            <div class="vuln-items">
+                                <div class="vuln-item">Candidato de centro (Reguffe)</div>
+                                <div class="vuln-item">Escandalo de corrupcao</div>
+                            </div>
+                        </div>
+                        <div class="vuln-column">
+                            <div class="vuln-level high">Alto</div>
+                            <div class="vuln-items">
+                                <div class="vuln-item">Outsider populista (seguranca)</div>
+                                <div class="vuln-item">Voto nao-entusiasta</div>
+                            </div>
+                        </div>
+                        <div class="vuln-column">
+                            <div class="vuln-level moderate">Moderado</div>
+                            <div class="vuln-items">
+                                <div class="vuln-item">Associacao com Ibaneis</div>
+                                <div class="vuln-item">Percepcao de "mais do mesmo"</div>
+                            </div>
+                        </div>
+                        <div class="vuln-column">
+                            <div class="vuln-level low">Baixo</div>
+                            <div class="vuln-items">
+                                <div class="vuln-item">Rompimento com Arruda</div>
+                                <div class="vuln-item">Candidato do PT</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Recomendacoes -->
-            <section>
-                <h2><span class="icon">💡</span> Recomendacoes Estrategicas</h2>
-
+            <!-- Recommendations -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Recomendacoes Estrategicas</h2>
+                        <p class="section-subtitle">Acoes priorizadas por urgencia</p>
+                    </div>
+                </div>
                 <div class="recommendations-grid">
-                    <div class="rec-group critical">
-                        <h3>🔴 Prioridade Critica</h3>
-                        <div class="rec-item">Neutralizar candidaturas de centro ANTES que surjam</div>
-                        <div class="rec-item">Monitorar movimentacoes de Reguffe e similares</div>
-                        <div class="rec-item">Blindagem total anticorrupcao — zero tolerancia</div>
+                    <div class="recommendation-card urgent">
+                        <span class="rec-priority">Urgente</span>
+                        <h3 class="rec-title">Neutralizar Candidaturas de Centro</h3>
+                        <p class="rec-description">Monitorar movimentacoes de Reguffe e potenciais candidatos de centro. Agir ANTES que surjam oficialmente.</p>
                     </div>
-                    <div class="rec-group high">
-                        <h3>🟠 Prioridade Alta</h3>
-                        <div class="rec-item">Reposicionar discurso de seguranca com componente EMOCIONAL</div>
-                        <div class="rec-item">Mostrar resultados concretos (numeros, casos resolvidos)</div>
-                        <div class="rec-item">Presenca fisica em comunidades violentas</div>
-                        <div class="rec-item">Construir adesao genuina, nao so anti-PT</div>
+                    <div class="recommendation-card urgent">
+                        <span class="rec-priority">Urgente</span>
+                        <h3 class="rec-title">Blindagem Anticorrupcao Total</h3>
+                        <p class="rec-description">Zero tolerancia a irregularidades. 67% abandonam imediatamente se surgir escandalo.</p>
+                    </div>
+                    <div class="recommendation-card important">
+                        <span class="rec-priority">Importante</span>
+                        <h3 class="rec-title">Construir Adesao Genuina</h3>
+                        <p class="rec-description">70% votam por rejeicao ao adversario. Criar conexao emocional positiva alem do anti-PT.</p>
+                    </div>
+                    <div class="recommendation-card important">
+                        <span class="rec-priority">Importante</span>
+                        <h3 class="rec-title">Ajustar Discurso de Seguranca</h3>
+                        <p class="rec-description">Endurecer com componente emocional. 41% preferem candidato "linha dura" sobre abordagem tecnica.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Citacoes -->
-            <section>
-                <h2><span class="icon">💬</span> Vozes do Eleitorado</h2>
-
+            <!-- Quotes Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Citacoes Representativas</h2>
+                        <p class="section-subtitle">Vozes dos eleitores sinteticos</p>
+                    </div>
+                </div>
                 <div class="quotes-grid">
-                    <div class="quote">
-                        "A Celina nao me empolga muito nao, mas ela nao e petista e nao vai fazer loucura."
-                        <span class="author">— Leandro, 25 anos, Plano Piloto</span>
+                    <div class="quote-card">
+                        <p class="quote-text">A Celina nao me empolga, mas pelo menos nao e petista. Voto mais contra o adversario do que a favor dela.</p>
+                        <div class="quote-author">
+                            <div class="quote-avatar">EA</div>
+                            <div class="quote-meta">
+                                <span class="quote-name">Eleitor Anonimo</span>
+                                <span class="quote-location">Plano Piloto | G1</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="quote">
-                        "Se for alguem como o Reguffe, que tem experiencia e nao tem rabo preso, eu posso pensar sim."
-                        <span class="author">— Amanda, 69 anos, Taguatinga</span>
+                    <div class="quote-card">
+                        <p class="quote-text">50 milhoes desviados e coisa seria demais. Como catolico e pai de familia, nao posso compactuar com isso.</p>
+                        <div class="quote-author">
+                            <div class="quote-avatar">JM</div>
+                            <div class="quote-meta">
+                                <span class="quote-name">Jose Martins Pinto</span>
+                                <span class="quote-location">Sudoeste | G1</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="quote">
-                        "E mais por rejeitar o adversario mesmo. Meu voto e mais anti-PT do que pro-Celina."
-                        <span class="author">— Pedro, 70 anos, Gama</span>
-                    </div>
-                    <div class="quote">
-                        "R$ 50 milhoes desviados? Nao da pra passar pano nao. Por mais que a obra tenha me ajudado."
-                        <span class="author">— Jose, 46 anos, Sudoeste</span>
+                    <div class="quote-card">
+                        <p class="quote-text">Se for um cara tecnico mesmo, tipo Reguffe, ai ja muda a conversa. Valorizo competencia acima de ideologia.</p>
+                        <div class="quote-author">
+                            <div class="quote-avatar">EN</div>
+                            <div class="quote-meta">
+                                <span class="quote-name">Engenheiro Anonimo</span>
+                                <span class="quote-location">Lago Sul | G1</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-        </main>
 
-        <!-- Footer -->
-        <footer>
-            <div class="logo-footer">INTE<span class="ia">IA</span></div>
-            <p class="company-name">Instituto de Treinamento e Estudos em Inteligencia Artificial</p>
-            <p class="company-info">
-                INTEIA LTDA | CNPJ: 63.918.490/0001-20<br>
-                SHN Quadra 2, Bloco F, Sala 625/626 — Asa Norte, Brasilia/DF<br>
-                Powered by POLARIS SDK | Eleitores Sinteticos com IA
-            </p>
-            <p class="classification">Confidencial — Uso Interno Campanha</p>
-        </footer>
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="footer-logo">IA</div>
+                        <div class="footer-info">
+                            <span class="footer-company">INTE<span class="highlight">IA</span> - Instituto de Inteligencia Artificial</span>
+                            <span class="footer-details">CNPJ: 63.918.490/0001-20 | SHN Quadra 2 Bloco F, Sala 625/626 - Brasilia/DF</span>
+                        </div>
+                    </div>
+                    <div class="footer-classification">
+                        <span class="badge">Confidencial</span>
+                        <span class="footer-copyright">© 2026 INTEIA. Todos os direitos reservados.</span>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
     </div>
 
-    <!-- Botao de Impressao -->
+    <!-- Print Button -->
     <button class="print-btn" onclick="window.print()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
-            <rect x="6" y="14" width="12" height="8"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
         </svg>
         Imprimir A4
     </button>
 
+    <!-- Charts Script -->
     <script>
-        // Configuracao dos graficos
-        Chart.defaults.font.family = 'ui-sans-serif, system-ui, sans-serif';
-        Chart.defaults.color = '#4b5563';
+        // Chart.js Global Config
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.08)';
+        Chart.defaults.font.family = 'Inter, sans-serif';
 
-        // Modulo 1: Arruda
-        new Chart(document.getElementById('chart-arruda'), {
+        // Chart 1: Fidelidade Arruda
+        new Chart(document.getElementById('chart1'), {
             type: 'doughnut',
             data: {
                 labels: ['Ficam com Celina', 'Seguem Arruda'],
                 datasets: [{
                     data: [82.6, 17.4],
-                    backgroundColor: ['#2f855a', '#c53030'],
-                    borderWidth: 0
+                    backgroundColor: ['#22c55e', '#ef4444'],
+                    borderWidth: 0,
+                    spacing: 2
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                cutout: '65%',
                 plugins: {
-                    legend: { position: 'bottom', labels: { padding: 16 } }
+                    legend: { position: 'bottom' }
                 }
             }
         });
 
-        // Modulo 2: Corrupcao
-        new Chart(document.getElementById('chart-corrupcao'), {
+        // Chart 2: Elasticidade Moral
+        new Chart(document.getElementById('chart2'), {
             type: 'bar',
             data: {
-                labels: ['Inaceitavel', 'Depende', 'Mantem'],
+                labels: ['Corrupcao Inaceitavel', 'Depende Contexto', 'Mantem Voto'],
                 datasets: [{
                     data: [67.2, 20.9, 11.9],
-                    backgroundColor: ['#c53030', '#d69e2e', '#2f855a'],
-                    borderRadius: 6
+                    backgroundColor: ['#ef4444', '#eab308', '#22c55e'],
+                    borderRadius: 8,
+                    barThickness: 40
                 }]
             },
             options: {
@@ -859,20 +1298,20 @@
                 indexAxis: 'y',
                 plugins: { legend: { display: false } },
                 scales: {
-                    x: { max: 100, grid: { color: 'rgba(0,0,0,0.05)' } },
+                    x: { grid: { display: false }, max: 100 },
                     y: { grid: { display: false } }
                 }
             }
         });
 
-        // Modulo 3: Seguranca
-        new Chart(document.getElementById('chart-seguranca'), {
-            type: 'doughnut',
+        // Chart 3: Outsider
+        new Chart(document.getElementById('chart3'), {
+            type: 'pie',
             data: {
-                labels: ['Linha Dura', 'Celina', 'Divididos'],
+                labels: ['Preferem Outsider', 'Preferem Celina', 'Divididos'],
                 datasets: [{
-                    data: [41, 35.5, 23.5],
-                    backgroundColor: ['#c53030', '#2b6cb0', '#6b7280'],
+                    data: [41.0, 35.5, 23.5],
+                    backgroundColor: ['#f97316', '#22c55e', '#94a3b8'],
                     borderWidth: 0
                 }]
             },
@@ -880,29 +1319,29 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { position: 'bottom', labels: { padding: 16 } }
+                    legend: { position: 'bottom' }
                 }
             }
         });
 
-        // Modulo 4: Motivacao
-        new Chart(document.getElementById('chart-motivacao'), {
-            type: 'bar',
+        // Chart 4: Motivacao do Voto
+        new Chart(document.getElementById('chart4'), {
+            type: 'doughnut',
             data: {
-                labels: ['Contra adversario', 'A favor de Celina'],
+                labels: ['Rejeitar Adversario', 'Apoiar Celina'],
                 datasets: [{
                     data: [70, 30],
-                    backgroundColor: ['#d69e2e', '#2f855a'],
-                    borderRadius: 6
+                    backgroundColor: ['#ef4444', '#22c55e'],
+                    borderWidth: 0,
+                    spacing: 2
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: {
-                    y: { max: 100, grid: { color: 'rgba(0,0,0,0.05)' } },
-                    x: { grid: { display: false } }
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'bottom' }
                 }
             }
         });
