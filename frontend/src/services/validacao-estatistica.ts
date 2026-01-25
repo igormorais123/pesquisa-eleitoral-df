@@ -64,44 +64,6 @@ export interface ValidacaoCompleta {
 // FUNÇÕES AUXILIARES
 // ============================================
 
-const normalizacaoCategorias: Record<string, Record<string, string>> = {
-  escolaridade: {
-    'superior_ou_pos': 'superior_completo_ou_pos',
-  },
-  religiao: {
-    'outras': 'outras_religioes',
-  },
-  estado_civil: {
-    'separado(a)': 'divorciado(a)',
-  },
-  posicao_bolsonaro: {
-    'opositor_forte': 'critico_forte',
-    'opositor_moderado': 'critico_moderado',
-  },
-  estilo_decisao: {
-    'ideologico': 'identitario',
-    'emocional_intuitivo': 'emocional',
-    'racional_analitico': 'economico',
-    'influenciavel': 'emocional',
-    'racional': 'pragmatico',
-  },
-};
-
-function normalizarCategoria(campo: string, valor: unknown): string {
-  if (valor === null || valor === undefined || valor === '') {
-    return 'nao_informado';
-  }
-
-  const texto = String(valor).trim();
-  const mapa = normalizacaoCategorias[campo];
-  if (!mapa) {
-    return texto;
-  }
-
-  const textoNormalizado = texto.toLowerCase();
-  return mapa[textoNormalizado] || texto;
-}
-
 /**
  * Calcula a distribuição percentual de uma variável categórica
  */
@@ -113,7 +75,7 @@ function calcularDistribuicao(
   const contagem: Record<string, number> = {};
 
   eleitores.forEach((e) => {
-    const valor = normalizarCategoria(String(campo), e[campo]);
+    const valor = String(e[campo] || 'nao_informado');
     contagem[valor] = (contagem[valor] || 0) + 1;
   });
 
@@ -316,32 +278,11 @@ function calcularDistribuicaoFilhos(
 function calcularDistribuicaoTempoDeslocamento(
   eleitores: Eleitor[]
 ): Record<string, { contagem: number; percentual: number }> {
-  const ocupacoesAtivas = new Set([
-    'clt',
-    'servidor_publico',
-    'autonomo',
-    'empresario',
-    'informal',
-  ]);
-
-  const mapeamento: Record<string, string> = {
-    'mais_60': '60_75',
-    '60+': '60_75',
-    '30min_1h': '45_60',
-    'menos_30min': '15_30',
-  };
-
-  const eleitoresAtivos = eleitores.filter((e) => {
-    const ocupacao = String((e as unknown as Record<string, unknown>).ocupacao_vinculo || '');
-    return ocupacoesAtivas.has(ocupacao);
-  });
-
-  const total = eleitoresAtivos.length || 1;
+  const total = eleitores.length;
   const contagem: Record<string, number> = {};
 
-  eleitoresAtivos.forEach((e) => {
-    let valor = String((e as unknown as Record<string, unknown>).tempo_deslocamento_trabalho || 'nao_se_aplica');
-    valor = mapeamento[valor] || valor;
+  eleitores.forEach((e) => {
+    const valor = String((e as unknown as Record<string, unknown>).tempo_deslocamento_trabalho || 'nao_se_aplica');
     contagem[valor] = (contagem[valor] || 0) + 1;
   });
 

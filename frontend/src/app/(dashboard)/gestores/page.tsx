@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useCallback, Suspense, useRef } from 'react';
-import { motion } from 'framer-motion';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import Link from 'next/link';
 import {
@@ -16,8 +15,8 @@ import {
   FileDown,
   ChevronDown,
   Activity,
+  Home,
   Building2,
-  X,
 } from 'lucide-react';
 import { useGestores } from '@/hooks/useGestores';
 import { GestorCard } from '@/components/gestores/GestorCard';
@@ -28,20 +27,6 @@ import { GestoresMiniDashboard } from '@/components/gestores/GestoresMiniDashboa
 import { cn, formatarNumero } from '@/lib/utils';
 
 type VisualizacaoTipo = 'cards' | 'lista' | 'graficos' | 'insights';
-
-// Animações suaves estilo Apple
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
-  }
-};
-
-const stagger = {
-  animate: { transition: { staggerChildren: 0.08 } }
-};
 
 function GestoresContent() {
   const {
@@ -68,10 +53,11 @@ function GestoresContent() {
   const [visualizacao, setVisualizacao] = useState<VisualizacaoTipo>('cards');
   const [painelFiltros, setPainelFiltros] = useState(true);
   const [mostrarMiniDashboard, setMostrarMiniDashboard] = useState(true);
-  const [exportMenuAberto, setExportMenuAberto] = useState(false);
 
+  // Referência para virtualização
   const parentRef = useRef<HTMLDivElement>(null);
 
+  // Virtualização para cards
   const rowVirtualizer = useVirtualizer({
     count: Math.ceil(gestoresFiltrados.length / 3),
     getScrollElement: () => parentRef.current,
@@ -79,6 +65,7 @@ function GestoresContent() {
     overscan: 5,
   });
 
+  // Virtualização para lista
   const listVirtualizer = useVirtualizer({
     count: gestoresFiltrados.length,
     getScrollElement: () => parentRef.current,
@@ -86,6 +73,7 @@ function GestoresContent() {
     overscan: 10,
   });
 
+  // Handlers
   const handleToggleSelecao = useCallback(
     (id: string) => {
       toggleSelecionarParaPesquisa(id);
@@ -93,187 +81,82 @@ function GestoresContent() {
     [toggleSelecionarParaPesquisa]
   );
 
-  // Loading elegante
+  // Loading state
   if (carregando) {
     return (
-      <div className="flex items-center justify-center h-[60vh]">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center"
-        >
-          <div className="w-10 h-10 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin mx-auto" />
-          <p className="mt-6 text-muted-foreground text-lg">Carregando gestores...</p>
-        </motion.div>
+      <div className="flex items-center justify-center h-96">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="mt-4 text-muted-foreground">Carregando gestores...</p>
+        </div>
       </div>
     );
   }
 
-  // Error elegante
+  // Error state
   if (erro) {
     return (
-      <div className="flex items-center justify-center h-[60vh]">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-center max-w-md"
-        >
-          <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4">
-            <X className="w-8 h-8 text-red-500" />
-          </div>
-          <h2 className="text-xl font-semibold text-foreground mb-2">Erro ao carregar</h2>
-          <p className="text-muted-foreground">{erro}</p>
-        </motion.div>
+      <div className="flex items-center justify-center h-96">
+        <div className="text-center text-red-500">
+          <p className="text-lg font-medium">Erro ao carregar gestores</p>
+          <p className="text-sm mt-2">{erro}</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <motion.div
-      initial="initial"
-      animate="animate"
-      variants={stagger}
-      className="h-full flex flex-col"
-    >
-      {/* Hero Header - Estilo Apple */}
-      <motion.header variants={fadeIn} className="mb-8">
-        {/* Título principal */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground">
-            Gestores
-          </h1>
-          <p className="text-xl text-muted-foreground mt-3 max-w-2xl mx-auto">
-            Lideranças do setor público e privado do DF
-          </p>
-        </div>
-
-        {/* Números em destaque */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto mb-8">
-          <motion.div variants={fadeIn} className="text-center">
-            <div className="text-3xl sm:text-4xl font-semibold text-foreground">
-              {formatarNumero(estatisticas.filtrados)}
-            </div>
-            <div className="text-sm text-muted-foreground mt-1">Exibindo</div>
-          </motion.div>
-          <motion.div variants={fadeIn} className="text-center">
-            <div className="text-3xl sm:text-4xl font-semibold text-foreground">
-              {contagemPorSetor.publico || 0}
-            </div>
-            <div className="text-sm text-muted-foreground mt-1">Setor Público</div>
-          </motion.div>
-          <motion.div variants={fadeIn} className="text-center">
-            <div className="text-3xl sm:text-4xl font-semibold text-foreground">
-              {contagemPorSetor.privado || 0}
-            </div>
-            <div className="text-sm text-muted-foreground mt-1">Setor Privado</div>
-          </motion.div>
-          <motion.div variants={fadeIn} className="text-center">
-            <div className="text-3xl sm:text-4xl font-semibold text-foreground">
-              {gestoresSelecionados.length}
-            </div>
-            <div className="text-sm text-muted-foreground mt-1">Selecionados</div>
-          </motion.div>
-        </div>
-
-        {/* Barra de ações - Design limpo */}
-        <motion.div
-          variants={fadeIn}
-          className="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-border"
-        >
-          {/* Lado esquerdo - Controles */}
-          <div className="flex items-center gap-2">
-            {/* Toggle Filtros */}
-            <button
-              onClick={() => setPainelFiltros(!painelFiltros)}
-              className={cn(
-                'flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all',
-                painelFiltros
-                  ? 'bg-foreground text-background'
-                  : 'bg-muted text-foreground hover:bg-muted/80'
-              )}
-            >
-              <Filter className="w-4 h-4" />
-              Filtros
-            </button>
-
-            {/* Toggle Resumo */}
-            <button
-              onClick={() => setMostrarMiniDashboard(!mostrarMiniDashboard)}
-              className={cn(
-                'flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all',
-                mostrarMiniDashboard
-                  ? 'bg-foreground text-background'
-                  : 'bg-muted text-foreground hover:bg-muted/80'
-              )}
-            >
-              <Activity className="w-4 h-4" />
-              Resumo
-            </button>
-
-            {/* Seleção */}
-            <div className="hidden sm:flex items-center gap-3 ml-4 pl-4 border-l border-border">
-              <button
-                onClick={selecionarTodos}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Selecionar todos
-              </button>
+    <div className="h-full flex flex-col">
+      {/* Header */}
+      <div className="flex-shrink-0 mb-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
+              <Building2 className="w-7 h-7 text-primary" />
+              Gestores Publicos e Privados
+            </h1>
+            <p className="text-muted-foreground mt-1">
+              <span className="font-semibold text-foreground">{formatarNumero(estatisticas.filtrados)}</span>
+              {' '}de {formatarNumero(estatisticas.total)} gestores
               {gestoresSelecionados.length > 0 && (
-                <button
-                  onClick={limparSelecao}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Limpar ({gestoresSelecionados.length})
-                </button>
+                <span className="ml-2 text-primary">
+                  • {formatarNumero(gestoresSelecionados.length)} selecionados
+                </span>
               )}
-            </div>
+            </p>
           </div>
 
-          {/* Lado direito - Ações e Visualização */}
-          <div className="flex items-center gap-3">
-            {/* Dropdown Exportar */}
-            <div className="relative">
-              <button
-                onClick={() => setExportMenuAberto(!exportMenuAberto)}
-                className="flex items-center gap-2 px-4 py-2 bg-muted hover:bg-muted/80 text-foreground rounded-full text-sm font-medium transition-colors"
-              >
+          <div className="flex items-center gap-2">
+            {/* Dropdown de Exportação */}
+            <div className="relative group">
+              <button className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors">
                 <Download className="w-4 h-4" />
-                <span className="hidden sm:inline">Exportar</span>
-                <ChevronDown className={cn('w-4 h-4 transition-transform', exportMenuAberto && 'rotate-180')} />
+                Exportar
+                <ChevronDown className="w-4 h-4" />
               </button>
-
-              {exportMenuAberto && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="absolute right-0 mt-2 w-44 bg-card border border-border rounded-2xl shadow-xl overflow-hidden z-50"
+              <div className="absolute right-0 mt-2 w-48 bg-secondary/95 backdrop-blur border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                <button
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-t-lg transition-colors"
                 >
-                  <button
-                    onClick={() => setExportMenuAberto(false)}
-                    className="w-full flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-muted transition-colors"
-                  >
-                    <FileSpreadsheet className="w-4 h-4 text-emerald-500" />
-                    Excel
-                  </button>
-                  <button
-                    onClick={() => setExportMenuAberto(false)}
-                    className="w-full flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-muted transition-colors"
-                  >
-                    <FileDown className="w-4 h-4 text-red-500" />
-                    PDF
-                  </button>
-                </motion.div>
-              )}
+                  <FileSpreadsheet className="w-4 h-4 text-green-400" />
+                  Excel ({gestoresFiltrados.length})
+                </button>
+                <button
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-primary/20 rounded-b-lg transition-colors"
+                >
+                  <FileDown className="w-4 h-4 text-red-400" />
+                  PDF ({gestoresFiltrados.length})
+                </button>
+              </div>
             </div>
 
-            {/* Nova Pesquisa - CTA Principal */}
             <Link
               href="/gestores/entrevistas"
               className={cn(
-                'flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all',
+                'flex items-center gap-2 px-4 py-2 rounded-lg transition-colors',
                 gestoresSelecionados.length > 0
-                  ? 'bg-foreground text-background hover:opacity-90'
-                  : 'bg-blue-600 text-white hover:bg-blue-700'
+                  ? 'bg-primary text-primary-foreground hover:bg-primary/90'
+                  : 'bg-secondary text-foreground hover:bg-secondary/80'
               )}
             >
               <Sparkles className="w-4 h-4" />
@@ -281,75 +164,130 @@ function GestoresContent() {
                 ? `Pesquisar ${gestoresSelecionados.length}`
                 : 'Nova Pesquisa'}
             </Link>
+          </div>
+        </div>
 
-            {/* Separador */}
-            <div className="w-px h-8 bg-border hidden sm:block" />
+        {/* Barra de ações */}
+        <div className="flex items-center justify-between mt-4 py-3 px-4 bg-secondary/50 rounded-lg">
+          <div className="flex items-center gap-4">
+            {/* Link para Dashboard */}
+            <Link
+              href="/"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Home className="w-4 h-4" />
+              Dashboard
+            </Link>
 
-            {/* Visualização */}
-            <div className="flex items-center bg-muted rounded-full p-1">
+            {/* Toggle Filtros */}
+            <button
+              onClick={() => setPainelFiltros(!painelFiltros)}
+              className={cn(
+                'flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-colors',
+                painelFiltros
+                  ? 'bg-primary/20 text-primary'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+            >
+              <Filter className="w-4 h-4" />
+              Filtros
+            </button>
+
+            {/* Toggle Mini Dashboard */}
+            <button
+              onClick={() => setMostrarMiniDashboard(!mostrarMiniDashboard)}
+              className={cn(
+                'flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-colors',
+                mostrarMiniDashboard
+                  ? 'bg-primary/20 text-primary'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+            >
+              <Activity className="w-4 h-4" />
+              Resumo
+            </button>
+
+            {/* Seleção */}
+            <div className="flex items-center gap-2 text-sm">
               <button
-                onClick={() => setVisualizacao('cards')}
-                className={cn(
-                  'p-2 rounded-full transition-all',
-                  visualizacao === 'cards'
-                    ? 'bg-background text-foreground shadow-sm'
-                    : 'text-muted-foreground hover:text-foreground'
-                )}
-                title="Cards"
+                onClick={selecionarTodos}
+                className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                <Grid3X3 className="w-4 h-4" />
+                Selecionar todos ({gestoresFiltrados.length})
               </button>
-              <button
-                onClick={() => setVisualizacao('lista')}
-                className={cn(
-                  'p-2 rounded-full transition-all',
-                  visualizacao === 'lista'
-                    ? 'bg-background text-foreground shadow-sm'
-                    : 'text-muted-foreground hover:text-foreground'
-                )}
-                title="Lista"
-              >
-                <List className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setVisualizacao('graficos')}
-                className={cn(
-                  'p-2 rounded-full transition-all',
-                  visualizacao === 'graficos'
-                    ? 'bg-background text-foreground shadow-sm'
-                    : 'text-muted-foreground hover:text-foreground'
-                )}
-                title="Gráficos"
-              >
-                <BarChart3 className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setVisualizacao('insights')}
-                className={cn(
-                  'p-2 rounded-full transition-all',
-                  visualizacao === 'insights'
-                    ? 'bg-background text-foreground shadow-sm'
-                    : 'text-muted-foreground hover:text-foreground'
-                )}
-                title="Insights"
-              >
-                <Lightbulb className="w-4 h-4" />
-              </button>
+              {gestoresSelecionados.length > 0 && (
+                <>
+                  <span className="text-muted-foreground">•</span>
+                  <button
+                    onClick={limparSelecao}
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Limpar selecao
+                  </button>
+                </>
+              )}
             </div>
           </div>
-        </motion.div>
-      </motion.header>
+
+          {/* Visualização */}
+          <div className="flex items-center gap-1 bg-background rounded-lg p-1">
+            <button
+              onClick={() => setVisualizacao('cards')}
+              className={cn(
+                'p-2 rounded-md transition-colors',
+                visualizacao === 'cards'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+              title="Visualizacao em cards"
+            >
+              <Grid3X3 className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setVisualizacao('lista')}
+              className={cn(
+                'p-2 rounded-md transition-colors',
+                visualizacao === 'lista'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+              title="Visualizacao em lista"
+            >
+              <List className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setVisualizacao('graficos')}
+              className={cn(
+                'p-2 rounded-md transition-colors',
+                visualizacao === 'graficos'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+              title="Visualizacao em graficos"
+            >
+              <BarChart3 className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setVisualizacao('insights')}
+              className={cn(
+                'p-2 rounded-md transition-colors',
+                visualizacao === 'insights'
+                  ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+              title="Insights Inteligentes"
+            >
+              <Lightbulb className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* Conteúdo principal */}
-      <motion.div variants={fadeIn} className="flex-1 flex gap-6 min-h-0">
+      <div className="flex-1 flex gap-6 min-h-0">
         {/* Painel de Filtros */}
         {painelFiltros && (
-          <motion.aside
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className="w-80 flex-shrink-0 bg-card border border-border rounded-2xl p-5 overflow-y-auto"
-          >
+          <div className="w-80 flex-shrink-0 glass-card rounded-xl p-4 overflow-y-auto">
             <GestoresFilters
               filtros={filtros}
               onFiltrosChange={setFiltros}
@@ -363,11 +301,11 @@ function GestoresContent() {
               contagemPorSetor={contagemPorSetor}
               contagemPorNivel={contagemPorNivel}
             />
-          </motion.aside>
+          </div>
         )}
 
         {/* Lista/Grid/Gráficos/Insights */}
-        <div className="flex-1 min-w-0 flex gap-5">
+        <div className="flex-1 min-w-0 flex gap-4">
           <div className="flex-1 min-w-0">
             {visualizacao === 'graficos' ? (
               <GestoresCharts gestores={gestoresFiltrados} />
@@ -376,10 +314,11 @@ function GestoresContent() {
             ) : (
               <div
                 ref={parentRef}
-                className="h-full overflow-y-auto pr-2 scrollbar-thin"
+                className="h-full overflow-y-auto pr-2"
                 style={{ contain: 'strict' }}
               >
                 {visualizacao === 'cards' ? (
+                  // Grid de Cards Virtualizado
                   <div
                     style={{
                       height: `${rowVirtualizer.getTotalSize()}px`,
@@ -418,6 +357,7 @@ function GestoresContent() {
                     })}
                   </div>
                 ) : (
+                  // Lista Virtualizada
                   <div
                     style={{
                       height: `${listVirtualizer.getTotalSize()}px`,
@@ -455,22 +395,18 @@ function GestoresContent() {
             )}
           </div>
 
-          {/* Mini Dashboard */}
+          {/* Mini Dashboard - Resumo do grupo filtrado */}
           {mostrarMiniDashboard && visualizacao !== 'graficos' && visualizacao !== 'insights' && (
-            <motion.aside
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="w-72 flex-shrink-0"
-            >
+            <div className="w-72 flex-shrink-0">
               <GestoresMiniDashboard
                 gestores={gestoresFiltrados}
                 totalGeral={estatisticas.total}
               />
-            </motion.aside>
+            </div>
           )}
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -479,10 +415,10 @@ export default function PaginaGestores() {
   return (
     <Suspense
       fallback={
-        <div className="flex items-center justify-center h-[60vh]">
+        <div className="flex items-center justify-center h-96">
           <div className="text-center">
-            <div className="w-10 h-10 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin mx-auto" />
-            <p className="mt-6 text-muted-foreground text-lg">Carregando...</p>
+            <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
+            <p className="mt-4 text-muted-foreground">Carregando...</p>
           </div>
         </div>
       }

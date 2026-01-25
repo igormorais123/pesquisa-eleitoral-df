@@ -101,15 +101,13 @@ def verificar_token(token: str) -> Optional[DadosToken]:
         DadosToken se válido, None caso contrário
     """
     try:
-        payload = jwt.decode(
-            token, configuracoes.SECRET_KEY, algorithms=[configuracoes.ALGORITHM]
-        )
+        payload = jwt.decode(token, configuracoes.SECRET_KEY, algorithms=[configuracoes.ALGORITHM])
 
-        usuario_id: Optional[str] = payload.get("sub")
-        nome: Optional[str] = payload.get("nome")
-        papel: Optional[str] = payload.get("papel")
-        email: Optional[str] = payload.get("email")
-        aprovado: Optional[bool] = payload.get("aprovado")
+        usuario_id: str = payload.get("sub")
+        nome: str = payload.get("nome")
+        papel: str = payload.get("papel")
+        email: str = payload.get("email")
+        aprovado: bool = payload.get("aprovado")
 
         if usuario_id is None:
             return None
@@ -151,8 +149,8 @@ def autenticar_usuario_legado(usuario: str, senha: str) -> Optional[dict]:
     """
     Autentica usuário usando o usuário de teste.
 
-    NOTA: Esta função é um fallback temporário para testes.
-    TODO: Remover após migrar todos os usuários para o banco.
+    NOTA: Esta função é um fallback para desenvolvimento.
+    Em produção, use autenticação via banco de dados (UsuarioServico.autenticar).
 
     Args:
         usuario: Nome de usuário
@@ -161,7 +159,6 @@ def autenticar_usuario_legado(usuario: str, senha: str) -> Optional[dict]:
     Returns:
         Dados do usuário se autenticado, None caso contrário
     """
-    # TEMPORÁRIO: Mantido ativo para testes beta (remover depois)
     usuario_teste = get_usuario_teste()
 
     # Apenas usuário de teste (fallback para desenvolvimento)

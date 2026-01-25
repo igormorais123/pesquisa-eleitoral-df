@@ -1,0 +1,51 @@
+{
+  "name": "anthropic_dark_merged",
+  "source": "Merge automatico de outputs/youtube_slides/*/style.json",
+  "colors": {
+    "bg": "#9b949d",
+    "text": "#916f59",
+    "muted": "#393838",
+    "accents": [
+      "#2a2d26",
+      "#7a624d",
+      "#72797c",
+      "#724a3c",
+      "#b67a76",
+      "#8fa6d3"
+    ],
+    "palette": [
+      "#9b949d",
+      "#6c5b68",
+      "#916f59",
+      "#393838",
+      "#c9ae9a",
+      "#bcbcca",
+      "#2a2d26",
+      "#7a624d",
+      "#72797c",
+      "#724a3c",
+      "#b67a76",
+      "#8fa6d3",
+      "#080404",
+      "#040404",
+      "#f3f3eb",
+      "#d4cac6"
+    ]
+  },
+  "typography": {
+    "font_family": "Inter",
+    "font_family_fallback": [
+      "Helvetica Neue",
+      "Arial",
+      "sans-serif"
+    ]
+  },
+  "charts": {
+    "grid_alpha": 0.12,
+    "axis_alpha": 0.35,
+    "line_width": 2.4,
+    "marker_size": 5,
+    "title_size": 16,
+    "label_size": 12
+  }
+}

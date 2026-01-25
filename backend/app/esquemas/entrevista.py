@@ -8,7 +8,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field
 
 # ============================================
 # ENUMS
@@ -48,7 +48,6 @@ class SentimentoDominante(str, Enum):
 
 class TipoRespondente(str, Enum):
     """Tipo de respondente da entrevista"""
-
     eleitor = "eleitor"
     parlamentar = "parlamentar"
 
@@ -201,16 +200,6 @@ class EntrevistaCreate(EntrevistaBase):
     # Modo novo (generalizado)
     tipo_respondente: Optional[TipoRespondente] = None
     respondentes_ids: Optional[List[str]] = Field(default=None, max_length=500)
-
-    @model_validator(mode="after")
-    def validar_respondentes(self) -> "EntrevistaCreate":
-        if self.tipo_respondente:
-            if not self.respondentes_ids:
-                raise ValueError("respondentes_ids deve ter pelo menos 1 item")
-        else:
-            if not self.eleitores_ids:
-                raise ValueError("eleitores_ids deve ter pelo menos 1 item")
-        return self
 
 
 class EntrevistaUpdate(BaseModel):

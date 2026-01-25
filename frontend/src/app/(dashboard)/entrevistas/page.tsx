@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import {
   MessageSquare,
@@ -13,43 +12,20 @@ import {
   BarChart3,
   Coins,
   User,
-  Sparkles,
 } from 'lucide-react';
 import { db } from '@/lib/db/dexie';
-import { carregarSessoesDoServidor } from '@/services/sessoes-api';
 import { formatarDataHora, formatarMoeda, cn } from '@/lib/utils';
 import { useAuthStore } from '@/stores/auth-store';
-
-// Animações suaves estilo Apple
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
-  }
-};
-
-const stagger = {
-  animate: { transition: { staggerChildren: 0.08 } }
-};
 
 export default function PaginaEntrevistas() {
   const { usuario } = useAuthStore();
 
+  // Buscar sessões do banco - filtrar por usuário logado
   const { data: sessoes, isLoading } = useQuery({
     queryKey: ['sessoes', usuario?.id],
     queryFn: async () => {
-      // Sincronizar com servidor primeiro (baixa sessões novas)
-      try {
-        await carregarSessoesDoServidor();
-        console.log('[ENTREVISTAS] Sessões sincronizadas do servidor');
-      } catch (err) {
-        console.warn('[ENTREVISTAS] Erro ao sincronizar:', err);
-      }
-
-      // Buscar do banco local (inclui as do servidor)
       const todas = await db.sessoes.orderBy('iniciadaEm').reverse().toArray();
+      // Filtrar por usuário logado (mostrar também sessões antigas sem usuário)
       return todas.filter((s) => !s.usuarioId || s.usuarioId === usuario?.id);
     },
   });
@@ -61,97 +37,106 @@ export default function PaginaEntrevistas() {
     erro: { cor: 'bg-red-500', texto: 'Erro', icone: AlertCircle },
   };
 
-  // Estatísticas
-  const stats = {
-    total: sessoes?.length || 0,
-    concluidas: sessoes?.filter((s) => s.status === 'concluida').length || 0,
-    respostas: sessoes?.reduce((acc, s) => acc + s.respostas.length, 0) || 0,
-    custo: sessoes?.reduce((acc, s) => acc + s.custoAtual, 0) || 0,
-  };
-
   return (
-    <motion.div
-      initial="initial"
-      animate="animate"
-      variants={stagger}
-      className="space-y-8"
-    >
-      {/* Hero Header - Estilo Apple */}
-      <motion.header variants={fadeIn} className="text-center">
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground">
-          Entrevistas
-        </h1>
-        <p className="text-xl text-muted-foreground mt-3 max-w-2xl mx-auto">
-          Pesquisas com agentes sintéticos alimentados por IA
-        </p>
-      </motion.header>
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
+            <MessageSquare className="w-7 h-7 text-primary" />
+            Entrevistas
+          </h1>
+          <p className="text-muted-foreground mt-1">
+            Crie e gerencie pesquisas com agentes sintéticos
+          </p>
+        </div>
 
-      {/* Números em destaque */}
-      <motion.div
-        variants={fadeIn}
-        className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto"
-      >
-        <div className="text-center">
-          <div className="text-3xl sm:text-4xl font-semibold text-foreground">
-            {stats.total}
-          </div>
-          <div className="text-sm text-muted-foreground mt-1">Total</div>
-        </div>
-        <div className="text-center">
-          <div className="text-3xl sm:text-4xl font-semibold text-foreground">
-            {stats.concluidas}
-          </div>
-          <div className="text-sm text-muted-foreground mt-1">Concluídas</div>
-        </div>
-        <div className="text-center">
-          <div className="text-3xl sm:text-4xl font-semibold text-foreground">
-            {stats.respostas}
-          </div>
-          <div className="text-sm text-muted-foreground mt-1">Respostas</div>
-        </div>
-        <div className="text-center">
-          <div className="text-3xl sm:text-4xl font-semibold text-foreground">
-            {formatarMoeda(stats.custo)}
-          </div>
-          <div className="text-sm text-muted-foreground mt-1">Custo Total</div>
-        </div>
-      </motion.div>
-
-      {/* CTA */}
-      <motion.div variants={fadeIn} className="flex justify-center">
         <Link
           href="/entrevistas/nova"
-          className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-sm font-medium transition-colors"
+          className="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors"
         >
-          <Sparkles className="w-5 h-5" />
+          <Plus className="w-5 h-5" />
           Nova Entrevista
         </Link>
-      </motion.div>
+      </div>
+
+      {/* Cards de resumo */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="glass-card rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+              <MessageSquare className="w-5 h-5 text-blue-400" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Total</p>
+              <p className="text-2xl font-bold text-foreground">{sessoes?.length || 0}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+              <CheckCircle className="w-5 h-5 text-green-400" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Concluídas</p>
+              <p className="text-2xl font-bold text-foreground">
+                {sessoes?.filter((s) => s.status === 'concluida').length || 0}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+              <BarChart3 className="w-5 h-5 text-purple-400" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Respostas</p>
+              <p className="text-2xl font-bold text-foreground">
+                {sessoes?.reduce((acc, s) => acc + s.respostas.length, 0) || 0}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-yellow-500/20 flex items-center justify-center">
+              <Coins className="w-5 h-5 text-yellow-400" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Custo Total</p>
+              <p className="text-2xl font-bold text-foreground">
+                {formatarMoeda(sessoes?.reduce((acc, s) => acc + s.custoAtual, 0) || 0)}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Lista de sessões */}
-      <motion.div
-        variants={fadeIn}
-        className="bg-card border border-border rounded-2xl overflow-hidden"
-      >
-        <div className="p-5 border-b border-border">
-          <h2 className="font-semibold text-foreground text-lg">Histórico de Entrevistas</h2>
+      <div className="glass-card rounded-xl overflow-hidden">
+        <div className="p-4 border-b border-border">
+          <h2 className="font-semibold text-foreground">Histórico de Entrevistas</h2>
         </div>
 
         {isLoading ? (
-          <div className="p-16 text-center">
-            <div className="w-10 h-10 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin mx-auto" />
-            <p className="mt-4 text-muted-foreground">Carregando...</p>
+          <div className="p-12 text-center">
+            <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
           </div>
         ) : !sessoes?.length ? (
-          <div className="p-16 text-center">
-            <MessageSquare className="w-16 h-16 mx-auto text-muted-foreground/30 mb-4" />
-            <p className="text-xl font-semibold text-foreground mb-2">Nenhuma entrevista ainda</p>
-            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+          <div className="p-12 text-center">
+            <MessageSquare className="w-16 h-16 mx-auto text-muted-foreground/50 mb-4" />
+            <p className="text-lg font-medium text-foreground mb-2">Nenhuma entrevista ainda</p>
+            <p className="text-muted-foreground mb-6">
               Comece criando sua primeira pesquisa com os agentes sintéticos
             </p>
             <Link
               href="/entrevistas/nova"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-sm font-medium transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors"
             >
               <Plus className="w-5 h-5" />
               Criar Primeira Entrevista
@@ -162,8 +147,6 @@ export default function PaginaEntrevistas() {
             {sessoes.map((sessao) => {
               const config = statusConfig[sessao.status];
               const Icone = config.icone;
-              const eleitoresUnicos = new Set(sessao.respostas.map(r => r.eleitor_id)).size;
-              const progressoPct = Math.min((eleitoresUnicos / sessao.totalAgentes) * 100, 100);
 
               return (
                 <Link
@@ -173,29 +156,30 @@ export default function PaginaEntrevistas() {
                       ? `/resultados/${sessao.id}`
                       : `/entrevistas/execucao?sessao=${sessao.id}`
                   }
-                  className="flex items-center gap-4 p-5 hover:bg-muted/50 transition-colors"
+                  className="flex items-center gap-4 p-4 hover:bg-secondary/50 transition-colors"
                 >
                   {/* Status */}
                   <div
                     className={cn(
-                      'w-12 h-12 rounded-xl flex items-center justify-center',
-                      config.cor + '/10'
+                      'w-10 h-10 rounded-lg flex items-center justify-center',
+                      config.cor + '/20'
                     )}
                   >
-                    <Icone className={cn('w-6 h-6', config.cor.replace('bg-', 'text-').replace('-500', '-400'))} />
+                    <Icone className={cn('w-5 h-5', config.cor.replace('bg-', 'text-'))} />
                   </div>
 
                   {/* Info */}
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-foreground truncate text-lg">
+                    <p className="font-medium text-foreground truncate">
                       {sessao.titulo || 'Sem título'}
                     </p>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mt-0.5">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <span>
-                        {formatarDataHora(sessao.iniciadaEm)} • {eleitoresUnicos}/{sessao.totalAgentes} eleitores
+                        {formatarDataHora(sessao.iniciadaEm)} •{' '}
+                        {new Set(sessao.respostas.map(r => r.eleitor_id)).size}/{sessao.totalAgentes} eleitores
                       </span>
                       {sessao.usuarioNome && (
-                        <span className="flex items-center gap-1 text-xs bg-muted px-2 py-0.5 rounded-full">
+                        <span className="flex items-center gap-1 text-xs bg-secondary px-2 py-0.5 rounded-full">
                           <User className="w-3 h-3" />
                           {sessao.usuarioNome}
                         </span>
@@ -203,25 +187,35 @@ export default function PaginaEntrevistas() {
                     </div>
                   </div>
 
-                  {/* Progresso */}
-                  <div className="hidden sm:block w-32">
-                    <div className="flex justify-between text-xs mb-1.5">
-                      <span className="text-muted-foreground">Progresso</span>
-                      <span className="text-foreground font-medium">{Math.round(progressoPct)}%</span>
-                    </div>
-                    <div className="h-2 bg-muted rounded-full overflow-hidden">
-                      <div
-                        className={cn('h-full rounded-full transition-all', config.cor)}
-                        style={{ width: `${progressoPct}%` }}
-                      />
-                    </div>
+                  {/* Progresso - calculado por eleitores únicos */}
+                  <div className="w-32">
+                    {(() => {
+                      const eleitoresUnicos = new Set(sessao.respostas.map(r => r.eleitor_id)).size;
+                      const progressoPct = Math.min((eleitoresUnicos / sessao.totalAgentes) * 100, 100);
+                      return (
+                        <>
+                          <div className="flex justify-between text-xs mb-1">
+                            <span className="text-muted-foreground">Progresso</span>
+                            <span className="text-foreground">
+                              {Math.round(progressoPct)}%
+                            </span>
+                          </div>
+                          <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
+                            <div
+                              className={cn('h-full rounded-full', config.cor)}
+                              style={{ width: `${progressoPct}%` }}
+                            />
+                          </div>
+                        </>
+                      );
+                    })()}
                   </div>
 
                   {/* Custo */}
-                  <div className="text-right hidden sm:block">
-                    <p className="font-semibold text-foreground">{formatarMoeda(sessao.custoAtual)}</p>
+                  <div className="text-right">
+                    <p className="font-medium text-foreground">{formatarMoeda(sessao.custoAtual)}</p>
                     <p className="text-xs text-muted-foreground">
-                      {((sessao.tokensInput + sessao.tokensOutput) / 1000).toFixed(1)}k tokens
+                      {sessao.tokensInput + sessao.tokensOutput} tokens
                     </p>
                   </div>
                 </Link>
@@ -229,7 +223,7 @@ export default function PaginaEntrevistas() {
             })}
           </div>
         )}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }

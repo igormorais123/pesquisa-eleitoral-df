@@ -1,0 +1,62 @@
+/* @theme anthropic_light */
+
+:root {
+  --bg: #f3f0ea;
+  --surface: #ffffff;
+  --text: #2a2d26;
+  --muted: #6c5b68;
+  --accent: #8fa6d3;
+  --accent2: #b67a76;
+  --stroke: rgba(42, 45, 38, 0.12);
+}
+
+section {
+  background:
+    radial-gradient(1200px 600px at 15% 10%, rgba(143, 166, 211, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 90% 15%, rgba(182, 122, 118, 0.14), transparent 55%),
+    linear-gradient(180deg, #faf8f4 0%, #f1ece4 100%);
+  color: var(--text);
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  padding: 72px;
+}
+
+h1 {
+  font-size: 54px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px 0;
+}
+
+h2 {
+  font-size: 34px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px 0;
+}
+
+p,
+li {
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--stroke);
+  padding: 0.15em 0.35em;
+  border-radius: 8px;
+  color: var(--text);
+}
+
+section::after {
+  content: attr(data-marpit-pagination);
+  position: absolute;
+  right: 28px;
+  bottom: 22px;
+  color: rgba(42, 45, 38, 0.45);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}

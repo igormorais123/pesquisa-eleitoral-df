@@ -210,8 +210,6 @@ class PesquisaParlamentarServico:
         delay_ms: int = 500,
         usar_prompt_simplificado: bool = False,
         callback_progresso=None,
-        usuario_id: Optional[int] = None,
-        usuario_nome: Optional[str] = None,
     ) -> Dict[str, Any]:
         """
         Inicia execução de pesquisa com parlamentares.
@@ -223,8 +221,6 @@ class PesquisaParlamentarServico:
             delay_ms: Delay entre batches
             usar_prompt_simplificado: Usar prompt menor
             callback_progresso: Callback para atualizar progresso
-            usuario_id: ID do usuário que está executando
-            usuario_nome: Nome do usuário
 
         Returns:
             Resultado da execução

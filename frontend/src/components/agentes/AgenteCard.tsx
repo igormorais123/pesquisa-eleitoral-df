@@ -26,18 +26,18 @@ interface AgenteCardProps {
 }
 
 const CORES_CLUSTER = {
-  G1_alta: 'bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 border-green-300 dark:border-green-500/30',
-  G2_media_alta: 'bg-lime-100 dark:bg-lime-500/20 text-lime-700 dark:text-lime-400 border-lime-300 dark:border-lime-500/30',
-  G3_media_baixa: 'bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-400 border-yellow-300 dark:border-yellow-500/30',
-  G4_baixa: 'bg-orange-100 dark:bg-orange-500/20 text-orange-700 dark:text-orange-400 border-orange-300 dark:border-orange-500/30',
+  G1_alta: 'bg-green-500/20 text-green-400 border-green-500/30',
+  G2_media_alta: 'bg-lime-500/20 text-lime-400 border-lime-500/30',
+  G3_media_baixa: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
+  G4_baixa: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
 };
 
 const CORES_ORIENTACAO = {
-  esquerda: 'bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-400',
-  'centro-esquerda': 'bg-orange-100 dark:bg-orange-500/20 text-orange-700 dark:text-orange-400',
-  centro: 'bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-400',
-  'centro-direita': 'bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400',
-  direita: 'bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-400',
+  esquerda: 'bg-red-500/20 text-red-400',
+  'centro-esquerda': 'bg-orange-500/20 text-orange-400',
+  centro: 'bg-purple-500/20 text-purple-400',
+  'centro-direita': 'bg-blue-500/20 text-blue-400',
+  direita: 'bg-indigo-500/20 text-indigo-400',
 };
 
 const LABELS_CLUSTER = {
@@ -115,7 +115,7 @@ export const AgenteCard = memo(function AgenteCard({
   return (
     <div
       className={cn(
-        'bg-card border border-border rounded-xl p-3 sm:p-4 hover:shadow-lg hover:border-primary/20 transition-all group cursor-pointer',
+        'glass-card rounded-xl p-3 sm:p-4 hover:shadow-primary-glow/50 transition-all group cursor-pointer',
         selecionado && 'ring-2 ring-primary'
       )}
       onClick={() => {
@@ -148,7 +148,7 @@ export const AgenteCard = memo(function AgenteCard({
               </p>
             </div>
             {/* ID oculto em mobile para economizar espaço */}
-            <span className="hidden sm:inline text-xs text-muted-foreground bg-muted px-2 py-1 rounded flex-shrink-0">
+            <span className="hidden sm:inline text-xs text-muted-foreground bg-secondary px-2 py-1 rounded flex-shrink-0">
               {eleitor.id}
             </span>
           </div>
@@ -215,7 +215,7 @@ export const AgenteCard = memo(function AgenteCard({
             </span>
             <span className="text-foreground">{eleitor.susceptibilidade_desinformacao}/10</span>
           </div>
-          <div className="h-1 sm:h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+          <div className="h-1 sm:h-1.5 bg-secondary rounded-full overflow-hidden">
             <div
               className={cn(
                 'h-full rounded-full transition-all',
@@ -232,7 +232,7 @@ export const AgenteCard = memo(function AgenteCard({
       )}
 
       {/* História - Oculta em mobile pequeno */}
-      <div className="mt-2 sm:mt-3 p-2 sm:p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg hidden xs:block">
+      <div className="mt-2 sm:mt-3 p-2 sm:p-3 bg-secondary/50 rounded-lg hidden xs:block">
         <p className="text-xs text-muted-foreground line-clamp-2">
           {eleitor.historia_resumida}
         </p>
@@ -242,7 +242,7 @@ export const AgenteCard = memo(function AgenteCard({
       <div className="flex items-center gap-2 mt-3 sm:mt-4">
         <Link
           href={`/eleitores/${eleitor.id}`}
-          className="flex-1 text-center text-xs sm:text-sm py-2.5 sm:py-2 px-3 rounded-lg bg-muted hover:bg-muted/80 active:bg-muted/70 text-foreground transition-colors min-h-[40px] sm:min-h-[36px] flex items-center justify-center"
+          className="flex-1 text-center text-xs sm:text-sm py-2.5 sm:py-2 px-3 rounded-lg bg-secondary hover:bg-secondary/80 active:bg-secondary/70 text-foreground transition-colors min-h-[40px] sm:min-h-[36px] flex items-center justify-center"
         >
           Ver Perfil
         </Link>
@@ -253,7 +253,7 @@ export const AgenteCard = memo(function AgenteCard({
               'py-2.5 sm:py-2 px-3 rounded-lg text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5 sm:gap-2 min-h-[40px] sm:min-h-[36px]',
               selecionado
                 ? 'bg-primary text-primary-foreground'
-                : 'bg-muted hover:bg-muted/80 active:bg-muted/70 text-foreground'
+                : 'bg-secondary hover:bg-secondary/80 active:bg-secondary/70 text-foreground'
             )}
           >
             {selecionado ? (

@@ -18,16 +18,11 @@ problemas = defaultdict(list)
 # REGRAS DE VALIDAÇÃO
 # ============================================================
 
-def normalizar_escolaridade(escolaridade: str) -> str:
-    if escolaridade == 'superior_ou_pos':
-        return 'superior_completo_ou_pos'
-    return escolaridade
-
 def verificar_idade_escolaridade(e: Dict) -> List[str]:
     """Verifica se escolaridade é compatível com idade"""
     erros = []
     idade = e['idade']
-    esc = normalizar_escolaridade(e['escolaridade'])
+    esc = e['escolaridade']
 
     # 16-17 anos não pode ter superior completo
     if idade <= 17 and esc == 'superior_completo_ou_pos':
@@ -45,7 +40,6 @@ def verificar_idade_profissao(e: Dict) -> List[str]:
     idade = e['idade']
     profissao = e.get('profissao', '').lower()
     ocupacao = e.get('ocupacao_vinculo', '').lower()
-    esc = normalizar_escolaridade(e.get('escolaridade', ''))
 
     # Aposentado muito jovem (antes dos 50 é raro, antes dos 40 muito raro)
     if 'aposentado' in profissao or 'aposentado' in ocupacao:
@@ -59,7 +53,7 @@ def verificar_idade_profissao(e: Dict) -> List[str]:
                           'psicólogo', 'farmacêutico', 'veterinário', 'contador']
     for prof in profissoes_superior:
         if prof in profissao.lower():
-            if esc != 'superior_completo_ou_pos':
+            if e['escolaridade'] != 'superior_completo_ou_pos':
                 erros.append(f"Profissão '{e['profissao']}' requer superior completo")
             if idade < 22:
                 erros.append(f"Profissão '{e['profissao']}' com {idade} anos (muito jovem)")
@@ -152,7 +146,7 @@ def verificar_cluster_renda(e: Dict) -> List[str]:
 def verificar_escolaridade_renda(e: Dict) -> List[str]:
     """Verifica probabilidade de escolaridade vs renda"""
     erros = []
-    esc = normalizar_escolaridade(e.get('escolaridade', ''))
+    esc = e.get('escolaridade', '')
     renda = e.get('renda_salarios_minimos', '')
 
     # Superior completo com renda muito baixa (possível mas improvável)
@@ -179,8 +173,8 @@ def verificar_orientacao_posicao_bolsonaro(e: Dict) -> List[str]:
         erros.append(f"Orientação esquerda com apoiador forte de Bolsonaro (contraditório)")
 
     # Direita sendo crítico ferrenho
-    if orientacao == 'direita' and posicao in ['critico_forte', 'opositor_forte', 'critico_ferrenho']:
-        erros.append(f"Orientação direita com crítico forte de Bolsonaro (incomum)")
+    if orientacao == 'direita' and posicao == 'critico_ferrenho':
+        erros.append(f"Orientação direita com crítico ferrenho de Bolsonaro (incomum)")
 
     return erros
 
@@ -253,11 +247,12 @@ def verificar_faixa_etaria(e: Dict) -> List[str]:
     faixa = e.get('faixa_etaria', '')
 
     faixas_esperadas = {
-        range(16, 25): '16-24',
+        range(16, 18): '16-17',
+        range(18, 25): '18-24',
         range(25, 35): '25-34',
         range(35, 45): '35-44',
-        range(45, 55): '45-54',
-        range(55, 65): '55-64',
+        range(45, 60): '45-59',
+        range(60, 65): '60-64',
     }
 
     faixa_correta = None
@@ -266,9 +261,7 @@ def verificar_faixa_etaria(e: Dict) -> List[str]:
             faixa_correta = nome
             break
 
-    if idade < 16:
-        faixa_correta = 'menor_16'
-    elif idade >= 65:
+    if idade >= 65:
         faixa_correta = '65+'
 
     if faixa_correta and faixa != faixa_correta:
@@ -282,20 +275,10 @@ def verificar_filhos_cat(e: Dict) -> List[str]:
     filhos = e.get('filhos', 0)
     filhos_cat = e.get('filhos_cat', '')
 
-    if filhos == 0:
-        if filhos_cat != 'sem_filhos':
-            erros.append(f"filhos=0 mas filhos_cat='{filhos_cat}' (deveria ser 'sem_filhos')")
-        return erros
-
-    if filhos_cat == 'com_filhos':
-        return erros
-
-    if filhos == 1 and filhos_cat != '1_filho':
-        erros.append(f"filhos=1 mas filhos_cat='{filhos_cat}' (deveria ser '1_filho')")
-    elif filhos == 2 and filhos_cat != '2_filhos':
-        erros.append(f"filhos=2 mas filhos_cat='{filhos_cat}' (deveria ser '2_filhos')")
-    elif filhos >= 3 and filhos_cat != '3_ou_mais':
-        erros.append(f"filhos={filhos} mas filhos_cat='{filhos_cat}' (deveria ser '3_ou_mais')")
+    if filhos == 0 and filhos_cat != 'sem_filhos':
+        erros.append(f"filhos=0 mas filhos_cat='{filhos_cat}' (deveria ser 'sem_filhos')")
+    elif filhos > 0 and filhos_cat != 'com_filhos':
+        erros.append(f"filhos={filhos} mas filhos_cat='{filhos_cat}' (deveria ser 'com_filhos')")
 
     return erros
 

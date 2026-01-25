@@ -73,7 +73,7 @@ As variaveis so fazem efeito apos um novo deploy!
 
 ## Verificar se funcionou
 
-1. Acesse: https://pesquisa-eleitoral-df-igormorais123s-projects.vercel.app/login
+1. Acesse: https://pesquisa-eleitoral-df.vercel.app/login
 2. Login: professorigor / professorigor
 3. Se funcionar consistentemente, a configuracao esta correta
 

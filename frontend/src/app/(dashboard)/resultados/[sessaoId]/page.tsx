@@ -39,7 +39,7 @@ import {
   exportarInsightsMD,
 } from '@/lib/export';
 import { WordCloudRespostas } from '@/components/charts';
-import { ResultadosPorPergunta, RelatorioInteligenciaVisual, AnalisadorInteligente, ChatResultados } from '@/components/resultados';
+import { ResultadosPorPergunta, RelatorioInteligenciaVisual, AnalisadorInteligente } from '@/components/resultados';
 import {
   PieChart,
   Pie,
@@ -55,7 +55,6 @@ import {
 } from 'recharts';
 import { db } from '@/lib/db/dexie';
 import type { SessaoEntrevista } from '@/lib/db/dexie';
-import { obterSessao as obterSessaoServidor } from '@/services/sessoes-api';
 import { cn, formatarDataHora, formatarMoeda, formatarNumero } from '@/lib/utils';
 
 // Tipos do Relatório de Inteligência
@@ -199,7 +198,7 @@ export default function PaginaResultadoDetalhe() {
 
   const [sessao, setSessao] = useState<SessaoEntrevista | null>(null);
   const [carregando, setCarregando] = useState(true);
-  const [abaAtiva, setAbaAtiva] = useState<'geral' | 'dashboard' | 'graficos' | 'respostas' | 'insights' | 'conversar'>('geral');
+  const [abaAtiva, setAbaAtiva] = useState<'geral' | 'dashboard' | 'graficos' | 'respostas' | 'insights'>('geral');
 
   // Estados do relatório de inteligência
   const [relatorio, setRelatorio] = useState<RelatorioInteligencia | null>(null);
@@ -208,47 +207,11 @@ export default function PaginaResultadoDetalhe() {
   const [erroRelatorio, setErroRelatorio] = useState<string | null>(null);
   const [mostrarThinking, setMostrarThinking] = useState(false);
 
-  // Carregar sessão (tenta local primeiro, depois servidor)
+  // Carregar sessão
   useEffect(() => {
     async function carregar() {
       try {
-        // 1. Tentar buscar localmente primeiro (mais rápido)
-        let dados = await db.sessoes.get(sessaoId);
-
-        // 2. Se não encontrou localmente, buscar do servidor
-        if (!dados) {
-          console.log('[RESULTADOS] Sessão não encontrada localmente, buscando do servidor...');
-          try {
-            const sessaoServidor = await obterSessaoServidor(sessaoId);
-            if (sessaoServidor) {
-              // Converter e salvar localmente para cache
-              dados = {
-                id: sessaoServidor.id,
-                entrevistaId: sessaoServidor.entrevistaId,
-                titulo: sessaoServidor.titulo,
-                status: sessaoServidor.status,
-                progresso: sessaoServidor.progresso,
-                totalAgentes: sessaoServidor.totalAgentes,
-                custoAtual: sessaoServidor.custoAtual,
-                tokensInput: sessaoServidor.tokensInput,
-                tokensOutput: sessaoServidor.tokensOutput,
-                respostas: sessaoServidor.respostas || [],
-                resultado: sessaoServidor.resultado as SessaoEntrevista['resultado'],
-                iniciadaEm: sessaoServidor.iniciadaEm || new Date().toISOString(),
-                atualizadaEm: sessaoServidor.atualizadaEm || new Date().toISOString(),
-                finalizadaEm: sessaoServidor.finalizadaEm,
-                usuarioId: sessaoServidor.usuarioId,
-                usuarioNome: sessaoServidor.usuarioNome,
-              };
-              // Salvar no cache local
-              await db.sessoes.put(dados);
-              console.log('[RESULTADOS] Sessão carregada do servidor e salva localmente');
-            }
-          } catch (serverErr) {
-            console.warn('[RESULTADOS] Erro ao buscar do servidor:', serverErr);
-          }
-        }
-
+        const dados = await db.sessoes.get(sessaoId);
         setSessao(dados || null);
 
         // Tentar carregar relatório salvo
@@ -277,7 +240,7 @@ export default function PaginaResultadoDetalhe() {
     if (!sessao) return null;
 
     const respostas = sessao.respostas;
-    const sentimentos: { positivo: number; negativo: number; neutro: number } = { positivo: 0, negativo: 0, neutro: 0 };
+    const sentimentos: Record<string, number> = { positivo: 0, negativo: 0, neutro: 0 };
 
     // Análise de sentimento aprimorada
     respostas.forEach((r) => {
@@ -726,7 +689,7 @@ export default function PaginaResultadoDetalhe() {
 
       {/* Abas */}
       <div className="flex items-center gap-2 border-b border-border overflow-x-auto">
-        {(['geral', 'dashboard', 'graficos', 'respostas', 'insights', 'conversar'] as const).map((aba) => (
+        {(['geral', 'dashboard', 'graficos', 'respostas', 'insights'] as const).map((aba) => (
           <button
             key={aba}
             onClick={() => setAbaAtiva(aba)}
@@ -737,7 +700,7 @@ export default function PaginaResultadoDetalhe() {
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             )}
           >
-            {aba === 'geral' ? 'Visão Geral' : aba === 'dashboard' ? '🤖 Dashboard IA' : aba === 'graficos' ? 'Gráficos' : aba === 'respostas' ? 'Respostas' : aba === 'insights' ? 'Insights' : '💬 Conversar'}
+            {aba === 'geral' ? 'Visão Geral' : aba === 'dashboard' ? '🤖 Dashboard IA' : aba === 'graficos' ? 'Gráficos' : aba === 'respostas' ? 'Respostas' : 'Insights'}
           </button>
         ))}
       </div>
@@ -1635,15 +1598,6 @@ export default function PaginaResultadoDetalhe() {
             </div>
           )}
         </div>
-      )}
-
-      {/* Aba Conversar com Resultados */}
-      {abaAtiva === 'conversar' && sessao && (
-        <ChatResultados
-          sessao={sessao}
-          relatorio={relatorio}
-          estatisticas={stats}
-        />
       )}
     </div>
   );

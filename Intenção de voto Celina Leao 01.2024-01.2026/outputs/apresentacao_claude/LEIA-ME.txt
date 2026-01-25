@@ -1,0 +1,23 @@
+Saidas geradas (Claude style)
+
+- index.html
+  Relatorio visual (standalone). Use o botao "Imprimir / PDF" para exportar.
+
+- ../relatorio/relatorio-claude.html
+  Copia do HTML (standalone) na pasta relatorio/.
+
+- relatorio_claude.pdf
+  Exportacao em PDF gerada via Chromium headless.
+
+- Celina_Leao_2024-2025_Analise_ClaudeStyle.pptx
+  Apresentacao (PPTX) pronta para uso.
+
+- deck_marp.md
+  Versao alternativa em Marp (Markdown).
+
+- graficos/*.png
+  Graficos no tema anthropic_light.
+
+Gerador:
+
+  .venv/bin/python scripts/gerar_apresentacao_claude.py

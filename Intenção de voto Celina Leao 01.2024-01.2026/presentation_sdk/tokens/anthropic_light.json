@@ -1,0 +1,35 @@
+{
+  "name": "anthropic_light_video",
+  "source": "Heuristica baseada em keynotes (tela recortada)",
+  "colors": {
+    "bg": "#f3f0ea",
+    "surface": "#ffffff",
+    "text": "#2a2d26",
+    "muted": "#6c5b68",
+    "stroke": "#d8d2c9",
+    "accents": [
+      "#8fa6d3",
+      "#b67a76",
+      "#916f59",
+      "#72797c"
+    ]
+  },
+  "typography": {
+    "font_family": "Inter",
+    "font_family_fallback": ["Helvetica Neue", "Arial", "sans-serif"],
+    "mono_family": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace"
+  },
+  "charts": {
+    "grid_alpha": 0.12,
+    "axis_alpha": 0.45,
+    "line_width": 2.6,
+    "marker_size": 5,
+    "title_size": 16,
+    "label_size": 12
+  },
+  "slides": {
+    "ratio": "16:9",
+    "margin_px": 72,
+    "radius_px": 18
+  }
+}

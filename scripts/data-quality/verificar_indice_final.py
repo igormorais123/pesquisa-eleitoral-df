@@ -13,7 +13,7 @@ print(f'Total: {n} eleitores\n')
 referencias = {
     'genero': {'feminino': 52.2, 'masculino': 47.8},
     'cor_raca': {'parda': 45.0, 'branca': 40.6, 'preta': 13.5, 'amarela': 0.5, 'indigena': 0.4},
-    'faixa_etaria': {'16-24': 14.5, '25-34': 20.0, '35-44': 20.5, '45-54': 18.0, '55-64': 12.0, '65+': 15.0},
+    'faixa_etaria': {'16-17': 2.5, '18-24': 12.0, '25-34': 17.8, '35-44': 18.2, '45-59': 27.3, '60-64': 10.0, '65+': 12.2},
     'cluster_socioeconomico': {'G1_alta': 18.1, 'G2_media_alta': 20.8, 'G3_media_baixa': 32.9, 'G4_baixa': 28.2},
     'escolaridade': {'superior_completo_ou_pos': 37.0, 'medio_completo_ou_sup_incompleto': 43.8, 'fundamental_ou_sem_instrucao': 19.2},
     'renda_salarios_minimos': {'ate_1': 28.5, 'mais_de_1_ate_2': 25.8, 'mais_de_2_ate_5': 24.2, 'mais_de_5_ate_10': 12.5, 'mais_de_10_ate_20': 6.0, 'mais_de_20': 3.0},
@@ -29,52 +29,10 @@ referencias = {
     'filhos': {0: 30.0, 1: 27.0, 2: 28.0, 3: 11.0, 4: 4.0},
 }
 
-
-def normalizar_valor(variavel, valor, eleitor):
-    if valor is None:
-        return valor
-
-    if variavel == 'escolaridade' and valor == 'superior_ou_pos':
-        return 'superior_completo_ou_pos'
-
-    if variavel == 'religiao' and valor == 'outras':
-        return 'outras_religioes'
-
-    if variavel == 'posicao_bolsonaro' and valor == 'opositor_forte':
-        return 'critico_forte'
-
-    if variavel == 'estado_civil' and valor == 'separado(a)':
-        return 'divorciado(a)'
-
-    if variavel == 'filhos':
-        try:
-            filhos = int(valor)
-        except (TypeError, ValueError):
-            return valor
-        return 4 if filhos >= 4 else filhos
-
-    if variavel == 'faixa_etaria':
-        idade = eleitor.get('idade')
-        if idade is None:
-            return valor
-        if idade <= 24:
-            return '16-24'
-        if idade <= 34:
-            return '25-34'
-        if idade <= 44:
-            return '35-44'
-        if idade <= 54:
-            return '45-54'
-        if idade <= 64:
-            return '55-64'
-        return '65+'
-
-    return valor
-
 # Calcular estatísticas para cada variável
 resultados = []
 for var, refs in referencias.items():
-    dist = Counter(normalizar_valor(var, e.get(var), e) for e in eleitores)
+    dist = Counter(e.get(var) for e in eleitores)
 
     desvios = []
     for cat, ref in refs.items():

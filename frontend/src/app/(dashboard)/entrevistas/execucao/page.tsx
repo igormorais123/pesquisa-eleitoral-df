@@ -20,22 +20,10 @@ import {
 } from 'lucide-react';
 import { useEleitoresStore } from '@/stores/eleitores-store';
 import { useEntrevistasStore } from '@/stores/entrevistas-store';
-import { db, salvarSessao as salvarSessaoLocal, carregarEleitoresIniciais } from '@/lib/db/dexie';
-import { salvarSessao as salvarSessaoServidor } from '@/services/sessoes-api';
+import { db, salvarSessao, carregarEleitoresIniciais } from '@/lib/db/dexie';
 import { cn, formatarMoeda, formatarNumero } from '@/lib/utils';
 import type { Eleitor, RespostaEleitor } from '@/types';
 import eleitoresIniciais from '@/data/eleitores-df-1000.json';
-
-// Função helper para salvar sessão local E no servidor
-async function salvarSessao(sessao: Parameters<typeof salvarSessaoLocal>[0]) {
-  // Salvar localmente primeiro (rápido)
-  await salvarSessaoLocal(sessao);
-  
-  // Tentar salvar no servidor (async, não bloqueia)
-  salvarSessaoServidor(sessao).catch((err) => {
-    console.warn('[SYNC] Erro ao salvar sessão no servidor:', err);
-  });
-}
 
 export default function PaginaExecucaoEntrevista() {
   const searchParams = useSearchParams();

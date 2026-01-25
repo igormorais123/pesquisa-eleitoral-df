@@ -9,7 +9,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 # ============================================
@@ -66,15 +66,14 @@ class OpcaoPergunta(BaseModel):
     texto: str = Field(..., description="Texto exibido para o entrevistado")
     ordem: int = Field(default=0, description="Ordem de exibição")
 
-    model_config = ConfigDict(
-        json_schema_extra={
+    class Config:
+        json_schema_extra = {
             "example": {
                 "valor": "candidato_a",
                 "texto": "João Silva (PARTIDO)",
                 "ordem": 1,
             }
         }
-    )
 
 
 class ValidacaoPergunta(BaseModel):
@@ -106,17 +105,13 @@ class PerguntaTemplate(BaseModel):
     categoria: str = Field(..., description="Categoria da pergunta")
     obrigatoria: bool = Field(default=True, description="Se a pergunta é obrigatória")
     ordem: int = Field(default=0, description="Ordem de exibição")
-    instrucoes: Optional[str] = Field(
-        None, description="Instruções para o entrevistador"
-    )
+    instrucoes: Optional[str] = Field(None, description="Instruções para o entrevistador")
     opcoes: List[OpcaoPergunta] = Field(default=[], description="Opções de resposta")
     validacao: Optional[ValidacaoPergunta] = Field(None, description="Validações")
-    condicional: Optional[CondicaoPergunta] = Field(
-        None, description="Condição para exibição"
-    )
+    condicional: Optional[CondicaoPergunta] = Field(None, description="Condição para exibição")
 
-    model_config = ConfigDict(
-        json_schema_extra={
+    class Config:
+        json_schema_extra = {
             "example": {
                 "codigo": "IV-GOV-EST-01",
                 "texto": "Se a eleição para Governador do DF fosse hoje, em qual você votaria?",
@@ -131,7 +126,6 @@ class PerguntaTemplate(BaseModel):
                 ],
             }
         }
-    )
 
 
 # ============================================
@@ -150,8 +144,8 @@ class TemplateResumo(BaseModel):
     tags: List[str] = Field(default=[], description="Tags do template")
     total_perguntas: int = Field(..., description="Total de perguntas no template")
 
-    model_config = ConfigDict(
-        json_schema_extra={
+    class Config:
+        json_schema_extra = {
             "example": {
                 "id": "tpl-intencao-voto-governador",
                 "nome": "Intenção de Voto - Governador",
@@ -162,7 +156,6 @@ class TemplateResumo(BaseModel):
                 "total_perguntas": 4,
             }
         }
-    )
 
 
 class TemplateCompleto(BaseModel):
@@ -176,8 +169,8 @@ class TemplateCompleto(BaseModel):
     tags: List[str] = Field(default=[], description="Tags do template")
     perguntas: List[PerguntaTemplate] = Field(..., description="Perguntas do template")
 
-    model_config = ConfigDict(
-        json_schema_extra={
+    class Config:
+        json_schema_extra = {
             "example": {
                 "id": "tpl-intencao-voto-governador",
                 "nome": "Intenção de Voto - Governador",
@@ -188,7 +181,6 @@ class TemplateCompleto(BaseModel):
                 "perguntas": [],
             }
         }
-    )
 
 
 # ============================================
@@ -204,8 +196,8 @@ class CategoriaInfo(BaseModel):
     descricao: str = Field(..., description="Descrição da categoria")
     cor: str = Field(default="#666666", description="Cor para exibição (hex)")
 
-    model_config = ConfigDict(
-        json_schema_extra={
+    class Config:
+        json_schema_extra = {
             "example": {
                 "id": "intencao_voto",
                 "nome": "Intenção de Voto",
@@ -213,7 +205,6 @@ class CategoriaInfo(BaseModel):
                 "cor": "#1976D2",
             }
         }
-    )
 
 
 class TipoEleicaoInfo(BaseModel):
@@ -223,15 +214,14 @@ class TipoEleicaoInfo(BaseModel):
     nome: str = Field(..., description="Nome do tipo")
     descricao: str = Field(..., description="Descrição")
 
-    model_config = ConfigDict(
-        json_schema_extra={
+    class Config:
+        json_schema_extra = {
             "example": {
                 "id": "governador",
                 "nome": "Governador",
                 "descricao": "Eleições para governador estadual/distrital",
             }
         }
-    )
 
 
 # ============================================
@@ -247,9 +237,7 @@ class TemplateCreate(BaseModel):
     categoria: CategoriaTemplate = Field(..., description="Categoria")
     tipo_eleicao: TipoEleicao = Field(..., description="Tipo de eleição")
     tags: List[str] = Field(default=[], description="Tags")
-    perguntas: List[PerguntaTemplate] = Field(
-        ..., min_length=1, description="Perguntas"
-    )
+    perguntas: List[PerguntaTemplate] = Field(..., min_length=1, description="Perguntas")
 
 
 class TemplateUpdate(BaseModel):
@@ -275,28 +263,18 @@ class AplicarTemplateResponse(BaseModel):
     mensagem: str = Field(..., description="Mensagem de resultado")
     template_id: str = Field(..., description="ID do template aplicado")
     pesquisa_id: int = Field(..., description="ID da pesquisa")
-    perguntas_adicionadas: int = Field(
-        ..., description="Número de perguntas adicionadas"
-    )
-    substituiu_existentes: bool = Field(
-        ..., description="Se substituiu perguntas existentes"
-    )
+    perguntas_adicionadas: int = Field(..., description="Número de perguntas adicionadas")
+    substituiu_existentes: bool = Field(..., description="Se substituiu perguntas existentes")
 
 
 class EstatisticasTemplates(BaseModel):
     """Estatísticas sobre os templates disponíveis."""
 
     total_templates: int = Field(..., description="Total de templates")
-    total_perguntas: int = Field(
-        ..., description="Total de perguntas em todos os templates"
-    )
-    media_perguntas_por_template: float = Field(
-        ..., description="Média de perguntas por template"
-    )
+    total_perguntas: int = Field(..., description="Total de perguntas em todos os templates")
+    media_perguntas_por_template: float = Field(..., description="Média de perguntas por template")
     por_categoria: Dict[str, int] = Field(..., description="Quantidade por categoria")
-    por_tipo_eleicao: Dict[str, int] = Field(
-        ..., description="Quantidade por tipo de eleição"
-    )
+    por_tipo_eleicao: Dict[str, int] = Field(..., description="Quantidade por tipo de eleição")
     tags_mais_usadas: Dict[str, int] = Field(..., description="Tags mais utilizadas")
     versao: str = Field(..., description="Versão dos templates")
     ultima_atualizacao: str = Field(..., description="Data da última atualização")

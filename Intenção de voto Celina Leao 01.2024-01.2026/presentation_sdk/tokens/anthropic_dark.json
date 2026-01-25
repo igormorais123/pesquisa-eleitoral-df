@@ -1,0 +1,36 @@
+{
+  "name": "anthropic_dark_video",
+  "source": "Estimado a partir de style.json (video CEvIs9y1uog)",
+  "colors": {
+    "bg": "#080404",
+    "surface": "#1d1a1e",
+    "text": "#f3f3eb",
+    "muted": "#d4cac6",
+    "stroke": "#272c2e",
+    "accents": [
+      "#738395",
+      "#838f85",
+      "#6d6d62",
+      "#4f5a58",
+      "#bdbdbe"
+    ]
+  },
+  "typography": {
+    "font_family": "Inter",
+    "font_family_fallback": ["Helvetica Neue", "Arial", "sans-serif"],
+    "mono_family": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace"
+  },
+  "charts": {
+    "grid_alpha": 0.12,
+    "axis_alpha": 0.35,
+    "line_width": 2.4,
+    "marker_size": 5,
+    "title_size": 16,
+    "label_size": 12
+  },
+  "slides": {
+    "ratio": "16:9",
+    "margin_px": 72,
+    "radius_px": 18
+  }
+}

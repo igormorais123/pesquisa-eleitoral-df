@@ -12,11 +12,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 
 // Configuracoes de autenticacao
-const DEFAULT_SECRET_KEY = 'chave-secreta-padrao-desenvolvimento';
-const SECRET_KEY = process.env.SECRET_KEY || DEFAULT_SECRET_KEY;
+const SECRET_KEY = process.env.SECRET_KEY || 'chave-secreta-padrao-desenvolvimento';
 const ALGORITHM = 'HS256';
-const IS_PRODUCTION = process.env.NODE_ENV === 'production';
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || process.env.BACKEND_URL || 'http://localhost:8000';
 
 interface TokenPayload {
   sub: string;
@@ -60,22 +57,6 @@ export async function GET(request: NextRequest) {
   try {
     // Extrair token do header Authorization
     const authHeader = request.headers.get('Authorization');
-
-    if (IS_PRODUCTION) {
-      const response = await fetch(`${BACKEND_URL}/api/v1/auth/me`, {
-        headers: authHeader ? { Authorization: authHeader } : undefined,
-        cache: 'no-store',
-      });
-
-      const data = await response.json();
-      const headers = new Headers();
-      const wwwAuth = response.headers.get('WWW-Authenticate');
-      if (wwwAuth) {
-        headers.set('WWW-Authenticate', wwwAuth);
-      }
-
-      return NextResponse.json(data, { status: response.status, headers });
-    }
     const token = extrairToken(authHeader);
 
     if (!token) {

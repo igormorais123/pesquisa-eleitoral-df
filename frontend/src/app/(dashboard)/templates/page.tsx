@@ -2,7 +2,7 @@
 
 /**
  * Página de Templates de Perguntas Eleitorais
- * Design Apple-style
+ *
  * Permite visualizar, gerenciar e criar pesquisas a partir de templates pré-definidos.
  * Inclui geração de perguntas com IA.
  */
@@ -26,6 +26,7 @@ import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   FileText,
+  Plus,
   Trash2,
   ArrowRight,
   HelpCircle,
@@ -192,32 +193,32 @@ export default function TemplatesPage() {
   };
 
   return (
-    <div className="space-y-8">
-      {/* Hero Header - Apple Style */}
-      <header className="text-center">
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground">
-          Templates de Perguntas
-        </h1>
-        <p className="text-xl text-muted-foreground mt-3 max-w-2xl mx-auto">
-          Selecione templates pré-definidos ou gere perguntas com IA
-        </p>
-        <div className="flex items-center justify-center gap-3 mt-6">
-          <button
+    <div className="container mx-auto py-6 space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Templates de Perguntas</h1>
+          <p className="text-muted-foreground">
+            Selecione templates pré-definidos ou gere perguntas com IA
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
             onClick={() => setModalIAAberto(true)}
-            className="flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-full font-medium text-sm transition-colors"
+            className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white"
           >
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="w-4 h-4 mr-2" />
             Gerar com IA
-          </button>
+          </Button>
           <Link
             href="/entrevistas"
-            className="flex items-center gap-2 px-4 py-2 bg-muted hover:bg-muted/80 text-foreground rounded-full transition-colors text-sm font-medium"
+            className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors"
           >
             <MessageSquare className="w-4 h-4" />
             Ver Entrevistas
           </Link>
         </div>
-      </header>
+      </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Seletor de Templates */}

@@ -27,8 +27,6 @@ tmpclaude-*-cwd
 
 # runtime data
 memorias/*.json
-agentes/dados-usuarios-google.json
-agentes/dados-usuarios-google*.json
 
 # misc
 .tmp.driveupload/
@@ -42,3 +40,8 @@ temp_deploys*.json
 logs/*.log
 .vercel
 .env*.local
+
+# Large files - YouTube slides
+Intenção de voto Celina Leao 01.2024-01.2026/outputs/youtube_slides/
+*.mp4
+*.pptx

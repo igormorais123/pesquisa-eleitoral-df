@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { api, setAuthToken, clearAuthToken } from '@/services/api';
 import { notify } from './notifications-store';
-import { carregarSessoesDoServidor, sincronizarBidirecional } from '@/services/sessoes-api';
 
 interface Usuario {
   id: string;
@@ -60,17 +59,6 @@ export const useAuthStore = create<AuthState>()(
             autenticado: true,
             carregando: false,
           });
-
-          // SINCRONIZAR SESSÕES DO SERVIDOR (importante para acessar de qualquer computador)
-          try {
-            const sessoesCarregadas = await carregarSessoesDoServidor();
-            if (sessoesCarregadas > 0) {
-              console.log(`[AUTH] ${sessoesCarregadas} sessões carregadas do servidor`);
-            }
-          } catch (syncError) {
-            console.warn('[AUTH] Erro ao sincronizar sessões:', syncError);
-            // Não bloqueia o login se a sincronização falhar
-          }
 
           // Notificar login bem-sucedido
           notify.success(

@@ -185,8 +185,6 @@ class EntrevistaServico:
         batch_size: int = 10,
         delay_ms: int = 500,
         callback_progresso=None,
-        usuario_id: Optional[int] = None,
-        usuario_nome: Optional[str] = None,
     ) -> Dict[str, Any]:
         """
         Inicia execução de entrevista.
@@ -197,8 +195,6 @@ class EntrevistaServico:
             batch_size: Tamanho do batch
             delay_ms: Delay entre batches
             callback_progresso: Callback para atualizar progresso
-            usuario_id: ID do usuário que está executando (IMPORTANTE para persistência)
-            usuario_nome: Nome do usuário
 
         Returns:
             Resultado da execução
@@ -311,8 +307,6 @@ class EntrevistaServico:
                                     tokens_saida=resultado_dict.get("tokens_saida", 0),
                                     custo=resultado_dict.get("custo_reais", 0.0),
                                     tempo_resposta_ms=resultado_dict.get("tempo_resposta_ms", 0),
-                                    usuario_id=usuario_id,  # Associar ao usuário logado
-                                    usuario_nome=usuario_nome,
                                     contexto={
                                         "entrevista_id": entrevista_id,
                                         "entrevista_titulo": entrevista.get("titulo"),
@@ -322,7 +316,6 @@ class EntrevistaServico:
                                     metadados={
                                         "fonte": "entrevista_servico",
                                         "versao": "1.0",
-                                        "executado_por": usuario_nome or "desconhecido",
                                     },
                                 )
                         except Exception as mem_err:

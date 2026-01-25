@@ -80,6 +80,6 @@ Write-Host ""
 Write-Host "🎉 Deploy concluído!" -ForegroundColor Green
 Write-Host ""
 Write-Host "📍 URLs de Produção:" -ForegroundColor Cyan
-Write-Host "   Frontend: https://pesquisa-eleitoral-df-igormorais123s-projects.vercel.app" -ForegroundColor White
+Write-Host "   Frontend: https://pesquisa-eleitoral-df.vercel.app" -ForegroundColor White
 Write-Host "   Backend:  https://pesquisa-eleitoral-df-1.onrender.com" -ForegroundColor White
 Write-Host ""

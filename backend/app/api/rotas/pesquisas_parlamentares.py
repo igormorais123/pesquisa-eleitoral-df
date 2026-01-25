@@ -6,11 +6,9 @@ Endpoints para criação e execução de pesquisas com parlamentares.
 
 from typing import Any, Dict, List, Optional
 
-from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
+from fastapi import APIRouter, BackgroundTasks, HTTPException, Query
 from pydantic import BaseModel, Field
 
-from app.api.deps import obter_usuario_atual
-from app.core.seguranca import DadosToken
 from app.servicos.pesquisa_parlamentar_servico import obter_pesquisa_parlamentar_servico
 
 router = APIRouter()
@@ -137,13 +135,12 @@ async def iniciar_execucao(
     pesquisa_id: str,
     request: IniciarPesquisaRequest,
     background_tasks: BackgroundTasks,
-    usuario: DadosToken = Depends(obter_usuario_atual),
 ):
     """
     Inicia execução de pesquisa com parlamentares.
 
     A execução ocorre em background. Use o endpoint de progresso
-    para acompanhar o status. As memórias são associadas ao usuário logado.
+    para acompanhar o status.
     """
     servico = obter_pesquisa_parlamentar_servico()
 
@@ -154,10 +151,6 @@ async def iniciar_execucao(
     if pesquisa["status"] == "executando":
         raise HTTPException(status_code=400, detail="Pesquisa já está em execução")
 
-    # Capturar dados do usuário para background task
-    usuario_id = usuario.usuario_id
-    usuario_nome = usuario.nome
-
     # Iniciar em background
     async def executar_em_background():
         try:
@@ -167,8 +160,6 @@ async def iniciar_execucao(
                 batch_size=request.batch_size,
                 delay_ms=request.delay_entre_batches_ms,
                 usar_prompt_simplificado=request.usar_prompt_simplificado,
-                usuario_id=usuario_id,
-                usuario_nome=usuario_nome,
             )
         except Exception as e:
             print(f"Erro na execução: {e}")
@@ -179,7 +170,6 @@ async def iniciar_execucao(
         "mensagem": "Execução iniciada",
         "pesquisa_id": pesquisa_id,
         "status": "executando",
-        "executado_por": usuario_nome,
     }
 
 

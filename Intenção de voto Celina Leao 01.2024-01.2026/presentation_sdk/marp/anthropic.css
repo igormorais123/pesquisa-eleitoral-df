@@ -1,0 +1,81 @@
+/* @theme anthropic */
+
+:root {
+  --bg: #080404;
+  --surface: #1d1a1e;
+  --text: #f3f3eb;
+  --muted: #d4cac6;
+  --accent: #738395;
+  --accent2: #838f85;
+  --stroke: rgba(243, 243, 235, 0.12);
+}
+
+section {
+  background:
+    radial-gradient(1200px 600px at 15% 10%, rgba(115, 131, 149, 0.12), transparent 60%),
+    radial-gradient(900px 500px at 90% 15%, rgba(131, 143, 133, 0.10), transparent 55%),
+    linear-gradient(180deg, #0b0505 0%, #060304 100%);
+  color: var(--text);
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  padding: 72px;
+}
+
+h1 {
+  font-size: 54px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px 0;
+}
+
+h2 {
+  font-size: 34px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px 0;
+  color: var(--text);
+}
+
+p,
+li {
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+strong {
+  color: var(--text);
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  padding: 0.15em 0.35em;
+  border-radius: 8px;
+  color: var(--text);
+}
+
+blockquote {
+  margin: 0;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--stroke);
+  border-radius: 16px;
+}
+
+blockquote p {
+  margin: 0;
+  color: var(--text);
+}
+
+/* Footer / page number */
+section::after {
+  content: attr(data-marpit-pagination);
+  position: absolute;
+  right: 28px;
+  bottom: 22px;
+  color: rgba(243, 243, 235, 0.45);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}

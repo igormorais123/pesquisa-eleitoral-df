@@ -1,53 +1,31 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import {
   BarChart3,
+  Clock,
   CheckCircle,
   Users,
   Coins,
   TrendingUp,
+  FileText,
   Download,
   User,
-  ArrowRight,
 } from 'lucide-react';
 import { db } from '@/lib/db/dexie';
-import { listarSessoes, carregarSessoesDoServidor } from '@/services/sessoes-api';
-import { formatarDataHora, formatarMoeda } from '@/lib/utils';
+import { formatarDataHora, formatarMoeda, cn } from '@/lib/utils';
 import { useAuthStore } from '@/stores/auth-store';
-
-// Animações suaves estilo Apple
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
-  }
-};
-
-const stagger = {
-  animate: { transition: { staggerChildren: 0.08 } }
-};
 
 export default function PaginaResultados() {
   const { usuario } = useAuthStore();
 
+  // Buscar sessões concluídas - filtrar por usuário logado
   const { data: sessoes, isLoading } = useQuery({
     queryKey: ['sessoes-concluidas', usuario?.id],
     queryFn: async () => {
-      // 1. Primeiro, tentar sincronizar com o servidor (baixa sessões que não existem localmente)
-      try {
-        await carregarSessoesDoServidor();
-        console.log('[RESULTADOS] Sessões sincronizadas do servidor');
-      } catch (err) {
-        console.warn('[RESULTADOS] Erro ao sincronizar do servidor, usando dados locais:', err);
-      }
-
-      // 2. Agora buscar do banco local (que já inclui as do servidor)
       const todas = await db.sessoes.toArray();
+      // Filtrar por usuário logado (mostrar também sessões antigas sem usuário)
       const filtradas = todas.filter((s) => {
         const pertenceAoUsuario = !s.usuarioId || s.usuarioId === usuario?.id;
         return s.status === 'concluida' && pertenceAoUsuario;
@@ -59,89 +37,115 @@ export default function PaginaResultados() {
     },
   });
 
+  // Estatísticas gerais
   const estatisticas = sessoes
     ? {
         totalSessoes: sessoes.length,
         totalRespostas: sessoes.reduce((acc, s) => acc + s.respostas.length, 0),
         custoTotal: sessoes.reduce((acc, s) => acc + s.custoAtual, 0),
-        tokensTotal: sessoes.reduce((acc, s) => acc + s.tokensInput + s.tokensOutput, 0),
+        tokensTotal: sessoes.reduce(
+          (acc, s) => acc + s.tokensInput + s.tokensOutput,
+          0
+        ),
       }
     : { totalSessoes: 0, totalRespostas: 0, custoTotal: 0, tokensTotal: 0 };
 
   return (
-    <motion.div
-      initial="initial"
-      animate="animate"
-      variants={stagger}
-      className="space-y-8"
-    >
-      {/* Hero Header - Estilo Apple */}
-      <motion.header variants={fadeIn} className="text-center">
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground">
-          Resultados
-        </h1>
-        <p className="text-xl text-muted-foreground mt-3 max-w-2xl mx-auto">
-          Análises e visualizações das pesquisas realizadas
-        </p>
-      </motion.header>
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
+            <BarChart3 className="w-7 h-7 text-primary" />
+            Resultados
+          </h1>
+          <p className="text-muted-foreground mt-1">
+            Análises e visualizações das pesquisas realizadas
+          </p>
+        </div>
+      </div>
 
-      {/* Números em destaque */}
-      <motion.div
-        variants={fadeIn}
-        className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto"
-      >
-        <div className="text-center">
-          <div className="text-3xl sm:text-4xl font-semibold text-foreground">
-            {estatisticas.totalSessoes}
+      {/* Cards de resumo */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="glass-card rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+              <CheckCircle className="w-5 h-5 text-green-400" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Pesquisas</p>
+              <p className="text-2xl font-bold text-foreground">
+                {estatisticas.totalSessoes}
+              </p>
+            </div>
           </div>
-          <div className="text-sm text-muted-foreground mt-1">Pesquisas</div>
         </div>
-        <div className="text-center">
-          <div className="text-3xl sm:text-4xl font-semibold text-foreground">
-            {estatisticas.totalRespostas}
+
+        <div className="glass-card rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+              <Users className="w-5 h-5 text-blue-400" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Respostas</p>
+              <p className="text-2xl font-bold text-foreground">
+                {estatisticas.totalRespostas}
+              </p>
+            </div>
           </div>
-          <div className="text-sm text-muted-foreground mt-1">Respostas</div>
         </div>
-        <div className="text-center">
-          <div className="text-3xl sm:text-4xl font-semibold text-foreground">
-            {formatarMoeda(estatisticas.custoTotal)}
+
+        <div className="glass-card rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-yellow-500/20 flex items-center justify-center">
+              <Coins className="w-5 h-5 text-yellow-400" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Custo Total</p>
+              <p className="text-2xl font-bold text-foreground">
+                {formatarMoeda(estatisticas.custoTotal)}
+              </p>
+            </div>
           </div>
-          <div className="text-sm text-muted-foreground mt-1">Custo Total</div>
         </div>
-        <div className="text-center">
-          <div className="text-3xl sm:text-4xl font-semibold text-foreground">
-            {(estatisticas.tokensTotal / 1000).toFixed(1)}k
+
+        <div className="glass-card rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+              <TrendingUp className="w-5 h-5 text-purple-400" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Tokens</p>
+              <p className="text-2xl font-bold text-foreground">
+                {(estatisticas.tokensTotal / 1000).toFixed(1)}k
+              </p>
+            </div>
           </div>
-          <div className="text-sm text-muted-foreground mt-1">Tokens</div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Lista de resultados */}
-      <motion.div
-        variants={fadeIn}
-        className="bg-card border border-border rounded-2xl overflow-hidden"
-      >
-        <div className="p-5 border-b border-border">
-          <h2 className="font-semibold text-foreground text-lg">Pesquisas Concluídas</h2>
+      <div className="glass-card rounded-xl overflow-hidden">
+        <div className="p-4 border-b border-border">
+          <h2 className="font-semibold text-foreground">Pesquisas Concluídas</h2>
         </div>
 
         {isLoading ? (
-          <div className="p-16 text-center">
-            <div className="w-10 h-10 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin mx-auto" />
-            <p className="mt-4 text-muted-foreground">Carregando...</p>
+          <div className="p-12 text-center">
+            <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
           </div>
         ) : !sessoes?.length ? (
-          <div className="p-16 text-center">
-            <BarChart3 className="w-16 h-16 mx-auto text-muted-foreground/30 mb-4" />
-            <p className="text-xl font-semibold text-foreground mb-2">
+          <div className="p-12 text-center">
+            <BarChart3 className="w-16 h-16 mx-auto text-muted-foreground/50 mb-4" />
+            <p className="text-lg font-medium text-foreground mb-2">
               Nenhum resultado disponível
             </p>
-            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+            <p className="text-muted-foreground mb-6">
               Execute entrevistas para ver os resultados aqui
             </p>
             <Link
               href="/entrevistas/nova"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-sm font-medium transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors"
             >
               Criar Entrevista
             </Link>
@@ -152,25 +156,25 @@ export default function PaginaResultados() {
               <Link
                 key={sessao.id}
                 href={`/resultados/${sessao.id}`}
-                className="flex flex-wrap sm:flex-nowrap items-center gap-4 p-5 hover:bg-muted/50 transition-colors group"
+                className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4 p-4 hover:bg-secondary/50 transition-colors"
               >
                 {/* Ícone */}
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-emerald-500" />
+                <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center">
+                  <BarChart3 className="w-6 h-6 text-green-400" />
                 </div>
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
-                  <p className="font-medium text-foreground truncate text-lg">
+                  <p className="font-medium text-foreground truncate">
                     {sessao.titulo || 'Pesquisa sem título'}
                   </p>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mt-0.5">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <span>
                       {formatarDataHora(sessao.finalizadaEm || sessao.iniciadaEm)} •{' '}
                       {new Set(sessao.respostas.map(r => r.eleitor_id)).size} eleitores
                     </span>
                     {sessao.usuarioNome && (
-                      <span className="flex items-center gap-1 text-xs bg-muted px-2 py-0.5 rounded-full">
+                      <span className="flex items-center gap-1 text-xs bg-secondary px-2 py-0.5 rounded-full">
                         <User className="w-3 h-3" />
                         {sessao.usuarioNome}
                       </span>
@@ -179,16 +183,16 @@ export default function PaginaResultados() {
                 </div>
 
                 {/* Métricas */}
-                <div className="hidden sm:flex items-center gap-6">
+                <div className="hidden sm:flex items-center gap-4 lg:gap-6">
                   <div className="text-right">
                     <p className="text-sm text-muted-foreground">Custo</p>
-                    <p className="font-semibold text-amber-500">
+                    <p className="font-medium text-yellow-400">
                       {formatarMoeda(sessao.custoAtual)}
                     </p>
                   </div>
                   <div className="text-right">
                     <p className="text-sm text-muted-foreground">Tokens</p>
-                    <p className="font-semibold text-foreground">
+                    <p className="font-medium text-foreground">
                       {((sessao.tokensInput + sessao.tokensOutput) / 1000).toFixed(1)}k
                     </p>
                   </div>
@@ -199,6 +203,7 @@ export default function PaginaResultados() {
                   <button
                     onClick={(e) => {
                       e.preventDefault();
+                      // Exportar JSON
                       const blob = new Blob([JSON.stringify(sessao, null, 2)], {
                         type: 'application/json',
                       });
@@ -208,18 +213,17 @@ export default function PaginaResultados() {
                       a.download = `resultado-${sessao.id}.json`;
                       a.click();
                     }}
-                    className="p-2.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                    className="p-2 text-muted-foreground hover:text-foreground transition-colors"
                     title="Exportar JSON"
                   >
                     <Download className="w-4 h-4" />
                   </button>
-                  <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
                 </div>
               </Link>
             ))}
           </div>
         )}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }

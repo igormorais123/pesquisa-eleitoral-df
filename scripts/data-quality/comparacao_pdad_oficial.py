@@ -89,6 +89,7 @@ PDAD_OFICIAL = {
         "escolaridade_superior_pct": 65.0,
         "grupo_renda": "G1_alta",
     },
+
     # GRUPO 2 - MEDIA-ALTA RENDA (Renda domiciliar media R$ 6.000 - R$ 15.000)
     "Aguas Claras": {
         "populacao": 160000,
@@ -186,6 +187,7 @@ PDAD_OFICIAL = {
         "escolaridade_superior_pct": 32.0,
         "grupo_renda": "G2_media_alta",
     },
+
     # GRUPO 3 - MEDIA-BAIXA RENDA (Renda domiciliar media R$ 3.500 - R$ 6.000)
     "Ceilandia": {
         "populacao": 287113,  # PDAD 2024 - Maior populacao do DF
@@ -343,6 +345,7 @@ PDAD_OFICIAL = {
         "escolaridade_superior_pct": 35.0,
         "grupo_renda": "G2_media_alta",
     },
+
     # GRUPO 4 - BAIXA RENDA (Renda domiciliar media < R$ 3.500)
     "Sol Nascente/Por do Sol": {
         "populacao": 90574,  # PDAD 2021
@@ -431,8 +434,6 @@ NOME_NORMALIZADO = {
     "Núcleo Bandeirante": "Nucleo Bandeirante",
     "Candangolândia": "Candangolandia",
     "Varjão": "Varjao",
-    "Sol Nascente/Pôr do Sol": "Sol Nascente/Por do Sol",
-    "Sol Nascente/Por do Sol": "Sol Nascente/Por do Sol",
     # Variacoes encontradas no banco
     "Ceilandia": "Ceilandia",  # Sem acento no banco
     "Paranoa": "Paranoa",  # Sem acento no banco
@@ -455,7 +456,7 @@ def normalizar_nome_ra(nome):
 
 
 def carregar_eleitores(caminho):
-    with open(caminho, "r", encoding="utf-8") as f:
+    with open(caminho, 'r', encoding='utf-8') as f:
         return json.load(f)
 
 
@@ -463,7 +464,7 @@ def analisar_por_regiao(eleitores):
     """Agrupa eleitores por RA normalizada"""
     regioes = defaultdict(list)
     for e in eleitores:
-        ra = e.get("regiao_administrativa", "Nao informado")
+        ra = e.get('regiao_administrativa', 'Nao informado')
         ra_norm = normalizar_nome_ra(ra)
         regioes[ra_norm].append(e)
     return regioes
@@ -476,44 +477,41 @@ def calcular_metricas(eleitores_ra):
         return None
 
     # Idade media
-    idades = [e.get("idade", 35) for e in eleitores_ra]
+    idades = [e.get('idade', 35) for e in eleitores_ra]
     idade_media = statistics.mean(idades)
 
     # Cor/raca
-    cor_counter = Counter(e.get("cor_raca", "N/A") for e in eleitores_ra)
-    cor_branca_pct = (cor_counter.get("branca", 0) / n) * 100
-    cor_parda_pct = (cor_counter.get("parda", 0) / n) * 100
-    cor_preta_pct = (cor_counter.get("preta", 0) / n) * 100
+    cor_counter = Counter(e.get('cor_raca', 'N/A') for e in eleitores_ra)
+    cor_branca_pct = (cor_counter.get('branca', 0) / n) * 100
+    cor_parda_pct = (cor_counter.get('parda', 0) / n) * 100
+    cor_preta_pct = (cor_counter.get('preta', 0) / n) * 100
 
     # Escolaridade superior
-    superior = sum(
-        1
-        for e in eleitores_ra
-        if e.get("escolaridade") in ("superior_ou_pos", "superior_completo_ou_pos")
-    )
+    superior = sum(1 for e in eleitores_ra
+                   if e.get('escolaridade') == 'superior_completo_ou_pos')
     escolaridade_superior_pct = (superior / n) * 100
 
     # Renda media em R$
     rendas = []
     for e in eleitores_ra:
-        renda_cat = e.get("renda_salarios_minimos", "ate_1")
+        renda_cat = e.get('renda_salarios_minimos', 'ate_1')
         rendas.append(RENDA_PARA_REAIS.get(renda_cat, 706))
     renda_media = statistics.mean(rendas)
 
     # Cluster predominante
-    clusters = Counter(e.get("cluster_socioeconomico", "N/A") for e in eleitores_ra)
+    clusters = Counter(e.get('cluster_socioeconomico', 'N/A') for e in eleitores_ra)
     cluster_predominante = clusters.most_common(1)[0][0]
 
     return {
-        "n": n,
-        "idade_media": round(idade_media, 1),
-        "cor_branca_pct": round(cor_branca_pct, 1),
-        "cor_parda_pct": round(cor_parda_pct, 1),
-        "cor_preta_pct": round(cor_preta_pct, 1),
-        "escolaridade_superior_pct": round(escolaridade_superior_pct, 1),
-        "renda_media": round(renda_media, 0),
-        "cluster_predominante": cluster_predominante,
-        "clusters": dict(clusters),
+        'n': n,
+        'idade_media': round(idade_media, 1),
+        'cor_branca_pct': round(cor_branca_pct, 1),
+        'cor_parda_pct': round(cor_parda_pct, 1),
+        'cor_preta_pct': round(cor_preta_pct, 1),
+        'escolaridade_superior_pct': round(escolaridade_superior_pct, 1),
+        'renda_media': round(renda_media, 0),
+        'cluster_predominante': cluster_predominante,
+        'clusters': dict(clusters),
     }
 
 
@@ -525,74 +523,58 @@ def comparar_com_pdad(metricas, pdad):
         return ["RA nao encontrada nos dados PDAD oficiais"]
 
     # Idade media (tolerancia: 5 anos)
-    diff_idade = abs(metricas["idade_media"] - pdad["idade_media"])
+    diff_idade = abs(metricas['idade_media'] - pdad['idade_media'])
     if diff_idade > 5:
-        problemas.append(
-            {
-                "campo": "Idade media",
-                "banco": f"{metricas['idade_media']} anos",
-                "pdad": f"{pdad['idade_media']} anos",
-                "diff": f"+{diff_idade:.0f} anos"
-                if metricas["idade_media"] > pdad["idade_media"]
-                else f"-{diff_idade:.0f} anos",
-                "gravidade": "GRAVE" if diff_idade > 10 else "MODERADA",
-            }
-        )
+        problemas.append({
+            'campo': 'Idade media',
+            'banco': f"{metricas['idade_media']} anos",
+            'pdad': f"{pdad['idade_media']} anos",
+            'diff': f"+{diff_idade:.0f} anos" if metricas['idade_media'] > pdad['idade_media'] else f"-{diff_idade:.0f} anos",
+            'gravidade': 'GRAVE' if diff_idade > 10 else 'MODERADA'
+        })
 
     # Cor branca (tolerancia: 12 pontos percentuais)
-    diff_cor = metricas["cor_branca_pct"] - pdad["cor_branca_pct"]
+    diff_cor = metricas['cor_branca_pct'] - pdad['cor_branca_pct']
     if abs(diff_cor) > 12:
-        problemas.append(
-            {
-                "campo": "Cor branca %",
-                "banco": f"{metricas['cor_branca_pct']}%",
-                "pdad": f"{pdad['cor_branca_pct']}%",
-                "diff": f"{diff_cor:+.1f} pp",
-                "gravidade": "GRAVE" if abs(diff_cor) > 20 else "MODERADA",
-            }
-        )
+        problemas.append({
+            'campo': 'Cor branca %',
+            'banco': f"{metricas['cor_branca_pct']}%",
+            'pdad': f"{pdad['cor_branca_pct']}%",
+            'diff': f"{diff_cor:+.1f} pp",
+            'gravidade': 'GRAVE' if abs(diff_cor) > 20 else 'MODERADA'
+        })
 
     # Escolaridade superior (tolerancia: 15 pontos percentuais)
-    diff_esc = metricas["escolaridade_superior_pct"] - pdad["escolaridade_superior_pct"]
+    diff_esc = metricas['escolaridade_superior_pct'] - pdad['escolaridade_superior_pct']
     if abs(diff_esc) > 15:
-        problemas.append(
-            {
-                "campo": "Escolaridade superior %",
-                "banco": f"{metricas['escolaridade_superior_pct']}%",
-                "pdad": f"{pdad['escolaridade_superior_pct']}%",
-                "diff": f"{diff_esc:+.1f} pp",
-                "gravidade": "GRAVE" if abs(diff_esc) > 25 else "MODERADA",
-            }
-        )
+        problemas.append({
+            'campo': 'Escolaridade superior %',
+            'banco': f"{metricas['escolaridade_superior_pct']}%",
+            'pdad': f"{pdad['escolaridade_superior_pct']}%",
+            'diff': f"{diff_esc:+.1f} pp",
+            'gravidade': 'GRAVE' if abs(diff_esc) > 25 else 'MODERADA'
+        })
 
     # Renda media (tolerancia: 40%)
-    diff_renda_pct = (
-        (metricas["renda_media"] - pdad["renda_domiciliar_media"])
-        / pdad["renda_domiciliar_media"]
-        * 100
-    )
+    diff_renda_pct = (metricas['renda_media'] - pdad['renda_domiciliar_media']) / pdad['renda_domiciliar_media'] * 100
     if abs(diff_renda_pct) > 40:
-        problemas.append(
-            {
-                "campo": "Renda media",
-                "banco": f"R$ {metricas['renda_media']:,.0f}",
-                "pdad": f"R$ {pdad['renda_domiciliar_media']:,.0f}",
-                "diff": f"{diff_renda_pct:+.0f}%",
-                "gravidade": "GRAVE" if abs(diff_renda_pct) > 60 else "MODERADA",
-            }
-        )
+        problemas.append({
+            'campo': 'Renda media',
+            'banco': f"R$ {metricas['renda_media']:,.0f}",
+            'pdad': f"R$ {pdad['renda_domiciliar_media']:,.0f}",
+            'diff': f"{diff_renda_pct:+.0f}%",
+            'gravidade': 'GRAVE' if abs(diff_renda_pct) > 60 else 'MODERADA'
+        })
 
     # Grupo de renda (cluster)
-    if metricas["cluster_predominante"] != pdad["grupo_renda"]:
-        problemas.append(
-            {
-                "campo": "Grupo de renda",
-                "banco": metricas["cluster_predominante"],
-                "pdad": pdad["grupo_renda"],
-                "diff": "Divergente",
-                "gravidade": "GRAVE",
-            }
-        )
+    if metricas['cluster_predominante'] != pdad['grupo_renda']:
+        problemas.append({
+            'campo': 'Grupo de renda',
+            'banco': metricas['cluster_predominante'],
+            'pdad': pdad['grupo_renda'],
+            'diff': 'Divergente',
+            'gravidade': 'GRAVE'
+        })
 
     return problemas
 
@@ -605,7 +587,7 @@ def main():
     print()
 
     # Carregar dados
-    eleitores = carregar_eleitores("agentes/banco-eleitores-df.json")
+    eleitores = carregar_eleitores('agentes/banco-eleitores-df.json')
     total = len(eleitores)
     print(f"Total de eleitores no banco: {total}")
     print()
@@ -614,7 +596,7 @@ def main():
     regioes = analisar_por_regiao(eleitores)
 
     # Consolidar RAs duplicadas
-    if "Ceilandia" in regioes and "Ceilandia" in regioes:
+    if 'Ceilandia' in regioes and 'Ceilandia' in regioes:
         pass  # Ja normalizado
 
     print(f"Regioes administrativas encontradas: {len(regioes)}")
@@ -631,8 +613,6 @@ def main():
 
     for ra in sorted(regioes.keys()):
         metricas = calcular_metricas(regioes[ra])
-        if metricas is None:
-            continue
 
         # Buscar dados PDAD
         pdad = PDAD_OFICIAL.get(ra)
@@ -647,51 +627,42 @@ def main():
 
         if problemas:
             problemas_por_ra[ra] = {
-                "metricas": metricas,
-                "pdad": pdad,
-                "problemas": problemas,
+                'metricas': metricas,
+                'pdad': pdad,
+                'problemas': problemas
             }
             for p in problemas:
                 if isinstance(p, dict):
-                    if p.get("gravidade") == "GRAVE":
+                    if p.get('gravidade') == 'GRAVE':
                         total_problemas_graves += 1
                     else:
                         total_problemas_moderados += 1
 
-        print(f"\n{'=' * 70}")
+        print(f"\n{'='*70}")
         print(f"RA: {ra} (n={metricas['n']})")
-        print(f"{'=' * 70}")
+        print(f"{'='*70}")
 
         print(f"\n  Banco de Eleitores:")
         print(f"    Idade media: {metricas['idade_media']} anos")
-        print(
-            f"    Cor: branca {metricas['cor_branca_pct']}% | parda {metricas['cor_parda_pct']}% | preta {metricas['cor_preta_pct']}%"
-        )
+        print(f"    Cor: branca {metricas['cor_branca_pct']}% | parda {metricas['cor_parda_pct']}% | preta {metricas['cor_preta_pct']}%")
         print(f"    Escolaridade superior: {metricas['escolaridade_superior_pct']}%")
         print(f"    Renda media: R$ {metricas['renda_media']:,.0f}")
         print(f"    Cluster: {metricas['cluster_predominante']}")
 
-        if pdad is not None:
-            pdad_val = pdad
+        if pdad:
             print(f"\n  PDAD Oficial:")
-            print(f"    Idade media: {pdad_val['idade_media']} anos")
-            print(
-                f"    Cor: branca {pdad_val['cor_branca_pct']}% | parda {pdad_val['cor_parda_pct']}% | preta {pdad_val['cor_preta_pct']}%"
-            )
-            print(
-                f"    Escolaridade superior: {pdad_val['escolaridade_superior_pct']}%"
-            )
-            print(f"    Renda media: R$ {pdad_val['renda_domiciliar_media']:,.0f}")
-            print(f"    Grupo: {pdad_val['grupo_renda']}")
+            print(f"    Idade media: {pdad['idade_media']} anos")
+            print(f"    Cor: branca {pdad['cor_branca_pct']}% | parda {pdad['cor_parda_pct']}% | preta {pdad['cor_preta_pct']}%")
+            print(f"    Escolaridade superior: {pdad['escolaridade_superior_pct']}%")
+            print(f"    Renda media: R$ {pdad['renda_domiciliar_media']:,.0f}")
+            print(f"    Grupo: {pdad['grupo_renda']}")
 
         if problemas:
             print(f"\n  [!] INCONSISTENCIAS:")
             for p in problemas:
                 if isinstance(p, dict):
-                    grav = "[GRAVE]" if p["gravidade"] == "GRAVE" else "[MODERADA]"
-                    print(
-                        f"    {grav} {p['campo']}: banco={p['banco']}, PDAD={p['pdad']} ({p['diff']})"
-                    )
+                    grav = "[GRAVE]" if p['gravidade'] == 'GRAVE' else "[MODERADA]"
+                    print(f"    {grav} {p['campo']}: banco={p['banco']}, PDAD={p['pdad']} ({p['diff']})")
                 else:
                     print(f"    - {p}")
         else:
@@ -715,12 +686,16 @@ def main():
 
     problemas_criticos = []
     for ra, dados in problemas_por_ra.items():
-        for p in dados["problemas"]:
-            if isinstance(p, dict) and p["gravidade"] == "GRAVE":
-                problemas_criticos.append({"ra": ra, "n": dados["metricas"]["n"], **p})
+        for p in dados['problemas']:
+            if isinstance(p, dict) and p['gravidade'] == 'GRAVE':
+                problemas_criticos.append({
+                    'ra': ra,
+                    'n': dados['metricas']['n'],
+                    **p
+                })
 
     # Ordenar por numero de eleitores (impacto)
-    problemas_criticos.sort(key=lambda x: x["n"], reverse=True)
+    problemas_criticos.sort(key=lambda x: x['n'], reverse=True)
 
     for p in problemas_criticos[:20]:
         print(f"\n  {p['ra']} (n={p['n']}):")
@@ -732,59 +707,39 @@ def main():
     print("=" * 90)
 
     # Idade
-    idades_acima = sum(
-        1
-        for ra, d in problemas_por_ra.items()
-        for p in d["problemas"]
-        if isinstance(p, dict)
-        and p["campo"] == "Idade media"
-        and "+" in str(p.get("diff", ""))
-    )
+    idades_acima = sum(1 for ra, d in problemas_por_ra.items()
+                      for p in d['problemas']
+                      if isinstance(p, dict) and p['campo'] == 'Idade media' and '+' in str(p.get('diff', '')))
 
     print(f"\n  1. IDADE: {idades_acima} RAs com idade media ACIMA do real")
     print(f"     Impacto: Eleitores muito velhos para representar a realidade do DF")
     print(f"     Acao: Rejuvenescer amostra, especialmente nas periferias")
 
     # Cor
-    cor_acima = sum(
-        1
-        for ra, d in problemas_por_ra.items()
-        for p in d["problemas"]
-        if isinstance(p, dict)
-        and p["campo"] == "Cor branca %"
-        and "+" in str(p.get("diff", ""))
-    )
+    cor_acima = sum(1 for ra, d in problemas_por_ra.items()
+                   for p in d['problemas']
+                   if isinstance(p, dict) and p['campo'] == 'Cor branca %' and '+' in str(p.get('diff', '')))
 
     print(f"\n  2. COR/RACA: {cor_acima} RAs com % brancos ACIMA do real")
     print(f"     Impacto: Sub-representacao da populacao negra/parda nas periferias")
     print(f"     Acao: Ajustar proporcao para refletir 57.4% negros no DF (PDAD 2024)")
 
     # Escolaridade
-    esc_acima = sum(
-        1
-        for ra, d in problemas_por_ra.items()
-        for p in d["problemas"]
-        if isinstance(p, dict)
-        and p["campo"] == "Escolaridade superior %"
-        and "+" in str(p.get("diff", ""))
-    )
+    esc_acima = sum(1 for ra, d in problemas_por_ra.items()
+                   for p in d['problemas']
+                   if isinstance(p, dict) and p['campo'] == 'Escolaridade superior %' and '+' in str(p.get('diff', '')))
 
     print(f"\n  3. ESCOLARIDADE: {esc_acima} RAs com escolaridade ACIMA do real")
     print(f"     Impacto: Periferias parecem mais escolarizadas que a realidade")
     print(f"     Acao: Reduzir % ensino superior em Ceilandia, Samambaia, Santa Maria")
 
     # Renda
-    renda_divergente = sum(
-        1
-        for ra, d in problemas_por_ra.items()
-        for p in d["problemas"]
-        if isinstance(p, dict) and p["campo"] == "Renda media"
-    )
+    renda_divergente = sum(1 for ra, d in problemas_por_ra.items()
+                          for p in d['problemas']
+                          if isinstance(p, dict) and p['campo'] == 'Renda media')
 
     print(f"\n  4. RENDA: {renda_divergente} RAs com renda divergente")
-    print(
-        f"     Impacto: Regioes nobres sub-representadas, periferias super-representadas"
-    )
+    print(f"     Impacto: Regioes nobres sub-representadas, periferias super-representadas")
     print(f"     Acao: Aumentar renda em Lago Sul/Norte, diminuir em periferias")
 
     print("\n" + "=" * 90)

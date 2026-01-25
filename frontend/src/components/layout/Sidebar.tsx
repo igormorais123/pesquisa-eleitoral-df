@@ -2,12 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import {
   Users,
   MessageSquare,
   BarChart3,
+  Vote,
   Home,
   FileText,
   Upload,
@@ -24,36 +24,116 @@ import {
   Target,
   Map,
   Building2,
-  Settings,
-  Activity,
 } from 'lucide-react';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { useAuthStore } from '@/stores/auth-store';
 import { useEffect } from 'react';
 
 const menuItems = [
-  { titulo: 'Início', href: '/', icone: Home },
-  { titulo: 'Admin Usuários', href: '/admin/usuarios', icone: Shield, adminOnly: true },
-  { titulo: 'Validação', href: '/validacao', icone: CheckSquare },
-  { titulo: 'Estimativas', href: '/estimativas', icone: Activity },
-  { titulo: 'Eleitores', href: '/eleitores', icone: Users },
-  { titulo: 'Parlamentares', href: '/parlamentares', icone: Landmark },
-  { titulo: 'Gestores', href: '/gestores', icone: Building2 },
-  { titulo: 'Candidatos', href: '/candidatos', icone: UserCircle },
-  { titulo: 'Cenários', href: '/cenarios', icone: Target },
-  { titulo: 'Templates', href: '/templates', icone: FileText },
-  { titulo: 'Entrevistas', href: '/entrevistas', icone: MessageSquare },
-  { titulo: 'Resultados', href: '/resultados', icone: BarChart3 },
-  { titulo: 'Mapa', href: '/mapa', icone: Map },
-  { titulo: 'Analytics', href: '/analytics', icone: TrendingUp },
-  { titulo: 'Mensagens', href: '/mensagens', icone: Sparkles },
-  { titulo: 'Histórico', href: '/historico', icone: History },
-  { titulo: 'Configurações', href: '/configuracoes', icone: Settings },
+  {
+    titulo: 'Início',
+    href: '/',
+    icone: Home,
+    descricao: 'Visão geral do sistema',
+  },
+  {
+    titulo: 'Admin Usuários',
+    href: '/admin/usuarios',
+    icone: Shield,
+    descricao: 'Gerenciar e aprovar usuários',
+    adminOnly: true,
+  },
+  {
+    titulo: 'Validação',
+    href: '/validacao',
+    icone: CheckSquare,
+    descricao: 'Validação estatística',
+  },
+  {
+    titulo: 'Eleitores',
+    href: '/eleitores',
+    icone: Users,
+    descricao: 'Gerenciar agentes sintéticos',
+  },
+  {
+    titulo: 'Parlamentares',
+    href: '/parlamentares',
+    icone: Landmark,
+    descricao: 'Deputados e senadores do DF',
+  },
+  {
+    titulo: 'Gestores',
+    href: '/gestores',
+    icone: Building2,
+    descricao: 'Gestores publicos e privados',
+  },
+  {
+    titulo: 'Candidatos',
+    href: '/candidatos',
+    icone: UserCircle,
+    descricao: 'Candidatos às eleições 2026',
+  },
+  {
+    titulo: 'Cenários',
+    href: '/cenarios',
+    icone: Target,
+    descricao: 'Simulador de cenários eleitorais',
+  },
+  {
+    titulo: 'Templates',
+    href: '/templates',
+    icone: FileText,
+    descricao: 'Modelos de perguntas prontos',
+  },
+  {
+    titulo: 'Entrevistas',
+    href: '/entrevistas',
+    icone: MessageSquare,
+    descricao: 'Criar e executar pesquisas',
+  },
+  {
+    titulo: 'Resultados',
+    href: '/resultados',
+    icone: BarChart3,
+    descricao: 'Análises e visualizações',
+  },
+  {
+    titulo: 'Mapa',
+    href: '/mapa',
+    icone: Map,
+    descricao: 'Mapa de calor por região',
+  },
+  {
+    titulo: 'Analytics',
+    href: '/analytics',
+    icone: TrendingUp,
+    descricao: 'Análises globais e correlações',
+  },
+  {
+    titulo: 'Mensagens',
+    href: '/mensagens',
+    icone: Sparkles,
+    descricao: 'Gerador de mensagens com IA',
+  },
+  {
+    titulo: 'Histórico',
+    href: '/historico',
+    icone: History,
+    descricao: 'Pesquisas anteriores',
+  },
 ];
 
 const acoesRapidas = [
-  { titulo: 'Upload Eleitores', href: '/eleitores/upload', icone: Upload },
-  { titulo: 'Gerar Agentes', href: '/eleitores/gerar', icone: Sparkles },
+  {
+    titulo: 'Upload Eleitores',
+    href: '/eleitores/upload',
+    icone: Upload,
+  },
+  {
+    titulo: 'Gerar Agentes',
+    href: '/eleitores/gerar',
+    icone: Sparkles,
+  },
 ];
 
 export function Sidebar() {
@@ -62,96 +142,133 @@ export function Sidebar() {
   const usuario = useAuthStore((state) => state.usuario);
   const isAdmin = usuario?.papel === 'admin';
 
+  // Fechar sidebar mobile ao navegar
   useEffect(() => {
     fecharMobile();
   }, [pathname, fecharMobile]);
 
+  // Fechar sidebar mobile ao redimensionar para desktop
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024) fecharMobile();
+      if (window.innerWidth >= 1024) {
+        fecharMobile();
+      }
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [fecharMobile]);
 
+  // Conteúdo da sidebar (reutilizado em desktop e mobile)
   const sidebarContent = (
     <>
       {/* Logo */}
-      <div className="h-14 px-4 border-b border-border flex items-center">
+      <div className="p-4 border-b border-border">
         <Link href="/" className="flex items-center gap-3" onClick={fecharMobile}>
-          <div className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center flex-shrink-0">
-            <Target className="w-4 h-4 text-background" />
+          <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
+            <Vote className="w-5 h-5 text-primary" />
           </div>
           {!recolhido && (
-            <span className="font-semibold text-foreground text-sm">Pesquisa DF</span>
+            <div className="overflow-hidden">
+              <h1 className="font-bold text-foreground text-sm">Pesquisa Eleitoral</h1>
+              <p className="text-xs text-muted-foreground">DF 2026</p>
+            </div>
           )}
         </Link>
       </div>
 
-      {/* Menu */}
-      <nav className="flex-1 p-2 space-y-0.5 overflow-y-auto">
+      {/* Menu Principal */}
+      <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
         {menuItems
           .filter((item) => !item.adminOnly || isAdmin)
           .map((item) => {
-            const ativo = pathname === item.href || pathname.startsWith(`${item.href}/`);
-            const Icone = item.icone;
+          const ativo = pathname === item.href || pathname.startsWith(`${item.href}/`);
+          const Icone = item.icone;
+          const isAdminItem = item.adminOnly;
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={fecharMobile}
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={fecharMobile}
+              className={cn(
+                'flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all group',
+                ativo
+                  ? isAdminItem
+                    ? 'bg-red-500/20 text-red-400 shadow-lg shadow-red-500/25'
+                    : 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
+                  : isAdminItem
+                    ? 'text-red-400/70 hover:text-red-400 hover:bg-red-500/10'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
+              )}
+              title={recolhido ? item.titulo : undefined}
+            >
+              <Icone
                 className={cn(
-                  'flex items-center gap-3 px-3 py-2 rounded-lg transition-colors',
+                  'w-5 h-5 flex-shrink-0',
                   ativo
-                    ? 'bg-foreground text-background font-medium'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                    ? isAdminItem ? 'text-red-400' : 'text-primary-foreground'
+                    : isAdminItem ? 'text-red-400/70' : 'group-hover:text-primary'
                 )}
-                title={recolhido ? item.titulo : undefined}
-              >
-                <Icone className="w-4 h-4 flex-shrink-0" />
-                {!recolhido && <span className="text-sm">{item.titulo}</span>}
-              </Link>
-            );
-          })}
+              />
+              {!recolhido && (
+                <div className="overflow-hidden">
+                  <span className="block text-sm font-medium">{item.titulo}</span>
+                  <span
+                    className={cn(
+                      'block text-xs',
+                      ativo
+                        ? isAdminItem ? 'text-red-400/70' : 'text-primary-foreground/70'
+                        : 'text-muted-foreground'
+                    )}
+                  >
+                    {item.descricao}
+                  </span>
+                </div>
+              )}
+            </Link>
+          );
+        })}
 
-        {/* Ações Rápidas */}
+        {/* Separador - Ações Rápidas */}
         {!recolhido && (
           <>
-            <div className="pt-4 pb-2 px-3">
-              <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">
+            <div className="pt-4 pb-2">
+              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-3">
                 Ações Rápidas
               </span>
             </div>
+
             {acoesRapidas.map((acao) => {
               const Icone = acao.icone;
+
               return (
                 <Link
                   key={acao.href}
                   href={acao.href}
                   onClick={fecharMobile}
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                  className="flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-all group"
                 >
-                  <Icone className="w-4 h-4" />
+                  <Icone className="w-4 h-4 flex-shrink-0 group-hover:text-primary" />
                   <span className="text-sm">{acao.titulo}</span>
                 </Link>
               );
             })}
           </>
         )}
+
       </nav>
 
-      {/* Footer */}
-      <div className="p-2 border-t border-border">
+      {/* Botão Recolher - apenas desktop */}
+      <div className="hidden lg:block p-4 border-t border-border">
         <button
           onClick={toggleRecolhido}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-all"
         >
           {recolhido ? (
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="w-5 h-5" />
           ) : (
             <>
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-5 h-5" />
               <span className="text-sm">Recolher</span>
             </>
           )}
@@ -162,41 +279,37 @@ export function Sidebar() {
 
   return (
     <>
-      {/* Desktop Sidebar */}
+      {/* Sidebar Desktop - fixa, escondida em mobile */}
       <aside
         className={cn(
-          'hidden lg:flex fixed left-0 top-0 z-40 h-screen transition-all duration-300 flex-col',
-          'bg-card border-r border-border',
-          recolhido ? 'w-16' : 'w-56'
+          'hidden lg:flex fixed left-0 top-0 z-40 h-screen bg-card border-r border-border transition-all duration-300 flex-col',
+          recolhido ? 'w-20' : 'w-64'
         )}
       >
         {sidebarContent}
       </aside>
 
-      {/* Mobile Overlay */}
-      <AnimatePresence>
-        {mobileAberto && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="lg:hidden fixed inset-0 z-40 bg-black/50"
-            onClick={fecharMobile}
-          />
-        )}
-      </AnimatePresence>
+      {/* Overlay mobile - escurece o fundo */}
+      {mobileAberto && (
+        <div
+          className="lg:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity"
+          onClick={fecharMobile}
+          aria-hidden="true"
+        />
+      )}
 
-      {/* Mobile Sidebar */}
+      {/* Sidebar Mobile - drawer lateral */}
       <aside
         className={cn(
-          'lg:hidden fixed left-0 top-0 z-50 h-screen w-64 flex flex-col transition-transform duration-300',
-          'bg-card border-r border-border',
+          'lg:hidden fixed left-0 top-0 z-50 h-screen w-72 bg-card border-r border-border flex flex-col transition-transform duration-300 ease-in-out',
           mobileAberto ? 'translate-x-0' : '-translate-x-full'
         )}
       >
+        {/* Botão fechar mobile */}
         <button
           onClick={fecharMobile}
-          className="absolute top-4 right-4 p-2 rounded-lg hover:bg-muted transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-lg hover:bg-secondary transition-colors lg:hidden"
+          aria-label="Fechar menu"
         >
           <X className="w-5 h-5 text-muted-foreground" />
         </button>

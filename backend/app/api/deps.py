@@ -5,7 +5,6 @@ Funções de dependência para injeção em rotas.
 Inclui suporte a Row Level Security (RLS) no PostgreSQL.
 """
 
-import logging
 from typing import AsyncGenerator, Optional
 
 from fastapi import Depends, HTTPException, status
@@ -16,35 +15,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.seguranca import DadosToken, verificar_token
 from app.db.session import AsyncSessionLocal
 
-logger = logging.getLogger(__name__)
-
-# Flag global para indicar se o banco está disponível
-_db_disponivel: Optional[bool] = None
-
-
-async def verificar_db_disponivel() -> bool:
-    """Verifica se o banco de dados está disponível."""
-    global _db_disponivel
-    if _db_disponivel is not None:
-        return _db_disponivel
-
-    try:
-        async with AsyncSessionLocal() as session:
-            await session.execute(text("SELECT 1"))
-            _db_disponivel = True
-            logger.info("Banco de dados disponível")
-    except Exception as e:
-        _db_disponivel = False
-        logger.warning(f"Banco de dados não disponível: {e}")
-
-    return _db_disponivel
-
-
 # Esquema OAuth2
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
-oauth2_scheme_optional = OAuth2PasswordBearer(
-    tokenUrl="/api/v1/auth/login", auto_error=False
-)
+oauth2_scheme_optional = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login", auto_error=False)
 
 
 async def obter_usuario_atual(token: str = Depends(oauth2_scheme)) -> DadosToken:
@@ -121,35 +94,10 @@ async def obter_usuario_opcional(
 # ========================================
 
 
-def escape_sql_string(value: str) -> str:
-    """
-    Escapa string para uso seguro em SET LOCAL do PostgreSQL.
-
-    NOTA: SET LOCAL não suporta bind parameters em asyncpg.
-    Esta função sanitiza valores para uso seguro em strings SQL.
-
-    Args:
-        value: Valor a ser escapado
-
-    Returns:
-        String sanitizada segura para SQL
-    """
-    if not value:
-        return ""
-    # Remove caracteres perigosos e escapa aspas simples
-    sanitized = (
-        str(value)
-        .replace("'", "''")
-        .replace("\\", "")
-        .replace(";", "")
-        .replace("--", "")
-    )
-    # Limita tamanho para evitar ataques de buffer
-    return sanitized[:255]
-
-
-# Alias para compatibilidade interna
-_escape_string = escape_sql_string
+def _escape_string(value: str) -> str:
+    """Escapa string para uso seguro em SQL (remove caracteres perigosos)."""
+    # Remove caracteres que podem causar SQL injection
+    return value.replace("'", "''").replace("\\", "").replace(";", "").replace("--", "")
 
 
 async def _set_rls_context(
@@ -191,8 +139,8 @@ async def get_db_rls(
             # Configurar contexto RLS
             await _set_rls_context(
                 session,
-                user_id=str(usuario.usuario_id or ""),
-                user_role=usuario.papel or "",
+                user_id=str(usuario.usuario_id),
+                user_role=usuario.papel,
                 bypass=False,
             )
 
@@ -227,8 +175,8 @@ async def get_db_rls_optional(
             if usuario:
                 await _set_rls_context(
                     session,
-                    user_id=str(usuario.usuario_id or ""),
-                    user_role=usuario.papel or "",
+                    user_id=str(usuario.usuario_id),
+                    user_role=usuario.papel,
                     bypass=False,
                 )
             else:
@@ -265,7 +213,7 @@ async def get_db_admin(
         try:
             await _set_rls_context(
                 session,
-                user_id=str(usuario.usuario_id or ""),
+                user_id=str(usuario.usuario_id),
                 user_role="admin",
                 bypass=False,
             )

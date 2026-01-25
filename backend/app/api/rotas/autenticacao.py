@@ -4,15 +4,11 @@ Rotas de Autenticação
 Endpoints para login, registro, logout e autenticação Google OAuth2.
 """
 
-import logging
-
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import DadosToken, obter_usuario_atual
-
-logger = logging.getLogger(__name__)
 from app.core.config import configuracoes
 from app.core.seguranca import autenticar_usuario_legado, criar_token_acesso
 from app.db.session import get_db, get_db_optional
@@ -56,7 +52,6 @@ def criar_token_response(usuario) -> TokenResponse:
 # Registro
 # ==========================================
 
-
 @router.post(
     "/registro",
     response_model=RegistroResponse,
@@ -99,7 +94,6 @@ async def registrar(
 # ==========================================
 # Login Local
 # ==========================================
-
 
 @router.post(
     "/login",
@@ -180,7 +174,6 @@ async def login_form(
 # ==========================================
 # Login Google OAuth2
 # ==========================================
-
 
 @router.get(
     "/google/url",
@@ -293,7 +286,6 @@ async def google_callback(
 # Sessão
 # ==========================================
 
-
 @router.get(
     "/me",
     response_model=UsuarioResponse,
@@ -318,9 +310,7 @@ async def obter_usuario_logado(
         return UsuarioResponse.model_validate(usuario)
 
     # Fallback - detecta se é usuário Google ou local
-    is_google = usuario_atual.usuario_id and usuario_atual.usuario_id.startswith(
-        "google-"
-    )
+    is_google = usuario_atual.usuario_id and usuario_atual.usuario_id.startswith("google-")
 
     return UsuarioResponse(
         id=usuario_atual.usuario_id or "",

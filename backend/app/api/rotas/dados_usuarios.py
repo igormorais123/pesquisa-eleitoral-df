@@ -10,7 +10,7 @@ import os
 from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 
 from app.api.deps import DadosToken, obter_usuario_admin
 
@@ -20,14 +20,13 @@ router = APIRouter()
 DADOS_PATH = os.path.join(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))),
     "agentes",
-    "dados-usuarios-google.json",
+    "dados-usuarios-google.json"
 )
 
 
 # ==========================================
 # Esquemas de Resposta
 # ==========================================
-
 
 class TelefoneResponse(BaseModel):
     numero: Optional[str] = None
@@ -67,7 +66,6 @@ class UrlResponse(BaseModel):
 
 class DadosUsuarioGoogleResponse(BaseModel):
     """Dados completos de um usuário Google"""
-
     google_id: str
     email: Optional[str] = None
     nome: Optional[str] = None
@@ -100,19 +98,18 @@ class DadosUsuarioGoogleResponse(BaseModel):
     criado_em: Optional[str] = None
     atualizado_em: Optional[str] = None
 
-    model_config = ConfigDict(extra="allow")
+    class Config:
+        extra = "allow"  # Permite campos extras
 
 
 class ListaDadosUsuariosResponse(BaseModel):
     """Lista de dados de usuários"""
-
     usuarios: List[DadosUsuarioGoogleResponse]
     total: int
 
 
 class EstatisticasDadosResponse(BaseModel):
     """Estatísticas dos dados coletados"""
-
     total_usuarios: int
     com_telefone: int
     com_endereco: int
@@ -130,7 +127,6 @@ class EstatisticasDadosResponse(BaseModel):
 # Funções Auxiliares
 # ==========================================
 
-
 def _carregar_dados() -> List[dict]:
     """Carrega dados do arquivo JSON"""
     if not os.path.exists(DADOS_PATH):
@@ -143,7 +139,6 @@ def _carregar_dados() -> List[dict]:
 # ==========================================
 # Endpoints
 # ==========================================
-
 
 @router.get(
     "/",
@@ -171,7 +166,7 @@ async def listar_dados_usuarios(
     dados = _carregar_dados()
 
     total = len(dados)
-    usuarios = dados[offset : offset + limite]
+    usuarios = dados[offset:offset + limite]
 
     return ListaDadosUsuariosResponse(
         usuarios=usuarios,
@@ -272,9 +267,7 @@ async def obter_dados_usuario(
 )
 async def exportar_dados_json(
     admin: DadosToken = Depends(obter_usuario_admin),
-    incluir_dados_brutos: bool = Query(
-        default=False, description="Incluir dados brutos da API"
-    ),
+    incluir_dados_brutos: bool = Query(default=False, description="Incluir dados brutos da API"),
 ):
     """Exporta dados em JSON"""
     dados = _carregar_dados()
@@ -304,9 +297,7 @@ async def remover_dados_usuario(
     dados = _carregar_dados()
 
     # Encontrar índice do usuário
-    idx = next(
-        (i for i, u in enumerate(dados) if u.get("google_id") == google_id), None
-    )
+    idx = next((i for i, u in enumerate(dados) if u.get("google_id") == google_id), None)
 
     if idx is None:
         raise HTTPException(

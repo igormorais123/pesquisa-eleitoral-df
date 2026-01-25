@@ -2,12 +2,11 @@
 
 /**
  * Página de Analytics Global
- * Design Apple-style minimalista
+ * Design minimalista e responsivo
  * Pesquisa Eleitoral DF 2026
  */
 
 import { useEffect, useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
 import {
   TrendingUp,
   Users,
@@ -16,6 +15,7 @@ import {
   Lightbulb,
   RefreshCw,
   Database,
+  Cpu,
   Zap,
   PieChart as PieChartIcon,
   Target,
@@ -25,7 +25,6 @@ import {
   Sparkles,
   Clock,
   AlertCircle,
-  BarChart3,
 } from 'lucide-react';
 import {
   PieChart,
@@ -56,20 +55,6 @@ import {
 } from '@/services/analytics-local';
 import { cn } from '@/lib/utils';
 
-// Animações Apple-style
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
-  }
-};
-
-const stagger = {
-  animate: { transition: { staggerChildren: 0.08 } }
-};
-
 // ============================================
 // DESIGN TOKENS
 // ============================================
@@ -95,9 +80,9 @@ const coresGrafico = [cores.primary, cores.success, cores.warning, cores.info, c
 function Card({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
     <div className={cn(
-      'bg-card rounded-2xl',
-      'border border-border',
-      'transition-all duration-300',
+      'bg-white dark:bg-zinc-900 rounded-2xl',
+      'border border-zinc-100 dark:border-zinc-800',
+      'shadow-sm hover:shadow-md transition-shadow duration-300',
       className
     )}>
       {children}
@@ -121,27 +106,27 @@ function MetricCard({
   color?: keyof typeof cores;
 }) {
   const bgColors: Record<string, string> = {
-    primary: 'bg-indigo-500/10',
-    success: 'bg-emerald-500/10',
-    warning: 'bg-amber-500/10',
-    danger: 'bg-red-500/10',
-    info: 'bg-blue-500/10',
-    purple: 'bg-purple-500/10',
-    cyan: 'bg-cyan-500/10',
+    primary: 'bg-indigo-50 dark:bg-indigo-950/30',
+    success: 'bg-emerald-50 dark:bg-emerald-950/30',
+    warning: 'bg-amber-50 dark:bg-amber-950/30',
+    danger: 'bg-red-50 dark:bg-red-950/30',
+    info: 'bg-blue-50 dark:bg-blue-950/30',
+    purple: 'bg-purple-50 dark:bg-purple-950/30',
+    cyan: 'bg-cyan-50 dark:bg-cyan-950/30',
   };
 
   const iconColors: Record<string, string> = {
-    primary: 'text-indigo-500',
-    success: 'text-emerald-500',
-    warning: 'text-amber-500',
-    danger: 'text-red-500',
-    info: 'text-blue-500',
-    purple: 'text-purple-500',
-    cyan: 'text-cyan-500',
+    primary: 'text-indigo-600 dark:text-indigo-400',
+    success: 'text-emerald-600 dark:text-emerald-400',
+    warning: 'text-amber-600 dark:text-amber-400',
+    danger: 'text-red-600 dark:text-red-400',
+    info: 'text-blue-600 dark:text-blue-400',
+    purple: 'text-purple-600 dark:text-purple-400',
+    cyan: 'text-cyan-600 dark:text-cyan-400',
   };
 
   return (
-    <Card className="p-5">
+    <Card className="p-4 sm:p-5">
       <div className="flex items-start justify-between mb-3">
         <div className={cn('p-2.5 rounded-xl', bgColors[color])}>
           <Icon className={cn('w-5 h-5', iconColors[color])} />
@@ -149,20 +134,21 @@ function MetricCard({
         {trend && (
           <span className={cn(
             'text-xs font-medium px-2 py-1 rounded-full',
-            trend === 'up' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-red-500/10 text-red-500'
+            trend === 'up' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' :
+                            'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
           )}>
             {trend === 'up' ? '↑' : '↓'}
           </span>
         )}
       </div>
-      <p className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight">
+      <p className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">
         {value}
       </p>
-      <p className="text-sm text-muted-foreground mt-1">
+      <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 font-medium">
         {label}
       </p>
       {subtitle && (
-        <p className="text-xs text-muted-foreground/70 mt-0.5">
+        <p className="text-xs text-zinc-400 dark:text-zinc-500 mt-0.5">
           {subtitle}
         </p>
       )}
@@ -180,13 +166,13 @@ function SectionHeader({
   subtitle?: string;
 }) {
   return (
-    <div className="flex items-center gap-3 mb-5">
-      <div className="p-2.5 rounded-xl bg-blue-500/10">
-        <Icon className="w-5 h-5 text-blue-500" />
+    <div className="flex items-center gap-3 mb-4 sm:mb-5">
+      <div className="p-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/30">
+        <Icon className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
       </div>
       <div>
-        <h3 className="font-semibold text-foreground">{title}</h3>
-        {subtitle && <p className="text-xs text-muted-foreground">{subtitle}</p>}
+        <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">{title}</h3>
+        {subtitle && <p className="text-xs text-zinc-500">{subtitle}</p>}
       </div>
     </div>
   );
@@ -210,14 +196,14 @@ function ProgressBar({
 
   return (
     <div className="flex items-center gap-3">
-      <div className={cn('flex-1 bg-muted rounded-full overflow-hidden', heights[size])}>
+      <div className={cn('flex-1 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden', heights[size])}>
         <div
           className="h-full rounded-full transition-all duration-500 ease-out"
           style={{ width: `${percentage}%`, backgroundColor: color }}
         />
       </div>
       {showLabel && (
-        <span className="text-xs font-medium text-muted-foreground w-10 text-right">
+        <span className="text-xs font-medium text-zinc-500 w-10 text-right">
           {percentage.toFixed(0)}%
         </span>
       )}
@@ -228,18 +214,18 @@ function ProgressBar({
 function EmptyState({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-      <div className="p-4 rounded-2xl bg-muted mb-4">
-        <Icon className="w-8 h-8 text-muted-foreground/50" />
+      <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800 mb-4">
+        <Icon className="w-8 h-8 text-zinc-400" />
       </div>
-      <h4 className="font-semibold text-foreground mb-1">{title}</h4>
-      <p className="text-sm text-muted-foreground max-w-xs">{description}</p>
+      <h4 className="font-semibold text-zinc-700 dark:text-zinc-300 mb-1">{title}</h4>
+      <p className="text-sm text-zinc-500 max-w-xs">{description}</p>
     </div>
   );
 }
 
 function Skeleton({ className }: { className?: string }) {
   return (
-    <div className={cn('animate-pulse bg-muted rounded-lg', className)} />
+    <div className={cn('animate-pulse bg-zinc-200 dark:bg-zinc-800 rounded-lg', className)} />
   );
 }
 
@@ -272,13 +258,12 @@ function ChartSkeleton() {
 
 function AnimatedCard({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: delay / 1000, ease: [0.25, 0.46, 0.45, 0.94] }}
+    <div
+      className="animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both"
+      style={{ animationDelay: `${delay}ms` }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -290,8 +275,8 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
 
   return (
-    <div className="bg-foreground text-background px-3 py-2 rounded-lg shadow-xl">
-      <p className="text-xs font-medium opacity-80 mb-1">{label}</p>
+    <div className="bg-zinc-900 dark:bg-zinc-800 px-3 py-2 rounded-lg shadow-xl border border-zinc-700">
+      <p className="text-xs font-medium text-zinc-300 mb-1">{label}</p>
       {payload.map((entry: any, index: number) => (
         <p key={index} className="text-sm font-semibold" style={{ color: entry.color }}>
           {entry.name}: {typeof entry.value === 'number' ? entry.value.toLocaleString('pt-BR') : entry.value}
@@ -397,24 +382,29 @@ export default function AnalyticsPage() {
   // Loading state com Skeleton
   if (carregando) {
     return (
-      <div className="space-y-8">
-        {/* Header Skeleton */}
-        <div className="text-center">
-          <Skeleton className="h-12 w-48 mx-auto mb-3" />
-          <Skeleton className="h-6 w-80 mx-auto" />
-        </div>
+      <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          {/* Header Skeleton */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
+            <div>
+              <Skeleton className="h-8 w-32 mb-2" />
+              <Skeleton className="h-4 w-48" />
+            </div>
+            <Skeleton className="h-10 w-28 rounded-xl" />
+          </div>
 
-        {/* Stats Skeleton */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
-          {[...Array(6)].map((_, i) => (
-            <MetricSkeleton key={i} />
-          ))}
-        </div>
+          {/* Métricas Skeleton */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4 mb-6 sm:mb-8">
+            {[...Array(6)].map((_, i) => (
+              <MetricSkeleton key={i} />
+            ))}
+          </div>
 
-        {/* Charts Skeleton */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <ChartSkeleton />
-          <ChartSkeleton />
+          {/* Charts Skeleton */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            <ChartSkeleton />
+            <ChartSkeleton />
+          </div>
         </div>
       </div>
     );
@@ -423,18 +413,18 @@ export default function AnalyticsPage() {
   // Error state
   if (erro) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
+      <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex items-center justify-center">
         <Card className="p-8 max-w-md text-center">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-red-500/10 mb-4">
-            <AlertCircle className="w-7 h-7 text-red-500" />
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-red-100 dark:bg-red-900/30 mb-4">
+            <AlertCircle className="w-7 h-7 text-red-600 dark:text-red-400" />
           </div>
-          <h3 className="text-lg font-semibold text-foreground mb-2">
+          <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
             Erro ao carregar
           </h3>
-          <p className="text-muted-foreground text-sm mb-4">{erro}</p>
+          <p className="text-zinc-500 text-sm mb-4">{erro}</p>
           <button
             onClick={() => carregarDados()}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-sm transition-all"
           >
             <RefreshCw className="w-4 h-4" />
             Tentar novamente
@@ -445,44 +435,45 @@ export default function AnalyticsPage() {
   }
 
   return (
-    <motion.div
-      initial="initial"
-      animate="animate"
-      variants={stagger}
-      className="space-y-8"
-    >
-      {/* Hero Header - Apple Style */}
-      <motion.header variants={fadeIn} className="text-center">
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground">
-          Analytics
-        </h1>
-        <p className="text-xl text-muted-foreground mt-3 max-w-2xl mx-auto">
-          Visão geral das pesquisas eleitorais
-        </p>
-        <div className="flex items-center justify-center gap-4 mt-4">
-          {tempoRelativo && (
-            <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-              <Clock className="w-4 h-4" />
-              Atualizado {tempoRelativo}
-            </span>
-          )}
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+
+        {/* Header */}
+        <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">
+              Analytics
+            </h1>
+            <div className="flex items-center gap-3 mt-1">
+              <p className="text-zinc-500 text-sm">
+                Visão geral das pesquisas eleitorais
+              </p>
+              {tempoRelativo && (
+                <span className="flex items-center gap-1 text-xs text-zinc-400">
+                  <Clock className="w-3 h-3" />
+                  {tempoRelativo}
+                </span>
+              )}
+            </div>
+          </div>
           <button
             onClick={() => carregarDados(true)}
             disabled={atualizando}
             className={cn(
-              'inline-flex items-center gap-2 px-5 py-2.5 rounded-full',
-              'bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm',
-              'transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
+              'inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl',
+              'bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-sm',
+              'transition-all duration-200 shadow-sm hover:shadow-md',
+              'disabled:opacity-50 disabled:cursor-not-allowed',
+              'active:scale-95'
             )}
           >
             <RefreshCw className={cn('w-4 h-4', atualizando && 'animate-spin')} />
-            Atualizar
+            <span className="hidden sm:inline">Atualizar</span>
           </button>
-        </div>
-      </motion.header>
+        </header>
 
-      {/* Métricas Principais */}
-      <motion.section variants={fadeIn} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
+        {/* Métricas Principais */}
+        <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4 mb-6 sm:mb-8">
           <AnimatedCard delay={0}>
             <MetricCard
               label="Pesquisas"
@@ -537,10 +528,10 @@ export default function AnalyticsPage() {
               color="info"
             />
           </AnimatedCard>
-      </motion.section>
+        </section>
 
-      {/* Grid Principal */}
-      <motion.div variants={fadeIn} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Grid Principal */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
 
           {/* Gráfico de Sentimentos */}
           <AnimatedCard delay={300}>
@@ -623,13 +614,12 @@ export default function AnalyticsPage() {
             )}
             </Card>
           </AnimatedCard>
-      </motion.div>
+        </div>
 
-      {/* Tendências */}
-      {dadosTendencia.length > 1 && (
-        <motion.div variants={fadeIn}>
+        {/* Tendências */}
+        {dadosTendencia.length > 1 && (
           <AnimatedCard delay={400}>
-            <Card className="p-6">
+            <Card className="p-4 sm:p-6 mb-6 sm:mb-8">
               <SectionHeader icon={TrendingUp} title="Evolução Temporal" subtitle="Últimos períodos" />
             <div className="h-64 sm:h-72">
               <ResponsiveContainer width="100%" height="100%">
@@ -676,32 +666,31 @@ export default function AnalyticsPage() {
                   <Legend
                     verticalAlign="top"
                     height={36}
-                    formatter={(value) => <span className="text-xs text-muted-foreground">{value}</span>}
+                    formatter={(value) => <span className="text-xs text-zinc-600 dark:text-zinc-400">{value}</span>}
                   />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
             </Card>
           </AnimatedCard>
-        </motion.div>
-      )}
+        )}
 
-      {/* Segmentações */}
-      <motion.div variants={fadeIn} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Segmentações */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
 
-        {/* Por Região */}
-        <AnimatedCard delay={450}>
-          <Card className="p-6">
-            <SectionHeader icon={MapPin} title="Por Região" subtitle="Distribuição geográfica" />
+          {/* Por Região */}
+          <AnimatedCard delay={450}>
+            <Card className="p-4 sm:p-6">
+              <SectionHeader icon={MapPin} title="Por Região" subtitle="Distribuição geográfica" />
             {segRegiao.length > 0 ? (
               <div className="space-y-4">
                 {segRegiao.slice(0, 6).map((seg, i) => (
                   <div key={i}>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium text-foreground truncate pr-2">
+                      <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300 truncate pr-2">
                         {seg.nome}
                       </span>
-                      <span className="text-sm font-semibold text-foreground">
+                      <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                         {seg.total}
                       </span>
                     </div>
@@ -716,22 +705,22 @@ export default function AnalyticsPage() {
             ) : (
               <EmptyState icon={MapPin} title="Sem dados" description="Nenhuma região identificada" />
             )}
-          </Card>
-        </AnimatedCard>
+            </Card>
+          </AnimatedCard>
 
-        {/* Por Cluster */}
-        <AnimatedCard delay={500}>
-          <Card className="p-6">
-            <SectionHeader icon={Users} title="Por Cluster" subtitle="Perfil socioeconômico" />
+          {/* Por Cluster */}
+          <AnimatedCard delay={500}>
+            <Card className="p-4 sm:p-6">
+              <SectionHeader icon={Users} title="Por Cluster" subtitle="Perfil socioeconômico" />
             {segCluster.length > 0 ? (
               <div className="space-y-4">
                 {segCluster.slice(0, 6).map((seg, i) => (
                   <div key={i}>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium text-foreground truncate pr-2">
+                      <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300 truncate pr-2">
                         {seg.nome}
                       </span>
-                      <span className="text-sm font-semibold text-foreground">
+                      <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                         {seg.total}
                       </span>
                     </div>
@@ -746,15 +735,14 @@ export default function AnalyticsPage() {
             ) : (
               <EmptyState icon={Users} title="Sem dados" description="Nenhum cluster identificado" />
             )}
-          </Card>
-        </AnimatedCard>
-      </motion.div>
+            </Card>
+          </AnimatedCard>
+        </div>
 
-      {/* Palavras Frequentes */}
-      {palavras.length > 0 && (
-        <motion.div variants={fadeIn}>
+        {/* Palavras Frequentes - Design melhorado */}
+        {palavras.length > 0 && (
           <AnimatedCard delay={550}>
-            <Card className="p-6">
+            <Card className="p-4 sm:p-6 mb-6 sm:mb-8">
               <SectionHeader icon={MessageSquare} title="Termos Frequentes" subtitle="Palavras mais citadas" />
               <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                 {palavras.map((p, i) => {
@@ -784,23 +772,41 @@ export default function AnalyticsPage() {
               </div>
             </Card>
           </AnimatedCard>
-        </motion.div>
-      )}
+        )}
 
-      {/* Insights */}
-      <motion.div variants={fadeIn}>
+        {/* Insights */}
         <AnimatedCard delay={600}>
-          <Card className="p-6">
+          <Card className="p-4 sm:p-6">
           <SectionHeader icon={Lightbulb} title="Insights" subtitle="Descobertas automáticas" />
           {insights.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
               {insights.map((insight, i) => {
                 const styles: Record<string, { bg: string; border: string; icon: string }> = {
-                  destaque: { bg: 'bg-blue-500/10', border: 'border-blue-500/20', icon: 'text-blue-500' },
-                  alerta: { bg: 'bg-red-500/10', border: 'border-red-500/20', icon: 'text-red-500' },
-                  tendencia: { bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', icon: 'text-emerald-500' },
-                  correlacao: { bg: 'bg-purple-500/10', border: 'border-purple-500/20', icon: 'text-purple-500' },
-                  descoberta: { bg: 'bg-amber-500/10', border: 'border-amber-500/20', icon: 'text-amber-500' },
+                  destaque: {
+                    bg: 'bg-blue-50 dark:bg-blue-950/20',
+                    border: 'border-blue-200 dark:border-blue-800',
+                    icon: 'text-blue-600 dark:text-blue-400'
+                  },
+                  alerta: {
+                    bg: 'bg-red-50 dark:bg-red-950/20',
+                    border: 'border-red-200 dark:border-red-800',
+                    icon: 'text-red-600 dark:text-red-400'
+                  },
+                  tendencia: {
+                    bg: 'bg-emerald-50 dark:bg-emerald-950/20',
+                    border: 'border-emerald-200 dark:border-emerald-800',
+                    icon: 'text-emerald-600 dark:text-emerald-400'
+                  },
+                  correlacao: {
+                    bg: 'bg-purple-50 dark:bg-purple-950/20',
+                    border: 'border-purple-200 dark:border-purple-800',
+                    icon: 'text-purple-600 dark:text-purple-400'
+                  },
+                  descoberta: {
+                    bg: 'bg-amber-50 dark:bg-amber-950/20',
+                    border: 'border-amber-200 dark:border-amber-800',
+                    icon: 'text-amber-600 dark:text-amber-400'
+                  },
                 };
 
                 const style = styles[insight.tipo] || styles.descoberta;
@@ -809,7 +815,7 @@ export default function AnalyticsPage() {
                   <div
                     key={i}
                     className={cn(
-                      'p-4 rounded-xl border transition-all duration-200',
+                      'p-4 rounded-xl border transition-all duration-200 hover:shadow-sm',
                       style.bg,
                       style.border
                     )}
@@ -825,14 +831,14 @@ export default function AnalyticsPage() {
                             insight.relevancia === 'alta' ? 'bg-red-500' :
                             insight.relevancia === 'media' ? 'bg-amber-500' : 'bg-emerald-500'
                           )} />
-                          <span className="text-[10px] uppercase tracking-wide font-semibold text-muted-foreground">
+                          <span className="text-[10px] uppercase tracking-wide font-semibold text-zinc-400">
                             {insight.tipo}
                           </span>
                         </div>
-                        <h4 className="font-semibold text-foreground text-sm leading-snug mb-1">
+                        <h4 className="font-semibold text-zinc-800 dark:text-zinc-200 text-sm leading-snug mb-1">
                           {insight.titulo}
                         </h4>
-                        <p className="text-xs text-muted-foreground leading-relaxed">
+                        <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
                           {insight.descricao}
                         </p>
                       </div>
@@ -850,34 +856,35 @@ export default function AnalyticsPage() {
           )}
           </Card>
         </AnimatedCard>
-      </motion.div>
 
-      {/* Estado Vazio Global */}
-      {dashboard?.totalPesquisas === 0 && (
-        <motion.div variants={fadeIn}>
-          <Card className="p-12">
-            <div className="text-center max-w-md mx-auto">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-500/10 mb-5">
-                <BarChart3 className="w-8 h-8 text-blue-500" />
+        {/* Estado Vazio Global */}
+        {dashboard?.totalPesquisas === 0 && (
+          <AnimatedCard delay={100}>
+            <Card className="p-8 sm:p-12 mt-6">
+              <div className="text-center max-w-md mx-auto">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-100 dark:bg-indigo-900/30 mb-5">
+                  <Activity className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
+                </div>
+                <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
+                  Comece a analisar
+                </h3>
+                <p className="text-zinc-500 mb-6">
+                  Execute sua primeira pesquisa eleitoral para visualizar métricas,
+                  gráficos e insights automatizados.
+                </p>
+                <a
+                  href="/entrevistas/nova"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-sm transition-all shadow-sm hover:shadow-md"
+                >
+                  Criar Pesquisa
+                  <ChevronRight className="w-4 h-4" />
+                </a>
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">
-                Comece a analisar
-              </h3>
-              <p className="text-muted-foreground mb-6">
-                Execute sua primeira pesquisa eleitoral para visualizar métricas,
-                gráficos e insights automatizados.
-              </p>
-              <a
-                href="/entrevistas/nova"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm transition-colors"
-              >
-                Criar Pesquisa
-                <ChevronRight className="w-4 h-4" />
-              </a>
-            </div>
-          </Card>
-        </motion.div>
-      )}
-    </motion.div>
+            </Card>
+          </AnimatedCard>
+        )}
+
+      </div>
+    </div>
   );
 }
