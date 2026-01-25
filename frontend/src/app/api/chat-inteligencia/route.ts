@@ -124,6 +124,18 @@ function gerarSessaoId(): string {
   return crypto.randomUUID();
 }
 
+// Headers CORS para permitir requisições do frontend
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
+// Handler para preflight requests (OPTIONS)
+export async function OPTIONS(): Promise<NextResponse> {
+  return NextResponse.json({}, { headers: corsHeaders });
+}
+
 export async function POST(request: NextRequest): Promise<NextResponse<ChatResponse | { error: string }>> {
   const inicio = Date.now();
 
@@ -133,7 +145,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ChatRespo
     if (!apiKey) {
       return NextResponse.json(
         { error: 'API key do Claude não configurada no servidor' },
-        { status: 500 }
+        { status: 500, headers: corsHeaders }
       );
     }
 
@@ -144,7 +156,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ChatRespo
     if (!pergunta || pergunta.trim().length === 0) {
       return NextResponse.json(
         { error: 'Pergunta é obrigatória' },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -205,7 +217,7 @@ ${pergunta}`;
       resposta: respostaTexto,
       sessao_id: sessaoId,
       tokens_usados: tokensTotal,
-    });
+    }, { headers: corsHeaders });
 
   } catch (error) {
     console.error('Erro no chat-inteligencia:', error);
@@ -214,7 +226,7 @@ ${pergunta}`;
 
     return NextResponse.json(
       { error: `Erro ao processar sua pergunta: ${errorMessage}` },
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     );
   }
 }
