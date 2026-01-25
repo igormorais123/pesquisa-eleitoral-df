@@ -1,36 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stress Test Eleitoral - Celina Leão 2026 | INTEIA</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stress Test Eleitoral — INTEIA | Celina Leao (DF 2026)</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --side-w: 72px;
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-card: #1a1a24;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0b0;
-            --accent-blue: #3b82f6;
-            --accent-green: #22c55e;
-            --accent-yellow: #eab308;
-            --accent-red: #ef4444;
-            --accent-purple: #a855f7;
-            --border: #2a2a3a;
-            --navy: #0a1226;
+            --bg0: #f6f7fb;
+            --bg1: #ffffff;
+            --paper: rgba(255, 255, 255, 0.92);
+            --paper-strong: #ffffff;
+            --ink: #0b1020;
+            --muted: #4b5563;
+            --muted-2: #6b7280;
+            --line: rgba(12, 18, 38, 0.12);
+            --navy: #102a43;
+            --navy-dark: #0b1734;
+            --blue: #2b6cb0;
+            --indigo: #364fc7;
+            --amber: #d69e2e;
+            --amber-dark: #b7791f;
+            --green: #2f855a;
+            --red: #c53030;
+            --shadow: 0 18px 45px rgba(9, 14, 34, 0.12);
+            --shadow-soft: 0 10px 28px rgba(9, 14, 34, 0.1);
+            --radius: 16px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
+        html, body { height: 100%; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
             padding-left: var(--side-w);
+            color: var(--ink);
+            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            background:
+                radial-gradient(1200px 700px at 15% -10%, rgba(214, 158, 46, 0.08), transparent 55%),
+                radial-gradient(900px 600px at 90% 0%, rgba(43, 108, 176, 0.12), transparent 55%),
+                linear-gradient(180deg, var(--bg0), var(--bg1));
         }
+
+        a { color: inherit; text-decoration: none; }
+        a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
         /* Barra Lateral INTEIA */
         .side-mark {
@@ -40,7 +55,7 @@
             bottom: 0;
             width: var(--side-w);
             background: linear-gradient(180deg, #0a1226, #111a35);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: 1px solid rgba(214, 158, 46, 0.15);
             z-index: 50;
             display: flex;
             align-items: center;
@@ -51,7 +66,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
             writing-mode: vertical-rl;
             transform: rotate(180deg);
         }
@@ -60,272 +75,526 @@
             letter-spacing: 0.45em;
             font-weight: 800;
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.92);
+            color: var(--amber);
             text-transform: uppercase;
+            user-select: none;
+            text-shadow: 0 0 20px rgba(214, 158, 46, 0.4);
+        }
+
+        .side-mark .author-name {
+            font-size: 9px;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 600;
             user-select: none;
         }
 
-        .side-mark .subtitle-mark {
-            font-size: 9px;
-            letter-spacing: 0.08em;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
+        .side-mark .author-role {
+            font-size: 8px;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 500;
+            user-select: none;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1180px;
+            padding: 28px 22px 96px;
             margin: 0 auto;
-            padding: 2rem;
         }
 
-        header {
-            text-align: center;
-            padding: 3rem 0;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 3rem;
+        /* Hero Header */
+        header.hero {
+            position: relative;
+            overflow: hidden;
+            border-radius: calc(var(--radius) + 4px);
+            padding: 34px 34px 28px;
+            color: #f8fafc;
+            background:
+                radial-gradient(900px 500px at 20% 10%, rgba(214, 158, 46, 0.18), transparent 55%),
+                radial-gradient(800px 460px at 90% 0%, rgba(54, 79, 199, 0.22), transparent 55%),
+                linear-gradient(135deg, #0b1734, #102a43 55%, #0b1734);
+            box-shadow: var(--shadow);
         }
 
-        header .inteia-logo {
+        header.hero::after {
+            content: "";
+            position: absolute;
+            inset: -40px;
+            background:
+                radial-gradient(400px 220px at 18% 28%, rgba(255, 255, 255, 0.08), transparent 65%),
+                radial-gradient(520px 280px at 82% 18%, rgba(255, 255, 255, 0.07), transparent 68%);
+            pointer-events: none;
+        }
+
+        .hero-top {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .logo {
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            font-size: 32px;
+            line-height: 1;
+        }
+
+        .logo .ia {
+            color: var(--amber);
+            text-shadow: 0 0 24px rgba(214, 158, 46, 0.45);
+        }
+
+        .author {
+            margin-top: 14px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .author .name {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: var(--amber);
+        }
+
+        .author .role {
+            font-size: 12px;
+            color: rgba(248, 250, 252, 0.8);
+        }
+
+        .author .meta {
+            color: rgba(248, 250, 252, 0.7);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        .hero-title {
+            text-align: right;
+        }
+
+        .hero-title h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 0.02em;
+            font-weight: 800;
+        }
+
+        .hero-title .sub {
+            margin-top: 6px;
+            color: rgba(248, 250, 252, 0.88);
+            font-size: 14px;
+        }
+
+        .hero-title .kicker {
+            margin-top: 14px;
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-            padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(168, 85, 247, 0.15));
-            border-radius: 8px;
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            justify-content: flex-end;
+            gap: 10px;
+            font-size: 12px;
+            color: rgba(248, 250, 252, 0.86);
         }
 
-        header .inteia-logo .logo-text {
-            font-weight: 800;
-            font-size: 1.25rem;
-            letter-spacing: 0.15em;
-            background: linear-gradient(135deg, #3b82f6, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(214, 158, 46, 0.16);
+            border: 1px solid rgba(214, 158, 46, 0.35);
+            color: rgba(248, 250, 252, 0.94);
+            font-weight: 700;
+            font-size: 13px;
         }
 
-        header .inteia-logo .logo-subtitle {
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 99px;
+            background: var(--amber);
+            box-shadow: 0 0 18px rgba(214, 158, 46, 0.55);
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* Cards de KPI */
+        .grid-cards {
+            margin-top: 22px;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
         }
-
-        header .subtitle {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-
-        header .meta {
-            margin-top: 1rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        header .meta span {
-            background: var(--bg-card);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-        }
-
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
 
         .card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px 16px 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+            text-align: center;
+            transition: transform 220ms ease, background 220ms ease;
         }
 
-        .card h2 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
+        .card:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.09);
+        }
+
+        .card .value {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 0.01em;
+        }
+
+        .card .value.success { color: #48bb78; }
+        .card .value.danger { color: #fc8181; }
+        .card .value.warning { color: var(--amber); }
+
+        .card .label {
+            margin-top: 6px;
+            font-size: 11px;
+            color: rgba(248, 250, 252, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        main { margin-top: 22px; }
+
+        section {
+            margin-top: 18px;
+            background: var(--paper);
+            border: 1px solid rgba(12, 18, 38, 0.1);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-soft);
+            padding: 28px;
+            backdrop-filter: blur(10px);
+        }
+
+        section h2 {
+            margin: 0 0 18px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: 0.01em;
         }
 
-        .card h3 {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
+        section h2 .icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 8px;
+            font-size: 14px;
         }
 
-        .kpi-card {
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .kpi-card .value {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.25rem;
-        }
-
-        .kpi-card .label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .kpi-card.critical .value { color: var(--accent-red); }
-        .kpi-card.warning .value { color: var(--accent-yellow); }
-        .kpi-card.success .value { color: var(--accent-green); }
-        .kpi-card.info .value { color: var(--accent-blue); }
-
-        .chart-container {
-            position: relative;
-            height: 300px;
-            margin-top: 1rem;
-        }
-
+        /* Alertas */
         .alert {
-            padding: 1rem 1.5rem;
+            padding: 16px 20px;
             border-radius: 12px;
-            margin-bottom: 1rem;
+            margin-bottom: 14px;
             display: flex;
             align-items: flex-start;
-            gap: 1rem;
+            gap: 14px;
         }
 
         .alert.critical {
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid var(--accent-red);
+            background: linear-gradient(135deg, rgba(197, 48, 48, 0.08), rgba(197, 48, 48, 0.04));
+            border: 1px solid rgba(197, 48, 48, 0.25);
         }
 
         .alert.warning {
-            background: rgba(234, 179, 8, 0.15);
-            border: 1px solid var(--accent-yellow);
+            background: linear-gradient(135deg, rgba(214, 158, 46, 0.1), rgba(214, 158, 46, 0.05));
+            border: 1px solid rgba(214, 158, 46, 0.3);
         }
 
-        .alert .icon {
-            font-size: 1.5rem;
+        .alert .icon-alert {
+            font-size: 20px;
             line-height: 1;
         }
 
         .alert h4 {
-            margin-bottom: 0.25rem;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
         }
+
+        .alert.critical h4 { color: var(--red); }
+        .alert.warning h4 { color: var(--amber-dark); }
 
         .alert p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.5;
         }
 
+        /* Grid de Graficos */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .chart-box {
+            background: var(--paper-strong);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .chart-box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .chart-box .subtitle {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 240px;
+        }
+
+        /* Mapa de Vulnerabilidades */
         .vulnerability-map {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 10px;
         }
 
         .vulnerability-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            background: var(--bg-secondary);
+            gap: 14px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: var(--paper-strong);
+            border: 1px solid var(--line);
+            transition: transform 180ms ease;
         }
+
+        .vulnerability-item:hover { transform: translateX(4px); }
 
         .vulnerability-item .level {
-            width: 80px;
+            min-width: 80px;
             text-align: center;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.75rem;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .vulnerability-item.critical .level { background: var(--accent-red); }
-        .vulnerability-item.high .level { background: var(--accent-yellow); color: #000; }
-        .vulnerability-item.medium .level { background: var(--accent-blue); }
-        .vulnerability-item.low .level { background: var(--accent-green); }
+        .vulnerability-item.critical .level { background: var(--red); color: white; }
+        .vulnerability-item.high .level { background: var(--amber); color: var(--navy); }
+        .vulnerability-item.medium .level { background: var(--blue); color: white; }
+        .vulnerability-item.low .level { background: var(--green); color: white; }
 
-        .recommendation {
-            padding: 1rem;
-            border-left: 4px solid var(--accent-blue);
-            background: var(--bg-secondary);
-            margin-bottom: 0.75rem;
+        .vulnerability-item .desc {
+            font-size: 13px;
+            color: var(--ink);
+        }
+
+        /* Recomendacoes */
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .rec-group h3 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rec-group.critical h3 { color: var(--red); }
+        .rec-group.high h3 { color: var(--amber-dark); }
+
+        .rec-item {
+            padding: 12px 16px;
+            border-left: 4px solid var(--line);
+            background: var(--paper-strong);
+            margin-bottom: 10px;
             border-radius: 0 8px 8px 0;
+            font-size: 13px;
+            color: var(--ink);
         }
 
-        .recommendation.critical { border-left-color: var(--accent-red); }
-        .recommendation.high { border-left-color: var(--accent-yellow); }
+        .rec-group.critical .rec-item { border-left-color: var(--red); }
+        .rec-group.high .rec-item { border-left-color: var(--amber); }
 
-        .section-title {
-            font-size: 1.5rem;
-            margin: 3rem 0 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--border);
+        /* Citacoes */
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
         }
 
         .quote {
+            padding: 16px 20px;
+            background: linear-gradient(135deg, rgba(16, 42, 67, 0.04), rgba(16, 42, 67, 0.02));
+            border-left: 3px solid var(--amber);
+            border-radius: 0 10px 10px 0;
             font-style: italic;
-            color: var(--text-secondary);
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            margin: 0.5rem 0;
-            border-left: 3px solid var(--accent-purple);
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.6;
         }
 
         .quote .author {
             display: block;
-            margin-top: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--accent-purple);
+            margin-top: 10px;
+            font-style: normal;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--amber-dark);
         }
 
+        /* Footer */
         footer {
+            margin-top: 40px;
+            padding: 32px;
+            background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+            border-radius: var(--radius);
+            color: rgba(248, 250, 252, 0.9);
             text-align: center;
-            padding: 3rem 0;
-            margin-top: 3rem;
-            border-top: 1px solid var(--border);
-            color: var(--text-secondary);
         }
 
-        footer .inteia-footer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
+        footer .logo-footer {
+            font-weight: 900;
+            font-size: 28px;
+            letter-spacing: 0.2em;
+            margin-bottom: 8px;
         }
 
-        footer .inteia-footer .logo-footer {
-            font-weight: 800;
-            font-size: 1.5rem;
-            letter-spacing: 0.15em;
-            background: linear-gradient(135deg, #3b82f6, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        footer .logo-footer .ia { color: var(--amber); }
+
+        footer .company-name {
+            font-size: 12px;
+            color: rgba(248, 250, 252, 0.7);
+            margin-bottom: 16px;
         }
 
         footer .company-info {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-top: 1rem;
-            opacity: 0.7;
+            font-size: 10px;
+            color: rgba(248, 250, 252, 0.5);
+            line-height: 1.8;
         }
 
+        footer .classification {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--amber);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Botao de Impressao */
+        .print-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            color: var(--navy-dark);
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(214, 158, 46, 0.35);
+            transition: transform 180ms ease, box-shadow 180ms ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(214, 158, 46, 0.45);
+        }
+
+        /* Print Styles - A4 */
+        @media print {
+            @page {
+                size: A4;
+                margin: 20mm 15mm;
+            }
+
+            body {
+                padding-left: 0;
+                background: white;
+                font-size: 11pt;
+            }
+
+            .side-mark, .print-btn { display: none !important; }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            header.hero {
+                background: var(--navy) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            .grid-cards, .grid-2, .quotes-grid, .recommendations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .chart-container { height: 180px; }
+
+            footer {
+                background: var(--navy) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
             body { padding-left: 0; }
             .side-mark { display: none; }
-            .container { padding: 1rem; }
-            header h1 { font-size: 1.75rem; }
-            .grid-2 { grid-template-columns: 1fr; }
-            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .container { padding: 16px; }
+            .hero-top { grid-template-columns: 1fr; }
+            .hero-title { text-align: left; margin-top: 20px; }
+            .grid-cards, .grid-2, .quotes-grid, .recommendations-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -334,232 +603,224 @@
     <div class="side-mark">
         <div class="side-content">
             <span class="label">INTEIA</span>
-            <span class="subtitle-mark">Stress Test</span>
+            <span class="author-name">Igor Morais Vasconcelos</span>
+            <span class="author-role">PhD | Presidente</span>
         </div>
     </div>
 
     <div class="container">
-        <header>
-            <div class="inteia-logo">
+        <!-- Hero Header -->
+        <header class="hero">
+            <div class="hero-top">
                 <div>
-                    <span class="logo-text">INTEIA</span>
-                    <span class="logo-subtitle">Instituto de Inteligencia Artificial</span>
+                    <div class="logo">INTE<span class="ia">IA</span></div>
+                    <div class="author">
+                        <span class="name">Igor Morais Vasconcelos, PhD</span>
+                        <span class="role">Pesquisador Responsavel | Presidente INTEIA</span>
+                        <span class="meta">Responsavel Tecnico do Projeto | OAB 35.376</span>
+                    </div>
+                </div>
+                <div class="hero-title">
+                    <h1>STRESS TEST ELEITORAL</h1>
+                    <p class="sub">Celina Leao — Governador DF 2026</p>
+                    <div class="kicker">
+                        <span class="badge">
+                            <span class="dot"></span>
+                            490 Eleitores Sinteticos
+                        </span>
+                    </div>
                 </div>
             </div>
-            <h1>STRESS TEST ELEITORAL</h1>
-            <p class="subtitle">Celina Leao - Governador DF 2026</p>
-            <div class="meta">
-                <span>490 eleitores</span>
-                <span>25 de Janeiro de 2026</span>
-                <span>Dra. Helena Montenegro</span>
-                <span>Powered by POLARIS SDK</span>
+
+            <div class="grid-cards">
+                <div class="card">
+                    <div class="value success">82,6%</div>
+                    <div class="label">Resistem sem Arruda</div>
+                </div>
+                <div class="card">
+                    <div class="value danger">67,2%</div>
+                    <div class="label">Abandonam se Corrupcao</div>
+                </div>
+                <div class="card">
+                    <div class="value warning">41%</div>
+                    <div class="label">Preferem Linha Dura</div>
+                </div>
+                <div class="card">
+                    <div class="value danger">56,9%</div>
+                    <div class="label">Consideram Centro</div>
+                </div>
             </div>
         </header>
 
-        <!-- Alertas Principais -->
-        <div class="alert critical">
-            <span class="icon">🚨</span>
-            <div>
-                <h4>ALERTA VERMELHO: Ameaca de Centro</h4>
-                <p>56,9% dos eleitores consideram migrar para candidato de centro (ex: Reguffe). Esta é a maior vulnerabilidade detectada.</p>
-            </div>
-        </div>
+        <main>
+            <!-- Alertas -->
+            <section>
+                <h2><span class="icon">⚡</span> Alertas Estrategicos</h2>
 
-        <div class="alert warning">
-            <span class="icon">⚠️</span>
-            <div>
-                <h4>Voto Defensivo</h4>
-                <p>70% votam CONTRA o adversário, nao A FAVOR de Celina. O entusiasmo genuíno é de apenas 30%.</p>
-            </div>
-        </div>
-
-        <!-- KPIs -->
-        <div class="grid-4" style="margin: 2rem 0;">
-            <div class="card kpi-card success">
-                <div class="value">82,6%</div>
-                <div class="label">Resistem sem Arruda</div>
-            </div>
-            <div class="card kpi-card critical">
-                <div class="value">67,2%</div>
-                <div class="label">Abandonam se Corrupcao</div>
-            </div>
-            <div class="card kpi-card warning">
-                <div class="value">41%</div>
-                <div class="label">Preferem "Linha Dura"</div>
-            </div>
-            <div class="card kpi-card critical">
-                <div class="value">56,9%</div>
-                <div class="label">Consideram Centro</div>
-            </div>
-        </div>
-
-        <!-- Graficos -->
-        <h2 class="section-title">Resultados por Modulo</h2>
-
-        <div class="grid-2">
-            <!-- Módulo 1 -->
-            <div class="card">
-                <h2>📊 Modulo 1: Fidelidade Arruda</h2>
-                <h3>Se Arruda rompesse com Celina...</h3>
-                <div class="chart-container">
-                    <canvas id="chart-arruda"></canvas>
-                </div>
-            </div>
-
-            <!-- Módulo 2 -->
-            <div class="card">
-                <h2>⚖️ Modulo 2: Elasticidade Moral</h2>
-                <h3>Obra com R$ 50 milhoes desviados</h3>
-                <div class="chart-container">
-                    <canvas id="chart-corrupcao"></canvas>
-                </div>
-            </div>
-
-            <!-- Módulo 3 -->
-            <div class="card">
-                <h2>🔥 Modulo 3: Outsider Populista</h2>
-                <h3>Candidato "linha dura" vs Celina tecnica</h3>
-                <div class="chart-container">
-                    <canvas id="chart-seguranca"></canvas>
-                </div>
-            </div>
-
-            <!-- Módulo 4 -->
-            <div class="card">
-                <h2>🎭 Modulo 4: Voto Silencioso</h2>
-                <h3>Motivacao real do voto</h3>
-                <div class="chart-container">
-                    <canvas id="chart-motivacao"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <!-- Fator Emocional -->
-        <div class="card" style="margin-top: 1.5rem;">
-            <h2>🧠 Fator Emocional em Seguranca</h2>
-            <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
-                <div class="chart-container" style="flex: 1; min-width: 300px;">
-                    <canvas id="chart-emocao"></canvas>
-                </div>
-                <div style="flex: 1; min-width: 300px;">
-                    <div class="quote">
-                        "Quando voce ve teu vizinho sendo assaltado na porta de casa, nao tem razao que segure nao. E revolta pura."
-                        <span class="author">— Pedro, 39 anos, SCIA/Estrutural</span>
-                    </div>
-                    <div class="quote">
-                        "Ja fui assaltada duas vezes so esse ano. Essa conversa de 'gestao e tecnologia' nao resolve nada."
-                        <span class="author">— Lucia, 45 anos, Samambaia</span>
+                <div class="alert critical">
+                    <span class="icon-alert">🚨</span>
+                    <div>
+                        <h4>ALERTA VERMELHO: Ameaca de Centro</h4>
+                        <p>56,9% dos eleitores consideram migrar para candidato de centro (ex: Reguffe). Esta e a maior vulnerabilidade detectada — superior a ameaca do PT.</p>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Mapa de Vulnerabilidades -->
-        <h2 class="section-title">Mapa de Vulnerabilidades</h2>
+                <div class="alert warning">
+                    <span class="icon-alert">⚠️</span>
+                    <div>
+                        <h4>Voto Defensivo Predominante</h4>
+                        <p>70% votam CONTRA o adversario, nao A FAVOR de Celina. O entusiasmo genuino e de apenas 30%. Base fragil e vulneravel a alternativas.</p>
+                    </div>
+                </div>
+            </section>
 
-        <div class="card">
-            <div class="vulnerability-map">
-                <div class="vulnerability-item critical">
-                    <span class="level">CRITICO</span>
-                    <span>Candidato de centro (Reguffe) - 57% migrariam</span>
-                </div>
-                <div class="vulnerability-item critical">
-                    <span class="level">CRITICO</span>
-                    <span>Escandalo de corrupcao - 67% abandonam</span>
-                </div>
-                <div class="vulnerability-item high">
-                    <span class="level">ALTO</span>
-                    <span>Outsider populista em seguranca - 41% preferem</span>
-                </div>
-                <div class="vulnerability-item high">
-                    <span class="level">ALTO</span>
-                    <span>Voto nao-entusiasta - 70% votam "contra"</span>
-                </div>
-                <div class="vulnerability-item medium">
-                    <span class="level">MEDIO</span>
-                    <span>Associacao com Ibaneis - citada negativamente</span>
-                </div>
-                <div class="vulnerability-item low">
-                    <span class="level">BAIXO</span>
-                    <span>Rompimento com Arruda - 83% resistem</span>
-                </div>
-                <div class="vulnerability-item low">
-                    <span class="level">BAIXO</span>
-                    <span>Candidato do PT - barreira consolidada</span>
-                </div>
-            </div>
-        </div>
+            <!-- Graficos -->
+            <section>
+                <h2><span class="icon">📊</span> Resultados por Modulo</h2>
 
-        <!-- Recomendacoes -->
-        <h2 class="section-title">Recomendacoes Estrategicas</h2>
+                <div class="grid-2">
+                    <div class="chart-box">
+                        <h3>Modulo 1: Fidelidade Arruda</h3>
+                        <p class="subtitle">Se Arruda rompesse com Celina...</p>
+                        <div class="chart-container">
+                            <canvas id="chart-arruda"></canvas>
+                        </div>
+                    </div>
 
-        <div class="grid-2">
-            <div>
-                <h3 style="margin-bottom: 1rem; color: var(--accent-red);">🔴 Prioridade CRITICA</h3>
-                <div class="recommendation critical">
-                    Neutralizar candidaturas de centro ANTES que surjam
-                </div>
-                <div class="recommendation critical">
-                    Cooptar apoiadores do campo de centro
-                </div>
-                <div class="recommendation critical">
-                    Blindagem total anticorrupcao
-                </div>
-            </div>
-            <div>
-                <h3 style="margin-bottom: 1rem; color: var(--accent-yellow);">🟡 Prioridade ALTA</h3>
-                <div class="recommendation high">
-                    Reposicionar discurso de seguranca com componente EMOCIONAL
-                </div>
-                <div class="recommendation high">
-                    Mostrar resultados concretos (numeros, casos)
-                </div>
-                <div class="recommendation high">
-                    Presenca fisica em comunidades violentas
-                </div>
-            </div>
-        </div>
+                    <div class="chart-box">
+                        <h3>Modulo 2: Elasticidade Moral</h3>
+                        <p class="subtitle">Obra com R$ 50 milhoes desviados</p>
+                        <div class="chart-container">
+                            <canvas id="chart-corrupcao"></canvas>
+                        </div>
+                    </div>
 
-        <!-- Citacoes -->
-        <h2 class="section-title">Vozes do Eleitorado</h2>
+                    <div class="chart-box">
+                        <h3>Modulo 3: Outsider Populista</h3>
+                        <p class="subtitle">Candidato "linha dura" vs Celina tecnica</p>
+                        <div class="chart-container">
+                            <canvas id="chart-seguranca"></canvas>
+                        </div>
+                    </div>
 
-        <div class="grid-2">
-            <div class="quote">
-                "A Celina nao me empolga muito nao, mas ela nao e petista e nao vai fazer loucura."
-                <span class="author">— Leandro, 25 anos, Plano Piloto</span>
-            </div>
-            <div class="quote">
-                "Se for alguem como o Reguffe, que tem experiencia e nao tem rabo preso, eu posso pensar sim."
-                <span class="author">— Amanda, 69 anos, Taguatinga</span>
-            </div>
-            <div class="quote">
-                "E mais por rejeitar o adversario mesmo. Meu voto e mais anti-PT do que pro-Celina."
-                <span class="author">— Pedro, 70 anos, Gama</span>
-            </div>
-            <div class="quote">
-                "R$ 50 milhoes desviados? Nao da pra passar pano nao. Por mais que a obra tenha me ajudado."
-                <span class="author">— Pedro, 70 anos, Gama</span>
-            </div>
-        </div>
+                    <div class="chart-box">
+                        <h3>Modulo 4: Motivacao do Voto</h3>
+                        <p class="subtitle">Apoio genuino vs voto contra adversario</p>
+                        <div class="chart-container">
+                            <canvas id="chart-motivacao"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
+            <!-- Mapa de Vulnerabilidades -->
+            <section>
+                <h2><span class="icon">🎯</span> Mapa de Vulnerabilidades</h2>
+
+                <div class="vulnerability-map">
+                    <div class="vulnerability-item critical">
+                        <span class="level">Critico</span>
+                        <span class="desc">Candidato de centro (Reguffe) — 57% migrariam</span>
+                    </div>
+                    <div class="vulnerability-item critical">
+                        <span class="level">Critico</span>
+                        <span class="desc">Escandalo de corrupcao — 67% abandonam imediatamente</span>
+                    </div>
+                    <div class="vulnerability-item high">
+                        <span class="level">Alto</span>
+                        <span class="desc">Outsider populista em seguranca — 41% preferem</span>
+                    </div>
+                    <div class="vulnerability-item high">
+                        <span class="level">Alto</span>
+                        <span class="desc">Voto nao-entusiasta — 70% votam "contra" adversario</span>
+                    </div>
+                    <div class="vulnerability-item medium">
+                        <span class="level">Medio</span>
+                        <span class="desc">Associacao com Ibaneis — citada negativamente</span>
+                    </div>
+                    <div class="vulnerability-item low">
+                        <span class="level">Baixo</span>
+                        <span class="desc">Rompimento com Arruda — 83% resistem e mantem voto</span>
+                    </div>
+                    <div class="vulnerability-item low">
+                        <span class="level">Baixo</span>
+                        <span class="desc">Candidato do PT — barreira consolidada</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recomendacoes -->
+            <section>
+                <h2><span class="icon">💡</span> Recomendacoes Estrategicas</h2>
+
+                <div class="recommendations-grid">
+                    <div class="rec-group critical">
+                        <h3>🔴 Prioridade Critica</h3>
+                        <div class="rec-item">Neutralizar candidaturas de centro ANTES que surjam</div>
+                        <div class="rec-item">Monitorar movimentacoes de Reguffe e similares</div>
+                        <div class="rec-item">Blindagem total anticorrupcao — zero tolerancia</div>
+                    </div>
+                    <div class="rec-group high">
+                        <h3>🟠 Prioridade Alta</h3>
+                        <div class="rec-item">Reposicionar discurso de seguranca com componente EMOCIONAL</div>
+                        <div class="rec-item">Mostrar resultados concretos (numeros, casos resolvidos)</div>
+                        <div class="rec-item">Presenca fisica em comunidades violentas</div>
+                        <div class="rec-item">Construir adesao genuina, nao so anti-PT</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Citacoes -->
+            <section>
+                <h2><span class="icon">💬</span> Vozes do Eleitorado</h2>
+
+                <div class="quotes-grid">
+                    <div class="quote">
+                        "A Celina nao me empolga muito nao, mas ela nao e petista e nao vai fazer loucura."
+                        <span class="author">— Leandro, 25 anos, Plano Piloto</span>
+                    </div>
+                    <div class="quote">
+                        "Se for alguem como o Reguffe, que tem experiencia e nao tem rabo preso, eu posso pensar sim."
+                        <span class="author">— Amanda, 69 anos, Taguatinga</span>
+                    </div>
+                    <div class="quote">
+                        "E mais por rejeitar o adversario mesmo. Meu voto e mais anti-PT do que pro-Celina."
+                        <span class="author">— Pedro, 70 anos, Gama</span>
+                    </div>
+                    <div class="quote">
+                        "R$ 50 milhoes desviados? Nao da pra passar pano nao. Por mais que a obra tenha me ajudado."
+                        <span class="author">— Jose, 46 anos, Sudoeste</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
         <footer>
-            <div class="inteia-footer">
-                <span class="logo-footer">INTEIA</span>
-                <p>Instituto de Treinamento e Estudos em Inteligencia Artificial</p>
-                <p style="font-size: 0.85rem;">Pesquisa Eleitoral com IA | Powered by POLARIS SDK</p>
-            </div>
+            <div class="logo-footer">INTE<span class="ia">IA</span></div>
+            <p class="company-name">Instituto de Treinamento e Estudos em Inteligencia Artificial</p>
             <p class="company-info">
                 INTEIA LTDA | CNPJ: 63.918.490/0001-20<br>
-                SHN Quadra 2 Bloco F, Sala 625/626 - Asa Norte, Brasilia/DF
+                SHN Quadra 2, Bloco F, Sala 625/626 — Asa Norte, Brasilia/DF<br>
+                Powered by POLARIS SDK | Eleitores Sinteticos com IA
             </p>
-            <p style="margin-top: 1rem; font-size: 0.85rem;">Classificacao: CONFIDENCIAL - Uso interno campanha</p>
+            <p class="classification">Confidencial — Uso Interno Campanha</p>
         </footer>
     </div>
 
+    <!-- Botao de Impressao -->
+    <button class="print-btn" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <rect x="6" y="14" width="12" height="8"/>
+        </svg>
+        Imprimir A4
+    </button>
+
     <script>
-        // Configuracao global dos graficos
-        Chart.defaults.color = '#a0a0b0';
-        Chart.defaults.borderColor = '#2a2a3a';
+        // Configuracao dos graficos
+        Chart.defaults.font.family = 'ui-sans-serif, system-ui, sans-serif';
+        Chart.defaults.color = '#4b5563';
 
         // Modulo 1: Arruda
         new Chart(document.getElementById('chart-arruda'), {
@@ -568,7 +829,7 @@
                 labels: ['Ficam com Celina', 'Seguem Arruda'],
                 datasets: [{
                     data: [82.6, 17.4],
-                    backgroundColor: ['#22c55e', '#ef4444'],
+                    backgroundColor: ['#2f855a', '#c53030'],
                     borderWidth: 0
                 }]
             },
@@ -576,7 +837,7 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { position: 'bottom' }
+                    legend: { position: 'bottom', labels: { padding: 16 } }
                 }
             }
         });
@@ -585,22 +846,21 @@
         new Chart(document.getElementById('chart-corrupcao'), {
             type: 'bar',
             data: {
-                labels: ['Inaceitavel, muda voto', 'Depende do candidato', 'Mantem voto'],
+                labels: ['Inaceitavel', 'Depende', 'Mantem'],
                 datasets: [{
-                    label: '%',
                     data: [67.2, 20.9, 11.9],
-                    backgroundColor: ['#ef4444', '#eab308', '#22c55e']
+                    backgroundColor: ['#c53030', '#d69e2e', '#2f855a'],
+                    borderRadius: 6
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 indexAxis: 'y',
-                plugins: {
-                    legend: { display: false }
-                },
+                plugins: { legend: { display: false } },
                 scales: {
-                    x: { max: 100 }
+                    x: { max: 100, grid: { color: 'rgba(0,0,0,0.05)' } },
+                    y: { grid: { display: false } }
                 }
             }
         });
@@ -609,10 +869,10 @@
         new Chart(document.getElementById('chart-seguranca'), {
             type: 'doughnut',
             data: {
-                labels: ['Preferem "Linha Dura"', 'Preferem Celina', 'Divididos'],
+                labels: ['Linha Dura', 'Celina', 'Divididos'],
                 datasets: [{
                     data: [41, 35.5, 23.5],
-                    backgroundColor: ['#ef4444', '#3b82f6', '#6b7280'],
+                    backgroundColor: ['#c53030', '#2b6cb0', '#6b7280'],
                     borderWidth: 0
                 }]
             },
@@ -620,7 +880,7 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { position: 'bottom' }
+                    legend: { position: 'bottom', labels: { padding: 16 } }
                 }
             }
         });
@@ -629,41 +889,20 @@
         new Chart(document.getElementById('chart-motivacao'), {
             type: 'bar',
             data: {
-                labels: ['Voto anti-adversario', 'Apoio genuino a Celina'],
+                labels: ['Contra adversario', 'A favor de Celina'],
                 datasets: [{
-                    label: '%',
                     data: [70, 30],
-                    backgroundColor: ['#eab308', '#22c55e']
+                    backgroundColor: ['#d69e2e', '#2f855a'],
+                    borderRadius: 6
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
-                },
+                plugins: { legend: { display: false } },
                 scales: {
-                    y: { max: 100 }
-                }
-            }
-        });
-
-        // Fator Emocional
-        new Chart(document.getElementById('chart-emocao'), {
-            type: 'pie',
-            data: {
-                labels: ['Emocao prevalece', 'Razao prevalece', 'Equilibrio'],
-                datasets: [{
-                    data: [65, 20, 15],
-                    backgroundColor: ['#ef4444', '#3b82f6', '#a855f7'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom' }
+                    y: { max: 100, grid: { color: 'rgba(0,0,0,0.05)' } },
+                    x: { grid: { display: false } }
                 }
             }
         });
