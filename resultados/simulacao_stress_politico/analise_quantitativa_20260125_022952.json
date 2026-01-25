@@ -1,0 +1,261 @@
+{
+  "analise": {
+    "total": 20,
+    "modulo_1": {
+      "contagem": {
+        "Fico com Celina": 14,
+        "Sigo Arruda": 6
+      },
+      "por_segmento": {
+        "renda": {
+          "alta_Fico com Celina": 3,
+          "baixa_Fico com Celina": 9,
+          "media_Fico com Celina": 2,
+          "alta_Sigo Arruda": 3,
+          "baixa_Sigo Arruda": 3
+        },
+        "ra": {
+          "classe_alta_Fico com Celina": 1,
+          "classe_media_Fico com Celina": 8,
+          "periferia_Fico com Celina": 5,
+          "classe_media_Sigo Arruda": 2,
+          "periferia_Sigo Arruda": 4
+        },
+        "orientacao": {
+          "direita_Fico com Celina": 14,
+          "direita_Sigo Arruda": 6
+        }
+      }
+    },
+    "modulo_2": {
+      "contagem": {
+        "Corrupção inaceitável": 11,
+        "Depende do adversário": 4,
+        "Obra mais importante": 5
+      },
+      "por_segmento": {
+        "renda": {
+          "alta_Corrupção inaceitável": 4,
+          "baixa_Corrupção inaceitável": 6,
+          "baixa_Depende do adversário": 2,
+          "media_Corrupção inaceitável": 1,
+          "media_Depende do adversário": 1,
+          "alta_Obra mais importante": 1,
+          "baixa_Obra mais importante": 4,
+          "alta_Depende do adversário": 1
+        },
+        "ra": {
+          "classe_alta_Corrupção inaceitável": 1,
+          "classe_media_Corrupção inaceitável": 5,
+          "periferia_Depende do adversário": 2,
+          "classe_media_Depende do adversário": 2,
+          "periferia_Corrupção inaceitável": 5,
+          "classe_media_Obra mais importante": 3,
+          "periferia_Obra mais importante": 2
+        }
+      }
+    },
+    "modulo_3": {
+      "contagem": {
+        "Prefere Celina": 5,
+        "Dividido": 1,
+        "Prefere Fred": 14
+      },
+      "por_segmento": {
+        "idade": {
+          "adulto_Prefere Celina": 4,
+          "idoso_Dividido": 1,
+          "jovem_Prefere Celina": 1,
+          "jovem_Prefere Fred": 3,
+          "idoso_Prefere Fred": 7,
+          "adulto_Prefere Fred": 4
+        },
+        "ra": {
+          "classe_alta_Prefere Celina": 1,
+          "classe_media_Dividido": 1,
+          "classe_media_Prefere Celina": 2,
+          "periferia_Prefere Fred": 7,
+          "classe_media_Prefere Fred": 7,
+          "periferia_Prefere Celina": 2
+        }
+      }
+    },
+    "modulo_4_pt": {
+      "contagem": {
+        "Vota Celina contra PT": 20
+      },
+      "por_segmento": {
+        "orientacao": {
+          "direita_Vota Celina contra PT": 20
+        }
+      }
+    },
+    "modulo_4_centro": {
+      "contagem": {
+        "Considera Centro": 19,
+        "Vota Centro": 1
+      },
+      "por_segmento": {
+        "orientacao": {
+          "direita_Considera Centro": 19,
+          "direita_Vota Centro": 1
+        }
+      }
+    }
+  },
+  "indices": {
+    "transferencia_arruda": {
+      "propriedade_celina": 14,
+      "emprestimo_arruda": 6,
+      "anulam": 0,
+      "pct_celina": 70.0,
+      "pct_arruda": 30.0,
+      "risco": "MÉDIO"
+    },
+    "pragmatismo": {
+      "tolera_corrupcao": 5,
+      "rejeita_corrupcao": 11,
+      "depende": 4,
+      "pct_tolera": 25.0,
+      "coeficiente_rouba_mas_faz": 31.2
+    },
+    "seguranca_fred": {
+      "migra_fred": 14,
+      "mantém_celina": 5,
+      "dividido": 1,
+      "pct_migra": 70.0,
+      "risco": "CRÍTICO"
+    },
+    "antipetismo": {
+      "celina_vs_pt": 20,
+      "vota_pt": 0,
+      "considera_centro": 20,
+      "mantem_celina_vs_centro": 0,
+      "pct_voto_util": 100.0,
+      "pct_foge_para_centro": 100.0,
+      "tipo_voto": "VOTO MISTO"
+    }
+  },
+  "citacoes": [
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "Sudoeste/Octogonal, renda alta, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\np2_justificativa_arruda: Arruda já teve seus problemas com corrupção e eu preciso pensar na economia e segurança da minha família, não em jogos políticos do passado."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "Plano Piloto, renda baixa, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\nOlha, eu tenho 69 anos e já vi muita política nessa vida. O Arruda pode ter feito muito pelo DF no passado, mas a Celina tá ali governando agora e eu vejo o resultado. Não vou mudar meu voto por birra política não.\n\np2_justificativa_arruda: Prefiro quem tá trabalhando hoje do que quem tá fazendo politicagem por mágoa."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "Plano Piloto, renda alta, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\nOlha, eu analiso os fatos e a gestão dela tem sido sólida. Arruda já teve seus problemas no passado e não vou votar em alguém só porque ele mandou, mesmo respeitando a trajetória dele.\n\np2_justificativa_arruda: Celina tem mostrado resultado na segurança pública e educação, que são minhas prioridades, então vou manter a coerência com base nos dados concretos."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "Itapoã, renda baixa, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\nOlha, eu respeito o Arruda pelo que ele fez no passado, mas a Celina tá aí governando agora e eu preciso pensar no que é melhor pros meus filhos. Não vou trocar quem tá trabalhando por alguém desconhecido só porque houve briga política.\n\np2_justificativa_arruda: Minha preocupação é botar comida na mesa e dar educação pros meus três filhos, então voto em quem tem ma"
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "Taguatinga, renda media, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\nOlha, eu respeito muito o Arruda pelo que ele fez por Brasília, mas não sou maria vai com as outras não. A Celina tem mostrado trabalho, tem experiência, e eu voto na pessoa, não em quem manda votar. Já tenho idade suficiente pra decidir sozinha.\n\np2_justificativa_arruda: Política de compadrio já me trouxe muita decepção, prefiro quem tem histórico de trabalho séri"
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "Taguatinga, renda media, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\np2_justificativa_arruda: Arruda já deu muito problema pro DF, prefiro quem tá fazendo as coisas funcionarem do que ficar mudando por birra política - meu bolso não aguenta mais experimento."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "Planaltina, renda baixa, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\np2_justificativa_arruda: Olha, eu não voto em político por lealdade pessoal não - voto por quem vai cuidar melhor da educação e dar estabilidade para meus filhos, e a Celina já mostrou que trabalha."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "Gama, renda baixa, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\np2_justificativa_arruda: Olha, eu já vi muita política nessa vida e sei que quem tá governando bem não pode ser jogado fora por birra de político - minha aposentadoria e minha saúde dependem de quem realmente trabalha, não de quem grita mais alto."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Sigo Arruda",
+      "perfil": "SCIA/Estrutural, renda alta, direita",
+      "texto": "p1_voto_arruda: Sigo Arruda\n\np2_justificativa_arruda: O Arruda pode ter os defeitos dele, mas pelo menos não deixa bandido solto na rua igual essa galera nova que só fala bonito."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Sigo Arruda",
+      "perfil": "Samambaia, renda baixa, direita",
+      "texto": "p1_voto_arruda: Sigo Arruda\n\np2_justificativa_arruda: O Arruda sempre defendeu gente trabalhadora como eu, se ele tá falando que ela é traidora é porque tem coisa errada mesmo."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "Brazlândia, renda baixa, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\nOlha, eu já vivi muito pra saber que político briga por interesse próprio. A Celina tá governando, fazendo o trabalho dela, e eu não vou mudar meu voto por causa de briga de compadre não. O Arruda já teve os problemas dele no passado, né?\n\np2_justificativa_arruda: Prefiro quem tá trabalhando do que seguir confusão de político brigando por poder."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "Guará, renda baixa, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\np2_justificativa_arruda: Preciso de quem vai resolver meu problema de desemprego, não de briga política - se ela tá trabalhando direito, não vou trocar por alguém que nem conheço só porque o Arruda brigou com ela."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "Santa Maria, renda baixa, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\np2_justificativa_arruda: Olha, não entendo muito dessa briga política não, mas se a Celina tá fazendo um trabalho decente e eu já tinha decidido nela, vou manter - não vou mudar voto por causa de confusão entre eles."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "Sao Sebastiao, renda baixa, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\np2_justificativa_arruda: Olha, o Arruda já teve sua chance e fez besteira - agora prefiro ficar com quem tá trabalhando e pode resolver meus problemas de saúde e emprego."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Sigo Arruda",
+      "perfil": "Samambaia, renda baixa, direita",
+      "texto": "p1_voto_arruda: Sigo Arruda\n\np2_justificativa_arruda: O Arruda conhece mais de política que eu, se ele tá falando que ela é traidora deve ter motivo, né."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Sigo Arruda",
+      "perfil": "Guará, renda alta, direita",
+      "texto": "p1_voto_arruda: Sigo Arruda\n\np2_justificativa_arruda: O Arruda sempre foi fiel aos nossos valores conservadores e se ele diz que ela traiu, é porque traiu mesmo - não posso votar em alguém que não é confiável quando preciso de emprego."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "São Sebastião, renda baixa, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\nOlha, eu acompanho política de perto e não vou mudar meu voto só porque o Arruda falou. A Celina tem mostrado trabalho, e eu voto baseada no que vejo de resultado, não em briga de político. Arruda já teve seus problemas no passado, então prefiro seguir minha própria análise.\n\np2_justificativa_arruda: Minha preocupação é com segurança e emprego, e a Celina tem propo"
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Sigo Arruda",
+      "perfil": "Planaltina, renda baixa, direita",
+      "texto": "**p1_voto_arruda**: Sigo Arruda\n\n**p2_justificativa_arruda**: Arruda conhece os esquemas de Brasília melhor que ninguém e se ele tá falando que ela é traidora, é porque tem coisa por trás que a gente não sabe."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Fico com Celina",
+      "perfil": "Taguatinga, renda alta, direita",
+      "texto": "p1_voto_arruda: Fico com Celina\n\np2_justificativa_arruda: Arruda já deu o que tinha que dar, agora preciso pensar no meu emprego e na economia, não em briga de político."
+    },
+    {
+      "modulo": "Arruda",
+      "escolha": "Sigo Arruda",
+      "perfil": "Santa Maria, renda alta, direita",
+      "texto": "p1_voto_arruda: Sigo Arruda\n\np2_justificativa_arruda: O Arruda conhece o sistema há décadas e se ele tá falando que ela é traidora, é porque sabe de coisa que a gente não sabe - prefiro confiar em quem tem experiência do que arriscar com quem pode me decepcionar depois."
+    }
+  ]
+}
