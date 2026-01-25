@@ -8,6 +8,15 @@ const nextConfig = {
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
 
     return [
+      // Relatório INTEIA - rewrite para arquivos estáticos
+      {
+        source: '/inteia',
+        destination: '/relatorio-inteia/index.html',
+      },
+      {
+        source: '/inteia/',
+        destination: '/relatorio-inteia/index.html',
+      },
       // Auth routes - sempre proxy para o backend
       {
         source: '/api/v1/auth/:path*',
