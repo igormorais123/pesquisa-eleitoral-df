@@ -1,0 +1,276 @@
+{
+  "regressao": {
+    "pre_mkt": {
+      "n": 1,
+      "nota": "Dados insuficientes para regressão (n < 2)"
+    },
+    "pos_mkt": {
+      "n": 8,
+      "slope": 0.008747399946488524,
+      "intercept": 34.180087258227395,
+      "r_squared": 0.013645303051770972,
+      "p_value": 0.782959697329326,
+      "std_err": 0.030361856565890546,
+      "slope_mensal": 0.26242199839465574,
+      "media": 35.525000000000006,
+      "min": 27.5,
+      "max": 49.0
+    },
+    "total": {
+      "n": 9,
+      "slope": 0.02584907938985192,
+      "intercept": 24.35466653041761,
+      "r_squared": 0.29510939012381393,
+      "p_value": 0.1306471595559675,
+      "std_err": 0.015099598819056917,
+      "slope_mensal": 0.7754723816955575
+    }
+  },
+  "chow_test": {
+    "teste": "Chow Test (simplificado)",
+    "resultado": "INCONCLUSIVO",
+    "razao": "Dados insuficientes: pré-MKT=1, pós-MKT=8",
+    "recomendacao": "Necessário mais pesquisas do período pré-MKT para conclusão estatística"
+  },
+  "teste_t": {
+    "teste": "Teste t independente",
+    "resultado": "INCONCLUSIVO",
+    "razao": "Dados insuficientes para teste paramétrico"
+  },
+  "cenarios": {
+    "com_arruda": {
+      "n_pesquisas": 10,
+      "media": 37.4,
+      "min": 22.0,
+      "max": 50.0,
+      "amplitude": 28.0,
+      "institutos": [
+        "Paraná Pesquisas",
+        "Real Time Big Data"
+      ]
+    },
+    "sem_arruda": {
+      "n_pesquisas": 5,
+      "media": 44.480000000000004,
+      "min": 30.0,
+      "max": 54.0,
+      "amplitude": 24.0,
+      "institutos": [
+        "Paraná Pesquisas",
+        "Real Time Big Data"
+      ]
+    },
+    "impacto_arruda": {
+      "diferenca_media": 7.080000000000005,
+      "interpretacao": "Sem Arruda no cenário, Celina tende a ter melhor desempenho devido à transferência de votos da direita."
+    }
+  },
+  "intervalos_confianca": {
+    "media_geral": {
+      "media": 34.022222222222226,
+      "ic_95_lower": 28.022082747953014,
+      "ic_95_upper": 40.02236169649144,
+      "interpretacao": "Com 95% de confiança, a média real está entre 28.0% e 40.0%"
+    },
+    "ultima_pesquisa": {
+      "data": "2025-12-08",
+      "valor": 30.6,
+      "margem_erro": 2.5,
+      "ic_lower": 28.1,
+      "ic_upper": 33.1
+    }
+  },
+  "variacoes_significativas": [
+    {
+      "data": "2025-03-26",
+      "valor_atual": 36.6,
+      "variacao": 14.600000000000001,
+      "instituto": "Paraná Pesquisas",
+      "eventos_associados": [
+        {
+          "data": "2025-03-05",
+          "tipo": "juridico",
+          "titulo": "Absolvição Operação Drácon (criminal)",
+          "descricao": "Juiz absolve Celina na ação de corrupção passiva",
+          "impacto": "muito_positivo"
+        }
+      ],
+      "interpretacao": "ALTA"
+    },
+    {
+      "data": "2025-06-04",
+      "valor_atual": 31.1,
+      "variacao": -5.5,
+      "instituto": "Paraná Pesquisas",
+      "eventos_associados": [
+        {
+          "data": "2025-05-15",
+          "tipo": "realizacao",
+          "titulo": "Título Cidadã Honorária de Brasília",
+          "descricao": "CLDF concede título à vice-governadora",
+          "impacto": "positivo"
+        }
+      ],
+      "interpretacao": "QUEDA"
+    },
+    {
+      "data": "2025-07-13",
+      "valor_atual": 27.5,
+      "variacao": -3.6000000000000014,
+      "instituto": "Instituto Opinião",
+      "eventos_associados": [
+        {
+          "data": "2025-05-15",
+          "tipo": "realizacao",
+          "titulo": "Título Cidadã Honorária de Brasília",
+          "descricao": "CLDF concede título à vice-governadora",
+          "impacto": "positivo"
+        },
+        {
+          "data": "2025-06-09",
+          "tipo": "pesquisa",
+          "titulo": "Entrada de Fred Linhares reduz números",
+          "descricao": "Com Fred na disputa, Celina cai para 31,1%",
+          "impacto": "neutro"
+        }
+      ],
+      "interpretacao": "QUEDA"
+    },
+    {
+      "data": "2025-08-27",
+      "valor_atual": 37.2,
+      "variacao": 9.700000000000003,
+      "instituto": "Paraná Pesquisas",
+      "eventos_associados": [
+        {
+          "data": "2025-07-15",
+          "tipo": "realizacao",
+          "titulo": "Lançamento Pró-Jovem Digital",
+          "descricao": "Investimento de R$ 7,9 milhões em capacitação",
+          "impacto": "positivo"
+        },
+        {
+          "data": "2025-07-29",
+          "tipo": "juridico",
+          "titulo": "MPDFT nega recurso - improbidade",
+          "descricao": "Ação de improbidade continua tramitando",
+          "impacto": "negativo"
+        }
+      ],
+      "interpretacao": "ALTA"
+    },
+    {
+      "data": "2025-09-10",
+      "valor_atual": 49.0,
+      "variacao": 11.799999999999997,
+      "instituto": "Real Time Big Data",
+      "eventos_associados": [
+        {
+          "data": "2025-07-15",
+          "tipo": "realizacao",
+          "titulo": "Lançamento Pró-Jovem Digital",
+          "descricao": "Investimento de R$ 7,9 milhões em capacitação",
+          "impacto": "positivo"
+        },
+        {
+          "data": "2025-07-29",
+          "tipo": "juridico",
+          "titulo": "MPDFT nega recurso - improbidade",
+          "descricao": "Ação de improbidade continua tramitando",
+          "impacto": "negativo"
+        },
+        {
+          "data": "2025-08-29",
+          "tipo": "pesquisa",
+          "titulo": "Celina dispara: 37,2% a 45,6%",
+          "descricao": "Consolidação da liderança com ampla vantagem",
+          "impacto": "muito_positivo"
+        }
+      ],
+      "interpretacao": "ALTA"
+    },
+    {
+      "data": "2025-10-27",
+      "valor_atual": 32.2,
+      "variacao": -16.799999999999997,
+      "instituto": "Paraná Pesquisas",
+      "eventos_associados": [
+        {
+          "data": "2025-08-29",
+          "tipo": "pesquisa",
+          "titulo": "Celina dispara: 37,2% a 45,6%",
+          "descricao": "Consolidação da liderança com ampla vantagem",
+          "impacto": "muito_positivo"
+        },
+        {
+          "data": "2025-09-12",
+          "tipo": "pesquisa",
+          "titulo": "Real Time Big Data: até 54%",
+          "descricao": "Melhor resultado até então em cenário direto",
+          "impacto": "muito_positivo"
+        }
+      ],
+      "interpretacao": "QUEDA"
+    },
+    {
+      "data": "2025-12-08",
+      "valor_atual": 40.0,
+      "variacao": 7.799999999999997,
+      "instituto": "Real Time Big Data",
+      "eventos_associados": [
+        {
+          "data": "2025-10-29",
+          "tipo": "pesquisa",
+          "titulo": "Empate técnico com Arruda",
+          "descricao": "Arruda cresce e empata na margem de erro",
+          "impacto": "negativo"
+        },
+        {
+          "data": "2025-10-30",
+          "tipo": "juridico",
+          "titulo": "TJDFT nega recurso novamente",
+          "descricao": "Segunda negativa em ação de improbidade",
+          "impacto": "negativo"
+        },
+        {
+          "data": "2025-11-15",
+          "tipo": "realizacao",
+          "titulo": "300 mil atendimentos GDF Mais Perto",
+          "descricao": "Programa alcança marca expressiva",
+          "impacto": "positivo"
+        }
+      ],
+      "interpretacao": "ALTA"
+    },
+    {
+      "data": "2025-12-08",
+      "valor_atual": 30.6,
+      "variacao": -9.399999999999999,
+      "instituto": "Colectta",
+      "eventos_associados": [
+        {
+          "data": "2025-10-29",
+          "tipo": "pesquisa",
+          "titulo": "Empate técnico com Arruda",
+          "descricao": "Arruda cresce e empata na margem de erro",
+          "impacto": "negativo"
+        },
+        {
+          "data": "2025-10-30",
+          "tipo": "juridico",
+          "titulo": "TJDFT nega recurso novamente",
+          "descricao": "Segunda negativa em ação de improbidade",
+          "impacto": "negativo"
+        },
+        {
+          "data": "2025-11-15",
+          "tipo": "realizacao",
+          "titulo": "300 mil atendimentos GDF Mais Perto",
+          "descricao": "Programa alcança marca expressiva",
+          "impacto": "positivo"
+        }
+      ],
+      "interpretacao": "QUEDA"
+    }
+  ]
+}
