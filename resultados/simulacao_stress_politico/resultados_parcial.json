@@ -13871,5 +13871,248 @@
       }
     },
     "timestamp": "2026-01-25T16:25:22.762206"
+  },
+  {
+    "id": "df-0149",
+    "nome": "Adriana Vieira Moreira",
+    "perfil": {
+      "ra": "Planaltina",
+      "idade": 36,
+      "genero": "feminino",
+      "renda": "mais_de_10_ate_20",
+      "orientacao": "direita",
+      "posicao_bolsonaro": "neutro",
+      "escolaridade": "superior_completo_ou_pos",
+      "religiao": "evangelica",
+      "valores": [
+        "Família",
+        "Igualdade",
+        "Segurança"
+      ],
+      "preocupacoes": [
+        "Educação",
+        "Segurança pública",
+        "Saúde"
+      ],
+      "estilo_decisao": "moral"
+    },
+    "respostas": {
+      "modulo_1_fidelidade_arruda": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeRKGY3cdce8cEw7Aat'}"
+      },
+      "modulo_2_elasticidade_moral": {
+        "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CXUeS8RxBwqwF4YwctBDu'}"
+      },
+      "modulo_3_outsider_fred": {
+        "raw": "p4_seguranca_fred: Estou dividido entre os dois\n\nOlha, eu entendo a revolta do Fred porque a situação tá impossível mesmo, mas como advogada eu sei que esse papo de \"bala na cabeça\" não resolve nada estruturalmente. Ao mesmo tempo, essa conversa técnica da Celina parece muito distante da realidade de quem tá sofrendo na pele. Queria alguém que tivesse pulso firme mas sem partir pra barbárie.\n\np4b_seguranca_emocao: Quando penso nos meus filhos na rua, confesso que a emoção fala mais alto. Você fica com aquele desespero de mãe querendo proteger de qualquer jeito. Mas depois, com a cabeça fria, sei que decisão na emoção pura geralmente dá merda. Precisa de um equilíbrio - sentir a urgência mas não perder a razão.",
+        "p4_seguranca_fred": "Estou dividido entre os dois\n\nOlha, eu entendo a revolta do Fred porque a situação tá impossível mesmo, mas como advogada eu sei que esse papo de \"bala na cabeça\" não resolve nada estruturalmente. Ao mesmo tempo, essa conversa técnica da Celina parece muito distante da realidade de quem tá sofrendo na pele. Queria alguém que tivesse pulso firme mas sem partir pra barbárie.",
+        "p4b_seguranca_emocao": "Quando penso nos meus filhos na rua, confesso que a emoção fala mais alto. Você fica com aquele desespero de mãe querendo proteger de qualquer jeito. Mas depois, com a cabeça fria, sei que decisão na emoção pura geralmente dá merda. Precisa de um equilíbrio - sentir a urgência mas não perder a razão."
+      },
+      "modulo_4_voto_silencioso": {
+        "raw": "p5_celina_vs_pt: **Voto em Celina para barrar o PT**\nOlha, eu não confio nada no PT, ainda mais depois de tudo que aconteceu. A Celina pode até não ser perfeita, mas pelo menos não é petista. Não posso arriscar meus filhos passarem pelo que passamos anos atrás.\n\np6_celina_vs_centro: **Considero votar no candidato de centro**\nAí já muda a história, né? Se for alguém como o Reguffe, que tem experiência e não tem essa bagagem ideológica, eu penso duas vezes. Depende das propostas dele, principalmente pra educação e segurança.\n\np6b_motivacao_voto: Vou ser sincera - é mais por REJEITAR o adversário mesmo. A Celina é okay, mas meu voto nela seria mais estratégico pra não deixar alguém pior entrar. Minha família vem primeiro, e eu voto pensando na estabilidade deles.",
+        "p5_celina_vs_pt": "**Voto em Celina para barrar o PT**\nOlha, eu não confio nada no PT, ainda mais depois de tudo que aconteceu. A Celina pode até não ser perfeita, mas pelo menos não é petista. Não posso arriscar meus filhos passarem pelo que passamos anos atrás.",
+        "p6_celina_vs_centro": "**Considero votar no candidato de centro**\nAí já muda a história, né? Se for alguém como o Reguffe, que tem experiência e não tem essa bagagem ideológica, eu penso duas vezes. Depende das propostas dele, principalmente pra educação e segurança.",
+        "p6b_motivacao_voto": "Vou ser sincera - é mais por REJEITAR o adversário mesmo. A Celina é okay, mas meu voto nela seria mais estratégico pra não deixar alguém pior entrar. Minha família vem primeiro, e eu voto pensando na estabilidade deles."
+      }
+    },
+    "timestamp": "2026-01-25T16:26:18.430488"
+  },
+  {
+    "id": "df-0367",
+    "nome": "Marta Gonçalves Araújo",
+    "perfil": {
+      "ra": "Arniqueira",
+      "idade": 28,
+      "genero": "feminino",
+      "renda": "ate_1",
+      "orientacao": "direita",
+      "posicao_bolsonaro": "neutro",
+      "escolaridade": "medio_completo_ou_sup_incompleto",
+      "religiao": "catolica",
+      "valores": [
+        "Família",
+        "Fé e religião",
+        "Segurança"
+      ],
+      "preocupacoes": [
+        "Corrupção",
+        "Educação",
+        "Saúde"
+      ],
+      "estilo_decisao": "pragmatico"
+    },
+    "respostas": {
+      "modulo_1_fidelidade_arruda": {
+        "raw": "p1_voto_arruda: Fico com Celina\n\np2_justificativa_arruda: Olha, eu não sou muito de política, mas a Celina pelo menos já mostrou serviço na saúde, e eu preciso é de quem resolve - não vou trocar o certo pelo duvidoso só porque o Arruda mandou.",
+        "p1_voto_arruda": "Fico com Celina\n\np2_justificativa_arruda: Olha, eu não sou muito de política, mas a Celina pelo menos já mostrou serviço na saúde, e eu preciso é de quem resolve - não vou trocar o certo pelo duvidoso só porque o Arruda mandou.",
+        "p2_justificativa_arruda": "Olha, eu não sou muito de política, mas a Celina pelo menos já mostrou serviço na saúde, e eu preciso é de quem resolve - não vou trocar o certo pelo duvidoso só porque o Arruda mandou."
+      },
+      "modulo_2_elasticidade_moral": {
+        "raw": "p3_obra_corrupcao: A corrupção é inaceitável, mudo o voto\n\nOlha, eu trabalho na saúde e vejo todo dia o dinheiro que falta nos hospitais. R$ 50 milhões dava pra equipar várias UPAs direito! Por mais que a obra me ajude, não posso fechar os olhos pra isso não.\n\np3b_justificativa_moral: Meu limite é bem baixo mesmo. Talvez uns 5, 10% de superfaturamento eu relevaria se fosse algo que realmente mudasse minha vida, tipo uma UPA nova aqui perto. Mas 50 milhões? Isso é dinheiro que falta na saúde, na educação dos meus filhos. Não dá pra passar pano não.",
+        "p3_obra_corrupcao": "A corrupção é inaceitável, mudo o voto\n\nOlha, eu trabalho na saúde e vejo todo dia o dinheiro que falta nos hospitais. R$ 50 milhões dava pra equipar várias UPAs direito! Por mais que a obra me ajude, não posso fechar os olhos pra isso não.",
+        "p3b_justificativa_moral": "Meu limite é bem baixo mesmo. Talvez uns 5, 10% de superfaturamento eu relevaria se fosse algo que realmente mudasse minha vida, tipo uma UPA nova aqui perto. Mas 50 milhões? Isso é dinheiro que falta na saúde, na educação dos meus filhos. Não dá pra passar pano não."
+      },
+      "modulo_3_outsider_fred": {
+        "raw": "p4_seguranca_fred: Sim, quero alguém linha dura como Fred\n\nOlha, eu trabalho na área da saúde, vejo o resultado da violência todo dia no hospital. Com duas crianças em casa e morando numa área que tá ficando perigosa, não dá pra ficar com esse papo de gestão técnica não. Quero é alguém que vai meter o pau mesmo, que os bandidos tenham medo.\n\np4b_seguranca_emocao: Emoção fala muito mais alto, né. Quando eu penso nos meus filhos voltando da escola ou no meu marido chegando tarde do trabalho, bate um desespero. A razão até diz que tem que ter política pública certinha, mas na hora do sufoco é a raiva que toma conta mesmo.",
+        "p4_seguranca_fred": "Sim, quero alguém linha dura como Fred\n\nOlha, eu trabalho na área da saúde, vejo o resultado da violência todo dia no hospital. Com duas crianças em casa e morando numa área que tá ficando perigosa, não dá pra ficar com esse papo de gestão técnica não. Quero é alguém que vai meter o pau mesmo, que os bandidos tenham medo.",
+        "p4b_seguranca_emocao": "Emoção fala muito mais alto, né. Quando eu penso nos meus filhos voltando da escola ou no meu marido chegando tarde do trabalho, bate um desespero. A razão até diz que tem que ter política pública certinha, mas na hora do sufoco é a raiva que toma conta mesmo."
+      },
+      "modulo_4_voto_silencioso": {
+        "raw": "p5_celina_vs_pt: Voto em Celina para barrar o PT\nOlha, não gosto muito de política, mas PT não dá não. Já vi muita sujeira deles na TV e minha família sempre foi contra. Prefiro mil vezes a Celina que pelo menos não é dessa turma.\n\np6_celina_vs_centro: Considero votar no candidato de centro\nSe for alguém tipo Reguffe que é mais técnico, aí eu pensaria melhor. Não tenho nada contra a Celina, mas se o outro for mais preparado pra resolver os problemas da saúde e educação que me afetam, eu mudaria meu voto.\n\np6b_motivacao_voto: É mais por rejeitar o adversário, pra ser bem sincera. Não conheço muito a Celina, mas sei que não quero o PT de volta. Se for contra alguém mais neutro, aí eu voto mais pela pessoa mesmo, não contra ninguém.",
+        "p5_celina_vs_pt": "Voto em Celina para barrar o PT\nOlha, não gosto muito de política, mas PT não dá não. Já vi muita sujeira deles na TV e minha família sempre foi contra. Prefiro mil vezes a Celina que pelo menos não é dessa turma.",
+        "p6_celina_vs_centro": "Considero votar no candidato de centro\nSe for alguém tipo Reguffe que é mais técnico, aí eu pensaria melhor. Não tenho nada contra a Celina, mas se o outro for mais preparado pra resolver os problemas da saúde e educação que me afetam, eu mudaria meu voto.",
+        "p6b_motivacao_voto": "É mais por rejeitar o adversário, pra ser bem sincera. Não conheço muito a Celina, mas sei que não quero o PT de volta. Se for contra alguém mais neutro, aí eu voto mais pela pessoa mesmo, não contra ninguém."
+      }
+    },
+    "timestamp": "2026-01-25T16:27:03.607075"
+  },
+  {
+    "id": "df-0308",
+    "nome": "Henrique Dias Martins",
+    "perfil": {
+      "ra": "Jardim Botânico",
+      "idade": 41,
+      "genero": "masculino",
+      "renda": "mais_de_5_ate_10",
+      "orientacao": "direita",
+      "posicao_bolsonaro": "apoiador_forte",
+      "escolaridade": "medio_completo_ou_sup_incompleto",
+      "religiao": "catolica",
+      "valores": [
+        "Família",
+        "Trabalho",
+        "Fé e religião"
+      ],
+      "preocupacoes": [
+        "Desemprego",
+        "Corrupção",
+        "Segurança pública",
+        "Saúde"
+      ],
+      "estilo_decisao": "economico"
+    },
+    "respostas": {
+      "modulo_1_fidelidade_arruda": {
+        "raw": "p1_voto_arruda: Fico com Celina\n\np2_justificativa_arruda: O Arruda já me decepcionou demais com corrupção e eu preciso de alguém que realmente trabalhe, não de quem só fala bonito.",
+        "p1_voto_arruda": "Fico com Celina\n\np2_justificativa_arruda: O Arruda já me decepcionou demais com corrupção e eu preciso de alguém que realmente trabalhe, não de quem só fala bonito.",
+        "p2_justificativa_arruda": "O Arruda já me decepcionou demais com corrupção e eu preciso de alguém que realmente trabalhe, não de quem só fala bonito."
+      },
+      "modulo_2_elasticidade_moral": {
+        "raw": "p3_obra_corrupcao: A corrupção é inaceitável, mudo o voto\n\nOlha, eu valorizo muito o trabalho honesto e a fé. Pode até resolver meu problema de trânsito, mas R$ 50 milhões desviados é dinheiro que podia ter ido pra saúde, segurança, outras obras... Isso vai contra tudo que eu acredito sobre fazer as coisas do jeito certo.\n\np3b_justificativa_moral: Meu limite é bem baixo mesmo. Se for uma \"corridinha\" pequena, tipo uns 5-10% que sempre rola em obra, eu até relevo se o cara entrega resultado. Mas 50 milhões? Isso é sacanagem demais, é tirar da boca do povo. Prefiro esperar mais tempo no trânsito do que compactuar com essa roubalheira toda.",
+        "p3_obra_corrupcao": "A corrupção é inaceitável, mudo o voto\n\nOlha, eu valorizo muito o trabalho honesto e a fé. Pode até resolver meu problema de trânsito, mas R$ 50 milhões desviados é dinheiro que podia ter ido pra saúde, segurança, outras obras... Isso vai contra tudo que eu acredito sobre fazer as coisas do jeito certo.",
+        "p3b_justificativa_moral": "Meu limite é bem baixo mesmo. Se for uma \"corridinha\" pequena, tipo uns 5-10% que sempre rola em obra, eu até relevo se o cara entrega resultado. Mas 50 milhões? Isso é sacanagem demais, é tirar da boca do povo. Prefiro esperar mais tempo no trânsito do que compactuar com essa roubalheira toda."
+      },
+      "modulo_3_outsider_fred": {
+        "raw": "p4_seguranca_fred: Sim, quero alguém linha dura como Fred\n\nCara, cansei de papo furado de gestão e tecnologia. Quando bandido tá assaltando na porta de casa, não é hora de conversa mole. Fred fala a linguagem que o bandido entende - é isso que precisa mesmo. Celina pode ser competente, mas o que adianta competência se não tem pulso firme?\n\np4b_seguranca_emocao: A emoção fala mais alto, sem dúvida. Quando você vê a violência de perto, quando conhece gente que foi assaltada ou pior, não tem como ficar só na razão fria. A raiva que sinto desses vagabundos é o que me move - quero alguém que sinta essa mesma revolta e vá para cima.",
+        "p4_seguranca_fred": "Sim, quero alguém linha dura como Fred\n\nCara, cansei de papo furado de gestão e tecnologia. Quando bandido tá assaltando na porta de casa, não é hora de conversa mole. Fred fala a linguagem que o bandido entende - é isso que precisa mesmo. Celina pode ser competente, mas o que adianta competência se não tem pulso firme?",
+        "p4b_seguranca_emocao": "A emoção fala mais alto, sem dúvida. Quando você vê a violência de perto, quando conhece gente que foi assaltada ou pior, não tem como ficar só na razão fria. A raiva que sinto desses vagabundos é o que me move - quero alguém que sinta essa mesma revolta e vá para cima."
+      },
+      "modulo_4_voto_silencioso": {
+        "raw": "p5_celina_vs_pt: Voto em Celina para barrar o PT\n\nOlha, não tem nem conversa. PT nunca mais! Já vi o que essa turma fez no país e não quero isso no DF. Celina pode não ser perfeita, mas pelo menos não é petista.\n\np6_celina_vs_centro: Considero votar no candidato de centro\n\nAí muda a coisa. Se for alguém sério, técnico mesmo, sem essa história de esquerda, eu penso. Reguffe sempre foi honesto, trabalhador. Celina é boa, mas se tiver alguém melhor tecnicamente...\n\np6b_motivacao_voto: É mais por rejeitar o adversário mesmo. Sou sincero - voto mais contra o PT do que a favor dela. Ela representa o que eu acredito, mas o que me move mesmo é não deixar a esquerda voltar ao poder.",
+        "p5_celina_vs_pt": "Voto em Celina para barrar o PT\n\nOlha, não tem nem conversa. PT nunca mais! Já vi o que essa turma fez no país e não quero isso no DF. Celina pode não ser perfeita, mas pelo menos não é petista.",
+        "p6_celina_vs_centro": "Considero votar no candidato de centro\n\nAí muda a coisa. Se for alguém sério, técnico mesmo, sem essa história de esquerda, eu penso. Reguffe sempre foi honesto, trabalhador. Celina é boa, mas se tiver alguém melhor tecnicamente...",
+        "p6b_motivacao_voto": "É mais por rejeitar o adversário mesmo. Sou sincero - voto mais contra o PT do que a favor dela. Ela representa o que eu acredito, mas o que me move mesmo é não deixar a esquerda voltar ao poder."
+      }
+    },
+    "timestamp": "2026-01-25T16:27:31.395529"
+  },
+  {
+    "id": "df-0289",
+    "nome": "Luís Nascimento Ribeiro",
+    "perfil": {
+      "ra": "Sobradinho II",
+      "idade": 47,
+      "genero": "masculino",
+      "renda": "ate_1",
+      "orientacao": "direita",
+      "posicao_bolsonaro": "apoiador_moderado",
+      "escolaridade": "medio_completo_ou_sup_incompleto",
+      "religiao": "evangelica",
+      "valores": [
+        "Família",
+        "Segurança",
+        "Trabalho"
+      ],
+      "preocupacoes": [
+        "Desemprego",
+        "Educação",
+        "Segurança pública",
+        "Saúde"
+      ],
+      "estilo_decisao": "pragmatico"
+    },
+    "respostas": {
+      "modulo_1_fidelidade_arruda": {
+        "raw": "p1_voto_arruda: Sigo Arruda\n\np2_justificativa_arruda: O homem conhece a política há décadas e se ele tá falando que ela é traidora, deve ter motivo - prefiro confiar em quem já provou que entende do riscado.",
+        "p1_voto_arruda": "Sigo Arruda\n\np2_justificativa_arruda: O homem conhece a política há décadas e se ele tá falando que ela é traidora, deve ter motivo - prefiro confiar em quem já provou que entende do riscado.",
+        "p2_justificativa_arruda": "O homem conhece a política há décadas e se ele tá falando que ela é traidora, deve ter motivo - prefiro confiar em quem já provou que entende do riscado."
+      },
+      "modulo_2_elasticidade_moral": {
+        "raw": "p3_obra_corrupcao: Depende de quem for o outro candidato\n\nOlha, 50 milhões é coisa pra caramba, não vou mentir. Mas se o outro candidato for daqueles esquerdistas que só querem saber de dar esmola pros vagabundo, eu fico com ela mesmo. Pelo menos ela fez alguma coisa aqui na região, né?\n\np3b_justificativa_moral: Vou ser sincero contigo - se tá melhorando minha vida e da minha família, eu relevo até uns 30% de superfaturamento. Agora, se for aqueles esquemas gigantes tipo Petrolão, aí já é demais. Mas político que não rouba um pouquinho não existe mesmo, então prefiro quem rouba e faz do que quem rouba e não faz nada.",
+        "p3_obra_corrupcao": "Depende de quem for o outro candidato\n\nOlha, 50 milhões é coisa pra caramba, não vou mentir. Mas se o outro candidato for daqueles esquerdistas que só querem saber de dar esmola pros vagabundo, eu fico com ela mesmo. Pelo menos ela fez alguma coisa aqui na região, né?",
+        "p3b_justificativa_moral": "Vou ser sincero contigo - se tá melhorando minha vida e da minha família, eu relevo até uns 30% de superfaturamento. Agora, se for aqueles esquemas gigantes tipo Petrolão, aí já é demais. Mas político que não rouba um pouquinho não existe mesmo, então prefiro quem rouba e faz do que quem rouba e não faz nada."
+      },
+      "modulo_3_outsider_fred": {
+        "raw": "p4_seguranca_fred: Sim, quero alguém linha dura como Fred\n\nOlha, cansei de conversa fiada e gestão bonita no papel. Meus filhos não podem nem sair de casa direito, e eu mesmo já fui assaltado duas vezes aqui em Sobradinho. Fred pelo menos fala a verdade: bandido bom é bandido morto. A Celina vai ficar lá falando de tecnologia enquanto os marginais continuam soltos por aí.\n\np4b_seguranca_emocao: A emoção fala mais alto, sem dúvida. Quando você vê seu filho com medo de ir pra escola ou quando você mesmo não pode trabalhar sossegado, não tem razão que segure. É raiva pura mesmo, e quem não sente isso é porque não vive na pele o que a gente vive aqui na periferia.",
+        "p4_seguranca_fred": "Sim, quero alguém linha dura como Fred\n\nOlha, cansei de conversa fiada e gestão bonita no papel. Meus filhos não podem nem sair de casa direito, e eu mesmo já fui assaltado duas vezes aqui em Sobradinho. Fred pelo menos fala a verdade: bandido bom é bandido morto. A Celina vai ficar lá falando de tecnologia enquanto os marginais continuam soltos por aí.",
+        "p4b_seguranca_emocao": "A emoção fala mais alto, sem dúvida. Quando você vê seu filho com medo de ir pra escola ou quando você mesmo não pode trabalhar sossegado, não tem razão que segure. É raiva pura mesmo, e quem não sente isso é porque não vive na pele o que a gente vive aqui na periferia."
+      },
+      "modulo_4_voto_silencioso": {
+        "raw": "**p5_celina_vs_pt**: Voto em Celina para barrar o PT\nOlha, nem preciso pensar muito. PT é tudo que não presto, acabou com o Brasil na época da Dilma. Voto em qualquer um pra barrar essa turma, mesmo a Celina não sendo minha primeira opção.\n\n**p6_celina_vs_centro**: Considero votar no candidato de centro\nSe for alguém tipo Reguffe que não tem essa porcaria de ideologia de esquerda, aí eu penso. Gosto de gente que trabalha e não fica de mimimi. Se o cara for sério e não vier com papo furado, pode ser que eu vote nele mesmo.\n\n**p6b_motivacao_voto**: Cara, vou ser sincero: é mais por rejeitar o adversário mesmo. A Celina eu nem conheço direito, mas se for contra PT eu voto até no poste. Agora se for contra alguém decente, aí eu analiso melhor quem vai fazer mais pelo povo trabalhador.",
+        "p5_celina_vs_pt": "**: Voto em Celina para barrar o PT\nOlha, nem preciso pensar muito. PT é tudo que não presto, acabou com o Brasil na época da Dilma. Voto em qualquer um pra barrar essa turma, mesmo a Celina não sendo minha primeira opção.",
+        "p6_celina_vs_centro": "**: Considero votar no candidato de centro\nSe for alguém tipo Reguffe que não tem essa porcaria de ideologia de esquerda, aí eu penso. Gosto de gente que trabalha e não fica de mimimi. Se o cara for sério e não vier com papo furado, pode ser que eu vote nele mesmo.",
+        "p6b_motivacao_voto": "**: Cara, vou ser sincero: é mais por rejeitar o adversário mesmo. A Celina eu nem conheço direito, mas se for contra PT eu voto até no poste. Agora se for contra alguém decente, aí eu analiso melhor quem vai fazer mais pelo povo trabalhador."
+      }
+    },
+    "timestamp": "2026-01-25T16:28:02.204064"
+  },
+  {
+    "id": "df-0850",
+    "nome": "Mário Soares Barbosa",
+    "perfil": {
+      "ra": "Plano Piloto",
+      "idade": 67,
+      "genero": "masculino",
+      "renda": "mais_de_2_ate_5",
+      "orientacao": "direita",
+      "posicao_bolsonaro": "neutro",
+      "escolaridade": "superior_completo_ou_pos",
+      "religiao": "catolica",
+      "valores": [
+        "Trabalho",
+        "Saúde",
+        "Fé e religião"
+      ],
+      "preocupacoes": [
+        "Corrupção",
+        "Segurança pública",
+        "Economia"
+      ],
+      "estilo_decisao": "economico"
+    },
+    "respostas": {
+      "modulo_1_fidelidade_arruda": {
+        "raw": "p1_voto_arruda: Fico com Celina\n\np2_justificativa_arruda: Olha, o Arruda já teve sua época e seus problemas, prefiro apostar na gestão que tá funcionando do que em aventura política com gente que não conheço.",
+        "p1_voto_arruda": "Fico com Celina\n\np2_justificativa_arruda: Olha, o Arruda já teve sua época e seus problemas, prefiro apostar na gestão que tá funcionando do que em aventura política com gente que não conheço.",
+        "p2_justificativa_arruda": "Olha, o Arruda já teve sua época e seus problemas, prefiro apostar na gestão que tá funcionando do que em aventura política com gente que não conheço."
+      },
+      "modulo_2_elasticidade_moral": {
+        "raw": "p3_obra_corrupcao: Depende de quem for o outro candidato\n\nOlha, vou ser sincero contigo. Essa obra mudou minha vida - antes eu levava uma hora pra ir ao centro, agora são 15 minutos. R$ 50 milhões é muito dinheiro mesmo, mas se o outro candidato for um vagabundo que não vai fazer nada, prefiro quem pelo menos entrega alguma coisa. Política no Brasil sempre teve esse problema, né?\n\np3b_justificativa_moral: Meu limite? Se a pessoa roubar mas fizer obras que melhoram minha vida e da comunidade, eu até relevo uns 10-20% de superfaturamento. Agora se for só roubar e não entregar nada, aí não dá. Aos 67 anos, já vi muito político prometendo o céu e entregando o inferno - prefiro quem entrega alguma coisa, mesmo que seja meio torto.",
+        "p3_obra_corrupcao": "Depende de quem for o outro candidato\n\nOlha, vou ser sincero contigo. Essa obra mudou minha vida - antes eu levava uma hora pra ir ao centro, agora são 15 minutos. R$ 50 milhões é muito dinheiro mesmo, mas se o outro candidato for um vagabundo que não vai fazer nada, prefiro quem pelo menos entrega alguma coisa. Política no Brasil sempre teve esse problema, né?",
+        "p3b_justificativa_moral": "Meu limite? Se a pessoa roubar mas fizer obras que melhoram minha vida e da comunidade, eu até relevo uns 10-20% de superfaturamento. Agora se for só roubar e não entregar nada, aí não dá. Aos 67 anos, já vi muito político prometendo o céu e entregando o inferno - prefiro quem entrega alguma coisa, mesmo que seja meio torto."
+      },
+      "modulo_3_outsider_fred": {
+        "raw": "p4_seguranca_fred: Estou dividido entre os dois | Olha, depois de décadas aqui no Plano, nunca vi a coisa tão feia assim. O Fred fala coisas que a gente quer ouvir quando tá com raiva, mas eu já vivi o suficiente pra saber que só berrar não resolve. A Celina tem experiência, mas às vezes parece que fica só na conversa técnica enquanto a bandidagem tá solto aí.\n\np4b_seguranca_emocao: Cara, vou ser sincero contigo - quando a coisa aperta mesmo, quando você vê teu vizinho sendo assaltado ou ouve tiro de madrugada, a emoção fala mais alto sim. A razão até diz que tem que ser na gestão, mas o coração quer é ver esses vagabundos longe daqui, nem que seja na marra mesmo.",
+        "p4_seguranca_fred": "Estou dividido entre os dois | Olha, depois de décadas aqui no Plano, nunca vi a coisa tão feia assim. O Fred fala coisas que a gente quer ouvir quando tá com raiva, mas eu já vivi o suficiente pra saber que só berrar não resolve. A Celina tem experiência, mas às vezes parece que fica só na conversa técnica enquanto a bandidagem tá solto aí.",
+        "p4b_seguranca_emocao": "Cara, vou ser sincero contigo - quando a coisa aperta mesmo, quando você vê teu vizinho sendo assaltado ou ouve tiro de madrugada, a emoção fala mais alto sim. A razão até diz que tem que ser na gestão, mas o coração quer é ver esses vagabundos longe daqui, nem que seja na marra mesmo."
+      },
+      "modulo_4_voto_silencioso": {
+        "raw": "p5_celina_vs_pt: Voto em Celina para barrar o PT\n\nOlha, eu já vi o que o PT fez no país. Mesmo não sendo fã da Celina, não posso deixar essa turma voltar. É questão de responsabilidade mesmo.\n\np6_celina_vs_centro: Considero votar no candidato de centro\n\nSe for alguém como o Reguffe, que é técnico e não tem esse ranço ideológico, aí eu pensaria duas vezes. Ele já mostrou que trabalha, né? A Celina... sei não, ainda tenho dúvidas sobre ela.\n\np6b_motivacao_voto: É mais por rejeitar o adversário, vou ser sincero. A Celina eu ainda não engoli direito, mas entre ela e o PT, não tem nem discussão. Agora, se aparecer uma opção melhor de centro, aí mudo na hora.",
+        "p5_celina_vs_pt": "Voto em Celina para barrar o PT\n\nOlha, eu já vi o que o PT fez no país. Mesmo não sendo fã da Celina, não posso deixar essa turma voltar. É questão de responsabilidade mesmo.",
+        "p6_celina_vs_centro": "Considero votar no candidato de centro\n\nSe for alguém como o Reguffe, que é técnico e não tem esse ranço ideológico, aí eu pensaria duas vezes. Ele já mostrou que trabalha, né? A Celina... sei não, ainda tenho dúvidas sobre ela.",
+        "p6b_motivacao_voto": "É mais por rejeitar o adversário, vou ser sincero. A Celina eu ainda não engoli direito, mas entre ela e o PT, não tem nem discussão. Agora, se aparecer uma opção melhor de centro, aí mudo na hora."
+      }
+    },
+    "timestamp": "2026-01-25T16:28:34.399927"
   }
 ]
