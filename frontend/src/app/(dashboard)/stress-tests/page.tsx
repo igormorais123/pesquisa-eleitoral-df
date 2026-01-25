@@ -14,6 +14,7 @@ import {
   Target,
   Building2,
 } from 'lucide-react';
+import { InteiaBadge, InteiaLogo } from '@/components/branding';
 
 // Dados dos stress tests disponíveis
 const stressTests = [
@@ -43,20 +44,24 @@ const stressTests = [
 export default function PaginaStressTests() {
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
+      {/* Header com Identidade INTEIA */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
-            <Zap className="w-7 h-7 text-yellow-400" />
-            Stress Tests Eleitorais
-          </h1>
+          <div className="flex items-center gap-3">
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
+              <Zap className="w-7 h-7 text-yellow-400" />
+              Stress Tests Eleitorais
+            </h1>
+            <InteiaBadge variant="gradient" size="sm" />
+          </div>
           <p className="text-muted-foreground mt-1">
             Testes de resiliencia do voto sob cenarios de pressao
           </p>
         </div>
-        <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg border border-blue-500/20">
-          <Building2 className="w-4 h-4 text-blue-400" />
-          <span className="text-sm font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">INTEIA</span>
+        <div className="hidden md:flex flex-col items-end text-right">
+          <p className="text-xs text-muted-foreground">Pesquisador Responsavel</p>
+          <p className="text-sm font-semibold text-foreground">Igor Morais Vasconcelos, PhD</p>
+          <p className="text-[10px] text-amber-500">Presidente INTEIA</p>
         </div>
       </div>
 

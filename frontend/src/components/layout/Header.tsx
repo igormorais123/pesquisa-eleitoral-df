@@ -33,6 +33,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { GlobalSearch } from '@/components/search/GlobalSearch';
+import { InteiaBadge } from '@/components/branding';
 
 interface HeaderProps {
   titulo?: string;
@@ -124,6 +125,11 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
               )}
             </div>
           )}
+
+          {/* Badge INTEIA - visível em desktop */}
+          <div className="hidden lg:block">
+            <InteiaBadge variant="gradient" size="sm" />
+          </div>
         </div>
 
         {/* Centro - Busca */}

@@ -20,6 +20,7 @@ import {
 import { db } from '@/lib/db/dexie';
 import { formatarDataHora, formatarMoeda, cn } from '@/lib/utils';
 import { useAuthStore } from '@/stores/auth-store';
+import { InteiaBadge } from '@/components/branding';
 
 export default function PaginaResultados() {
   const { usuario } = useAuthStore();
@@ -56,16 +57,23 @@ export default function PaginaResultados() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
+      {/* Header com Identidade INTEIA */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
-            <BarChart3 className="w-7 h-7 text-primary" />
-            Resultados
-          </h1>
+          <div className="flex items-center gap-3">
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-3">
+              <BarChart3 className="w-7 h-7 text-primary" />
+              Resultados
+            </h1>
+            <InteiaBadge variant="gradient" size="sm" />
+          </div>
           <p className="text-muted-foreground mt-1">
-            Análises e visualizações das pesquisas realizadas
+            Analises e visualizacoes das pesquisas realizadas
           </p>
+        </div>
+        <div className="hidden md:flex flex-col items-end text-right">
+          <p className="text-xs text-muted-foreground">Pesquisador Responsavel</p>
+          <p className="text-sm font-semibold text-foreground">Igor Morais Vasconcelos, PhD</p>
         </div>
       </div>
 

@@ -29,6 +29,7 @@ import {
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { useAuthStore } from '@/stores/auth-store';
 import { useEffect } from 'react';
+import { InteiaLogo } from '@/components/branding';
 
 const menuItems = [
   {
@@ -168,16 +169,17 @@ export function Sidebar() {
   // Conteúdo da sidebar (reutilizado em desktop e mobile)
   const sidebarContent = (
     <>
-      {/* Logo */}
+      {/* Logo INTEIA */}
       <div className="p-4 border-b border-border">
         <Link href="/" className="flex items-center gap-3" onClick={fecharMobile}>
-          <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
-            <Vote className="w-5 h-5 text-primary" />
-          </div>
-          {!recolhido && (
-            <div className="overflow-hidden">
-              <h1 className="font-bold text-foreground text-sm">Pesquisa Eleitoral</h1>
-              <p className="text-xs text-muted-foreground">DF 2026</p>
+          {recolhido ? (
+            <InteiaLogo size="sm" variant="icon" />
+          ) : (
+            <div className="flex flex-col">
+              <InteiaLogo size="sm" variant="full" />
+              <p className="text-[10px] text-muted-foreground mt-1 ml-7">
+                Pesquisa Eleitoral DF 2026
+              </p>
             </div>
           )}
         </Link>

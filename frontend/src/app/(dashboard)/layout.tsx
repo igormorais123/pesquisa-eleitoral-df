@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { Header } from '@/components/layout/Header';
 import { MobileNav } from '@/components/layout/MobileNav';
+import { InteiaFooter } from '@/components/branding';
 import { useAuthStore } from '@/stores/auth-store';
 import { useSidebarStore } from '@/stores/sidebar-store';
 import { cn } from '@/lib/utils';
@@ -74,6 +75,8 @@ export default function DashboardLayout({
         <main className="p-4 sm:p-6 bg-gradient-subtle min-h-[calc(100vh-4rem)] pb-20 lg:pb-6">
           {children}
         </main>
+        {/* Footer INTEIA */}
+        <InteiaFooter variant="minimal" />
       </div>
 
       {/* Mobile Navigation - Visível apenas em mobile */}

@@ -56,6 +56,7 @@ import { formatarNumero, formatarPercentual } from '@/lib/utils';
 import eleitoresData from '@/data/eleitores-df-1000.json';
 import type { Eleitor } from '@/types';
 import { useEleitoresStore, useEleitoresFiltrados, useFiltros, useFiltrosActions } from '@/stores/eleitores-store';
+import { InteiaBadge } from '@/components/branding';
 
 // Cores para gráficos
 const CORES = {
@@ -728,20 +729,31 @@ export default function PaginaInicial() {
 
   return (
     <div className="space-y-8 animate-fade-in">
-      {/* Cabeçalho */}
-      <div>
-        <h1 className="text-3xl font-bold text-foreground">
-          Dashboard de Análise Eleitoral
-        </h1>
-        <p className="text-muted-foreground mt-2">
-          {temFiltrosAtivos(filtros) ? (
-            <>
-              Analisando <span className="text-primary font-semibold">{stats.total}</span> de {totalGeral} eleitores ({((stats.total / totalGeral) * 100).toFixed(1)}% da amostra)
-            </>
-          ) : (
-            <>Visão completa do perfil dos {stats.total} eleitores sintéticos do Distrito Federal para as eleições de 2026.</>
-          )}
-        </p>
+      {/* Cabeçalho com Identidade INTEIA */}
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-3 mb-2">
+            <h1 className="text-3xl font-bold text-foreground">
+              Dashboard de Analise Eleitoral
+            </h1>
+            <InteiaBadge variant="gradient" size="md" className="hidden sm:flex" />
+          </div>
+          <p className="text-muted-foreground">
+            {temFiltrosAtivos(filtros) ? (
+              <>
+                Analisando <span className="text-primary font-semibold">{stats.total}</span> de {totalGeral} eleitores ({((stats.total / totalGeral) * 100).toFixed(1)}% da amostra)
+              </>
+            ) : (
+              <>Visao completa do perfil dos {stats.total} eleitores sinteticos do Distrito Federal para as eleicoes de 2026.</>
+            )}
+          </p>
+        </div>
+        {/* Credenciais INTEIA */}
+        <div className="hidden lg:flex flex-col items-end text-right">
+          <p className="text-xs text-muted-foreground">Pesquisador Responsavel</p>
+          <p className="text-sm font-semibold text-foreground">Igor Morais Vasconcelos, PhD</p>
+          <p className="text-[10px] text-amber-500">Presidente INTEIA</p>
+        </div>
       </div>
 
       {/* Painel de Filtros */}
