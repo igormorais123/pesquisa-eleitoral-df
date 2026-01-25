@@ -12,15 +12,17 @@ import {
   TrendingUp,
   Shield,
   Target,
+  Building2,
 } from 'lucide-react';
 
 // Dados dos stress tests disponíveis
 const stressTests = [
   {
     id: 'stress-test-celina-2026',
-    titulo: 'Stress Test Eleitoral - Celina Leão 2026',
+    titulo: 'Stress Test Eleitoral - Celina Leao 2026',
     data: '25 de Janeiro de 2026',
     autor: 'Dra. Helena Montenegro',
+    empresa: 'INTEIA',
     totalEntrevistados: 490,
     status: 'concluido',
     url: '/resultados-stress-test/index.html',
@@ -49,8 +51,12 @@ export default function PaginaStressTests() {
             Stress Tests Eleitorais
           </h1>
           <p className="text-muted-foreground mt-1">
-            Testes de resiliência do voto sob cenários de pressão
+            Testes de resiliencia do voto sob cenarios de pressao
           </p>
+        </div>
+        <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg border border-blue-500/20">
+          <Building2 className="w-4 h-4 text-blue-400" />
+          <span className="text-sm font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">INTEIA</span>
         </div>
       </div>
 
