@@ -50,6 +50,13 @@
 │     ├── Pontos de ruptura                                       │
 │     └── Insights automáticos                                    │
 │                                                                 │
+│  5.5. VALIDAÇÃO ESTATÍSTICA (OBRIGATÓRIO)                       │
+│     ├── Teste chi-quadrado de aderência                         │
+│     ├── Comparação amostra vs população                         │
+│     ├── Taxa de conformidade (>=70%)                            │
+│     ├── Score de qualidade (0-100)                              │
+│     └── Margem de erro real calculada                           │
+│                                                                 │
 │  6. PERSISTÊNCIA                                                │
 │     ├── Salvar em memorias/pesquisas-ia/                        │
 │     └── Formato JSON estruturado                                │
@@ -680,6 +687,144 @@ def analisar_por_segmento(respostas: list, eleitores: dict, campo: str) -> dict:
         }
 
     return resultado
+```
+
+---
+
+## PASSO 5.5: VALIDACAO ESTATISTICA DA AMOSTRA
+
+### Importancia da Validacao
+
+A validacao estatistica garante que a amostra selecionada representa fielmente a populacao. Isso e OBRIGATORIO em toda pesquisa cientifica.
+
+### Criterios de Validacao
+
+| Criterio | Descricao | Limite |
+|----------|-----------|--------|
+| **Teste Chi-quadrado** | Verifica aderencia da distribuicao | p > 0.05 |
+| **Diferenca de Proporcoes** | Compara amostra vs populacao | < 5pp |
+| **Taxa de Conformidade** | % de variaveis dentro dos limites | >= 70% |
+| **Score de Qualidade** | Indice combinado 0-100 | >= 50 |
+
+### Variaveis Validadas
+
+```python
+VARIAVEIS_VALIDACAO = [
+    'regiao_administrativa',  # Distribuicao geografica
+    'genero',                 # Proporcao homens/mulheres
+    'faixa_etaria',          # Piramide etaria
+    'escolaridade',          # Nivel educacional
+    'renda_salarios_minimos', # Distribuicao de renda
+    'religiao',              # Composicao religiosa
+    'cor_raca',              # Composicao etnica
+    'orientacao_politica',   # Espectro ideologico
+    'classe_social'          # Estratificacao social
+]
+```
+
+### Executar Validacao
+
+```python
+from validacao_estatistica import ValidadorEstatistico, gerar_relatorio_html_validacao
+
+def validar_amostra(populacao: list, amostra: list) -> dict:
+    """
+    Valida conformidade estatistica da amostra.
+
+    Args:
+        populacao: Lista completa de eleitores
+        amostra: Lista de eleitores selecionados
+
+    Returns:
+        Dicionario com resultado da validacao
+    """
+    validador = ValidadorEstatistico(populacao, amostra)
+    resultado = validador.validar_completo()
+
+    # Interpretar resultado
+    if resultado['resumo']['amostra_representativa']:
+        print("AMOSTRA REPRESENTATIVA")
+        print(f"Taxa de Conformidade: {resultado['resumo']['taxa_conformidade']}%")
+    else:
+        print("AMOSTRA COM DESVIOS")
+        print("Variaveis com problema:")
+        for var, dados in resultado['detalhes'].items():
+            if not dados['conforme']:
+                print(f"  - {var}: p={dados['valor_p']}, dif={dados['maior_diferenca_pp']}pp")
+
+    return resultado
+```
+
+### Calcular Margem de Erro Real
+
+```python
+def calcular_margem_erro(n_amostra: int, n_populacao: int, confianca: float = 0.95) -> dict:
+    """
+    Calcula margem de erro com correcao para populacao finita.
+    """
+    import math
+
+    z = 1.96 if confianca == 0.95 else 2.576  # 95% ou 99%
+    p = 0.5  # Proporcao conservadora
+
+    # Erro padrao
+    se = math.sqrt(p * (1 - p) / n_amostra)
+
+    # Correcao para populacao finita (se amostra > 5% da populacao)
+    if n_amostra / n_populacao > 0.05:
+        fpc = math.sqrt((n_populacao - n_amostra) / (n_populacao - 1))
+        se *= fpc
+
+    margem = z * se * 100
+
+    return {
+        'margem_erro': round(margem, 2),
+        'intervalo': f"[{round(50 - margem, 1)}%, {round(50 + margem, 1)}%]",
+        'nivel_confianca': f"{confianca * 100}%"
+    }
+```
+
+### Gerar Relatorio de Validacao
+
+```python
+def salvar_validacao(resultado: dict, diretorio: str):
+    """Salva relatorio HTML e JSON da validacao"""
+    from pathlib import Path
+
+    path = Path(diretorio)
+    path.mkdir(parents=True, exist_ok=True)
+
+    # Salvar HTML
+    html = gerar_relatorio_html_validacao(resultado)
+    with open(path / "validacao_estatistica.html", 'w', encoding='utf-8') as f:
+        f.write(html)
+
+    # Salvar JSON
+    with open(path / "validacao_estatistica.json", 'w', encoding='utf-8') as f:
+        json.dump(resultado, f, ensure_ascii=False, indent=2)
+```
+
+### Exemplo de Resultado
+
+```json
+{
+    "resumo": {
+        "amostra_representativa": true,
+        "taxa_conformidade": 88.9,
+        "variaveis_conformes": 8,
+        "variaveis_nao_conformes": 1,
+        "score_qualidade": 58.4
+    },
+    "margem_erro": {
+        "margem_erro_percentual": 4.74,
+        "nivel_confianca": 95.0
+    },
+    "detalhes": {
+        "genero": {"conforme": true, "chi2": 0.24, "valor_p": 0.6251},
+        "regiao_administrativa": {"conforme": true, "chi2": 0.0, "valor_p": 1.0},
+        "orientacao_politica": {"conforme": false, "chi2": 7.42, "valor_p": 0.108}
+    }
+}
 ```
 
 ---

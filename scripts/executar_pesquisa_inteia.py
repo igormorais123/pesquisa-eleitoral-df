@@ -1987,15 +1987,48 @@ def main():
     print(f"  NIVEL DE CONFIANCA: {analise['meta']['nivel_confianca']}")
 
     # 5. Gerar e salvar relatorios
-    print("\n[5/5] Gerando relatorio HTML...")
+    print("\n[5/6] Gerando relatorio HTML...")
     html = gerar_relatorio_html(analise, resultados)
     html_path, json_path = salvar_resultados(analise, resultados, html)
+
+    # 6. Validacao estatistica da amostra
+    print("\n[6/6] Executando validacao estatistica da amostra...")
+    try:
+        from validacao_estatistica import ValidadorEstatistico, gerar_relatorio_html_validacao
+
+        validador = ValidadorEstatistico(eleitores, amostra)
+        validacao = validador.validar_completo()
+
+        # Salvar validacao
+        dir_resultados = Path("C:/Agentes/frontend/public/resultados-intencao-voto")
+        html_val = gerar_relatorio_html_validacao(validacao)
+        with open(dir_resultados / "validacao_estatistica.html", 'w', encoding='utf-8') as f:
+            f.write(html_val)
+        with open(dir_resultados / "validacao_estatistica.json", 'w', encoding='utf-8') as f:
+            json.dump(validacao, f, ensure_ascii=False, indent=2)
+
+        # Mostrar resumo
+        status = "REPRESENTATIVA" if validacao['resumo']['amostra_representativa'] else "COM DESVIOS"
+        print(f"      Status: AMOSTRA {status}")
+        print(f"      Taxa de Conformidade: {validacao['resumo']['taxa_conformidade']}%")
+        print(f"      Score de Qualidade: {validacao['resumo']['score_qualidade']}/100")
+        print(f"      Margem de Erro Real: +/- {validacao['margem_erro']['margem_erro_percentual']}%")
+
+        # Adicionar validacao a analise
+        analise['validacao_amostra'] = validacao
+
+    except ImportError:
+        print("      AVISO: Modulo de validacao nao disponivel")
+    except Exception as e:
+        print(f"      ERRO na validacao: {e}")
 
     print("\n" + "=" * 70)
     print("  PESQUISA CONCLUIDA COM SUCESSO!")
     print("=" * 70)
     print(f"\n  Acesse o relatorio em:")
     print(f"  file:///{html_path}")
+    print(f"\n  Validacao estatistica em:")
+    print(f"  file:///C:/Agentes/frontend/public/resultados-intencao-voto/validacao_estatistica.html")
     print(f"\n  Ou na web (apos deploy):")
     print(f"  https://inteia.com.br/resultados-intencao-voto/")
 
