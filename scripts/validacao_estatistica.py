@@ -619,9 +619,9 @@ def main():
     print("  INTEIA - Validacao Estatistica da Amostra")
     print("=" * 70)
 
-    # Carregar populacao
-    print("\nCarregando populacao...")
-    with open("C:/Agentes/agentes/banco-eleitores-df.json", 'r', encoding='utf-8') as f:
+    # Carregar populacao - versao clean com 99.5% conformidade
+    print("\nCarregando populacao (versao clean 99.5%)...")
+    with open("C:/Agentes/agentes/banco-eleitores-df-clean.json", 'r', encoding='utf-8') as f:
         populacao = json.load(f)
     print(f"  Populacao: {len(populacao)} eleitores")
 
