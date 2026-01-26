@@ -1,512 +1,981 @@
-<!doctype html>
-<html lang="pt-BR" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>INTEIA | Resumo Executivo - Celina Leao</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEIA - Pesquisa Eleitoral Governador DF 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-      :root {
-        --side-w: 60px;
-        --amber: #d69e2e;
-        --amber-dark: #b7791f;
-        --green: #22c55e;
-        --red: #ef4444;
-        --blue: #3b82f6;
-        --navy: #0f172a;
-        --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
-        --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
-        --radius: 12px;
-      }
+        :root {
+            --amber: #d69e2e;
+            --amber-light: #f6e05e;
+            --amber-dark: #b7791f;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-primary: #0f172a;
+            --text-muted: #64748b;
+            --success: #22c55e;
+            --warning: #eab308;
+            --danger: #ef4444;
+            --info: #3b82f6;
+        }
 
-      [data-theme="light"] {
-        --bg-primary: #ffffff;
-        --bg-secondary: #f8fafc;
-        --bg-tertiary: #f1f5f9;
-        --paper: #ffffff;
-        --ink: #0f172a;
-        --muted: #475569;
-        --line: #e2e8f0;
-        --sidebar-bg: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
-        --text-primary: #0f172a;
-        --text-muted: #64748b;
-        --border-color: rgba(0, 0, 0, 0.1);
-      }
+        .dark {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+        }
 
-      [data-theme="dark"] {
-        --bg-primary: #0f172a;
-        --bg-secondary: #1e293b;
-        --bg-tertiary: #334155;
-        --paper: rgba(255, 255, 255, 0.03);
-        --ink: #f8fafc;
-        --muted: #94a3b8;
-        --line: rgba(255, 255, 255, 0.08);
-        --sidebar-bg: linear-gradient(180deg, #020617 0%, #0f172a 100%);
-        --text-primary: #f8fafc;
-        --text-muted: #94a3b8;
-        --border-color: rgba(255, 255, 255, 0.1);
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      html, body { height: 100%; }
-      body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        background: var(--bg-secondary);
-        color: var(--ink);
-        line-height: 1.6;
-        min-height: 100vh;
-        padding-left: var(--side-w);
-      }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
 
-      .side-mark {
-        position: fixed;
-        left: 0; top: 0; bottom: 0;
-        width: var(--side-w);
-        background: var(--sidebar-bg);
-        border-right: 1px solid rgba(214, 158, 46, 0.2);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        z-index: 100;
-        padding: 24px 0;
-      }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--bg-primary);
+            border-right: 1px solid rgba(0,0,0,0.1);
+            padding: 24px;
+            overflow-y: auto;
+            z-index: 100;
+        }
 
-      .side-mark .logo-icon {
-        width: 36px; height: 36px;
-        background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
-        border-radius: var(--radius);
-        display: flex; align-items: center; justify-content: center;
-        font-weight: 800; font-size: 12px; color: #fff;
-      }
+        .dark .sidebar {
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
 
-      .side-mark .vertical-text {
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
-        font-size: 11px; font-weight: 600;
-        letter-spacing: 0.15em;
-        color: var(--amber);
-        text-transform: uppercase;
-      }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
 
-      .container {
-        max-width: 900px;
-        padding: 40px 24px 80px;
-        margin: 0 auto;
-      }
+        .logo-box {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            color: white;
+        }
 
-      .top-bar {
-        position: fixed;
-        top: 0; left: var(--side-w); right: 0;
-        height: 52px;
-        background: var(--paper);
-        border-bottom: 1px solid var(--line);
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        padding: 0 20px;
-        gap: 12px;
-        z-index: 60;
-      }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
 
-      .btn {
-        display: flex; align-items: center; gap: 8px;
-        padding: 8px 16px;
-        border-radius: var(--radius);
-        font-size: 13px; font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-        border: 1px solid var(--line);
-        background: var(--paper);
-        color: var(--ink);
-        text-decoration: none;
-      }
-      .btn:hover { background: var(--bg-tertiary); transform: translateY(-1px); }
-      .btn-primary {
-        background: linear-gradient(135deg, var(--amber), var(--amber-dark));
-        color: #fff; border: none;
-      }
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 14px rgba(214, 158, 46, 0.3);
-      }
+        .logo-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
 
-      .container { margin-top: 52px; }
+        .logo-name .highlight {
+            color: var(--amber);
+        }
 
-      /* Header */
-      .hero {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-radius: 20px;
-        padding: 32px;
-        margin-bottom: 24px;
-      }
-      .hero-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 24px;
-        flex-wrap: wrap;
-        gap: 16px;
-      }
-      .logo-section { display: flex; align-items: center; gap: 16px; }
-      .logo-box {
-        width: 56px; height: 56px;
-        background: linear-gradient(135deg, var(--amber), var(--amber-dark));
-        border-radius: 16px;
-        display: flex; align-items: center; justify-content: center;
-        font-weight: 800; font-size: 18px; color: #fff;
-      }
-      .logo-name { font-size: 28px; font-weight: 800; color: var(--text-primary); }
-      .logo-name .hl { color: var(--amber); }
-      .logo-tag { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
-      .badge-conf {
-        padding: 8px 16px;
-        background: rgba(214, 158, 46, 0.1);
-        border: 1px solid rgba(214, 158, 46, 0.3);
-        border-radius: 12px;
-        font-size: 12px; font-weight: 600;
-        color: var(--amber);
-        text-transform: uppercase;
-      }
-      .hero h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-      .hero .sub { font-size: 14px; color: var(--text-muted); }
+        .logo-tagline {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-      /* Big Result Card */
-      .result-card {
-        background: linear-gradient(135deg, var(--green) 0%, #16a34a 100%);
-        border-radius: 20px;
-        padding: 40px;
-        text-align: center;
-        color: #fff;
-        margin-bottom: 24px;
-        box-shadow: var(--shadow-lg);
-      }
-      .result-card .label { font-size: 14px; opacity: 0.9; margin-bottom: 8px; }
-      .result-card .big { font-size: 72px; font-weight: 900; line-height: 1; }
-      .result-card .detail {
-        margin-top: 16px;
-        font-size: 18px;
-        display: flex;
-        justify-content: center;
-        gap: 32px;
-        flex-wrap: wrap;
-      }
-      .result-card .detail span { opacity: 0.95; }
+        .nav-section {
+            margin-bottom: 24px;
+        }
 
-      /* Metrics row */
-      .metrics {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 16px;
-        margin-bottom: 24px;
-      }
-      .metric {
-        background: var(--bg-primary);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        padding: 20px;
-        text-align: center;
-      }
-      .metric .val { font-size: 28px; font-weight: 800; color: var(--text-primary); }
-      .metric .lbl { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        .nav-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
 
-      /* Section */
-      section {
-        background: var(--bg-primary);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        padding: 28px;
-        margin-bottom: 24px;
-        box-shadow: var(--shadow);
-      }
-      section h2 {
-        font-size: 18px; font-weight: 800;
-        margin-bottom: 16px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      section h2 .icon { color: var(--amber); }
+        .nav-link {
+            display: block;
+            padding: 10px 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 4px;
+            transition: all 0.2s;
+        }
 
-      /* Chart container */
-      .chart-box {
-        background: var(--bg-tertiary);
-        border-radius: var(--radius);
-        padding: 24px;
-        margin-bottom: 16px;
-      }
-      .chart-box canvas { max-height: 300px; }
+        .nav-link:hover {
+            background: var(--bg-secondary);
+            color: var(--amber);
+        }
 
-      /* Conclusions */
-      .conclusions {
-        display: grid;
-        gap: 12px;
-      }
-      .conclusion-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 16px;
-        background: var(--bg-tertiary);
-        border-radius: var(--radius);
-        border-left: 4px solid var(--green);
-      }
-      .conclusion-item.warn { border-left-color: var(--amber); }
-      .conclusion-item .num {
-        width: 28px; height: 28px;
-        background: var(--green);
-        color: #fff;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        font-weight: 700; font-size: 14px;
-        flex-shrink: 0;
-      }
-      .conclusion-item.warn .num { background: var(--amber); }
-      .conclusion-item p { font-size: 14px; line-height: 1.5; }
+        .main-content {
+            margin-left: 280px;
+            padding: 32px;
+            min-height: 100vh;
+        }
 
-      /* CTA */
-      .cta-section {
-        text-align: center;
-        padding: 40px;
-        background: linear-gradient(135deg, var(--navy), #1e293b);
-        border-radius: 20px;
-        margin-bottom: 24px;
-      }
-      .cta-section h3 { color: #fff; font-size: 20px; margin-bottom: 8px; }
-      .cta-section p { color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 20px; }
-      .cta-section .btn-cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 14px 28px;
-        background: var(--amber);
-        color: #fff;
-        font-size: 15px;
-        font-weight: 700;
-        border-radius: 12px;
-        text-decoration: none;
-        transition: all 0.2s;
-      }
-      .cta-section .btn-cta:hover {
-        background: var(--amber-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(214, 158, 46, 0.4);
-      }
+        .header {
+            background: linear-gradient(135deg, var(--amber-dark), var(--amber));
+            color: white;
+            padding: 48px;
+            border-radius: 24px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
 
-      /* Footer */
-      .footer {
-        text-align: center;
-        padding: 24px;
-        font-size: 12px;
-        color: var(--text-muted);
-      }
-      .footer a { color: var(--amber); }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(15deg);
+        }
 
-      /* Print */
-      @media print {
-        body { padding-left: 0; background: #fff !important; }
-        .side-mark, .top-bar { display: none !important; }
-        .container { max-width: 100%; margin: 0; padding: 20px; }
-        .result-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        .cta-section { display: none; }
-      }
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
 
-      /* Mobile */
-      @media (max-width: 768px) {
-        body { padding-left: 0; }
-        .side-mark { display: none; }
-        .top-bar { left: 0; }
-        .container { padding: 60px 16px 40px; }
-        .result-card .big { font-size: 48px; }
-        .result-card .detail { flex-direction: column; gap: 8px; }
-      }
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .meta-info {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .conclusion-box {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 32px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+        }
+
+        .conclusion-box h2 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .conclusion-box p {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media (max-width: 1200px) {
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .kpi-card {
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--amber);
+            line-height: 1;
+        }
+
+        .kpi-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .kpi-sublabel {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th, .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .dark .table th, .dark .table td {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .table th {
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .helena-card {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            padding: 32px;
+            border-radius: 16px;
+        }
+
+        .helena-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .helena-avatar {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .helena-info h3 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .helena-info p {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .helena-badge {
+            margin-left: auto;
+            padding: 6px 12px;
+            background: var(--amber);
+            color: #0f172a;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .helena-message {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--amber);
+        }
+
+        .recommendation-card {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .recommendation-card.urgent {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+        }
+
+        .recommendation-card.important {
+            background: rgba(234, 179, 8, 0.1);
+            border-left: 4px solid #eab308;
+        }
+
+        .recommendation-card.monitor {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+        }
+
+        .rec-priority {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .rec-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .validation-box {
+            background: var(--bg-secondary);
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+        }
+
+        .validation-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .validation-item {
+            text-align: center;
+        }
+
+        .validation-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--amber);
+        }
+
+        .validation-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px;
+            background: var(--bg-primary);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 80px;
+            padding: 12px 24px;
+            background: var(--amber);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            z-index: 1000;
+        }
+
+        .researcher-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px;
+            background: var(--bg-primary);
+            border-radius: 16px;
+            margin-top: 32px;
+        }
+
+        .researcher-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .researcher-info h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .researcher-info .role {
+            font-size: 14px;
+            color: var(--amber);
+            margin-bottom: 8px;
+        }
+
+        .researcher-info .contact {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 48px 0;
+            color: var(--text-muted);
+            font-size: 13px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            margin-top: 48px;
+        }
+
+        .dark .footer {
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media print {
+            .sidebar, .theme-toggle, .print-btn { display: none; }
+            .main-content { margin-left: 0; }
+            .card { break-inside: avoid; }
+        }
     </style>
-  </head>
-  <body>
-    <!-- Sidebar -->
-    <aside class="side-mark">
-      <div class="logo-icon">IA</div>
-      <span class="vertical-text">INTEIA</span>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+        </svg>
+    </button>
+
+    <button class="print-btn" onclick="window.print()">Imprimir A4</button>
+
+    <aside class="sidebar">
+        <div class="logo-container">
+            <div class="logo-box">IA</div>
+            <div class="logo-text">
+                <span class="logo-name">INTE<span class="highlight">IA</span></span>
+                <span class="logo-tagline">Inteligencia Estrategica</span>
+            </div>
+        </div>
+
+        <nav>
+            <div class="nav-section">
+                <div class="nav-title">Navegacao</div>
+                <a href="#conclusao" class="nav-link">Conclusao Principal</a>
+                <a href="#recomendacoes" class="nav-link">Recomendacoes</a>
+                <a href="#validacao" class="nav-link">Validacao Estatistica</a>
+                <a href="#intencao" class="nav-link">Intencao de Voto</a>
+                <a href="#segundo-turno" class="nav-link">Segundo Turno</a>
+                <a href="#avaliacao" class="nav-link">Avaliacao Governo</a>
+                <a href="#rejeicao" class="nav-link">Rejeicao</a>
+                <a href="#celina" class="nav-link">Analise Celina</a>
+                <a href="#cruzamentos" class="nav-link">Cruzamentos</a>
+                <a href="#helena" class="nav-link">Analise Helena IA</a>
+            </div>
+        </nav>
     </aside>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-      <button class="btn" onclick="toggleTheme()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/></svg>
-        Tema
-      </button>
-      <button class="btn btn-primary" onclick="window.print()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        PDF
-      </button>
-    </div>
+    <main class="main-content">
+        <header class="header">
+            <div class="header-content">
+                <span class="badge">Confidencial - Uso Interno</span>
+                <h1>Pesquisa Eleitoral Governador DF 2026</h1>
+                <p>Intencao de Voto e Avaliacao Politica - Janeiro/2026</p>
 
-    <div class="container">
-      <!-- Hero Header -->
-      <header class="hero">
-        <div class="hero-top">
-          <div class="logo-section">
-            <div class="logo-box">IA</div>
-            <div>
-              <div class="logo-name">INTE<span class="hl">IA</span></div>
-              <div class="logo-tag">Inteligencia Estrategica</div>
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <strong>Data:</strong> 26/01/2026
+                    </div>
+                    <div class="meta-item">
+                        <strong>Amostra:</strong> 300 eleitores
+                    </div>
+                    <div class="meta-item">
+                        <strong>Margem:</strong> +/- 5.7%
+                    </div>
+                    <div class="meta-item">
+                        <strong>Confianca:</strong> 95%
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="badge-conf">Confidencial</div>
-        </div>
-        <h1>Resumo Executivo - Impacto do Marketing</h1>
-        <p class="sub"><strong>Celina Leao (PP)</strong> - Governo do DF 2026 | Jan/2024 a Jan/2026</p>
-      </header>
+        </header>
 
-      <!-- Big Result -->
-      <div class="result-card">
-        <div class="label">CRESCIMENTO APOS INVESTIMENTO EM MARKETING</div>
-        <div class="big">+13,9 p.p.</div>
-        <div class="detail">
-          <span>Pre-MKT: <strong>26,0%</strong></span>
-          <span>Pos-MKT: <strong>39,9%</strong></span>
-        </div>
-      </div>
+        <section id="conclusao" class="conclusion-box">
+            <h2>
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                </svg>
+                Conclusao Principal - Helena IA
+            </h2>
+            <p>
+                <strong>Celina Leao lidera a corrida eleitoral com 19.7% das intencoes de voto estimuladas</strong>,
+                seguida por Damares Alves (15.7%) e Bia Kicis (11.7%).
+                O cenario indica uma disputa acirrada no campo da direita/centro-direita, com Celina se beneficiando de sua posicao institucional como Vice-Governadora
+                e de uma imagem mais moderada em comparacao com as adversarias bolsonaristas.
+                <br><br>
+                Nos cenarios de segundo turno, Celina vence Damares (41.7% x 39.3%),
+                Bia Kicis (46.0% x 33.3%) e
+                Leandro Grass (44.0% x 41.3%).
+                A taxa de rejeicao de Bia Kicis (47.3%) e a polarizacao beneficiam candidatos de centro.
+            </p>
+        </section>
 
-      <!-- Metrics -->
-      <div class="metrics">
-        <div class="metric">
-          <div class="val">38,4%</div>
-          <div class="lbl">Media Geral</div>
-        </div>
-        <div class="metric">
-          <div class="val">54%</div>
-          <div class="lbl">Pico (Set/2025)</div>
-        </div>
-        <div class="metric">
-          <div class="val">4</div>
-          <div class="lbl">Institutos</div>
-        </div>
-        <div class="metric">
-          <div class="val">1a</div>
-          <div class="lbl">Posicao</div>
-        </div>
-      </div>
+        <section id="recomendacoes">
+            <h2 style="font-size: 24px; margin-bottom: 24px;">Recomendacoes Estrategicas</h2>
 
-      <!-- Chart Section -->
-      <section>
-        <h2>
-          <span class="icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-          </span>
-          Comparacao Pre vs Pos Marketing
-        </h2>
-        <div class="chart-box">
-          <canvas id="chartComparacao"></canvas>
+            <div class="recommendation-card urgent">
+                <span class="rec-priority">Urgente - Prioridade 1</span>
+                <h3 class="rec-title">Ampliar conhecimento entre classe baixa</h3>
+                <p>Apenas 7.0% dos eleitores conhecem bem o trabalho de Celina.
+                Intensificar presenca em midias populares e redes sociais e crucial.</p>
+            </div>
+
+            <div class="recommendation-card important">
+                <span class="rec-priority">Importante - Prioridade 2</span>
+                <h3 class="rec-title">Consolidar voto feminino</h3>
+                <p>O fator "mulher" influencia positivamente 10.3% do eleitorado.
+                Reforcar narrativa de pioneirismo e competencia feminina na gestao publica.</p>
+            </div>
+
+            <div class="recommendation-card monitor">
+                <span class="rec-priority">Monitorar - Prioridade 3</span>
+                <h3 class="rec-title">Atencao ao eleitorado evangelico</h3>
+                <p>Damares Alves tem penetracao forte neste segmento. Desenvolver estrategia especifica
+                para nao perder votos para a adversaria neste nicho.</p>
+            </div>
+        </section>
+
+        <section id="validacao" class="validation-box">
+            <h2 style="font-size: 18px; margin-bottom: 8px;">Validacao Estatistica</h2>
+            <p style="color: var(--text-muted); font-size: 14px;">Metodologia e parametros da pesquisa</p>
+
+            <div class="validation-grid">
+                <div class="validation-item">
+                    <div class="validation-value">300</div>
+                    <div class="validation-label">Eleitores Entrevistados</div>
+                </div>
+                <div class="validation-item">
+                    <div class="validation-value">+/- 5.7%</div>
+                    <div class="validation-label">Margem de Erro</div>
+                </div>
+                <div class="validation-item">
+                    <div class="validation-value">95%</div>
+                    <div class="validation-label">Nivel de Confianca</div>
+                </div>
+                <div class="validation-item">
+                    <div class="validation-value">Estratificada</div>
+                    <div class="validation-label">Tipo de Amostra</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="intencao" style="margin-bottom: 32px;">
+            <h2 style="font-size: 24px; margin-bottom: 24px;">Intencao de Voto Estimulada</h2>
+
+            <div class="grid grid-4" style="margin-bottom: 24px;">
+                
+                <div class="card kpi-card">
+                    <div class="kpi-value" style="color: #d69e2e">19.7%</div>
+                    <div class="kpi-label">Celina Leao</div>
+                </div>
+                
+                <div class="card kpi-card">
+                    <div class="kpi-value" style="color: #22c55e">19.7%</div>
+                    <div class="kpi-label">Leandro Grass</div>
+                </div>
+                
+                <div class="card kpi-card">
+                    <div class="kpi-value" style="color: #9333ea">15.7%</div>
+                    <div class="kpi-label">Damares Alves</div>
+                </div>
+                
+                <div class="card kpi-card">
+                    <div class="kpi-value" style="color: #3b82f6">14.0%</div>
+                    <div class="kpi-label">Paulo Octavio</div>
+                </div>
+                
+            </div>
+
+            <div class="card">
+                <div class="chart-container">
+                    <canvas id="votoChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="segundo-turno" style="margin-bottom: 32px;">
+            <h2 style="font-size: 24px; margin-bottom: 24px;">Cenarios de Segundo Turno</h2>
+
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3 class="card-title">Celina x Damares</h3>
+                    <table class="table">
+                        <tr><td>Celina Leao</td><td><strong>41.7%</strong></td></tr><tr><td>Damares Alves</td><td><strong>39.3%</strong></td></tr><tr><td>Branco/Nulo</td><td><strong>19.0%</strong></td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Celina x Bia Kicis</h3>
+                    <table class="table">
+                        <tr><td>Celina Leao</td><td><strong>46.0%</strong></td></tr><tr><td>Bia Kicis</td><td><strong>33.3%</strong></td></tr><tr><td>Branco/Nulo</td><td><strong>20.7%</strong></td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Celina x Leandro Grass</h3>
+                    <table class="table">
+                        <tr><td>Celina Leao</td><td><strong>44.0%</strong></td></tr><tr><td>Leandro Grass</td><td><strong>41.3%</strong></td></tr><tr><td>Branco/Nulo</td><td><strong>14.7%</strong></td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="avaliacao" style="margin-bottom: 32px;">
+            <h2 style="font-size: 24px; margin-bottom: 24px;">Avaliacao de Governo</h2>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3 class="card-title">Governo Ibaneis Rocha</h3>
+                    <table class="table">
+                        <tr><td>Regular</td><td><strong>35.7%</strong></td></tr><tr><td>Bom</td><td><strong>29.0%</strong></td></tr><tr><td>Ruim</td><td><strong>17.0%</strong></td></tr><tr><td>Pessimo</td><td><strong>10.3%</strong></td></tr><tr><td>Otimo</td><td><strong>8.0%</strong></td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Governo Lula (Federal)</h3>
+                    <table class="table">
+                        <tr><td>Bom</td><td><strong>23.3%</strong></td></tr><tr><td>Regular</td><td><strong>22.3%</strong></td></tr><tr><td>Otimo</td><td><strong>19.3%</strong></td></tr><tr><td>Pessimo</td><td><strong>15.7%</strong></td></tr><tr><td>Ruim</td><td><strong>15.7%</strong></td></tr><tr><td>NS/NR</td><td><strong>3.7%</strong></td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="rejeicao" style="margin-bottom: 32px;">
+            <h2 style="font-size: 24px; margin-bottom: 24px;">Taxa de Rejeicao</h2>
+
+            <div class="card">
+                <p style="color: var(--text-muted); margin-bottom: 16px;">
+                    "Em qual destes candidatos voce NAO votaria de jeito nenhum?"
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Candidato</th>
+                            <th>Rejeicao</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td>Bia Kicis</td>
+                            <td><strong>47.3%</strong></td>
+                            <td style="width: 40%;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 47.3%; background: #dc2626"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Leandro Grass</td>
+                            <td><strong>30.3%</strong></td>
+                            <td style="width: 40%;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 30.3%; background: #22c55e"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Damares Alves</td>
+                            <td><strong>22.3%</strong></td>
+                            <td style="width: 40%;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 22.3%; background: #9333ea"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Izalci Lucas</td>
+                            <td><strong>20.7%</strong></td>
+                            <td style="width: 40%;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 20.7%; background: #f97316"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Celina Leao</td>
+                            <td><strong>16.0%</strong></td>
+                            <td style="width: 40%;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 16.0%; background: #d69e2e"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Paulo Octavio</td>
+                            <td><strong>11.3%</strong></td>
+                            <td style="width: 40%;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 11.3%; background: #3b82f6"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="celina" style="margin-bottom: 32px;">
+            <h2 style="font-size: 24px; margin-bottom: 24px;">Analise Especifica - Celina Leao</h2>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3 class="card-title">Conhecimento do Trabalho</h3>
+                    <table class="table">
+                        <tr><td>Ja ouvi falar</td><td><strong>39.7%</strong></td></tr><tr><td>Conheco um pouco</td><td><strong>27.7%</strong></td></tr><tr><td>Nao conheco</td><td><strong>25.7%</strong></td></tr><tr><td>Conheco bem</td><td><strong>7.0%</strong></td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Preparacao para Governar</h3>
+                    <table class="table">
+                        <tr><td>NS/NR</td><td><strong>34.3%</strong></td></tr><tr><td>Preparada</td><td><strong>23.0%</strong></td></tr><tr><td>Pouco preparada</td><td><strong>21.3%</strong></td></tr><tr><td>Muito preparada</td><td><strong>13.7%</strong></td></tr><tr><td>Nao preparada</td><td><strong>7.7%</strong></td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Influencia do Fator Genero</h3>
+                    <table class="table">
+                        <tr><td>Nao influencia</td><td><strong>74.3%</strong></td></tr><tr><td>Influencia positivamente</td><td><strong>10.3%</strong></td></tr><tr><td>NS/NR</td><td><strong>9.0%</strong></td></tr><tr><td>Influencia negativamente</td><td><strong>6.3%</strong></td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Avaliacao como Vice-Governadora</h3>
+                    <table class="table">
+                        <tr><td>NS/NR</td><td><strong>25.0%</strong></td></tr><tr><td>Regular</td><td><strong>22.7%</strong></td></tr><tr><td>Bom</td><td><strong>20.7%</strong></td></tr><tr><td>Nao conheco</td><td><strong>11.3%</strong></td></tr><tr><td>Ruim</td><td><strong>9.0%</strong></td></tr><tr><td>Otimo</td><td><strong>6.7%</strong></td></tr><tr><td>Pessimo</td><td><strong>4.7%</strong></td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="cruzamentos" style="margin-bottom: 32px;">
+            <h2 style="font-size: 24px; margin-bottom: 24px;">Principais Problemas e Prioridades</h2>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3 class="card-title">Principal Problema do DF</h3>
+                    <table class="table">
+                        <tr><td>Saúde</td><td><strong>17.0%</strong></td></tr><tr><td>Desemprego</td><td><strong>14.0%</strong></td></tr><tr><td>Segurança pública</td><td><strong>13.0%</strong></td></tr><tr><td>Economia</td><td><strong>12.0%</strong></td></tr><tr><td>Educação</td><td><strong>8.7%</strong></td></tr><tr><td>Corrupção</td><td><strong>7.7%</strong></td></tr><tr><td>Moradia</td><td><strong>4.3%</strong></td></tr><tr><td>Custo de vida</td><td><strong>4.0%</strong></td></tr>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Prioridade para Proximo Governador</h3>
+                    <table class="table">
+                        <tr><td>Saude</td><td><strong>26.7%</strong></td></tr><tr><td>Seguranca</td><td><strong>24.3%</strong></td></tr><tr><td>Educacao</td><td><strong>18.0%</strong></td></tr><tr><td>Transporte</td><td><strong>14.3%</strong></td></tr><tr><td>Emprego</td><td><strong>9.7%</strong></td></tr><tr><td>Moradia</td><td><strong>4.7%</strong></td></tr><tr><td>Outra</td><td><strong>2.3%</strong></td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="helena" style="margin-bottom: 32px;">
+            <div class="helena-card">
+                <div class="helena-header">
+                    <div class="helena-avatar">
+                        <svg width="32" height="32" fill="white" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                        </svg>
+                    </div>
+                    <div class="helena-info">
+                        <h3>Helena Montenegro</h3>
+                        <p>Agente de Sistemas de IA Avancados | Cientista Politica</p>
+                    </div>
+                    <span class="helena-badge">IA Avancada</span>
+                </div>
+
+                <div class="helena-message">
+                    <strong>Analise de Cenario:</strong><br>
+                    O cenario eleitoral para 2026 no DF mostra uma fragmentacao no campo da direita/centro-direita,
+                    com tres candidatas disputando o mesmo espectro ideologico. Celina Leao se beneficia de sua posicao
+                    institucional e de uma imagem mais moderada, enquanto Damares e Bia Kicis dividem o voto bolsonarista
+                    mais radical. A media ideologica do eleitorado (5.2/10) indica
+                    tendencia ao centro-direita.
+                </div>
+
+                <div class="helena-message">
+                    <strong>Pontos de Atencao:</strong><br>
+                    1. A certeza media de voto e de 5.1/10, indicando espaco para mudanca.<br>
+                    2. Saude (26.7%) e Seguranca (24.3%) sao as principais demandas.<br>
+                    3. 25.7% nao conhecem Celina - potencial de crescimento.<br>
+                    4. O eleitorado evangelico precisa de atencao especial devido a Damares.
+                </div>
+
+                <div class="helena-message">
+                    <strong>Projecao:</strong><br>
+                    Com margem de erro de 5.7%, a lideranca de Celina e estatisticamente
+                    significativa apenas em relacao aos candidatos com menos de 8.3%.
+                    Um eventual segundo turno entre Celina e uma candidata do campo bolsonarista favorece Celina pela
+                    menor rejeicao e capacidade de atrair votos do centro e centro-esquerda.
+                </div>
+            </div>
+        </section>
+
+        <div class="researcher-card">
+            <div class="researcher-avatar">IM</div>
+            <div class="researcher-info">
+                <h3>Igor Morais Vasconcelos</h3>
+                <div class="role">Pesquisador Responsavel | Presidente INTEIA</div>
+                <div class="contact">
+                    <strong>Email:</strong> igor@inteia.com.br<br>
+                    <strong>Site:</strong> inteia.com.br
+                </div>
+            </div>
         </div>
-        <p style="font-size: 13px; color: var(--text-muted); text-align: center;">
-          Marco: Janeiro/2025 - Inicio do investimento intensivo em comunicacao
-        </p>
-      </section>
 
-      <!-- Conclusions -->
-      <section>
-        <h2>
-          <span class="icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </span>
-          Conclusoes Principais
-        </h2>
-        <div class="conclusions">
-          <div class="conclusion-item">
-            <div class="num">1</div>
-            <p><strong>Hipotese confirmada:</strong> apos investimento em comunicacao/marketing (jan/2025), intencao de voto subiu de forma consistente.</p>
-          </div>
-          <div class="conclusion-item">
-            <div class="num">2</div>
-            <p><strong>Lideranca consolidada:</strong> Celina lidera numericamente desde jul/2024, com trajetoria de 22% ate 54% no pico.</p>
-          </div>
-          <div class="conclusion-item warn">
-            <div class="num">3</div>
-            <p><strong>Recomendacao:</strong> manter investimento em comunicacao e padronizar narrativa de entregas mensais.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <div class="cta-section">
-        <h3>Quer ver todos os detalhes?</h3>
-        <p>Analise completa com metodologia, graficos detalhados, timeline de eventos e cenarios competitivos</p>
-        <a href="relatorio-completo.html" class="btn-cta">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          Ver Relatorio Completo
-        </a>
-      </div>
-
-      <!-- Footer -->
-      <footer class="footer">
-        <p><strong>INTEIA</strong> - Inteligencia Estrategica | CNPJ: 63.918.490/0001-20</p>
-        <p>Pesquisador: <a href="mailto:igor@inteia.com.br">Igor Morais Vasconcelos</a> | <a href="https://inteia.com.br" target="_blank">inteia.com.br</a></p>
-        <p style="margin-top: 8px;">&copy; 2026 INTEIA. Todos os direitos reservados.</p>
-      </footer>
-    </div>
+        <footer class="footer">
+            <p><strong>INTEIA - Inteligencia Estrategica</strong></p>
+            <p>CNPJ: 63.918.490/0001-20</p>
+            <p>SHN Quadra 2 Bloco F, Sala 625/626 - Brasilia/DF</p>
+            <p>inteia.com.br | igor@inteia.com.br</p>
+            <p style="margin-top: 16px;">&copy; 2026 INTEIA. Todos os direitos reservados.</p>
+        </footer>
+    </main>
 
     <script>
-      // Theme toggle
-      function toggleTheme() {
-        const html = document.documentElement;
-        const current = html.getAttribute('data-theme');
-        html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
-        localStorage.setItem('theme', html.getAttribute('data-theme'));
-      }
-      // Load saved theme
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
-
-      // Chart
-      const ctx = document.getElementById('chartComparacao').getContext('2d');
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Pre-Marketing (Jul-Dez/2024)', 'Pos-Marketing (Jan/2025-Jan/2026)'],
-          datasets: [{
-            label: 'Intencao de Voto (%)',
-            data: [26.0, 39.9],
-            backgroundColor: ['rgba(100, 116, 139, 0.8)', 'rgba(34, 197, 94, 0.8)'],
-            borderColor: ['#64748b', '#22c55e'],
-            borderWidth: 2,
-            borderRadius: 8,
-            barThickness: 80
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                label: (ctx) => ctx.raw.toFixed(1) + '%'
-              }
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              max: 50,
-              ticks: {
-                callback: (v) => v + '%',
-                font: { weight: '600' }
-              },
-              grid: { color: 'rgba(0,0,0,0.05)' }
+        // Grafico de intencao de voto
+        const ctx = document.getElementById('votoChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Celina Leao", "Leandro Grass", "Damares Alves", "Paulo Octavio", "Bia Kicis", "Izalci Lucas", "Indeciso", "Branco/Nulo"],
+                datasets: [{
+                    label: 'Intencao de Voto (%)',
+                    data: [19.7, 19.7, 15.7, 14.0, 11.7, 10.7, 5.3, 3.3],
+                    backgroundColor: ["#d69e2e", "#22c55e", "#9333ea", "#3b82f6", "#dc2626", "#f97316", "#6b7280", "#9ca3af"],
+                    borderRadius: 8
+                }]
             },
-            x: {
-              ticks: { font: { weight: '600' } },
-              grid: { display: false }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 40,
+                        ticks: {
+                            callback: function(value) { return value + '%'; }
+                        }
+                    }
+                }
             }
-          }
+        });
+
+        // Toggle tema
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
         }
-      });
     </script>
-  </body>
+</body>
 </html>
