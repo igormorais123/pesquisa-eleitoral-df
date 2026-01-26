@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analise Cientifica - Celina Leao (DF 2026) | INTEIA</title>
-    <meta name="description" content="Analise de inteligencia estrategica sobre evolucao da intencao de voto de Celina Leao para Governador do DF 2026">
+    <title>Análise Científica - Celina Leão (DF 2026) | INTEIA</title>
+    <meta name="description" content="Análise de inteligência estratégica sobre evolução da intenção de voto de Celina Leão para Governador do DF 2026">
     <meta name="author" content="INTEIA - Igor Morais Vasconcelos">
     <link rel="canonical" href="https://inteia.com.br/relatorio-celina-leao">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Analise Cientifica - Celina Leao (DF 2026)">
-    <meta property="og:description" content="Evolucao da intencao de voto - Analise de inteligencia estrategica">
+    <meta property="og:title" content="Análise Científica - Celina Leão (DF 2026)">
+    <meta property="og:description" content="Evolução da intenção de voto - Análise de inteligência estratégica">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://inteia.com.br/relatorio-celina-leao">
 
@@ -297,6 +297,57 @@
             border: 2px solid var(--cor-alerta);
         }
 
+        .researcher-card {
+            background: linear-gradient(135deg, var(--cor-fundo), #e2e8f0);
+            border: 2px solid var(--cor-secundaria);
+            border-radius: 10px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .researcher-avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--cor-primaria);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .researcher-info h4 {
+            color: var(--cor-primaria);
+            font-size: 1.4em;
+            margin-bottom: 5px;
+        }
+
+        .researcher-info .title {
+            color: var(--cor-secundaria);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .researcher-info p {
+            color: #4a5568;
+            margin: 5px 0;
+        }
+
+        .researcher-info a {
+            color: var(--cor-secundaria);
+            text-decoration: none;
+        }
+
+        .researcher-info a:hover {
+            text-decoration: underline;
+        }
+
         footer {
             background: var(--cor-primaria);
             color: white;
@@ -383,6 +434,7 @@
             .stats-grid { grid-template-columns: 1fr 1fr; }
             .top-bar { flex-direction: column; gap: 10px; text-align: center; }
             .contact-info { text-align: center; }
+            .researcher-card { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -394,7 +446,7 @@
         <div class="logo-icon">iA</div>
         <div>
             <div class="logo-text">INTEIA</div>
-            <div class="logo-tagline">Inteligencia Estrategica</div>
+            <div class="logo-tagline">Inteligência Estratégica</div>
         </div>
     </a>
     <div class="contact-info">
@@ -404,28 +456,28 @@
 </div>
 
 <header>
-    <h1>Analise Cientifica de Inteligencia Eleitoral</h1>
-    <p>Evolucao da Intencao de Voto - Celina Leao (PP)</p>
+    <h1>Análise Científica de Inteligência Eleitoral</h1>
+    <p>Evolução da Intenção de Voto - Celina Leão (PP)</p>
     <p>Governo do Distrito Federal 2026</p>
-    <span class="badge">Relatorio Exclusivo - Janeiro/2026</span>
+    <span class="badge">Relatório Exclusivo - Janeiro/2026</span>
 </header>
 
 <div class="container">
 
-    <!-- SUMARIO EXECUTIVO -->
+    <!-- SUMÁRIO EXECUTIVO -->
     <section id="sumario">
-        <h2>1. Sumario Executivo</h2>
+        <h2>1. Sumário Executivo</h2>
 
         <div class="highlight-box">
-            <h3>Conclusao Principal</h3>
-            <p><strong>CORRELACAO CONFIRMADA - CAUSALIDADE NAO COMPROVADA</strong></p>
-            <p>Ha evidencia de correlacao temporal entre o periodo pos-Jan/2025 e o crescimento na intencao de voto (+14 p.p.). Porem, nao e possivel atribuir causalidade ao investimento em marketing devido a multiplos fatores concomitantes e limitacoes metodologicas severas.</p>
+            <h3>Conclusão Principal</h3>
+            <p><strong>CORRELAÇÃO CONFIRMADA - CAUSALIDADE NÃO COMPROVADA</strong></p>
+            <p>Há evidência de correlação temporal entre o período pós-Jan/2025 e o crescimento na intenção de voto (+14 p.p.). Porém, não é possível atribuir causalidade ao investimento em marketing devido a múltiplos fatores concomitantes e limitações metodológicas severas.</p>
         </div>
 
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="value">34%</div>
-                <div class="label">Media Geral</div>
+                <div class="label">Média Geral</div>
             </div>
             <div class="stat-card">
                 <div class="value">+14</div>
@@ -433,7 +485,7 @@
             </div>
             <div class="stat-card">
                 <div class="value">54%</div>
-                <div class="label">Pico Maximo</div>
+                <div class="label">Pico Máximo</div>
             </div>
             <div class="stat-card">
                 <div class="value">18</div>
@@ -441,25 +493,25 @@
             </div>
         </div>
 
-        <h3>Hipotese Testada</h3>
+        <h3>Hipótese Testada</h3>
         <blockquote style="font-style: italic; border-left: 3px solid var(--cor-secundaria); padding-left: 15px; margin: 15px 0;">
-            "O investimento em marketing politico a partir de Jan/2025 causou crescimento significativo na intencao de voto de Celina Leao."
+            "O investimento em marketing político a partir de Jan/2025 causou crescimento significativo na intenção de voto de Celina Leão."
         </blockquote>
 
         <table>
             <tr>
                 <th>Aspecto</th>
                 <th>Status</th>
-                <th>Nivel de Confianca</th>
+                <th>Nível de Confiança</th>
             </tr>
             <tr>
-                <td>Correlacao temporal</td>
+                <td>Correlação temporal</td>
                 <td style="color: var(--cor-sucesso); font-weight: bold;">CONFIRMADA</td>
                 <td>Alta</td>
             </tr>
             <tr>
                 <td>Causalidade (MKT)</td>
-                <td style="color: var(--cor-destaque); font-weight: bold;">NAO COMPROVADA</td>
+                <td style="color: var(--cor-destaque); font-weight: bold;">NÃO COMPROVADA</td>
                 <td>Baixa</td>
             </tr>
             <tr>
@@ -479,11 +531,11 @@
             <tr>
                 <th>Instituto</th>
                 <th>Pesquisas</th>
-                <th>Periodo</th>
+                <th>Período</th>
                 <th>Metodologia</th>
             </tr>
             <tr>
-                <td>Parana Pesquisas</td>
+                <td>Paraná Pesquisas</td>
                 <td>9</td>
                 <td>Jul/2024 - Out/2025</td>
                 <td>Estimulada, presencial</td>
@@ -492,10 +544,10 @@
                 <td>Real Time Big Data</td>
                 <td>5</td>
                 <td>Set/2025 - Dez/2025</td>
-                <td>Estimulada, telefonica</td>
+                <td>Estimulada, telefônica</td>
             </tr>
             <tr>
-                <td>Instituto Opiniao</td>
+                <td>Instituto Opinião</td>
                 <td>2</td>
                 <td>Jul/2025 - Dez/2025</td>
                 <td>Estimulada</td>
@@ -508,93 +560,93 @@
             </tr>
         </table>
 
-        <h3>Analises Realizadas</h3>
+        <h3>Análises Realizadas</h3>
         <ul>
-            <li>Regressao linear por periodo (pre e pos Jan/2025)</li>
-            <li>Teste de mudanca estrutural (Chow Test simplificado)</li>
-            <li>Teste t para comparacao de medias</li>
-            <li>Analise por cenario (com/sem Arruda)</li>
-            <li>Intervalos de confianca</li>
-            <li>Correlacao de eventos com variacoes significativas</li>
+            <li>Regressão linear por período (pré e pós Jan/2025)</li>
+            <li>Teste de mudança estrutural (Chow Test simplificado)</li>
+            <li>Teste t para comparação de médias</li>
+            <li>Análise por cenário (com/sem Arruda)</li>
+            <li>Intervalos de confiança</li>
+            <li>Correlação de eventos com variações significativas</li>
         </ul>
 
         <div class="warning-box">
-            <h3>Limitacoes Metodologicas</h3>
+            <h3>Limitações Metodológicas</h3>
             <ul>
-                <li><strong>Severa:</strong> Apenas 1 pesquisa (cenario 1) no periodo pre-MKT</li>
-                <li><strong>Severa:</strong> Ausencia de baseline (nao ha pesquisas pre-2024)</li>
-                <li><strong>Severa:</strong> Impossibilidade de isolar variavel "investimento em MKT" (sem dados de gastos)</li>
-                <li><strong>Moderada:</strong> Variacao metodologica entre institutos</li>
-                <li><strong>Moderada:</strong> Diferentes cenarios dificultam comparacao longitudinal</li>
+                <li><strong>Severa:</strong> Apenas 1 pesquisa (cenário 1) no período pré-MKT</li>
+                <li><strong>Severa:</strong> Ausência de baseline (não há pesquisas pré-2024)</li>
+                <li><strong>Severa:</strong> Impossibilidade de isolar variável "investimento em MKT" (sem dados de gastos)</li>
+                <li><strong>Moderada:</strong> Variação metodológica entre institutos</li>
+                <li><strong>Moderada:</strong> Diferentes cenários dificultam comparação longitudinal</li>
             </ul>
         </div>
     </section>
 
-    <!-- ANALISE DE PESQUISAS -->
+    <!-- ANÁLISE DE PESQUISAS -->
     <section id="pesquisas">
-        <h2>3. Analise das Pesquisas Eleitorais</h2>
+        <h2>3. Análise das Pesquisas Eleitorais</h2>
 
-        <h3>Serie Temporal Completa</h3>
+        <h3>Série Temporal Completa</h3>
         <table>
             <tr>
                 <th>Data</th>
                 <th>Instituto</th>
                 <th>Celina (%)</th>
-                <th>2o Colocado</th>
-                <th>Cenario</th>
+                <th>2º Colocado</th>
+                <th>Cenário</th>
             </tr>
             <tr>
                 <td>Jul/2024</td>
-                <td>Parana Pesquisas</td>
+                <td>Paraná Pesquisas</td>
                 <td>22.0%</td>
                 <td>Arruda (18.6%)</td>
                 <td>Completo</td>
             </tr>
             <tr>
                 <td>Jul/2024</td>
-                <td>Parana Pesquisas</td>
+                <td>Paraná Pesquisas</td>
                 <td>30.0%</td>
                 <td>Grass (14.8%)</td>
                 <td>Sem Arruda</td>
             </tr>
             <tr>
                 <td>Mar/2025</td>
-                <td>Parana Pesquisas</td>
+                <td>Paraná Pesquisas</td>
                 <td>36.6%</td>
                 <td>Izalci (11.3%)</td>
                 <td>Estimulado</td>
             </tr>
             <tr>
                 <td>Jun/2025</td>
-                <td>Parana Pesquisas</td>
+                <td>Paraná Pesquisas</td>
                 <td>31.1%</td>
                 <td>Fred Linhares (21.5%)</td>
                 <td>Com Fred</td>
             </tr>
             <tr>
                 <td>Jun/2025</td>
-                <td>Parana Pesquisas</td>
+                <td>Paraná Pesquisas</td>
                 <td>42.8%</td>
                 <td>Izalci (9.9%)</td>
                 <td>Sem Fred</td>
             </tr>
             <tr>
                 <td>Jul/2025</td>
-                <td>Instituto Opiniao</td>
+                <td>Instituto Opinião</td>
                 <td>27.5%</td>
                 <td>Fred (21.2%)</td>
                 <td>Estimulado</td>
             </tr>
             <tr>
                 <td>Ago/2025</td>
-                <td>Parana Pesquisas</td>
+                <td>Paraná Pesquisas</td>
                 <td>37.2%</td>
                 <td>Arruda (16.0%)</td>
                 <td>Com Arruda</td>
             </tr>
             <tr>
                 <td>Ago/2025</td>
-                <td>Parana Pesquisas</td>
+                <td>Paraná Pesquisas</td>
                 <td>45.6%</td>
                 <td>Izalci (12.7%)</td>
                 <td>Sem Arruda</td>
@@ -604,7 +656,7 @@
                 <td>Real Time Big Data</td>
                 <td>49.0%</td>
                 <td>Grass (14.0%)</td>
-                <td>Cenario 1</td>
+                <td>Cenário 1</td>
             </tr>
             <tr>
                 <td>Set/2025</td>
@@ -615,7 +667,7 @@
             </tr>
             <tr>
                 <td>Out/2025</td>
-                <td>Parana Pesquisas</td>
+                <td>Paraná Pesquisas</td>
                 <td>32.2%</td>
                 <td>Arruda (29.8%)</td>
                 <td>Com Arruda</td>
@@ -646,42 +698,42 @@
                 <td>Colectta</td>
                 <td>43.5%</td>
                 <td>Arruda (23.2%)</td>
-                <td>Votos validos</td>
+                <td>Votos válidos</td>
             </tr>
         </table>
 
-        <h3>Analise por Cenario</h3>
+        <h3>Análise por Cenário</h3>
         <div class="stats-grid">
             <div class="stat-card" style="border-left: 5px solid var(--cor-destaque);">
-                <div class="label">Cenario COM Arruda</div>
+                <div class="label">Cenário COM Arruda</div>
                 <div class="value">37.4%</div>
-                <div class="label">Media (10 pesquisas)</div>
+                <div class="label">Média (10 pesquisas)</div>
             </div>
             <div class="stat-card" style="border-left: 5px solid var(--cor-sucesso);">
-                <div class="label">Cenario SEM Arruda</div>
+                <div class="label">Cenário SEM Arruda</div>
                 <div class="value">44.5%</div>
-                <div class="label">Media (5 pesquisas)</div>
+                <div class="label">Média (5 pesquisas)</div>
             </div>
         </div>
-        <p><strong>Impacto:</strong> A ausencia de Arruda no cenario eleva a media de Celina em +7.1 p.p., sugerindo transferencia de votos da direita.</p>
+        <p><strong>Impacto:</strong> A ausência de Arruda no cenário eleva a média de Celina em +7.1 p.p., sugerindo transferência de votos da direita.</p>
     </section>
 
-    <!-- ANALISE ESTATISTICA -->
+    <!-- ANÁLISE ESTATÍSTICA -->
     <section id="estatistica">
-        <h2>4. Analise Estatistica</h2>
+        <h2>4. Análise Estatística</h2>
 
-        <h3>Regressao Linear por Periodo</h3>
+        <h3>Regressão Linear por Período</h3>
         <table>
             <tr>
-                <th>Periodo</th>
+                <th>Período</th>
                 <th>N</th>
                 <th>Slope Mensal</th>
-                <th>R2</th>
+                <th>R²</th>
                 <th>P-value</th>
-                <th>Interpretacao</th>
+                <th>Interpretação</th>
             </tr>
             <tr>
-                <td>Pre-MKT (2024)</td>
+                <td>Pré-MKT (2024)</td>
                 <td>1</td>
                 <td>N/A</td>
                 <td>N/A</td>
@@ -689,12 +741,12 @@
                 <td style="color: var(--cor-destaque);">Dados insuficientes</td>
             </tr>
             <tr>
-                <td>Pos-MKT (2025)</td>
+                <td>Pós-MKT (2025)</td>
                 <td>8</td>
                 <td>+0.26 p.p.</td>
                 <td>0.014</td>
                 <td>0.783</td>
-                <td>Tendencia fraca, nao significativa</td>
+                <td>Tendência fraca, não significativa</td>
             </tr>
             <tr>
                 <td><strong>Total</strong></td>
@@ -702,59 +754,59 @@
                 <td>+0.78 p.p.</td>
                 <td>0.295</td>
                 <td>-</td>
-                <td>Tendencia positiva moderada</td>
+                <td>Tendência positiva moderada</td>
             </tr>
         </table>
 
-        <h3>Teste de Mudanca Estrutural</h3>
+        <h3>Teste de Mudança Estrutural</h3>
         <div class="error-box">
             <h4>Resultado: INCONCLUSIVO</h4>
-            <p><strong>Razao:</strong> Apenas 1 pesquisa (cenario 1) no periodo pre-MKT impede a realizacao do teste estatistico com validade.</p>
-            <p><strong>Implicacao:</strong> Nao e possivel determinar estatisticamente se houve mudanca na tendencia de crescimento a partir de Jan/2025.</p>
+            <p><strong>Razão:</strong> Apenas 1 pesquisa (cenário 1) no período pré-MKT impede a realização do teste estatístico com validade.</p>
+            <p><strong>Implicação:</strong> Não é possível determinar estatisticamente se houve mudança na tendência de crescimento a partir de Jan/2025.</p>
         </div>
 
-        <h3>Intervalos de Confianca</h3>
+        <h3>Intervalos de Confiança</h3>
         <table>
             <tr>
-                <th>Metrica</th>
+                <th>Métrica</th>
                 <th>Valor</th>
                 <th>IC 95%</th>
             </tr>
             <tr>
-                <td>Media Geral</td>
+                <td>Média Geral</td>
                 <td>34.0%</td>
                 <td>[28.0%, 40.0%]</td>
             </tr>
             <tr>
-                <td>Ultima Pesquisa (Dez/2025)</td>
+                <td>Última Pesquisa (Dez/2025)</td>
                 <td>30.6%</td>
                 <td>[28.1%, 33.1%]</td>
             </tr>
         </table>
     </section>
 
-    <!-- CORRELACAO MKT x VOTOS -->
+    <!-- CORRELAÇÃO MKT x VOTOS -->
     <section id="correlacao">
-        <h2>5. Correlacao: Marketing x Intencao de Voto</h2>
+        <h2>5. Correlação: Marketing x Intenção de Voto</h2>
 
         <h3>O que os dados mostram</h3>
         <div class="success-box">
-            <h4>Correlacao Temporal Observada</h4>
+            <h4>Correlação Temporal Observada</h4>
             <ul>
-                <li>Media pre-Jan/2025: ~26%</li>
-                <li>Media pos-Jan/2025: ~40%</li>
+                <li>Média pré-Jan/2025: ~26%</li>
+                <li>Média pós-Jan/2025: ~40%</li>
                 <li>Crescimento: +14 p.p.</li>
             </ul>
         </div>
 
-        <h3>O que os dados NAO mostram</h3>
+        <h3>O que os dados NÃO mostram</h3>
         <div class="error-box">
-            <h4>Causalidade Nao Estabelecida</h4>
-            <p>A correlacao observada NAO pode ser atribuida exclusivamente ao investimento em marketing pelos seguintes motivos:</p>
+            <h4>Causalidade Não Estabelecida</h4>
+            <p>A correlação observada NÃO pode ser atribuída exclusivamente ao investimento em marketing pelos seguintes motivos:</p>
             <ol>
-                <li><strong>Ausencia de dados de gastos:</strong> Nao temos informacoes sobre investimentos em comunicacao</li>
-                <li><strong>Multiplos fatores concomitantes:</strong> Outros eventos ocorreram no mesmo periodo</li>
-                <li><strong>Impossibilidade de grupo controle:</strong> Nao ha como isolar a variavel</li>
+                <li><strong>Ausência de dados de gastos:</strong> Não temos informações sobre investimentos em comunicação</li>
+                <li><strong>Múltiplos fatores concomitantes:</strong> Outros eventos ocorreram no mesmo período</li>
+                <li><strong>Impossibilidade de grupo controle:</strong> Não há como isolar a variável</li>
             </ol>
         </div>
 
@@ -762,69 +814,69 @@
         <table>
             <tr>
                 <th>Fator</th>
-                <th>Descricao</th>
-                <th>Evidencia</th>
+                <th>Descrição</th>
+                <th>Evidência</th>
             </tr>
             <tr>
-                <td><strong>Incumbencia</strong></td>
+                <td><strong>Incumbência</strong></td>
                 <td>Interinidade no governo (Jan-Out/2025)</td>
                 <td>Alta - Documentada pela imprensa</td>
             </tr>
             <tr>
-                <td><strong>Absolvicao Dracon</strong></td>
-                <td>Evento juridico favoravel (Mar/2025)</td>
+                <td><strong>Absolvição Drácon</strong></td>
+                <td>Evento jurídico favorável (Mar/2025)</td>
                 <td>Alta - Coincide com +14.6 p.p.</td>
             </tr>
             <tr>
-                <td><strong>Aprovacao Ibaneis</strong></td>
-                <td>Governo com 63% de aprovacao</td>
-                <td>Moderada - Transferencia de imagem</td>
+                <td><strong>Aprovação Ibaneis</strong></td>
+                <td>Governo com 63% de aprovação</td>
+                <td>Moderada - Transferência de imagem</td>
             </tr>
             <tr>
-                <td><strong>Cenario competitivo</strong></td>
-                <td>Fragilizacao de Arruda (inelegibilidade)</td>
-                <td>Alta - Variacao de +7 p.p. sem Arruda</td>
+                <td><strong>Cenário competitivo</strong></td>
+                <td>Fragilização de Arruda (inelegibilidade)</td>
+                <td>Alta - Variação de +7 p.p. sem Arruda</td>
             </tr>
             <tr>
                 <td><strong>Marketing</strong></td>
-                <td>Investimento em comunicacao</td>
-                <td style="color: var(--cor-destaque);">Nao quantificavel</td>
+                <td>Investimento em comunicação</td>
+                <td style="color: var(--cor-destaque);">Não quantificável</td>
             </tr>
         </table>
     </section>
 
     <!-- TIMELINE DE EVENTOS -->
     <section id="eventos">
-        <h2>6. Analise de Eventos</h2>
+        <h2>6. Análise de Eventos</h2>
 
-        <h3>Variacoes Significativas (maior que 3 p.p.)</h3>
+        <h3>Variações Significativas (maior que 3 p.p.)</h3>
         <div class="timeline">
             <div class="timeline-item positivo">
-                <div class="timeline-date">Marco/2025</div>
+                <div class="timeline-date">Março/2025</div>
                 <strong>+14.6 p.p.</strong> (22% para 36.6%)
-                <p>Evento: Absolvicao Operacao Dracon (criminal)</p>
-                <p><em>Maior variacao positiva do periodo - removeu principal vulnerabilidade juridica</em></p>
+                <p>Evento: Absolvição Operação Drácon (criminal)</p>
+                <p><em>Maior variação positiva do período - removeu principal vulnerabilidade jurídica</em></p>
             </div>
 
             <div class="timeline-item negativo">
                 <div class="timeline-date">Junho/2025</div>
                 <strong>-5.5 p.p.</strong> (36.6% para 31.1%)
-                <p>Evento: Entrada de Fred Linhares no cenario</p>
+                <p>Evento: Entrada de Fred Linhares no cenário</p>
                 <p><em>Novo candidato divide votos da direita</em></p>
             </div>
 
             <div class="timeline-item neutro">
                 <div class="timeline-date">Julho/2025</div>
                 <strong>-3.6 p.p.</strong> (31.1% para 27.5%)
-                <p>Mudanca de instituto (Instituto Opiniao)</p>
-                <p><em>Possivel variacao metodologica</em></p>
+                <p>Mudança de instituto (Instituto Opinião)</p>
+                <p><em>Possível variação metodológica</em></p>
             </div>
 
             <div class="timeline-item positivo">
                 <div class="timeline-date">Agosto/2025</div>
                 <strong>+9.7 p.p.</strong> (27.5% para 37.2%)
-                <p>Evento: Consolidacao pos-interinidade</p>
-                <p><em>Retorno ao Parana Pesquisas</em></p>
+                <p>Evento: Consolidação pós-interinidade</p>
+                <p><em>Retorno ao Paraná Pesquisas</em></p>
             </div>
 
             <div class="timeline-item positivo">
@@ -838,61 +890,61 @@
                 <div class="timeline-date">Outubro/2025</div>
                 <strong>-16.8 p.p.</strong> (49.0% para 32.2%)
                 <p>Evento: Arruda cresce nas pesquisas</p>
-                <p><em>Empate tecnico com Arruda pelo Parana Pesquisas</em></p>
+                <p><em>Empate técnico com Arruda pelo Paraná Pesquisas</em></p>
             </div>
 
             <div class="timeline-item positivo">
                 <div class="timeline-date">Dezembro/2025</div>
                 <strong>+7.8 p.p.</strong> (32.2% para 40.0%)
                 <p>Evento: Arruda recua nas pesquisas</p>
-                <p><em>Celina retoma lideranca folgada</em></p>
+                <p><em>Celina retoma liderança folgada</em></p>
             </div>
         </div>
     </section>
 
-    <!-- CENARIO COMPETITIVO -->
+    <!-- CENÁRIO COMPETITIVO -->
     <section id="competitivo">
-        <h2>7. Cenario Competitivo</h2>
+        <h2>7. Cenário Competitivo</h2>
 
         <h3>Posicionamento Atual (Dez/2025)</h3>
         <table>
             <tr>
-                <th>Posicao</th>
+                <th>Posição</th>
                 <th>Candidato</th>
                 <th>Partido</th>
                 <th>% Votos</th>
                 <th>Status</th>
             </tr>
             <tr style="background: #f0fff4;">
-                <td>1o</td>
-                <td><strong>Celina Leao</strong></td>
+                <td>1º</td>
+                <td><strong>Celina Leão</strong></td>
                 <td>PP</td>
                 <td>40-50%</td>
                 <td style="color: var(--cor-sucesso);">Favorita</td>
             </tr>
             <tr>
-                <td>2o</td>
-                <td>Jose Roberto Arruda</td>
+                <td>2º</td>
+                <td>José Roberto Arruda</td>
                 <td>PL</td>
                 <td>19-29%</td>
-                <td style="color: var(--cor-destaque);">Inelegivel (pendente)</td>
+                <td style="color: var(--cor-destaque);">Inelegível (pendente)</td>
             </tr>
             <tr>
-                <td>3o</td>
+                <td>3º</td>
                 <td>Leandro Grass</td>
                 <td>PT</td>
                 <td>11-16%</td>
                 <td>Principal opositor</td>
             </tr>
             <tr>
-                <td>4o</td>
+                <td>4º</td>
                 <td>Paula Belmonte</td>
                 <td>Cidadania</td>
                 <td>6-8%</td>
                 <td>Terceira via</td>
             </tr>
             <tr>
-                <td>5o</td>
+                <td>5º</td>
                 <td>Ricardo Cappelli</td>
                 <td>PSB</td>
                 <td>5-7%</td>
@@ -900,81 +952,104 @@
             </tr>
         </table>
 
-        <h3>Projecoes</h3>
+        <h3>Projeções</h3>
         <div class="conclusion-grid">
             <div class="conclusion-card partial">
-                <h4>Cenario COM Arruda</h4>
+                <h4>Cenário COM Arruda</h4>
                 <p><strong>Celina:</strong> 32-40%</p>
                 <p><strong>Arruda:</strong> 21-30%</p>
-                <p><strong>Projecao:</strong> Provavel 2o turno</p>
+                <p><strong>Projeção:</strong> Provável 2º turno</p>
             </div>
             <div class="conclusion-card confirmed">
-                <h4>Cenario SEM Arruda</h4>
+                <h4>Cenário SEM Arruda</h4>
                 <p><strong>Celina:</strong> 50-54%</p>
                 <p><strong>Grass:</strong> 14-19%</p>
-                <p><strong>Projecao:</strong> Vitoria em 1o turno</p>
+                <p><strong>Projeção:</strong> Vitória em 1º turno</p>
             </div>
         </div>
 
         <h3>Vulnerabilidades de Celina</h3>
         <ul>
-            <li><strong>Acao de improbidade:</strong> Processo em andamento no TJDFT (recurso negado em Out/2025)</li>
-            <li><strong>Dependencia do cenario:</strong> Resultado depende fortemente da participacao de Arruda</li>
-            <li><strong>Transferencia de votos:</strong> Sem Arruda, votos da direita podem se dispersar</li>
+            <li><strong>Ação de improbidade:</strong> Processo em andamento no TJDFT (recurso negado em Out/2025)</li>
+            <li><strong>Dependência do cenário:</strong> Resultado depende fortemente da participação de Arruda</li>
+            <li><strong>Transferência de votos:</strong> Sem Arruda, votos da direita podem se dispersar</li>
         </ul>
     </section>
 
-    <!-- CONCLUSOES -->
+    <!-- CONCLUSÕES -->
     <section id="conclusoes">
-        <h2>8. Conclusoes e Recomendacoes</h2>
+        <h2>8. Conclusões e Recomendações</h2>
 
         <div class="conclusion-grid">
             <div class="conclusion-card confirmed">
                 <h4>CONFIRMADO</h4>
                 <ul>
-                    <li>Correlacao temporal entre Jan/2025 e crescimento</li>
-                    <li>Lideranca consolidada nas pesquisas</li>
-                    <li>Impacto positivo da absolvicao Dracon</li>
+                    <li>Correlação temporal entre Jan/2025 e crescimento</li>
+                    <li>Liderança consolidada nas pesquisas</li>
+                    <li>Impacto positivo da absolvição Drácon</li>
                     <li>Vantagem significativa sem Arruda</li>
                 </ul>
             </div>
             <div class="conclusion-card unconfirmed">
-                <h4>NAO COMPROVADO</h4>
+                <h4>NÃO COMPROVADO</h4>
                 <ul>
                     <li>Causalidade do investimento em MKT</li>
-                    <li>Efetividade isolada de estrategias de comunicacao</li>
+                    <li>Efetividade isolada de estratégias de comunicação</li>
                     <li>Sustentabilidade do crescimento</li>
                 </ul>
             </div>
         </div>
 
-        <h3>Recomendacoes para Analise Futura</h3>
+        <h3>Recomendações para Análise Futura</h3>
         <ol>
-            <li>Coletar dados de gastos em comunicacao (prestacao de contas ao TSE)</li>
-            <li>Quantificar presenca em midia (GDELT, Google Trends, clipping)</li>
-            <li>Padronizar comparacao entre institutos (mesmo cenario)</li>
+            <li>Coletar dados de gastos em comunicação (prestação de contas ao TSE)</li>
+            <li>Quantificar presença em mídia (GDELT, Google Trends, clipping)</li>
+            <li>Padronizar comparação entre institutos (mesmo cenário)</li>
             <li>Estabelecer baseline com pesquisas regulares</li>
         </ol>
 
-        <h3>Recomendacoes Estrategicas</h3>
+        <h3>Recomendações Estratégicas</h3>
         <ol>
-            <li><strong>Monitorar acao de improbidade:</strong> Risco juridico principal</li>
-            <li><strong>Preparar cenarios:</strong> Estrategias distintas com/sem Arruda</li>
-            <li><strong>Consolidar direita:</strong> Absorver votos de Arruda se inelegivel</li>
-            <li><strong>Manter visibilidade:</strong> Acoes de governo geram exposicao</li>
+            <li><strong>Monitorar ação de improbidade:</strong> Risco jurídico principal</li>
+            <li><strong>Preparar cenários:</strong> Estratégias distintas com/sem Arruda</li>
+            <li><strong>Consolidar direita:</strong> Absorver votos de Arruda se inelegível</li>
+            <li><strong>Manter visibilidade:</strong> Ações de governo geram exposição</li>
         </ol>
 
         <div class="highlight-box">
             <h3>Veredicto Final</h3>
-            <p>A analise cientifica demonstra que <strong>ha crescimento real e significativo</strong> na intencao de voto de Celina Leao ao longo de 2025. Porem, a atribuicao deste crescimento especificamente ao investimento em marketing <strong>nao pode ser estabelecida com rigor cientifico</strong> devido as limitacoes metodologicas identificadas.</p>
-            <p><strong>Nivel de confianca geral: MODERADO</strong></p>
+            <p>A análise científica demonstra que <strong>há crescimento real e significativo</strong> na intenção de voto de Celina Leão ao longo de 2025. Porém, a atribuição deste crescimento especificamente ao investimento em marketing <strong>não pode ser estabelecida com rigor científico</strong> devido às limitações metodológicas identificadas.</p>
+            <p><strong>Nível de confiança geral: MODERADO</strong></p>
         </div>
+    </section>
+
+    <!-- PESQUISADOR RESPONSÁVEL -->
+    <section id="pesquisador">
+        <h2>9. Pesquisador Responsável</h2>
+
+        <div class="researcher-card">
+            <div class="researcher-avatar">IM</div>
+            <div class="researcher-info">
+                <h4>Igor Morais Vasconcelos</h4>
+                <div class="title">Cientista Político | Analista de Inteligência Estratégica</div>
+                <p><strong>Empresa:</strong> INTEIA - Inteligência Estratégica</p>
+                <p><strong>E-mail:</strong> <a href="mailto:igor@inteia.com.br">igor@inteia.com.br</a></p>
+                <p><strong>Website:</strong> <a href="https://inteia.com.br" target="_blank">inteia.com.br</a></p>
+                <p style="margin-top: 15px;"><strong>Data de publicação:</strong> Janeiro/2026</p>
+            </div>
+        </div>
+
+        <p style="font-size: 0.9em; color: #718096; margin-top: 20px;">
+            Este relatório foi produzido com rigor metodológico científico-político.
+            As limitações são explicitamente declaradas e as conclusões refletem o nível de evidência disponível.
+            Para dúvidas ou solicitações de análises adicionais, entre em contato.
+        </p>
     </section>
 
     <!-- CTA -->
     <div class="cta-section no-print">
-        <h3>Precisa de Analise de Inteligencia Eleitoral?</h3>
-        <p>A INTEIA oferece solucoes completas de inteligencia estrategica para campanhas politicas.</p>
+        <h3>Precisa de Análise de Inteligência Eleitoral?</h3>
+        <p>A INTEIA oferece soluções completas de inteligência estratégica para campanhas políticas.</p>
         <a href="mailto:igor@inteia.com.br" class="cta-button">Fale Conosco</a>
     </div>
 
@@ -984,7 +1059,7 @@
     <div class="footer-content">
         <div class="footer-section">
             <h4>INTEIA</h4>
-            <p>Inteligencia Estrategica para tomada de decisao baseada em dados e analise cientifica.</p>
+            <p>Inteligência Estratégica para tomada de decisão baseada em dados e análise científica.</p>
         </div>
         <div class="footer-section">
             <h4>Contato</h4>
@@ -992,17 +1067,16 @@
             <p><a href="https://inteia.com.br">inteia.com.br</a></p>
         </div>
         <div class="footer-section">
-            <h4>Servicos</h4>
+            <h4>Serviços</h4>
             <p>Pesquisa Eleitoral</p>
-            <p>Analise de Dados</p>
-            <p>Inteligencia Competitiva</p>
-            <p>Consultoria Estrategica</p>
+            <p>Análise de Dados</p>
+            <p>Inteligência Competitiva</p>
+            <p>Consultoria Estratégica</p>
         </div>
     </div>
     <div class="footer-bottom">
-        <p>INTEIA - Inteligencia Estrategica | Igor Morais Vasconcelos</p>
+        <p>INTEIA - Inteligência Estratégica | Igor Morais Vasconcelos</p>
         <p>Janeiro/2026 - Todos os direitos reservados</p>
-        <p style="margin-top: 10px; font-size: 0.8em;">Este relatorio foi produzido com rigor metodologico cientifico-politico. As limitacoes sao explicitamente declaradas e as conclusoes refletem o nivel de evidencia disponivel.</p>
     </div>
 </footer>
 
