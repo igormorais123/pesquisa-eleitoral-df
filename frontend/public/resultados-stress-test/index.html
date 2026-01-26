@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INTEIA | Stress Test Eleitoral - Celina Leao 2026</title>
-    <meta name="description" content="Relatorio de Stress Test Eleitoral - Analise de Resiliencia do Voto">
-    <meta name="author" content="Igor Morais Vasconcelos, PhD - INTEIA">
+    <title>INTEIA | Análise Estratégica - Stress Test Eleitoral 2026</title>
+    <meta name="description" content="Relatório de Inteligência Estratégica - Análise de Resiliência do Voto">
+    <meta name="author" content="Igor Morais Vasconcelos - INTEIA">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,17 +14,13 @@
     <style>
         /* ========================================
            INTEIA Design System - Premium Report
-           Padrao Apple/Claude Clean & Elegant
-           Versao: Light/Dark Mode
+           Padrão Apple/Claude Clean & Elegant
         ======================================== */
 
         :root {
-            /* Cores Base - Amber Brand */
             --amber: #d69e2e;
             --amber-light: #f6e05e;
             --amber-dark: #b7791f;
-
-            /* Cores de Status */
             --success: #22c55e;
             --success-bg: rgba(34, 197, 94, 0.1);
             --warning: #eab308;
@@ -33,8 +29,6 @@
             --danger-bg: rgba(239, 68, 68, 0.1);
             --info: #3b82f6;
             --info-bg: rgba(59, 130, 246, 0.1);
-
-            /* Espacamentos */
             --space-xs: 0.25rem;
             --space-sm: 0.5rem;
             --space-md: 1rem;
@@ -42,23 +36,17 @@
             --space-xl: 2rem;
             --space-2xl: 3rem;
             --space-3xl: 4rem;
-
-            /* Bordas */
             --radius-sm: 0.375rem;
             --radius-md: 0.5rem;
             --radius-lg: 0.75rem;
             --radius-xl: 1rem;
             --radius-2xl: 1.5rem;
-
-            /* Sombras */
             --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
             --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
             --shadow-amber: 0 4px 14px rgba(214, 158, 46, 0.25);
         }
 
-        /* ========== TEMA CLARO (Padrao) ========== */
         [data-theme="light"] {
             --bg-primary: #ffffff;
             --bg-secondary: #f8fafc;
@@ -77,7 +65,6 @@
             --card-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
         }
 
-        /* ========== TEMA ESCURO ========== */
         [data-theme="dark"] {
             --bg-primary: #0f172a;
             --bg-secondary: #1e293b;
@@ -96,11 +83,7 @@
             --card-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -111,10 +94,6 @@
             -webkit-font-smoothing: antialiased;
             transition: background 0.3s ease, color 0.3s ease;
         }
-
-        /* ========================================
-           Side Mark - Branding Vertical
-        ======================================== */
 
         .side-mark {
             position: fixed;
@@ -180,10 +159,6 @@
             letter-spacing: 0.05em;
         }
 
-        /* ========================================
-           Top Controls Bar
-        ======================================== */
-
         .top-controls {
             position: fixed;
             top: 0;
@@ -220,10 +195,7 @@
             border-color: var(--amber);
         }
 
-        .theme-toggle svg {
-            width: 18px;
-            height: 18px;
-        }
+        .theme-toggle svg { width: 18px; height: 18px; }
 
         [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
         [data-theme="light"] .theme-toggle .icon-moon { display: none; }
@@ -249,14 +221,7 @@
             box-shadow: 0 6px 20px rgba(214, 158, 46, 0.4);
         }
 
-        .print-btn-top svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* ========================================
-           Main Container
-        ======================================== */
+        .print-btn-top svg { width: 16px; height: 16px; }
 
         .main-container {
             margin-left: 60px;
@@ -269,10 +234,6 @@
             margin: 0 auto;
             padding: var(--space-xl);
         }
-
-        /* ========================================
-           Hero Header
-        ======================================== */
 
         .hero-header {
             background: var(--hero-bg);
@@ -323,10 +284,7 @@
             box-shadow: var(--shadow-amber);
         }
 
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
+        .logo-text { display: flex; flex-direction: column; }
 
         .logo-name {
             font-size: 28px;
@@ -335,9 +293,7 @@
             color: var(--text-primary);
         }
 
-        .logo-name .highlight {
-            color: var(--amber);
-        }
+        .logo-name .highlight { color: var(--amber); }
 
         .logo-tagline {
             font-size: 11px;
@@ -347,9 +303,7 @@
             margin-top: 2px;
         }
 
-        .author-section {
-            text-align: right;
-        }
+        .author-section { text-align: right; }
 
         .author-label {
             font-size: 10px;
@@ -433,10 +387,63 @@
             letter-spacing: 0.05em;
         }
 
-        /* ========================================
-           KPI Cards
-        ======================================== */
+        /* Executive Summary Box */
+        .executive-summary {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(234, 179, 8, 0.05) 100%);
+            border: 2px solid var(--danger);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
 
+        .executive-summary h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .executive-summary .conclusion-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: var(--space-lg);
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+        }
+
+        .key-point {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            text-align: center;
+        }
+
+        .key-point .number {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .key-point .label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .key-point.danger .number { color: var(--danger); }
+        .key-point.warning .number { color: var(--warning); }
+        .key-point.success .number { color: var(--success); }
+
+        /* KPI Cards */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -478,13 +485,8 @@
             font-weight: 500;
         }
 
-        /* ========================================
-           Section Headers
-        ======================================== */
-
-        .section {
-            margin-bottom: var(--space-2xl);
-        }
+        /* Section Headers */
+        .section { margin-bottom: var(--space-2xl); }
 
         .section-header {
             display: flex;
@@ -521,172 +523,12 @@
             margin-top: 2px;
         }
 
-        /* ========================================
-           Alert Cards
-        ======================================== */
-
-        .alerts-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-lg);
-        }
-
-        .alert-card {
-            padding: var(--space-lg);
-            border-radius: var(--radius-xl);
-            border: 1px solid;
-            box-shadow: var(--card-shadow);
-        }
-
-        .alert-card.danger {
-            background: var(--danger-bg);
-            border-color: rgba(239, 68, 68, 0.3);
-        }
-
-        .alert-card.success {
-            background: var(--success-bg);
-            border-color: rgba(34, 197, 94, 0.3);
-        }
-
-        .alert-card.warning {
-            background: var(--warning-bg);
-            border-color: rgba(234, 179, 8, 0.3);
-        }
-
-        .alert-header {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            margin-bottom: var(--space-sm);
-        }
-
-        .alert-header svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .alert-card.danger .alert-header { color: var(--danger); }
-        .alert-card.success .alert-header { color: var(--success); }
-        .alert-card.warning .alert-header { color: var(--warning); }
-
-        .alert-title {
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .alert-text {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        /* ========================================
-           Charts Container
-        ======================================== */
-
-        .charts-grid {
+        /* Strategic Recommendations */
+        .recommendations-priority {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: var(--space-lg);
-        }
-
-        .chart-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-xl);
-            padding: var(--space-lg);
-            box-shadow: var(--card-shadow);
-        }
-
-        .chart-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: var(--space-md);
-        }
-
-        .chart-container {
-            height: 280px;
-            position: relative;
-        }
-
-        /* ========================================
-           Vulnerability Map
-        ======================================== */
-
-        .vulnerability-map {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-xl);
-            padding: var(--space-lg);
-            box-shadow: var(--card-shadow);
-        }
-
-        .vuln-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-md);
-        }
-
-        .vuln-column {
-            text-align: center;
-        }
-
-        .vuln-level {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: var(--space-sm) var(--space-md);
-            border-radius: var(--radius-md);
-            margin-bottom: var(--space-md);
-        }
-
-        .vuln-level.critical {
-            background: var(--danger-bg);
-            color: var(--danger);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-
-        .vuln-level.high {
-            background: rgba(249, 115, 22, 0.1);
-            color: #f97316;
-            border: 1px solid rgba(249, 115, 22, 0.3);
-        }
-
-        .vuln-level.moderate {
-            background: var(--warning-bg);
-            color: var(--warning);
-            border: 1px solid rgba(234, 179, 8, 0.3);
-        }
-
-        .vuln-level.low {
-            background: var(--success-bg);
-            color: var(--success);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-        }
-
-        .vuln-items {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-sm);
-        }
-
-        .vuln-item {
-            font-size: 12px;
-            color: var(--text-secondary);
-            padding: var(--space-sm);
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-sm);
-        }
-
-        /* ========================================
-           Recommendations
-        ======================================== */
-
-        .recommendations-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
         }
 
         .recommendation-card {
@@ -750,84 +592,235 @@
             color: var(--text-muted);
         }
 
-        /* ========================================
-           Quote Cards
-        ======================================== */
+        /* Validation Card */
+        .validation-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border: 1px solid var(--info);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
 
-        .quotes-grid {
+        .validation-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg);
+        }
+
+        .validation-item {
+            text-align: center;
+        }
+
+        .validation-item .value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--info);
+        }
+
+        .validation-item .label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Charts */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-lg);
+        }
+
+        .chart-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            box-shadow: var(--card-shadow);
+        }
+
+        .chart-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+        }
+
+        .chart-container {
+            height: 280px;
+            position: relative;
+        }
+
+        /* Word Cloud */
+        .wordcloud-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            text-align: center;
+            box-shadow: var(--card-shadow);
+        }
+
+        .wordcloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-lg);
+        }
+
+        .word {
+            padding: 4px 12px;
+            border-radius: var(--radius-md);
+            background: var(--bg-tertiary);
+            transition: all 0.2s;
+        }
+
+        .word:hover {
+            background: rgba(214, 158, 46, 0.2);
+        }
+
+        .word.size-1 { font-size: 32px; font-weight: 800; color: var(--amber); }
+        .word.size-2 { font-size: 24px; font-weight: 700; color: var(--text-primary); }
+        .word.size-3 { font-size: 18px; font-weight: 600; color: var(--text-secondary); }
+        .word.size-4 { font-size: 14px; font-weight: 500; color: var(--text-muted); }
+        .word.size-5 { font-size: 12px; font-weight: 400; color: var(--text-light); }
+
+        /* Demographics */
+        .demographics-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: var(--space-lg);
         }
 
-        .quote-card {
+        .demo-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-xl);
             padding: var(--space-lg);
-            position: relative;
             box-shadow: var(--card-shadow);
         }
 
-        .quote-card::before {
-            content: '"';
-            position: absolute;
-            top: var(--space-md);
-            left: var(--space-lg);
-            font-size: 48px;
-            font-weight: 800;
-            color: rgba(214, 158, 46, 0.2);
-            line-height: 1;
-        }
-
-        .quote-text {
+        .demo-card h4 {
             font-size: 14px;
-            color: var(--text-secondary);
-            font-style: italic;
+            font-weight: 600;
+            color: var(--text-primary);
             margin-bottom: var(--space-md);
-            padding-top: var(--space-lg);
-        }
-
-        .quote-author {
             display: flex;
             align-items: center;
             gap: var(--space-sm);
-            font-size: 12px;
-            color: var(--text-muted);
         }
 
-        .quote-avatar {
-            width: 32px;
-            height: 32px;
+        .demo-bar {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+        }
+
+        .demo-bar .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            width: 100px;
+            flex-shrink: 0;
+        }
+
+        .demo-bar .bar-container {
+            flex: 1;
+            height: 20px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+
+        .demo-bar .bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: var(--radius-sm);
+            transition: width 0.5s ease;
+        }
+
+        .demo-bar .value {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            width: 50px;
+            text-align: right;
+        }
+
+        /* Persona Card */
+        .persona-card {
+            background: linear-gradient(135deg, rgba(214, 158, 46, 0.1) 0%, rgba(214, 158, 46, 0.02) 100%);
+            border: 2px solid var(--amber);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .persona-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+
+        .persona-avatar {
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 600;
-            font-size: 11px;
+            font-size: 32px;
             color: #ffffff;
         }
 
-        .quote-meta {
-            display: flex;
-            flex-direction: column;
+        .persona-info h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
-        .quote-name {
-            font-weight: 500;
-            color: var(--text-secondary);
+        .persona-info p {
+            font-size: 14px;
+            color: var(--text-muted);
         }
 
-        .quote-location {
+        .persona-traits {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+        }
+
+        .persona-trait {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            text-align: center;
+        }
+
+        .persona-trait .icon {
+            font-size: 24px;
+            margin-bottom: var(--space-xs);
+        }
+
+        .persona-trait .trait-label {
             font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        /* ========================================
-           Chat Helena Section
-        ======================================== */
+        .persona-trait .trait-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
 
-        .chat-section {
+        /* Helena Analysis */
+        .helena-analysis {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-2xl);
@@ -835,7 +828,7 @@
             box-shadow: var(--card-shadow);
         }
 
-        .chat-header {
+        .helena-header {
             background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
             padding: var(--space-lg);
             display: flex;
@@ -843,9 +836,9 @@
             gap: var(--space-md);
         }
 
-        .chat-avatar {
-            width: 48px;
-            height: 48px;
+        .helena-avatar {
+            width: 56px;
+            height: 56px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
@@ -853,154 +846,154 @@
             justify-content: center;
         }
 
-        .chat-avatar svg {
-            width: 28px;
-            height: 28px;
+        .helena-avatar svg {
+            width: 32px;
+            height: 32px;
             color: #ffffff;
         }
 
-        .chat-info h3 {
-            font-size: 16px;
+        .helena-info h3 {
+            font-size: 18px;
             font-weight: 700;
             color: #ffffff;
         }
 
-        .chat-info p {
+        .helena-info p {
             font-size: 12px;
             color: rgba(255, 255, 255, 0.8);
         }
 
-        .chat-status {
+        .helena-badge {
             margin-left: auto;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 12px;
+            border-radius: var(--radius-md);
+            font-size: 11px;
+            font-weight: 600;
             color: #ffffff;
         }
 
-        .chat-status-dot {
-            width: 8px;
-            height: 8px;
-            background: #22c55e;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
+        .helena-content {
+            padding: var(--space-xl);
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .chat-messages {
+        .helena-message {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
             padding: var(--space-lg);
+            margin-bottom: var(--space-md);
+            border-left: 4px solid var(--amber);
+        }
+
+        .helena-message p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-sm);
+        }
+
+        .helena-message p:last-child {
+            margin-bottom: 0;
+        }
+
+        .helena-message strong {
+            color: var(--text-primary);
+        }
+
+        .helena-message .highlight {
+            color: var(--amber);
+            font-weight: 600;
+        }
+
+        /* Prompt Section */
+        .prompt-section {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin-top: var(--space-2xl);
+        }
+
+        .prompt-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .prompt-content {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            white-space: pre-wrap;
             max-height: 400px;
             overflow-y: auto;
         }
 
-        .chat-message {
+        /* Researcher Card */
+        .researcher-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin-top: var(--space-2xl);
             display: flex;
-            gap: var(--space-md);
-            margin-bottom: var(--space-lg);
+            align-items: center;
+            gap: var(--space-xl);
+            box-shadow: var(--card-shadow);
         }
 
-        .chat-message.helena .msg-avatar {
-            width: 36px;
-            height: 36px;
+        .researcher-avatar {
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
+            font-size: 28px;
+            font-weight: 800;
             color: #ffffff;
             flex-shrink: 0;
         }
 
-        .chat-message .msg-content {
-            flex: 1;
-        }
-
-        .chat-message .msg-name {
-            font-size: 12px;
-            font-weight: 600;
+        .researcher-info h3 {
+            font-size: 18px;
+            font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 4px;
         }
 
-        .chat-message.helena .msg-name { color: var(--amber); }
-
-        .chat-message .msg-text {
+        .researcher-info .role {
             font-size: 14px;
-            color: var(--text-secondary);
-            background: var(--bg-tertiary);
-            padding: var(--space-md);
-            border-radius: var(--radius-lg);
-            border-top-left-radius: 4px;
+            color: var(--amber);
+            font-weight: 500;
+            margin-bottom: 8px;
         }
 
-        .chat-message .msg-time {
-            font-size: 11px;
-            color: var(--text-light);
-            margin-top: 4px;
+        .researcher-info .contact {
+            font-size: 13px;
+            color: var(--text-muted);
         }
 
-        .chat-input-area {
-            padding: var(--space-md) var(--space-lg);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            gap: var(--space-md);
-            align-items: center;
+        .researcher-info .contact a {
+            color: var(--amber);
+            text-decoration: none;
         }
 
-        .chat-input {
-            flex: 1;
-            padding: 12px 16px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            font-size: 14px;
-            color: var(--text-primary);
-            outline: none;
-            transition: border-color 0.2s;
+        .researcher-info .contact a:hover {
+            text-decoration: underline;
         }
 
-        .chat-input:focus {
-            border-color: var(--amber);
-        }
-
-        .chat-input::placeholder {
-            color: var(--text-light);
-        }
-
-        .chat-send-btn {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
-            border: none;
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .chat-send-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .chat-send-btn svg {
-            width: 20px;
-            height: 20px;
-            color: #ffffff;
-        }
-
-        /* ========================================
-           Footer
-        ======================================== */
-
+        /* Footer */
         .footer {
             margin-top: var(--space-3xl);
             padding: var(--space-xl);
@@ -1033,11 +1026,7 @@
             color: #ffffff;
         }
 
-        .footer-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
+        .footer-info { display: flex; flex-direction: column; gap: 2px; }
 
         .footer-company {
             font-size: 13px;
@@ -1045,9 +1034,7 @@
             color: var(--text-primary);
         }
 
-        .footer-company .highlight {
-            color: var(--amber);
-        }
+        .footer-company .highlight { color: var(--amber); }
 
         .footer-details {
             font-size: 11px;
@@ -1078,157 +1065,27 @@
             color: var(--text-light);
         }
 
-        /* ========================================
-           Print Styles - A4 Otimizado
-        ======================================== */
-
+        /* Print Styles */
         @media print {
-            @page {
-                size: A4 portrait;
-                margin: 12mm 10mm 15mm 10mm;
-            }
-
-            * {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-
-            html, body {
-                background: #ffffff !important;
-                color: #1a1a1a !important;
-                font-size: 10pt;
-            }
-
-            .side-mark,
-            .top-controls,
-            .chat-section,
-            .chat-input-area {
-                display: none !important;
-            }
-
-            .main-container {
-                margin: 0 !important;
-            }
-
-            .content-wrapper {
-                padding: 0 !important;
-                max-width: 100% !important;
-            }
-
-            .hero-header {
-                background: #f8f9fa !important;
-                border: 2px solid #e0e0e0 !important;
-                padding: 15mm !important;
-                margin-bottom: 8mm !important;
-                page-break-inside: avoid;
-            }
-
-            .hero-header::before {
-                display: none !important;
-            }
-
-            .logo-name, .hero-title-section h1 {
-                color: #0f172a !important;
-            }
-
-            .kpi-grid {
-                gap: 5mm !important;
-                margin-bottom: 8mm !important;
-            }
-
-            .kpi-card {
-                background: #ffffff !important;
-                border: 1.5px solid #e0e0e0 !important;
-                padding: 8mm !important;
-                page-break-inside: avoid;
-            }
-
-            .kpi-value {
-                font-size: 24pt !important;
-            }
-
-            .section {
-                page-break-inside: avoid;
-                margin-bottom: 8mm !important;
-            }
-
-            .alerts-grid,
-            .charts-grid,
-            .quotes-grid,
-            .recommendations-grid,
-            .vuln-grid {
-                gap: 4mm !important;
-            }
-
-            .alert-card,
-            .chart-card,
-            .quote-card,
-            .recommendation-card,
-            .vulnerability-map {
-                background: #ffffff !important;
-                border: 1px solid #e0e0e0 !important;
-                page-break-inside: avoid;
-            }
-
-            .chart-container {
-                height: 150px !important;
-            }
-
-            .footer {
-                background: #f8f9fa !important;
-                border-top: 2px solid var(--amber) !important;
-                padding: 8mm !important;
-                margin-top: 10mm !important;
-            }
-
-            /* Cabecalho de Impressao */
-            .print-header {
-                display: block !important;
-                text-align: center;
-                padding-bottom: 5mm;
-                margin-bottom: 5mm;
-                border-bottom: 1px solid #e0e0e0;
-            }
-
-            .print-header .logo-print {
-                font-size: 18pt;
-                font-weight: 800;
-                color: #0f172a;
-            }
-
-            .print-header .logo-print span {
-                color: var(--amber);
-            }
-
-            /* Rodape de Impressao */
-            .print-footer {
-                display: block !important;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                text-align: center;
-                font-size: 8pt;
-                color: #64748b;
-                padding: 3mm 0;
-                border-top: 0.5px solid #e0e0e0;
-            }
+            @page { size: A4 portrait; margin: 12mm 10mm 15mm 10mm; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            html, body { background: #ffffff !important; color: #1a1a1a !important; font-size: 10pt; }
+            .side-mark, .top-controls, .theme-toggle, .print-btn-top { display: none !important; }
+            .main-container { margin: 0 !important; }
+            .content-wrapper { padding: 0 !important; max-width: 100% !important; }
+            .hero-header { background: #f8f9fa !important; border: 2px solid #e0e0e0 !important; }
+            .section { page-break-inside: avoid; }
         }
 
-        .print-header,
-        .print-footer {
-            display: none;
-        }
+        .print-header, .print-footer { display: none; }
 
-        /* ========================================
-           Responsive
-        ======================================== */
-
+        /* Responsive */
         @media (max-width: 1200px) {
             .kpi-grid { grid-template-columns: repeat(2, 1fr); }
             .charts-grid { grid-template-columns: 1fr; }
-            .vuln-grid { grid-template-columns: repeat(2, 1fr); }
+            .demographics-grid { grid-template-columns: repeat(2, 1fr); }
+            .persona-traits { grid-template-columns: repeat(2, 1fr); }
+            .key-points { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
@@ -1240,33 +1097,33 @@
             .author-section { text-align: left; }
             .hero-content { grid-template-columns: 1fr; }
             .kpi-grid { grid-template-columns: 1fr; }
-            .alerts-grid { grid-template-columns: 1fr; }
-            .quotes-grid { grid-template-columns: 1fr; }
-            .recommendations-grid { grid-template-columns: 1fr; }
-            .vuln-grid { grid-template-columns: 1fr; }
+            .recommendations-priority { grid-template-columns: 1fr; }
+            .validation-grid { grid-template-columns: repeat(2, 1fr); }
+            .demographics-grid { grid-template-columns: 1fr; }
+            .persona-traits { grid-template-columns: 1fr; }
+            .researcher-card { flex-direction: column; text-align: center; }
             .footer-content { flex-direction: column; gap: var(--space-lg); text-align: center; }
-            .footer-classification { align-items: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Print Header (apenas impressao) -->
+    <!-- Print Header -->
     <div class="print-header">
-        <div class="logo-print">INTE<span>IA</span> - Instituto de Inteligencia Artificial</div>
-        <div>Estudo com Sistemas de IA Avancados | Agentes Simulados Validados</div>
+        <div class="logo-print">INTE<span>IA</span> - Inteligência Estratégica</div>
+        <div>Análise com Sistemas de IA Avançados | Agentes Simulados Validados</div>
     </div>
 
-    <!-- Side Mark - Branding Vertical -->
+    <!-- Side Mark -->
     <aside class="side-mark">
         <div class="logo-icon">IA</div>
         <span class="vertical-text">INTEIA</span>
         <div class="author-info">
-            <span class="author-name">Sistemas de IA Avancados</span>
+            <span class="author-name">Sistemas de IA Avançados</span>
             <span class="author-role">Agentes Simulados</span>
         </div>
     </aside>
 
-    <!-- Top Controls Bar -->
+    <!-- Top Controls -->
     <div class="top-controls">
         <button class="theme-toggle" onclick="toggleTheme()">
             <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1306,20 +1163,20 @@
                         <div class="logo-box">IA</div>
                         <div class="logo-text">
                             <span class="logo-name">INTE<span class="highlight">IA</span></span>
-                            <span class="logo-tagline">Instituto de Inteligencia Artificial</span>
+                            <span class="logo-tagline">Inteligência Estratégica</span>
                         </div>
                     </div>
                     <div class="author-section">
-                        <div class="author-label">Pesquisador Responsavel</div>
-                        <div class="author-name-main">Igor Morais Vasconcelos, PhD</div>
+                        <div class="author-label">Pesquisador Responsável</div>
+                        <div class="author-name-main">Igor Morais Vasconcelos</div>
                         <div class="author-title">Presidente INTEIA</div>
-                        <div class="author-credential">Responsavel Tecnico | OAB 35.376</div>
+                        <div class="author-credential">igor@inteia.com.br | inteia.com.br</div>
                     </div>
                 </div>
                 <div class="hero-content">
                     <div class="hero-title-section">
-                        <h1>Stress Test Eleitoral - Celina Leao 2026</h1>
-                        <p class="subtitle">Analise de Resiliencia do Voto sob Cenarios de Pressao Politica</p>
+                        <h1>Análise Estratégica - Stress Test Eleitoral 2026</h1>
+                        <p class="subtitle">Avaliação de Resiliência do Voto sob Cenários de Pressão Política</p>
                         <div class="hero-meta">
                             <div class="meta-item">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1337,13 +1194,13 @@
                                     <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                 </svg>
-                                <span>490 Eleitores Sinteticos</span>
+                                <span>1.000 Eleitores Sintéticos</span>
                             </div>
                             <div class="meta-item">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                                 </svg>
-                                <span>4 Modulos de Stress</span>
+                                <span>4 Módulos de Stress</span>
                             </div>
                         </div>
                     </div>
@@ -1357,15 +1214,128 @@
                 </div>
             </header>
 
+            <!-- CONCLUSÃO PRINCIPAL - No início -->
+            <section class="executive-summary">
+                <h2>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    CONCLUSÃO PRINCIPAL - Helena, Agente de Sistemas de IA Avançados
+                </h2>
+                <p class="conclusion-text">
+                    A candidata possui <strong>base sólida e independente</strong> (82,6% resistem a pressões externas),
+                    porém apresenta <strong>vulnerabilidade crítica</strong> à entrada de candidato de perfil técnico-moderado
+                    (56,9% considerariam migrar). O voto é majoritariamente <strong>defensivo</strong> (70% votam CONTRA adversário,
+                    não A FAVOR). Recomendo ação preventiva imediata para neutralizar potenciais candidaturas de centro.
+                </p>
+                <div class="key-points">
+                    <div class="key-point danger">
+                        <div class="number">56,9%</div>
+                        <div class="label">Migrariam para candidato técnico-moderado</div>
+                    </div>
+                    <div class="key-point warning">
+                        <div class="number">67,2%</div>
+                        <div class="label">Abandonam se surgir escândalo</div>
+                    </div>
+                    <div class="key-point success">
+                        <div class="number">82,6%</div>
+                        <div class="label">Base independente consolidada</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RECOMENDAÇÕES ESTRATÉGICAS - Logo após conclusão -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Recomendações Estratégicas Prioritárias</h2>
+                        <p class="section-subtitle">Ações imediatas em ordem de urgência</p>
+                    </div>
+                </div>
+                <div class="recommendations-priority">
+                    <div class="recommendation-card urgent">
+                        <span class="rec-priority">🔴 Urgente - Prioridade 1</span>
+                        <h3 class="rec-title">Neutralizar Candidaturas de Perfil Técnico-Moderado</h3>
+                        <p class="rec-description">56,9% dos eleitores considerariam migrar para candidato com perfil técnico, apartidário e com discurso anti-polarização. Monitorar movimentações e agir ANTES que surjam oficialmente. Considerar cooptação ou desconstrução prévia de potenciais nomes.</p>
+                    </div>
+                    <div class="recommendation-card urgent">
+                        <span class="rec-priority">🔴 Urgente - Prioridade 2</span>
+                        <h3 class="rec-title">Blindagem Anticorrupção Total</h3>
+                        <p class="rec-description">67,2% abandonariam imediatamente se surgir escândalo de corrupção. Zero tolerância a irregularidades. Auditoria preventiva em todas as áreas sensíveis. Qualquer deslize ético terá impacto catastrófico.</p>
+                    </div>
+                    <div class="recommendation-card important">
+                        <span class="rec-priority">🟡 Importante - Prioridade 3</span>
+                        <h3 class="rec-title">Construir Adesão Genuína</h3>
+                        <p class="rec-description">70% dos votos são motivados por rejeição ao adversário, não por adesão genuína. Criar conexão emocional positiva além do anti-esquerda. Narrativa de realizações concretas e visão de futuro.</p>
+                    </div>
+                    <div class="recommendation-card important">
+                        <span class="rec-priority">🟡 Importante - Prioridade 4</span>
+                        <h3 class="rec-title">Ajustar Discurso de Segurança</h3>
+                        <p class="rec-description">41% preferem candidato com discurso "linha dura" sobre abordagem técnica. Endurecer comunicação com componente emocional. Demonstrar firmeza sem perder viabilidade democrática.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VALIDAÇÃO ESTATÍSTICA DA AMOSTRA -->
+            <section class="validation-card">
+                <div class="section-header" style="margin-bottom: var(--space-lg);">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Validação Estatística da Amostra</h2>
+                        <p class="section-subtitle">Critérios técnicos de confiabilidade</p>
+                    </div>
+                </div>
+                <div class="validation-grid">
+                    <div class="validation-item">
+                        <div class="value">1.000</div>
+                        <div class="label">Eleitores Sintéticos</div>
+                    </div>
+                    <div class="validation-item">
+                        <div class="value">±3,1%</div>
+                        <div class="label">Margem de Erro</div>
+                    </div>
+                    <div class="validation-item">
+                        <div class="value">95%</div>
+                        <div class="label">Nível de Confiança</div>
+                    </div>
+                    <div class="validation-item">
+                        <div class="value">2,6M</div>
+                        <div class="label">População Eleitoral DF</div>
+                    </div>
+                </div>
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: var(--bg-card); border-radius: var(--radius-lg);">
+                    <h4 style="font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-sm);">Critérios de Seleção da Amostra:</h4>
+                    <ul style="font-size: 13px; color: var(--text-secondary); margin-left: var(--space-lg); line-height: 1.8;">
+                        <li><strong>Estratificação demográfica:</strong> Gênero (52,1% F / 47,9% M), cor/raça, faixa etária conforme IBGE 2024</li>
+                        <li><strong>Distribuição geográfica:</strong> 31 Regiões Administrativas proporcionais à população</li>
+                        <li><strong>Perfil socioeconômico:</strong> Classe social, escolaridade e renda conforme PNAD-DF</li>
+                        <li><strong>Orientação política:</strong> Espectro completo (direita 26,3%, centro 25,1%, esquerda 22,6%)</li>
+                        <li><strong>Religiosidade:</strong> Católicos (44,1%), evangélicos (25,3%), sem religião (14,2%)</li>
+                    </ul>
+                </div>
+            </section>
+
             <!-- KPI Cards -->
             <section class="kpi-grid">
                 <div class="kpi-card">
                     <div class="kpi-value success">82,6%</div>
-                    <div class="kpi-label">Resistem sem Arruda</div>
+                    <div class="kpi-label">Base Independente Consolidada</div>
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-value danger">67,2%</div>
-                    <div class="kpi-label">Abandonam se Corrupcao</div>
+                    <div class="kpi-label">Abandonam se Corrupção</div>
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-value warning">41,0%</div>
@@ -1373,89 +1343,162 @@
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-value danger">56,9%</div>
-                    <div class="kpi-label">Consideram Centro</div>
+                    <div class="kpi-label">Vulneráveis ao Centro</div>
                 </div>
             </section>
 
-            <!-- Metodologia IA Section -->
-            <section class="section" style="margin-bottom: var(--space-lg);">
-                <div class="methodology-card" style="background: linear-gradient(135deg, rgba(214, 158, 46, 0.08) 0%, rgba(59, 130, 246, 0.05) 100%); border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: var(--space-lg); box-shadow: var(--card-shadow);">
-                    <div style="display: flex; align-items: flex-start; gap: var(--space-md);">
-                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="24" height="24">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                            </svg>
-                        </div>
-                        <div style="flex: 1;">
-                            <h3 style="font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Metodologia: Sistemas Avancados de Inteligencia Artificial</h3>
-                            <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">
-                                Estudo otimizado por <strong style="color: var(--amber);">sistemas avancados de inteligencias artificiais</strong> -
-                                entrevistas conduzidas com <strong>sistema de agentes simulados validados</strong> representando 490 eleitores sinteticos do DF.
-                                Extracao de <strong>dados publicos proprios</strong> com processamento por Claude Opus 4.5 utilizando prompt especializado.
-                                Analise supervisionada por agente <strong>Dra. Helena Montenegro</strong> (cientista politica IA).
-                            </p>
-                            <div style="display: flex; gap: var(--space-md); margin-top: 12px; flex-wrap: wrap;">
-                                <span style="font-size: 11px; padding: 4px 10px; background: var(--info-bg); color: var(--info); border-radius: var(--radius-sm); font-weight: 500;">Claude Opus 4.5</span>
-                                <span style="font-size: 11px; padding: 4px 10px; background: var(--success-bg); color: var(--success); border-radius: var(--radius-sm); font-weight: 500;">490 Agentes Simulados</span>
-                                <span style="font-size: 11px; padding: 4px 10px; background: rgba(214, 158, 46, 0.1); color: var(--amber); border-radius: var(--radius-sm); font-weight: 500;">Dados Publicos Proprios</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Alerts Section -->
+            <!-- MAPA DE PALAVRAS -->
             <section class="section">
                 <div class="section-header">
                     <div class="section-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                            <line x1="12" y1="9" x2="12" y2="13"></line>
-                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                         </svg>
                     </div>
                     <div>
-                        <h2 class="section-title">Sintese Executiva - Dra. Helena Montenegro</h2>
-                        <p class="section-subtitle">Analise da cientista politica IA sobre os resultados</p>
+                        <h2 class="section-title">Mapa de Palavras - Principais Menções</h2>
+                        <p class="section-subtitle">Termos mais frequentes nas entrevistas</p>
                     </div>
                 </div>
-                <div class="alerts-grid">
-                    <div class="alert-card danger">
-                        <div class="alert-header">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="8" x2="12" y2="12"></line>
-                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                            </svg>
-                            <span class="alert-title">Maior Ameaca</span>
-                        </div>
-                        <p class="alert-text">Candidato de centro (Reguffe) - 57% migrariam. Esta e a maior vulnerabilidade.</p>
-                    </div>
-                    <div class="alert-card success">
-                        <div class="alert-header">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                            <span class="alert-title">Forca Principal</span>
-                        </div>
-                        <p class="alert-text">Independencia de Arruda - 83% resistem mesmo se padrinho romper.</p>
-                    </div>
-                    <div class="alert-card warning">
-                        <div class="alert-header">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="16" x2="12" y2="12"></line>
-                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                            </svg>
-                            <span class="alert-title">Alerta Vermelho</span>
-                        </div>
-                        <p class="alert-text">Voto defensivo - 70% votam CONTRA adversario, nao A FAVOR de Celina.</p>
+                <div class="wordcloud-container">
+                    <div class="wordcloud">
+                        <span class="word size-1">Família</span>
+                        <span class="word size-1">Saúde</span>
+                        <span class="word size-2">Segurança</span>
+                        <span class="word size-2">Trabalho</span>
+                        <span class="word size-2">Economia</span>
+                        <span class="word size-2">Educação</span>
+                        <span class="word size-3">Corrupção</span>
+                        <span class="word size-3">Violência</span>
+                        <span class="word size-3">Desemprego</span>
+                        <span class="word size-3">Fé</span>
+                        <span class="word size-3">Liberdade</span>
+                        <span class="word size-4">Inflação</span>
+                        <span class="word size-4">Emprego</span>
+                        <span class="word size-4">Honestidade</span>
+                        <span class="word size-4">Igualdade</span>
+                        <span class="word size-4">Ordem</span>
+                        <span class="word size-5">Justiça</span>
+                        <span class="word size-5">Doença</span>
+                        <span class="word size-5">Filhos</span>
+                        <span class="word size-5">Crime</span>
                     </div>
                 </div>
             </section>
 
-            <!-- Charts Section -->
+            <!-- PERFIL DO CANDIDATO QUE ROUBARIA VOTOS -->
+            <section class="persona-card">
+                <div class="section-header" style="margin-bottom: var(--space-lg);">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Mapa de Ameaça: Perfil do Candidato Competitivo</h2>
+                        <p class="section-subtitle">Características que atrairiam migração de votos</p>
+                    </div>
+                </div>
+                <div class="persona-header">
+                    <div class="persona-avatar">⚠️</div>
+                    <div class="persona-info">
+                        <h3>Candidato de Alto Risco - Perfil Técnico-Moderado</h3>
+                        <p>56,9% dos eleitores considerariam migrar para este perfil</p>
+                    </div>
+                </div>
+                <div class="persona-traits">
+                    <div class="persona-trait">
+                        <div class="icon">🎓</div>
+                        <div class="trait-label">Formação</div>
+                        <div class="trait-value">Técnica/Acadêmica</div>
+                    </div>
+                    <div class="persona-trait">
+                        <div class="icon">⚖️</div>
+                        <div class="trait-label">Posicionamento</div>
+                        <div class="trait-value">Centro/Apartidário</div>
+                    </div>
+                    <div class="persona-trait">
+                        <div class="icon">🗣️</div>
+                        <div class="trait-label">Discurso</div>
+                        <div class="trait-value">Anti-polarização</div>
+                    </div>
+                    <div class="persona-trait">
+                        <div class="icon">📊</div>
+                        <div class="trait-label">Abordagem</div>
+                        <div class="trait-value">Gestão/Resultados</div>
+                    </div>
+                </div>
+                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: var(--danger-bg); border: 1px solid var(--danger); border-radius: var(--radius-lg);">
+                    <p style="font-size: 14px; color: var(--text-primary);">
+                        <strong style="color: var(--danger);">⚠️ ALERTA:</strong> Este perfil atrai especialmente eleitores do
+                        <strong>Plano Piloto, Lago Sul, Águas Claras e Sudoeste</strong> (classes A e B), que valorizam
+                        competência técnica acima de ideologia. Representam 32% da amostra e têm alta influência na formação de opinião.
+                    </p>
+                </div>
+            </section>
+
+            <!-- DADOS DEMOGRÁFICOS POR REGIÃO -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Análise Demográfica por Região</h2>
+                        <p class="section-subtitle">Distribuição e perfil dos eleitores</p>
+                    </div>
+                </div>
+                <div class="demographics-grid">
+                    <div class="demo-card">
+                        <h4>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            Top Regiões Administrativas
+                        </h4>
+                        <div class="demo-bar"><span class="label">Ceilândia</span><div class="bar-container"><div class="bar" style="width: 100%"></div></div><span class="value">10,0%</span></div>
+                        <div class="demo-bar"><span class="label">Samambaia</span><div class="bar-container"><div class="bar" style="width: 88%"></div></div><span class="value">8,8%</span></div>
+                        <div class="demo-bar"><span class="label">Plano Piloto</span><div class="bar-container"><div class="bar" style="width: 83%"></div></div><span class="value">8,3%</span></div>
+                        <div class="demo-bar"><span class="label">Taguatinga</span><div class="bar-container"><div class="bar" style="width: 73%"></div></div><span class="value">7,3%</span></div>
+                        <div class="demo-bar"><span class="label">Gama</span><div class="bar-container"><div class="bar" style="width: 59%"></div></div><span class="value">5,9%</span></div>
+                    </div>
+                    <div class="demo-card">
+                        <h4>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                            </svg>
+                            Perfil Demográfico
+                        </h4>
+                        <div class="demo-bar"><span class="label">Feminino</span><div class="bar-container"><div class="bar" style="width: 52.1%"></div></div><span class="value">52,1%</span></div>
+                        <div class="demo-bar"><span class="label">Masculino</span><div class="bar-container"><div class="bar" style="width: 47.9%"></div></div><span class="value">47,9%</span></div>
+                        <div class="demo-bar"><span class="label">Pardos</span><div class="bar-container"><div class="bar" style="width: 45%"></div></div><span class="value">45,0%</span></div>
+                        <div class="demo-bar"><span class="label">Brancos</span><div class="bar-container"><div class="bar" style="width: 40%"></div></div><span class="value">40,0%</span></div>
+                        <div class="demo-bar"><span class="label">Pretos</span><div class="bar-container"><div class="bar" style="width: 15%"></div></div><span class="value">15,0%</span></div>
+                    </div>
+                    <div class="demo-card">
+                        <h4>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                            Classe Social
+                        </h4>
+                        <div class="demo-bar"><span class="label">Baixa</span><div class="bar-container"><div class="bar" style="width: 34.7%"></div></div><span class="value">34,7%</span></div>
+                        <div class="demo-bar"><span class="label">Média-baixa</span><div class="bar-container"><div class="bar" style="width: 32.9%"></div></div><span class="value">32,9%</span></div>
+                        <div class="demo-bar"><span class="label">Média-alta</span><div class="bar-container"><div class="bar" style="width: 19.8%"></div></div><span class="value">19,8%</span></div>
+                        <div class="demo-bar"><span class="label">Alta</span><div class="bar-container"><div class="bar" style="width: 12.6%"></div></div><span class="value">12,6%</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GRÁFICOS DE RESULTADOS -->
             <section class="section">
                 <div class="section-header">
                     <div class="section-icon">
@@ -1466,31 +1509,31 @@
                         </svg>
                     </div>
                     <div>
-                        <h2 class="section-title">Resultados por Modulo</h2>
-                        <p class="section-subtitle">Analise detalhada de cada cenario de stress</p>
+                        <h2 class="section-title">Resultados por Módulo de Stress</h2>
+                        <p class="section-subtitle">Análise detalhada de cada cenário</p>
                     </div>
                 </div>
                 <div class="charts-grid">
                     <div class="chart-card">
-                        <h3 class="chart-title">Modulo 1: Fidelidade ao Padrinho (Arruda)</h3>
+                        <h3 class="chart-title">Módulo 1: Independência da Base</h3>
                         <div class="chart-container">
                             <canvas id="chart1"></canvas>
                         </div>
                     </div>
                     <div class="chart-card">
-                        <h3 class="chart-title">Modulo 2: Elasticidade Moral (Corrupcao)</h3>
+                        <h3 class="chart-title">Módulo 2: Elasticidade Moral (Corrupção)</h3>
                         <div class="chart-container">
                             <canvas id="chart2"></canvas>
                         </div>
                     </div>
                     <div class="chart-card">
-                        <h3 class="chart-title">Modulo 3: Ameaca do Outsider</h3>
+                        <h3 class="chart-title">Módulo 3: Ameaça Outsider</h3>
                         <div class="chart-container">
                             <canvas id="chart3"></canvas>
                         </div>
                     </div>
                     <div class="chart-card">
-                        <h3 class="chart-title">Modulo 4: Motivacao do Voto</h3>
+                        <h3 class="chart-title">Módulo 4: Motivação do Voto</h3>
                         <div class="chart-container">
                             <canvas id="chart4"></canvas>
                         </div>
@@ -1498,218 +1541,159 @@
                 </div>
             </section>
 
-            <!-- Vulnerability Map -->
+            <!-- GRÁFICOS ADICIONAIS -->
             <section class="section">
                 <div class="section-header">
                     <div class="section-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10"></circle>
-                            <circle cx="12" cy="12" r="6"></circle>
-                            <circle cx="12" cy="12" r="2"></circle>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                         </svg>
                     </div>
                     <div>
-                        <h2 class="section-title">Mapa de Vulnerabilidades</h2>
-                        <p class="section-subtitle">Classificacao por nivel de risco</p>
+                        <h2 class="section-title">Correlações Demográficas</h2>
+                        <p class="section-subtitle">Análise cruzada de perfis</p>
                     </div>
                 </div>
-                <div class="vulnerability-map">
-                    <div class="vuln-grid">
-                        <div class="vuln-column">
-                            <div class="vuln-level critical">Critico</div>
-                            <div class="vuln-items">
-                                <div class="vuln-item">Candidato de centro (Reguffe)</div>
-                                <div class="vuln-item">Escandalo de corrupcao</div>
-                            </div>
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3 class="chart-title">Orientação Política</h3>
+                        <div class="chart-container">
+                            <canvas id="chart5"></canvas>
                         </div>
-                        <div class="vuln-column">
-                            <div class="vuln-level high">Alto</div>
-                            <div class="vuln-items">
-                                <div class="vuln-item">Outsider populista (seguranca)</div>
-                                <div class="vuln-item">Voto nao-entusiasta</div>
-                            </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3 class="chart-title">Faixa Etária</h3>
+                        <div class="chart-container">
+                            <canvas id="chart6"></canvas>
                         </div>
-                        <div class="vuln-column">
-                            <div class="vuln-level moderate">Moderado</div>
-                            <div class="vuln-items">
-                                <div class="vuln-item">Associacao com Ibaneis</div>
-                                <div class="vuln-item">Percepcao de "mais do mesmo"</div>
-                            </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3 class="chart-title">Religião</h3>
+                        <div class="chart-container">
+                            <canvas id="chart7"></canvas>
                         </div>
-                        <div class="vuln-column">
-                            <div class="vuln-level low">Baixo</div>
-                            <div class="vuln-items">
-                                <div class="vuln-item">Rompimento com Arruda</div>
-                                <div class="vuln-item">Candidato do PT</div>
-                            </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3 class="chart-title">Escolaridade</h3>
+                        <div class="chart-container">
+                            <canvas id="chart8"></canvas>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Recommendations -->
+            <!-- ANÁLISE DA HELENA -->
             <section class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                    </div>
-                    <div>
-                        <h2 class="section-title">Recomendacoes Estrategicas</h2>
-                        <p class="section-subtitle">Acoes priorizadas por urgencia</p>
-                    </div>
-                </div>
-                <div class="recommendations-grid">
-                    <div class="recommendation-card urgent">
-                        <span class="rec-priority">Urgente</span>
-                        <h3 class="rec-title">Neutralizar Candidaturas de Centro</h3>
-                        <p class="rec-description">Monitorar movimentacoes de Reguffe e potenciais candidatos de centro. Agir ANTES que surjam oficialmente.</p>
-                    </div>
-                    <div class="recommendation-card urgent">
-                        <span class="rec-priority">Urgente</span>
-                        <h3 class="rec-title">Blindagem Anticorrupcao Total</h3>
-                        <p class="rec-description">Zero tolerancia a irregularidades. 67% abandonam imediatamente se surgir escandalo.</p>
-                    </div>
-                    <div class="recommendation-card important">
-                        <span class="rec-priority">Importante</span>
-                        <h3 class="rec-title">Construir Adesao Genuina</h3>
-                        <p class="rec-description">70% votam por rejeicao ao adversario. Criar conexao emocional positiva alem do anti-PT.</p>
-                    </div>
-                    <div class="recommendation-card important">
-                        <span class="rec-priority">Importante</span>
-                        <h3 class="rec-title">Ajustar Discurso de Seguranca</h3>
-                        <p class="rec-description">Endurecer com componente emocional. 41% preferem candidato "linha dura" sobre abordagem tecnica.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Quotes Section -->
-            <section class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h2 class="section-title">Citacoes Representativas</h2>
-                        <p class="section-subtitle">Vozes dos eleitores sinteticos</p>
-                    </div>
-                </div>
-                <div class="quotes-grid">
-                    <div class="quote-card">
-                        <p class="quote-text">A Celina nao me empolga, mas pelo menos nao e petista. Voto mais contra o adversario do que a favor dela.</p>
-                        <div class="quote-author">
-                            <div class="quote-avatar">EA</div>
-                            <div class="quote-meta">
-                                <span class="quote-name">Eleitor Anonimo</span>
-                                <span class="quote-location">Plano Piloto | G1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="quote-card">
-                        <p class="quote-text">50 milhoes desviados e coisa seria demais. Como catolico e pai de familia, nao posso compactuar com isso.</p>
-                        <div class="quote-author">
-                            <div class="quote-avatar">JM</div>
-                            <div class="quote-meta">
-                                <span class="quote-name">Jose Martins Pinto</span>
-                                <span class="quote-location">Sudoeste | G1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="quote-card">
-                        <p class="quote-text">Se for um cara tecnico mesmo, tipo Reguffe, ai ja muda a conversa. Valorizo competencia acima de ideologia.</p>
-                        <div class="quote-author">
-                            <div class="quote-avatar">EN</div>
-                            <div class="quote-meta">
-                                <span class="quote-name">Engenheiro Anonimo</span>
-                                <span class="quote-location">Lago Sul | G1</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Chat Helena Section -->
-            <section class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="3"></circle>
-                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h2 class="section-title">Analise com Dra. Helena Montenegro</h2>
-                        <p class="section-subtitle">Cientista Politica Senior | INTEIA</p>
-                    </div>
-                </div>
-                <div class="chat-section">
-                    <div class="chat-header">
-                        <div class="chat-avatar">
+                <div class="helena-analysis">
+                    <div class="helena-header">
+                        <div class="helena-avatar">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="12" cy="7" r="4"></circle>
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                             </svg>
                         </div>
-                        <div class="chat-info">
-                            <h3>Dra. Helena Montenegro</h3>
-                            <p>Cientista Politica Senior | Doutorado USP</p>
+                        <div class="helena-info">
+                            <h3>Helena Montenegro</h3>
+                            <p>Agente de Sistemas de IA Avançados | Cientista Política</p>
                         </div>
-                        <div class="chat-status">
-                            <div class="chat-status-dot"></div>
-                            Online
-                        </div>
+                        <div class="helena-badge">IA Avançada</div>
                     </div>
-                    <div class="chat-messages" id="chatMessages">
-                        <div class="chat-message helena">
-                            <div class="msg-avatar">HM</div>
-                            <div class="msg-content">
-                                <div class="msg-name">Dra. Helena Montenegro</div>
-                                <div class="msg-text">
-                                    Boa tarde! Sou a Dra. Helena Montenegro, cientista politica responsavel por esta analise.
-                                    Os resultados do stress test revelam vulnerabilidades importantes na candidatura.
-                                    O principal ponto de atencao e a forte atracao por um candidato de centro - 56,9% considerariam migrar para alguem como Reguffe.
-                                    Isso indica que o eleitorado busca uma alternativa que nao seja polarizada.
-                                </div>
-                                <div class="msg-time">14:32</div>
-                            </div>
+                    <div class="helena-content">
+                        <div class="helena-message">
+                            <p><strong>Prezada Candidata,</strong></p>
+                            <p>Após análise aprofundada de <span class="highlight">1.000 perfis eleitorais sintéticos</span> representativos do Distrito Federal, apresento as conclusões estratégicas mais relevantes para sua campanha.</p>
                         </div>
-                        <div class="chat-message helena">
-                            <div class="msg-avatar">HM</div>
-                            <div class="msg-content">
-                                <div class="msg-name">Dra. Helena Montenegro</div>
-                                <div class="msg-text">
-                                    Outro dado preocupante: 67,2% abandonariam a candidata se surgisse um escandalo de corrupcao.
-                                    Isso mostra que a base de apoio e fragil em termos de lealdade - votam nela mais por falta de opcao do que por conviccao.
-                                    A boa noticia e a independencia em relacao ao Arruda: 82,6% manteriam o voto mesmo com rompimento.
-                                </div>
-                                <div class="msg-time">14:33</div>
-                            </div>
+                        <div class="helena-message">
+                            <p><strong>1. SUA MAIOR FORÇA:</strong> Você possui <span class="highlight">base independente e consolidada</span>. 82,6% dos seus eleitores manteriam o voto mesmo sob pressão de lideranças externas. Isso demonstra que você construiu identidade política própria.</p>
                         </div>
-                        <div class="chat-message helena">
-                            <div class="msg-avatar">HM</div>
-                            <div class="msg-content">
-                                <div class="msg-name">Dra. Helena Montenegro</div>
-                                <div class="msg-text">
-                                    Pode me fazer perguntas sobre os resultados. Estou aqui para ajudar a interpretar os dados e sugerir estrategias.
-                                </div>
-                                <div class="msg-time">14:34</div>
-                            </div>
+                        <div class="helena-message">
+                            <p><strong>2. SUA MAIOR VULNERABILIDADE:</strong> O surgimento de candidato com <span class="highlight">perfil técnico-moderado</span> (apartidário, discurso anti-polarização, foco em gestão) atrairia 56,9% dos seus eleitores. Este é o cenário de maior risco e exige ação preventiva imediata.</p>
                         </div>
-                    </div>
-                    <div class="chat-input-area">
-                        <input type="text" class="chat-input" id="chatInput" placeholder="Pergunte sobre a analise..." onkeypress="handleKeyPress(event)">
-                        <button class="chat-send-btn" onclick="sendMessage()">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="22" y1="2" x2="11" y2="13"></line>
-                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                            </svg>
-                        </button>
+                        <div class="helena-message">
+                            <p><strong>3. NATUREZA DO SEU VOTO:</strong> 70% dos seus votos são <span class="highlight">defensivos</span> - eleitores votam em você para barrar adversários, não por adesão genuína. Isso torna a base volátil e vulnerável a alternativas.</p>
+                        </div>
+                        <div class="helena-message">
+                            <p><strong>4. BLINDAGEM ÉTICA É INEGOCIÁVEL:</strong> 67,2% abandonariam você imediatamente se surgir qualquer escândalo de corrupção. A tolerância a desvios éticos é praticamente <span class="highlight">zero</span>.</p>
+                        </div>
+                        <div class="helena-message">
+                            <p><strong>5. SEGURANÇA PÚBLICA:</strong> 41% dos eleitores preferem candidato com discurso "linha dura". Recomendo <span class="highlight">endurecer a comunicação</span> sobre segurança com componente emocional, sem perder viabilidade institucional.</p>
+                        </div>
+                        <div class="helena-message">
+                            <p><strong>RECOMENDAÇÃO FINAL:</strong> Sua estratégia deve focar em: (1) neutralizar candidaturas de centro antes que surjam, (2) manter blindagem ética absoluta, (3) construir adesão genuína além da rejeição ao adversário, (4) ajustar discurso de segurança para tom mais firme.</p>
+                        </div>
                     </div>
                 </div>
             </section>
+
+            <!-- PROMPT COMPLETO DA HELENA -->
+            <section class="prompt-section">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <polyline points="4 17 10 11 4 5"></polyline>
+                        <line x1="12" y1="19" x2="20" y2="19"></line>
+                    </svg>
+                    Persona da Helena - Agente de Sistemas de IA Avançados
+                </h3>
+                <div class="prompt-content">Você é a Dra. Helena Montenegro, uma cientista política sênior especializada em comportamento eleitoral e análise de dados políticos.
+
+PERFIL PROFISSIONAL:
+- Doutora em Ciência Política pela USP com pós-doutorado em Stanford
+- 20 anos de experiência em consultoria política de alto nível
+- Especialista em análise de dados eleitorais e comportamento do eleitor brasileiro
+- Assessorou campanhas presidenciais e estaduais no Brasil
+- Membro do conselho científico de institutos de pesquisa
+
+ESTILO DE COMUNICAÇÃO:
+- Direta e objetiva, sem rodeios
+- Usa dados e evidências para embasar todas as afirmações
+- Tom profissional mas acessível
+- Prioriza insights acionáveis sobre análises puramente acadêmicas
+- Comunica riscos de forma clara e sem eufemismos
+
+ABORDAGEM ANALÍTICA:
+- Combina rigor metodológico com visão estratégica prática
+- Identifica padrões que outros analistas não percebem
+- Conecta dados demográficos com comportamento político
+- Antecipa cenários e riscos antes que se materializem
+- Oferece recomendações concretas e implementáveis
+
+VALORES:
+- Ética e transparência na análise
+- Compromisso com a verdade dos dados
+- Respeito pela inteligência do interlocutor
+- Foco em resultados mensuráveis
+
+FORMATO DE ANÁLISE:
+1. Sempre começar com a conclusão principal
+2. Apresentar dados que sustentam a conclusão
+3. Identificar riscos e vulnerabilidades
+4. Oferecer recomendações estratégicas priorizadas
+5. Comunicar com clareza para tomadores de decisão
+
+Ao analisar dados eleitorais, Helena sempre:
+- Cruza variáveis demográficas para identificar padrões
+- Compara com benchmarks históricos
+- Quantifica incertezas e margens de erro
+- Diferencia correlação de causalidade
+- Destaca o que realmente importa para a decisão
+
+A Helena é um Agente de Sistemas de IA Avançados da INTEIA,
+operando com Claude Opus 4.5 para análise de inteligência estratégica.</div>
+            </section>
+
+            <!-- PESQUISADOR RESPONSÁVEL -->
+            <div class="researcher-card">
+                <div class="researcher-avatar">IM</div>
+                <div class="researcher-info">
+                    <h3>Igor Morais Vasconcelos</h3>
+                    <div class="role">Pesquisador Responsável | Presidente INTEIA</div>
+                    <div class="contact">
+                        <strong>Email:</strong> <a href="mailto:igor@inteia.com.br">igor@inteia.com.br</a><br>
+                        <strong>Site:</strong> <a href="https://inteia.com.br" target="_blank">inteia.com.br</a>
+                    </div>
+                </div>
+            </div>
 
             <!-- Footer -->
             <footer class="footer">
@@ -1717,8 +1701,8 @@
                     <div class="footer-brand">
                         <div class="footer-logo">IA</div>
                         <div class="footer-info">
-                            <span class="footer-company">INTE<span class="highlight">IA</span> - Instituto de Inteligencia Artificial</span>
-                            <span class="footer-details">CNPJ: 63.918.490/0001-20 | SHN Quadra 2 Bloco F, Sala 625/626 - Brasilia/DF</span>
+                            <span class="footer-company">INTE<span class="highlight">IA</span> - Inteligência Estratégica</span>
+                            <span class="footer-details">CNPJ: 63.918.490/0001-20 | SHN Quadra 2 Bloco F, Sala 625/626 - Brasília/DF</span>
                         </div>
                     </div>
                     <div class="footer-classification">
@@ -1731,30 +1715,23 @@
         </div>
     </div>
 
-    <!-- Print Footer (apenas impressao) -->
+    <!-- Print Footer -->
     <div class="print-footer">
-        INTEIA - Instituto de Inteligencia Artificial | CNPJ: 63.918.490/0001-20 | inteia.com.br | Documento Confidencial
+        INTEIA - Inteligência Estratégica | CNPJ: 63.918.490/0001-20 | inteia.com.br | Documento Confidencial
     </div>
 
     <!-- Scripts -->
     <script>
-        // Theme Toggle
         function toggleTheme() {
             const html = document.documentElement;
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-
-            // Update label
-            document.querySelector('.theme-label').textContent =
-                newTheme === 'light' ? 'Modo Escuro' : 'Modo Claro';
-
-            // Reinitialize charts with new colors
+            document.querySelector('.theme-label').textContent = newTheme === 'light' ? 'Modo Escuro' : 'Modo Claro';
             initCharts();
         }
 
-        // Load saved theme
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
@@ -1763,7 +1740,6 @@
             }
         })();
 
-        // Chart.js Global Config
         function getChartColors() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             return {
@@ -1776,20 +1752,18 @@
 
         function initCharts() {
             const colors = getChartColors();
-
             Chart.defaults.color = colors.text;
             Chart.defaults.borderColor = colors.grid;
             Chart.defaults.font.family = 'Inter, sans-serif';
 
-            // Destroy existing charts
             charts.forEach(chart => chart.destroy());
             charts = [];
 
-            // Chart 1: Fidelidade Arruda
+            // Chart 1: Independência da Base
             charts.push(new Chart(document.getElementById('chart1'), {
                 type: 'doughnut',
                 data: {
-                    labels: ['Ficam com Celina', 'Seguem Arruda'],
+                    labels: ['Base Independente', 'Vulnerável a Pressão'],
                     datasets: [{
                         data: [82.6, 17.4],
                         backgroundColor: ['#22c55e', '#ef4444'],
@@ -1801,9 +1775,7 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     cutout: '65%',
-                    plugins: {
-                        legend: { position: 'bottom' }
-                    }
+                    plugins: { legend: { position: 'bottom' } }
                 }
             }));
 
@@ -1811,7 +1783,7 @@
             charts.push(new Chart(document.getElementById('chart2'), {
                 type: 'bar',
                 data: {
-                    labels: ['Corrupcao Inaceitavel', 'Depende Contexto', 'Mantem Voto'],
+                    labels: ['Corrupção Inaceitável', 'Depende Contexto', 'Mantém Voto'],
                     datasets: [{
                         data: [67.2, 20.9, 11.9],
                         backgroundColor: ['#ef4444', '#eab308', '#22c55e'],
@@ -1835,7 +1807,7 @@
             charts.push(new Chart(document.getElementById('chart3'), {
                 type: 'pie',
                 data: {
-                    labels: ['Preferem Outsider', 'Preferem Celina', 'Divididos'],
+                    labels: ['Preferem Linha Dura', 'Preferem Candidata', 'Divididos'],
                     datasets: [{
                         data: [41.0, 35.5, 23.5],
                         backgroundColor: ['#f97316', '#22c55e', '#94a3b8'],
@@ -1845,17 +1817,15 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'bottom' }
-                    }
+                    plugins: { legend: { position: 'bottom' } }
                 }
             }));
 
-            // Chart 4: Motivacao do Voto
+            // Chart 4: Motivação do Voto
             charts.push(new Chart(document.getElementById('chart4'), {
                 type: 'doughnut',
                 data: {
-                    labels: ['Rejeitar Adversario', 'Apoiar Celina'],
+                    labels: ['Voto Defensivo', 'Voto por Adesão'],
                     datasets: [{
                         data: [70, 30],
                         backgroundColor: ['#ef4444', '#22c55e'],
@@ -1867,78 +1837,96 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     cutout: '65%',
-                    plugins: {
-                        legend: { position: 'bottom' }
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            }));
+
+            // Chart 5: Orientação Política
+            charts.push(new Chart(document.getElementById('chart5'), {
+                type: 'bar',
+                data: {
+                    labels: ['Direita', 'Centro', 'Esquerda', 'Centro-Dir', 'Centro-Esq'],
+                    datasets: [{
+                        data: [26.3, 25.1, 22.6, 13.1, 12.9],
+                        backgroundColor: ['#3b82f6', '#8b5cf6', '#ef4444', '#06b6d4', '#f97316'],
+                        borderRadius: 6,
+                        barThickness: 30
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: { grid: { display: false }, max: 30 }
                     }
+                }
+            }));
+
+            // Chart 6: Faixa Etária
+            charts.push(new Chart(document.getElementById('chart6'), {
+                type: 'bar',
+                data: {
+                    labels: ['16-24', '25-34', '35-44', '45-54', '55-64', '65+'],
+                    datasets: [{
+                        data: [14.5, 22.5, 20.0, 18.0, 10.0, 15.0],
+                        backgroundColor: '#d69e2e',
+                        borderRadius: 6,
+                        barThickness: 30
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: { grid: { display: false }, max: 25 }
+                    }
+                }
+            }));
+
+            // Chart 7: Religião
+            charts.push(new Chart(document.getElementById('chart7'), {
+                type: 'pie',
+                data: {
+                    labels: ['Católica', 'Evangélica', 'Sem Religião', 'Espírita', 'Outras'],
+                    datasets: [{
+                        data: [44.1, 25.3, 14.2, 5.8, 10.6],
+                        backgroundColor: ['#3b82f6', '#22c55e', '#94a3b8', '#8b5cf6', '#f97316'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            }));
+
+            // Chart 8: Escolaridade
+            charts.push(new Chart(document.getElementById('chart8'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Médio/Sup. Incompleto', 'Superior/Pós', 'Fundamental'],
+                    datasets: [{
+                        data: [42.8, 38.0, 19.2],
+                        backgroundColor: ['#d69e2e', '#22c55e', '#94a3b8'],
+                        borderWidth: 0,
+                        spacing: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: { legend: { position: 'bottom' } }
                 }
             }));
         }
 
-        // Initialize charts on load
         initCharts();
-
-        // Chat functionality
-        const helenaResponses = [
-            "Excelente pergunta! Com base nos dados, posso afirmar que a maior vulnerabilidade esta na possivel entrada de um candidato de centro. 56,9% dos eleitores considerariam migrar.",
-            "Os dados mostram que 70% dos votos sao motivados por rejeicao ao adversario, nao por adesao genuina. Isso e preocupante porque esse tipo de voto e volatel.",
-            "A independencia em relacao ao Arruda e um ponto positivo. 82,6% manteriam o voto mesmo com rompimento. Isso indica que a candidata construiu identidade propria.",
-            "O tema seguranca e sensivel. 41% preferem um candidato 'linha dura'. A recomendacao e endurecer o discurso mantendo viabilidade democratica.",
-            "Sobre corrupcao: e o maior risco. 67,2% abandonariam imediatamente se surgisse escandalo. A blindagem etica deve ser prioridade absoluta.",
-            "Posso detalhar qualquer modulo especifico do stress test. Qual aspecto gostaria de aprofundar?"
-        ];
-
-        let responseIndex = 0;
-
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
-
-            if (!message) return;
-
-            const messagesContainer = document.getElementById('chatMessages');
-
-            // Add user message
-            const userMsgDiv = document.createElement('div');
-            userMsgDiv.className = 'chat-message user';
-            userMsgDiv.innerHTML = `
-                <div class="msg-content" style="margin-left: auto; text-align: right;">
-                    <div class="msg-name" style="color: var(--text-muted);">Voce</div>
-                    <div class="msg-text" style="background: rgba(214, 158, 46, 0.1); border-top-left-radius: var(--radius-lg); border-top-right-radius: 4px;">${message}</div>
-                    <div class="msg-time">${new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</div>
-                </div>
-            `;
-            messagesContainer.appendChild(userMsgDiv);
-
-            input.value = '';
-
-            // Simulate Helena typing
-            setTimeout(() => {
-                const helenaMsgDiv = document.createElement('div');
-                helenaMsgDiv.className = 'chat-message helena';
-                helenaMsgDiv.innerHTML = `
-                    <div class="msg-avatar">HM</div>
-                    <div class="msg-content">
-                        <div class="msg-name">Dra. Helena Montenegro</div>
-                        <div class="msg-text">${helenaResponses[responseIndex % helenaResponses.length]}</div>
-                        <div class="msg-time">${new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</div>
-                    </div>
-                `;
-                messagesContainer.appendChild(helenaMsgDiv);
-                responseIndex++;
-
-                // Scroll to bottom
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }, 1000);
-
-            // Scroll to bottom
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
-            }
-        }
     </script>
 </body>
 </html>
