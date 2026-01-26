@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>INTEIA | Intenção de Voto - Celina Leão (DF 2026)</title>
+    <meta name="description" content="Relatório de Inteligência Estratégica - Análise de Intenção de Voto para Governador do DF 2026">
+    <meta name="author" content="Igor Morais Vasconcelos - INTEIA">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --amber: #d69e2e;
+            --amber-light: #f6e05e;
+            --amber-dark: #b7791f;
+            --success: #22c55e;
+            --success-bg: rgba(34, 197, 94, 0.1);
+            --warning: #eab308;
+            --warning-bg: rgba(234, 179, 8, 0.1);
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.1);
+            --info: #3b82f6;
+            --info-bg: rgba(59, 130, 246, 0.1);
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --shadow-amber: 0 4px 14px rgba(214, 158, 46, 0.25);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            --sidebar-bg: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            --hero-bg: linear-gradient(135deg, rgba(214, 158, 46, 0.08) 0%, rgba(214, 158, 46, 0.02) 100%);
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --text-light: #64748b;
+            --sidebar-bg: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+            --hero-bg: linear-gradient(135deg, rgba(214, 158, 46, 0.05) 0%, transparent 50%);
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Sidebar Desktop */
+        .side-mark {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid rgba(214, 158, 46, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            padding: var(--space-lg) 0;
+        }
+
+        .side-mark .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 12px;
+            color: #ffffff;
+        }
+
+        .side-mark .vertical-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--amber);
+            text-transform: uppercase;
+        }
+
+        .side-mark .author-info {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            text-align: center;
+        }
+
+        .side-mark .author-name { font-size: 9px; font-weight: 600; color: #ffffff; display: block; margin-bottom: 6px; }
+        .side-mark .author-role { font-size: 8px; color: var(--amber); display: block; }
+
+        /* Top Controls */
+        .top-controls {
+            position: fixed;
+            top: 0;
+            left: 60px;
+            right: 0;
+            height: 56px;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 var(--space-xl);
+            gap: var(--space-md);
+            z-index: 99;
+        }
+
+        .theme-toggle, .print-btn-top {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 8px 16px;
+            border-radius: var(--radius-lg);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .print-btn-top {
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border: none;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .theme-toggle svg, .print-btn-top svg { width: 16px; height: 16px; }
+        [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+        [data-theme="light"] .theme-toggle .icon-moon { display: none; }
+
+        /* Main Container */
+        .main-container {
+            margin-left: 60px;
+            margin-top: 56px;
+            min-height: calc(100vh - 56px);
+            padding-bottom: 100px;
+        }
+
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+        }
+
+        /* Hero Header */
+        .hero-header {
+            background: var(--hero-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+            position: relative;
+        }
+
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-xl);
+            flex-wrap: wrap;
+            gap: var(--space-lg);
+        }
+
+        .logo-section { display: flex; align-items: center; gap: var(--space-md); }
+
+        .logo-box {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .logo-name { font-size: 28px; font-weight: 800; color: var(--text-primary); }
+        .logo-name .highlight { color: var(--amber); }
+        .logo-tagline { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        .author-section { text-align: right; }
+        .author-label { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.1em; }
+        .author-name-main { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+        .author-title { font-size: 12px; color: var(--text-muted); }
+        .author-credential { font-size: 11px; color: var(--amber); font-weight: 500; }
+
+        .hero-title-section h1 { font-size: 28px; font-weight: 700; color: var(--text-primary); margin-bottom: var(--space-sm); }
+        .hero-title-section .subtitle { font-size: 14px; color: var(--text-muted); }
+
+        .hero-meta { display: flex; gap: var(--space-lg); margin-top: var(--space-lg); flex-wrap: wrap; }
+        .meta-item { display: flex; align-items: center; gap: var(--space-sm); font-size: 13px; color: var(--text-muted); }
+        .meta-item svg { width: 16px; height: 16px; color: var(--amber); }
+
+        .classification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: rgba(214, 158, 46, 0.1);
+            border: 1px solid rgba(214, 158, 46, 0.3);
+            border-radius: var(--radius-lg);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--amber);
+            text-transform: uppercase;
+        }
+
+        /* Executive Summary */
+        .executive-summary {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(214, 158, 46, 0.05) 100%);
+            border: 2px solid var(--success);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .executive-summary h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .executive-summary .conclusion-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.7;
+            margin-bottom: var(--space-lg);
+        }
+
+        .key-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md); }
+        .key-point { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: var(--space-md); text-align: center; }
+        .key-point .number { font-size: 24px; font-weight: 800; }
+        .key-point .label { font-size: 11px; color: var(--text-muted); }
+        .key-point.danger .number { color: var(--danger); }
+        .key-point.warning .number { color: var(--warning); }
+        .key-point.success .number { color: var(--success); }
+        .key-point.info .number { color: var(--info); }
+
+        /* KPI Cards */
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl); }
+        .kpi-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: var(--space-lg); text-align: center; }
+        .kpi-value { font-size: 32px; font-weight: 800; }
+        .kpi-value.success { color: var(--success); }
+        .kpi-value.danger { color: var(--danger); }
+        .kpi-value.warning { color: var(--warning); }
+        .kpi-value.info { color: var(--info); }
+        .kpi-label { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+
+        /* Section */
+        .section { margin-bottom: var(--space-2xl); }
+        .section-header { display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg); flex-wrap: wrap; }
+        .section-icon { width: 40px; height: 40px; background: rgba(214, 158, 46, 0.1); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .section-icon svg { width: 20px; height: 20px; color: var(--amber); }
+        .section-title { font-size: 18px; font-weight: 700; color: var(--text-primary); }
+        .section-subtitle { font-size: 12px; color: var(--text-muted); }
+
+        /* Charts */
+        .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-lg); }
+        .chart-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: var(--space-lg); }
+        .chart-title { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-md); }
+        .chart-container { height: 300px; position: relative; }
+        .chart-container-large { height: 400px; position: relative; }
+
+        /* Timeline */
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border-color); }
+        .timeline-item { position: relative; margin-bottom: var(--space-lg); padding-left: var(--space-md); }
+        .timeline-item::before { content: ''; position: absolute; left: -26px; top: 4px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--amber); background: var(--bg-primary); }
+        .timeline-item.positivo::before { background: var(--success); border-color: var(--success); }
+        .timeline-item.negativo::before { background: var(--danger); border-color: var(--danger); }
+        .timeline-item.muito_positivo::before { background: var(--amber); border-color: var(--amber); }
+        .timeline-item.neutro::before { background: var(--text-muted); border-color: var(--text-muted); }
+        .timeline-date { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+        .timeline-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin: 4px 0; }
+        .timeline-desc { font-size: 12px; color: var(--text-secondary); }
+        .timeline-badge { display: inline-block; font-size: 9px; padding: 2px 8px; border-radius: var(--radius-sm); margin-top: 4px; }
+        .timeline-badge.pesquisa { background: var(--info-bg); color: var(--info); }
+        .timeline-badge.politico { background: var(--warning-bg); color: var(--warning); }
+        .timeline-badge.juridico { background: var(--danger-bg); color: var(--danger); }
+        .timeline-badge.realizacao { background: var(--success-bg); color: var(--success); }
+        .timeline-badge.crise { background: var(--danger-bg); color: var(--danger); }
+        .timeline-badge.midia { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+        .timeline-badge.marco { background: rgba(214, 158, 46, 0.1); color: var(--amber); }
+
+        /* Data Table */
+        .data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        .data-table th { background: var(--bg-tertiary); padding: 12px 10px; text-align: left; font-weight: 600; color: var(--text-primary); border-bottom: 2px solid var(--border-color); }
+        .data-table td { padding: 10px; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); }
+        .data-table tr:hover td { background: var(--bg-card-hover); }
+        .data-table .highlight { font-weight: 700; color: var(--success); }
+
+        /* Helena Analysis */
+        .helena-analysis { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-2xl); overflow: hidden; }
+        .helena-header { background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%); padding: var(--space-lg); display: flex; align-items: center; gap: var(--space-md); flex-wrap: wrap; }
+        .helena-avatar { width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .helena-avatar svg { width: 28px; height: 28px; color: #ffffff; }
+        .helena-info h3 { font-size: 16px; font-weight: 700; color: #ffffff; }
+        .helena-info p { font-size: 11px; color: rgba(255, 255, 255, 0.8); }
+        .helena-badge { margin-left: auto; background: rgba(255, 255, 255, 0.2); padding: 6px 12px; border-radius: var(--radius-md); font-size: 10px; font-weight: 600; color: #ffffff; }
+        .helena-content { padding: var(--space-lg); }
+        .helena-message { background: var(--bg-tertiary); border-radius: var(--radius-lg); padding: var(--space-md); margin-bottom: var(--space-sm); border-left: 3px solid var(--amber); }
+        .helena-message p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+        .helena-message strong { color: var(--text-primary); }
+        .helena-message .highlight { color: var(--amber); font-weight: 600; }
+
+        /* Validation Card */
+        .validation-card { background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(34, 197, 94, 0.05) 100%); border: 1px solid var(--info); border-radius: var(--radius-xl); padding: var(--space-xl); margin-bottom: var(--space-2xl); }
+        .validation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: var(--space-lg); }
+        .validation-item { text-align: center; }
+        .validation-item .value { font-size: 22px; font-weight: 700; color: var(--info); }
+        .validation-item .label { font-size: 11px; color: var(--text-muted); }
+
+        /* Researcher Card */
+        .researcher-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: var(--space-xl); margin-top: var(--space-2xl); display: flex; align-items: center; gap: var(--space-xl); flex-wrap: wrap; }
+        .researcher-avatar { width: 70px; height: 70px; background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; color: #ffffff; flex-shrink: 0; }
+        .researcher-info h3 { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+        .researcher-info .role { font-size: 13px; color: var(--amber); font-weight: 500; }
+        .researcher-info .contact { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        .researcher-info .contact a { color: var(--amber); text-decoration: none; }
+
+        /* Footer */
+        .footer { margin-top: var(--space-3xl); padding: var(--space-xl); background: var(--bg-tertiary); border-top: 1px solid var(--border-color); }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-lg); }
+        .footer-brand { display: flex; align-items: center; gap: var(--space-md); }
+        .footer-logo { width: 36px; height: 36px; background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; color: #ffffff; }
+        .footer-company { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+        .footer-company .highlight { color: var(--amber); }
+        .footer-details { font-size: 10px; color: var(--text-light); }
+        .footer-classification { text-align: right; }
+        .footer-classification .badge { font-size: 9px; font-weight: 600; text-transform: uppercase; padding: 4px 10px; background: rgba(214, 158, 46, 0.1); border: 1px solid rgba(214, 158, 46, 0.3); border-radius: var(--radius-sm); color: var(--amber); }
+        .footer-copyright { font-size: 9px; color: var(--text-light); margin-top: 4px; }
+
+        /* Chat FAB */
+        .chat-fab {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            border-radius: 24px;
+            border: none;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            cursor: pointer;
+            color: #f8fafc;
+            font-weight: 600;
+            font-size: 13px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .chat-fab:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+        .chat-fab .chat-icon { font-size: 22px; }
+        .chat-fab .chat-text { text-align: left; max-width: 160px; line-height: 1.4; }
+        .chat-fab .chat-text strong { color: var(--amber); }
+
+        /* Chat Panel */
+        .chat-panel {
+            position: fixed;
+            right: 16px;
+            bottom: 80px;
+            width: min(400px, calc(100vw - 32px));
+            height: min(520px, calc(100vh - 120px));
+            border-radius: 18px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            overflow: hidden;
+            display: none;
+            z-index: 200;
+            flex-direction: column;
+        }
+        .chat-panel.open { display: flex; }
+
+        .chat-head {
+            padding: 14px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            color: #ffffff;
+        }
+        .chat-head .title { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .chat-head .title strong { font-size: 14px; }
+        .chat-head .mini { font-size: 11px; opacity: 0.9; }
+        .chat-settings { margin-top: 10px; }
+        .chat-settings label { display: block; font-size: 11px; color: rgba(255,255,255,0.9); margin-bottom: 4px; }
+        .chat-settings input { width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: #ffffff; padding: 8px 10px; outline: none; font-size: 12px; }
+        .chat-settings input::placeholder { color: rgba(255,255,255,0.6); }
+
+        .chat-body {
+            flex: 1;
+            padding: 12px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: var(--bg-secondary);
+        }
+
+        .msg {
+            max-width: 88%;
+            border-radius: 14px;
+            padding: 10px 12px;
+            font-size: 12px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+        .msg.user { margin-left: auto; background: var(--info); color: #ffffff; }
+        .msg.assistant { margin-right: auto; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); }
+
+        .chat-foot {
+            padding: 12px;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-primary);
+        }
+        .chat-foot .row { display: flex; gap: 10px; align-items: center; }
+        .chat-foot textarea { flex: 1; resize: none; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-tertiary); padding: 10px; font-family: inherit; font-size: 12px; color: var(--text-primary); height: 44px; outline: none; }
+        .chat-foot button { border: none; border-radius: 12px; padding: 10px 14px; cursor: pointer; font-weight: 700; background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%); color: #ffffff; font-size: 12px; }
+        .chat-foot .hint { margin-top: 8px; color: var(--text-muted); font-size: 10px; line-height: 1.4; }
+
+        /* Print Styles */
+        @media print {
+            @page { size: A4 portrait; margin: 2cm 1.5cm; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            html, body { background: #ffffff !important; color: #111827 !important; font-size: 10pt !important; }
+            .side-mark, .top-controls, .chat-fab, .chat-panel { display: none !important; }
+            .main-container { margin: 0 !important; padding: 0 !important; }
+            .content-wrapper { max-width: 100% !important; padding: 0 !important; }
+            .hero-header { background: #f8f9fa !important; border: 2px solid #333 !important; }
+            .chart-container, .chart-container-large { height: 200px !important; }
+            .section { page-break-inside: avoid; }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .side-mark { display: none; }
+            .main-container { margin-left: 0; margin-top: 56px; }
+            .top-controls { left: 0; padding: 0 12px; }
+            .theme-toggle .theme-label { display: none; }
+            .content-wrapper { padding: 12px; }
+            .hero-header { padding: 16px; border-radius: 12px; }
+            .hero-top { flex-direction: column; gap: 12px; }
+            .author-section { text-align: left; }
+            .hero-title-section h1 { font-size: 20px; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .charts-grid { grid-template-columns: 1fr; }
+            .chat-fab { right: 12px; bottom: 12px; padding: 12px 14px; }
+            .chat-fab .chat-text { display: none; }
+            .chat-panel { right: 8px; bottom: 70px; width: calc(100vw - 16px); height: calc(100vh - 100px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Side Mark (Desktop) -->
+    <aside class="side-mark">
+        <div class="logo-icon">IA</div>
+        <span class="vertical-text">INTEIA</span>
+        <div class="author-info">
+            <span class="author-name">IA Avancados</span>
+            <span class="author-role">Agentes Simulados</span>
+        </div>
+    </aside>
+
+    <!-- Top Controls -->
+    <div class="top-controls">
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span class="theme-label">Modo Escuro</span>
+        </button>
+        <button class="print-btn-top" onclick="window.print()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Imprimir
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <div class="content-wrapper">
+
+            <!-- Hero Header -->
+            <header class="hero-header">
+                <div class="hero-top">
+                    <div class="logo-section">
+                        <div class="logo-box">IA</div>
+                        <div class="logo-text">
+                            <span class="logo-name">INTE<span class="highlight">IA</span></span>
+                            <span class="logo-tagline">Inteligencia Estrategica</span>
+                        </div>
+                    </div>
+                    <div class="author-section">
+                        <div class="author-label">Pesquisador Responsavel</div>
+                        <div class="author-name-main">Igor Morais Vasconcelos</div>
+                        <div class="author-title">Presidente INTEIA</div>
+                        <div class="author-credential">igor@inteia.com.br | inteia.com.br</div>
+                    </div>
+                </div>
+                <div class="hero-content">
+                    <div class="hero-title-section">
+                        <h1>Intencao de Voto - Governador DF 2026</h1>
+                        <p class="subtitle">Analise de Evolucao Eleitoral: Celina Leao (Jul/2024 - Dez/2025)</p>
+                        <div class="hero-meta">
+                            <div class="meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                <span>Janeiro 2026</span>
+                            </div>
+                            <div class="meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                <span>19 Pesquisas Analisadas</span>
+                            </div>
+                            <div class="meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                <span>18 Meses de Dados</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="classification-badge">Confidencial</div>
+                </div>
+                <!-- Link para Stress Test -->
+                <div style="margin-top: var(--space-lg); display: flex; gap: var(--space-md); flex-wrap: wrap;">
+                    <a href="/resultados-stress-test/index.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); font-size: 13px; font-weight: 500; color: var(--text-primary); text-decoration: none; transition: all 0.2s;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        Ver Stress Test Eleitoral
+                    </a>
+                </div>
+            </header>
+
+            <!-- CONCLUSAO PRINCIPAL -->
+            <section class="executive-summary">
+                <h2>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    CONCLUSAO - Helena, Agente de Sistemas de IA Avancados
+                </h2>
+                <p class="conclusion-text">
+                    A candidata Celina Leao apresenta <strong>trajetoria ascendente consistente</strong>,
+                    saltando de 22% em julho/2024 para <strong>40-54% em dezembro/2025</strong>.
+                    A lideranca e <strong>solida e crescente</strong>, com vantagem de 17-35 pontos sobre o segundo colocado
+                    nos cenarios mais favoraveis. Principal ameaca: <strong>Jose Roberto Arruda</strong> em cenarios de retorno.
+                </p>
+                <div class="key-points">
+                    <div class="key-point success">
+                        <div class="number">+28pp</div>
+                        <div class="label">Crescimento Jul/24-Dez/25</div>
+                    </div>
+                    <div class="key-point success">
+                        <div class="number">54%</div>
+                        <div class="label">Pico em cenario direto</div>
+                    </div>
+                    <div class="key-point warning">
+                        <div class="number">32,2%</div>
+                        <div class="label">Cenario com Arruda</div>
+                    </div>
+                    <div class="key-point info">
+                        <div class="number">19</div>
+                        <div class="label">Pesquisas analisadas</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- KPIs -->
+            <section class="kpi-grid">
+                <div class="kpi-card"><div class="kpi-value success">50%</div><div class="kpi-label">Media Dez/2025</div></div>
+                <div class="kpi-card"><div class="kpi-value info">22%</div><div class="kpi-label">Inicio Jul/2024</div></div>
+                <div class="kpi-card"><div class="kpi-value warning">2.5%</div><div class="kpi-label">Margem de Erro Media</div></div>
+                <div class="kpi-card"><div class="kpi-value success">1.400</div><div class="kpi-label">Amostra Media</div></div>
+            </section>
+
+            <!-- VALIDACAO ESTATISTICA -->
+            <section class="validation-card">
+                <div class="section-header" style="margin-bottom: var(--space-lg);">
+                    <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                    <div>
+                        <h2 class="section-title">Metodologia</h2>
+                        <p class="section-subtitle">Dados agregados de institutos de pesquisa</p>
+                    </div>
+                </div>
+                <div class="validation-grid">
+                    <div class="validation-item"><div class="value">19</div><div class="label">Pesquisas</div></div>
+                    <div class="validation-item"><div class="value">4</div><div class="label">Institutos</div></div>
+                    <div class="validation-item"><div class="value">18</div><div class="label">Meses</div></div>
+                    <div class="validation-item"><div class="value">~25.000</div><div class="label">Entrevistas Total</div></div>
+                </div>
+            </section>
+
+            <!-- GRAFICO EVOLUCAO -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                    <div>
+                        <h2 class="section-title">Evolucao da Intencao de Voto</h2>
+                        <p class="section-subtitle">Trajetoria de Celina Leao ao longo do tempo</p>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">Celina Leao vs Segundo Colocado (Jul/2024 - Dez/2025)</h3>
+                    <div class="chart-container-large"><canvas id="chartEvolucao"></canvas></div>
+                </div>
+            </section>
+
+            <!-- GRAFICOS COMPARATIVOS -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+                    <div>
+                        <h2 class="section-title">Analise por Cenario</h2>
+                        <p class="section-subtitle">Comparativo de diferentes configuracoes de disputa</p>
+                    </div>
+                </div>
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3 class="chart-title">Distribuicao por Instituto</h3>
+                        <div class="chart-container"><canvas id="chartInstitutos"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3 class="chart-title">Cenarios com/sem Arruda</h3>
+                        <div class="chart-container"><canvas id="chartCenarios"></canvas></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TIMELINE -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                    <div>
+                        <h2 class="section-title">Timeline de Eventos</h2>
+                        <p class="section-subtitle">Fatos relevantes que impactaram a corrida eleitoral</p>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="timeline" id="timeline"></div>
+                </div>
+            </section>
+
+            <!-- TABELA DE DADOS -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div>
+                    <div>
+                        <h2 class="section-title">Dados Brutos das Pesquisas</h2>
+                        <p class="section-subtitle">Todas as pesquisas registradas no periodo</p>
+                    </div>
+                </div>
+                <div class="chart-card" style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Instituto</th>
+                                <th>Celina</th>
+                                <th>2o Colocado</th>
+                                <th>Nome</th>
+                                <th>Margem</th>
+                                <th>Amostra</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaDados"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ANALISE HELENA -->
+            <section class="section">
+                <div class="helena-analysis">
+                    <div class="helena-header">
+                        <div class="helena-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+                        <div class="helena-info"><h3>Dra. Helena Montenegro</h3><p>Agente de Sistemas de IA Avancados - INTEIA</p></div>
+                        <div class="helena-badge">IA Avancada</div>
+                    </div>
+                    <div class="helena-content">
+                        <div class="helena-message"><p><strong>Prezada Candidata,</strong> Apos analise de <span class="highlight">19 pesquisas eleitorais</span> de 4 institutos diferentes, apresento minhas conclusoes estrategicas.</p></div>
+                        <div class="helena-message"><p><strong>1. LIDERANCA CONSOLIDADA:</strong> Voce cresceu <span class="highlight">28 pontos percentuais</span> em 18 meses. Trajetoria e claramente ascendente.</p></div>
+                        <div class="helena-message"><p><strong>2. PICO DE APROVACAO:</strong> Em cenarios diretos (sem Arruda), voce atinge <span class="highlight">50-54%</span>. Isso indica teto alto e potencial de vitoria em primeiro turno.</p></div>
+                        <div class="helena-message"><p><strong>3. AMEACA ARRUDA:</strong> Quando Arruda entra na disputa, sua vantagem cai de 20+ para <span class="highlight">2-3 pontos</span>. Monitorar de perto.</p></div>
+                        <div class="helena-message"><p><strong>4. FATOR JURIDICO:</strong> A absolvicao na Operacao Dracon foi <span class="highlight">ponto de inflexao</span>. Crescimento acelerou apos marco/2025.</p></div>
+                        <div class="helena-message"><p><strong>5. RECOMENDACAO:</strong> Manter ritmo de entregas e comunicacao. Preparar estrategia caso Arruda confirme candidatura.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PESQUISADOR -->
+            <div class="researcher-card">
+                <div class="researcher-avatar">IM</div>
+                <div class="researcher-info">
+                    <h3>Igor Morais Vasconcelos</h3>
+                    <div class="role">Pesquisador Responsavel | Presidente INTEIA</div>
+                    <div class="contact">
+                        <strong>Email:</strong> <a href="mailto:igor@inteia.com.br">igor@inteia.com.br</a> |
+                        <strong>Site:</strong> <a href="https://inteia.com.br" target="_blank">inteia.com.br</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="footer-logo">IA</div>
+                        <div class="footer-info">
+                            <span class="footer-company">INTE<span class="highlight">IA</span> - Inteligencia Estrategica</span>
+                            <span class="footer-details">CNPJ: 63.918.490/0001-20 | Brasilia/DF</span>
+                        </div>
+                    </div>
+                    <div class="footer-classification">
+                        <span class="badge">Confidencial</span>
+                        <span class="footer-copyright">© 2026 INTEIA</span>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- Chat FAB -->
+    <button class="chat-fab" onclick="toggleChat()">
+        <span class="chat-icon">💬</span>
+        <span class="chat-text">Fale com <strong>Helena</strong><br>Agente de IA</span>
+    </button>
+
+    <!-- Chat Panel -->
+    <div class="chat-panel" id="chatPanel">
+        <div class="chat-head">
+            <div class="title">
+                <strong>Dra. Helena Montenegro</strong>
+                <span class="mini">Agente IA Avancados</span>
+            </div>
+            <div class="chat-settings">
+                <label>Chave API Claude (sua):
+                    <input type="password" id="apiKeyInput" placeholder="sk-ant-api...">
+                </label>
+            </div>
+        </div>
+        <div class="chat-body" id="chatBody"></div>
+        <div class="chat-foot">
+            <div class="row">
+                <textarea id="chatInput" placeholder="Digite sua pergunta..."></textarea>
+                <button id="chatSend">Enviar</button>
+            </div>
+            <div class="hint">Helena analisa os dados de intencao de voto e responde com insights estrategicos.</div>
+        </div>
+    </div>
+
+    <script>
+        // Dados das pesquisas
+        const pesquisas = [
+            { data: '2024-07-04', instituto: 'Parana Pesquisas', celina: 22.0, segundo: 18.6, nome: 'Arruda', margem: 2.7, amostra: 1360 },
+            { data: '2024-07-04', instituto: 'Parana Pesquisas', celina: 30.0, segundo: 14.8, nome: 'Grass', margem: 2.7, amostra: 1360 },
+            { data: '2025-03-31', instituto: 'Parana Pesquisas', celina: 36.6, segundo: 11.3, nome: 'Izalci', margem: 2.5, amostra: 1600 },
+            { data: '2025-06-09', instituto: 'Parana Pesquisas', celina: 31.1, segundo: 21.5, nome: 'Fred', margem: 2.6, amostra: 1522 },
+            { data: '2025-06-09', instituto: 'Parana Pesquisas', celina: 34.4, segundo: 26.0, nome: 'Fred', margem: 2.6, amostra: 1522 },
+            { data: '2025-06-09', instituto: 'Parana Pesquisas', celina: 42.8, segundo: 9.9, nome: 'Izalci', margem: 2.6, amostra: 1522 },
+            { data: '2025-07-16', instituto: 'Instituto Opiniao', celina: 27.5, segundo: 21.2, nome: 'Fred', margem: 3.0, amostra: 1000 },
+            { data: '2025-08-29', instituto: 'Parana Pesquisas', celina: 37.2, segundo: 16.0, nome: 'Arruda', margem: 2.6, amostra: 1510 },
+            { data: '2025-08-29', instituto: 'Parana Pesquisas', celina: 45.6, segundo: 12.7, nome: 'Izalci', margem: 2.6, amostra: 1510 },
+            { data: '2025-09-12', instituto: 'Real Time Big Data', celina: 49.0, segundo: 14.0, nome: 'Grass', margem: 3.0, amostra: 1200 },
+            { data: '2025-09-12', instituto: 'Real Time Big Data', celina: 47.0, segundo: 14.0, nome: 'Grass', margem: 3.0, amostra: 1200 },
+            { data: '2025-09-12', instituto: 'Real Time Big Data', celina: 54.0, segundo: 19.0, nome: 'Grass', margem: 3.0, amostra: 1200 },
+            { data: '2025-10-29', instituto: 'Parana Pesquisas', celina: 32.2, segundo: 29.8, nome: 'Arruda', margem: 2.6, amostra: 1506 },
+            { data: '2025-10-29', instituto: 'Parana Pesquisas', celina: 36.9, segundo: 32.7, nome: 'Arruda', margem: 2.6, amostra: 1506 },
+            { data: '2025-12-09', instituto: 'Real Time Big Data', celina: 40.0, segundo: 21.0, nome: 'Arruda', margem: 3.0, amostra: 1200 },
+            { data: '2025-12-09', instituto: 'Real Time Big Data', celina: 50.0, segundo: 16.0, nome: 'Grass', margem: 3.0, amostra: 1200 },
+            { data: '2025-12-10', instituto: 'Colectta', celina: 30.6, segundo: 16.3, nome: 'Arruda', margem: 2.5, amostra: 1548 },
+            { data: '2025-12-10', instituto: 'Colectta', celina: 43.5, segundo: 23.2, nome: 'Arruda', margem: 2.5, amostra: 1548 }
+        ];
+
+        const eventos = [
+            { data: '2024-07-04', tipo: 'pesquisa', titulo: 'Primeira pesquisa Parana 2024', descricao: 'Celina aparece com 22% liderando', impacto: 'positivo' },
+            { data: '2024-10-06', tipo: 'politico', titulo: 'Eleicoes Municipais 2024', descricao: 'Fortalecimento da direita nas eleicoes', impacto: 'neutro' },
+            { data: '2024-11-13', tipo: 'crise', titulo: 'Atentado STF', descricao: 'Celina ganha visibilidade nacional', impacto: 'positivo' },
+            { data: '2024-12-18', tipo: 'politico', titulo: 'Preservacao do FCDF', descricao: 'Vitoria na manutencao do Fundo Constitucional', impacto: 'muito_positivo' },
+            { data: '2025-01-01', tipo: 'marco', titulo: 'Inicio investimento em marketing', descricao: 'Intensificacao da comunicacao', impacto: 'positivo' },
+            { data: '2025-03-05', tipo: 'juridico', titulo: 'Absolvicao Operacao Dracon', descricao: 'Juiz absolve Celina na acao criminal', impacto: 'muito_positivo' },
+            { data: '2025-03-31', tipo: 'pesquisa', titulo: 'Pesquisa Parana: 36,6%', descricao: 'Crescimento de 14 pontos', impacto: 'muito_positivo' },
+            { data: '2025-05-15', tipo: 'realizacao', titulo: 'Titulo Cidada Honoraria', descricao: 'CLDF concede titulo', impacto: 'positivo' },
+            { data: '2025-06-09', tipo: 'pesquisa', titulo: 'Fred Linhares reduz numeros', descricao: 'Com Fred, Celina cai para 31,1%', impacto: 'neutro' },
+            { data: '2025-07-15', tipo: 'realizacao', titulo: 'Lancamento Pro-Jovem Digital', descricao: 'R$ 7,9 milhoes em capacitacao', impacto: 'positivo' },
+            { data: '2025-07-29', tipo: 'juridico', titulo: 'MPDFT nega recurso', descricao: 'Acao de improbidade continua', impacto: 'negativo' },
+            { data: '2025-08-29', tipo: 'pesquisa', titulo: 'Celina dispara: 37-45%', descricao: 'Consolidacao da lideranca', impacto: 'muito_positivo' },
+            { data: '2025-09-12', tipo: 'pesquisa', titulo: 'Real Time: ate 54%', descricao: 'Melhor resultado em cenario direto', impacto: 'muito_positivo' },
+            { data: '2025-10-29', tipo: 'pesquisa', titulo: 'Empate tecnico com Arruda', descricao: 'Arruda cresce e empata na margem', impacto: 'negativo' },
+            { data: '2025-11-15', tipo: 'realizacao', titulo: '300 mil atendimentos GDF+Perto', descricao: 'Programa alcanca marca expressiva', impacto: 'positivo' },
+            { data: '2025-12-10', tipo: 'pesquisa', titulo: 'Celina volta a liderar', descricao: '40-50% nas pesquisas de dezembro', impacto: 'muito_positivo' }
+        ];
+
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            document.querySelector('.theme-label').textContent = newTheme === 'light' ? 'Modo Escuro' : 'Modo Claro';
+            initCharts();
+        }
+
+        (function() {
+            const saved = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
+            if (saved === 'dark') document.querySelector('.theme-label').textContent = 'Modo Claro';
+        })();
+
+        // Render Table
+        function renderTable() {
+            const tbody = document.getElementById('tabelaDados');
+            tbody.innerHTML = pesquisas.map(p => `
+                <tr>
+                    <td>${new Date(p.data).toLocaleDateString('pt-BR')}</td>
+                    <td>${p.instituto}</td>
+                    <td class="highlight">${p.celina}%</td>
+                    <td>${p.segundo}%</td>
+                    <td>${p.nome}</td>
+                    <td>±${p.margem}%</td>
+                    <td>${p.amostra.toLocaleString()}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Render Timeline
+        function renderTimeline() {
+            const container = document.getElementById('timeline');
+            container.innerHTML = eventos.map(e => `
+                <div class="timeline-item ${e.impacto}">
+                    <div class="timeline-date">${new Date(e.data).toLocaleDateString('pt-BR')}</div>
+                    <div class="timeline-title">${e.titulo}</div>
+                    <div class="timeline-desc">${e.descricao}</div>
+                    <span class="timeline-badge ${e.tipo}">${e.tipo}</span>
+                </div>
+            `).join('');
+        }
+
+        // Charts
+        let charts = [];
+
+        function initCharts() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            Chart.defaults.color = isDark ? '#94a3b8' : '#64748b';
+            Chart.defaults.borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
+            Chart.defaults.font.family = 'Inter, sans-serif';
+
+            charts.forEach(c => c.destroy());
+            charts = [];
+
+            // Evolucao Chart
+            const uniqueDates = [...new Set(pesquisas.map(p => p.data))].sort();
+            const celinaData = uniqueDates.map(d => {
+                const p = pesquisas.filter(x => x.data === d);
+                return Math.max(...p.map(x => x.celina));
+            });
+            const segundoData = uniqueDates.map(d => {
+                const p = pesquisas.filter(x => x.data === d);
+                return Math.max(...p.map(x => x.segundo));
+            });
+
+            charts.push(new Chart(document.getElementById('chartEvolucao'), {
+                type: 'line',
+                data: {
+                    labels: uniqueDates.map(d => new Date(d).toLocaleDateString('pt-BR', { month: 'short', year: '2-digit' })),
+                    datasets: [
+                        { label: 'Celina Leao', data: celinaData, borderColor: '#22c55e', backgroundColor: 'rgba(34, 197, 94, 0.1)', fill: true, tension: 0.3, borderWidth: 3 },
+                        { label: '2o Colocado', data: segundoData, borderColor: '#ef4444', backgroundColor: 'rgba(239, 68, 68, 0.1)', fill: true, tension: 0.3, borderWidth: 2 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top' } },
+                    scales: { y: { min: 0, max: 60, ticks: { callback: v => v + '%' } } }
+                }
+            }));
+
+            // Institutos Chart
+            const institutos = [...new Set(pesquisas.map(p => p.instituto))];
+            const instData = institutos.map(i => pesquisas.filter(p => p.instituto === i).length);
+
+            charts.push(new Chart(document.getElementById('chartInstitutos'), {
+                type: 'doughnut',
+                data: {
+                    labels: institutos,
+                    datasets: [{ data: instData, backgroundColor: ['#d69e2e', '#3b82f6', '#22c55e', '#8b5cf6'], borderWidth: 0 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '60%', plugins: { legend: { position: 'bottom' } } }
+            }));
+
+            // Cenarios Chart
+            const comArruda = pesquisas.filter(p => p.nome === 'Arruda').map(p => p.celina);
+            const semArruda = pesquisas.filter(p => p.nome !== 'Arruda').map(p => p.celina);
+            const avgCom = comArruda.length ? (comArruda.reduce((a,b) => a+b, 0) / comArruda.length).toFixed(1) : 0;
+            const avgSem = semArruda.length ? (semArruda.reduce((a,b) => a+b, 0) / semArruda.length).toFixed(1) : 0;
+
+            charts.push(new Chart(document.getElementById('chartCenarios'), {
+                type: 'bar',
+                data: {
+                    labels: ['Com Arruda', 'Sem Arruda'],
+                    datasets: [{ data: [avgCom, avgSem], backgroundColor: ['#ef4444', '#22c55e'], borderRadius: 8 }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { min: 0, max: 60, ticks: { callback: v => v + '%' } } }
+                }
+            }));
+        }
+
+        // Chat
+        const chatPanel = document.getElementById('chatPanel');
+        const chatBody = document.getElementById('chatBody');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+        const apiKeyInput = document.getElementById('apiKeyInput');
+
+        function toggleChat() {
+            chatPanel.classList.toggle('open');
+            if (chatPanel.classList.contains('open') && chatBody.childNodes.length === 0) {
+                addMsg('assistant', 'Sou Helena Montenegro, Agente de IA Avancados da INTEIA. Analisei 19 pesquisas eleitorais do periodo Jul/2024-Dez/2025. Celina Leao cresceu de 22% para 50%. Como posso ajudar na estrategia?');
+            }
+        }
+
+        function addMsg(role, text) {
+            const div = document.createElement('div');
+            div.className = 'msg ' + role;
+            div.textContent = text;
+            chatBody.appendChild(div);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        async function onSend() {
+            const txt = chatInput.value.trim();
+            if (!txt) return;
+            chatInput.value = '';
+            addMsg('user', txt);
+
+            const apiKey = apiKeyInput.value.trim();
+            if (!apiKey) {
+                addMsg('assistant', 'Por favor, insira sua chave API do Claude para que eu possa responder.');
+                return;
+            }
+
+            addMsg('assistant', 'Analisando...');
+
+            try {
+                const res = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': apiKey,
+                        'anthropic-version': '2023-06-01',
+                        'anthropic-dangerous-direct-browser-access': 'true'
+                    },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 1024,
+                        system: `Voce e Helena Montenegro, Agente de Sistemas de IA Avancados da INTEIA. Voce analisou 19 pesquisas eleitorais sobre Celina Leao para Governador do DF 2026. Dados principais:
+- Crescimento: 22% (Jul/2024) para 50% (Dez/2025) = +28pp
+- Pico: 54% em cenario direto contra Grass
+- Com Arruda: media 35%, empate tecnico em Out/2025
+- Sem Arruda: media 45%, vantagem solida
+- Absolvicao Dracon (Mar/2025): ponto de inflexao
+- Institutos: Parana, Real Time, Colectta, Opiniao
+- Ameacas: Arruda se candidatar, acoes judiciais pendentes
+Responda de forma direta, estrategica e acionavel em portugues.`,
+                        messages: [{ role: 'user', content: txt }]
+                    })
+                });
+
+                const data = await res.json();
+                chatBody.lastChild.remove();
+                addMsg('assistant', data.content?.[0]?.text || 'Erro ao processar resposta.');
+            } catch (e) {
+                chatBody.lastChild.remove();
+                addMsg('assistant', 'Erro de conexao. Verifique sua chave API.');
+            }
+        }
+
+        chatSend.addEventListener('click', onSend);
+        chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); onSend(); } });
+
+        // Init
+        renderTable();
+        renderTimeline();
+        initCharts();
+    </script>
+</body>
+</html>

@@ -16,15 +16,38 @@ import {
 } from 'lucide-react';
 import { InteiaBadge, InteiaLogo } from '@/components/branding';
 
-// Dados dos stress tests disponíveis
-const stressTests = [
+// Dados dos relatórios disponíveis
+const relatorios = [
+  {
+    id: 'intencao-voto-celina-2026',
+    tipo: 'pesquisa',
+    titulo: 'Intencao de Voto - Governador DF 2026',
+    data: 'Janeiro de 2026',
+    autor: 'Dra. Helena Montenegro',
+    empresa: 'INTEIA',
+    totalEntrevistados: 25000,
+    status: 'concluido',
+    url: '/resultados-intencao-voto/index.html',
+    resumo: {
+      destaque: 'Crescimento de 22% para 50% em 18 meses',
+      forcaPrincipal: 'Lideranca solida com ate 54% em cenarios favoraveis',
+      alertaVermelho: 'Arruda pode empatar tecnicamente se candidatar',
+    },
+    indicadores: [
+      { label: 'Pico de intencao', valor: '54%', status: 'success' },
+      { label: 'Crescimento total', valor: '+28pp', status: 'success' },
+      { label: 'Com Arruda', valor: '32%', status: 'warning' },
+      { label: 'Pesquisas analisadas', valor: '19', status: 'info' },
+    ],
+  },
   {
     id: 'stress-test-celina-2026',
+    tipo: 'stress',
     titulo: 'Stress Test Eleitoral - Celina Leao 2026',
     data: '25 de Janeiro de 2026',
     autor: 'Dra. Helena Montenegro',
     empresa: 'INTEIA',
-    totalEntrevistados: 490,
+    totalEntrevistados: 1000,
     status: 'concluido',
     url: '/resultados-stress-test/index.html',
     resumo: {
@@ -80,45 +103,52 @@ export default function PaginaStressTests() {
         </div>
       </div>
 
-      {/* Lista de Stress Tests */}
+      {/* Lista de Relatorios */}
       <div className="space-y-4">
-        {stressTests.map((test) => (
-          <div key={test.id} className="glass-card rounded-xl overflow-hidden">
+        {relatorios.map((relatorio) => (
+          <div key={relatorio.id} className="glass-card rounded-xl overflow-hidden">
             {/* Header do Card */}
             <div className="p-4 border-b border-border">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-lg bg-yellow-500/20 flex items-center justify-center">
-                    <Zap className="w-6 h-6 text-yellow-400" />
+                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                    relatorio.tipo === 'pesquisa' ? 'bg-blue-500/20' : 'bg-yellow-500/20'
+                  }`}>
+                    {relatorio.tipo === 'pesquisa' ? (
+                      <BarChart3 className="w-6 h-6 text-blue-400" />
+                    ) : (
+                      <Zap className="w-6 h-6 text-yellow-400" />
+                    )}
                   </div>
                   <div>
-                    <h2 className="font-semibold text-foreground">{test.titulo}</h2>
+                    <h2 className="font-semibold text-foreground">{relatorio.titulo}</h2>
                     <div className="flex items-center gap-3 text-sm text-muted-foreground mt-1">
                       <span className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
-                        {test.data}
+                        {relatorio.data}
                       </span>
                       <span className="flex items-center gap-1">
                         <Users className="w-4 h-4" />
-                        {test.totalEntrevistados} eleitores
+                        {relatorio.totalEntrevistados.toLocaleString()} entrevistas
                       </span>
                     </div>
                   </div>
                 </div>
                 <span className="flex items-center gap-1.5 px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm">
                   <CheckCircle className="w-4 h-4" />
-                  Concluído
+                  Concluido
                 </span>
               </div>
             </div>
 
             {/* Indicadores */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
-              {test.indicadores.map((ind, i) => (
+              {relatorio.indicadores.map((ind, i) => (
                 <div key={i} className="bg-card p-4 text-center">
                   <p className={`text-2xl font-bold ${
                     ind.status === 'success' ? 'text-green-400' :
                     ind.status === 'critical' ? 'text-red-400' :
+                    ind.status === 'info' ? 'text-blue-400' :
                     'text-yellow-400'
                   }`}>
                     {ind.valor}
@@ -130,19 +160,31 @@ export default function PaginaStressTests() {
 
             {/* Resumo */}
             <div className="p-4 space-y-3">
-              <div className="flex items-start gap-3 p-3 rounded-lg bg-red-500/10 border border-red-500/30">
-                <AlertTriangle className="w-5 h-5 text-red-400 mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-sm font-medium text-red-400">Maior Ameaça</p>
-                  <p className="text-sm text-foreground">{test.resumo.maiorAmeaca}</p>
+              {relatorio.resumo.destaque && (
+                <div className="flex items-start gap-3 p-3 rounded-lg bg-blue-500/10 border border-blue-500/30">
+                  <TrendingUp className="w-5 h-5 text-blue-400 mt-0.5 shrink-0" />
+                  <div>
+                    <p className="text-sm font-medium text-blue-400">Destaque</p>
+                    <p className="text-sm text-foreground">{relatorio.resumo.destaque}</p>
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {relatorio.resumo.maiorAmeaca && (
+                <div className="flex items-start gap-3 p-3 rounded-lg bg-red-500/10 border border-red-500/30">
+                  <AlertTriangle className="w-5 h-5 text-red-400 mt-0.5 shrink-0" />
+                  <div>
+                    <p className="text-sm font-medium text-red-400">Maior Ameaca</p>
+                    <p className="text-sm text-foreground">{relatorio.resumo.maiorAmeaca}</p>
+                  </div>
+                </div>
+              )}
 
               <div className="flex items-start gap-3 p-3 rounded-lg bg-green-500/10 border border-green-500/30">
                 <Shield className="w-5 h-5 text-green-400 mt-0.5 shrink-0" />
                 <div>
-                  <p className="text-sm font-medium text-green-400">Força Principal</p>
-                  <p className="text-sm text-foreground">{test.resumo.forcaPrincipal}</p>
+                  <p className="text-sm font-medium text-green-400">Forca Principal</p>
+                  <p className="text-sm text-foreground">{relatorio.resumo.forcaPrincipal}</p>
                 </div>
               </div>
 
@@ -150,29 +192,22 @@ export default function PaginaStressTests() {
                 <Target className="w-5 h-5 text-yellow-400 mt-0.5 shrink-0" />
                 <div>
                   <p className="text-sm font-medium text-yellow-400">Alerta</p>
-                  <p className="text-sm text-foreground">{test.resumo.alertaVermelho}</p>
+                  <p className="text-sm text-foreground">{relatorio.resumo.alertaVermelho}</p>
                 </div>
               </div>
             </div>
 
-            {/* Ações */}
+            {/* Acoes */}
             <div className="p-4 border-t border-border flex gap-3">
               <a
-                href={test.url}
+                href={relatorio.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors font-medium"
               >
                 <BarChart3 className="w-5 h-5" />
-                Ver Relatório Completo
+                Ver Relatorio Completo
                 <ExternalLink className="w-4 h-4" />
-              </a>
-              <a
-                href="/resultados-stress-test/stress-test-celina-2026.json"
-                download
-                className="flex items-center justify-center gap-2 px-4 py-3 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors"
-              >
-                Exportar JSON
               </a>
             </div>
           </div>
