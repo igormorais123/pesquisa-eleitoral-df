@@ -13,6 +13,8 @@
 | **funcoes-programa** | Como usar as funcionalidades do sistema | `.claude/skills/funcoes-programa/` |
 | **criacao-skills** | Boas práticas para criar novas skills | `.claude/skills/criacao-skills/` |
 | **templates-relatorios** | Padrão visual e estrutural de relatórios INTEIA | `.claude/skills/templates-relatorios/` |
+| **piv-loop** | Ciclo Plan-Implement-Verify para desenvolvimento | `.claude/commands/core_piv_loop/` |
+| **pesquisa-eleitoral** | Comandos para execução de pesquisas | `.claude/commands/pesquisa_eleitoral/` |
 
 ---
 
@@ -47,6 +49,17 @@
 - Manter padrão visual INTEIA
 - Implementar trilhas de auditoria
 - Adicionar chatbots de consultoria
+
+### piv-loop (Comandos)
+- Carregar contexto do projeto (`/prime`)
+- Planejar novas features (`/plan-feature`)
+- Executar planos (`/execute`)
+- Fluxo estruturado de desenvolvimento
+
+### pesquisa-eleitoral (Comandos)
+- Executar pesquisas eleitorais (`/executar-pesquisa`)
+- Gerar relatórios padrão INTEIA (`/gerar-relatorio`)
+- Analisar eleitores sintéticos (`/analisar-eleitor`)
 
 ---
 
@@ -117,13 +130,36 @@ CLAUDE.md (raiz)
 
 ---
 
+## COMANDOS DISPONÍVEIS
+
+Ver índice completo em: `.claude/commands/COMMANDS_INDEX.md`
+
+### Comandos Core
+| Comando | Descrição |
+|---------|-----------|
+| `/prime` | Carregar contexto do projeto |
+| `/plan-feature` | Planejar feature |
+| `/execute` | Executar plano |
+| `/commit` | Commit padronizado |
+| `/init-project` | Inicializar ambiente |
+
+### Comandos Pesquisa
+| Comando | Descrição |
+|---------|-----------|
+| `/executar-pesquisa` | Executar pesquisa eleitoral |
+| `/gerar-relatorio` | Gerar relatório INTEIA |
+| `/analisar-eleitor` | Analisar eleitor sintético |
+
+---
+
 ## ESTATÍSTICAS
 
 | Métrica | Valor |
 |---------|-------|
-| Total de Skills | 5 |
-| Última Atualização | 2026-01-25 |
-| Próxima Revisão | 2026-02-25 |
+| Total de Skills | 7 |
+| Total de Comandos | 8 |
+| Última Atualização | 2026-01-26 |
+| Próxima Revisão | 2026-02-26 |
 
 ---
 
