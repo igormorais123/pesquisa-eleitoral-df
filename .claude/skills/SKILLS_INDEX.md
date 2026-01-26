@@ -12,6 +12,7 @@
 | **navegacao-projeto** | Como navegar pelas pastas do projeto | `.claude/skills/navegacao-projeto/` |
 | **funcoes-programa** | Como usar as funcionalidades do sistema | `.claude/skills/funcoes-programa/` |
 | **criacao-skills** | Boas práticas para criar novas skills | `.claude/skills/criacao-skills/` |
+| **templates-relatorios** | Padrão visual e estrutural de relatórios INTEIA | `.claude/skills/templates-relatorios/` |
 
 ---
 
@@ -40,6 +41,12 @@
 - Documentar conhecimento
 - Padronizar processos
 - Ensinar outras IAs
+
+### templates-relatorios
+- Criar relatórios de pesquisa
+- Manter padrão visual INTEIA
+- Implementar trilhas de auditoria
+- Adicionar chatbots de consultoria
 
 ---
 
@@ -92,7 +99,9 @@ CLAUDE.md (raiz)
     │   └── SKILL.md
     ├── funcoes-programa/
     │   └── SKILL.md
-    └── criacao-skills/
+    ├── criacao-skills/
+    │   └── SKILL.md
+    └── templates-relatorios/
         └── SKILL.md
 ```
 
@@ -112,7 +121,7 @@ CLAUDE.md (raiz)
 
 | Métrica | Valor |
 |---------|-------|
-| Total de Skills | 4 |
+| Total de Skills | 5 |
 | Última Atualização | 2026-01-25 |
 | Próxima Revisão | 2026-02-25 |
 
