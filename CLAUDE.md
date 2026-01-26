@@ -265,3 +265,65 @@ Quando o agente atingir 40 porcento da janela de contexto:
 | Dados Eleitores | agentes/banco-eleitores-df.json |
 | Logica IA | backend/app/servicos/claude_servico.py |
 | Scripts Geracao | scripts/gerar_eleitores_df_v4.py |
+
+---
+
+## SKILLS DO PROJETO
+
+### Índice de Skills
+
+Consultar: `.claude/skills/SKILLS_INDEX.md`
+
+| Skill | Propósito | Quando Usar |
+|-------|-----------|-------------|
+| **branding-inteia** | Padrões visuais, cores, logo | Criar componentes UI, manter consistência visual |
+| **navegacao-projeto** | Navegar pelas pastas | Início de sessão, encontrar arquivos |
+| **funcoes-programa** | Usar funcionalidades | Implementar features, usar APIs |
+| **criacao-skills** | Criar novas skills | Documentar conhecimento, ensinar IAs |
+
+### Localização das Skills
+
+```
+.claude/skills/
+├── SKILLS_INDEX.md           # Índice central
+├── branding-inteia/
+│   └── SKILL.md              # Cores, logo, padrões visuais
+├── navegacao-projeto/
+│   └── SKILL.md              # Mapa de pastas e arquivos
+├── funcoes-programa/
+│   └── SKILL.md              # Como usar o sistema
+└── criacao-skills/
+    └── SKILL.md              # Como criar novas skills
+```
+
+### Como Usar Skills
+
+1. **Início de sessão** - Ler `navegacao-projeto` para orientação
+2. **Criar UI** - Consultar `branding-inteia` para cores e padrões
+3. **Implementar feature** - Seguir `funcoes-programa` para APIs
+4. **Documentar** - Usar `criacao-skills` como template
+
+### Regras para Skills
+
+- Toda skill criada DEVE ser documentada
+- Atualizar `SKILLS_INDEX.md` ao criar nova skill
+- Atualizar este `CLAUDE.md` com resumo da skill
+- Seguir template padrão em `criacao-skills`
+- Commitar e pushar após criação
+
+---
+
+## ÍNDICES DE NAVEGAÇÃO
+
+| Arquivo | Propósito |
+|---------|-----------|
+| `PROJECT_INDEX.md` | Mapa completo do projeto para IAs |
+| `.claude/skills/SKILLS_INDEX.md` | Catálogo de skills |
+| `docs/` | Documentação técnica |
+
+### Ordem de Leitura Recomendada para IAs
+
+1. `CLAUDE.md` (este arquivo) - Regras gerais
+2. `PROJECT_INDEX.md` - Estrutura do projeto
+3. `.claude/skills/navegacao-projeto/SKILL.md` - Como navegar
+4. Skill específica da tarefa

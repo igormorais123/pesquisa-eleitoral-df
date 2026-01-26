@@ -48,6 +48,7 @@ CONTEXTO COMPILADO:
 | Banco de Dados | [#banco-de-dados-json](#banco-de-dados-json) |
 | Fluxos de Dados | [#fluxos-de-dados](#fluxos-de-dados) |
 | Arquivos Críticos | [#arquivos-críticos](#arquivos-críticos) |
+| **Skills do Projeto** | [#skills-do-projeto](#skills-do-projeto) |
 | CLAUDE.md | [#claudemd-instruções](#claudemd-instruções) |
 
 ---
@@ -387,6 +388,43 @@ refactor(escopo): descrição
 | Nova página | `frontend/src/app/nova-pagina/page.tsx` |
 | Novo componente | `frontend/src/components/` |
 | Nova store | `frontend/src/stores/` |
+
+---
+
+## SKILLS DO PROJETO
+
+Skills são arquivos de instrução especializados para IAs executarem tarefas específicas.
+
+### Índice de Skills
+
+**Localização**: `.claude/skills/`
+
+| Skill | Propósito | Arquivo |
+|-------|-----------|---------|
+| **branding-inteia** | Cores, logo, padrões visuais INTEIA | `.claude/skills/branding-inteia/SKILL.md` |
+| **navegacao-projeto** | Como navegar nas pastas | `.claude/skills/navegacao-projeto/SKILL.md` |
+| **funcoes-programa** | Como usar funcionalidades | `.claude/skills/funcoes-programa/SKILL.md` |
+| **criacao-skills** | Como criar novas skills | `.claude/skills/criacao-skills/SKILL.md` |
+
+### Quando Usar Cada Skill
+
+| Tarefa | Skill a Consultar |
+|--------|-------------------|
+| Criar componente UI | `branding-inteia` |
+| Encontrar arquivo | `navegacao-projeto` |
+| Implementar feature | `funcoes-programa` |
+| Documentar conhecimento | `criacao-skills` |
+
+### Identidade Visual (Resumo)
+
+| Elemento | Valor |
+|----------|-------|
+| **Cor Primária** | #3b9eff (Azul) |
+| **Cor da Marca** | #f59e0b (Âmbar) |
+| **Fundo Escuro** | #1a1f35 |
+| **Fonte** | Inter (Google Fonts) |
+| **Bordas** | 0.75rem |
+| **Domínio** | inteia.com.br |
 
 ---
 
