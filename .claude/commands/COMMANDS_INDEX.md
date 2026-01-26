@@ -1,98 +1,192 @@
 # Índice de Comandos Claude Code - INTEIA
 
+> **Versão 2.0** - Baseado no Manual de Engenharia de Contexto
+
 ## Visão Geral
 
-Este índice lista todos os comandos disponíveis para o Claude Code neste projeto.
+Sistema completo de comandos seguindo metodologia PIV (Prime-Implement-Validate) com suporte a contexto persistente e regras modulares.
 
 ## Estrutura de Pastas
 
 ```
-.claude/commands/
-├── COMMANDS_INDEX.md          # Este arquivo
-├── commit.md                  # Criar commits padronizados
-├── init-project.md            # Inicializar ambiente
-├── core_piv_loop/             # Ciclo PIV (Plan-Implement-Verify)
-│   ├── prime.md               # Carregar contexto do projeto
-│   ├── plan-feature.md        # Planejar funcionalidades
-│   └── execute.md             # Executar plano
-└── pesquisa_eleitoral/        # Comandos de pesquisa
-    ├── executar-pesquisa.md   # Executar pesquisa completa
-    ├── gerar-relatorio.md     # Gerar relatório visual
-    └── analisar-eleitor.md    # Analisar eleitor sintético
+.claude/
+├── commands/
+│   ├── COMMANDS_INDEX.md          # Este arquivo
+│   ├── commit.md                  # Commits padronizados
+│   ├── init-project.md            # Inicializar ambiente
+│   │
+│   ├── core_piv_loop/             # Ciclo PIV principal
+│   │   ├── prime.md               # 1. Carregar contexto
+│   │   ├── plan-feature.md        # 2. Planejar feature
+│   │   └── execute.md             # 3. Executar plano
+│   │
+│   ├── validation/                # Comandos de validação
+│   │   ├── validate.md            # Validação completa
+│   │   ├── code-review.md         # Review automatizado
+│   │   ├── code-review-fix.md     # Corrigir issues
+│   │   └── system-review.md       # Evolução do sistema
+│   │
+│   └── pesquisa_eleitoral/        # Comandos específicos
+│       ├── executar-pesquisa.md   # Executar pesquisa
+│       ├── gerar-relatorio.md     # Gerar relatório
+│       └── analisar-eleitor.md    # Analisar eleitor
+│
+├── rules/                         # Regras modulares
+│   ├── api.md                     # Regras de API/Backend
+│   ├── components.md              # Regras de Frontend
+│   └── seguranca.md               # Regras de Segurança
+│
+├── reference/                     # Documentação técnica
+│   ├── fastapi-best-practices.md
+│   ├── nextjs-best-practices.md
+│   └── claude-api-best-practices.md
+│
+└── PRD.md                         # Requisitos do produto
+
+.agents/
+└── plans/                         # Planos de implementação
+
+.context/                          # Contexto persistente
+├── context.md                     # Objetivo e regras
+├── todos.md                       # Progresso atual
+└── insights.md                    # Descobertas
+
+examples/                          # Código de referência
+├── api-endpoint.py
+└── component.tsx
+
+PRPs/templates/                    # Templates
+└── prp_base.md                    # Base para planos
+
+INITIAL.md                         # Template de requisição
+```
+
+## Fluxo Principal: Ciclo PIV
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         CICLO PIV                                │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│   /prime          /plan-feature       /execute        /validate │
+│      │                  │                 │               │     │
+│      ▼                  ▼                 ▼               ▼     │
+│   Carregar  ──────► Criar Plano ──────► Implementar ──► Validar│
+│   Contexto          Detalhado           Passo a Passo   Tudo   │
+│                                                                  │
+│                         │                                        │
+│                         ▼                                        │
+│                  [NOVA CONVERSA]                                 │
+│                  Reset de contexto                               │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ## Comandos Disponíveis
 
-### Comandos Gerais
+### Ciclo PIV (Core)
 
-| Comando | Descrição | Uso |
-|---------|-----------|-----|
-| `/commit` | Criar commit padronizado em português | `/commit` |
-| `/init-project` | Inicializar ambiente de desenvolvimento | `/init-project` |
+| Comando | Descrição | Quando Usar |
+|---------|-----------|-------------|
+| `/prime` | Carregar contexto do projeto | Início de sessão |
+| `/plan-feature` | Criar plano de implementação | Antes de implementar |
+| `/execute` | Executar plano passo a passo | Após aprovação do plano |
 
-### Ciclo PIV (Plan-Implement-Verify)
+### Validação
 
-| Comando | Descrição | Uso |
-|---------|-----------|-----|
-| `/prime` | Carregar contexto completo do projeto | `/prime` |
-| `/plan-feature` | Planejar implementação de feature | `/plan-feature <descrição>` |
-| `/execute` | Executar plano existente | `/execute <caminho-do-plano>` |
+| Comando | Descrição | Quando Usar |
+|---------|-----------|-------------|
+| `/validate` | Lint, testes, coverage, build | Após implementação |
+| `/code-review` | Review técnico automatizado | Após validação passar |
+| `/code-review-fix` | Corrigir issues do review | Se houver problemas |
+| `/system-review` | Análise de evolução do sistema | Retrospectivas |
+
+### Gerais
+
+| Comando | Descrição | Quando Usar |
+|---------|-----------|-------------|
+| `/commit` | Commit padronizado em português | Após validação |
+| `/init-project` | Configurar ambiente de dev | Primeiro setup |
 
 ### Pesquisa Eleitoral
 
-| Comando | Descrição | Uso |
-|---------|-----------|-----|
-| `/executar-pesquisa` | Executar pesquisa eleitoral completa | `/executar-pesquisa governador 2026 amostra=500` |
-| `/gerar-relatorio` | Gerar relatório padrão INTEIA | `/gerar-relatorio <caminho-dados>` |
-| `/analisar-eleitor` | Analisar perfil de eleitor sintético | `/analisar-eleitor id=42` |
+| Comando | Descrição | Quando Usar |
+|---------|-----------|-------------|
+| `/executar-pesquisa` | Executar pesquisa completa | Nova pesquisa |
+| `/gerar-relatorio` | Gerar relatório INTEIA | Após pesquisa |
+| `/analisar-eleitor` | Analisar perfil de eleitor | Análise individual |
 
-## Fluxo de Trabalho Recomendado
+## Fluxo Completo de Feature
 
-### Para Nova Feature
+```bash
+# 1. Início de sessão
+/prime
 
+# 2. Preparar requisição (opcional)
+# Preencher INITIAL.md
+
+# 3. Criar plano
+/plan-feature Descrição da feature
+# ou
+/plan-feature INITIAL.md
+
+# 4. [NOVA CONVERSA - Reset de Contexto]
+
+# 5. Executar implementação
+/execute .agents/plans/nome-feature.md
+
+# 6. Validar
+/validate
+
+# 7. Review
+/code-review
+# Se issues: /code-review-fix
+
+# 8. Commit
+/commit
+
+# 9. Retrospectiva (opcional)
+/system-review
 ```
-1. /prime                           # Entender o projeto
-2. /plan-feature <descrição>        # Criar plano detalhado
-3. /execute <plano.md>              # Implementar
-4. /commit                          # Commitar mudanças
-```
 
-### Para Pesquisa Eleitoral
+## Regras Modulares
 
-```
-1. /executar-pesquisa <params>      # Executar pesquisa
-2. /gerar-relatorio <dados>         # Criar relatório visual
-```
+Carregar sob demanda conforme necessidade:
 
-### Para Análise de Eleitor
+| Arquivo | Quando Carregar |
+|---------|-----------------|
+| `.claude/rules/api.md` | Trabalhar com backend/endpoints |
+| `.claude/rules/components.md` | Criar componentes frontend |
+| `.claude/rules/seguranca.md` | Review de segurança |
 
-```
-1. /analisar-eleitor id=42          # Analisar eleitor específico
-2. /analisar-eleitor regiao=X       # Analisar por filtro
-```
+## Contexto Persistente
 
-## Arquivos de Referência
+Arquivos em `.context/` persistem entre sessões:
 
-Os comandos podem consultar arquivos em `.claude/reference/`:
+| Arquivo | Propósito | Quando Atualizar |
+|---------|-----------|------------------|
+| `context.md` | Objetivo e regras | Início do projeto |
+| `todos.md` | Progresso atual | Após cada tarefa |
+| `insights.md` | Descobertas | Após análises |
 
-| Arquivo | Conteúdo |
-|---------|----------|
-| `fastapi-best-practices.md` | Padrões FastAPI |
-| `nextjs-best-practices.md` | Padrões Next.js |
-| `claude-api-best-practices.md` | Integração Claude |
+## Exemplos de Código
 
-## Planos de Agentes
+Consultar `examples/` antes de implementar:
 
-Planos detalhados em `.agents/plans/`:
+| Arquivo | Padrão |
+|---------|--------|
+| `api-endpoint.py` | Endpoint FastAPI completo |
+| `component.tsx` | Componente React padrão |
 
-| Plano | Propósito |
-|-------|-----------|
-| `pesquisa-eleitoral-completa.md` | Fluxo completo de pesquisa |
-| `novo-relatorio-padrao.md` | Criar relatório INTEIA |
+## Filosofia
 
-## Notas
+> **"Contexto é Rei"** - Todo plano deve conter informação suficiente para implementação em uma única passada.
 
-- Todos os comandos seguem regras do `CLAUDE.md`
-- Respostas sempre em português brasileiro
-- Execução autônoma sem confirmações
-- Padrão visual INTEIA em relatórios
+> **"Todo bug é oportunidade"** - Erros devem evoluir o sistema, não apenas ser corrigidos.
+
+> **"Reset estratégico"** - Planejamento e execução são conversas SEPARADAS.
+
+---
+
+*Índice atualizado em: 2026-01-26*
+*Baseado em: Manual de Engenharia de Contexto v1.0*
