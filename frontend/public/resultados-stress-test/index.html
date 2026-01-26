@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INTEIA | Stress Test Eleitoral - Celina Leao 2026</title>
     <meta name="description" content="Relatorio de Stress Test Eleitoral - Analise de Resiliencia do Voto">
     <meta name="author" content="Igor Morais Vasconcelos, PhD - INTEIA">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,13 +15,11 @@
         /* ========================================
            INTEIA Design System - Premium Report
            Padrao Apple/Claude Clean & Elegant
+           Versao: Light/Dark Mode
         ======================================== */
 
         :root {
-            /* Cores Principais */
-            --navy: #0f172a;
-            --navy-light: #1e293b;
-            --navy-dark: #020617;
+            /* Cores Base - Amber Brand */
             --amber: #d69e2e;
             --amber-light: #f6e05e;
             --amber-dark: #b7791f;
@@ -34,18 +33,6 @@
             --danger-bg: rgba(239, 68, 68, 0.1);
             --info: #3b82f6;
             --info-bg: rgba(59, 130, 246, 0.1);
-
-            /* Neutros */
-            --white: #ffffff;
-            --gray-50: #f8fafc;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-400: #94a3b8;
-            --gray-500: #64748b;
-            --gray-600: #475569;
-            --gray-700: #334155;
-            --gray-800: #1e293b;
 
             /* Espacamentos */
             --space-xs: 0.25rem;
@@ -71,6 +58,44 @@
             --shadow-amber: 0 4px 14px rgba(214, 158, 46, 0.25);
         }
 
+        /* ========== TEMA CLARO (Padrao) ========== */
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8fafc;
+            --border-color: #e2e8f0;
+            --border-light: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            --sidebar-bg: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            --sidebar-text: #ffffff;
+            --hero-bg: linear-gradient(135deg, rgba(214, 158, 46, 0.08) 0%, rgba(214, 158, 46, 0.02) 100%);
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+        }
+
+        /* ========== TEMA ESCURO ========== */
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(255, 255, 255, 0.05);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --text-light: #64748b;
+            --sidebar-bg: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+            --sidebar-text: #ffffff;
+            --hero-bg: linear-gradient(135deg, rgba(214, 158, 46, 0.05) 0%, transparent 50%);
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -79,11 +104,12 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%);
-            color: var(--gray-100);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         /* ========================================
@@ -96,12 +122,12 @@
             top: 0;
             bottom: 0;
             width: 60px;
-            background: linear-gradient(180deg, var(--navy-dark) 0%, var(--navy) 100%);
+            background: var(--sidebar-bg);
             border-right: 1px solid rgba(214, 158, 46, 0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             z-index: 100;
             padding: var(--space-lg) 0;
         }
@@ -116,9 +142,8 @@
             justify-content: center;
             font-weight: 800;
             font-size: 12px;
-            color: var(--white);
+            color: #ffffff;
             box-shadow: var(--shadow-amber);
-            margin-bottom: var(--space-lg);
         }
 
         .side-mark .vertical-text {
@@ -136,22 +161,97 @@
             writing-mode: vertical-rl;
             text-orientation: mixed;
             transform: rotate(180deg);
-            margin-top: auto;
             text-align: center;
         }
 
         .side-mark .author-name {
             font-size: 9px;
-            font-weight: 500;
-            color: var(--gray-400);
+            font-weight: 600;
+            color: #ffffff;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .side-mark .author-role {
             font-size: 8px;
             color: var(--amber);
             display: block;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        /* ========================================
+           Top Controls Bar
+        ======================================== */
+
+        .top-controls {
+            position: fixed;
+            top: 0;
+            left: 60px;
+            right: 0;
+            height: 56px;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 var(--space-xl);
+            gap: var(--space-md);
+            z-index: 99;
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--amber);
+        }
+
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+        [data-theme="light"] .theme-toggle .icon-moon { display: none; }
+
+        .print-btn-top {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 8px 16px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffffff;
+            cursor: pointer;
+            box-shadow: var(--shadow-amber);
+            transition: all 0.2s ease;
+        }
+
+        .print-btn-top:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(214, 158, 46, 0.4);
+        }
+
+        .print-btn-top svg {
+            width: 16px;
+            height: 16px;
         }
 
         /* ========================================
@@ -160,7 +260,8 @@
 
         .main-container {
             margin-left: 60px;
-            min-height: 100vh;
+            margin-top: 56px;
+            min-height: calc(100vh - 56px);
         }
 
         .content-wrapper {
@@ -174,13 +275,14 @@
         ======================================== */
 
         .hero-header {
-            background: linear-gradient(135deg, rgba(214, 158, 46, 0.05) 0%, transparent 50%);
-            border: 1px solid rgba(214, 158, 46, 0.15);
+            background: var(--hero-bg);
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-2xl);
             padding: var(--space-2xl);
             margin-bottom: var(--space-2xl);
             position: relative;
             overflow: hidden;
+            box-shadow: var(--card-shadow);
         }
 
         .hero-header::before {
@@ -190,7 +292,7 @@
             right: 0;
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(214, 158, 46, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(214, 158, 46, 0.1) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -217,7 +319,7 @@
             justify-content: center;
             font-weight: 800;
             font-size: 18px;
-            color: var(--white);
+            color: #ffffff;
             box-shadow: var(--shadow-amber);
         }
 
@@ -230,7 +332,7 @@
             font-size: 28px;
             font-weight: 800;
             letter-spacing: -0.02em;
-            color: var(--white);
+            color: var(--text-primary);
         }
 
         .logo-name .highlight {
@@ -239,7 +341,7 @@
 
         .logo-tagline {
             font-size: 11px;
-            color: var(--gray-400);
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-top: 2px;
@@ -251,7 +353,7 @@
 
         .author-label {
             font-size: 10px;
-            color: var(--gray-500);
+            color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-bottom: 4px;
@@ -260,12 +362,12 @@
         .author-name-main {
             font-size: 16px;
             font-weight: 600;
-            color: var(--white);
+            color: var(--text-primary);
         }
 
         .author-title {
             font-size: 12px;
-            color: var(--gray-400);
+            color: var(--text-muted);
             margin-top: 2px;
         }
 
@@ -273,6 +375,7 @@
             font-size: 11px;
             color: var(--amber);
             margin-top: 4px;
+            font-weight: 500;
         }
 
         .hero-content {
@@ -285,14 +388,14 @@
         .hero-title-section h1 {
             font-size: 32px;
             font-weight: 700;
-            color: var(--white);
+            color: var(--text-primary);
             margin-bottom: var(--space-sm);
             letter-spacing: -0.02em;
         }
 
         .hero-title-section .subtitle {
             font-size: 16px;
-            color: var(--gray-400);
+            color: var(--text-muted);
         }
 
         .hero-meta {
@@ -306,7 +409,7 @@
             align-items: center;
             gap: var(--space-sm);
             font-size: 13px;
-            color: var(--gray-400);
+            color: var(--text-muted);
         }
 
         .meta-item svg {
@@ -342,16 +445,17 @@
         }
 
         .kpi-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-xl);
             padding: var(--space-lg);
             text-align: center;
             transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
         }
 
         .kpi-card:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--bg-card-hover);
             border-color: rgba(214, 158, 46, 0.3);
             transform: translateY(-2px);
         }
@@ -370,7 +474,7 @@
 
         .kpi-label {
             font-size: 12px;
-            color: var(--gray-400);
+            color: var(--text-muted);
             font-weight: 500;
         }
 
@@ -408,12 +512,12 @@
         .section-title {
             font-size: 20px;
             font-weight: 700;
-            color: var(--white);
+            color: var(--text-primary);
         }
 
         .section-subtitle {
             font-size: 13px;
-            color: var(--gray-400);
+            color: var(--text-muted);
             margin-top: 2px;
         }
 
@@ -431,6 +535,7 @@
             padding: var(--space-lg);
             border-radius: var(--radius-xl);
             border: 1px solid;
+            box-shadow: var(--card-shadow);
         }
 
         .alert-card.danger {
@@ -471,7 +576,7 @@
 
         .alert-text {
             font-size: 14px;
-            color: var(--gray-200);
+            color: var(--text-secondary);
         }
 
         /* ========================================
@@ -485,16 +590,17 @@
         }
 
         .chart-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-xl);
             padding: var(--space-lg);
+            box-shadow: var(--card-shadow);
         }
 
         .chart-title {
             font-size: 14px;
             font-weight: 600;
-            color: var(--white);
+            color: var(--text-primary);
             margin-bottom: var(--space-md);
         }
 
@@ -508,10 +614,11 @@
         ======================================== */
 
         .vulnerability-map {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-xl);
             padding: var(--space-lg);
+            box-shadow: var(--card-shadow);
         }
 
         .vuln-grid {
@@ -566,9 +673,9 @@
 
         .vuln-item {
             font-size: 12px;
-            color: var(--gray-300);
+            color: var(--text-secondary);
             padding: var(--space-sm);
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--bg-tertiary);
             border-radius: var(--radius-sm);
         }
 
@@ -583,12 +690,13 @@
         }
 
         .recommendation-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-xl);
             padding: var(--space-lg);
             position: relative;
             overflow: hidden;
+            box-shadow: var(--card-shadow);
         }
 
         .recommendation-card::before {
@@ -633,13 +741,13 @@
         .rec-title {
             font-size: 15px;
             font-weight: 600;
-            color: var(--white);
+            color: var(--text-primary);
             margin-bottom: var(--space-sm);
         }
 
         .rec-description {
             font-size: 13px;
-            color: var(--gray-400);
+            color: var(--text-muted);
         }
 
         /* ========================================
@@ -653,11 +761,12 @@
         }
 
         .quote-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-xl);
             padding: var(--space-lg);
             position: relative;
+            box-shadow: var(--card-shadow);
         }
 
         .quote-card::before {
@@ -673,7 +782,7 @@
 
         .quote-text {
             font-size: 14px;
-            color: var(--gray-200);
+            color: var(--text-secondary);
             font-style: italic;
             margin-bottom: var(--space-md);
             padding-top: var(--space-lg);
@@ -684,7 +793,7 @@
             align-items: center;
             gap: var(--space-sm);
             font-size: 12px;
-            color: var(--gray-400);
+            color: var(--text-muted);
         }
 
         .quote-avatar {
@@ -697,7 +806,7 @@
             justify-content: center;
             font-weight: 600;
             font-size: 11px;
-            color: var(--white);
+            color: #ffffff;
         }
 
         .quote-meta {
@@ -707,11 +816,185 @@
 
         .quote-name {
             font-weight: 500;
-            color: var(--gray-200);
+            color: var(--text-secondary);
         }
 
         .quote-location {
             font-size: 11px;
+        }
+
+        /* ========================================
+           Chat Helena Section
+        ======================================== */
+
+        .chat-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            padding: var(--space-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .chat-avatar {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-avatar svg {
+            width: 28px;
+            height: 28px;
+            color: #ffffff;
+        }
+
+        .chat-info h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .chat-info p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .chat-status {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #ffffff;
+        }
+
+        .chat-status-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .chat-messages {
+            padding: var(--space-lg);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .chat-message.helena .msg-avatar {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .chat-message .msg-content {
+            flex: 1;
+        }
+
+        .chat-message .msg-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .chat-message.helena .msg-name { color: var(--amber); }
+
+        .chat-message .msg-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            background: var(--bg-tertiary);
+            padding: var(--space-md);
+            border-radius: var(--radius-lg);
+            border-top-left-radius: 4px;
+        }
+
+        .chat-message .msg-time {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        .chat-input-area {
+            padding: var(--space-md) var(--space-lg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: var(--space-md);
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            font-size: 14px;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input:focus {
+            border-color: var(--amber);
+        }
+
+        .chat-input::placeholder {
+            color: var(--text-light);
+        }
+
+        .chat-send-btn {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border: none;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .chat-send-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .chat-send-btn svg {
+            width: 20px;
+            height: 20px;
+            color: #ffffff;
         }
 
         /* ========================================
@@ -721,8 +1004,8 @@
         .footer {
             margin-top: var(--space-3xl);
             padding: var(--space-xl);
-            background: rgba(0, 0, 0, 0.3);
-            border-top: 1px solid rgba(214, 158, 46, 0.1);
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-color);
         }
 
         .footer-content {
@@ -747,7 +1030,7 @@
             justify-content: center;
             font-weight: 800;
             font-size: 14px;
-            color: var(--white);
+            color: #ffffff;
         }
 
         .footer-info {
@@ -759,7 +1042,7 @@
         .footer-company {
             font-size: 13px;
             font-weight: 600;
-            color: var(--white);
+            color: var(--text-primary);
         }
 
         .footer-company .highlight {
@@ -768,7 +1051,7 @@
 
         .footer-details {
             font-size: 11px;
-            color: var(--gray-500);
+            color: var(--text-light);
         }
 
         .footer-classification {
@@ -792,87 +1075,150 @@
 
         .footer-copyright {
             font-size: 10px;
-            color: var(--gray-600);
+            color: var(--text-light);
         }
 
         /* ========================================
-           Print Button
-        ======================================== */
-
-        .print-btn {
-            position: fixed;
-            bottom: var(--space-xl);
-            right: var(--space-xl);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            padding: 12px 20px;
-            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
-            border: none;
-            border-radius: var(--radius-lg);
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--white);
-            cursor: pointer;
-            box-shadow: var(--shadow-amber);
-            transition: all 0.3s ease;
-            z-index: 100;
-        }
-
-        .print-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(214, 158, 46, 0.4);
-        }
-
-        .print-btn svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* ========================================
-           Print Styles - A4
+           Print Styles - A4 Otimizado
         ======================================== */
 
         @media print {
             @page {
-                size: A4;
-                margin: 15mm;
+                size: A4 portrait;
+                margin: 12mm 10mm 15mm 10mm;
             }
 
-            body {
-                background: white;
-                color: #1a1a1a;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            html, body {
+                background: #ffffff !important;
+                color: #1a1a1a !important;
+                font-size: 10pt;
             }
 
             .side-mark,
-            .print-btn {
+            .top-controls,
+            .chat-section,
+            .chat-input-area {
                 display: none !important;
             }
 
             .main-container {
-                margin-left: 0;
+                margin: 0 !important;
+            }
+
+            .content-wrapper {
+                padding: 0 !important;
+                max-width: 100% !important;
             }
 
             .hero-header {
-                background: #f8f9fa;
-                border-color: #e0e0e0;
-            }
-
-            .kpi-card,
-            .chart-card,
-            .quote-card,
-            .recommendation-card,
-            .vulnerability-map,
-            .alert-card {
-                break-inside: avoid;
+                background: #f8f9fa !important;
+                border: 2px solid #e0e0e0 !important;
+                padding: 15mm !important;
+                margin-bottom: 8mm !important;
                 page-break-inside: avoid;
             }
 
-            .section {
-                break-inside: avoid;
+            .hero-header::before {
+                display: none !important;
             }
+
+            .logo-name, .hero-title-section h1 {
+                color: #0f172a !important;
+            }
+
+            .kpi-grid {
+                gap: 5mm !important;
+                margin-bottom: 8mm !important;
+            }
+
+            .kpi-card {
+                background: #ffffff !important;
+                border: 1.5px solid #e0e0e0 !important;
+                padding: 8mm !important;
+                page-break-inside: avoid;
+            }
+
+            .kpi-value {
+                font-size: 24pt !important;
+            }
+
+            .section {
+                page-break-inside: avoid;
+                margin-bottom: 8mm !important;
+            }
+
+            .alerts-grid,
+            .charts-grid,
+            .quotes-grid,
+            .recommendations-grid,
+            .vuln-grid {
+                gap: 4mm !important;
+            }
+
+            .alert-card,
+            .chart-card,
+            .quote-card,
+            .recommendation-card,
+            .vulnerability-map {
+                background: #ffffff !important;
+                border: 1px solid #e0e0e0 !important;
+                page-break-inside: avoid;
+            }
+
+            .chart-container {
+                height: 150px !important;
+            }
+
+            .footer {
+                background: #f8f9fa !important;
+                border-top: 2px solid var(--amber) !important;
+                padding: 8mm !important;
+                margin-top: 10mm !important;
+            }
+
+            /* Cabecalho de Impressao */
+            .print-header {
+                display: block !important;
+                text-align: center;
+                padding-bottom: 5mm;
+                margin-bottom: 5mm;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .print-header .logo-print {
+                font-size: 18pt;
+                font-weight: 800;
+                color: #0f172a;
+            }
+
+            .print-header .logo-print span {
+                color: var(--amber);
+            }
+
+            /* Rodape de Impressao */
+            .print-footer {
+                display: block !important;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                text-align: center;
+                font-size: 8pt;
+                color: #64748b;
+                padding: 3mm 0;
+                border-top: 0.5px solid #e0e0e0;
+            }
+        }
+
+        .print-header,
+        .print-footer {
+            display: none;
         }
 
         /* ========================================
@@ -888,6 +1234,7 @@
         @media (max-width: 768px) {
             .side-mark { display: none; }
             .main-container { margin-left: 0; }
+            .top-controls { left: 0; }
             .content-wrapper { padding: var(--space-md); }
             .hero-top { flex-direction: column; gap: var(--space-lg); }
             .author-section { text-align: left; }
@@ -903,15 +1250,50 @@
     </style>
 </head>
 <body>
+    <!-- Print Header (apenas impressao) -->
+    <div class="print-header">
+        <div class="logo-print">INTE<span>IA</span> - Instituto de Inteligencia Artificial</div>
+        <div>Igor Morais Vasconcelos, PhD | Responsavel Tecnico</div>
+    </div>
+
     <!-- Side Mark - Branding Vertical -->
     <aside class="side-mark">
         <div class="logo-icon">IA</div>
         <span class="vertical-text">INTEIA</span>
         <div class="author-info">
             <span class="author-name">Igor Morais Vasconcelos</span>
-            <span class="author-role">PhD | Presidente</span>
+            <span class="author-role">PhD | Responsavel Tecnico</span>
         </div>
     </aside>
+
+    <!-- Top Controls Bar -->
+    <div class="top-controls">
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="theme-label">Modo Escuro</span>
+        </button>
+        <button class="print-btn-top" onclick="window.print()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            Imprimir A4
+        </button>
+    </div>
 
     <!-- Main Container -->
     <div class="main-container">
@@ -1221,6 +1603,86 @@
                 </div>
             </section>
 
+            <!-- Chat Helena Section -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Analise com Dra. Helena Montenegro</h2>
+                        <p class="section-subtitle">Cientista Politica Senior | INTEIA</p>
+                    </div>
+                </div>
+                <div class="chat-section">
+                    <div class="chat-header">
+                        <div class="chat-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <div class="chat-info">
+                            <h3>Dra. Helena Montenegro</h3>
+                            <p>Cientista Politica Senior | Doutorado USP</p>
+                        </div>
+                        <div class="chat-status">
+                            <div class="chat-status-dot"></div>
+                            Online
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-message helena">
+                            <div class="msg-avatar">HM</div>
+                            <div class="msg-content">
+                                <div class="msg-name">Dra. Helena Montenegro</div>
+                                <div class="msg-text">
+                                    Boa tarde! Sou a Dra. Helena Montenegro, cientista politica responsavel por esta analise.
+                                    Os resultados do stress test revelam vulnerabilidades importantes na candidatura.
+                                    O principal ponto de atencao e a forte atracao por um candidato de centro - 56,9% considerariam migrar para alguem como Reguffe.
+                                    Isso indica que o eleitorado busca uma alternativa que nao seja polarizada.
+                                </div>
+                                <div class="msg-time">14:32</div>
+                            </div>
+                        </div>
+                        <div class="chat-message helena">
+                            <div class="msg-avatar">HM</div>
+                            <div class="msg-content">
+                                <div class="msg-name">Dra. Helena Montenegro</div>
+                                <div class="msg-text">
+                                    Outro dado preocupante: 67,2% abandonariam a candidata se surgisse um escandalo de corrupcao.
+                                    Isso mostra que a base de apoio e fragil em termos de lealdade - votam nela mais por falta de opcao do que por conviccao.
+                                    A boa noticia e a independencia em relacao ao Arruda: 82,6% manteriam o voto mesmo com rompimento.
+                                </div>
+                                <div class="msg-time">14:33</div>
+                            </div>
+                        </div>
+                        <div class="chat-message helena">
+                            <div class="msg-avatar">HM</div>
+                            <div class="msg-content">
+                                <div class="msg-name">Dra. Helena Montenegro</div>
+                                <div class="msg-text">
+                                    Pode me fazer perguntas sobre os resultados. Estou aqui para ajudar a interpretar os dados e sugerir estrategias.
+                                </div>
+                                <div class="msg-time">14:34</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" class="chat-input" id="chatInput" placeholder="Pergunte sobre a analise..." onkeypress="handleKeyPress(event)">
+                        <button class="chat-send-btn" onclick="sendMessage()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
             <!-- Footer -->
             <footer class="footer">
                 <div class="footer-content">
@@ -1241,110 +1703,214 @@
         </div>
     </div>
 
-    <!-- Print Button -->
-    <button class="print-btn" onclick="window.print()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="6 9 6 2 18 2 18 9"></polyline>
-            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-            <rect x="6" y="14" width="12" height="8"></rect>
-        </svg>
-        Imprimir A4
-    </button>
+    <!-- Print Footer (apenas impressao) -->
+    <div class="print-footer">
+        INTEIA - Instituto de Inteligencia Artificial | CNPJ: 63.918.490/0001-20 | inteia.com.br | Documento Confidencial
+    </div>
 
-    <!-- Charts Script -->
+    <!-- Scripts -->
     <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            // Update label
+            document.querySelector('.theme-label').textContent =
+                newTheme === 'light' ? 'Modo Escuro' : 'Modo Claro';
+
+            // Reinitialize charts with new colors
+            initCharts();
+        }
+
+        // Load saved theme
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            if (savedTheme === 'dark') {
+                document.querySelector('.theme-label').textContent = 'Modo Claro';
+            }
+        })();
+
         // Chart.js Global Config
-        Chart.defaults.color = '#94a3b8';
-        Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.08)';
-        Chart.defaults.font.family = 'Inter, sans-serif';
+        function getChartColors() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            return {
+                text: isDark ? '#94a3b8' : '#64748b',
+                grid: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'
+            };
+        }
 
-        // Chart 1: Fidelidade Arruda
-        new Chart(document.getElementById('chart1'), {
-            type: 'doughnut',
-            data: {
-                labels: ['Ficam com Celina', 'Seguem Arruda'],
-                datasets: [{
-                    data: [82.6, 17.4],
-                    backgroundColor: ['#22c55e', '#ef4444'],
-                    borderWidth: 0,
-                    spacing: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '65%',
-                plugins: {
-                    legend: { position: 'bottom' }
-                }
-            }
-        });
+        let charts = [];
 
-        // Chart 2: Elasticidade Moral
-        new Chart(document.getElementById('chart2'), {
-            type: 'bar',
-            data: {
-                labels: ['Corrupcao Inaceitavel', 'Depende Contexto', 'Mantem Voto'],
-                datasets: [{
-                    data: [67.2, 20.9, 11.9],
-                    backgroundColor: ['#ef4444', '#eab308', '#22c55e'],
-                    borderRadius: 8,
-                    barThickness: 40
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                indexAxis: 'y',
-                plugins: { legend: { display: false } },
-                scales: {
-                    x: { grid: { display: false }, max: 100 },
-                    y: { grid: { display: false } }
-                }
-            }
-        });
+        function initCharts() {
+            const colors = getChartColors();
 
-        // Chart 3: Outsider
-        new Chart(document.getElementById('chart3'), {
-            type: 'pie',
-            data: {
-                labels: ['Preferem Outsider', 'Preferem Celina', 'Divididos'],
-                datasets: [{
-                    data: [41.0, 35.5, 23.5],
-                    backgroundColor: ['#f97316', '#22c55e', '#94a3b8'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom' }
-                }
-            }
-        });
+            Chart.defaults.color = colors.text;
+            Chart.defaults.borderColor = colors.grid;
+            Chart.defaults.font.family = 'Inter, sans-serif';
 
-        // Chart 4: Motivacao do Voto
-        new Chart(document.getElementById('chart4'), {
-            type: 'doughnut',
-            data: {
-                labels: ['Rejeitar Adversario', 'Apoiar Celina'],
-                datasets: [{
-                    data: [70, 30],
-                    backgroundColor: ['#ef4444', '#22c55e'],
-                    borderWidth: 0,
-                    spacing: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '65%',
-                plugins: {
-                    legend: { position: 'bottom' }
+            // Destroy existing charts
+            charts.forEach(chart => chart.destroy());
+            charts = [];
+
+            // Chart 1: Fidelidade Arruda
+            charts.push(new Chart(document.getElementById('chart1'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Ficam com Celina', 'Seguem Arruda'],
+                    datasets: [{
+                        data: [82.6, 17.4],
+                        backgroundColor: ['#22c55e', '#ef4444'],
+                        borderWidth: 0,
+                        spacing: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
                 }
+            }));
+
+            // Chart 2: Elasticidade Moral
+            charts.push(new Chart(document.getElementById('chart2'), {
+                type: 'bar',
+                data: {
+                    labels: ['Corrupcao Inaceitavel', 'Depende Contexto', 'Mantem Voto'],
+                    datasets: [{
+                        data: [67.2, 20.9, 11.9],
+                        backgroundColor: ['#ef4444', '#eab308', '#22c55e'],
+                        borderRadius: 8,
+                        barThickness: 40
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { display: false }, max: 100 },
+                        y: { grid: { display: false } }
+                    }
+                }
+            }));
+
+            // Chart 3: Outsider
+            charts.push(new Chart(document.getElementById('chart3'), {
+                type: 'pie',
+                data: {
+                    labels: ['Preferem Outsider', 'Preferem Celina', 'Divididos'],
+                    datasets: [{
+                        data: [41.0, 35.5, 23.5],
+                        backgroundColor: ['#f97316', '#22c55e', '#94a3b8'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            }));
+
+            // Chart 4: Motivacao do Voto
+            charts.push(new Chart(document.getElementById('chart4'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Rejeitar Adversario', 'Apoiar Celina'],
+                    datasets: [{
+                        data: [70, 30],
+                        backgroundColor: ['#ef4444', '#22c55e'],
+                        borderWidth: 0,
+                        spacing: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            }));
+        }
+
+        // Initialize charts on load
+        initCharts();
+
+        // Chat functionality
+        const helenaResponses = [
+            "Excelente pergunta! Com base nos dados, posso afirmar que a maior vulnerabilidade esta na possivel entrada de um candidato de centro. 56,9% dos eleitores considerariam migrar.",
+            "Os dados mostram que 70% dos votos sao motivados por rejeicao ao adversario, nao por adesao genuina. Isso e preocupante porque esse tipo de voto e volatel.",
+            "A independencia em relacao ao Arruda e um ponto positivo. 82,6% manteriam o voto mesmo com rompimento. Isso indica que a candidata construiu identidade propria.",
+            "O tema seguranca e sensivel. 41% preferem um candidato 'linha dura'. A recomendacao e endurecer o discurso mantendo viabilidade democratica.",
+            "Sobre corrupcao: e o maior risco. 67,2% abandonariam imediatamente se surgisse escandalo. A blindagem etica deve ser prioridade absoluta.",
+            "Posso detalhar qualquer modulo especifico do stress test. Qual aspecto gostaria de aprofundar?"
+        ];
+
+        let responseIndex = 0;
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            const messagesContainer = document.getElementById('chatMessages');
+
+            // Add user message
+            const userMsgDiv = document.createElement('div');
+            userMsgDiv.className = 'chat-message user';
+            userMsgDiv.innerHTML = `
+                <div class="msg-content" style="margin-left: auto; text-align: right;">
+                    <div class="msg-name" style="color: var(--text-muted);">Voce</div>
+                    <div class="msg-text" style="background: rgba(214, 158, 46, 0.1); border-top-left-radius: var(--radius-lg); border-top-right-radius: 4px;">${message}</div>
+                    <div class="msg-time">${new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</div>
+                </div>
+            `;
+            messagesContainer.appendChild(userMsgDiv);
+
+            input.value = '';
+
+            // Simulate Helena typing
+            setTimeout(() => {
+                const helenaMsgDiv = document.createElement('div');
+                helenaMsgDiv.className = 'chat-message helena';
+                helenaMsgDiv.innerHTML = `
+                    <div class="msg-avatar">HM</div>
+                    <div class="msg-content">
+                        <div class="msg-name">Dra. Helena Montenegro</div>
+                        <div class="msg-text">${helenaResponses[responseIndex % helenaResponses.length]}</div>
+                        <div class="msg-time">${new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</div>
+                    </div>
+                `;
+                messagesContainer.appendChild(helenaMsgDiv);
+                responseIndex++;
+
+                // Scroll to bottom
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1000);
+
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
             }
-        });
+        }
     </script>
 </body>
 </html>

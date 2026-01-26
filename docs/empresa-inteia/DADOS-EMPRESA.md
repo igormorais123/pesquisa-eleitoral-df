@@ -104,8 +104,8 @@
 
 ### Pesquisa Eleitoral DF 2026
 - **Repositório:** pesquisa-eleitoral-df
-- **URL Vercel:** https://pesquisa-eleitoral-df-igormorais123s-projects.vercel.app
-- **URL Render:** https://pesquisa-eleitoral-df-1.onrender.com
+- **Frontend:** https://inteia.com.br
+- **Backend API:** https://api.inteia.com.br
 
 ---
 

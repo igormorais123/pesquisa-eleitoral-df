@@ -11,11 +11,12 @@ Marque com [x] o que já fez:
 ## Registro.br (DNS)
 - [x] Fazer login no Registro.br
 - [x] Ativar modo avançado de DNS
-- [ ] Adicionar registro TXT de verificação do Google (aguardar transição ~2h)
-- [ ] Adicionar 5 registros MX do Google (para email)
-- [ ] Adicionar registro TXT do SPF
-- [ ] Adicionar registro A para Vercel (76.76.21.21)
-- [ ] Adicionar registro CNAME www para Vercel
+- [x] Adicionar registro A para Vercel (76.76.21.21) - configurado em modo básico
+- [x] Adicionar servidor de email Google (MX) - configurado em modo básico
+- [ ] Adicionar registro TXT de verificação do Google (modo avançado)
+- [ ] Adicionar registro TXT do SPF (modo avançado)
+- [ ] Adicionar registro CNAME www para Vercel (modo avançado)
+- [ ] Adicionar registro CNAME api para Render (modo avançado)
 
 ## Verificação Google
 - [ ] Verificar domínio no Google Admin
@@ -23,12 +24,18 @@ Marque com [x] o que já fez:
 - [ ] Testar envio de email
 
 ## Vercel
-- [ ] Adicionar domínio inteia.com.br no projeto
-- [ ] Verificar se domínio está funcionando
+- [x] Adicionar domínio inteia.com.br no projeto
+- [x] Adicionar domínio www.inteia.com.br no projeto
+- [x] Verificar se domínios estão configurados
+
+## Render (Backend API)
+- [x] Adicionar domínio api.inteia.com.br no serviço
+- [ ] Verificar domínio (requer DNS CNAME)
 
 ## Testes Finais
 - [ ] Acessar https://inteia.com.br (site funciona?)
 - [ ] Acessar https://www.inteia.com.br (site funciona?)
+- [ ] Acessar https://api.inteia.com.br/api/v1/health (backend funciona?)
 - [ ] Enviar email de igor@inteia.com.br (email funciona?)
 - [ ] Receber email em igor@inteia.com.br (email funciona?)
 

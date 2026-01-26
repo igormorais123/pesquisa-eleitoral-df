@@ -10,7 +10,7 @@ from pathlib import Path
 
 # URLs do backend
 BACKEND_LOCAL = "http://localhost:8000"
-BACKEND_RENDER = "https://pesquisa-eleitoral-df-1.onrender.com"
+BACKEND_RENDER = "https://api.inteia.com.br"
 
 # Credenciais (usar as mesmas do usuário admin)
 CREDENTIALS = {

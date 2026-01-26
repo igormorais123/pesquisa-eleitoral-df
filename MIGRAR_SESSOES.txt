@@ -10,7 +10,7 @@ outros computadores, precisamos envia-las para o servidor.
 PASSO A PASSO
 ============================================================
 
-1. Abra o site: https://pesquisa-eleitoral-df.vercel.app
+1. Abra o site: https://inteia.com.br
 
 2. Faca login com: professorigor / professorigor
 
@@ -126,7 +126,7 @@ COPIE DAQUI:
       
       // Enviar para o servidor
       try {
-        const response = await fetch('https://pesquisa-eleitoral-df-1.onrender.com/api/v1/sessoes/migrar', {
+        const response = await fetch('https://api.inteia.com.br/api/v1/sessoes/migrar', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

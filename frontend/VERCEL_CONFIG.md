@@ -33,7 +33,7 @@ openssl rand -base64 32
 
 ```
 Nome: NEXT_PUBLIC_BACKEND_URL
-Valor: https://pesquisa-eleitoral-df-1.onrender.com
+Valor: https://api.inteia.com.br
 Ambiente: Production
 ```
 
@@ -73,7 +73,7 @@ As variaveis so fazem efeito apos um novo deploy!
 
 ## Verificar se funcionou
 
-1. Acesse: https://pesquisa-eleitoral-df.vercel.app/login
+1. Acesse: https://inteia.com.br/login
 2. Login: professorigor / professorigor
 3. Se funcionar consistentemente, a configuracao esta correta
 

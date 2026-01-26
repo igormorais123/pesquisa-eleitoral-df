@@ -1,8 +1,10 @@
 """
-Sistema de Pesquisa Eleitoral DF 2026
+INTEIA - Sistema de Pesquisa Eleitoral DF 2026
 Backend FastAPI
 
-Autor: Professor Igor
+Instituto de Treinamento e Estudos em Inteligência Artificial
+Autor: Igor Morais Vasconcelos
+https://inteia.com.br
 """
 
 import logging
@@ -515,8 +517,9 @@ Authorization: Bearer <seu_token>
     lifespan=lifespan,
     openapi_tags=tags_metadata,
     contact={
-        "name": "Professor Igor",
-        "url": "https://github.com/igormorais123/pesquisa-eleitoral-df",
+        "name": "INTEIA - Igor Morais Vasconcelos",
+        "url": "https://inteia.com.br",
+        "email": "igor@inteia.com.br",
     },
     license_info={
         "name": "MIT",
@@ -525,11 +528,17 @@ Authorization: Bearer <seu_token>
 )
 
 # Configurar CORS
-# Origens permitidas
+# Origens permitidas - INTEIA
 origens_permitidas = [
     configuracoes.FRONTEND_URL,
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    # Domínio oficial INTEIA
+    "https://inteia.com.br",
+    "https://www.inteia.com.br",
+    "https://pesquisa.inteia.com.br",
+    "https://api.inteia.com.br",
+    # Legado Vercel (manter temporariamente)
     "https://pesquisa-eleitoral-df-git-main-igormorais123s-projects.vercel.app",
     "https://pesquisa-eleitoral-df-igormorais123s-projects.vercel.app",
 ]

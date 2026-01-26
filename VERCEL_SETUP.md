@@ -19,7 +19,7 @@ CLAUDE_API_KEY=sk-ant-api03-...
 ### Backend (para outras funcionalidades)
 
 ```
-NEXT_PUBLIC_BACKEND_URL=https://pesquisa-eleitoral-df-1.onrender.com
+NEXT_PUBLIC_BACKEND_URL=https://api.inteia.com.br
 ```
 
 ### JWT (opcional, para autenticação)
@@ -104,6 +104,9 @@ O Vercel está configurado para deploy automático no push para `main`:
 
 ## Contato
 
+**INTEIA - Instituto de Treinamento e Estudos em Inteligência Artificial**
 Igor Morais Vasconcelos
+- Email: igor@inteia.com.br
+- Site: https://inteia.com.br
 - Instagram: @igormorais123
 - Lattes: http://lattes.cnpq.br/2845626717136000

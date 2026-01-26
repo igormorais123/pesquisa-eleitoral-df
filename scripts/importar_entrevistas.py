@@ -12,7 +12,7 @@ from pathlib import Path
 import httpx
 
 # Configurações
-BACKEND_URL = os.getenv("BACKEND_URL", "https://pesquisa-eleitoral-df-1.onrender.com")
+BACKEND_URL = os.getenv("BACKEND_URL", "https://api.inteia.com.br")
 USUARIO = "professorigor"
 SENHA = "professorigor"  # Senha padrão de demonstração
 

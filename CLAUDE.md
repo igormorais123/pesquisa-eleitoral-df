@@ -191,7 +191,7 @@ vercel ls --token $VERCEL_TOKEN
 
 ### Projeto na Vercel
 - **Nome**: pesquisa-eleitoral-df
-- **URL Produção**: https://pesquisa-eleitoral-df-igormorais123s-projects.vercel.app
+- **URL Produção**: https://inteia.com.br
 - **Usuário**: igormorais123
 - **Project ID**: prj_gl8ATaXX0NxNQzWAo4hcUVqPmq0R
 - **Team ID**: team_Af2JN68IUUA7lwsIGKuJiN66
@@ -210,7 +210,7 @@ O token da API Render está salvo em **dois lugares**:
 2. **Dashboard Render**: https://dashboard.render.com/u/settings#api-keys
 
 ### Backend no Render
-- **URL Produção**: https://pesquisa-eleitoral-df-1.onrender.com
+- **URL Produção**: https://api.inteia.com.br
 - **Tipo**: Web Service (FastAPI)
 
 ### Se perder o token Render

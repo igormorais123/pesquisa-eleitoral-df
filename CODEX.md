@@ -31,8 +31,8 @@ docker-compose up -d
 
 ## Deploy
 
-- **Frontend**: Vercel (pesquisa-eleitoral-df)
-- **Backend**: Render (pesquisa-eleitoral-df-1.onrender.com)
+- **Frontend**: https://inteia.com.br (Vercel)
+- **Backend API**: https://api.inteia.com.br (Render)
 
 ## Permissões
 

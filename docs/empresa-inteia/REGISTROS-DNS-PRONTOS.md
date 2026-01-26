@@ -58,6 +58,18 @@ Quando o Registro.br permitir, adicione estes registros na ordem:
 
 ---
 
+## 6. API RENDER (BACKEND) - CNAME
+
+| Campo | Valor |
+|-------|-------|
+| Tipo | CNAME |
+| Nome | api |
+| Valor | `pesquisa-eleitoral-df-1.onrender.com` |
+
+> Este registro permite que api.inteia.com.br aponte para o backend no Render.
+
+---
+
 ## COMO ADICIONAR NO REGISTRO.BR
 
 1. Acesse: https://registro.br/painel/dominios?dominio=inteia.com.br

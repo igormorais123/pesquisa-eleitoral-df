@@ -79,7 +79,7 @@ if (-not $FrontendOnly) {
 Write-Host ""
 Write-Host "🎉 Deploy concluído!" -ForegroundColor Green
 Write-Host ""
-Write-Host "📍 URLs de Produção:" -ForegroundColor Cyan
-Write-Host "   Frontend: https://pesquisa-eleitoral-df.vercel.app" -ForegroundColor White
-Write-Host "   Backend:  https://pesquisa-eleitoral-df-1.onrender.com" -ForegroundColor White
+Write-Host "📍 URLs de Produção INTEIA:" -ForegroundColor Cyan
+Write-Host "   Frontend: https://inteia.com.br" -ForegroundColor White
+Write-Host "   Backend:  https://api.inteia.com.br" -ForegroundColor White
 Write-Host ""
