@@ -31,6 +31,9 @@
 - [x] Documentacao de erros LSP conhecidos
 - [x] Atualizacao do CLAUDE.md com instrucoes GPS
 - [x] Criacao de _INSIGHTS.md e _CHECKLIST.md em todas as pastas
+- [x] Testes automatizados com Playwright (16 testes, 18 screenshots)
+- [x] TestSprite MCP configurado com API key
+- [x] Build de producao do frontend (Next.js compilado)
 
 ## Notas
 
