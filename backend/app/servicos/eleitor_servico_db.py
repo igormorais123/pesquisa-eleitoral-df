@@ -56,7 +56,9 @@ class EleitorServicoDB:
 
         # Filtros geográficos
         if filtros.regioes_administrativas:
-            query = query.where(Eleitor.regiao_administrativa.in_(filtros.regioes_administrativas))
+            query = query.where(
+                Eleitor.regiao_administrativa.in_(filtros.regioes_administrativas)
+            )
 
         # Filtros socioeconômicos
         if filtros.clusters:
@@ -68,7 +70,9 @@ class EleitorServicoDB:
         if filtros.ocupacoes:
             query = query.where(Eleitor.ocupacao_vinculo.in_(filtros.ocupacoes))
         if filtros.faixas_renda:
-            query = query.where(Eleitor.renda_salarios_minimos.in_(filtros.faixas_renda))
+            query = query.where(
+                Eleitor.renda_salarios_minimos.in_(filtros.faixas_renda)
+            )
 
         # Filtros socioculturais
         if filtros.religioes:
@@ -83,11 +87,17 @@ class EleitorServicoDB:
 
         # Filtros políticos
         if filtros.orientacoes_politicas:
-            query = query.where(Eleitor.orientacao_politica.in_(filtros.orientacoes_politicas))
+            query = query.where(
+                Eleitor.orientacao_politica.in_(filtros.orientacoes_politicas)
+            )
         if filtros.posicoes_bolsonaro:
-            query = query.where(Eleitor.posicao_bolsonaro.in_(filtros.posicoes_bolsonaro))
+            query = query.where(
+                Eleitor.posicao_bolsonaro.in_(filtros.posicoes_bolsonaro)
+            )
         if filtros.interesses_politicos:
-            query = query.where(Eleitor.interesse_politico.in_(filtros.interesses_politicos))
+            query = query.where(
+                Eleitor.interesse_politico.in_(filtros.interesses_politicos)
+            )
 
         # Filtros comportamentais
         if filtros.estilos_decisao:
@@ -97,7 +107,9 @@ class EleitorServicoDB:
         if filtros.voto_facultativo is not None:
             query = query.where(Eleitor.voto_facultativo == filtros.voto_facultativo)
         if filtros.conflito_identitario is not None:
-            query = query.where(Eleitor.conflito_identitario == filtros.conflito_identitario)
+            query = query.where(
+                Eleitor.conflito_identitario == filtros.conflito_identitario
+            )
 
         # Busca textual (ILIKE para case-insensitive)
         if filtros.busca_texto:
@@ -125,12 +137,14 @@ class EleitorServicoDB:
     async def _gerar_id(self) -> str:
         """Gera um novo ID único para eleitor"""
         result = await self.db.execute(
-            select(func.max(
-                func.cast(
-                    func.substr(Eleitor.id, 4),  # Remove "df-"
-                    Integer
+            select(
+                func.max(
+                    func.cast(
+                        func.substr(Eleitor.id, 4),  # Remove "df-"
+                        Integer,
+                    )
                 )
-            )).where(Eleitor.id.like("df-%"))
+            ).where(Eleitor.id.like("df-%"))
         )
         max_num = result.scalar() or 0
         return f"df-{max_num + 1:04d}"
@@ -193,9 +207,7 @@ class EleitorServicoDB:
         Returns:
             Dados do eleitor ou None
         """
-        result = await self.db.execute(
-            select(Eleitor).where(Eleitor.id == eleitor_id)
-        )
+        result = await self.db.execute(select(Eleitor).where(Eleitor.id == eleitor_id))
         eleitor = result.scalar_one_or_none()
         return eleitor.to_dict() if eleitor else None
 
@@ -238,9 +250,7 @@ class EleitorServicoDB:
         Returns:
             Eleitor atualizado ou None
         """
-        result = await self.db.execute(
-            select(Eleitor).where(Eleitor.id == eleitor_id)
-        )
+        result = await self.db.execute(select(Eleitor).where(Eleitor.id == eleitor_id))
         eleitor = result.scalar_one_or_none()
 
         if eleitor:
@@ -263,9 +273,7 @@ class EleitorServicoDB:
         Returns:
             True se removido, False se não encontrado
         """
-        result = await self.db.execute(
-            select(Eleitor).where(Eleitor.id == eleitor_id)
-        )
+        result = await self.db.execute(select(Eleitor).where(Eleitor.id == eleitor_id))
         eleitor = result.scalar_one_or_none()
 
         if eleitor:
@@ -274,7 +282,9 @@ class EleitorServicoDB:
 
         return False
 
-    async def obter_estatisticas(self, filtros: Optional[FiltrosEleitor] = None) -> Dict:
+    async def obter_estatisticas(
+        self, filtros: Optional[FiltrosEleitor] = None
+    ) -> Dict:
         """
         Calcula estatísticas dos eleitores.
 
@@ -415,12 +425,12 @@ class EleitorServicoDB:
                     select(Eleitor.id).where(Eleitor.id == eleitor_id)
                 )
                 if existente.scalar_one_or_none():
-                    erros.append(f"Linha {i+1}: ID {eleitor_id} já existe")
+                    erros.append(f"Linha {i + 1}: ID {eleitor_id} já existe")
                     continue
 
                 # Validar dados mínimos
                 if not eleitor_data.get("nome"):
-                    erros.append(f"Linha {i+1}: Nome é obrigatório")
+                    erros.append(f"Linha {i + 1}: Nome é obrigatório")
                     continue
 
                 # Criar eleitor
@@ -429,7 +439,7 @@ class EleitorServicoDB:
                 total_adicionados += 1
 
             except Exception as e:
-                erros.append(f"Linha {i+1}: {str(e)}")
+                erros.append(f"Linha {i + 1}: {str(e)}")
 
         if total_adicionados > 0:
             await self.db.flush()
@@ -472,9 +482,7 @@ class EleitorServicoDB:
         if not ids:
             return []
 
-        result = await self.db.execute(
-            select(Eleitor).where(Eleitor.id.in_(ids))
-        )
+        result = await self.db.execute(select(Eleitor).where(Eleitor.id.in_(ids)))
         eleitores = result.scalars().all()
         return [e.to_dict() for e in eleitores]
 
@@ -482,3 +490,63 @@ class EleitorServicoDB:
         """Retorna o total de eleitores no banco"""
         result = await self.db.execute(select(func.count(Eleitor.id)))
         return result.scalar() or 0
+
+    async def exportar_csv(self, filtros: FiltrosEleitor) -> str:
+        """
+        Exporta eleitores filtrados para CSV.
+
+        Args:
+            filtros: Filtros a aplicar
+
+        Returns:
+            String CSV com cabeçalho e dados
+        """
+        import csv
+        import io
+
+        # Query base sem paginação
+        query = select(Eleitor)
+        query = self._aplicar_filtros_query(query, filtros)
+        query = self._aplicar_ordenacao(query, filtros.ordenar_por, filtros.ordem)
+
+        result = await self.db.execute(query)
+        eleitores = result.scalars().all()
+
+        # Criar CSV em memória
+        output = io.StringIO()
+
+        # Definir colunas para exportação
+        colunas = [
+            "id",
+            "nome",
+            "idade",
+            "genero",
+            "cor_raca",
+            "regiao_administrativa",
+            "cluster_socioeconomico",
+            "escolaridade",
+            "profissao",
+            "ocupacao_vinculo",
+            "renda_salarios_minimos",
+            "religiao",
+            "estado_civil",
+            "filhos",
+            "orientacao_politica",
+            "posicao_bolsonaro",
+            "interesse_politico",
+            "estilo_decisao",
+            "tolerancia_nuance",
+            "voto_facultativo",
+            "conflito_identitario",
+        ]
+
+        writer = csv.DictWriter(output, fieldnames=colunas, extrasaction="ignore")
+        writer.writeheader()
+
+        for eleitor in eleitores:
+            dados = eleitor.to_dict()
+            # Filtrar apenas colunas desejadas
+            linha = {col: dados.get(col, "") for col in colunas}
+            writer.writerow(linha)
+
+        return output.getvalue()

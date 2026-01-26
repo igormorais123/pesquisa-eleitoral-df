@@ -52,6 +52,7 @@ def criar_token_response(usuario) -> TokenResponse:
 # Registro
 # ==========================================
 
+
 @router.post(
     "/registro",
     response_model=RegistroResponse,
@@ -94,6 +95,7 @@ async def registrar(
 # ==========================================
 # Login Local
 # ==========================================
+
 
 @router.post(
     "/login",
@@ -174,6 +176,7 @@ async def login_form(
 # ==========================================
 # Login Google OAuth2
 # ==========================================
+
 
 @router.get(
     "/google/url",
@@ -286,6 +289,7 @@ async def google_callback(
 # Sessão
 # ==========================================
 
+
 @router.get(
     "/me",
     response_model=UsuarioResponse,
@@ -297,11 +301,20 @@ async def obter_usuario_logado(
     db: AsyncSession = Depends(get_db_optional),
 ):
     """Obtém dados do usuário logado"""
+    # Verificar se usuario_id existe
+    if not usuario_atual.usuario_id:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token inválido: usuário não identificado",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
     # Tentar buscar do banco (se disponível)
+    usuario_id: str = usuario_atual.usuario_id  # Já validado acima
     usuario = None
     if db is not None:
         try:
-            usuario = await UsuarioServico.obter_por_id(db, usuario_atual.usuario_id)
+            usuario = await UsuarioServico.obter_por_id(db, usuario_id)
         except Exception:
             # Banco indisponível, usar fallback
             pass
@@ -310,10 +323,10 @@ async def obter_usuario_logado(
         return UsuarioResponse.model_validate(usuario)
 
     # Fallback - detecta se é usuário Google ou local
-    is_google = usuario_atual.usuario_id and usuario_atual.usuario_id.startswith("google-")
+    is_google = usuario_atual.usuario_id.startswith("google-")
 
     return UsuarioResponse(
-        id=usuario_atual.usuario_id or "",
+        id=usuario_atual.usuario_id,
         email=usuario_atual.email or "admin@exemplo.com",
         nome=usuario_atual.nome or "",
         papel=usuario_atual.papel or "admin",
