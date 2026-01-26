@@ -5,46 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>INTEIA | Análise Estratégica - Intenção de Voto DF 2026</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
       :root {
-        --side-w: 72px;
+        --side-w: 60px;
         --amber: #d69e2e;
-        --green: #2f855a;
-        --red: #c53030;
-        --blue: #2b6cb0;
-        --navy: #102a43;
-        --indigo: #364fc7;
-        --shadow: 0 18px 45px rgba(9, 14, 34, 0.12);
-        --shadow-soft: 0 10px 28px rgba(9, 14, 34, 0.1);
-        --radius: 16px;
+        --amber-dark: #b7791f;
+        --green: #22c55e;
+        --red: #ef4444;
+        --blue: #3b82f6;
+        --navy: #0f172a;
+        --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+        --shadow-soft: 0 4px 6px rgba(0,0,0,0.1);
+        --radius: 12px;
       }
 
       /* Tema Claro */
       [data-theme="light"] {
-        --bg0: #f6f7fb;
-        --bg1: #ffffff;
-        --paper: rgba(255, 255, 255, 0.86);
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-tertiary: #f1f5f9;
+        --paper: #ffffff;
         --paper-strong: #ffffff;
-        --ink: #0b1020;
-        --muted: #4b5563;
-        --muted-2: #6b7280;
-        --line: rgba(12, 18, 38, 0.12);
+        --ink: #0f172a;
+        --muted: #475569;
+        --muted-2: #64748b;
+        --line: #e2e8f0;
+        --sidebar-bg: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
       }
 
       /* Tema Escuro */
       [data-theme="dark"] {
-        --bg0: #0f172a;
-        --bg1: #1e293b;
-        --paper: rgba(30, 41, 59, 0.9);
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-tertiary: #334155;
+        --paper: rgba(255, 255, 255, 0.03);
         --paper-strong: #1e293b;
-        --ink: #f1f5f9;
+        --ink: #f8fafc;
         --muted: #94a3b8;
         --muted-2: #64748b;
-        --line: rgba(255, 255, 255, 0.1);
+        --line: rgba(255, 255, 255, 0.08);
+        --sidebar-bg: linear-gradient(180deg, #020617 0%, #0f172a 100%);
       }
 
       * {
         box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
 
       html,
@@ -53,17 +62,13 @@
       }
 
       body {
-        margin: 0;
-        padding-left: var(--side-w);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: var(--bg-secondary);
         color: var(--ink);
-        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
-          Arial, "Noto Sans", "Liberation Sans", sans-serif;
-        font-size: 18px;
-        line-height: 1.7;
-        background:
-          radial-gradient(1200px 700px at 15% -10%, rgba(54, 79, 199, 0.12), transparent 55%),
-          radial-gradient(900px 600px at 90% 0%, rgba(43, 108, 176, 0.12), transparent 55%),
-          linear-gradient(180deg, var(--bg0), var(--bg1));
+        line-height: 1.6;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        padding-left: var(--side-w);
       }
 
       a {
@@ -82,49 +87,47 @@
         top: 0;
         bottom: 0;
         width: var(--side-w);
-        background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        background: var(--sidebar-bg);
         border-right: 1px solid rgba(214, 158, 46, 0.2);
-        z-index: 50;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        z-index: 100;
         padding: 24px 0;
       }
 
-      .side-mark .side-content {
+      .side-mark .logo-icon {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+        border-radius: var(--radius);
         display: flex;
-        flex-direction: column;
         align-items: center;
-        gap: 12px;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 12px;
+        color: #ffffff;
+      }
+
+      .side-mark .vertical-text {
         writing-mode: vertical-rl;
         transform: rotate(180deg);
-      }
-
-      .side-mark .label {
-        letter-spacing: 0.45em;
-        font-weight: 800;
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.92);
-        text-transform: uppercase;
-        user-select: none;
-      }
-
-      .side-mark .author-name {
-        font-size: 9px;
-        letter-spacing: 0.08em;
-        color: rgba(255, 255, 255, 0.75);
+        font-size: 11px;
         font-weight: 600;
-        user-select: none;
+        letter-spacing: 0.15em;
+        color: var(--amber);
+        text-transform: uppercase;
       }
 
-      .side-mark .author-role {
-        font-size: 8px;
-        letter-spacing: 0.05em;
-        color: rgba(255, 255, 255, 0.55);
-        font-weight: 500;
-        user-select: none;
+      .side-mark .author-info {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        text-align: center;
       }
+
+      .side-mark .author-name { font-size: 9px; font-weight: 600; color: #ffffff; display: block; margin-bottom: 6px; }
+      .side-mark .author-role { font-size: 8px; color: var(--amber); display: block; }
 
       .container {
         max-width: 1180px;
@@ -135,24 +138,15 @@
       header.hero {
         position: relative;
         overflow: hidden;
-        border-radius: calc(var(--radius) + 4px);
-        padding: 34px 34px 28px;
+        border-radius: var(--radius);
+        padding: 32px;
         color: #f8fafc;
-        background:
-          radial-gradient(900px 500px at 20% 10%, rgba(214, 158, 46, 0.18), transparent 55%),
-          radial-gradient(800px 460px at 90% 0%, rgba(54, 79, 199, 0.22), transparent 55%),
-          linear-gradient(135deg, #0b1734, #102a43 55%, #0b1734);
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         box-shadow: var(--shadow);
       }
 
       header.hero::after {
-        content: "";
-        position: absolute;
-        inset: -40px;
-        background:
-          radial-gradient(400px 220px at 18% 28%, rgba(255, 255, 255, 0.08), transparent 65%),
-          radial-gradient(520px 280px at 82% 18%, rgba(255, 255, 255, 0.07), transparent 68%);
-        pointer-events: none;
+        display: none;
       }
 
       .hero-top {
@@ -173,7 +167,6 @@
 
       .logo .ia {
         color: var(--amber);
-        text-shadow: 0 0 24px rgba(214, 158, 46, 0.35);
       }
 
       .author {
@@ -252,8 +245,8 @@
         gap: 8px;
         padding: 8px 12px;
         border-radius: 999px;
-        background: rgba(214, 158, 46, 0.16);
-        border: 1px solid rgba(214, 158, 46, 0.25);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         color: rgba(248, 250, 252, 0.94);
         font-weight: 700;
       }
@@ -263,7 +256,6 @@
         height: 8px;
         border-radius: 99px;
         background: var(--amber);
-        box-shadow: 0 0 18px rgba(214, 158, 46, 0.55);
       }
 
       .grid-cards {
@@ -307,13 +299,12 @@
       }
 
       section {
-        margin-top: 18px;
-        background: var(--paper);
-        border: 1px solid rgba(12, 18, 38, 0.1);
+        margin-top: 24px;
+        background: var(--bg-primary);
+        border: 1px solid var(--line);
         border-radius: var(--radius);
-        box-shadow: var(--shadow-soft);
+        box-shadow: var(--shadow);
         padding: 28px;
-        backdrop-filter: blur(10px);
       }
 
       section h2 {
@@ -328,7 +319,7 @@
       }
 
       section h2 .n {
-        color: rgba(54, 79, 199, 0.88);
+        color: var(--muted);
         font-weight: 900;
       }
 
@@ -490,11 +481,11 @@
       }
 
       .theme-toggle, .nav-dropdown-btn {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         gap: 8px;
-        padding: 8px 14px;
-        border-radius: 10px;
+        padding: 8px 16px;
+        border-radius: var(--radius);
         font-size: 13px;
         font-weight: 600;
         cursor: pointer;
@@ -505,28 +496,28 @@
       }
 
       #btn-print {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         gap: 8px;
         padding: 8px 16px;
-        border-radius: 10px;
+        border-radius: var(--radius);
         font-size: 13px;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.2s ease;
         border: none;
-        background: linear-gradient(135deg, var(--amber) 0%, #b7791f 100%);
+        background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
         color: #ffffff;
       }
 
       .theme-toggle:hover, .nav-dropdown-btn:hover {
-        background: var(--paper-strong);
+        background: var(--bg-tertiary);
         transform: translateY(-1px);
       }
 
       #btn-print:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 14px rgba(214, 158, 46, 0.35);
+        box-shadow: 0 4px 14px rgba(214, 158, 46, 0.3);
       }
 
       .theme-toggle svg, #btn-print svg, .nav-dropdown-btn svg { width: 16px; height: 16px; }
@@ -562,12 +553,12 @@
         text-decoration: none;
         transition: all 0.15s ease;
       }
-      .nav-dropdown-menu a:hover { background: rgba(214, 158, 46, 0.08); color: var(--amber); }
+      .nav-dropdown-menu a:hover { background: rgba(16, 42, 67, 0.06); color: var(--ink); }
       .nav-dropdown-menu a:first-child { border-radius: 12px 12px 0 0; }
       .nav-dropdown-menu a:last-child { border-radius: 0 0 12px 12px; }
       .nav-dropdown-menu .nav-icon { width: 18px; height: 18px; flex-shrink: 0; }
       .nav-dropdown-menu .nav-label { flex: 1; }
-      .nav-dropdown-menu .nav-badge { font-size: 9px; font-weight: 600; text-transform: uppercase; padding: 2px 6px; background: rgba(214, 158, 46, 0.15); color: var(--amber); border-radius: 4px; }
+      .nav-dropdown-menu .nav-badge { font-size: 9px; font-weight: 600; text-transform: uppercase; padding: 2px 6px; background: rgba(16, 42, 67, 0.1); color: var(--navy); border-radius: 4px; }
       .nav-divider { height: 1px; background: var(--line); margin: 4px 0; }
 
       .container { margin-top: 52px; }
@@ -610,7 +601,7 @@
       }
 
       .chat-fab .chat-text strong {
-        color: var(--amber);
+        color: rgba(255, 255, 255, 0.95);
       }
 
       .chat-panel {
@@ -690,10 +681,7 @@
         overflow: auto;
         display: grid;
         gap: 10px;
-        background:
-          radial-gradient(900px 500px at 20% 0%, rgba(54, 79, 199, 0.08), transparent 52%),
-          radial-gradient(900px 520px at 90% 0%, rgba(43, 108, 176, 0.08), transparent 52%),
-          linear-gradient(180deg, rgba(246, 247, 251, 0.86), rgba(255, 255, 255, 0.86));
+        background: linear-gradient(180deg, rgba(246, 247, 251, 0.92), rgba(255, 255, 255, 0.92));
       }
 
       .msg {
@@ -709,8 +697,8 @@
 
       .msg.user {
         margin-left: auto;
-        background: rgba(54, 79, 199, 0.12);
-        border-color: rgba(54, 79, 199, 0.18);
+        background: rgba(16, 42, 67, 0.08);
+        border-color: rgba(16, 42, 67, 0.15);
       }
 
       .msg.assistant {
@@ -841,18 +829,37 @@
           margin: 0;
         }
 
-        /* Header do relatório */
+        /* Header do relatório - IMPRESSÃO ECONÔMICA (fundo branco) */
         header.hero {
           box-shadow: none;
           border-radius: 0;
-          padding: 24pt 0 20pt;
+          padding: 20pt 0;
           margin-bottom: 16pt;
-          background: linear-gradient(135deg, #0b1734, #102a43) !important;
+          background: #ffffff !important;
+          border-bottom: 2pt solid #d69e2e;
           page-break-after: avoid;
+          color: #0f172a !important;
         }
 
         header.hero::after {
           display: none;
+        }
+
+        header.hero .logo {
+          color: #0f172a !important;
+        }
+
+        header.hero .logo .ia {
+          color: #d69e2e !important;
+        }
+
+        header.hero .author .name,
+        header.hero .author .meta,
+        header.hero .hero-title,
+        header.hero .hero-title h1,
+        header.hero .hero-title .sub,
+        header.hero .hero-title .kicker {
+          color: #0f172a !important;
         }
 
         .hero-top {
@@ -886,16 +893,35 @@
 
         .card {
           padding: 12pt;
-          border-radius: 8pt;
-          background: rgba(255, 255, 255, 0.1) !important;
+          border-radius: 6pt;
+          background: #f8fafc !important;
+          border: 1pt solid #e2e8f0;
+          color: #0f172a !important;
         }
 
         .card .value {
           font-size: 18pt;
+          color: #0f172a !important;
         }
 
         .card .label {
           font-size: 9pt;
+          color: #475569 !important;
+        }
+
+        /* Ocultar chips de links no print */
+        .links {
+          display: none !important;
+        }
+
+        .badge {
+          background: #f1f5f9 !important;
+          border: 1pt solid #e2e8f0 !important;
+          color: #0f172a !important;
+        }
+
+        .badge .dot {
+          background: #d69e2e !important;
         }
 
         /* Seções principais */
@@ -1146,11 +1172,12 @@
     </style>
   </head>
   <body>
-    <aside class="side-mark" aria-hidden="true">
-      <div class="side-content">
-        <div class="label">INTEIA</div>
-        <div class="author-name">Igor Morais</div>
-        <div class="author-role">pesquisador</div>
+    <aside class="side-mark">
+      <div class="logo-icon">IA</div>
+      <span class="vertical-text">INTEIA</span>
+      <div class="author-info">
+        <span class="author-name">Igor Morais Vasconcelos</span>
+        <span class="author-role">Pesquisador</span>
       </div>
     </aside>
     <!-- Top Controls -->
@@ -1201,10 +1228,10 @@
                 Inteligência Artificial · INTEIA
               </div>
               <div class="links">
-                <a class="chip" href="https://instagram.com/igormorais123" target="_blank" rel="noreferrer">
+                <a class="chip" href="https://www.instagram.com/igormorais123" target="_blank" rel="noreferrer">
                   Instagram: @igormorais123
                 </a>
-                <a class="chip" href="http://lattes.cnpq.br/2845626717136000" target="_blank" rel="noreferrer">
+                <a class="chip" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K2036454A2" target="_blank" rel="noreferrer">
                   Lattes (CNPq)
                 </a>
                 <a class="chip" href="https://github.com/OpenCodeAcademy" target="_blank" rel="noreferrer">
