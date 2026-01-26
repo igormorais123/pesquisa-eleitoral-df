@@ -97,10 +97,6 @@ INITIAL.md                         # Template de requisição
 │   Verificar  ───► Pesquisar  ───► Criar Plano ───► Implementar ──► Validar │
 │   Requisitos      Profundo        "Paint by        Focado          Tudo    │
 │                                    Numbers"                                  │
-│      │                │                │                                     │
-│      ▼                ▼                ▼                                     │
-│   [CHECKPOINT]   [CHECKPOINT]    [CHECKPOINT]                               │
-│   Humano          Humano          Humano                                     │
 │                                                                              │
 │                         │                                                    │
 │                         ▼                                                    │
@@ -110,12 +106,11 @@ INITIAL.md                         # Template de requisição
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Regra Anti-Vibecoding
+### Regra de Pausa Automática
 
-> "Após 10 turns na mesma conversa, você não está discutindo.
-> Você está gerenciando contexto complexo."
+> **PAUSAR apenas quando:** 10+ iterações OU 30+ minutos de trabalho contínuo
 
-Se passar de 10 turns: PARE, compile descobertas, considere nova conversa.
+Ao atingir limite: compilar descobertas, salvar estado, considerar nova conversa.
 
 ## Comandos Disponíveis
 
@@ -177,16 +172,14 @@ Se passar de 10 turns: PARE, compile descobertas, considere nova conversa.
 # 1. Início de sessão
 /prime
 
-# 2. Verificar requisitos (obrigatório)
+# 2. Verificar requisitos
 /requirements-check INITIAL.md
 
-# 3. Pesquisa profunda (NOVO - obrigatório Tier 3-4)
+# 3. Pesquisa profunda
 /research Descrição detalhada
-# ⚠️ CHECKPOINT HUMANO: Validar análise
 
 # 4. Criar plano "paint by numbers"
 /plan-feature .agents/research/nome-research.md
-# ⚠️ CHECKPOINT HUMANO: Aprovar arquitetura
 
 # 5. [NOVA CONVERSA - Reset de Contexto]
 
@@ -198,13 +191,9 @@ Se passar de 10 turns: PARE, compile descobertas, considere nova conversa.
 
 # 8. Review
 /code-review
-# Se issues: /code-review-fix
 
 # 9. Commit
 /commit
-
-# 10. Retrospectiva
-/system-review
 ```
 
 ### Matriz de Decisão de Tier
@@ -265,9 +254,7 @@ Consultar `examples/` antes de implementar:
 
 > **"Contexto é Rei"** - Todo plano deve conter informação suficiente para implementação em uma única passada.
 
-> **"Checkpoint Humano"** - O momento de maior alavancagem é validar análise antes de implementar.
-
-> **"Anti-Vibecoding"** - Após 10 turns, você está gerenciando contexto, não resolvendo o problema.
+> **"Execução Autônoma"** - Trabalhar sem interrupções até 10 iterações ou 30 minutos.
 
 > **"Complexidade Essencial vs Acidental"** - AI trata todo padrão igual. NÓS sabemos a diferença.
 
