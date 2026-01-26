@@ -31,7 +31,8 @@ Marque com [x] o que já fez:
 
 ## Render (Backend API)
 - [x] Adicionar domínio api.inteia.com.br no serviço
-- [x] Verificar domínio (DNS CNAME configurado)
+- [x] DNS CNAME configurado
+- [ ] Verificar domínio no dashboard Render (aguardando SSL)
 
 ## Testes Finais
 - [x] Acessar https://inteia.com.br (site funciona?)

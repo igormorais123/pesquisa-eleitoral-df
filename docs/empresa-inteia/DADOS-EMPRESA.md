@@ -29,7 +29,7 @@
 | **CPF** | 000.283.911-36 |
 | **Telefone** | (61) 98115-7120 |
 | **Email Pessoal** | igormorais123@gmail.com |
-| **Email Empresarial** | igor@inteia.com.br (a configurar) |
+| **Email Empresarial** | igor@inteia.com.br |
 | **LinkedIn** | [igor-vasconcelos-115a5032](https://www.linkedin.com/in/igor-vasconcelos-115a5032/) |
 | **OAB** | 35.376 |
 
@@ -56,17 +56,32 @@
 ### Domínio
 - **Registrado em:** Registro.br
 - **Domínio:** inteia.com.br
-- **Status:** Registrado, pendente configuração DNS
+- **Status:** ✅ Configurado e funcionando
 
-### Hospedagem Planejada
+### DNS Configurado (26/01/2026)
+| Tipo | Nome | Valor |
+|------|------|-------|
+| A | inteia.com.br | 76.76.21.21 |
+| CNAME | www | inteia.com.br |
+| CNAME | api | pesquisa-eleitoral-df-1.onrender.com |
+| CNAME | app | cname.vercel-dns.com |
+| MX | @ | aspmx.l.google.com (+ 4 alternativas) |
+| TXT | @ | google-site-verification=... |
+| TXT | @ | v=spf1 include:_spf.google.com ~all |
+
+### Hospedagem
 - **Frontend:** Vercel (conta paga - igormorais123)
+  - URL: https://inteia.com.br
+  - URL: https://www.inteia.com.br
 - **Backend:** Render
-- **Repositório:** GitHub
+  - URL: https://api.inteia.com.br (custom domain)
+  - URL: https://pesquisa-eleitoral-df-1.onrender.com (direto)
+- **Repositório:** GitHub - igormorais123/pesquisa-eleitoral-df
 
-### Email Empresarial (a configurar)
+### Email Empresarial
 - **Provedor:** Google Workspace
 - **Email principal:** igor@inteia.com.br
-- **Conta vinculada:** igormorais123@gmail.com
+- **Status:** Configurado, pendente verificação de domínio
 
 ---
 
@@ -81,8 +96,8 @@
 
 ### Google Workspace
 - **Console:** https://admin.google.com
-- **Conta:** (a configurar)
-- **Senha:** (a configurar)
+- **Conta:** igor@inteia.com.br
+- **Senha:** (sua senha - guarde em local seguro)
 
 ### Vercel
 - **URL:** https://vercel.com
@@ -109,4 +124,4 @@
 
 ---
 
-*Última atualização: 25/01/2026*
+*Última atualização: 26/01/2026*
