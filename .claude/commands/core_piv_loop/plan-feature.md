@@ -4,13 +4,26 @@
 
 Transformar requisitos de funcionalidades em **planos de implementação completos** através de análise sistemática do codebase - **SEM escrever código**.
 
-O plano deve conter **TODO o contexto necessário** para implementação em uma única passada.
+O plano deve ser **"paint by numbers"** - qualquer desenvolvedor pode seguir linha por linha.
+
+## Pré-requisito
+
+Para tarefas Tier 3-4, execute `/research` primeiro e tenha o documento de pesquisa aprovado.
 
 ## Argumento
 
-`$ARGUMENTS` - Descrição da funcionalidade ou caminho para INITIAL.md
+`$ARGUMENTS` - Descrição da funcionalidade, INITIAL.md, ou documento de pesquisa
 
-## Processo (5 Fases)
+## Princípio: Simple vs Easy
+
+> **ALERTA**: Planejamento escolhe SIMPLE sobre EASY.
+>
+> - Easy = gerar código que funciona agora
+> - Simple = projetar sistema que pode ser entendido e mantido
+>
+> "Validamos o plano em minutos e sabemos exatamente o que será construído."
+
+## Processo (6 Fases)
 
 ### Fase 1: Entendimento da Funcionalidade
 
@@ -71,7 +84,25 @@ O plano deve conter **TODO o contexto necessário** para implementação em uma 
    - Casos de borda
    - Performance implications
 
-### Fase 4: Pensamento Estratégico
+### Fase 4: Análise de Complexidade (Fred Brooks)
+
+**Separar explicitamente:**
+
+#### Complexidade Essencial (PRESERVAR)
+- Regras de negócio que existem por motivo real
+- Requisitos do usuário
+- Constraints técnicos necessários
+- Integrações obrigatórias
+
+#### Complexidade Acidental (QUESTIONAR/REMOVER)
+- Workarounds de problemas já resolvidos
+- Código defensivo excessivo
+- Abstrações que não fazem mais sentido
+- Patterns copiados "porque era assim"
+
+> "AI trata todo padrão igual. NÓS sabemos a diferença."
+
+### Fase 5: Pensamento Estratégico
 
 1. **Avaliar fit arquitetural** - Como se encaixa no sistema?
 2. **Identificar dependências críticas** - O que precisa existir antes?
@@ -81,8 +112,9 @@ O plano deve conter **TODO o contexto necessário** para implementação em uma 
    - Timeout de API Claude
 4. **Segurança**: Validação de inputs, sanitização
 5. **Extensibilidade**: Preparar para features futuras
+6. **Simple over Easy**: Preferir soluções que podem ser entendidas
 
-### Fase 5: Geração do Plano
+### Fase 6: Geração do Plano
 
 Salvar em `.agents/plans/{nome-feature}.md` usando template:
 - Copiar estrutura de `PRPs/templates/prp_base.md`
