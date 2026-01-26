@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -74,6 +75,30 @@ const numeros = [
   { valor: '∞', label: 'Simulações', sublabel: 'Possíveis' },
 ];
 
+// Componente Logo INTEIA
+const LogoINTEIA = ({ size = 'default' }: { size?: 'small' | 'default' | 'large' }) => {
+  const sizes = {
+    small: { box: 'w-8 h-8', text: 'text-lg', tagline: 'text-[10px]' },
+    default: { box: 'w-10 h-10', text: 'text-xl', tagline: 'text-xs' },
+    large: { box: 'w-14 h-14', text: 'text-2xl', tagline: 'text-sm' },
+  };
+  const s = sizes[size];
+
+  return (
+    <div className="flex items-center gap-3">
+      <div className={`${s.box} rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/20`}>
+        <span className="text-white font-bold text-sm">IA</span>
+      </div>
+      <div className="flex flex-col">
+        <span className={`font-bold text-white ${s.text} tracking-tight`}>
+          INTE<span className="text-amber-400">IA</span>
+        </span>
+        <span className={`text-white/50 ${s.tagline} -mt-0.5`}>Inteligência Estratégica</span>
+      </div>
+    </div>
+  );
+};
+
 export default function LoginPage() {
   const router = useRouter();
   const [mostrarSenha, setMostrarSenha] = useState(false);
@@ -107,25 +132,20 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="bg-black text-white">
+    <div className="bg-slate-950 text-white font-['Inter',system-ui,sans-serif]">
       {/* Header Fixo */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center">
-              <Target className="w-5 h-5 text-white" />
-            </div>
-            <span className="font-semibold text-white">Pesquisa Eleitoral DF</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-8 text-sm text-white/70">
-            <a href="#problema" className="hover:text-white transition-colors">O Problema</a>
-            <a href="#solucao" className="hover:text-white transition-colors">A Solução</a>
-            <a href="#funcionalidades" className="hover:text-white transition-colors">Funcionalidades</a>
-            <a href="#igor" className="hover:text-white transition-colors">Sobre</a>
+          <LogoINTEIA size="small" />
+          <nav className="hidden md:flex items-center gap-8 text-sm text-white/60">
+            <a href="#problema" className="hover:text-amber-400 transition-colors">O Problema</a>
+            <a href="#solucao" className="hover:text-amber-400 transition-colors">A Solução</a>
+            <a href="#funcionalidades" className="hover:text-amber-400 transition-colors">Funcionalidades</a>
+            <a href="#igor" className="hover:text-amber-400 transition-colors">Sobre</a>
           </nav>
           <button
             onClick={() => setMostrarLogin(true)}
-            className="px-5 py-2 bg-white text-black rounded-full text-sm font-medium hover:bg-white/90 transition-colors"
+            className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 rounded-full text-sm font-semibold hover:from-amber-400 hover:to-amber-500 transition-all shadow-lg shadow-amber-500/20"
           >
             Entrar
           </button>
@@ -135,29 +155,32 @@ export default function LoginPage() {
       {/* Hero Section */}
       <section ref={heroRef} className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-16">
         {/* Background Visual */}
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-black to-black" />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-600/30 to-cyan-500/30 rounded-full blur-[120px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-amber-900/10 via-slate-950 to-slate-950" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-r from-amber-600/20 to-amber-500/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
 
         <motion.div
           style={{ opacity }}
           className="relative z-10 text-center px-6 max-w-5xl mx-auto"
         >
-          <motion.p
+          {/* Badge INTEIA */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-blue-400 text-lg mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 mb-8"
           >
-            Tecnologia de Stanford. Agora no Brasil.
-          </motion.p>
+            <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            <span className="text-amber-400 text-sm font-medium">Tecnologia de Stanford. Agora no Brasil.</span>
+          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl sm:text-6xl lg:text-8xl font-semibold tracking-tight leading-tight"
+            className="text-5xl sm:text-6xl lg:text-8xl font-bold tracking-tight leading-[1.1]"
           >
             O futuro da<br />
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 bg-clip-text text-transparent">
               pesquisa eleitoral.
             </span>
           </motion.h1>
@@ -166,7 +189,7 @@ export default function LoginPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mt-8 text-xl sm:text-2xl text-white/70 max-w-3xl mx-auto leading-relaxed"
+            className="mt-8 text-xl sm:text-2xl text-white/60 max-w-3xl mx-auto leading-relaxed"
           >
             Mil eleitores sintéticos com inteligência artificial.<br />
             Respostas que refletem a realidade do Distrito Federal.
@@ -180,14 +203,14 @@ export default function LoginPage() {
           >
             <button
               onClick={() => setMostrarLogin(true)}
-              className="px-8 py-4 bg-white text-black rounded-full text-lg font-medium hover:bg-white/90 transition-all flex items-center gap-2"
+              className="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 rounded-full text-lg font-semibold hover:from-amber-400 hover:to-amber-500 transition-all flex items-center gap-2 shadow-xl shadow-amber-500/25"
             >
               Acessar Sistema
               <ArrowRight className="w-5 h-5" />
             </button>
             <a
               href="#problema"
-              className="px-8 py-4 bg-white/10 text-white rounded-full text-lg font-medium hover:bg-white/20 transition-all border border-white/20"
+              className="px-8 py-4 bg-white/5 text-white rounded-full text-lg font-medium hover:bg-white/10 transition-all border border-white/10"
             >
               Saiba Mais
             </a>
@@ -201,7 +224,7 @@ export default function LoginPage() {
           transition={{ delay: 1 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
-          <a href="#problema" className="flex flex-col items-center gap-2 text-white/50 hover:text-white/80 transition-colors">
+          <a href="#problema" className="flex flex-col items-center gap-2 text-white/40 hover:text-amber-400 transition-colors">
             <span className="text-sm">Rolar para descobrir</span>
             <ArrowDown className="w-5 h-5 animate-bounce" />
           </a>
@@ -209,7 +232,7 @@ export default function LoginPage() {
       </section>
 
       {/* O Problema Individual */}
-      <section id="problema" className="py-32 px-6 bg-black">
+      <section id="problema" className="py-32 px-6 bg-slate-950">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -217,10 +240,10 @@ export default function LoginPage() {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <p className="text-blue-400 text-lg mb-4">O Problema</p>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
+            <p className="text-amber-400 text-lg mb-4 font-medium">O Problema</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
               Você conhece<br />
-              <span className="text-white/50">seu eleitor?</span>
+              <span className="text-white/40">seu eleitor?</span>
             </h2>
           </motion.div>
 
@@ -232,13 +255,13 @@ export default function LoginPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-square rounded-3xl bg-gradient-to-br from-red-900/50 to-orange-900/30 border border-red-500/20 flex items-center justify-center">
+              <div className="aspect-square rounded-3xl bg-gradient-to-br from-red-900/30 to-orange-900/20 border border-red-500/10 flex items-center justify-center">
                 <div className="text-center p-12">
-                  <div className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center">
+                  <div className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-red-500/10 to-orange-500/10 flex items-center justify-center border border-red-500/20">
                     <Users className="w-16 h-16 text-red-400/50" />
                   </div>
-                  <p className="text-3xl font-semibold text-white/30">?</p>
-                  <p className="text-white/40 mt-4">Eleitor desconhecido</p>
+                  <p className="text-4xl font-bold text-white/20">?</p>
+                  <p className="text-white/30 mt-4">Eleitor desconhecido</p>
                 </div>
               </div>
             </motion.div>
@@ -250,22 +273,22 @@ export default function LoginPage() {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <p className="text-2xl text-white/80 leading-relaxed">
+              <p className="text-2xl text-white/70 leading-relaxed">
                 Pesquisas tradicionais entregam números frios. Você sabe que 45% aprovam sua proposta,
                 mas não sabe <span className="text-white font-semibold">por quê</span>.
               </p>
-              <p className="text-xl text-white/60 leading-relaxed">
+              <p className="text-xl text-white/50 leading-relaxed">
                 Não sabe quais medos motivam o eleitor de Ceilândia. Não entende os valores
                 do empresário do Lago Sul. Não consegue prever como o jovem de Taguatinga
                 reagirá à sua mensagem.
               </p>
-              <div className="flex items-start gap-4 p-6 rounded-2xl bg-red-500/10 border border-red-500/20">
-                <div className="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start gap-4 p-6 rounded-2xl bg-red-500/5 border border-red-500/10">
+                <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center flex-shrink-0">
                   <Vote className="w-6 h-6 text-red-400" />
                 </div>
                 <div>
-                  <p className="text-lg font-medium text-white">O risco é imenso.</p>
-                  <p className="text-white/60 mt-1">
+                  <p className="text-lg font-semibold text-white">O risco é imenso.</p>
+                  <p className="text-white/50 mt-1">
                     Campanhas milionárias baseadas em achismos. Mensagens que não conectam.
                     Votos que escapam por falta de entendimento profundo.
                   </p>
@@ -277,7 +300,7 @@ export default function LoginPage() {
       </section>
 
       {/* O Problema Expandido */}
-      <section className="py-32 px-6 bg-gradient-to-b from-black via-slate-900/50 to-black">
+      <section className="py-32 px-6 bg-gradient-to-b from-slate-950 via-slate-900/50 to-slate-950">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -285,10 +308,10 @@ export default function LoginPage() {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <p className="text-orange-400 text-lg mb-4">Um problema universal</p>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
+            <p className="text-orange-400 text-lg mb-4 font-medium">Um problema universal</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
               Todos os candidatos<br />
-              <span className="text-white/50">enfrentam isso.</span>
+              <span className="text-white/40">enfrentam isso.</span>
             </h2>
           </motion.div>
 
@@ -304,11 +327,11 @@ export default function LoginPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-3xl bg-white/5 border border-white/10"
+                className="p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-amber-500/20 transition-colors"
               >
-                <item.icon className="w-12 h-12 text-orange-400 mb-6" />
-                <h3 className="text-2xl font-semibold mb-4">{item.title}</h3>
-                <p className="text-white/60 leading-relaxed">{item.desc}</p>
+                <item.icon className="w-12 h-12 text-amber-400 mb-6" />
+                <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                <p className="text-white/50 leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -316,8 +339,8 @@ export default function LoginPage() {
       </section>
 
       {/* A Solução - Poder dos Dados */}
-      <section id="solucao" className="py-32 px-6 bg-black relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-cyan-900/20" />
+      <section id="solucao" className="py-32 px-6 bg-slate-950 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-amber-900/10 via-transparent to-amber-900/5" />
 
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
@@ -326,10 +349,10 @@ export default function LoginPage() {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <p className="text-cyan-400 text-lg mb-4">A Solução</p>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
+            <p className="text-amber-400 text-lg mb-4 font-medium">A Solução</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
               O poder da<br />
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent">
                 análise preditiva.
               </span>
             </h2>
@@ -343,11 +366,11 @@ export default function LoginPage() {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <p className="text-2xl text-white/80 leading-relaxed">
-                Imagine poder <span className="text-cyan-400 font-semibold">conversar</span> com
+              <p className="text-2xl text-white/70 leading-relaxed">
+                Imagine poder <span className="text-amber-400 font-semibold">conversar</span> com
                 cada um dos seus eleitores. Entender suas dores. Testar mensagens. Prever reações.
               </p>
-              <p className="text-xl text-white/60 leading-relaxed">
+              <p className="text-xl text-white/50 leading-relaxed">
                 Com simulação agêntica, cada eleitor sintético é um perfil completo: dados demográficos,
                 posição política, vieses cognitivos, valores pessoais, medos e esperanças. A IA responde
                 como aquele cidadão responderia.
@@ -360,8 +383,8 @@ export default function LoginPage() {
                   'Preveja resultados com precisão',
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-cyan-400" />
-                    <span className="text-lg text-white/80">{item}</span>
+                    <CheckCircle className="w-5 h-5 text-amber-400" />
+                    <span className="text-lg text-white/70">{item}</span>
                   </div>
                 ))}
               </div>
@@ -374,20 +397,20 @@ export default function LoginPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-square rounded-3xl bg-gradient-to-br from-blue-900/50 to-cyan-900/30 border border-cyan-500/20 p-8 flex flex-col justify-center">
+              <div className="aspect-square rounded-3xl bg-gradient-to-br from-amber-900/20 to-amber-800/10 border border-amber-500/10 p-8 flex flex-col justify-center">
                 <div className="space-y-6">
                   {/* Simulação de conversa */}
-                  <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
-                    <p className="text-sm text-cyan-400 mb-2">Eleitor: Maria, 45 anos, Ceilândia</p>
-                    <p className="text-white/80">&ldquo;O que você acha da proposta de transporte gratuito?&rdquo;</p>
+                  <div className="bg-white/[0.03] rounded-2xl p-4 border border-white/5">
+                    <p className="text-sm text-amber-400 mb-2 font-medium">Eleitor: Maria, 45 anos, Ceilândia</p>
+                    <p className="text-white/70">&ldquo;O que você acha da proposta de transporte gratuito?&rdquo;</p>
                   </div>
-                  <div className="bg-cyan-500/10 rounded-2xl p-4 border border-cyan-500/20 ml-8">
-                    <p className="text-sm text-cyan-400 mb-2">Resposta IA</p>
-                    <p className="text-white/80">&ldquo;Olha, seria ótimo porque gasto quase R$400 por mês só de ônibus pra ir trabalhar no Plano...&rdquo;</p>
+                  <div className="bg-amber-500/5 rounded-2xl p-4 border border-amber-500/10 ml-8">
+                    <p className="text-sm text-amber-400 mb-2 font-medium">Resposta IA</p>
+                    <p className="text-white/70">&ldquo;Olha, seria ótimo porque gasto quase R$400 por mês só de ônibus pra ir trabalhar no Plano...&rdquo;</p>
                   </div>
                   <div className="flex items-center gap-2 justify-center mt-4">
-                    <Brain className="w-5 h-5 text-cyan-400" />
-                    <span className="text-sm text-white/50">Claude AI processando perfil completo</span>
+                    <Brain className="w-5 h-5 text-amber-400" />
+                    <span className="text-sm text-white/40">Claude AI processando perfil completo</span>
                   </div>
                 </div>
               </div>
@@ -397,7 +420,7 @@ export default function LoginPage() {
       </section>
 
       {/* Números em Destaque */}
-      <section className="py-24 px-6 bg-black border-y border-white/10">
+      <section className="py-24 px-6 bg-slate-950 border-y border-white/5">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {numeros.map((num, i) => (
@@ -409,11 +432,11 @@ export default function LoginPage() {
                 transition={{ delay: i * 0.1 }}
                 className="text-center"
               >
-                <div className="text-5xl sm:text-6xl lg:text-7xl font-semibold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                <div className="text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent">
                   {num.valor}
                 </div>
-                <div className="text-lg text-white mt-2">{num.label}</div>
-                <div className="text-sm text-white/50">{num.sublabel}</div>
+                <div className="text-lg text-white mt-2 font-medium">{num.label}</div>
+                <div className="text-sm text-white/40">{num.sublabel}</div>
               </motion.div>
             ))}
           </div>
@@ -421,7 +444,7 @@ export default function LoginPage() {
       </section>
 
       {/* Marcos Históricos */}
-      <section className="py-32 px-6 bg-gradient-to-b from-black to-slate-900">
+      <section className="py-32 px-6 bg-gradient-to-b from-slate-950 to-slate-900">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -429,16 +452,16 @@ export default function LoginPage() {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <p className="text-purple-400 text-lg mb-4">Marco Histórico</p>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
+            <p className="text-purple-400 text-lg mb-4 font-medium">Marco Histórico</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
               A revolução começou<br />
-              <span className="text-white/50">em Stanford.</span>
+              <span className="text-white/40">em Stanford.</span>
             </h2>
           </motion.div>
 
           <div className="relative">
             {/* Timeline */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-purple-500 via-blue-500 to-cyan-500" />
+            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-purple-500 via-amber-500 to-amber-400" />
 
             <div className="space-y-24">
               {[
@@ -475,15 +498,15 @@ export default function LoginPage() {
                   className={`relative grid lg:grid-cols-2 gap-8 ${item.lado === 'right' ? 'lg:text-right' : ''}`}
                 >
                   <div className={item.lado === 'right' ? 'lg:order-2' : ''}>
-                    <div className={`p-8 rounded-3xl bg-white/5 border border-white/10 ${item.lado === 'right' ? 'lg:ml-12' : 'lg:mr-12'}`}>
-                      <span className="text-4xl font-bold text-purple-400">{item.ano}</span>
-                      <h3 className="text-2xl font-semibold mt-4 mb-3">{item.titulo}</h3>
-                      <p className="text-white/60 leading-relaxed">{item.desc}</p>
+                    <div className={`p-8 rounded-3xl bg-white/[0.02] border border-white/5 ${item.lado === 'right' ? 'lg:ml-12' : 'lg:mr-12'}`}>
+                      <span className="text-4xl font-bold text-amber-400">{item.ano}</span>
+                      <h3 className="text-2xl font-bold mt-4 mb-3">{item.titulo}</h3>
+                      <p className="text-white/50 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                   <div className="hidden lg:block" />
                   {/* Dot on timeline */}
-                  <div className="absolute left-1/2 top-8 -translate-x-1/2 w-4 h-4 bg-purple-500 rounded-full border-4 border-black" />
+                  <div className="absolute left-1/2 top-8 -translate-x-1/2 w-4 h-4 bg-amber-500 rounded-full border-4 border-slate-950" />
                 </motion.div>
               ))}
             </div>
@@ -502,13 +525,20 @@ export default function LoginPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-square rounded-3xl bg-gradient-to-br from-blue-600/30 to-purple-600/30 border border-white/10 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-40 h-40 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center mb-6">
-                    <GraduationCap className="w-20 h-20 text-white" />
+              <div className="aspect-square rounded-3xl bg-gradient-to-br from-amber-600/20 to-amber-500/10 border border-amber-500/10 flex items-center justify-center overflow-hidden">
+                <div className="text-center p-8">
+                  <div className="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center mb-6 border-4 border-amber-500/30 overflow-hidden">
+                    <Image
+                      src="/images/igor-morais-vasconcelos.png"
+                      alt="Igor Morais Vasconcelos"
+                      width={192}
+                      height={192}
+                      className="w-full h-full object-cover object-top"
+                    />
                   </div>
-                  <p className="text-2xl font-semibold">Igor Morais Vasconcelos</p>
-                  <p className="text-white/50 mt-2">Doutorando em Gestão</p>
+                  <p className="text-2xl font-bold">Igor Morais Vasconcelos</p>
+                  <p className="text-amber-400 mt-2">Presidente INTEIA</p>
+                  <p className="text-white/40 text-sm mt-1">Doutorando em Gestão - IDP</p>
                 </div>
               </div>
             </motion.div>
@@ -521,14 +551,14 @@ export default function LoginPage() {
               className="space-y-8"
             >
               <div>
-                <p className="text-blue-400 text-lg mb-4">O Criador</p>
-                <h2 className="text-4xl sm:text-5xl font-semibold leading-tight">
+                <p className="text-amber-400 text-lg mb-4 font-medium">O Criador</p>
+                <h2 className="text-4xl sm:text-5xl font-bold leading-tight">
                   Precursor no Brasil em<br />
-                  <span className="text-white/50">simulações agênticas.</span>
+                  <span className="text-white/40">simulações agênticas.</span>
                 </h2>
               </div>
 
-              <p className="text-xl text-white/70 leading-relaxed">
+              <p className="text-xl text-white/60 leading-relaxed">
                 Igor Morais Vasconcelos trouxe para o Brasil as descobertas revolucionárias de Stanford
                 sobre simulação agêntica sintética. Com doutorado em Gestão, adaptou a metodologia
                 para a realidade eleitoral brasileira.
@@ -541,9 +571,9 @@ export default function LoginPage() {
                   { icon: Lightbulb, label: 'Pioneiro no Brasil' },
                   { icon: Zap, label: 'IA Generativa' },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10">
-                    <item.icon className="w-5 h-5 text-blue-400" />
-                    <span className="text-sm text-white/80">{item.label}</span>
+                  <div key={i} className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                    <item.icon className="w-5 h-5 text-amber-400" />
+                    <span className="text-sm text-white/70">{item.label}</span>
                   </div>
                 ))}
               </div>
@@ -553,7 +583,7 @@ export default function LoginPage() {
       </section>
 
       {/* Funcionalidades Completas */}
-      <section id="funcionalidades" className="py-32 px-6 bg-black">
+      <section id="funcionalidades" className="py-32 px-6 bg-slate-950">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -561,10 +591,10 @@ export default function LoginPage() {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <p className="text-cyan-400 text-lg mb-4">Funcionalidades</p>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">
+            <p className="text-amber-400 text-lg mb-4 font-medium">Funcionalidades</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
               Tudo que você precisa.<br />
-              <span className="text-white/50">Em um só lugar.</span>
+              <span className="text-white/40">Em um só lugar.</span>
             </h2>
           </motion.div>
 
@@ -576,7 +606,7 @@ export default function LoginPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <h3 className="text-2xl font-semibold mb-8 text-white/80">{cat.categoria}</h3>
+                <h3 className="text-2xl font-bold mb-8 text-white/70">{cat.categoria}</h3>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                   {cat.items.map((item, i) => (
                     <motion.div
@@ -585,11 +615,11 @@ export default function LoginPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1 }}
-                      className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-colors group"
+                      className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-amber-500/20 transition-all group"
                     >
-                      <item.icone className="w-10 h-10 text-cyan-400 mb-4 group-hover:scale-110 transition-transform" />
+                      <item.icone className="w-10 h-10 text-amber-400 mb-4 group-hover:scale-110 transition-transform" />
                       <h4 className="text-lg font-semibold mb-2">{item.titulo}</h4>
-                      <p className="text-sm text-white/50 leading-relaxed">{item.desc}</p>
+                      <p className="text-sm text-white/40 leading-relaxed">{item.desc}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -600,9 +630,9 @@ export default function LoginPage() {
       </section>
 
       {/* CTA Final */}
-      <section className="py-32 px-6 bg-gradient-to-b from-black via-blue-900/20 to-black relative overflow-hidden">
+      <section className="py-32 px-6 bg-gradient-to-b from-slate-950 via-amber-900/10 to-slate-950 relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-[150px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[150px]" />
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -611,27 +641,27 @@ export default function LoginPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight mb-8">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-8">
               Pronto para conhecer<br />
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent">
                 seu eleitor?
               </span>
             </h2>
-            <p className="text-xl text-white/60 mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-white/50 mb-12 max-w-2xl mx-auto">
               Cadastre-se agora e tenha acesso ao sistema mais avançado de simulação
               eleitoral do Brasil. Transforme dados em vitória.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <button
                 onClick={() => setMostrarLogin(true)}
-                className="px-10 py-5 bg-white text-black rounded-full text-xl font-medium hover:bg-white/90 transition-all flex items-center gap-3"
+                className="px-10 py-5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 rounded-full text-xl font-semibold hover:from-amber-400 hover:to-amber-500 transition-all flex items-center gap-3 shadow-xl shadow-amber-500/25"
               >
                 Acessar Sistema
                 <ArrowRight className="w-6 h-6" />
               </button>
               <Link
                 href="/cadastro"
-                className="px-10 py-5 bg-white/10 text-white rounded-full text-xl font-medium hover:bg-white/20 transition-all border border-white/20"
+                className="px-10 py-5 bg-white/5 text-white rounded-full text-xl font-medium hover:bg-white/10 transition-all border border-white/10"
               >
                 Criar Conta
               </Link>
@@ -641,17 +671,19 @@ export default function LoginPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 bg-black border-t border-white/10">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center">
-              <Target className="w-5 h-5 text-white" />
+      <footer className="py-12 px-6 bg-slate-950 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <LogoINTEIA size="small" />
+            <div className="text-center md:text-right">
+              <p className="text-white/40 text-sm">
+                CNPJ: 63.918.490/0001-20 | SHN Quadra 2 Bloco F, Sala 625/626 - Brasília/DF
+              </p>
+              <p className="text-white/30 text-sm mt-1">
+                © 2026 INTEIA - Instituto de Inteligência Artificial. Todos os direitos reservados.
+              </p>
             </div>
-            <span className="font-semibold text-white">Pesquisa Eleitoral DF 2026</span>
           </div>
-          <p className="text-white/50 text-sm">
-            © 2024-2026 Igor Morais Vasconcelos. Todos os direitos reservados.
-          </p>
         </div>
       </footer>
 
@@ -660,30 +692,30 @@ export default function LoginPage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-6"
+          className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-6"
           onClick={() => setMostrarLogin(false)}
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="w-full max-w-md bg-slate-900 rounded-3xl p-8 border border-white/10"
+            className="w-full max-w-md bg-slate-900 rounded-3xl p-8 border border-white/10 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="text-center mb-8">
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center mb-4">
-                <Target className="w-8 h-8 text-white" />
+              <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center mb-4 shadow-lg shadow-amber-500/20">
+                <span className="text-slate-950 font-bold text-xl">IA</span>
               </div>
-              <h2 className="text-2xl font-semibold text-white">Entrar no Sistema</h2>
+              <h2 className="text-2xl font-bold text-white">Entrar no Sistema</h2>
               <p className="text-white/50 mt-2">Acesse sua conta para continuar</p>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white/80">Email ou usuário</label>
+                <label className="text-sm font-medium text-white/70">Email ou usuário</label>
                 <input
                   type="text"
                   {...register('usuario')}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:ring-0 outline-none transition-colors text-white placeholder:text-white/30"
+                  className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 focus:border-amber-500 focus:ring-0 outline-none transition-colors text-white placeholder:text-white/30"
                   placeholder="seu@email.com"
                 />
                 {errors.usuario && (
@@ -692,18 +724,18 @@ export default function LoginPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white/80">Senha</label>
+                <label className="text-sm font-medium text-white/70">Senha</label>
                 <div className="relative">
                   <input
                     type={mostrarSenha ? 'text' : 'password'}
                     {...register('senha')}
-                    className="w-full px-4 py-3 pr-12 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500 focus:ring-0 outline-none transition-colors text-white placeholder:text-white/30"
+                    className="w-full px-4 py-3.5 pr-12 rounded-xl bg-white/5 border border-white/10 focus:border-amber-500 focus:ring-0 outline-none transition-colors text-white placeholder:text-white/30"
                     placeholder="••••••••"
                   />
                   <button
                     type="button"
                     onClick={() => setMostrarSenha(!mostrarSenha)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-amber-400 transition-colors"
                   >
                     {mostrarSenha ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
@@ -716,10 +748,10 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={carregando}
-                className="w-full py-4 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-4 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-semibold hover:from-amber-400 hover:to-amber-500 transition-all flex items-center justify-center gap-2 disabled:opacity-50 shadow-lg shadow-amber-500/20"
               >
                 {carregando ? (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <div className="w-5 h-5 border-2 border-slate-950/30 border-t-slate-950 rounded-full animate-spin" />
                 ) : (
                   <>
                     Entrar
@@ -729,17 +761,17 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <div className="mt-6 p-4 rounded-xl bg-white/5 border border-white/10">
-              <p className="text-sm text-white/50 mb-2">Acesso de demonstração</p>
+            <div className="mt-6 p-4 rounded-xl bg-amber-500/5 border border-amber-500/10">
+              <p className="text-sm text-amber-400/70 mb-2">Acesso de demonstração</p>
               <div className="flex items-center gap-4 text-sm">
-                <code className="px-3 py-1.5 rounded-lg bg-white/10 text-cyan-400 font-mono">admin</code>
-                <code className="px-3 py-1.5 rounded-lg bg-white/10 text-cyan-400 font-mono">admin123</code>
+                <code className="px-3 py-1.5 rounded-lg bg-white/5 text-amber-400 font-mono">admin</code>
+                <code className="px-3 py-1.5 rounded-lg bg-white/5 text-amber-400 font-mono">admin123</code>
               </div>
             </div>
 
-            <p className="text-center text-sm text-white/50 mt-6">
+            <p className="text-center text-sm text-white/40 mt-6">
               Não tem conta?{' '}
-              <Link href="/cadastro" className="text-cyan-400 hover:underline">
+              <Link href="/cadastro" className="text-amber-400 hover:underline">
                 Criar conta
               </Link>
             </p>
