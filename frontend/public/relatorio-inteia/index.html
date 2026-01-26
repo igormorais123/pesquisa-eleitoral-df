@@ -106,7 +106,95 @@
         max-width: 1180px;
         padding: 28px 22px 96px;
         margin: 0 auto;
+        margin-top: 52px;
       }
+
+      /* Top Navigation */
+      .top-nav {
+        position: fixed;
+        top: 0;
+        left: var(--side-w);
+        right: 0;
+        height: 52px;
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 24px;
+        gap: 12px;
+        z-index: 40;
+      }
+      .nav-dropdown { position: relative; }
+      .nav-dropdown-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        background: var(--bg0);
+        border: 1px solid var(--line);
+        color: var(--muted);
+        transition: all 0.2s ease;
+      }
+      .nav-dropdown-btn:hover { background: var(--bg1); }
+      .nav-dropdown-btn svg { width: 16px; height: 16px; }
+      .nav-dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 8px;
+        background: var(--bg1);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        min-width: 240px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: all 0.2s ease;
+        z-index: 200;
+      }
+      .nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+      .nav-dropdown-menu a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        transition: all 0.15s ease;
+      }
+      .nav-dropdown-menu a:hover { background: rgba(214, 158, 46, 0.08); color: var(--amber); text-decoration: none; }
+      .nav-dropdown-menu a:first-child { border-radius: 12px 12px 0 0; }
+      .nav-dropdown-menu a:last-child { border-radius: 0 0 12px 12px; }
+      .nav-dropdown-menu .nav-icon { width: 18px; height: 18px; flex-shrink: 0; }
+      .nav-dropdown-menu .nav-label { flex: 1; }
+      .nav-dropdown-menu .nav-badge { font-size: 9px; font-weight: 600; text-transform: uppercase; padding: 2px 6px; background: rgba(214, 158, 46, 0.15); color: var(--amber); border-radius: 4px; }
+      .nav-divider { height: 1px; background: var(--line); margin: 4px 0; }
+      .author-link { text-decoration: none; transition: color 0.2s; }
+      .author-link:hover { color: var(--amber); text-decoration: none; }
+      .print-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        background: linear-gradient(135deg, var(--amber) 0%, #b7791f 100%);
+        border: none;
+        color: #ffffff;
+        transition: all 0.2s ease;
+      }
+      .print-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(214, 158, 46, 0.3); }
+      .print-btn svg { width: 16px; height: 16px; }
 
       header.hero {
         position: relative;
@@ -1058,10 +1146,41 @@
     <aside class="side-mark" aria-hidden="true">
       <div class="side-content">
         <div class="label">INTEIA</div>
-        <div class="author-name">Igor Morais Vasconcelos</div>
+        <a href="/curriculo-igor/" class="author-name author-link">Igor Morais Vasconcelos</a>
       </div>
     </aside>
-    <button id="btn-print" type="button" title="Gerar PDF via impressão">
+
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          Navegação
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="/resultados-intencao-voto/">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+            <span class="nav-label">Intenção de Voto</span>
+            <span class="nav-badge">Novo</span>
+          </a>
+          <a href="/resultados-stress-test/">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span class="nav-label">Stress Test Eleitoral</span>
+          </a>
+          <div class="nav-divider"></div>
+          <a href="/curriculo-igor/">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span class="nav-label">Currículo Igor Morais</span>
+          </a>
+        </div>
+      </div>
+      <button class="print-btn" onclick="window.print()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Imprimir
+      </button>
+    </nav>
+
+    <button id="btn-print" type="button" title="Gerar PDF via impressão" style="display:none;">
       <span class="icon" aria-hidden="true"></span>
       Baixar PDF
     </button>
@@ -1072,7 +1191,7 @@
           <div>
             <div class="logo">INTE<span class="ia">IA</span></div>
             <div class="author">
-              <div class="name">Igor Morais Vasconcelos — Pesquisador Responsável</div>
+              <a href="/curriculo-igor/" class="name author-link">Igor Morais Vasconcelos — Pesquisador Responsável</a>
               <div class="meta">
                 Administração Pública · Direito · Economia · Política · Ensino<br />
                 Inteligência Artificial · INTEIA

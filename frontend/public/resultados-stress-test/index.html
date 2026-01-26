@@ -176,6 +176,61 @@
         [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
         [data-theme="light"] .theme-toggle .icon-moon { display: none; }
 
+        /* Navigation Dropdown */
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 8px 16px;
+            border-radius: var(--radius-lg);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+        .nav-dropdown-btn:hover { background: var(--bg-card-hover); }
+        .nav-dropdown-btn svg { width: 16px; height: 16px; }
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            min-width: 240px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.2s ease;
+            z-index: 200;
+        }
+        .nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .nav-dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+        .nav-dropdown-menu a:hover { background: rgba(214, 158, 46, 0.08); color: var(--amber); }
+        .nav-dropdown-menu a:first-child { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+        .nav-dropdown-menu a:last-child { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+        .nav-dropdown-menu .nav-icon { width: 18px; height: 18px; flex-shrink: 0; }
+        .nav-dropdown-menu .nav-label { flex: 1; }
+        .nav-dropdown-menu .nav-badge { font-size: 9px; font-weight: 600; text-transform: uppercase; padding: 2px 6px; background: rgba(214, 158, 46, 0.15); color: var(--amber); border-radius: 4px; }
+        .nav-divider { height: 1px; background: var(--border-color); margin: 4px 0; }
+        .author-link { text-decoration: none; transition: color 0.2s; }
+        .author-link:hover { color: var(--amber); }
+
         /* Main Container */
         .main-container {
             margin-left: 60px;
@@ -747,6 +802,28 @@
 
     <!-- Top Controls -->
     <div class="top-controls">
+        <div class="nav-dropdown">
+            <button class="nav-dropdown-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                Navegação
+            </button>
+            <div class="nav-dropdown-menu">
+                <a href="/resultados-intencao-voto/">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                    <span class="nav-label">Intenção de Voto</span>
+                    <span class="nav-badge">Novo</span>
+                </a>
+                <a href="/relatorio-inteia/">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span class="nav-label">Relatório INTEIA</span>
+                </a>
+                <div class="nav-divider"></div>
+                <a href="/curriculo-igor/">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span class="nav-label">Currículo Igor Morais</span>
+                </a>
+            </div>
+        </div>
         <button class="theme-toggle" onclick="toggleTheme()">
             <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
             <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -774,7 +851,7 @@
                     </div>
                     <div class="author-section">
                         <div class="author-label">Pesquisador Responsável</div>
-                        <div class="author-name-main">Igor Morais Vasconcelos</div>
+                        <a href="/curriculo-igor/" class="author-name-main author-link">Igor Morais Vasconcelos</a>
                         <div class="author-title">Presidente INTEIA</div>
                         <div class="author-credential">igor@inteia.com.br | inteia.com.br</div>
                     </div>
