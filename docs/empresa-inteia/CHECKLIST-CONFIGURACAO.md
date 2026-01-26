@@ -32,12 +32,13 @@ Marque com [x] o que já fez:
 ## Render (Backend API)
 - [x] Adicionar domínio api.inteia.com.br no serviço
 - [x] DNS CNAME configurado
-- [ ] Verificar domínio no dashboard Render (aguardando SSL)
+- [x] Verificar domínio no dashboard Render
+- [x] Certificado SSL emitido
 
 ## Testes Finais
 - [x] Acessar https://inteia.com.br (site funciona?)
 - [x] Acessar https://www.inteia.com.br (site funciona?)
-- [ ] Acessar https://api.inteia.com.br/health (backend funciona?)
+- [x] Acessar https://api.inteia.com.br/health (backend funciona!)
 - [ ] Enviar email de igor@inteia.com.br (email funciona?)
 - [ ] Receber email em igor@inteia.com.br (email funciona?)
 
