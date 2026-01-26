@@ -313,6 +313,164 @@ Consultar: `.claude/skills/SKILLS_INDEX.md`
 
 ---
 
+## PADRÃO VISUAL INTEIA - Design System para Relatórios
+
+### Base Visual Oficial (v1.0 - Janeiro/2026)
+
+**Referências de Implementação:**
+- `frontend/public/resultados-stress-test/index.html` - Stress Test Eleitoral
+- `Intenção de voto Celina Leao 01.2024-01.2026/relatorio/index.html` - Análise Científica
+
+### Paleta de Cores
+
+```css
+/* Cores Principais */
+--amber: #d69e2e;           /* Cor principal INTEIA */
+--amber-light: #f6e05e;     /* Hover, destaques */
+--amber-dark: #b7791f;      /* Gradientes, sombras */
+
+/* Status */
+--success: #22c55e;         /* Positivo, aprovado */
+--warning: #eab308;         /* Atenção, moderado */
+--danger: #ef4444;          /* Crítico, urgente */
+--info: #3b82f6;            /* Informativo, neutro */
+
+/* Tema Claro */
+--bg-primary: #ffffff;
+--bg-secondary: #f8fafc;
+--text-primary: #0f172a;
+--text-muted: #64748b;
+
+/* Tema Escuro */
+--bg-primary: #0f172a;
+--bg-secondary: #1e293b;
+--text-primary: #f8fafc;
+```
+
+### Estrutura de Relatório (Ordem de Importância)
+
+1. **Header Hero** - Logo INTEIA + Pesquisador Responsável + Título + Badge Confidencial
+2. **Conclusão Principal** - Box vermelho com conclusão da Helena (Agente IA)
+3. **Recomendações Estratégicas** - Cards priorizados (🔴 Urgente → 🟡 Importante)
+4. **Validação Estatística** - Amostra, margem, confiança, critérios
+5. **KPIs** - 4 cards com métricas principais
+6. **Mapa de Palavras** - Word cloud com termos frequentes
+7. **Análises Específicas** - Gráficos, demographics, correlações
+8. **Análise do Agente** - Helena com mensagens detalhadas
+9. **Prompt/Persona** - Configuração completa do agente
+10. **Pesquisador Responsável** - Card com contato
+11. **Footer** - CNPJ, endereço, copyright
+
+### Componentes Padrão
+
+#### Logo INTEIA
+```html
+<div class="logo-box">IA</div>
+<span class="logo-name">INTE<span class="highlight">IA</span></span>
+<span class="logo-tagline">Inteligência Estratégica</span>
+```
+
+#### Pesquisador Responsável
+```html
+<div class="researcher-card">
+    <div class="researcher-avatar">IM</div>
+    <div class="researcher-info">
+        <h3>Igor Morais Vasconcelos</h3>
+        <div class="role">Pesquisador Responsável | Presidente INTEIA</div>
+        <div class="contact">
+            <strong>Email:</strong> igor@inteia.com.br<br>
+            <strong>Site:</strong> inteia.com.br
+        </div>
+    </div>
+</div>
+```
+
+#### Card de Recomendação
+```html
+<div class="recommendation-card urgent">  <!-- urgent | important | monitor -->
+    <span class="rec-priority">🔴 Urgente - Prioridade 1</span>
+    <h3 class="rec-title">Título da Ação</h3>
+    <p class="rec-description">Descrição detalhada...</p>
+</div>
+```
+
+#### Agente Helena
+```html
+<div class="helena-header">
+    <div class="helena-avatar"><!-- SVG icon --></div>
+    <div class="helena-info">
+        <h3>Helena Montenegro</h3>
+        <p>Agente de Sistemas de IA Avançados | Cientista Política</p>
+    </div>
+    <div class="helena-badge">IA Avançada</div>
+</div>
+```
+
+### Funcionalidades Obrigatórias
+
+- ✅ **Tema claro/escuro** com toggle
+- ✅ **Botão imprimir A4** com CSS @media print
+- ✅ **Sidebar lateral** fixa com logo INTEIA
+- ✅ **Responsivo** (desktop, tablet, mobile)
+- ✅ **Chart.js** para gráficos interativos
+- ✅ **Google Fonts Inter** para tipografia
+
+### Tipografia
+
+```css
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+/* Hierarquia */
+h1: 32px, weight 700, letter-spacing -0.02em
+h2: 20px, weight 700
+h3: 18px, weight 700
+body: 14px, weight 400, line-height 1.6
+small: 12px, weight 500
+```
+
+### Espaçamento
+
+```css
+--space-xs: 0.25rem;   /* 4px */
+--space-sm: 0.5rem;    /* 8px */
+--space-md: 1rem;      /* 16px */
+--space-lg: 1.5rem;    /* 24px */
+--space-xl: 2rem;      /* 32px */
+--space-2xl: 3rem;     /* 48px */
+```
+
+### Border Radius
+
+```css
+--radius-sm: 0.375rem;  /* 6px - botões pequenos */
+--radius-md: 0.5rem;    /* 8px - inputs */
+--radius-lg: 0.75rem;   /* 12px - cards */
+--radius-xl: 1rem;      /* 16px - cards grandes */
+--radius-2xl: 1.5rem;   /* 24px - hero sections */
+```
+
+### Regras de Conteúdo
+
+1. **Nunca mencionar nomes de candidatos adversários** - usar características genéricas
+2. **Helena sempre como "Agente de Sistemas de IA Avançados"**
+3. **Validação estatística obrigatória** com margem de erro e nível de confiança
+4. **Conclusão no INÍCIO** do relatório, não no fim
+5. **Recomendações priorizadas** por urgência
+6. **Pesquisador Responsável** em vez de "Técnico Responsável"
+7. **Todos os acentos em português** corretamente aplicados
+
+### Footer Padrão
+
+```
+INTEIA - Inteligência Estratégica
+CNPJ: 63.918.490/0001-20
+SHN Quadra 2 Bloco F, Sala 625/626 - Brasília/DF
+inteia.com.br | igor@inteia.com.br
+© 2026 INTEIA. Todos os direitos reservados.
+```
+
+---
+
 ## ÍNDICES DE NAVEGAÇÃO
 
 | Arquivo | Propósito |
