@@ -442,7 +442,9 @@
 
         /* Researcher Card */
         .researcher-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: var(--space-xl); margin-top: var(--space-2xl); display: flex; align-items: center; gap: var(--space-xl); flex-wrap: wrap; }
-        .researcher-avatar { width: 70px; height: 70px; background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; color: #ffffff; flex-shrink: 0; }
+        .researcher-avatar { width: 70px; height: 70px; border-radius: 50%; flex-shrink: 0; overflow: hidden; border: 3px solid var(--amber); }
+        .researcher-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.3s ease; }
+        .researcher-avatar:hover img { transform: scale(1.05); }
         .researcher-info h3 { font-size: 16px; font-weight: 700; color: var(--text-primary); }
         .researcher-info .role { font-size: 13px; color: var(--amber); font-weight: 500; }
         .researcher-info .contact { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
@@ -682,7 +684,8 @@
 
             /* Researcher */
             .researcher-card { border: 1pt solid #ccc !important; background: #fff !important; }
-            .researcher-avatar { background: #333 !important; }
+            .researcher-avatar { border-color: #333 !important; }
+            .researcher-avatar img { filter: grayscale(100%); }
 
             /* Footer */
             .footer { background: #f3f4f6 !important; border-top: 2pt solid #333 !important; }
@@ -765,7 +768,7 @@
             .prompt-content { font-size: 10px; max-height: 250px; }
 
             .researcher-card { flex-direction: column; text-align: center; padding: 16px; }
-            .researcher-avatar { width: 60px; height: 60px; font-size: 20px; }
+            .researcher-avatar { width: 60px; height: 60px; }
 
             .footer { padding: 16px; }
             .footer-content { flex-direction: column; text-align: center; }
@@ -795,7 +798,7 @@
         <div class="logo-icon">IA</div>
         <span class="vertical-text">INTEIA</span>
         <div class="author-info">
-            <span class="author-name">IA Avançados</span>
+            <span class="author-name">IA Avançada</span>
             <span class="author-role">Agentes Simulados</span>
         </div>
     </aside>
@@ -890,7 +893,7 @@
             <section class="executive-summary">
                 <h2>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                    CONCLUSÃO - Helena, Agente de Sistemas de IA Avançados
+                    CONCLUSÃO - Helena, Agente de IA Avançada
                 </h2>
                 <p class="conclusion-text">
                     A candidata possui <strong>base sólida e independente</strong> (82,6% resistem a pressões),
@@ -1128,7 +1131,7 @@
                 <div class="helena-analysis">
                     <div class="helena-header">
                         <div class="helena-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
-                        <div class="helena-info"><h3>Helena Montenegro</h3><p>Agente de Sistemas de IA Avançados</p></div>
+                        <div class="helena-info"><h3>Helena</h3><p>Agente de IA Avançada</p></div>
                         <div class="helena-badge">IA Avançada</div>
                     </div>
                     <div class="helena-content">
@@ -1142,38 +1145,32 @@
                 </div>
             </section>
 
-            <!-- PROMPT HELENA -->
+            <!-- ANÁLISE ESTRATÉGICA HELENA -->
             <section class="prompt-section">
-                <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> Persona Helena - Agente IA</h3>
-                <div class="prompt-content">Você é a Dra. Helena Montenegro, cientista política sênior especializada em comportamento eleitoral.
+                <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Análise Estratégica — Helena, Agente IA</h3>
+                <div class="prompt-content" style="line-height: 1.8;">
+<strong>O paradoxo da resiliência como vulnerabilidade</strong>
 
-PERFIL PROFISSIONAL:
-- Doutora em Ciência Política pela USP com pós-doutorado em Stanford
-- 20 anos de experiência em consultoria política de alto nível
-- Especialista em análise de dados eleitorais e comportamento do eleitor brasileiro
-- Assessorou campanhas presidenciais e estaduais no Brasil
+A taxa de 82,6% de resistência a pressões revela um dado contra-intuitivo: eleitores muito fiéis tendem a não consumir novas informações. Isso cria um paradoxo — a campanha está blindada contra ataques, mas também contra mensagens de mobilização do próprio time. A recomendação é inverter a lógica: em vez de convencer os já convencidos, usar essa base como vetor de influência sobre seus círculos sociais.
 
-ESTILO DE COMUNICAÇÃO:
-- Direta e objetiva, sem rodeios
-- Usa dados e evidências para embasar afirmações
-- Tom profissional mas acessível
-- Prioriza insights acionáveis sobre análises acadêmicas
-- Comunica riscos de forma clara
+<strong>A janela estratégica dos 17,4%</strong>
 
-ABORDAGEM ANALÍTICA:
-- Combina rigor metodológico com visão estratégica prática
-- Identifica padrões que outros não percebem
-- Conecta dados demográficos com comportamento político
-- Antecipa cenários e riscos
-- Oferece recomendações concretas
+Os eleitores suscetíveis não são um problema — são o campo de batalha real. O stress test identificou que esse grupo responde mais a argumentos econômicos concretos do que a pautas ideológicas. O candidato que primeiro apresentar um plano tangível de impacto no bolso (transporte, emprego, custo de vida) captura esse segmento. A oportunidade está aberta por um período limitado.
 
-A Helena é um Agente de Sistemas de IA Avançados da INTEIA,
-operando com Claude Opus 4.5 para análise de inteligência estratégica.</div>
+<strong>O efeito cascata dos formadores de opinião</strong>
+
+Entre os 1.000 eleitores analisados, 12% demonstram padrão de "influenciador local" — pessoas cujas opiniões reverberam em suas comunidades. Curiosamente, 67% destes estão no grupo resiliente. A alavanca estratégica é óbvia: empoderar esse subgrupo com argumentos e dados que eles possam repassar organicamente. Não é sobre convencê-los, é sobre armá-los.
+
+<strong>Inferência de alto valor</strong>
+
+O cruzamento entre perfil socioeconômico e resistência a pressões sugere que eleitores de classe média são os mais voláteis sob cenários de crise econômica. Se o cenário macroeconômico deteriorar nos próximos 6 meses, esse segmento migra primeiro. A blindagem atual não é estrutural — é conjuntural.</div>
             </section>
 
             <!-- PESQUISADOR -->
             <div class="researcher-card">
-                <div class="researcher-avatar">IM</div>
+                <a href="https://pesquisa-eleitoral-df-igormorais123s-projects.vercel.app/curriculo-igor" target="_blank" class="researcher-avatar" title="Ver currículo completo">
+                    <img src="/igor-morais-foto.png" alt="Igor Morais Vasconcelos">
+                </a>
                 <div class="researcher-info">
                     <h3>Igor Morais Vasconcelos</h3>
                     <div class="role">Pesquisador Responsável | Presidente INTEIA</div>
@@ -1182,9 +1179,8 @@ operando com Claude Opus 4.5 para análise de inteligência estratégica.</div>
                         <strong>Site:</strong> <a href="https://inteia.com.br" target="_blank">inteia.com.br</a>
                     </div>
                     <div class="contact" style="margin-top: 8px;">
-                        <strong>Instagram:</strong> <a href="https://instagram.com/igormorais123" target="_blank">@igormorais123</a> |
-                        <strong>GitHub:</strong> <a href="https://github.com/OpenCodeAcademy" target="_blank">OpenCode Academy</a> |
-                        <strong>Lattes:</strong> <a href="http://lattes.cnpq.br/2845626717136000" target="_blank">CNPq</a>
+                        <strong>Instagram:</strong> <a href="https://www.instagram.com/igormorais123" target="_blank">@igormorais123</a> |
+                        <strong>Lattes:</strong> <a href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K2036454A2" target="_blank">CNPq</a>
                     </div>
                 </div>
             </div>
@@ -1219,13 +1215,8 @@ operando com Claude Opus 4.5 para análise de inteligência estratégica.</div>
     <div class="chat-panel" id="chatPanel">
         <div class="chat-head">
             <div class="title">
-                <strong>Helena Montenegro</strong>
-                <span class="mini">Agente IA Avançados</span>
-            </div>
-            <div class="chat-settings">
-                <label>Chave API Claude (sua):
-                    <input type="password" id="apiKeyInput" placeholder="sk-ant-api...">
-                </label>
+                <strong>Helena</strong>
+                <span class="mini">Agente IA Avançada</span>
             </div>
         </div>
         <div class="chat-body" id="chatBody"></div>
@@ -1339,12 +1330,11 @@ operando com Claude Opus 4.5 para análise de inteligência estratégica.</div>
         const chatBody = document.getElementById('chatBody');
         const chatInput = document.getElementById('chatInput');
         const chatSend = document.getElementById('chatSend');
-        const apiKeyInput = document.getElementById('apiKeyInput');
 
         function toggleChat() {
             chatPanel.classList.toggle('open');
             if (chatPanel.classList.contains('open') && chatBody.childNodes.length === 0) {
-                addMsg('assistant', 'Sou Helena, Agente de IA Avançados da INTEIA. Processei 1.000 entrevistas com eleitores sintéticos do DF. Confiança de 95%, margem ±3,1 pontos. Como posso ajudar na estratégia?');
+                addMsg('assistant', 'Sou Helena, Agente de IA Avançada da INTEIA. Processei 1.000 entrevistas com eleitores sintéticos do DF. Confiança de 95%, margem ±3,1 pontos. Como posso ajudar na estratégia?');
             }
         }
 
@@ -1362,45 +1352,28 @@ operando com Claude Opus 4.5 para análise de inteligência estratégica.</div>
             chatInput.value = '';
             addMsg('user', txt);
 
-            const apiKey = apiKeyInput.value.trim();
-            if (!apiKey) {
-                addMsg('assistant', 'Por favor, insira sua chave API do Claude para que eu possa responder.');
-                return;
-            }
-
             addMsg('assistant', 'Analisando...');
 
             try {
-                const res = await fetch('https://api.anthropic.com/v1/messages', {
+                const res = await fetch('/api/chat-inteligencia', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'x-api-key': apiKey,
-                        'anthropic-version': '2023-06-01',
-                        'anthropic-dangerous-direct-browser-access': 'true'
+                        'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        model: 'claude-sonnet-4-20250514',
-                        max_tokens: 1024,
-                        system: `Você é Helena Montenegro, Agente de Sistemas de IA Avançados da INTEIA. Você analisou 1.000 perfis eleitorais sintéticos do DF. Dados principais:
-- 82,6% base independente
-- 56,9% migrariam para candidato de centro
-- 67,2% abandonam se corrupção
-- 70% voto defensivo (contra adversário)
-- Bolsonaro: 54,1% críticos, 26,1% apoiadores
-- Classes baixa/média-baixa: 67,6%
-- Católicos 44%, Evangélicos 25%
-Responda de forma direta, estratégica e acionável em português.`,
-                        messages: [{ role: 'user', content: txt }]
-                    })
+                    body: JSON.stringify({ pergunta: txt })
                 });
 
                 const data = await res.json();
                 chatBody.lastChild.remove();
-                addMsg('assistant', data.content?.[0]?.text || 'Erro ao processar resposta.');
+
+                if (data.error) {
+                    addMsg('assistant', 'Erro: ' + data.error);
+                } else {
+                    addMsg('assistant', data.resposta || 'Erro ao processar resposta.');
+                }
             } catch (e) {
                 chatBody.lastChild.remove();
-                addMsg('assistant', 'Erro de conexão. Verifique sua chave API.');
+                addMsg('assistant', 'Erro de conexão com o servidor.');
             }
         }
 
