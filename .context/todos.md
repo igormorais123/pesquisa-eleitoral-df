@@ -18,7 +18,7 @@
 ## Pendentes 📋
 
 <!-- Tarefas identificadas mas não iniciadas -->
-- [ ] Criar exemplos de código em `examples/`
+- [x] Criar exemplos de código em `examples/` ✅ (2026-01-26)
 - [ ] Documentar decisões arquiteturais (ADRs)
 - [ ] Implementar mais testes E2E
 - [ ] Otimizar performance de listagem de eleitores
@@ -33,6 +33,8 @@
 - Implementado sistema completo de engenharia de contexto
 - Baseado no manual de Cole Medin + habit-tracker
 - Estrutura de regras modulares funcionando
+- Testado comando /prime com sucesso
+- Exemplos de código criados (api-endpoint.py, component.tsx)
 
 ---
 
