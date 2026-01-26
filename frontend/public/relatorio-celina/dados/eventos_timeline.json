@@ -1,0 +1,150 @@
+{
+  "eventos": [
+    {
+      "data": "2024-07-04",
+      "tipo": "pesquisa",
+      "titulo": "Primeira pesquisa Paraná Pesquisas 2024",
+      "descricao": "Celina aparece com 22% liderando numericamente",
+      "impacto": "positivo"
+    },
+    {
+      "data": "2024-10-06",
+      "tipo": "politico",
+      "titulo": "Eleições Municipais 2024",
+      "descricao": "Celina comenta fortalecimento da direita nas eleições",
+      "impacto": "neutro"
+    },
+    {
+      "data": "2024-11-13",
+      "tipo": "crise",
+      "titulo": "Atentado STF - Homem-bomba",
+      "descricao": "Celina dá declarações sobre o caso, ganha visibilidade nacional",
+      "impacto": "positivo"
+    },
+    {
+      "data": "2024-11-15",
+      "tipo": "politico",
+      "titulo": "Reunião com Lula sobre segurança",
+      "descricao": "Celina participa de reunião com governadores e presidente",
+      "impacto": "positivo"
+    },
+    {
+      "data": "2024-12-18",
+      "tipo": "politico",
+      "titulo": "Preservação do FCDF",
+      "descricao": "Vitória na manutenção do Fundo Constitucional do DF",
+      "impacto": "muito_positivo"
+    },
+    {
+      "data": "2025-01-01",
+      "tipo": "marco",
+      "titulo": "Início investimento em marketing",
+      "descricao": "Hipótese: início de investimentos mais robustos em comunicação e imagem",
+      "impacto": "positivo"
+    },
+    {
+      "data": "2025-01-23",
+      "tipo": "midia",
+      "titulo": "Entrevista Metrópoles",
+      "descricao": "Celina projeta 2025: saúde mental, grilagem e eleições",
+      "impacto": "positivo"
+    },
+    {
+      "data": "2025-03-05",
+      "tipo": "juridico",
+      "titulo": "Absolvição Operação Drácon (criminal)",
+      "descricao": "Juiz absolve Celina na ação de corrupção passiva",
+      "impacto": "muito_positivo"
+    },
+    {
+      "data": "2025-03-31",
+      "tipo": "pesquisa",
+      "titulo": "Pesquisa Paraná mostra 36,6%",
+      "descricao": "Crescimento expressivo de 14 pontos desde julho/2024",
+      "impacto": "muito_positivo"
+    },
+    {
+      "data": "2025-05-15",
+      "tipo": "realizacao",
+      "titulo": "Título Cidadã Honorária de Brasília",
+      "descricao": "CLDF concede título à vice-governadora",
+      "impacto": "positivo"
+    },
+    {
+      "data": "2025-06-09",
+      "tipo": "pesquisa",
+      "titulo": "Entrada de Fred Linhares reduz números",
+      "descricao": "Com Fred na disputa, Celina cai para 31,1%",
+      "impacto": "neutro"
+    },
+    {
+      "data": "2025-07-15",
+      "tipo": "realizacao",
+      "titulo": "Lançamento Pró-Jovem Digital",
+      "descricao": "Investimento de R$ 7,9 milhões em capacitação",
+      "impacto": "positivo"
+    },
+    {
+      "data": "2025-07-29",
+      "tipo": "juridico",
+      "titulo": "MPDFT nega recurso - improbidade",
+      "descricao": "Ação de improbidade continua tramitando",
+      "impacto": "negativo"
+    },
+    {
+      "data": "2025-08-29",
+      "tipo": "pesquisa",
+      "titulo": "Celina dispara: 37,2% a 45,6%",
+      "descricao": "Consolidação da liderança com ampla vantagem",
+      "impacto": "muito_positivo"
+    },
+    {
+      "data": "2025-09-12",
+      "tipo": "pesquisa",
+      "titulo": "Real Time Big Data: até 54%",
+      "descricao": "Melhor resultado até então em cenário direto",
+      "impacto": "muito_positivo"
+    },
+    {
+      "data": "2025-10-29",
+      "tipo": "pesquisa",
+      "titulo": "Empate técnico com Arruda",
+      "descricao": "Arruda cresce e empata na margem de erro",
+      "impacto": "negativo"
+    },
+    {
+      "data": "2025-10-30",
+      "tipo": "juridico",
+      "titulo": "TJDFT nega recurso novamente",
+      "descricao": "Segunda negativa em ação de improbidade",
+      "impacto": "negativo"
+    },
+    {
+      "data": "2025-11-15",
+      "tipo": "realizacao",
+      "titulo": "300 mil atendimentos GDF Mais Perto",
+      "descricao": "Programa alcança marca expressiva",
+      "impacto": "positivo"
+    },
+    {
+      "data": "2025-12-10",
+      "tipo": "pesquisa",
+      "titulo": "Celina volta a liderar com folga",
+      "descricao": "40% a 50% nas pesquisas de dezembro",
+      "impacto": "muito_positivo"
+    }
+  ],
+  "periodos_mkt": [
+    {
+      "inicio": "2025-01-01",
+      "fim": "2026-01-24",
+      "descricao": "Período de investimento intensificado em marketing e comunicação",
+      "atividades": [
+        "Maior presença em entrevistas",
+        "Inaugurações e entregas frequentes",
+        "Comunicação institucional reforçada",
+        "Redes sociais mais ativas"
+      ]
+    }
+  ]
+}
