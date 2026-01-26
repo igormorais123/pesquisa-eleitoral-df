@@ -1,0 +1,165 @@
+{
+  "pesquisa": {
+    "nome": "INTEIA - Análise Estratégica Celina Leão",
+    "candidata": "Celina Leão",
+    "cargo": "Governadora do Distrito Federal",
+    "eleicao": "2026",
+    "periodo_dados": "Janeiro 2024 - Janeiro 2026",
+    "data_geracao": "2026-01-25",
+    "responsavel": "Igor Morais Vasconcelos"
+  },
+  "validacao_estatistica": {
+    "amostra": 1000,
+    "atributos_por_eleitor": 60,
+    "nivel_confianca": 0.95,
+    "margem_erro": 0.031,
+    "cobertura_geografica": 33,
+    "unidade_geografica": "Regiões Administrativas do DF",
+    "metodo": "Agentes de IA sintéticos calibrados com TSE e IBGE"
+  },
+  "evolucao_intencao_voto": {
+    "jan_2024": 0.15,
+    "dez_2025": 0.28,
+    "crescimento_absoluto": 0.13,
+    "crescimento_percentual": 0.867,
+    "maior_salto": {
+      "evento": "Assumiu governo interinamente",
+      "impacto": 0.05,
+      "periodo": "Mar-Abr/2025"
+    }
+  },
+  "analise_por_regiao": {
+    "fortes": [
+      {"regiao": "Ceilândia", "aprovacao": 0.34, "variacao_media": 0.06},
+      {"regiao": "Samambaia", "aprovacao": 0.33, "variacao_media": 0.05},
+      {"regiao": "Taguatinga", "aprovacao": 0.31, "variacao_media": 0.03}
+    ],
+    "fracas": [
+      {"regiao": "Plano Piloto", "aprovacao": 0.18, "variacao_media": -0.10},
+      {"regiao": "Águas Claras", "aprovacao": 0.22, "variacao_media": -0.06}
+    ],
+    "baixo_reconhecimento": {
+      "quantidade_ras": 12,
+      "percentual_reconhecimento": 0.40
+    }
+  },
+  "perfil_demografico_apoiadores": {
+    "genero": {
+      "mulheres": 0.62,
+      "homens": 0.38
+    },
+    "faixa_etaria": {
+      "forte": "35-55 anos",
+      "percentual_eleitorado": 0.41
+    },
+    "classe_social": {
+      "A": 0.09,
+      "B": 0.28,
+      "C": 0.48,
+      "D": 0.15
+    },
+    "escolaridade": {
+      "predominante": "Ensino médio completo",
+      "percentual": 0.52
+    },
+    "religiao": {
+      "catolicos": 0.38,
+      "evangelicos": 0.31,
+      "sem_religiao": 0.22,
+      "outros": 0.09
+    }
+  },
+  "correlacoes_estatisticas": [
+    {
+      "fator": "Cobertura positiva na mídia",
+      "impacto_pontos": 2.4,
+      "coeficiente_r": 0.72,
+      "janela_dias": "15-30"
+    },
+    {
+      "fator": "Entrega de obras",
+      "impacto_pontos": 2.1,
+      "coeficiente_r": 0.68,
+      "janela_dias": "30"
+    },
+    {
+      "fator": "Eventos de segurança",
+      "impacto_pontos": 1.8,
+      "coeficiente_r": 0.61,
+      "janela_dias": "imediato",
+      "area": "periferias"
+    },
+    {
+      "fator": "Polêmicas do governo atual",
+      "impacto_pontos": 3.0,
+      "coeficiente_r": 0.54,
+      "tipo": "indireto"
+    }
+  ],
+  "concorrencia": [
+    {
+      "perfil": "Adversária evangélica",
+      "segmento_forte": "Igrejas evangélicas",
+      "tipo_eleitorado": "Ideológico",
+      "correlacao_evangelicos": 0.78
+    },
+    {
+      "perfil": "Adversária centro-direita",
+      "segmento_forte": "Voto feminino",
+      "tipo_eleitorado": "Família tradicional"
+    },
+    {
+      "perfil": "Adversário esquerda",
+      "segmento_forte": "Base universitária",
+      "fraqueza": "Sem penetração em periferias"
+    }
+  ],
+  "vulnerabilidades": {
+    "saude": {
+      "eleitores_priorizam": 0.67,
+      "aprovacao_celina": 0.23,
+      "gap": 0.44
+    },
+    "dependencia_governo": {
+      "correlacao": 0.54,
+      "risco": "Alto se governo cair"
+    },
+    "baixo_reconhecimento": {
+      "ras_afetadas": 12,
+      "total_ras": 33
+    }
+  },
+  "oportunidades": {
+    "indecisos": {
+      "percentual": 0.20,
+      "quantidade_amostra": 200
+    },
+    "classe_c_periferias": {
+      "potencial_ganho": 0.08
+    },
+    "agenda_feminina": {
+      "mulheres_apoiariam_mais": 0.71
+    },
+    "midia_digital": {
+      "eleitores_redes_sociais": 0.45
+    }
+  },
+  "persona_eleitor_ideal": {
+    "genero": "Feminino",
+    "idade": "38-52 anos",
+    "regiao": ["Ceilândia", "Taguatinga", "Samambaia"],
+    "classe": "C",
+    "escolaridade": "Ensino médio completo",
+    "religiao": "Católica ou evangélica moderada",
+    "preocupacoes": ["Segurança", "Saúde", "Emprego"],
+    "fontes_informacao": ["WhatsApp", "TV local"],
+    "valores": ["Gestão eficiente", "Proximidade com o povo"]
+  },
+  "fontes_calibracao": [
+    {"fonte": "TSE", "dados": "Resultados eleitorais 2022, zonas eleitorais", "url": "dados.tse.jus.br"},
+    {"fonte": "IBGE", "dados": "Censo 2022, PNAD Contínua", "url": "ibge.gov.br"},
+    {"fonte": "Datafolha", "dados": "Pesquisas de opinião", "url": "datafolha.folha.uol.com.br"},
+    {"fonte": "ABEP", "dados": "Critério Brasil", "url": "abep.org"},
+    {"fonte": "Latinobarómetro", "dados": "Valores políticos", "url": "latinobarometro.org"}
+  ]
+}
