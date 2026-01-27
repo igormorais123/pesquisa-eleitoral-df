@@ -166,12 +166,32 @@ const categorias = [
   { id: 'inovacao', nome: 'Inovação', icone: Zap },
 ];
 
-// Status badges
+// Status badges com classes Tailwind completas (evita purge)
 const statusConfig = {
-  'ativo': { label: 'Disponível', cor: 'green', icone: CheckCircle2 },
-  'beta': { label: 'Beta', cor: 'amber', icone: Zap },
-  'em-breve': { label: 'Em breve', cor: 'blue', icone: Clock },
-  'novo': { label: 'Novo', cor: 'purple', icone: Star },
+  'ativo': {
+    label: 'Disponível',
+    icone: CheckCircle2,
+    badge: 'bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30',
+    badgeSmall: 'bg-green-500/20 text-green-600 dark:text-green-400',
+  },
+  'beta': {
+    label: 'Beta',
+    icone: Zap,
+    badge: 'bg-amber-500/20 text-amber-600 dark:text-amber-400 border-amber-500/30',
+    badgeSmall: 'bg-amber-500/20 text-amber-600 dark:text-amber-400',
+  },
+  'em-breve': {
+    label: 'Em breve',
+    icone: Clock,
+    badge: 'bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30',
+    badgeSmall: 'bg-blue-500/20 text-blue-600 dark:text-blue-400',
+  },
+  'novo': {
+    label: 'Novo',
+    icone: Star,
+    badge: 'bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30',
+    badgeSmall: 'bg-purple-500/20 text-purple-600 dark:text-purple-400',
+  },
 };
 
 // Componente Logo INTEIA
@@ -200,7 +220,7 @@ const CardProjetoDestaque = ({ projeto, index }: { projeto: Projeto; index: numb
       transition={{ delay: index * 0.1, duration: 0.5 }}
       className="col-span-2 row-span-2"
     >
-      <Link href={projeto.href} target={projeto.externo ? '_blank' : undefined}>
+      <Link href={projeto.href} target={projeto.externo ? '_blank' : undefined} rel={projeto.externo ? 'noopener noreferrer' : undefined}>
         <div className={`
           relative h-full min-h-[400px] rounded-3xl overflow-hidden group cursor-pointer
           bg-gradient-to-br ${projeto.corGradiente} p-[1px]
@@ -212,7 +232,7 @@ const CardProjetoDestaque = ({ projeto, index }: { projeto: Projeto; index: numb
 
             {/* Status */}
             <div className="flex items-center justify-between mb-6 relative z-10">
-              <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-${status.cor}-500/20 text-${status.cor}-600 dark:text-${status.cor}-400 border border-${status.cor}-500/30`}>
+              <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border ${status.badge}`}>
                 <status.icone className="w-3 h-3" />
                 {status.label}
               </span>
@@ -262,10 +282,11 @@ const CardProjetoDestaque = ({ projeto, index }: { projeto: Projeto; index: numb
 // Card de Projeto Normal
 const CardProjeto = ({ projeto, index }: { projeto: Projeto; index: number }) => {
   const status = statusConfig[projeto.status];
-  const isDisabled = projeto.status === 'em-breve';
+  // Todos os projetos agora têm páginas (coming soon para os em-breve)
+  const isDisabled = false;
 
-  const Wrapper = isDisabled ? 'div' : Link;
-  const wrapperProps = isDisabled ? {} : { href: projeto.href, target: projeto.externo ? '_blank' : undefined };
+  const Wrapper = Link;
+  const wrapperProps = { href: projeto.href, target: projeto.externo ? '_blank' : undefined, rel: projeto.externo ? 'noopener noreferrer' : undefined };
 
   return (
     <motion.div
@@ -283,7 +304,7 @@ const CardProjeto = ({ projeto, index }: { projeto: Projeto; index: number }) =>
         `}>
           {/* Status */}
           <div className="flex items-center justify-between mb-4">
-            <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-${status.cor}-500/20 text-${status.cor}-600 dark:text-${status.cor}-400`}>
+            <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium ${status.badgeSmall}`}>
               <status.icone className="w-2.5 h-2.5" />
               {status.label}
             </span>
