@@ -30,9 +30,9 @@ import requests
 API_BASE_URL = "https://pesquisa-eleitoral-df-1.onrender.com"
 API_V1 = f"{API_BASE_URL}/api/v1"
 
-# Credenciais de admin (INTEIA Admin)
-ADMIN_USERNAME = "admin@inteia.com.br"
-ADMIN_PASSWORD = "inteia2026"
+# Credenciais de admin (Professor Igor)
+ADMIN_USERNAME = "professorigor@inteia.com.br"
+ADMIN_PASSWORD = "professorigor"
 
 # Questionario completo para referencia
 QUESTIONARIO = {

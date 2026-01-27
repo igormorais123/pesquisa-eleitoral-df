@@ -39,14 +39,21 @@
 
 ## Notas
 
+### Sessão 2026-01-27 (Harmonização Reconvenção)
+- Harmonizado projeto reconvencao-igor-melissa com PIV+
+- Criado sistema de comandos para investigação jurídica
+- Skill investigador-provas configurada como PADRÃO
+- Múltiplos nomes de chamada: /investigar, /provas, /caso, /thalia, etc.
+- Sistema de memória específico para caso jurídico
+- Compilação completa em COMPILACAO_SESSAO_27jan2026.md
+
 ### Sessão 2026-01-26 (Upgrade v2.1)
 - Analisado vídeo "Context Engineering" de Steven Hicks (Netflix)
 - Implementado conceitos de Spec-Driven Development:
   - Simple vs Easy (Rich Hickey)
   - Complexidade Essencial vs Acidental (Fred Brooks)
   - Abordagem de 3 fases: Research → Plan → Implement
-  - Checkpoints humanos obrigatórios
-  - Regra anti-vibecoding (10 turns)
+  - Regra de pausa: 10 iterações ou 30 minutos
 - Criado sistema de memória hierárquica (.memoria/)
 - Novos comandos: /research, /requirements-check
 - Documentação completa de referência
