@@ -39,7 +39,9 @@ async def listar_eleitores(
     idade_min: Optional[int] = Query(None, ge=16),
     idade_max: Optional[int] = Query(None, le=120),
     generos: Optional[str] = Query(None, description="Gêneros separados por vírgula"),
-    cores_racas: Optional[str] = Query(None, description="Cores/raças separadas por vírgula"),
+    cores_racas: Optional[str] = Query(
+        None, description="Cores/raças separadas por vírgula"
+    ),
     # Geográficos
     regioes: Optional[str] = Query(None, description="RAs separadas por vírgula"),
     # Socioeconômicos
@@ -166,7 +168,9 @@ async def exportar_eleitores_csv(
     idade_min: Optional[int] = Query(None, ge=16),
     idade_max: Optional[int] = Query(None, le=120),
     generos: Optional[str] = Query(None, description="Gêneros separados por vírgula"),
-    cores_racas: Optional[str] = Query(None, description="Cores/raças separadas por vírgula"),
+    cores_racas: Optional[str] = Query(
+        None, description="Cores/raças separadas por vírgula"
+    ),
     # Geográficos
     regioes: Optional[str] = Query(None, description="RAs separadas por vírgula"),
     # Socioeconômicos
@@ -233,7 +237,7 @@ async def exportar_eleitores_csv(
         ordem=ordem,
     )
 
-    csv_conteudo = servico.exportar_csv(filtros)
+    csv_conteudo = await servico.exportar_csv(filtros)
     return Response(
         content=csv_conteudo,
         media_type="text/csv; charset=utf-8",
@@ -434,5 +438,7 @@ async def obter_eleitores_por_ids(
     return {
         "eleitores": eleitores,
         "total": len(eleitores),
-        "ids_nao_encontrados": [id for id in ids if id not in [e["id"] for e in eleitores]],
+        "ids_nao_encontrados": [
+            id for id in ids if id not in [e["id"] for e in eleitores]
+        ],
     }

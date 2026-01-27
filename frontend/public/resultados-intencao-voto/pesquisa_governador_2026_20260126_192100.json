@@ -1,0 +1,982 @@
+{
+  "questionario": {
+    "titulo": "Pesquisa Eleitoral Governador DF 2026",
+    "subtitulo": "Intencao de Voto e Avaliacao Politica",
+    "data": "2026-01-26",
+    "blocos": [
+      {
+        "nome": "BLOCO 1: PERFIL SOCIODEMOGRAFICO",
+        "perguntas": [
+          {
+            "id": "P01",
+            "texto": "Qual sua idade?",
+            "tipo": "numerica",
+            "campo": "idade"
+          },
+          {
+            "id": "P02",
+            "texto": "Qual seu genero?",
+            "tipo": "categorica",
+            "campo": "genero",
+            "opcoes": [
+              "Masculino",
+              "Feminino",
+              "Outro/Prefiro nao dizer"
+            ]
+          },
+          {
+            "id": "P03",
+            "texto": "Qual sua escolaridade?",
+            "tipo": "categorica",
+            "campo": "escolaridade",
+            "opcoes": [
+              "Fundamental incompleto",
+              "Fundamental completo",
+              "Medio incompleto",
+              "Medio completo",
+              "Superior incompleto",
+              "Superior completo",
+              "Pos-graduacao"
+            ]
+          },
+          {
+            "id": "P04",
+            "texto": "Qual sua renda familiar mensal?",
+            "tipo": "categorica",
+            "campo": "renda_salarios_minimos",
+            "opcoes": [
+              "Ate 1 SM",
+              "1-2 SM",
+              "2-5 SM",
+              "5-10 SM",
+              "Acima de 10 SM"
+            ]
+          },
+          {
+            "id": "P05",
+            "texto": "Qual sua religiao?",
+            "tipo": "categorica",
+            "campo": "religiao",
+            "opcoes": [
+              "Catolica",
+              "Evangelica",
+              "Espirita",
+              "Outra",
+              "Sem religiao"
+            ]
+          },
+          {
+            "id": "P06",
+            "texto": "Qual sua cor/raca?",
+            "tipo": "categorica",
+            "campo": "cor_raca",
+            "opcoes": [
+              "Branca",
+              "Preta",
+              "Parda",
+              "Amarela",
+              "Indigena"
+            ]
+          },
+          {
+            "id": "P07",
+            "texto": "Em qual Regiao Administrativa voce mora?",
+            "tipo": "categorica",
+            "campo": "regiao_administrativa"
+          },
+          {
+            "id": "P08",
+            "texto": "Qual seu estado civil?",
+            "tipo": "categorica",
+            "campo": "estado_civil",
+            "opcoes": [
+              "Solteiro(a)",
+              "Casado(a)",
+              "Divorciado(a)",
+              "Viuvo(a)",
+              "Uniao estavel"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "BLOCO 2: AVALIACAO DO GOVERNO ATUAL",
+        "perguntas": [
+          {
+            "id": "P09",
+            "texto": "Como voce avalia o governo do Governador Ibaneis Rocha?",
+            "tipo": "escala",
+            "opcoes": [
+              "Otimo",
+              "Bom",
+              "Regular",
+              "Ruim",
+              "Pessimo",
+              "NS/NR"
+            ]
+          },
+          {
+            "id": "P10",
+            "texto": "Como voce avalia a gestao da Vice-Governadora Celina Leao?",
+            "tipo": "escala",
+            "opcoes": [
+              "Otimo",
+              "Bom",
+              "Regular",
+              "Ruim",
+              "Pessimo",
+              "NS/NR",
+              "Nao conheco"
+            ]
+          },
+          {
+            "id": "P11",
+            "texto": "Em comparacao com 4 anos atras, voce acha que o DF esta melhor, igual ou pior?",
+            "tipo": "comparativa",
+            "opcoes": [
+              "Muito melhor",
+              "Um pouco melhor",
+              "Igual",
+              "Um pouco pior",
+              "Muito pior",
+              "NS/NR"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "BLOCO 3: PROBLEMAS E PRIORIDADES",
+        "perguntas": [
+          {
+            "id": "P12",
+            "texto": "Qual o principal problema do Distrito Federal hoje? (espontanea)",
+            "tipo": "espontanea",
+            "campo": "preocupacoes"
+          },
+          {
+            "id": "P13",
+            "texto": "Qual area deveria ser prioridade do proximo governador?",
+            "tipo": "categorica",
+            "opcoes": [
+              "Saude",
+              "Seguranca",
+              "Educacao",
+              "Transporte",
+              "Emprego",
+              "Moradia",
+              "Outra"
+            ]
+          },
+          {
+            "id": "P14",
+            "texto": "O quanto voce confia que o proximo governo vai resolver os problemas do DF?",
+            "tipo": "escala",
+            "opcoes": [
+              "Confia muito",
+              "Confia um pouco",
+              "Nem confia nem desconfia",
+              "Desconfia um pouco",
+              "Desconfia muito",
+              "NS/NR"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "BLOCO 4: INTENCAO DE VOTO ESPONTANEA",
+        "perguntas": [
+          {
+            "id": "P15",
+            "texto": "Se a eleicao para Governador do DF fosse hoje, em quem voce votaria? (espontanea)",
+            "tipo": "espontanea_voto"
+          },
+          {
+            "id": "P16",
+            "texto": "E se esse candidato nao pudesse concorrer, em quem voce votaria?",
+            "tipo": "espontanea_voto_segunda"
+          }
+        ]
+      },
+      {
+        "nome": "BLOCO 5: INTENCAO DE VOTO ESTIMULADA",
+        "perguntas": [
+          {
+            "id": "P17",
+            "texto": "Se a eleicao fosse hoje e os candidatos fossem estes, em quem voce votaria?",
+            "tipo": "estimulada_voto",
+            "opcoes": [
+              "Celina Leao (PP)",
+              "Damares Alves (Republicanos)",
+              "Bia Kicis (PL)",
+              "Leandro Grass (PV)",
+              "Paulo Octavio (PSD)",
+              "Izalci Lucas (PL)",
+              "Branco/Nulo",
+              "Indeciso",
+              "NS/NR"
+            ]
+          },
+          {
+            "id": "P18",
+            "texto": "E em segundo turno, se fosse Celina Leao contra [candidato mais votado], em quem voce votaria?",
+            "tipo": "segundo_turno_estimulado"
+          }
+        ]
+      },
+      {
+        "nome": "BLOCO 6: CENARIOS DE SEGUNDO TURNO",
+        "perguntas": [
+          {
+            "id": "P19",
+            "texto": "Em um segundo turno entre Celina Leao e Damares Alves, em quem voce votaria?",
+            "tipo": "segundo_turno",
+            "opcoes": [
+              "Celina Leao",
+              "Damares Alves",
+              "Branco/Nulo",
+              "NS/NR"
+            ]
+          },
+          {
+            "id": "P20",
+            "texto": "Em um segundo turno entre Celina Leao e Bia Kicis, em quem voce votaria?",
+            "tipo": "segundo_turno",
+            "opcoes": [
+              "Celina Leao",
+              "Bia Kicis",
+              "Branco/Nulo",
+              "NS/NR"
+            ]
+          },
+          {
+            "id": "P21",
+            "texto": "Em um segundo turno entre Celina Leao e Leandro Grass, em quem voce votaria?",
+            "tipo": "segundo_turno",
+            "opcoes": [
+              "Celina Leao",
+              "Leandro Grass",
+              "Branco/Nulo",
+              "NS/NR"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "BLOCO 7: REJEICAO",
+        "perguntas": [
+          {
+            "id": "P22",
+            "texto": "Em qual destes candidatos voce NAO votaria de jeito nenhum?",
+            "tipo": "rejeicao_multipla",
+            "opcoes": [
+              "Celina Leao",
+              "Damares Alves",
+              "Bia Kicis",
+              "Leandro Grass",
+              "Paulo Octavio",
+              "Izalci Lucas",
+              "Nenhum",
+              "NS/NR"
+            ]
+          },
+          {
+            "id": "P23",
+            "texto": "Por que voce nao votaria nesse(s) candidato(s)?",
+            "tipo": "espontanea"
+          }
+        ]
+      },
+      {
+        "nome": "BLOCO 8: CONHECIMENTO E AVALIACAO DE CANDIDATOS",
+        "perguntas": [
+          {
+            "id": "P24",
+            "texto": "Quais destes candidatos voce conhece, mesmo que so de nome?",
+            "tipo": "conhecimento_multiplo",
+            "opcoes": [
+              "Celina Leao",
+              "Damares Alves",
+              "Bia Kicis",
+              "Leandro Grass",
+              "Paulo Octavio",
+              "Izalci Lucas"
+            ]
+          },
+          {
+            "id": "P25",
+            "texto": "Como voce avalia cada candidato que conhece? (Positiva/Neutra/Negativa)",
+            "tipo": "avaliacao_candidatos"
+          }
+        ]
+      },
+      {
+        "nome": "BLOCO 9: CERTEZA E ENGAJAMENTO",
+        "perguntas": [
+          {
+            "id": "P26",
+            "texto": "Numa escala de 0 a 10, o quanto voce tem certeza do seu voto?",
+            "tipo": "escala_numerica",
+            "min": 0,
+            "max": 10
+          },
+          {
+            "id": "P27",
+            "texto": "Voce ja conversou com alguem sobre as eleicoes de 2026?",
+            "tipo": "binaria",
+            "opcoes": [
+              "Sim",
+              "Nao"
+            ]
+          },
+          {
+            "id": "P28",
+            "texto": "Voce pretende acompanhar debates e propagandas eleitorais?",
+            "tipo": "escala",
+            "opcoes": [
+              "Com certeza",
+              "Provavelmente",
+              "Talvez",
+              "Provavelmente nao",
+              "Com certeza nao"
+            ]
+          },
+          {
+            "id": "P29",
+            "texto": "O que mais pode fazer voce mudar de voto ate a eleicao?",
+            "tipo": "espontanea"
+          }
+        ]
+      },
+      {
+        "nome": "BLOCO 10: POSICIONAMENTO IDEOLOGICO",
+        "perguntas": [
+          {
+            "id": "P30",
+            "texto": "Em uma escala de 0 (esquerda) a 10 (direita), onde voce se posiciona?",
+            "tipo": "escala_numerica",
+            "min": 0,
+            "max": 10
+          },
+          {
+            "id": "P31",
+            "texto": "Como voce avalia o governo do presidente Lula?",
+            "tipo": "escala",
+            "opcoes": [
+              "Otimo",
+              "Bom",
+              "Regular",
+              "Ruim",
+              "Pessimo",
+              "NS/NR"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "BLOCO 11: PERGUNTAS ESPECIFICAS SOBRE CELINA LEAO",
+        "perguntas": [
+          {
+            "id": "P32",
+            "texto": "Voce conhece o trabalho de Celina Leao como Vice-Governadora?",
+            "tipo": "escala",
+            "opcoes": [
+              "Conheco bem",
+              "Conheco um pouco",
+              "Ja ouvi falar",
+              "Nao conheco"
+            ]
+          },
+          {
+            "id": "P33",
+            "texto": "O que voce acha de Celina Leao como possivel Governadora?",
+            "tipo": "escala",
+            "opcoes": [
+              "Muito preparada",
+              "Preparada",
+              "Pouco preparada",
+              "Nao preparada",
+              "NS/NR"
+            ]
+          },
+          {
+            "id": "P34",
+            "texto": "Qual caracteristica voce mais associa a Celina Leao?",
+            "tipo": "espontanea"
+          },
+          {
+            "id": "P35",
+            "texto": "O fato de Celina Leao ser mulher influencia seu voto?",
+            "tipo": "escala",
+            "opcoes": [
+              "Influencia positivamente",
+              "Nao influencia",
+              "Influencia negativamente",
+              "NS/NR"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "BLOCO 12: ENCERRAMENTO",
+        "perguntas": [
+          {
+            "id": "P36",
+            "texto": "Gostaria de deixar algum comentario ou sugestao para o proximo governador do DF?",
+            "tipo": "aberta"
+          }
+        ]
+      }
+    ]
+  },
+  "analise": {
+    "meta": {
+      "total_entrevistas": 300,
+      "margem_erro": 5.7,
+      "nivel_confianca": "95%",
+      "data_pesquisa": "2026-01-26 19:21:00"
+    },
+    "intencao_voto_estimulada": {
+      "Celina Leao": 21.7,
+      "Leandro Grass": 21.3,
+      "Damares Alves": 16.3,
+      "Izalci Lucas": 12.7,
+      "Bia Kicis": 11.7,
+      "Paulo Octavio": 8.7,
+      "Indeciso": 5.0,
+      "Branco/Nulo": 2.7
+    },
+    "intencao_voto_espontanea": {
+      "NS/NR": 42.0,
+      "Damares Alves": 12.7,
+      "Celina Leao": 11.0,
+      "Leandro Grass": 10.0,
+      "Izalci Lucas": 9.0,
+      "Bia Kicis": 6.0,
+      "Paulo Octavio": 5.3,
+      "Indeciso": 2.7,
+      "Branco/Nulo": 1.3
+    },
+    "segundo_turno": {
+      "celina_vs_damares": {
+        "Damares Alves": 46.7,
+        "Celina Leao": 39.7,
+        "Branco/Nulo": 13.7
+      },
+      "celina_vs_bia": {
+        "Celina Leao": 51.7,
+        "Bia Kicis": 32.0,
+        "Branco/Nulo": 16.3
+      },
+      "celina_vs_grass": {
+        "Celina Leao": 51.3,
+        "Leandro Grass": 36.7,
+        "Branco/Nulo": 12.0
+      }
+    },
+    "avaliacao_governo_ibaneis": {
+      "Regular": 30.0,
+      "Bom": 29.3,
+      "Ruim": 19.3,
+      "Otimo": 14.7,
+      "Pessimo": 6.7
+    },
+    "avaliacao_celina": {
+      "NS/NR": 27.3,
+      "Regular": 22.3,
+      "Bom": 15.7,
+      "Nao conheco": 12.3,
+      "Ruim": 9.7,
+      "Otimo": 8.0,
+      "Pessimo": 4.7
+    },
+    "avaliacao_lula": {
+      "Bom": 25.3,
+      "Regular": 22.0,
+      "Pessimo": 21.0,
+      "Ruim": 15.3,
+      "Otimo": 14.3,
+      "NS/NR": 2.0
+    },
+    "rejeicao": {
+      "Bia Kicis": 39.0,
+      "Leandro Grass": 34.7,
+      "Damares Alves": 27.0,
+      "Izalci Lucas": 21.0,
+      "Celina Leao": 16.3,
+      "Nenhum": 15.3,
+      "Paulo Octavio": 13.7
+    },
+    "principal_problema": {
+      "Economia": 16.7,
+      "Saúde": 13.3,
+      "Segurança pública": 12.7,
+      "Desemprego": 12.3,
+      "Corrupção": 12.0,
+      "Educação": 7.3,
+      "Moradia": 4.0,
+      "Saude": 4.0,
+      "Transporte": 3.7,
+      "Educacao": 2.3,
+      "Seguranca publica": 2.3,
+      "Custo de vida": 2.3,
+      "Transito": 2.3,
+      "Corrupcao": 2.0,
+      "Violencia": 1.7,
+      "Falta de hospitais": 1.0
+    },
+    "prioridade": {
+      "Seguranca": 26.0,
+      "Saude": 25.3,
+      "Educacao": 18.0,
+      "Transporte": 12.3,
+      "Emprego": 11.3,
+      "Moradia": 5.0,
+      "Outra": 2.0
+    },
+    "conhecimento_celina": {
+      "Ja ouvi falar": 39.3,
+      "Nao conheco": 26.3,
+      "Conheco um pouco": 25.3,
+      "Conheco bem": 9.0
+    },
+    "preparacao_celina": {
+      "NS/NR": 39.0,
+      "Pouco preparada": 22.7,
+      "Preparada": 22.3,
+      "Muito preparada": 8.3,
+      "Nao preparada": 7.7
+    },
+    "influencia_genero": {
+      "Nao influencia": 71.0,
+      "Influencia positivamente": 17.7,
+      "NS/NR": 8.0,
+      "Influencia negativamente": 3.3
+    },
+    "escala_ideologica": {
+      "media": 5.4,
+      "distribuicao": {
+        "4": 43,
+        "5": 38,
+        "1": 19,
+        "6": 55,
+        "2": 18,
+        "7": 36,
+        "3": 29,
+        "9": 37,
+        "8": 25
+      }
+    },
+    "certeza_voto": {
+      "media": 5.0,
+      "distribuicao": {
+        "7": 35,
+        "6": 21,
+        "5": 54,
+        "4": 50,
+        "1": 25,
+        "8": 37,
+        "3": 31,
+        "2": 25,
+        "10": 10,
+        "9": 12
+      }
+    },
+    "cruzamentos": {
+      "voto_por_regiao": {
+        "Santa Maria": {
+          "Bia Kicis": 1,
+          "Leandro Grass": 5,
+          "Celina Leao": 1,
+          "Paulo Octavio": 1,
+          "Damares Alves": 1
+        },
+        "Ceilândia": {
+          "Paulo Octavio": 2,
+          "Celina Leao": 9,
+          "Leandro Grass": 8,
+          "Branco/Nulo": 1,
+          "Bia Kicis": 3,
+          "Damares Alves": 5,
+          "Izalci Lucas": 4
+        },
+        "Águas Claras": {
+          "Leandro Grass": 3,
+          "Paulo Octavio": 2,
+          "Branco/Nulo": 1,
+          "Izalci Lucas": 1,
+          "Damares Alves": 3,
+          "Bia Kicis": 2,
+          "Celina Leao": 2
+        },
+        "Plano Piloto": {
+          "Leandro Grass": 7,
+          "Indeciso": 4,
+          "Celina Leao": 8,
+          "Branco/Nulo": 1,
+          "Damares Alves": 2,
+          "Izalci Lucas": 3,
+          "Paulo Octavio": 3
+        },
+        "Recanto das Emas": {
+          "Izalci Lucas": 2,
+          "Celina Leao": 3,
+          "Damares Alves": 3,
+          "Paulo Octavio": 1,
+          "Bia Kicis": 3,
+          "Leandro Grass": 1
+        },
+        "Sao Sebastiao": {
+          "Leandro Grass": 1
+        },
+        "Sobradinho": {
+          "Izalci Lucas": 1,
+          "Leandro Grass": 3,
+          "Celina Leao": 5,
+          "Bia Kicis": 1,
+          "Indeciso": 1,
+          "Paulo Octavio": 1
+        },
+        "Samambaia": {
+          "Celina Leao": 5,
+          "Damares Alves": 5,
+          "Bia Kicis": 4,
+          "Paulo Octavio": 4,
+          "Leandro Grass": 3,
+          "Izalci Lucas": 2,
+          "Branco/Nulo": 1,
+          "Indeciso": 1
+        },
+        "Lago Norte": {
+          "Indeciso": 1,
+          "Bia Kicis": 1,
+          "Celina Leao": 1,
+          "Damares Alves": 1
+        },
+        "Guará": {
+          "Indeciso": 2,
+          "Izalci Lucas": 2,
+          "Celina Leao": 1,
+          "Damares Alves": 2,
+          "Leandro Grass": 4,
+          "Paulo Octavio": 1
+        },
+        "Ceilandia": {
+          "Leandro Grass": 2,
+          "Celina Leao": 2,
+          "Damares Alves": 1
+        },
+        "Planaltina": {
+          "Izalci Lucas": 4,
+          "Leandro Grass": 4,
+          "Indeciso": 1,
+          "Celina Leao": 4,
+          "Damares Alves": 2,
+          "Paulo Octavio": 1,
+          "Bia Kicis": 1
+        },
+        "Brazlândia": {
+          "Celina Leao": 1,
+          "Paulo Octavio": 1,
+          "Damares Alves": 2,
+          "Leandro Grass": 1,
+          "Izalci Lucas": 1
+        },
+        "Guara": {
+          "Izalci Lucas": 1,
+          "Celina Leao": 1,
+          "Paulo Octavio": 1
+        },
+        "São Sebastião": {
+          "Paulo Octavio": 2,
+          "Bia Kicis": 3,
+          "Celina Leao": 2,
+          "Damares Alves": 2,
+          "Izalci Lucas": 1
+        },
+        "Itapoã": {
+          "Indeciso": 1,
+          "Bia Kicis": 1,
+          "Izalci Lucas": 1
+        },
+        "Taguatinga": {
+          "Bia Kicis": 6,
+          "Celina Leao": 5,
+          "Leandro Grass": 6,
+          "Paulo Octavio": 1,
+          "Damares Alves": 4,
+          "Izalci Lucas": 2
+        },
+        "Aguas Claras": {
+          "Celina Leao": 1,
+          "Damares Alves": 1
+        },
+        "Gama": {
+          "Leandro Grass": 5,
+          "Celina Leao": 2,
+          "Izalci Lucas": 3,
+          "Damares Alves": 3,
+          "Bia Kicis": 1,
+          "Branco/Nulo": 1
+        },
+        "Vicente Pires": {
+          "Damares Alves": 3,
+          "Leandro Grass": 2,
+          "Indeciso": 2,
+          "Paulo Octavio": 1
+        },
+        "Sudoeste/Octogonal": {
+          "Izalci Lucas": 2,
+          "Leandro Grass": 1
+        },
+        "Sol Nascente/Por do Sol": {
+          "Leandro Grass": 2,
+          "Bia Kicis": 2,
+          "Paulo Octavio": 1,
+          "Izalci Lucas": 2,
+          "Celina Leao": 1,
+          "Indeciso": 1,
+          "Damares Alves": 1
+        },
+        "Estrutural": {
+          "Celina Leao": 1
+        },
+        "Sobradinho II": {
+          "Izalci Lucas": 2,
+          "Leandro Grass": 1
+        },
+        "Paranoá": {
+          "Damares Alves": 4,
+          "Izalci Lucas": 1,
+          "Celina Leao": 1,
+          "Bia Kicis": 1,
+          "Leandro Grass": 1
+        },
+        "Riacho Fundo": {
+          "Izalci Lucas": 2,
+          "Damares Alves": 2,
+          "Leandro Grass": 2,
+          "Bia Kicis": 1,
+          "Branco/Nulo": 1,
+          "Celina Leao": 1
+        },
+        "Jardim Botânico": {
+          "Branco/Nulo": 1,
+          "Celina Leao": 1,
+          "Indeciso": 1,
+          "Izalci Lucas": 1,
+          "Bia Kicis": 1
+        },
+        "Riacho Fundo II": {
+          "Paulo Octavio": 2
+        },
+        "Arniqueira": {
+          "Celina Leao": 1
+        },
+        "SCIA/Estrutural": {
+          "Paulo Octavio": 1,
+          "Bia Kicis": 1,
+          "Celina Leao": 3,
+          "Branco/Nulo": 1,
+          "Damares Alves": 1
+        },
+        "Lago Sul": {
+          "Celina Leao": 1
+        },
+        "Cruzeiro": {
+          "Leandro Grass": 1
+        },
+        "Park Way": {
+          "Celina Leao": 1
+        },
+        "Núcleo Bandeirante": {
+          "Celina Leao": 1
+        },
+        "Candangolândia": {
+          "Bia Kicis": 1
+        },
+        "Fercal": {
+          "Bia Kicis": 1
+        },
+        "SIA": {
+          "Damares Alves": 1
+        },
+        "Varjão": {
+          "Leandro Grass": 1
+        }
+      },
+      "voto_por_genero": {
+        "masculino": {
+          "Bia Kicis": 16,
+          "Celina Leao": 34,
+          "Leandro Grass": 31,
+          "Paulo Octavio": 17,
+          "Damares Alves": 22,
+          "Izalci Lucas": 21,
+          "Branco/Nulo": 5,
+          "Indeciso": 7
+        },
+        "feminino": {
+          "Leandro Grass": 33,
+          "Paulo Octavio": 9,
+          "Damares Alves": 27,
+          "Branco/Nulo": 3,
+          "Bia Kicis": 19,
+          "Izalci Lucas": 17,
+          "Celina Leao": 31,
+          "Indeciso": 8
+        }
+      },
+      "voto_por_faixa_etaria": {
+        "35-44": {
+          "Bia Kicis": 6,
+          "Leandro Grass": 18,
+          "Paulo Octavio": 10,
+          "Damares Alves": 11,
+          "Indeciso": 6,
+          "Celina Leao": 13,
+          "Izalci Lucas": 6,
+          "Branco/Nulo": 2
+        },
+        "45-59": {
+          "Celina Leao": 20,
+          "Paulo Octavio": 8,
+          "Damares Alves": 11,
+          "Leandro Grass": 11,
+          "Izalci Lucas": 13,
+          "Branco/Nulo": 1,
+          "Indeciso": 1,
+          "Bia Kicis": 4
+        },
+        "60+": {
+          "Leandro Grass": 12,
+          "Damares Alves": 12,
+          "Izalci Lucas": 10,
+          "Celina Leao": 10,
+          "Bia Kicis": 8,
+          "Indeciso": 4,
+          "Paulo Octavio": 2,
+          "Branco/Nulo": 1
+        },
+        "16-24": {
+          "Damares Alves": 9,
+          "Celina Leao": 10,
+          "Bia Kicis": 10,
+          "Leandro Grass": 12,
+          "Paulo Octavio": 2,
+          "Izalci Lucas": 5,
+          "Branco/Nulo": 1
+        },
+        "25-34": {
+          "Leandro Grass": 11,
+          "Celina Leao": 12,
+          "Branco/Nulo": 3,
+          "Bia Kicis": 7,
+          "Izalci Lucas": 4,
+          "Paulo Octavio": 4,
+          "Indeciso": 4,
+          "Damares Alves": 6
+        }
+      },
+      "voto_por_religiao": {
+        "catolica": {
+          "Bia Kicis": 19,
+          "Leandro Grass": 33,
+          "Celina Leao": 27,
+          "Branco/Nulo": 7,
+          "Damares Alves": 25,
+          "Paulo Octavio": 10,
+          "Izalci Lucas": 21,
+          "Indeciso": 8
+        },
+        "evangelica": {
+          "Leandro Grass": 18,
+          "Paulo Octavio": 10,
+          "Damares Alves": 17,
+          "Celina Leao": 21,
+          "Izalci Lucas": 9,
+          "Bia Kicis": 9,
+          "Indeciso": 5
+        },
+        "outras_religioes": {
+          "Celina Leao": 4,
+          "Paulo Octavio": 3,
+          "Damares Alves": 3,
+          "Indeciso": 1,
+          "Leandro Grass": 3,
+          "Bia Kicis": 1,
+          "Izalci Lucas": 2
+        },
+        "espirita": {
+          "Leandro Grass": 3,
+          "Branco/Nulo": 1,
+          "Izalci Lucas": 2,
+          "Celina Leao": 3,
+          "Bia Kicis": 2,
+          "Damares Alves": 1,
+          "Paulo Octavio": 1
+        },
+        "sem_religiao": {
+          "Leandro Grass": 7,
+          "Paulo Octavio": 2,
+          "Izalci Lucas": 3,
+          "Celina Leao": 10,
+          "Bia Kicis": 3,
+          "Damares Alves": 3
+        },
+        "umbanda_candomble": {
+          "Indeciso": 1,
+          "Izalci Lucas": 1,
+          "Bia Kicis": 1
+        }
+      },
+      "voto_por_classe": {
+        "media_baixa": {
+          "Bia Kicis": 13,
+          "Leandro Grass": 27,
+          "Paulo Octavio": 7,
+          "Branco/Nulo": 3,
+          "Damares Alves": 20,
+          "Celina Leao": 23,
+          "Izalci Lucas": 10,
+          "Indeciso": 5
+        },
+        "baixa": {
+          "Celina Leao": 21,
+          "Damares Alves": 12,
+          "Izalci Lucas": 16,
+          "Bia Kicis": 10,
+          "Leandro Grass": 13,
+          "Branco/Nulo": 1,
+          "Indeciso": 2,
+          "Paulo Octavio": 5
+        },
+        "media_alta": {
+          "Leandro Grass": 14,
+          "Damares Alves": 10,
+          "Paulo Octavio": 8,
+          "Bia Kicis": 5,
+          "Branco/Nulo": 1,
+          "Celina Leao": 11,
+          "Izalci Lucas": 3,
+          "Indeciso": 4
+        },
+        "alta": {
+          "Celina Leao": 10,
+          "Leandro Grass": 10,
+          "Paulo Octavio": 6,
+          "Damares Alves": 7,
+          "Indeciso": 4,
+          "Branco/Nulo": 3,
+          "Bia Kicis": 7,
+          "Izalci Lucas": 9
+        }
+      }
+    }
+  },
+  "meta": {
+    "data_execucao": "2026-01-26T19:21:00.743344",
+    "total_eleitores": 300,
+    "modelo": "haiku",
+    "versao": "1.0"
+  }
+}

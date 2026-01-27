@@ -13,6 +13,9 @@
 | **funcoes-programa** | Como usar as funcionalidades do sistema | `.claude/skills/funcoes-programa/` |
 | **criacao-skills** | Boas práticas para criar novas skills | `.claude/skills/criacao-skills/` |
 | **templates-relatorios** | Padrão visual e estrutural de relatórios INTEIA | `.claude/skills/templates-relatorios/` |
+| **executar-pesquisa-eleitoral** | Executar pesquisas eleitorais via IA (sem UI) | `.claude/skills/executar-pesquisa-eleitoral/` |
+| **piv-loop** | Ciclo Plan-Implement-Verify para desenvolvimento | `.claude/commands/core_piv_loop/` |
+| **pesquisa-eleitoral** | Comandos para execução de pesquisas | `.claude/commands/pesquisa_eleitoral/` |
 
 ---
 
@@ -47,6 +50,25 @@
 - Manter padrão visual INTEIA
 - Implementar trilhas de auditoria
 - Adicionar chatbots de consultoria
+
+### executar-pesquisa-eleitoral
+- Executar pesquisas eleitorais via IA sem interface web
+- Selecionar eleitores com 20+ filtros
+- Entrevistar eleitores usando Claude API
+- Analisar resultados (quantitativo e qualitativo)
+- Salvar pesquisas em JSON para posterior acesso
+- Quando o usuário pedir "pesquisa sobre X para público Y"
+
+### piv-loop (Comandos)
+- Carregar contexto do projeto (`/prime`)
+- Planejar novas features (`/plan-feature`)
+- Executar planos (`/execute`)
+- Fluxo estruturado de desenvolvimento
+
+### pesquisa-eleitoral (Comandos)
+- Executar pesquisas eleitorais (`/executar-pesquisa`)
+- Gerar relatórios padrão INTEIA (`/gerar-relatorio`)
+- Analisar eleitores sintéticos (`/analisar-eleitor`)
 
 ---
 
@@ -101,8 +123,11 @@ CLAUDE.md (raiz)
     │   └── SKILL.md
     ├── criacao-skills/
     │   └── SKILL.md
-    └── templates-relatorios/
-        └── SKILL.md
+    ├── templates-relatorios/
+    │   └── SKILL.md
+    └── executar-pesquisa-eleitoral/
+        ├── SKILL.md              # Documentação completa
+        └── executar_pesquisa.py  # Script executável
 ```
 
 ---
@@ -117,13 +142,36 @@ CLAUDE.md (raiz)
 
 ---
 
+## COMANDOS DISPONÍVEIS
+
+Ver índice completo em: `.claude/commands/COMMANDS_INDEX.md`
+
+### Comandos Core
+| Comando | Descrição |
+|---------|-----------|
+| `/prime` | Carregar contexto do projeto |
+| `/plan-feature` | Planejar feature |
+| `/execute` | Executar plano |
+| `/commit` | Commit padronizado |
+| `/init-project` | Inicializar ambiente |
+
+### Comandos Pesquisa
+| Comando | Descrição |
+|---------|-----------|
+| `/executar-pesquisa` | Executar pesquisa eleitoral |
+| `/gerar-relatorio` | Gerar relatório INTEIA |
+| `/analisar-eleitor` | Analisar eleitor sintético |
+
+---
+
 ## ESTATÍSTICAS
 
 | Métrica | Valor |
 |---------|-------|
-| Total de Skills | 5 |
-| Última Atualização | 2026-01-25 |
-| Próxima Revisão | 2026-02-25 |
+| Total de Skills | 8 |
+| Total de Comandos | 8 |
+| Última Atualização | 2026-01-26 |
+| Próxima Revisão | 2026-02-26 |
 
 ---
 
