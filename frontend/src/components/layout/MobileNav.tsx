@@ -67,7 +67,7 @@ export function MobileNav() {
   return (
     <>
       {/* Bottom Navigation Bar - Visível apenas em mobile */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-lg border-t border-border lg:hidden safe-area-bottom">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-xl border-t border-white/5 lg:hidden safe-area-bottom">
         <div className="flex items-center justify-around h-16">
           {menuPrincipal.map((item) => {
             const ativo = pathname === item.href || (item.href !== '/' && pathname.startsWith(`${item.href}/`));
@@ -109,21 +109,21 @@ export function MobileNav() {
           />
 
           {/* Drawer */}
-          <div className="fixed bottom-0 left-0 right-0 z-50 bg-card rounded-t-2xl max-h-[80vh] lg:hidden animate-in slide-in-from-bottom duration-300">
+          <div className="fixed bottom-0 left-0 right-0 z-50 bg-slate-900 border-t border-white/10 rounded-t-3xl max-h-[80vh] lg:hidden animate-in slide-in-from-bottom duration-300">
             {/* Handle bar */}
             <div className="flex justify-center pt-3 pb-2">
-              <div className="w-12 h-1.5 bg-muted rounded-full" />
+              <div className="w-12 h-1.5 bg-white/20 rounded-full" />
             </div>
 
             {/* Header */}
-            <div className="flex items-center justify-between px-4 pb-4 border-b border-border">
+            <div className="flex items-center justify-between px-4 pb-4 border-b border-white/10">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
-                  <Vote className="w-5 h-5 text-primary" />
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/25">
+                  <Vote className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h2 className="font-bold text-foreground">Pesquisa Eleitoral</h2>
-                  <p className="text-xs text-muted-foreground">DF 2026</p>
+                  <h2 className="font-bold text-white">Pesquisa Eleitoral</h2>
+                  <p className="text-xs text-white/50">DF 2026</p>
                 </div>
               </div>
               <button

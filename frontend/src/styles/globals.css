@@ -4,40 +4,42 @@
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
+    /* Tema INTEIA - Slate escuro com acentos âmbar */
+    --background: 222 47% 5%;
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 14%;
+    --card: 222 47% 8%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 14%;
+    --popover: 222 47% 8%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 11%;
+    /* Âmbar como cor primária - igual à landing page */
+    --primary: 38 92% 50%;
+    --primary-foreground: 222 47% 5%;
 
-    --secondary: 217 33% 17%;
+    --secondary: 220 20% 14%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217 33% 17%;
+    --muted: 220 20% 14%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 222 47% 5%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 217 91% 60%;
+    --border: 220 20% 18%;
+    --input: 220 20% 14%;
+    --ring: 38 92% 50%;
 
     --radius: 0.75rem;
 
-    /* Gradientes personalizados */
-    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(271 91% 65%) 100%);
+    /* Gradientes personalizados - tema âmbar */
+    --gradient-primary: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(28 95% 53%) 100%);
     --gradient-success: linear-gradient(135deg, hsl(142 71% 45%) 0%, hsl(168 76% 42%) 100%);
-    --gradient-warning: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(25 95% 53%) 100%);
+    --gradient-warning: linear-gradient(135deg, hsl(45 93% 47%) 0%, hsl(38 92% 50%) 100%);
     --gradient-danger: linear-gradient(135deg, hsl(0 84% 60%) 0%, hsl(339 90% 51%) 100%);
   }
 
@@ -113,9 +115,9 @@
     @apply bg-card/80 backdrop-blur-xl border border-border/50 shadow-xl;
   }
 
-  /* Gradiente de fundo sutil */
+  /* Gradiente de fundo sutil - tema âmbar */
   .bg-gradient-subtle {
-    background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(59, 130, 246, 0.15), transparent);
+    background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(245, 158, 11, 0.08), transparent);
   }
 
   /* Efeito de brilho nos botoes */
@@ -195,9 +197,9 @@
 }
 
 @layer utilities {
-  /* Texto com gradiente */
+  /* Texto com gradiente - tema âmbar */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-amber-600;
   }
 
   /* Fundo com padrao sutil */
@@ -206,16 +208,16 @@
     background-size: 40px 40px;
   }
 
-  /* Borda com gradiente */
+  /* Borda com gradiente - tema âmbar */
   .border-gradient {
     border: 1px solid transparent;
     background: linear-gradient(var(--card), var(--card)) padding-box,
-                linear-gradient(135deg, hsl(217 91% 60%), hsl(271 91% 65%)) border-box;
+                linear-gradient(135deg, hsl(38 92% 50%), hsl(28 95% 53%)) border-box;
   }
 
-  /* Sombra colorida */
+  /* Sombra colorida - tema âmbar */
   .shadow-primary-glow {
-    box-shadow: 0 0 40px -10px hsl(217 91% 60% / 0.3);
+    box-shadow: 0 0 40px -10px hsl(38 92% 50% / 0.3);
   }
 
   /* Hide scrollbar but keep functionality */
