@@ -34,7 +34,7 @@ import { InteiaLogo } from '@/components/branding';
 const menuItems = [
   {
     titulo: 'Início',
-    href: '/',
+    href: '/dashboard',
     icone: Home,
     descricao: 'Visão geral do sistema',
   },
@@ -171,7 +171,7 @@ export function Sidebar() {
     <>
       {/* Logo INTEIA */}
       <div className="p-4 border-b border-border dark:border-white/10">
-        <Link href="/" className="flex items-center gap-3" onClick={fecharMobile}>
+        <Link href="/dashboard" className="flex items-center gap-3" onClick={fecharMobile}>
           {recolhido ? (
             <InteiaLogo size="sm" variant="icon" />
           ) : (

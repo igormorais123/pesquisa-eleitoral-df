@@ -20,7 +20,7 @@ import { useState } from 'react';
 const menuPrincipal = [
   {
     titulo: 'Início',
-    href: '/',
+    href: '/dashboard',
     icone: Home,
   },
   {
@@ -70,7 +70,7 @@ export function MobileNav() {
       <nav className="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-xl border-t lg:hidden safe-area-bottom bg-card/95 border-border/50 dark:bg-slate-900/95 dark:border-white/5">
         <div className="flex items-center justify-around h-16">
           {menuPrincipal.map((item) => {
-            const ativo = pathname === item.href || (item.href !== '/' && pathname.startsWith(`${item.href}/`));
+            const ativo = pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(`${item.href}/`));
             const Icone = item.icone;
 
             return (

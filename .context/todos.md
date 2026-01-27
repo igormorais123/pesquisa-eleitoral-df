@@ -6,6 +6,15 @@
 
 <!-- Tarefas atualmente sendo trabalhadas -->
 
+## Concluídas Recentemente ✅ (2026-01-27)
+
+- [x] **Hub de Projetos INTEIA** - Página intermediária estilo Apple para escolha de projetos
+  - Design criativo com Framer Motion e glassmorphism
+  - 8 projetos configurados (pesquisa eleitoral, stress test, aulas, chatbot, etc.)
+  - Sistema de filtros por categoria e busca
+  - Cards com status (ativo, beta, em-breve)
+  - Roteamento: Login → Hub (/) → Sistema (/dashboard)
+
 ## Concluídas ✅
 
 - [x] Sincronização de 600 respostas para PostgreSQL nuvem (2026-01-27)

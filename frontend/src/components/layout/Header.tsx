@@ -27,6 +27,7 @@ import {
   CreditCard,
   HelpCircle,
   Keyboard,
+  LayoutGrid,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
@@ -295,6 +296,15 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
             )}
           </div>
 
+          {/* Hub de Projetos */}
+          <Link
+            href="/"
+            className="p-2 rounded-lg hover:bg-secondary transition-colors"
+            title="Hub de Projetos"
+          >
+            <LayoutGrid className="w-5 h-5 text-amber-400" />
+          </Link>
+
           {/* Tema */}
           <button
             className="p-2 rounded-lg hover:bg-secondary transition-colors"
@@ -363,6 +373,18 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
 
               {/* Opções do Menu */}
               <div className="py-2">
+                {/* Hub de Projetos */}
+                <Link
+                  href="/"
+                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground hover:bg-secondary transition-colors"
+                >
+                  <LayoutGrid className="w-4 h-4 text-amber-400" />
+                  <div>
+                    <p className="font-medium">Hub de Projetos</p>
+                    <p className="text-[10px] text-muted-foreground">Todos os projetos INTEIA</p>
+                  </div>
+                </Link>
+
                 {/* Admin Usuários - apenas para admins */}
                 {usuario?.papel === 'admin' && (
                   <Link
