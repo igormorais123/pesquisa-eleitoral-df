@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEIA | Resumo Executivo - Stress Test 2026</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --amber: #d69e2e;
+            --amber-light: #f6e05e;
+            --amber-dark: #b7791f;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #eab308;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.08);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --text: #0f172a;
+            --text-muted: #64748b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; }
+        .logo-box {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 14px; color: #fff;
+        }
+        .logo-text { font-size: 22px; font-weight: 800; }
+        .logo-text span { color: var(--amber); }
+        .badge {
+            padding: 6px 12px;
+            background: rgba(214,158,46,0.1);
+            border: 1px solid rgba(214,158,46,0.3);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--amber);
+            text-transform: uppercase;
+        }
+
+        /* Title */
+        .title-section { margin-bottom: 2rem; }
+        .title-section h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .title-section .date { font-size: 0.875rem; color: var(--text-muted); }
+
+        /* Conclusion Box */
+        .conclusion-box {
+            background: linear-gradient(135deg, rgba(239,68,68,0.1), rgba(234,179,8,0.05));
+            border: 2px solid var(--danger);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .conclusion-box h2 {
+            font-size: 1rem;
+            color: var(--danger);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .conclusion-box p {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .conclusion-box strong { color: var(--amber); }
+
+        /* KPIs */
+        .kpis {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .kpi {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+        .kpi .value { font-size: 2rem; font-weight: 800; }
+        .kpi .label { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; }
+        .kpi.danger .value { color: var(--danger); }
+        .kpi.success .value { color: var(--success); }
+        .kpi.warning .value { color: var(--warning); }
+
+        /* Chart */
+        .chart-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .chart-section h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .chart-container { height: 320px; position: relative; }
+        .chart-insight {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(214,158,46,0.08);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        .chart-insight strong { color: var(--amber); }
+
+        /* Recommendations */
+        .recs { margin-bottom: 2rem; }
+        .recs h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .rec {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1rem 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            border-left: 4px solid var(--danger);
+        }
+        .rec.important { border-left-color: var(--warning); }
+        .rec .rec-title {
+            font-weight: 600;
+            font-size: 0.9375rem;
+            margin-bottom: 0.25rem;
+        }
+        .rec .rec-desc {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+        .rec-badge {
+            display: inline-block;
+            font-size: 0.625rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+        .rec-badge.urgent { background: rgba(239,68,68,0.15); color: var(--danger); }
+        .rec-badge.important { background: rgba(234,179,8,0.15); color: var(--warning); }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            color: #fff;
+        }
+        .cta h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .cta p { font-size: 0.875rem; opacity: 0.9; margin-bottom: 1rem; }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .cta-btn:hover { background: rgba(255,255,255,0.3); }
+
+        /* Footer */
+        .footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .footer a { color: var(--amber); text-decoration: none; }
+
+        /* Theme toggle */
+        .theme-btn {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 8px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 0.8125rem;
+            cursor: pointer;
+        }
+
+        /* Print */
+        @media print {
+            .theme-btn, .cta { display: none; }
+            body { background: #fff; color: #000; }
+        }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .container { padding: 1rem; }
+            .kpis { grid-template-columns: 1fr; }
+            .header { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-box">IA</div>
+                <div class="logo-text">INTE<span>IA</span></div>
+            </div>
+            <div class="badge">Confidencial</div>
+        </header>
+
+        <!-- Title -->
+        <div class="title-section">
+            <h1>Stress Test Eleitoral 2026</h1>
+            <div class="date">Resumo Executivo | 25 Janeiro 2026 | 1.000 Eleitores</div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="conclusion-box">
+            <h2>⚠️ Conclusão</h2>
+            <p>
+                Sua base é <strong>sólida</strong> (82,6% resistem a pressões), mas há uma <strong>vulnerabilidade crítica</strong>:
+                56,9% migrariam para um candidato técnico de centro. O voto atual é <strong>70% defensivo</strong> —
+                eleitores votam CONTRA o adversário, não POR você. Ação preventiva é necessária para blindar contra
+                candidaturas moderadas antes que surjam.
+            </p>
+        </div>
+
+        <!-- KPIs -->
+        <div class="kpis">
+            <div class="kpi danger">
+                <div class="value">56,9%</div>
+                <div class="label">Migrariam para Centro</div>
+            </div>
+            <div class="kpi success">
+                <div class="value">82,6%</div>
+                <div class="label">Base Independente</div>
+            </div>
+            <div class="kpi warning">
+                <div class="value">67,2%</div>
+                <div class="label">Abandonam se Escândalo</div>
+            </div>
+        </div>
+
+        <!-- Chart: Correlação Presença x Intenção -->
+        <div class="chart-section">
+            <h3>📊 Presença na Mídia × Intenção de Voto</h3>
+            <div class="chart-container">
+                <canvas id="chartCorrelacao"></canvas>
+            </div>
+            <div class="chart-insight">
+                <strong>Insight:</strong> Há correlação positiva entre presença na mídia e intenção de voto.
+                O pico de setembro/2025 (49%) coincidiu com exposição máxima. Manter visibilidade
+                constante é essencial para sustentar números.
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="recs">
+            <h3>🎯 O que fazer agora</h3>
+
+            <div class="rec">
+                <span class="rec-badge urgent">Urgente</span>
+                <div class="rec-title">Neutralizar candidaturas de centro</div>
+                <div class="rec-desc">Monitorar movimentações políticas. Agir ANTES que surjam alternativas técnico-apartidárias. Cooptação ou desconstrução prévia.</div>
+            </div>
+
+            <div class="rec">
+                <span class="rec-badge urgent">Urgente</span>
+                <div class="rec-title">Blindagem anticorrupção</div>
+                <div class="rec-desc">67,2% abandonam se houver escândalo. Zero tolerância. Auditoria preventiva em todas áreas sensíveis da gestão.</div>
+            </div>
+
+            <div class="rec important">
+                <span class="rec-badge important">Importante</span>
+                <div class="rec-title">Construir adesão genuína</div>
+                <div class="rec-desc">70% dos votos são defensivos. Criar conexão emocional positiva que vá além do posicionamento anti-adversário.</div>
+            </div>
+
+            <div class="rec important">
+                <span class="rec-badge important">Importante</span>
+                <div class="rec-title">Manter presença na mídia</div>
+                <div class="rec-desc">O gráfico mostra: mais visibilidade = mais votos. Investir em comunicação constante e estratégica até outubro.</div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta">
+            <h3>Quer saber mais sobre a pesquisa?</h3>
+            <p>Converse com Helena, nossa IA pesquisadora. Ela pode responder qualquer dúvida sobre os dados.</p>
+            <a href="index.html" class="cta-btn">
+                💬 Falar com Helena
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div>
+                <strong>INTEIA</strong> - Inteligência Estratégica<br>
+                <a href="mailto:igor@inteia.com.br">igor@inteia.com.br</a> | <a href="https://inteia.com.br">inteia.com.br</a>
+            </div>
+            <div>© 2026 INTEIA</div>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            initChart();
+        }
+
+        (function() {
+            const saved = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+
+        let chart = null;
+
+        function initChart() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            Chart.defaults.color = isDark ? '#94a3b8' : '#64748b';
+            Chart.defaults.borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
+            Chart.defaults.font.family = 'Inter, sans-serif';
+
+            if (chart) chart.destroy();
+
+            const meses = ['Jul/24','Ago/24','Set/24','Out/24','Nov/24','Dez/24','Jan/25','Fev/25','Mar/25','Abr/25','Mai/25','Jun/25','Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26'];
+            const presenca = [55, 63, 58, 68, 80, 84, 98, 107, 145, 125, 137, 160, 125, 195, 230, 180, 145, 170, 155];
+            const intencao = [22.0, 23.8, 25.7, 27.5, 29.3, 31.2, 33.0, 34.8, 36.6, 34.8, 33.0, 31.1, 27.5, 37.2, 49.0, 32.2, 36.1, 40.0, 40.0];
+
+            const ctx = document.getElementById('chartCorrelacao').getContext('2d');
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: meses,
+                    datasets: [
+                        {
+                            label: 'Presença total (imprensa + redes)',
+                            data: presenca,
+                            backgroundColor: isDark ? 'rgba(51, 65, 85, 0.8)' : 'rgba(71, 85, 105, 0.8)',
+                            borderRadius: 4,
+                            yAxisID: 'y',
+                            order: 2
+                        },
+                        {
+                            label: 'Intenção de voto (%)',
+                            data: intencao,
+                            type: 'line',
+                            borderColor: '#ef4444',
+                            backgroundColor: '#ef4444',
+                            pointBackgroundColor: '#ef4444',
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                            tension: 0.3,
+                            yAxisID: 'y1',
+                            order: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { font: { size: 11 }, usePointStyle: true }
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    xMin: 5.5,
+                                    xMax: 5.5,
+                                    borderColor: 'rgba(239, 68, 68, 0.5)',
+                                    borderWidth: 2,
+                                    borderDash: [5, 5],
+                                    label: {
+                                        content: 'Início 2025',
+                                        enabled: true,
+                                        position: 'start'
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { size: 10 } }
+                        },
+                        y: {
+                            type: 'linear',
+                            position: 'left',
+                            title: { display: true, text: 'Presença (contagem)', font: { size: 10 } },
+                            grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' },
+                            ticks: { font: { size: 10 } }
+                        },
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            title: { display: true, text: 'Intenção de voto (%)', font: { size: 10 } },
+                            min: 0,
+                            max: 60,
+                            grid: { drawOnChartArea: false },
+                            ticks: { font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initChart);
+    </script>
+</body>
+</html>
