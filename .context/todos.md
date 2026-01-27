@@ -5,6 +5,7 @@
 ## Em Progresso 🔄
 
 <!-- Tarefas atualmente sendo trabalhadas -->
+- [x] Corrigir sincronização de sessões com nuvem ✅ (2026-01-27)
 
 ## Concluídas ✅
 
@@ -38,6 +39,15 @@
 <!-- Tarefas que dependem de algo externo -->
 
 ## Notas
+
+### Sessão 2026-01-27 (Correção Sincronização Nuvem)
+- Problema identificado: pesquisas não apareciam porque dados ficavam só no IndexedDB local
+- Solução implementada:
+  - Hook `useSyncSessoes` para sincronização automática após login
+  - Salvamento no servidor quando sessão é concluída
+  - Botão de sincronização manual nas páginas de entrevistas e resultados
+  - Rotas de API Next.js para proxy com backend PostgreSQL
+- Commit: b8315f8 - fix(sync): implementa sincronização de sessões com nuvem
 
 ### Sessão 2026-01-27 (Harmonização Reconvenção)
 - Harmonizado projeto reconvencao-igor-melissa com PIV+
