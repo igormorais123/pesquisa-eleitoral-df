@@ -68,6 +68,7 @@
 | MX | @ | aspmx.l.google.com (+ 4 alternativas) |
 | TXT | @ | google-site-verification=... |
 | TXT | @ | v=spf1 include:_spf.google.com ~all |
+| TXT | google._domainkey | v=DKIM1; k=rsa; p=MIIBIjANBgkqhki... |
 
 ### Hospedagem
 - **Frontend:** Vercel (conta paga - igormorais123)
@@ -81,7 +82,7 @@
 ### Email Empresarial
 - **Provedor:** Google Workspace
 - **Email principal:** igor@inteia.com.br
-- **Status:** Configurado, pendente verificação de domínio
+- **Status:** ✅ Ativo e funcionando (domínio verificado, DKIM configurado)
 
 ---
 

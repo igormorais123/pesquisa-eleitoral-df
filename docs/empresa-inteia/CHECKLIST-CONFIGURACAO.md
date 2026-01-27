@@ -17,11 +17,13 @@ Marque com [x] o que já fez:
 - [x] Adicionar registro TXT do SPF (anti-spam)
 - [x] Adicionar registro CNAME www para Vercel
 - [x] Adicionar registro CNAME api para Render
+- [x] Adicionar registro TXT DKIM (google._domainkey)
 
 ## Verificação Google
-- [ ] Verificar domínio no Google Admin
-- [ ] Ativar Gmail no Google Workspace
-- [ ] Testar envio de email
+- [x] Verificar domínio no Google Admin
+- [x] Ativar Gmail no Google Workspace
+- [x] Configurar DKIM (autenticação de emails)
+- [x] Testar envio de email (26/01/2026 10:01)
 
 ## Vercel
 - [x] Adicionar domínio inteia.com.br no projeto
@@ -39,8 +41,8 @@ Marque com [x] o que já fez:
 - [x] Acessar https://inteia.com.br (site funciona?)
 - [x] Acessar https://www.inteia.com.br (site funciona?)
 - [x] Acessar https://api.inteia.com.br/health (backend funciona!)
-- [ ] Enviar email de igor@inteia.com.br (email funciona?)
-- [ ] Receber email em igor@inteia.com.br (email funciona?)
+- [x] Enviar email para igor@inteia.com.br (teste enviado 26/01/2026 10:01)
+- [ ] Receber email em igor@inteia.com.br (verificar manualmente)
 
 ---
 
@@ -54,7 +56,7 @@ Marque com [x] o que já fez:
 
 **Transição DNS iniciada:** 25/01/2026 ~16:20 (aguardar ~2h para adicionar registros)
 
-**Data de conclusão:** _____________
+**Data de conclusão:** 26/01/2026
 
 ---
 
