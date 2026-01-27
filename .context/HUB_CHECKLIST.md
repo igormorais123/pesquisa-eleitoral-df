@@ -58,7 +58,7 @@
 - [x] Implementar páginas coming soon
 - [x] Atualizar Hub para habilitar todos os links
 - [x] Build de produção
-- [ ] Commit e push
+- [x] Commit e push ✅
 
 ---
 
