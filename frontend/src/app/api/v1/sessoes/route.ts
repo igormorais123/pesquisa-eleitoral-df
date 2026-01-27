@@ -10,19 +10,32 @@ const BACKEND_URL = process.env.BACKEND_URL || 'https://pesquisa-eleitoral-df-1.
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
+    // Pegar header de autorização (pode vir como 'authorization' ou 'Authorization')
+    const authHeader = request.headers.get('authorization') || request.headers.get('Authorization');
     const searchParams = request.nextUrl.searchParams.toString();
     const url = `${BACKEND_URL}/api/v1/sessoes/${searchParams ? `?${searchParams}` : ''}`;
 
+    console.log('[API Sessoes] GET proxy para:', url);
+    console.log('[API Sessoes] Auth header presente:', !!authHeader);
+
+    const headers: HeadersInit = {
+      'Content-Type': 'application/json',
+    };
+
+    if (authHeader) {
+      headers['Authorization'] = authHeader;
+    }
+
     const response = await fetch(url, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        ...(authHeader ? { Authorization: authHeader } : {}),
-      },
+      headers,
+      cache: 'no-store',
     });
 
     const data = await response.json();
+
+    console.log('[API Sessoes] Resposta status:', response.status);
+
     return NextResponse.json(data, { status: response.status });
   } catch (error) {
     console.error('[API Sessoes] Erro no proxy GET:', error);
