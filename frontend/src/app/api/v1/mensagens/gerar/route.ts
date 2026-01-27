@@ -12,7 +12,7 @@ import Anthropic from '@anthropic-ai/sdk';
 // Força rota dinâmica
 export const dynamic = 'force-dynamic';
 
-const ELEITORES_FILE = path.join(process.cwd(), '..', 'agentes', 'banco-eleitores-df.json');
+const ELEITORES_FILE = path.join(process.cwd(), 'public', 'data', 'banco-eleitores-df.json');
 
 interface Eleitor {
   id: string;

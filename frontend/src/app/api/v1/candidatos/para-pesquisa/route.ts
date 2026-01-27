@@ -11,7 +11,7 @@ export const dynamic = 'force-dynamic';
 import { promises as fs } from 'fs';
 import path from 'path';
 
-const CANDIDATOS_FILE = path.join(process.cwd(), '..', 'agentes', 'banco-candidatos-df-2026.json');
+const CANDIDATOS_FILE = path.join(process.cwd(), 'public', 'data', 'banco-candidatos-df-2026.json');
 
 export async function GET(request: NextRequest) {
   try {
