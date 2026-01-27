@@ -46,6 +46,7 @@ Criar página intermediária criativa (estilo Apple) entre login e sistema, perm
 |------|-----------|----------|--------|
 | Pesquisa Eleitoral | Sistema principal de agentes eleitorais | /dashboard | Ativo |
 | Stress Test | Relatórios de stress test eleitoral | /resultados-stress-test | Ativo |
+| **Academy INTEIA** | OpenCode para Iniciantes não-programadores | https://academy.inteia.com.br/ | Ativo |
 | Aula Claude Code | Tutorial interativo de Claude Code | Em desenvolvimento | Beta |
 | Chatbot | Chatbot conversacional INTEIA | Em desenvolvimento | Beta |
 | Ouvidoria | Análise de demandas de ouvidoria | Em desenvolvimento | Beta |
