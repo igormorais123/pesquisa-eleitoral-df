@@ -12,8 +12,8 @@ import path from 'path';
 // Força rota dinâmica
 export const dynamic = 'force-dynamic';
 
-// Caminho para o arquivo de candidatos
-const CANDIDATOS_FILE = path.join(process.cwd(), '..', 'agentes', 'banco-candidatos-df-2026.json');
+// Caminho para o arquivo de candidatos (em public/data para funcionar no Vercel)
+const CANDIDATOS_FILE = path.join(process.cwd(), 'public', 'data', 'banco-candidatos-df-2026.json');
 
 interface CandidatoJSON {
   id: string;
