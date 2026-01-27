@@ -8,6 +8,7 @@ import { MobileNav } from '@/components/layout/MobileNav';
 import { InteiaFooter } from '@/components/branding';
 import { useAuthStore } from '@/stores/auth-store';
 import { useSidebarStore } from '@/stores/sidebar-store';
+import { useSyncSessoes } from '@/hooks/use-sync-sessoes';
 import { cn } from '@/lib/utils';
 
 export default function DashboardLayout({
@@ -19,6 +20,9 @@ export default function DashboardLayout({
   const { autenticado, token, verificarToken } = useAuthStore();
   const { recolhido } = useSidebarStore();
   const [verificando, setVerificando] = useState(true);
+
+  // Hook de sincronização - carrega sessões do servidor automaticamente após login
+  const { carregando: sincronizando, sessoesCarregadas } = useSyncSessoes();
 
   useEffect(() => {
     const verificar = async () => {

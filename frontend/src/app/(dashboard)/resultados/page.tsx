@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   BarChart3,
   Clock,
@@ -16,14 +16,26 @@ import {
   AlertTriangle,
   Shield,
   ExternalLink,
+  RefreshCw,
+  Cloud,
 } from 'lucide-react';
 import { db } from '@/lib/db/dexie';
 import { formatarDataHora, formatarMoeda, cn } from '@/lib/utils';
 import { useAuthStore } from '@/stores/auth-store';
 import { InteiaBadge } from '@/components/branding';
+import { useSyncSessoes } from '@/hooks/use-sync-sessoes';
 
 export default function PaginaResultados() {
   const { usuario } = useAuthStore();
+  const queryClient = useQueryClient();
+  const { sincronizar, carregando: sincronizando, ultimaSync } = useSyncSessoes();
+
+  // Função para sincronizar e atualizar a lista
+  const handleSincronizar = async () => {
+    await sincronizar();
+    // Invalidar a query para recarregar os dados
+    queryClient.invalidateQueries({ queryKey: ['sessoes-concluidas'] });
+  };
 
   // Buscar sessões concluídas - filtrar por usuário logado
   const { data: sessoes, isLoading } = useQuery({
@@ -71,9 +83,22 @@ export default function PaginaResultados() {
             Analises e visualizacoes das pesquisas realizadas
           </p>
         </div>
-        <div className="hidden md:flex flex-col items-end text-right">
-          <p className="text-xs text-muted-foreground">Pesquisador Responsavel</p>
-          <p className="text-sm font-semibold text-foreground">Igor Morais Vasconcelos, PhD</p>
+        <div className="flex items-center gap-4">
+          {/* Botão de Sincronização */}
+          <button
+            onClick={handleSincronizar}
+            disabled={sincronizando}
+            className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-secondary-foreground rounded-lg transition-colors disabled:opacity-50"
+            title={ultimaSync ? `Última sync: ${formatarDataHora(ultimaSync.toISOString())}` : 'Sincronizar com a nuvem'}
+          >
+            <Cloud className={cn('w-5 h-5', sincronizando && 'animate-pulse')} />
+            <RefreshCw className={cn('w-4 h-4', sincronizando && 'animate-spin')} />
+          </button>
+
+          <div className="hidden md:flex flex-col items-end text-right">
+            <p className="text-xs text-muted-foreground">Pesquisador Responsavel</p>
+            <p className="text-sm font-semibold text-foreground">Igor Morais Vasconcelos, PhD</p>
+          </div>
         </div>
       </div>
 
