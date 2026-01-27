@@ -100,7 +100,7 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
   }, []);
 
   return (
-    <header className="sticky top-0 z-30 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
+    <header className="sticky top-0 z-30 backdrop-blur-xl border-b bg-card/80 border-border/50 dark:bg-slate-950/80 dark:border-white/5">
       <div className="flex items-center justify-between h-16 px-6">
         {/* Lado Esquerdo - Título */}
         <div className="flex items-center gap-4">
