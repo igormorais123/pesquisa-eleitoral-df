@@ -166,10 +166,10 @@ const LogoINTEIA = () => (
       <span className="text-white font-bold text-sm">IA</span>
     </div>
     <div className="flex flex-col">
-      <span className="font-bold text-white text-xl tracking-tight">
-        INTE<span className="text-amber-400">IA</span>
+      <span className="font-bold text-foreground text-xl tracking-tight">
+        INTE<span className="text-amber-500 dark:text-amber-400">IA</span>
       </span>
-      <span className="text-white/50 text-xs -mt-0.5">Inteligência Estratégica</span>
+      <span className="text-muted-foreground text-xs -mt-0.5">Inteligência Estratégica</span>
     </div>
   </div>
 );
@@ -191,18 +191,18 @@ const CardProjetoDestaque = ({ projeto, index }: { projeto: Projeto; index: numb
           bg-gradient-to-br ${projeto.corGradiente} p-[1px]
         `}>
           {/* Inner card */}
-          <div className="h-full bg-slate-900/95 rounded-[23px] p-8 flex flex-col relative overflow-hidden">
+          <div className="h-full bg-card rounded-[23px] p-8 flex flex-col relative overflow-hidden dark:bg-slate-900/95">
             {/* Background effect */}
             <div className={`absolute top-0 right-0 w-96 h-96 bg-gradient-to-br ${projeto.corGradiente} opacity-10 blur-3xl rounded-full transform translate-x-1/2 -translate-y-1/2 group-hover:opacity-20 transition-opacity duration-500`} />
 
             {/* Status */}
             <div className="flex items-center justify-between mb-6 relative z-10">
-              <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-${status.cor}-500/20 text-${status.cor}-400 border border-${status.cor}-500/30`}>
+              <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-${status.cor}-500/20 text-${status.cor}-600 dark:text-${status.cor}-400 border border-${status.cor}-500/30`}>
                 <status.icone className="w-3 h-3" />
                 {status.label}
               </span>
               {projeto.externo && (
-                <ExternalLink className="w-4 h-4 text-white/40" />
+                <ExternalLink className="w-4 h-4 text-muted-foreground" />
               )}
             </div>
 
@@ -213,10 +213,10 @@ const CardProjetoDestaque = ({ projeto, index }: { projeto: Projeto; index: numb
 
             {/* Content */}
             <div className="flex-1 relative z-10">
-              <h3 className="text-3xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">
+              <h3 className="text-3xl font-bold text-foreground mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
                 {projeto.nome}
               </h3>
-              <p className="text-white/60 text-lg leading-relaxed mb-6">
+              <p className="text-muted-foreground text-lg leading-relaxed mb-6">
                 {projeto.descricaoLonga || projeto.descricao}
               </p>
 
@@ -224,7 +224,7 @@ const CardProjetoDestaque = ({ projeto, index }: { projeto: Projeto; index: numb
               {projeto.features && (
                 <div className="flex flex-wrap gap-2 mb-6">
                   {projeto.features.map((feature, i) => (
-                    <span key={i} className="px-3 py-1 rounded-full bg-white/5 text-white/50 text-sm border border-white/10">
+                    <span key={i} className="px-3 py-1 rounded-full bg-secondary text-muted-foreground text-sm border border-border dark:bg-white/5 dark:border-white/10">
                       {feature}
                     </span>
                   ))}
@@ -233,7 +233,7 @@ const CardProjetoDestaque = ({ projeto, index }: { projeto: Projeto; index: numb
             </div>
 
             {/* CTA */}
-            <div className="flex items-center gap-2 text-white/70 group-hover:text-white transition-colors">
+            <div className="flex items-center gap-2 text-muted-foreground group-hover:text-foreground transition-colors">
               <span className="font-medium">Acessar</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </div>
@@ -261,18 +261,19 @@ const CardProjeto = ({ projeto, index }: { projeto: Projeto; index: number }) =>
       <Wrapper {...wrapperProps as any}>
         <div className={`
           relative h-full min-h-[280px] rounded-2xl overflow-hidden group
-          bg-white/[0.02] border border-white/5 p-6 flex flex-col
-          ${!isDisabled ? 'cursor-pointer hover:border-amber-500/30 hover:bg-white/[0.04]' : 'opacity-60 cursor-not-allowed'}
+          bg-card border border-border p-6 flex flex-col
+          dark:bg-white/[0.02] dark:border-white/5
+          ${!isDisabled ? 'cursor-pointer hover:border-amber-500/30 hover:bg-secondary dark:hover:bg-white/[0.04]' : 'opacity-60 cursor-not-allowed'}
           transition-all duration-300
         `}>
           {/* Status */}
           <div className="flex items-center justify-between mb-4">
-            <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-${status.cor}-500/20 text-${status.cor}-400`}>
+            <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-${status.cor}-500/20 text-${status.cor}-600 dark:text-${status.cor}-400`}>
               <status.icone className="w-2.5 h-2.5" />
               {status.label}
             </span>
             {projeto.externo && !isDisabled && (
-              <ExternalLink className="w-3.5 h-3.5 text-white/30" />
+              <ExternalLink className="w-3.5 h-3.5 text-muted-foreground/50" />
             )}
           </div>
 
@@ -283,17 +284,17 @@ const CardProjeto = ({ projeto, index }: { projeto: Projeto; index: number }) =>
 
           {/* Content */}
           <div className="flex-1">
-            <h3 className={`text-lg font-bold text-white mb-2 ${!isDisabled ? 'group-hover:text-amber-400' : ''} transition-colors`}>
+            <h3 className={`text-lg font-bold text-foreground mb-2 ${!isDisabled ? 'group-hover:text-amber-600 dark:group-hover:text-amber-400' : ''} transition-colors`}>
               {projeto.nome}
             </h3>
-            <p className="text-white/50 text-sm leading-relaxed">
+            <p className="text-muted-foreground text-sm leading-relaxed">
               {projeto.descricao}
             </p>
           </div>
 
           {/* CTA */}
           {!isDisabled && (
-            <div className="flex items-center gap-1.5 text-white/50 group-hover:text-white/70 transition-colors mt-4">
+            <div className="flex items-center gap-1.5 text-muted-foreground group-hover:text-foreground/70 transition-colors mt-4">
               <span className="text-sm font-medium">Acessar</span>
               <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </div>
@@ -328,7 +329,7 @@ export default function HubPage() {
   const projetosNormais = projetosFiltrados.filter(p => !p.destaque);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden">
       {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none">
         <motion.div
@@ -343,32 +344,32 @@ export default function HubPage() {
       </div>
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-xl border-b border-border/50 dark:bg-slate-950/80 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <LogoINTEIA />
 
           <div className="flex items-center gap-4">
             {/* Search */}
             <div className="relative hidden md:block">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 type="text"
                 value={busca}
                 onChange={(e) => setBusca(e.target.value)}
                 placeholder="Buscar projeto..."
-                className="w-64 pl-10 pr-4 py-2 rounded-full bg-white/5 border border-white/10 focus:border-amber-500/50 focus:bg-white/10 outline-none text-sm text-white placeholder:text-white/40 transition-all"
+                className="w-64 pl-10 pr-4 py-2 rounded-full bg-secondary/50 border border-border focus:border-amber-500/50 focus:bg-secondary outline-none text-sm text-foreground placeholder:text-muted-foreground transition-all dark:bg-white/5 dark:border-white/10 dark:focus:bg-white/10"
               />
             </div>
 
             {/* User */}
             <div className="flex items-center gap-3">
               <div className="hidden sm:block text-right">
-                <p className="text-sm font-medium text-white">{usuario?.nome || 'Usuário'}</p>
-                <p className="text-xs text-white/50">{usuario?.email || ''}</p>
+                <p className="text-sm font-medium text-foreground">{usuario?.nome || 'Usuário'}</p>
+                <p className="text-xs text-muted-foreground">{usuario?.email || ''}</p>
               </div>
               <button
                 onClick={() => logout()}
-                className="p-2 rounded-lg hover:bg-white/5 text-white/50 hover:text-white transition-colors"
+                className="p-2 rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors dark:hover:bg-white/5"
                 title="Sair"
               >
                 <LogOut className="w-5 h-5" />
@@ -393,18 +394,18 @@ export default function HubPage() {
               transition={{ delay: 0.1 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 mb-6"
             >
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span className="text-amber-400 text-sm font-medium">Bem-vindo ao ecossistema INTEIA</span>
+              <Sparkles className="w-4 h-4 text-amber-500 dark:text-amber-400" />
+              <span className="text-amber-600 dark:text-amber-400 text-sm font-medium">Bem-vindo ao ecossistema INTEIA</span>
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground">
               Escolha seu{' '}
-              <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 bg-clip-text text-transparent">
+              <span className="text-gradient">
                 projeto
               </span>
             </h1>
 
-            <p className="text-xl text-white/50 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Ferramentas de inteligência artificial para pesquisa, educação e inovação
             </p>
           </motion.div>
@@ -423,8 +424,8 @@ export default function HubPage() {
                 className={`
                   flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all
                   ${categoriaAtiva === cat.id
-                    ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/25'
-                    : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/10'
+                    ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/25'
+                    : 'bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground border border-border dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10'
                   }
                 `}
               >
@@ -442,13 +443,13 @@ export default function HubPage() {
             className="md:hidden mb-8"
           >
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <input
                 type="text"
                 value={busca}
                 onChange={(e) => setBusca(e.target.value)}
                 placeholder="Buscar projeto..."
-                className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-amber-500/50 outline-none text-white placeholder:text-white/40"
+                className="w-full pl-12 pr-4 py-3 rounded-xl bg-secondary border border-border focus:border-amber-500/50 outline-none text-foreground placeholder:text-muted-foreground dark:bg-white/5 dark:border-white/10"
               />
             </div>
           </motion.div>
@@ -481,11 +482,11 @@ export default function HubPage() {
               animate={{ opacity: 1 }}
               className="text-center py-20"
             >
-              <Search className="w-12 h-12 text-white/20 mx-auto mb-4" />
-              <p className="text-white/50 text-lg">Nenhum projeto encontrado</p>
+              <Search className="w-12 h-12 text-muted-foreground/50 mx-auto mb-4" />
+              <p className="text-muted-foreground text-lg">Nenhum projeto encontrado</p>
               <button
                 onClick={() => { setCategoriaAtiva('todos'); setBusca(''); }}
-                className="mt-4 text-amber-400 hover:underline"
+                className="mt-4 text-amber-600 dark:text-amber-400 hover:underline"
               >
                 Limpar filtros
               </button>
@@ -495,15 +496,15 @@ export default function HubPage() {
       </main>
 
       {/* Footer */}
-      <footer className="relative border-t border-white/5 py-8 px-6">
+      <footer className="relative border-t border-border/50 py-8 px-6 dark:border-white/5">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center">
               <span className="text-white font-bold text-xs">IA</span>
             </div>
-            <span className="text-white/50 text-sm">INTEIA - Inteligência Estratégica</span>
+            <span className="text-muted-foreground text-sm">INTEIA - Inteligência Estratégica</span>
           </div>
-          <p className="text-white/30 text-sm text-center sm:text-right">
+          <p className="text-muted-foreground/70 text-sm text-center sm:text-right">
             CNPJ: 63.918.490/0001-20 | Brasília/DF
           </p>
         </div>
