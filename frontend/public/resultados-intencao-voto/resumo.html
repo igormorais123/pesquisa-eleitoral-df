@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INTEIA | Resumo Executivo - Stress Test Eleitoral 2026</title>
+    <title>INTEIA | Resumo Executivo - Intenção de Voto Governador DF 2026</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -251,12 +251,43 @@
         }
         .footer a { color: var(--amber); text-decoration: none; }
 
+        /* Chat FAB */
+        .chat-fab {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            border-radius: 24px;
+            border: none;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            cursor: pointer;
+            color: #f8fafc;
+            font-weight: 600;
+            font-size: 13px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+        }
+        .chat-fab:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+        .chat-fab .chat-icon { font-size: 22px; }
+        .chat-fab .chat-text { text-align: left; max-width: 160px; line-height: 1.4; }
+        .chat-fab .chat-text strong { color: var(--amber); }
+
         /* Print Styles - A4 Single Page COMPACT */
         @media print {
             @page {
                 size: A4 portrait;
                 margin: 8mm;
             }
+            .print-landscape @page {
+                size: A4 landscape;
+                margin: 8mm;
+            }
+            .chat-fab { display: none !important; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             html, body {
                 width: 210mm;
@@ -336,6 +367,8 @@
                 <div class="logo-text">INTE<span>IA</span></div>
             </div>
             <div class="header-actions">
+                <button class="btn" onclick="setPrintOrientation('portrait')">Retrato</button>
+                <button class="btn" onclick="setPrintOrientation('landscape')">Paisagem</button>
                 <button class="btn" onclick="window.print()">Imprimir</button>
                 <button class="btn" onclick="toggleTheme()">Tema</button>
                 <div class="badge">Confidencial</div>
@@ -344,9 +377,9 @@
 
         <!-- Title -->
         <div class="title-section">
-            <h1>Stress Test Eleitoral - Governador DF 2026</h1>
+            <h1>Pesquisa Eleitoral - Intenção de Voto Governador DF 2026</h1>
             <div class="date">Resumo Executivo | 28 Janeiro 2026 | 1.000 Eleitores Sintéticos</div>
-            <div class="source">Dados: 6 institutos (Paraná Pesquisas, Real Time Big Data, Colectta, Futura, Quaest, DataSenado) | Jul/2024 - Jan/2026</div>
+            <div class="source">Dados: 5 institutos (Paraná Pesquisas, Real Time Big Data, Futura, Quaest, DataSenado) | Jan/2025 - Jan/2026</div>
         </div>
 
         <!-- Conclusion -->
@@ -420,8 +453,8 @@
                 <h4>Relatórios relacionados</h4>
                 <div class="related-links">
                     <a href="index.html">Ver análise completa detalhada</a>
-                    <a href="../resultados-stress-test/">Pesquisa de Intenção de Voto</a>
-                    <a href="../resultados-stress-test/resumo.html">Resumo Intenção de Voto</a>
+                    <a href="../resultados-stress-test/">Stress Test Eleitoral</a>
+                    <a href="../resultados-stress-test/resumo.html">Resumo Stress Test</a>
                 </div>
             </div>
         </div>
@@ -437,6 +470,12 @@
         </footer>
     </div>
 
+    <!-- Helena Chat FAB -->
+    <a href="index.html#chat" class="chat-fab">
+        <span class="chat-icon">💬</span>
+        <span class="chat-text">Fale com <strong>Helena</strong><br>IA Estratégica Avançada</span>
+    </a>
+
     <script>
         function toggleTheme() {
             const html = document.documentElement;
@@ -444,6 +483,21 @@
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             initChart();
+        }
+
+        function setPrintOrientation(orientation) {
+            const style = document.getElementById('print-orientation');
+            if (style) style.remove();
+
+            const newStyle = document.createElement('style');
+            newStyle.id = 'print-orientation';
+            if (orientation === 'landscape') {
+                newStyle.textContent = '@media print { @page { size: A4 landscape; margin: 8mm; } html, body { width: 297mm; height: 210mm; max-height: 210mm; } .chart-container { height: 50mm !important; } }';
+            } else {
+                newStyle.textContent = '@media print { @page { size: A4 portrait; margin: 8mm; } html, body { width: 210mm; height: 297mm; max-height: 297mm; } }';
+            }
+            document.head.appendChild(newStyle);
+            alert('Orientação: ' + (orientation === 'landscape' ? 'Paisagem' : 'Retrato') + '. Clique em Imprimir.');
         }
 
         (function() {
@@ -461,9 +515,10 @@
 
             if (chart) chart.destroy();
 
-            const meses = ['Jul/24','Ago/24','Set/24','Out/24','Nov/24','Dez/24','Jan/25','Fev/25','Mar/25','Abr/25','Mai/25','Jun/25','Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26'];
-            const presenca = [55, 63, 58, 68, 80, 84, 98, 107, 145, 125, 137, 160, 125, 195, 230, 180, 145, 170, 155];
-            const intencao = [22.0, 23.8, 25.7, 27.5, 29.3, 31.2, 33.0, 34.8, 36.6, 34.8, 33.0, 31.1, 27.5, 37.2, 49.0, 32.2, 36.1, 40.0, 40.0];
+            // Apenas dados de 2025 - pesquisas confiáveis (excluídas pesquisas suspeitas que colocavam empate artificial)
+            const meses = ['Jan/25','Fev/25','Mar/25','Abr/25','Mai/25','Jun/25','Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26'];
+            const presenca = [98, 107, 145, 125, 137, 160, 125, 195, 230, 180, 145, 170, 155];
+            const intencao = [33.0, 34.8, 36.6, 34.8, 33.0, 31.1, 27.5, 37.2, 49.0, 32.2, 36.1, 40.0, 40.0];
 
             const ctx = document.getElementById('chartCorrelacao').getContext('2d');
             chart = new Chart(ctx, {
@@ -504,25 +559,7 @@
                             labels: { font: { size: 9 }, usePointStyle: true, padding: 8 }
                         },
                         annotation: {
-                            annotations: {
-                                campaignStart: {
-                                    type: 'line',
-                                    xMin: 5.5,
-                                    xMax: 5.5,
-                                    borderColor: 'rgba(214, 158, 46, 0.7)',
-                                    borderWidth: 2,
-                                    borderDash: [5, 3],
-                                    label: {
-                                        display: true,
-                                        content: 'Início MKT',
-                                        position: 'start',
-                                        backgroundColor: 'rgba(214, 158, 46, 0.9)',
-                                        color: '#fff',
-                                        font: { size: 8, weight: '600' },
-                                        padding: 3
-                                    }
-                                }
-                            }
+                            annotations: {}
                         }
                     },
                     scales: {
