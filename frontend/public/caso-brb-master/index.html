@@ -1,125 +1,597 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0f172a">
-  <title>INTEIA - Analise Estrategica Caso BRB-Master 2026</title>
-  <link rel="icon" type="image/svg+xml" href="/inteia-logo.svg">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            background: '#0a0f1a',
-            foreground: '#f8fafc',
-            card: '#111827',
-            'card-foreground': '#f8fafc',
-            border: '#1f2937',
-            muted: '#374151',
-            'muted-foreground': '#9ca3af',
-            amber: {
-              400: '#fbbf24',
-              500: '#f59e0b',
-              600: '#d97706',
-              700: '#b45309',
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEIA | Caso BRB-Master 2026 - Sistema HELENA</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --amber: #d69e2e;
+            --amber-light: #f6e05e;
+            --amber-dark: #b7791f;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --warning: #eab308;
         }
-      }
-    }
-  </script>
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: rgba(255,255,255,0.03);
+            --border-color: rgba(255,255,255,0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+        }
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .sidebar {
+            position: fixed;
+            left: 0; top: 0; bottom: 0;
+            width: 64px;
+            background: linear-gradient(180deg, #0a0f1a 0%, #131c2e 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            z-index: 100;
+            border-right: 1px solid rgba(214, 158, 46, 0.15);
+        }
+        .logo {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(214, 158, 46, 0.4);
+        }
+        .sidebar-nav { margin-top: 30px; display: flex; flex-direction: column; gap: 8px; }
+        .nav-btn {
+            width: 40px; height: 40px;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover, .nav-btn.active { background: rgba(214, 158, 46, 0.1); color: var(--amber); }
+        .main { margin-left: 64px; padding: 24px; min-height: 100vh; }
+        .container { max-width: 1400px; margin: 0 auto; }
 
-  <style>
-    * { font-family: 'Inter', system-ui, sans-serif; }
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0a0f1a 0%, #1a2744 100%);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(214, 158, 46, 0.2);
+        }
+        .header-top { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .header-logo {
+            width: 56px; height: 56px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(214, 158, 46, 0.35);
+        }
+        .header-title { font-size: 24px; font-weight: 700; color: #fff; }
+        .header-subtitle { font-size: 14px; color: var(--amber); margin-top: 4px; }
+        .header-badges { display: flex; gap: 12px; flex-wrap: wrap; }
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .badge-date { background: rgba(255,255,255,0.1); color: #fff; }
+        .badge-confidential { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
 
-    body {
-      background: #0a0f1a;
-      color: #f8fafc;
-    }
+        /* Alert Box */
+        .alert-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-left: 4px solid var(--danger);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+        }
+        .alert-title { font-weight: 700; color: #f87171; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .alert-text { color: #fca5a5; font-size: 14px; }
 
-    /* Glass Card - Estilo INTEIA */
-    .glass-card {
-      background: rgba(17, 24, 39, 0.8);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(31, 41, 55, 0.5);
-      border-radius: 1rem;
-    }
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .card-title { font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px; }
 
-    /* Gradiente Ambar INTEIA */
-    .gradient-inteia {
-      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    }
+        /* Grid */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+        @media (max-width: 1024px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } .grid-5 { grid-template-columns: repeat(3, 1fr); } }
 
-    .gradient-inteia-dark {
-      background: linear-gradient(135deg, #0a0f1a 0%, #111827 100%);
-    }
+        /* KPIs */
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+        .kpi-value { font-size: 28px; font-weight: 700; color: var(--amber); }
+        .kpi-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 
-    /* Texto Gradiente */
-    .text-gradient {
-      background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+        /* Progress Bars */
+        .progress-item { margin-bottom: 16px; }
+        .progress-header { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; }
+        .progress-label { color: var(--text-secondary); }
+        .progress-value { font-weight: 600; color: var(--text-primary); }
+        .progress-bar { height: 8px; background: var(--bg-secondary); border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
+        .progress-critical { background: linear-gradient(90deg, #dc2626, #ef4444); }
+        .progress-high { background: linear-gradient(90deg, #ea580c, #f97316); }
+        .progress-medium { background: linear-gradient(90deg, #ca8a04, #eab308); }
+        .progress-low { background: linear-gradient(90deg, #16a34a, #22c55e); }
 
-    /* Fundo sutil */
-    .bg-gradient-subtle {
-      background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(245, 158, 11, 0.08), transparent);
-    }
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th { text-align: left; padding: 12px; color: var(--amber); border-bottom: 2px solid rgba(214, 158, 46, 0.2); background: rgba(214, 158, 46, 0.05); }
+        td { padding: 10px 12px; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); }
+        tr:hover { background: rgba(214, 158, 46, 0.03); }
 
-    /* Riscos */
-    .risk-critical { background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%); }
-    .risk-high { background: linear-gradient(90deg, #ea580c 0%, #f97316 100%); }
-    .risk-medium { background: linear-gradient(90deg, #ca8a04 0%, #eab308 100%); }
-    .risk-low { background: linear-gradient(90deg, #16a34a 0%, #22c55e 100%); }
+        /* Scenario Cards */
+        .scenario-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.2s;
+        }
+        .scenario-card:hover { border-color: rgba(214, 158, 46, 0.3); }
+        .scenario-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+        .scenario-title { font-weight: 600; color: var(--text-primary); font-size: 14px; }
+        .scenario-prob { font-size: 24px; font-weight: 700; color: var(--amber); }
+        .scenario-risk {
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        .risk-baixo { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+        .risk-medio { background: rgba(234, 179, 8, 0.2); color: #facc15; }
+        .risk-alto { background: rgba(234, 88, 12, 0.2); color: #fb923c; }
+        .risk-critico { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .scenario-desc { font-size: 12px; color: var(--text-muted); }
 
-    /* Status Badges */
-    .status-badge-success { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
-    .status-badge-warning { background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3); }
-    .status-badge-danger { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-    .status-badge-info { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+        /* Recommendations */
+        .rec-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .rec-card.ibaneis { border-left: 4px solid var(--info); }
+        .rec-card.celina { border-left: 4px solid #a855f7; }
+        .rec-title { font-weight: 600; margin-bottom: 12px; }
+        .rec-card.ibaneis .rec-title { color: #60a5fa; }
+        .rec-card.celina .rec-title { color: #c084fc; }
+        .rec-badge {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        .rec-card.ibaneis .rec-badge { background: rgba(59, 130, 246, 0.1); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .rec-card.celina .rec-badge { background: rgba(168, 85, 247, 0.1); color: #d8b4fe; border: 1px solid rgba(168, 85, 247, 0.3); }
+        .rec-text { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+        .rec-list { list-style: none; }
+        .rec-list li { font-size: 13px; color: var(--text-secondary); padding: 6px 0; display: flex; align-items: flex-start; gap: 8px; }
+        .rec-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+        .rec-card.ibaneis .rec-list li::before { background: var(--info); }
+        .rec-card.celina .rec-list li::before { background: #a855f7; }
 
-    /* Sombra Ambar */
-    .shadow-amber { box-shadow: 0 0 40px -10px rgba(245, 158, 11, 0.3); }
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            padding: 24px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-left { display: flex; align-items: center; gap: 12px; }
+        .footer-logo {
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 11px;
+            color: #fff;
+        }
+        .footer-text { font-size: 13px; color: var(--text-muted); }
+        .footer-text strong { color: var(--text-secondary); }
+        .footer-right { font-size: 12px; color: var(--text-muted); text-align: right; }
 
-    /* Animacoes */
-    @keyframes pulse-slow { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-    .animate-pulse-slow { animation: pulse-slow 3s ease-in-out infinite; }
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            z-index: 100;
+            transition: all 0.2s;
+        }
+        .theme-toggle:hover { border-color: var(--amber); }
 
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-    .shimmer {
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-      background-size: 200% 100%;
-      animation: shimmer 2s infinite;
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #1f2937; }
-    ::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.3); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(156, 163, 175, 0.5); }
-
-    /* Selecao */
-    ::selection { background: rgba(245, 158, 11, 0.3); }
-
-    /* Kanban */
-    .kanban-col { min-height: 350px; }
-  </style>
-  <script type="module" crossorigin src="./assets/index-78plN_SC.js"></script>
+        /* Module Cards */
+        .module-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--amber);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .module-title { font-weight: 600; color: var(--amber); margin-bottom: 8px; font-size: 14px; }
+        .module-desc { font-size: 12px; color: var(--text-muted); }
+    </style>
 </head>
-<body class="min-h-screen bg-gradient-subtle">
-  <div id="root"></div>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-top">
+            <a href="/" class="logo">IA</a>
+            <nav class="sidebar-nav">
+                <a href="/" class="nav-btn" title="Hub">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                </a>
+                <a href="/dashboard" class="nav-btn" title="Dashboard">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Alternar tema">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-top">
+                    <div class="header-logo">H</div>
+                    <div>
+                        <div class="header-title">Relatorio de Inteligencia Estrategica</div>
+                        <div class="header-subtitle">Sistema HELENA - Human-Enhanced Learning and Evaluation Neural Architecture</div>
+                    </div>
+                </div>
+                <div class="header-badges">
+                    <span class="badge badge-date">28 de Janeiro de 2026</span>
+                    <span class="badge badge-confidential">CONFIDENCIAL - USO INTERNO</span>
+                </div>
+            </div>
+
+            <!-- Alert -->
+            <div class="alert-box">
+                <div class="alert-title">⚠ ALERTA DE RISCO ELEVADO</div>
+                <div class="alert-text">
+                    Probabilidade de operacao policial contra Ibaneis: <strong>65%</strong>.
+                    Simulacao de Monte Carlo indica <strong>37.4%</strong> de chance de eleicao ao Senado.
+                    Agentes sinteticos projetam perda de <strong>5.8 pontos</strong> percentuais sob impacto medio.
+                </div>
+            </div>
+
+            <!-- KPIs -->
+            <div class="grid-5" style="margin-bottom: 24px;">
+                <div class="kpi-card">
+                    <div class="kpi-value">65%</div>
+                    <div class="kpi-label">Prob. Operacao PF</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">37.4%</div>
+                    <div class="kpi-label">Prob. Eleicao Monte Carlo</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">23.2%</div>
+                    <div class="kpi-label">Projecao Ibaneis Out/26</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">44.1%</div>
+                    <div class="kpi-label">Projecao Celina Out/26</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">10.000</div>
+                    <div class="kpi-label">Agentes Sinteticos</div>
+                </div>
+            </div>
+
+            <!-- Metodologia -->
+            <div class="card">
+                <div class="card-title">Arquitetura do Sistema HELENA</div>
+                <div class="grid-3">
+                    <div class="module-card">
+                        <div class="module-title">Regressao Temporal</div>
+                        <div class="module-desc">Modelo de regressao linear sobre series temporais de pesquisas eleitorais (marco a dezembro/2025).</div>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-title">Monte Carlo</div>
+                        <div class="module-desc">Simulacao estocastica com 10.000 iteracoes usando distribuicao normal.</div>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-title">Agentes Sinteticos</div>
+                        <div class="module-desc">Populacao virtual de 10.000 eleitores estratificados em 6 perfis ideologicos.</div>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-title">Arvore Bayesiana</div>
+                        <div class="module-desc">Modelagem de cenarios com probabilidades a priori derivadas de analise documental.</div>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-title">Analise Documental</div>
+                        <div class="module-desc">Processamento de linguagem natural sobre 47 fontes jornalisticas e documentos judiciais.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monte Carlo -->
+            <div class="card">
+                <div class="card-title">Simulacao de Monte Carlo - 10.000 Iteracoes</div>
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Eleito (1a ou 2a vaga) - ≥ 25%</span>
+                        <span class="progress-value">37.4%</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill progress-low" style="width: 37.4%"></div></div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Zona de Risco - 20-25%</span>
+                        <span class="progress-value">34.0%</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill progress-medium" style="width: 34%"></div></div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Nao Eleito - < 20%</span>
+                        <span class="progress-value">28.6%</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill progress-critical" style="width: 28.6%"></div></div>
+                </div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 16px; padding: 12px; background: rgba(214, 158, 46, 0.05); border-radius: 8px; border-left: 3px solid var(--amber);">
+                    <strong style="color: var(--amber);">Interpretacao:</strong> Ibaneis tem probabilidade superior a 50% de ser eleito ao Senado em cenario base, mas aproximadamente um terco das simulacoes resultam em cenarios de nao eleicao ou risco.
+                </p>
+            </div>
+
+            <!-- Agentes Sinteticos -->
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">Perfis Ideologicos - 10.000 Eleitores</div>
+                    <table>
+                        <thead>
+                            <tr><th>Perfil</th><th>%</th><th>P(Celina)</th><th>P(Ibaneis)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Conservador Bolsonarista</td><td>28%</td><td style="color: #c084fc">65%</td><td style="color: #60a5fa">55%</td></tr>
+                            <tr><td>Centro-Direita Moderado</td><td>22%</td><td style="color: #c084fc">72%</td><td style="color: #60a5fa">48%</td></tr>
+                            <tr><td>Centro Pragmatico</td><td>18%</td><td style="color: #c084fc">58%</td><td style="color: #60a5fa">42%</td></tr>
+                            <tr><td>Centro-Esquerda</td><td>15%</td><td style="color: #c084fc">25%</td><td style="color: #60a5fa">20%</td></tr>
+                            <tr><td>Esquerda Progressista</td><td>12%</td><td style="color: #c084fc">10%</td><td style="color: #60a5fa">8%</td></tr>
+                            <tr><td>Apartidario Volatil</td><td>5%</td><td style="color: #c084fc">40%</td><td style="color: #60a5fa">35%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card">
+                    <div class="card-title">Impacto do Escandalo por Intensidade</div>
+                    <table>
+                        <thead>
+                            <tr><th>Intensidade</th><th>Ibaneis</th><th>Perda</th><th>Celina</th><th>Perda</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Baixo (30%)</td><td>35.3%</td><td style="color: #f87171">-3.5pp</td><td>48.8%</td><td style="color: #f87171">-2.5pp</td></tr>
+                            <tr><td>Medio (50%)</td><td>32.9%</td><td style="color: #f87171">-5.8pp</td><td>47.3%</td><td style="color: #f87171">-4.0pp</td></tr>
+                            <tr><td>Alto (70%)</td><td>30.1%</td><td style="color: #f87171">-8.6pp</td><td>45.9%</td><td style="color: #f87171">-5.4pp</td></tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px; padding: 10px; background: rgba(168, 85, 247, 0.05); border-radius: 8px; border-left: 3px solid #a855f7;">
+                        Mesmo em cenario de impacto alto, Celina mantem vantagem competitiva (45.9%), mas sofre perda por contaminacao associativa.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Arvore Bayesiana -->
+            <div class="card">
+                <div class="card-title">Arvore de Decisao Bayesiana - 6 Cenarios</div>
+                <div class="grid-3">
+                    <div class="scenario-card">
+                        <div class="scenario-header">
+                            <div>
+                                <div class="scenario-title">Renuncia + Eleito Senador</div>
+                                <span class="scenario-risk risk-baixo">BAIXO</span>
+                            </div>
+                            <div class="scenario-prob">35%</div>
+                        </div>
+                        <div class="scenario-desc">Ibaneis renuncia em abril, concorre ao Senado e e eleito</div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="scenario-header">
+                            <div>
+                                <div class="scenario-title">Permanencia + Operacao PF</div>
+                                <span class="scenario-risk risk-alto">ALTO</span>
+                            </div>
+                            <div class="scenario-prob">25%</div>
+                        </div>
+                        <div class="scenario-desc">Nao renuncia, sofre operacao da PF, continua sob investigacao</div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="scenario-header">
+                            <div>
+                                <div class="scenario-title">Renuncia + Nao Eleito</div>
+                                <span class="scenario-risk risk-medio">MEDIO</span>
+                            </div>
+                            <div class="scenario-prob">15%</div>
+                        </div>
+                        <div class="scenario-desc">Ibaneis renuncia mas perde eleicao devido ao escandalo</div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="scenario-header">
+                            <div>
+                                <div class="scenario-title">Permanencia + Afastamento</div>
+                                <span class="scenario-risk risk-critico">CRITICO</span>
+                            </div>
+                            <div class="scenario-prob">12%</div>
+                        </div>
+                        <div class="scenario-desc">Nao renuncia e e afastado cautelarmente pelo STJ</div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="scenario-header">
+                            <div>
+                                <div class="scenario-title">Permanencia Tranquila</div>
+                                <span class="scenario-risk risk-baixo">BAIXO</span>
+                            </div>
+                            <div class="scenario-prob">8%</div>
+                        </div>
+                        <div class="scenario-desc">Nao renuncia e situacao se estabiliza sem novas acoes</div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="scenario-header">
+                            <div>
+                                <div class="scenario-title">Inelegibilidade Superveniente</div>
+                                <span class="scenario-risk risk-critico">CRITICO</span>
+                            </div>
+                            <div class="scenario-prob">5%</div>
+                        </div>
+                        <div class="scenario-desc">Decisao judicial torna Ibaneis inelegivel durante campanha</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Probabilidades Juridicas -->
+            <div class="card">
+                <div class="card-title">Probabilidades Juridicas a Priori</div>
+                <div class="grid-5">
+                    <div class="kpi-card"><div class="kpi-value">65%</div><div class="kpi-label">Operacao PF</div></div>
+                    <div class="kpi-card"><div class="kpi-value">35%</div><div class="kpi-label">Afastamento STJ</div></div>
+                    <div class="kpi-card"><div class="kpi-value">15%</div><div class="kpi-label">Prisao Preventiva</div></div>
+                    <div class="kpi-card"><div class="kpi-value">20%</div><div class="kpi-label">Impeachment CLDF</div></div>
+                    <div class="kpi-card"><div class="kpi-value">25%</div><div class="kpi-label">Inelegibilidade</div></div>
+                </div>
+            </div>
+
+            <!-- Recomendacoes -->
+            <div class="grid-2">
+                <div class="rec-card ibaneis">
+                    <div class="rec-title">Para Ibaneis Rocha</div>
+                    <div class="rec-badge">MANTER CANDIDATURA AO SENADO</div>
+                    <div class="rec-text">Renuncia em abril maximiza probabilidade de sucesso. Foro privilegiado permanece no STJ mesmo apos deixar o cargo.</div>
+                    <ul class="rec-list">
+                        <li>Renunciar conforme cronograma original (abril/2026) para candidatura ao Senado</li>
+                        <li>Articular defesa tecnica robusta no STJ antes da renuncia</li>
+                        <li>Evitar declaracoes sobre o caso na midia - risco de autoincriminacao</li>
+                        <li>Manter alinhamento com Celina para preservar base eleitoral conjunta</li>
+                    </ul>
+                </div>
+                <div class="rec-card celina">
+                    <div class="rec-title">Para Celina Leao</div>
+                    <div class="rec-badge">DISTANCIAMENTO TEMATICO SEM RUPTURA</div>
+                    <div class="rec-text">Perda maxima de 5.4 pontos percentuais mesmo em cenario de impacto alto. Celina mantem favoritismo em qualquer cenario.</div>
+                    <ul class="rec-list">
+                        <li>Manter lealdade formal a Ibaneis sem endosso as condutas investigadas</li>
+                        <li>Construir narrativa propria focada em areas nao contaminadas</li>
+                        <li>Pressionar discretamente pela renuncia de Ibaneis em abril</li>
+                        <li>Articular apoio de Michelle Bolsonaro para consolidar eleitorado conservador</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <div class="footer-left">
+                    <div class="footer-logo">IA</div>
+                    <div class="footer-text">
+                        <strong>INTEIA</strong> - Instituto de Inteligencia Artificial<br>
+                        Dr. Igor Morais Vasconcelos PhD | Presidente
+                    </div>
+                </div>
+                <div class="footer-right">
+                    CNPJ: 63.918.490/0001-20<br>
+                    SHN Quadra 2 Bloco F, Sala 625/626 - Brasilia/DF<br>
+                    © 2026 INTEIA. Todos os direitos reservados.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.dataset.theme === 'dark') {
+                html.dataset.theme = 'light';
+                icon.textContent = '☀️';
+            } else {
+                html.dataset.theme = 'dark';
+                icon.textContent = '🌙';
+            }
+            localStorage.setItem('theme', html.dataset.theme);
+        }
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.dataset.theme = savedTheme;
+            document.getElementById('theme-icon').textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+        }
+    </script>
 </body>
 </html>
