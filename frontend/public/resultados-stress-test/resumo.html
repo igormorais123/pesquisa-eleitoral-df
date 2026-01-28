@@ -376,7 +376,7 @@
                 <h3>Projeção: Evolução da Intenção de Voto</h3>
                 <div class="chart-legend">
                     <div class="legend-item"><div class="legend-line celina"></div><span>Celina Leão</span></div>
-                    <div class="legend-item"><div class="legend-line oposicao"></div><span>Oposição</span></div>
+                    <div class="legend-item"><div class="legend-line oposicao"></div><span>Ibaneis</span></div>
                 </div>
                 <div class="chart-container">
                     <canvas id="chartProjecao"></canvas>
@@ -481,10 +481,10 @@
             chart2 = new Chart(ctx2, {
                 type: 'line',
                 data: {
-                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
                     datasets: [
-                        { label: 'Celina', data: [22,25,28,32,40,48], borderColor: '#3b82f6', backgroundColor: gradient, borderWidth: 2, pointRadius: 3, tension: 0.4, fill: true },
-                        { label: 'Oposição', data: [22,22,21,21,21,21], borderColor: '#9ca3af', borderWidth: 1.5, borderDash: [4,3], pointRadius: 2, tension: 0.2, fill: false }
+                        { label: 'Celina', data: [22,25,28,32,40,48,52,55,58,60,62,65], borderColor: '#3b82f6', backgroundColor: gradient, borderWidth: 2, pointRadius: 3, tension: 0.4, fill: true },
+                        { label: 'Ibaneis', data: [22,22,21,21,21,20,20,19,19,18,18,17], borderColor: '#9ca3af', borderWidth: 1.5, borderDash: [4,3], pointRadius: 2, tension: 0.2, fill: false }
                     ]
                 },
                 options: {
@@ -501,7 +501,7 @@
                     },
                     scales: {
                         x: { grid: { display: false }, ticks: { font: { size: 7 } } },
-                        y: { min: 0, max: 55, grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 7 }, callback: v => v+'%' } }
+                        y: { min: 0, max: 70, grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 7 }, callback: v => v+'%' } }
                     }
                 }
             });
