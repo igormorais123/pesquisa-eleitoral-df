@@ -247,40 +247,100 @@
         .chat-fab .chat-text { text-align: left; max-width: 160px; line-height: 1.4; }
         .chat-fab .chat-text strong { color: var(--amber); }
         @media print {
-            @page { size: A4 portrait; margin: 12mm; }
-            .chat-fab { display: none !important; }
+            @page { size: A4 portrait; margin: 8mm; }
+            .chat-fab, .cta, .btn { display: none !important; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            html, body { width: 210mm; background: #fff !important; color: #000 !important; font-size: 9pt; }
-            .container { max-width: 100%; padding: 0; }
-            .btn, .cta { display: none !important; }
-            .header { margin-bottom: 8mm; padding-bottom: 4mm; border-color: #ddd; }
-            .logo-box { background: #d69e2e !important; }
+            html, body { 
+                width: 210mm; 
+                height: 297mm;
+                max-height: 297mm;
+                overflow: hidden;
+                background: #fff !important; 
+                color: #000 !important; 
+                font-size: 7pt; 
+            }
+            .container { max-width: 100%; padding: 0; max-height: 281mm; overflow: hidden; }
+            
+            /* Header ultra compacto */
+            .header { margin-bottom: 2mm; padding-bottom: 2mm; border-color: #ddd; }
+            .logo-box { width: 28px; height: 28px; font-size: 10px; background: #d69e2e !important; }
+            .logo-text { font-size: 14px; }
             .logo-text span { color: #b7791f !important; }
-            .badge { background: #fef3c7 !important; border-color: #d69e2e !important; color: #92400e !important; }
-            .title-section { margin-bottom: 6mm; }
-            .title-section h1 { font-size: 14pt; }
-            .conclusion-box { background: #eff6ff !important; border-color: #3b82f6 !important; padding: 8mm; margin-bottom: 6mm; }
-            .conclusion-box h2 { color: #3b82f6 !important; }
+            .badge { padding: 2px 6px; font-size: 7px; background: #fef3c7 !important; border-color: #d69e2e !important; color: #92400e !important; }
+            
+            /* Título compacto */
+            .title-section { margin-bottom: 2mm; }
+            .title-section h1 { font-size: 12pt; margin-bottom: 0; }
+            .title-section .date { font-size: 7pt; }
+            .title-section .source { font-size: 6pt; margin-top: 1mm; }
+            
+            /* Box conclusão compacto */
+            .conclusion-box { 
+                background: #eff6ff !important; 
+                border-color: #3b82f6 !important; 
+                padding: 3mm; 
+                margin-bottom: 2mm; 
+                border-radius: 4px;
+            }
+            .conclusion-box h2 { color: #3b82f6 !important; font-size: 8pt; margin-bottom: 1mm; }
+            .conclusion-box p { font-size: 7pt; line-height: 1.3; }
             .conclusion-box strong { color: #b7791f !important; }
-            .kpis { gap: 4mm; margin-bottom: 6mm; }
-            .kpi { padding: 6mm; border-color: #ddd; }
-            .kpi .value { font-size: 18pt; }
+            
+            /* KPIs compactos */
+            .kpis { gap: 2mm; margin-bottom: 2mm; }
+            .kpi { padding: 2mm; border-color: #ddd; border-radius: 4px; }
+            .kpi .value { font-size: 14pt; }
+            .kpi .label { font-size: 6pt; margin-top: 0; }
             .kpi.alert .value { color: #c2410c !important; }
             .kpi.success .value { color: #16a34a !important; }
             .kpi.warning .value { color: #ca8a04 !important; }
             .kpi.blue .value { color: #3b82f6 !important; }
-            .chart-section { padding: 6mm; margin-bottom: 6mm; border-color: #ddd; }
-            .chart-container { height: 45mm; }
-            .chart-insight { background: #eff6ff !important; padding: 4mm; }
-            .recs { margin-bottom: 6mm; }
-            .rec { padding: 4mm 4mm 4mm 6mm; margin-bottom: 3mm; border-color: #ddd; }
+            
+            /* Gráficos lado a lado e pequenos */
+            .charts-wrapper { 
+                display: flex !important; 
+                gap: 2mm; 
+                margin-bottom: 2mm;
+            }
+            .chart-section { 
+                flex: 1;
+                padding: 2mm; 
+                margin-bottom: 0 !important; 
+                border-color: #ddd; 
+                border-radius: 4px;
+            }
+            .chart-section h3 { font-size: 7pt; margin-bottom: 1mm; }
+            .chart-container { height: 32mm !important; }
+            .chart-insight { 
+                background: #eff6ff !important; 
+                padding: 1.5mm; 
+                font-size: 5.5pt; 
+                line-height: 1.2;
+                margin-top: 1mm;
+            }
+            
+            /* Recomendações ultra compactas */
+            .recs { margin-bottom: 2mm; }
+            .recs h3 { font-size: 8pt; margin-bottom: 1mm; }
+            .rec { 
+                padding: 1.5mm 2mm 1.5mm 3mm; 
+                margin-bottom: 1mm; 
+                border-color: #ddd; 
+                border-radius: 3px;
+                border-left-width: 2px;
+            }
+            .rec .rec-title { font-size: 7pt; margin-bottom: 0; }
+            .rec .rec-desc { font-size: 6pt; line-height: 1.2; }
+            .rec-badge { font-size: 5pt; padding: 1px 3px; margin-bottom: 1mm; }
             .rec.critical { border-left-color: #c2410c !important; }
             .rec.important { border-left-color: #ca8a04 !important; }
             .rec:not(.critical):not(.important) { border-left-color: #3b82f6 !important; }
             .rec-badge.critical { background: #fed7aa !important; color: #9a3412 !important; }
             .rec-badge.important { background: #fef08a !important; color: #854d0e !important; }
             .rec-badge.strategic { background: #dbeafe !important; color: #1d4ed8 !important; }
-            .footer { padding-top: 4mm; border-color: #ddd; }
+            
+            /* Footer compacto */
+            .footer { padding-top: 2mm; border-color: #ddd; font-size: 6pt; }
             .footer a { color: #b7791f !important; }
         }
         @media (max-width: 640px) {
@@ -340,28 +400,25 @@
             </div>
         </div>
 
-        <div class="chart-section">
-            <h3>Interdependência Eleitoral: Celina ↔ Ibaneis</h3>
-            <div class="chart-container">
-                <canvas id="chartDependencia"></canvas>
+        <div class="charts-wrapper">
+            <div class="chart-section">
+                <h3>Interdependência Eleitoral: Celina ↔ Ibaneis</h3>
+                <div class="chart-container">
+                    <canvas id="chartDependencia"></canvas>
+                </div>
+                <div class="chart-insight">
+                    <strong>Insight:</strong> Desempenho de Ibaneis está atrelado ao de Celina. Quando ela sobe, ele sobe. A estrutura da campanha dela sustenta a candidatura dele.
+                </div>
             </div>
-            <div class="chart-insight">
-                <strong>O que isso significa:</strong> O desempenho de Ibaneis no Senado está matematicamente atrelado ao de Celina no Governo. 
-                Quando ela sobe, ele sobe. Quando ela cai, ele despenca proporcionalmente mais. A estrutura da campanha de Celina 
-                (máquina, recursos, mídia) é o que sustenta a candidatura de Ibaneis.
-            </p>
-            </div>
-        </div>
 
-        <div class="chart-section">
-            <h3>Cenário Senado DF 2026: Projeção de Votos</h3>
-            <div class="chart-container">
-                <canvas id="chartSenado"></canvas>
-            </div>
-            <div class="chart-insight">
-                <strong>Contexto:</strong> Duas vagas no Senado. Damares tem base consolidada (evangélicos). 
-                Ibaneis precisa da máquina do GDF funcionando a pleno vapor para garantir a segunda vaga. 
-                Competidores como Izalci (PL) e nomes da esquerda podem fragmentar votos.
+            <div class="chart-section">
+                <h3>Cenário Senado DF 2026</h3>
+                <div class="chart-container">
+                    <canvas id="chartSenado"></canvas>
+                </div>
+                <div class="chart-insight">
+                    <strong>Contexto:</strong> 2 vagas. Damares tem base consolidada. Ibaneis precisa da máquina do GDF para garantir a 2ª vaga.
+                </div>
             </div>
         </div>
 
