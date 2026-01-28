@@ -7,7 +7,6 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.2.1/dist/chartjs-plugin-annotation.min.js"></script>
     <style>
         :root {
             --amber: #d69e2e;
@@ -39,34 +38,34 @@
             line-height: 1.4;
             min-height: 100vh;
         }
-        .container { max-width: 900px; margin: 0 auto; padding: 1.25rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
 
         /* Header */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
             border-bottom: 1px solid var(--border);
         }
         .logo { display: flex; align-items: center; gap: 0.5rem; }
         .logo-box {
-            width: 32px; height: 32px;
+            width: 28px; height: 28px;
             background: linear-gradient(135deg, var(--amber), var(--amber-dark));
-            border-radius: 6px;
+            border-radius: 5px;
             display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 11px; color: #fff;
+            font-weight: 800; font-size: 10px; color: #fff;
         }
-        .logo-text { font-size: 18px; font-weight: 800; }
+        .logo-text { font-size: 16px; font-weight: 800; }
         .logo-text span { color: var(--amber); }
-        .header-actions { display: flex; gap: 0.5rem; align-items: center; }
+        .header-actions { display: flex; gap: 0.375rem; align-items: center; }
         .badge {
-            padding: 4px 8px;
+            padding: 3px 6px;
             background: rgba(214,158,46,0.1);
             border: 1px solid rgba(214,158,46,0.3);
-            border-radius: 4px;
-            font-size: 9px;
+            border-radius: 3px;
+            font-size: 8px;
             font-weight: 600;
             color: var(--amber);
             text-transform: uppercase;
@@ -74,42 +73,46 @@
 
         /* Buttons */
         .btn {
-            padding: 5px 10px;
+            padding: 4px 8px;
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 5px;
+            border-radius: 4px;
             color: var(--text-muted);
-            font-size: 11px;
+            font-size: 10px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 4px;
         }
         .btn:hover { background: var(--border); }
 
         /* Title */
-        .title-section { margin-bottom: 1rem; }
-        .title-section h1 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.125rem; }
-        .title-section .date { font-size: 0.7rem; color: var(--text-muted); }
-        .title-section .source { font-size: 0.625rem; color: var(--text-muted); margin-top: 0.25rem; font-style: italic; }
+        .title-section { margin-bottom: 0.75rem; }
+        .title-section h1 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.125rem; }
+        .title-section .date { font-size: 0.625rem; color: var(--text-muted); }
+        .title-section .source { font-size: 0.5625rem; color: var(--text-muted); margin-top: 0.125rem; font-style: italic; }
+
+        /* Main Grid - Side by Side Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
 
         /* Conclusion Box */
         .conclusion-box {
             background: linear-gradient(135deg, rgba(194,65,12,0.1), rgba(234,179,8,0.05));
             border: 2px solid var(--orange-dark);
-            border-radius: 10px;
-            padding: 0.875rem;
-            margin-bottom: 1rem;
+            border-radius: 8px;
+            padding: 0.625rem;
         }
         .conclusion-box h2 {
-            font-size: 0.75rem;
+            font-size: 0.6875rem;
             color: var(--orange-dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.375rem;
             font-weight: 700;
         }
         .conclusion-box p {
-            font-size: 0.8125rem;
-            line-height: 1.5;
+            font-size: 0.6875rem;
+            line-height: 1.45;
         }
         .conclusion-box strong { color: var(--amber); }
 
@@ -117,244 +120,221 @@
         .kpis {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 0.375rem;
         }
         .kpi {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.625rem;
+            border-radius: 6px;
+            padding: 0.5rem;
             text-align: center;
         }
-        .kpi .value { font-size: 1.5rem; font-weight: 800; }
-        .kpi .label { font-size: 0.5625rem; color: var(--text-muted); margin-top: 0.125rem; line-height: 1.2; }
+        .kpi .value { font-size: 1.25rem; font-weight: 800; }
+        .kpi .label { font-size: 0.5rem; color: var(--text-muted); margin-top: 0.0625rem; line-height: 1.2; }
         .kpi.alert .value { color: var(--orange-dark); }
         .kpi.success .value { color: var(--success); }
         .kpi.warning .value { color: var(--warning); }
 
-        /* Chart */
+        /* Charts Grid */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
         .chart-section {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
+            border-radius: 8px;
+            padding: 0.625rem;
         }
         .chart-section h3 {
-            font-size: 0.8125rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        .chart-container { height: 200px; position: relative; }
-        .chart-insight {
-            margin-top: 0.5rem;
-            padding: 0.5rem;
-            background: rgba(214,158,46,0.08);
-            border-radius: 5px;
             font-size: 0.6875rem;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-        .chart-insight strong { color: var(--amber); }
-
-        /* Recommendations - Compact Grid */
-        .recs { margin-bottom: 1rem; }
-        .recs h3 {
-            font-size: 0.8125rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.375rem;
+        }
+        .chart-container { height: 140px; position: relative; }
+
+        /* Recommendations */
+        .recs { margin-bottom: 0.75rem; }
+        .recs h3 {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            margin-bottom: 0.375rem;
         }
         .recs-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 0.375rem;
         }
         .rec {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 0.5rem 0.5rem 0.5rem 0.625rem;
-            border-left: 3px solid var(--orange-dark);
+            border-radius: 5px;
+            padding: 0.375rem 0.375rem 0.375rem 0.5rem;
+            border-left: 2px solid var(--orange-dark);
         }
         .rec.important { border-left-color: var(--warning); }
         .rec .rec-title {
             font-weight: 600;
-            font-size: 0.6875rem;
+            font-size: 0.5625rem;
             line-height: 1.2;
         }
         .rec .rec-desc {
-            font-size: 0.5625rem;
+            font-size: 0.5rem;
             color: var(--text-muted);
-            line-height: 1.3;
-            margin-top: 0.125rem;
+            line-height: 1.25;
+            margin-top: 0.0625rem;
         }
-
-        /* CTA & Links */
-        .actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-        .cta {
-            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
-            border-radius: 10px;
-            padding: 1rem;
-            text-align: center;
-            color: #fff;
-        }
-        .cta h3 { font-size: 0.8125rem; font-weight: 700; margin-bottom: 0.25rem; }
-        .cta p { font-size: 0.6875rem; opacity: 0.9; margin-bottom: 0.5rem; }
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            padding: 6px 12px;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            border-radius: 6px;
-            color: #fff;
-            font-weight: 600;
-            font-size: 0.6875rem;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .cta-btn:hover { background: rgba(255,255,255,0.3); }
-        .related {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1rem;
-        }
-        .related h4 { font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .related-links { display: flex; flex-direction: column; gap: 0.375rem; }
-        .related-links a {
-            font-size: 0.6875rem;
-            color: var(--amber);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        .related-links a:hover { text-decoration: underline; }
 
         /* Footer */
         .footer {
-            padding-top: 0.75rem;
+            padding-top: 0.5rem;
             border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.5625rem;
+            font-size: 0.5rem;
             color: var(--text-muted);
         }
         .footer a { color: var(--amber); text-decoration: none; }
 
+        /* Actions - Hidden on print */
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .cta {
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 8px;
+            padding: 0.75rem;
+            text-align: center;
+            color: #fff;
+        }
+        .cta h3 { font-size: 0.6875rem; font-weight: 700; margin-bottom: 0.125rem; }
+        .cta p { font-size: 0.5625rem; opacity: 0.9; margin-bottom: 0.375rem; }
+        .cta-btn {
+            display: inline-flex;
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.5625rem;
+            text-decoration: none;
+        }
+        .related {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem;
+        }
+        .related h4 { font-size: 0.625rem; font-weight: 600; margin-bottom: 0.375rem; }
+        .related-links { display: flex; flex-direction: column; gap: 0.25rem; }
+        .related-links a {
+            font-size: 0.5625rem;
+            color: var(--amber);
+            text-decoration: none;
+        }
+
         /* Chat FAB */
         .chat-fab {
             position: fixed;
-            right: 20px;
-            bottom: 20px;
+            right: 16px;
+            bottom: 16px;
             z-index: 200;
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 14px 18px;
-            border-radius: 24px;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 20px;
             border: none;
             background: linear-gradient(135deg, #0f172a, #1e293b);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.3);
             cursor: pointer;
             color: #f8fafc;
             font-weight: 600;
-            font-size: 13px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 11px;
             text-decoration: none;
         }
-        .chat-fab:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
-        .chat-fab .chat-icon { font-size: 22px; }
-        .chat-fab .chat-text { text-align: left; max-width: 160px; line-height: 1.4; }
+        .chat-fab:hover { transform: translateY(-2px); }
+        .chat-fab .chat-icon { font-size: 18px; }
         .chat-fab .chat-text strong { color: var(--amber); }
 
-        /* Print Styles - A4 Single Page COMPACT */
+        /* Print Styles - A4 LANDSCAPE */
         @media print {
             @page {
-                size: A4 portrait;
-                margin: 8mm;
-            }
-            .print-landscape @page {
                 size: A4 landscape;
-                margin: 8mm;
+                margin: 6mm;
             }
-            .chat-fab { display: none !important; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             html, body {
-                width: 210mm;
-                height: 297mm;
-                max-height: 297mm;
+                width: 297mm;
+                height: 210mm;
+                max-height: 210mm;
                 overflow: hidden;
                 background: #fff !important;
                 color: #000 !important;
-                font-size: 7.5pt;
-                line-height: 1.25;
+                font-size: 7pt;
+                line-height: 1.2;
             }
             .container {
                 max-width: 100%;
                 padding: 0;
                 height: 100%;
             }
-            .btn, .actions { display: none !important; }
-            .header { margin-bottom: 3mm; padding-bottom: 2mm; border-color: #ccc; }
-            .logo-box { width: 24px; height: 24px; font-size: 9px; background: #d69e2e !important; }
-            .logo-text { font-size: 14px; }
-            .logo-text span { color: #b7791f !important; }
-            .badge { padding: 2px 5px; font-size: 7pt; background: #fef3c7 !important; border-color: #d69e2e !important; color: #92400e !important; }
-            .title-section { margin-bottom: 3mm; }
-            .title-section h1 { font-size: 12pt; }
-            .title-section .date { font-size: 7pt; }
-            .title-section .source { font-size: 6pt; margin-top: 1mm; }
+            .btn, .actions, .chat-fab { display: none !important; }
+            .header { margin-bottom: 2mm; padding-bottom: 1.5mm; border-color: #ccc; }
+            .logo-box { width: 20px; height: 20px; font-size: 8px; background: #d69e2e !important; }
+            .logo-text { font-size: 12px; }
+            .badge { padding: 1px 4px; font-size: 6pt; background: #fef3c7 !important; border-color: #d69e2e !important; color: #92400e !important; }
+            .title-section { margin-bottom: 2mm; }
+            .title-section h1 { font-size: 11pt; }
+            .title-section .date { font-size: 6pt; }
+            .title-section .source { font-size: 5pt; }
+            .main-grid { gap: 3mm; margin-bottom: 3mm; }
             .conclusion-box {
                 background: #fff7ed !important;
                 border-color: #c2410c !important;
-                padding: 3mm;
-                margin-bottom: 3mm;
-                border-radius: 4px;
+                padding: 2mm;
+                border-radius: 3px;
             }
-            .conclusion-box h2 { font-size: 8pt; color: #c2410c !important; margin-bottom: 1.5mm; }
-            .conclusion-box p { font-size: 8pt; line-height: 1.35; }
+            .conclusion-box h2 { font-size: 7pt; color: #c2410c !important; margin-bottom: 1mm; }
+            .conclusion-box p { font-size: 6.5pt; line-height: 1.3; }
             .conclusion-box strong { color: #b7791f !important; }
-            .kpis { gap: 2mm; margin-bottom: 3mm; }
-            .kpi { padding: 2.5mm; border-color: #ddd; border-radius: 3px; }
-            .kpi .value { font-size: 14pt; }
-            .kpi .label { font-size: 6pt; }
+            .kpis { gap: 2mm; }
+            .kpi { padding: 2mm; border-color: #ddd; border-radius: 2px; }
+            .kpi .value { font-size: 12pt; }
+            .kpi .label { font-size: 5pt; }
             .kpi.alert .value { color: #c2410c !important; }
             .kpi.success .value { color: #16a34a !important; }
             .kpi.warning .value { color: #ca8a04 !important; }
-            .chart-section { padding: 3mm; margin-bottom: 3mm; border-color: #ddd; border-radius: 4px; }
-            .chart-section h3 { font-size: 8pt; margin-bottom: 2mm; }
-            .chart-container { height: 38mm !important; }
-            .chart-insight { background: #fef9c3 !important; padding: 2mm; font-size: 6.5pt; margin-top: 2mm; border-radius: 2px; }
-            .recs { margin-bottom: 3mm; }
-            .recs h3 { font-size: 8pt; margin-bottom: 2mm; }
+            .charts-grid { gap: 3mm; margin-bottom: 3mm; }
+            .chart-section { padding: 2mm; border-color: #ddd; border-radius: 3px; }
+            .chart-section h3 { font-size: 7pt; margin-bottom: 1.5mm; }
+            .chart-container { height: 32mm !important; }
+            .recs { margin-bottom: 2mm; }
+            .recs h3 { font-size: 7pt; margin-bottom: 1.5mm; }
             .recs-grid { gap: 2mm; }
-            .rec { padding: 2mm 2mm 2mm 3mm; border-color: #ddd; border-radius: 3px; }
-            .rec.important { border-left-color: #ca8a04 !important; }
-            .rec:not(.important) { border-left-color: #c2410c !important; }
-            .rec .rec-title { font-size: 7pt; }
-            .rec .rec-desc { font-size: 6pt; }
-            .footer { padding-top: 2mm; border-color: #ddd; font-size: 6pt; }
+            .rec { padding: 1.5mm 1.5mm 1.5mm 2mm; border-color: #ddd; border-radius: 2px; }
+            .rec .rec-title { font-size: 6pt; }
+            .rec .rec-desc { font-size: 5pt; }
+            .footer { padding-top: 1.5mm; border-color: #ddd; font-size: 5pt; }
             .footer a { color: #b7791f !important; }
         }
 
         /* Mobile */
-        @media (max-width: 640px) {
-            .container { padding: 1rem; }
-            .kpis { grid-template-columns: 1fr; }
-            .recs-grid { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+            .container { padding: 0.75rem; }
+            .main-grid { grid-template-columns: 1fr; }
+            .charts-grid { grid-template-columns: 1fr; }
+            .recs-grid { grid-template-columns: 1fr 1fr; }
             .actions { grid-template-columns: 1fr; }
-            .header { flex-direction: column; gap: 0.75rem; text-align: center; }
-            .header-actions { justify-content: center; }
+            .header { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .header-actions { justify-content: center; flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -367,9 +347,7 @@
                 <div class="logo-text">INTE<span>IA</span></div>
             </div>
             <div class="header-actions">
-                <button class="btn" onclick="setPrintOrientation('portrait')">Retrato</button>
-                <button class="btn" onclick="setPrintOrientation('landscape')">Paisagem</button>
-                <button class="btn" onclick="window.print()">Imprimir</button>
+                <button class="btn" onclick="window.print()">Imprimir (Paisagem)</button>
                 <button class="btn" onclick="toggleTheme()">Tema</button>
                 <div class="badge">Confidencial</div>
             </div>
@@ -378,71 +356,76 @@
         <!-- Title -->
         <div class="title-section">
             <h1>Pesquisa Eleitoral - Intenção de Voto Governador DF 2026</h1>
-            <div class="date">Resumo Executivo | 28 Janeiro 2026 | 1.000 Eleitores Sintéticos</div>
-            <div class="source">Dados: 5 institutos (Paraná Pesquisas, Real Time Big Data, Futura, Quaest, DataSenado) | Jan/2025 - Jan/2026</div>
+            <div class="date">Resumo Executivo | 28 Janeiro 2026</div>
+            <div class="source">Fontes: Paraná Pesquisas, Real Time Big Data | Mar/2025 - Jan/2026 (excluídas pesquisas com metodologia questionável)</div>
         </div>
 
-        <!-- Conclusion -->
-        <div class="conclusion-box">
-            <h2>Conclusão</h2>
-            <p>
-                <strong>Você lidera, mas seu voto é frágil.</strong> A maioria vota em você para barrar o outro lado, não por convicção.
-                Se aparecer alguém "novo" e "técnico", mais da metade dos seus eleitores considera trocar.
-                E se surgir qualquer escândalo, dois em cada três abandonam você.
-            </p>
+        <!-- Main Grid: Conclusion + KPIs -->
+        <div class="main-grid">
+            <div class="conclusion-box">
+                <h2>Conclusão Principal</h2>
+                <p>
+                    <strong>Celina Leão lidera com folga</strong> quando consideradas apenas pesquisas de institutos confiáveis.
+                    Iniciou em 36,6% (março) e encerrou 2025 em <strong>40%</strong> (Real Time Big Data).
+                    A liderança é consistente, mas depende de manter presença na mídia e entregar resultados concretos à população.
+                </p>
+            </div>
+            <div class="kpis">
+                <div class="kpi success">
+                    <div class="value">40%</div>
+                    <div class="label">Intenção de voto atual (Dez/25)</div>
+                </div>
+                <div class="kpi alert">
+                    <div class="value">21%</div>
+                    <div class="label">Segundo colocado (Arruda - inelegível)</div>
+                </div>
+                <div class="kpi warning">
+                    <div class="value">13%</div>
+                    <div class="label">Terceiro colocado (Leandro Grass)</div>
+                </div>
+            </div>
         </div>
 
-        <!-- KPIs -->
-        <div class="kpis">
-            <div class="kpi alert">
-                <div class="value">57%</div>
-                <div class="label">trocariam você por alguém "de fora da política"</div>
+        <!-- Charts Grid - Side by Side -->
+        <div class="charts-grid">
+            <div class="chart-section">
+                <h3>Evolução da Intenção de Voto - Celina Leão (Pesquisas Confiáveis)</h3>
+                <div class="chart-container">
+                    <canvas id="chartEvolucao"></canvas>
+                </div>
             </div>
-            <div class="kpi warning">
-                <div class="value">67%</div>
-                <div class="label">abandonam se surgir escândalo</div>
-            </div>
-            <div class="kpi success">
-                <div class="value">83%</div>
-                <div class="label">não mudam de voto sob ataque</div>
-            </div>
-        </div>
-
-        <!-- Chart -->
-        <div class="chart-section">
-            <h3>Quanto mais você aparece, mais voto tem</h3>
-            <div class="chart-container">
-                <canvas id="chartCorrelacao"></canvas>
-            </div>
-            <div class="chart-insight">
-                <strong>Insight:</strong> Quando você aparece mais (notícias, redes, eventos), seus números sobem. Em set/2025 você bateu 49% — foi quando teve mais exposição. Quando some da mídia, os números caem.
+            <div class="chart-section">
+                <h3>Comparativo com Adversários (Dez/2025 - Real Time Big Data)</h3>
+                <div class="chart-container">
+                    <canvas id="chartComparativo"></canvas>
+                </div>
             </div>
         </div>
 
         <!-- Recommendations -->
         <div class="recs">
-            <h3>O que fazer agora</h3>
+            <h3>Recomendações Estratégicas</h3>
             <div class="recs-grid">
                 <div class="rec">
-                    <div class="rec-title">Fique atenta a nomes "novos" surgindo</div>
-                    <div class="rec-desc">Empresário, juiz, apresentador — qualquer figura "de fora" é ameaça. Se aparecer, aja rápido.</div>
+                    <div class="rec-title">Manter presença na mídia</div>
+                    <div class="rec-desc">Números sobem quando há exposição constante. Não desaparecer.</div>
                 </div>
                 <div class="rec">
-                    <div class="rec-title">Zero tolerância com irregularidades</div>
-                    <div class="rec-desc">Qualquer denúncia pode derrubar 67% da sua base. Faça auditoria interna agora.</div>
+                    <div class="rec-title">Entregar resultados visíveis</div>
+                    <div class="rec-desc">Saúde, segurança e transporte são prioridades do eleitor.</div>
                 </div>
                 <div class="rec important">
-                    <div class="rec-title">Dê motivos para votarem EM você</div>
-                    <div class="rec-desc">Hoje a maioria vota para evitar a esquerda. Mostre entregas concretas.</div>
+                    <div class="rec-title">Monitorar candidaturas "outsider"</div>
+                    <div class="rec-desc">Qualquer nome "de fora da política" pode atrair votos.</div>
                 </div>
                 <div class="rec important">
-                    <div class="rec-title">Não desapareça da mídia</div>
-                    <div class="rec-desc">O gráfico mostra: quando some, seus números caem. Mantenha presença.</div>
+                    <div class="rec-title">Zero escândalos</div>
+                    <div class="rec-desc">Qualquer denúncia pode derrubar dois terços da base.</div>
                 </div>
             </div>
         </div>
 
-        <!-- Actions & Related -->
+        <!-- Actions -->
         <div class="actions">
             <div class="cta">
                 <h3>Converse com Helena</h3>
@@ -473,7 +456,7 @@
     <!-- Helena Chat FAB -->
     <a href="index.html#chat" class="chat-fab">
         <span class="chat-icon">💬</span>
-        <span class="chat-text">Fale com <strong>Helena</strong><br>IA Estratégica Avançada</span>
+        <span class="chat-text">Fale com <strong>Helena</strong></span>
     </a>
 
     <script>
@@ -482,22 +465,7 @@
             const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            initChart();
-        }
-
-        function setPrintOrientation(orientation) {
-            const style = document.getElementById('print-orientation');
-            if (style) style.remove();
-
-            const newStyle = document.createElement('style');
-            newStyle.id = 'print-orientation';
-            if (orientation === 'landscape') {
-                newStyle.textContent = '@media print { @page { size: A4 landscape; margin: 8mm; } html, body { width: 297mm; height: 210mm; max-height: 210mm; } .chart-container { height: 50mm !important; } }';
-            } else {
-                newStyle.textContent = '@media print { @page { size: A4 portrait; margin: 8mm; } html, body { width: 210mm; height: 297mm; max-height: 297mm; } }';
-            }
-            document.head.appendChild(newStyle);
-            alert('Orientação: ' + (orientation === 'landscape' ? 'Paisagem' : 'Retrato') + '. Clique em Imprimir.');
+            initCharts();
         }
 
         (function() {
@@ -505,90 +473,134 @@
             document.documentElement.setAttribute('data-theme', saved);
         })();
 
-        let chart = null;
+        let chartEvolucao = null;
+        let chartComparativo = null;
 
-        function initChart() {
+        function initCharts() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             Chart.defaults.color = isDark ? '#94a3b8' : '#64748b';
             Chart.defaults.borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
             Chart.defaults.font.family = 'Inter, sans-serif';
 
-            if (chart) chart.destroy();
+            if (chartEvolucao) chartEvolucao.destroy();
+            if (chartComparativo) chartComparativo.destroy();
 
-            // Apenas dados de 2025 - pesquisas confiáveis (excluídas pesquisas suspeitas que colocavam empate artificial)
-            const meses = ['Jan/25','Fev/25','Mar/25','Abr/25','Mai/25','Jun/25','Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26'];
-            const presenca = [98, 107, 145, 125, 137, 160, 125, 195, 230, 180, 145, 170, 155];
-            const intencao = [33.0, 34.8, 36.6, 34.8, 33.0, 31.1, 27.5, 37.2, 49.0, 32.2, 36.1, 40.0, 40.0];
+            // DADOS REAIS - Pesquisas Confiáveis (Paraná Pesquisas e Real Time Big Data)
+            // Excluídas: Colectta e pesquisa de outubro que mostrava empate artificial
+            const meses = ['Mar/25', 'Jun/25', 'Ago/25', 'Dez/25'];
+            const celina = [36.6, 31.1, 37.2, 40.0];
+            const arruda = [10.3, 15.3, 16.0, 21.0];
+            const grass = [8.4, 8.4, 9.7, 13.0];
 
-            const ctx = document.getElementById('chartCorrelacao').getContext('2d');
-            chart = new Chart(ctx, {
-                type: 'bar',
+            // Gráfico 1: Evolução temporal
+            const ctx1 = document.getElementById('chartEvolucao').getContext('2d');
+            chartEvolucao = new Chart(ctx1, {
+                type: 'line',
                 data: {
                     labels: meses,
                     datasets: [
                         {
-                            label: 'Presença (imprensa + redes)',
-                            data: presenca,
-                            backgroundColor: isDark ? 'rgba(51, 65, 85, 0.8)' : 'rgba(71, 85, 105, 0.8)',
-                            borderRadius: 2,
-                            yAxisID: 'y',
-                            order: 2
+                            label: 'Celina Leão',
+                            data: celina,
+                            borderColor: '#d69e2e',
+                            backgroundColor: 'rgba(214, 158, 46, 0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#d69e2e',
+                            borderWidth: 2
                         },
                         {
-                            label: 'Intenção de voto (%)',
-                            data: intencao,
-                            type: 'line',
-                            borderColor: '#c2410c',
-                            backgroundColor: '#c2410c',
-                            pointBackgroundColor: '#c2410c',
-                            pointRadius: 2,
-                            pointHoverRadius: 4,
+                            label: 'Arruda (inelegível)',
+                            data: arruda,
+                            borderColor: '#64748b',
+                            backgroundColor: 'transparent',
                             tension: 0.3,
-                            yAxisID: 'y1',
-                            order: 1
+                            pointRadius: 3,
+                            borderWidth: 1.5,
+                            borderDash: [4, 2]
+                        },
+                        {
+                            label: 'Leandro Grass',
+                            data: grass,
+                            borderColor: '#22c55e',
+                            backgroundColor: 'transparent',
+                            tension: 0.3,
+                            pointRadius: 3,
+                            borderWidth: 1.5
                         }
                     ]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    interaction: { mode: 'index', intersect: false },
                     plugins: {
                         legend: {
                             position: 'top',
-                            labels: { font: { size: 9 }, usePointStyle: true, padding: 8 }
-                        },
-                        annotation: {
-                            annotations: {}
+                            labels: { font: { size: 8 }, usePointStyle: true, padding: 6 }
                         }
                     },
                     scales: {
                         x: {
                             grid: { display: false },
-                            ticks: { font: { size: 8 }, maxRotation: 45 }
+                            ticks: { font: { size: 7 } }
                         },
                         y: {
-                            type: 'linear',
-                            position: 'left',
-                            title: { display: true, text: 'Presença', font: { size: 8 } },
-                            grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' },
-                            ticks: { font: { size: 8 } }
-                        },
-                        y1: {
-                            type: 'linear',
-                            position: 'right',
-                            title: { display: true, text: 'Voto (%)', font: { size: 8 } },
                             min: 0,
-                            max: 60,
-                            grid: { drawOnChartArea: false },
-                            ticks: { font: { size: 8 } }
+                            max: 50,
+                            ticks: {
+                                font: { size: 7 },
+                                callback: v => v + '%'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Gráfico 2: Comparativo atual (Dez/2025 - Real Time Big Data)
+            const ctx2 = document.getElementById('chartComparativo').getContext('2d');
+            chartComparativo = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Celina Leão', 'Arruda*', 'Grass', 'Cappelli', 'Belmonte', 'Outros'],
+                    datasets: [{
+                        label: 'Intenção de Voto (%)',
+                        data: [40, 21, 13, 6, 6, 14],
+                        backgroundColor: [
+                            '#d69e2e',
+                            '#94a3b8',
+                            '#22c55e',
+                            '#3b82f6',
+                            '#a855f7',
+                            '#64748b'
+                        ],
+                        borderRadius: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            max: 50,
+                            ticks: {
+                                font: { size: 7 },
+                                callback: v => v + '%'
+                            }
+                        },
+                        y: {
+                            ticks: { font: { size: 7 } }
                         }
                     }
                 }
             });
         }
 
-        document.addEventListener('DOMContentLoaded', initChart);
+        document.addEventListener('DOMContentLoaded', initCharts);
     </script>
 </body>
 </html>
