@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEIA | Resumo Executivo - Stress Test Eleitoral 2026</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.2.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <style>
+        :root {
+            --amber: #d69e2e;
+            --amber-light: #f6e05e;
+            --amber-dark: #b7791f;
+            --orange-dark: #c2410c;
+            --success: #22c55e;
+            --warning: #eab308;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.08);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --text: #0f172a;
+            --text-muted: #64748b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; }
+        .logo-box {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 13px; color: #fff;
+        }
+        .logo-text { font-size: 20px; font-weight: 800; }
+        .logo-text span { color: var(--amber); }
+        .header-actions { display: flex; gap: 0.5rem; align-items: center; }
+        .badge {
+            padding: 5px 10px;
+            background: rgba(214,158,46,0.1);
+            border: 1px solid rgba(214,158,46,0.3);
+            border-radius: 5px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--amber);
+            text-transform: uppercase;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 6px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-muted);
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .btn:hover { background: var(--border); }
+
+        /* Title */
+        .title-section { margin-bottom: 1.5rem; }
+        .title-section h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .title-section .date { font-size: 0.8rem; color: var(--text-muted); }
+        .title-section .source { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem; font-style: italic; }
+
+        /* Conclusion Box */
+        .conclusion-box {
+            background: linear-gradient(135deg, rgba(194,65,12,0.1), rgba(234,179,8,0.05));
+            border: 2px solid var(--orange-dark);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        .conclusion-box h2 {
+            font-size: 0.875rem;
+            color: var(--orange-dark);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+        .conclusion-box p {
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+        .conclusion-box strong { color: var(--amber); }
+
+        /* KPIs */
+        .kpis {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .kpi {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .kpi .value { font-size: 1.75rem; font-weight: 800; }
+        .kpi .label { font-size: 0.6875rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.3; }
+        .kpi.alert .value { color: var(--orange-dark); }
+        .kpi.success .value { color: var(--success); }
+        .kpi.warning .value { color: var(--warning); }
+
+        /* Chart */
+        .chart-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        .chart-section h3 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .chart-container { height: 280px; position: relative; }
+        .chart-insight {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(214,158,46,0.08);
+            border-radius: 6px;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .chart-insight strong { color: var(--amber); }
+
+        /* Recommendations */
+        .recs { margin-bottom: 1.5rem; }
+        .recs h3 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .rec {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.875rem 0.875rem 0.875rem 1rem;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid var(--orange-dark);
+        }
+        .rec.important { border-left-color: var(--warning); }
+        .rec .rec-title {
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.125rem;
+        }
+        .rec .rec-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        .rec-badge {
+            display: inline-block;
+            font-size: 0.5625rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 2px 5px;
+            border-radius: 3px;
+            margin-bottom: 0.375rem;
+        }
+        .rec-badge.urgent { background: rgba(194,65,12,0.15); color: var(--orange-dark); }
+        .rec-badge.important { background: rgba(234,179,8,0.15); color: var(--warning); }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            color: #fff;
+        }
+        .cta h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.375rem; }
+        .cta p { font-size: 0.8125rem; opacity: 0.9; margin-bottom: 0.75rem; }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .cta-btn:hover { background: rgba(255,255,255,0.3); }
+
+        /* Footer */
+        .footer {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+        }
+        .footer a { color: var(--amber); text-decoration: none; }
+
+        /* Print Styles - A4 Single Page */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 12mm;
+            }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            html, body {
+                width: 210mm;
+                background: #fff !important;
+                color: #000 !important;
+                font-size: 9pt;
+            }
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+            .btn, .cta { display: none !important; }
+            .header { margin-bottom: 8mm; padding-bottom: 4mm; border-color: #ddd; }
+            .logo-box { background: #d69e2e !important; }
+            .logo-text span { color: #b7791f !important; }
+            .badge { background: #fef3c7 !important; border-color: #d69e2e !important; color: #92400e !important; }
+            .title-section { margin-bottom: 6mm; }
+            .title-section h1 { font-size: 14pt; }
+            .conclusion-box {
+                background: #fff7ed !important;
+                border-color: #c2410c !important;
+                padding: 8mm;
+                margin-bottom: 6mm;
+            }
+            .conclusion-box h2 { color: #c2410c !important; }
+            .conclusion-box strong { color: #b7791f !important; }
+            .kpis { gap: 4mm; margin-bottom: 6mm; }
+            .kpi { padding: 6mm; border-color: #ddd; }
+            .kpi .value { font-size: 18pt; }
+            .kpi.alert .value { color: #c2410c !important; }
+            .kpi.success .value { color: #16a34a !important; }
+            .kpi.warning .value { color: #ca8a04 !important; }
+            .chart-section { padding: 6mm; margin-bottom: 6mm; border-color: #ddd; }
+            .chart-container { height: 50mm; }
+            .chart-insight { background: #fef9c3 !important; padding: 4mm; }
+            .recs { margin-bottom: 6mm; }
+            .rec { padding: 4mm 4mm 4mm 6mm; margin-bottom: 3mm; border-color: #ddd; }
+            .rec.important { border-left-color: #ca8a04 !important; }
+            .rec:not(.important) { border-left-color: #c2410c !important; }
+            .rec-badge.urgent { background: #fed7aa !important; color: #9a3412 !important; }
+            .rec-badge.important { background: #fef08a !important; color: #854d0e !important; }
+            .footer { padding-top: 4mm; border-color: #ddd; }
+            .footer a { color: #b7791f !important; }
+        }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .container { padding: 1rem; }
+            .kpis { grid-template-columns: 1fr; }
+            .header { flex-direction: column; gap: 0.75rem; text-align: center; }
+            .header-actions { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-box">IA</div>
+                <div class="logo-text">INTE<span>IA</span></div>
+            </div>
+            <div class="header-actions">
+                <button class="btn" onclick="window.print()">Imprimir</button>
+                <button class="btn" onclick="toggleTheme()">Tema</button>
+                <div class="badge">Confidencial</div>
+            </div>
+        </header>
+
+        <!-- Title -->
+        <div class="title-section">
+            <h1>Stress Test Eleitoral - Governador DF 2026</h1>
+            <div class="date">Resumo Executivo | 28 Janeiro 2026 | 1.000 Eleitores Sintéticos</div>
+            <div class="source">Dados compilados de 6 institutos (Paraná Pesquisas, Real Time Big Data, Colectta, Futura, Quaest, DataSenado) | Jul/2024 a Jan/2026</div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="conclusion-box">
+            <h2>Resumo</h2>
+            <p>
+                <strong>Você lidera, mas seu voto é frágil.</strong> A maioria vota em você para barrar o outro lado, não por convicção.
+                Se aparecer alguém "novo" e "técnico", mais da metade dos seus eleitores considera trocar.
+                E se surgir qualquer escândalo, dois em cada três abandonam você.
+            </p>
+        </div>
+
+        <!-- KPIs -->
+        <div class="kpis">
+            <div class="kpi alert">
+                <div class="value">57%</div>
+                <div class="label">trocariam você por alguém "de fora da política"</div>
+            </div>
+            <div class="kpi warning">
+                <div class="value">67%</div>
+                <div class="label">abandonam se surgir escândalo</div>
+            </div>
+            <div class="kpi success">
+                <div class="value">83%</div>
+                <div class="label">não mudam de voto sob ataque</div>
+            </div>
+        </div>
+
+        <!-- Chart -->
+        <div class="chart-section">
+            <h3>Quanto mais você aparece, mais voto tem</h3>
+            <div class="chart-container">
+                <canvas id="chartCorrelacao"></canvas>
+            </div>
+            <div class="chart-insight">
+                <strong>O que isso significa:</strong> Quando você aparece mais (notícias, redes, eventos),
+                seus números sobem. Em set/2025 você bateu 49% — foi quando teve mais exposição.
+                Quando some da mídia, os números caem.
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="recs">
+            <h3>O que fazer agora</h3>
+
+            <div class="rec">
+                <span class="rec-badge urgent">Urgente</span>
+                <div class="rec-title">Fique atenta a nomes "novos" surgindo</div>
+                <div class="rec-desc">Empresário, juiz, apresentador — qualquer figura "de fora" é ameaça. Se alguém assim começar a aparecer, aja rápido.</div>
+            </div>
+
+            <div class="rec">
+                <span class="rec-badge urgent">Urgente</span>
+                <div class="rec-title">Zero tolerância com irregularidades</div>
+                <div class="rec-desc">Qualquer denúncia, mesmo falsa, pode derrubar 67% da sua base. Faça auditoria interna agora.</div>
+            </div>
+
+            <div class="rec important">
+                <span class="rec-badge important">Importante</span>
+                <div class="rec-title">Dê motivos para votarem EM você</div>
+                <div class="rec-desc">Hoje a maioria vota para evitar a esquerda. Mostre entregas concretas que o eleitor veja na vida dele.</div>
+            </div>
+
+            <div class="rec important">
+                <span class="rec-badge important">Importante</span>
+                <div class="rec-title">Não desapareça da mídia</div>
+                <div class="rec-desc">O gráfico mostra: quando você some, seus números caem. Mantenha presença constante até outubro.</div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta">
+            <h3>Quer a análise completa?</h3>
+            <p>Veja todos os dados e converse com nossa IA avançada de pesquisa.</p>
+            <a href="index.html" class="cta-btn">Ver análise completa</a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div>
+                <strong>INTEIA</strong> - Inteligência Estratégica<br>
+                <a href="mailto:igor@inteia.com.br">igor@inteia.com.br</a> | <a href="https://inteia.com.br">inteia.com.br</a>
+            </div>
+            <div>© 2026 INTEIA</div>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            initChart();
+        }
+
+        (function() {
+            const saved = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+
+        let chart = null;
+
+        function initChart() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            Chart.defaults.color = isDark ? '#94a3b8' : '#64748b';
+            Chart.defaults.borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
+            Chart.defaults.font.family = 'Inter, sans-serif';
+
+            if (chart) chart.destroy();
+
+            const meses = ['Jul/24','Ago/24','Set/24','Out/24','Nov/24','Dez/24','Jan/25','Fev/25','Mar/25','Abr/25','Mai/25','Jun/25','Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26'];
+            const presenca = [55, 63, 58, 68, 80, 84, 98, 107, 145, 125, 137, 160, 125, 195, 230, 180, 145, 170, 155];
+            const intencao = [22.0, 23.8, 25.7, 27.5, 29.3, 31.2, 33.0, 34.8, 36.6, 34.8, 33.0, 31.1, 27.5, 37.2, 49.0, 32.2, 36.1, 40.0, 40.0];
+
+            const ctx = document.getElementById('chartCorrelacao').getContext('2d');
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: meses,
+                    datasets: [
+                        {
+                            label: 'Presença total (imprensa + redes)',
+                            data: presenca,
+                            backgroundColor: isDark ? 'rgba(51, 65, 85, 0.8)' : 'rgba(71, 85, 105, 0.8)',
+                            borderRadius: 3,
+                            yAxisID: 'y',
+                            order: 2
+                        },
+                        {
+                            label: 'Intenção de voto (%)',
+                            data: intencao,
+                            type: 'line',
+                            borderColor: '#c2410c',
+                            backgroundColor: '#c2410c',
+                            pointBackgroundColor: '#c2410c',
+                            pointRadius: 3,
+                            pointHoverRadius: 5,
+                            tension: 0.3,
+                            yAxisID: 'y1',
+                            order: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { font: { size: 10 }, usePointStyle: true, padding: 12 }
+                        },
+                        annotation: {
+                            annotations: {
+                                campaignStart: {
+                                    type: 'line',
+                                    xMin: 5.5,
+                                    xMax: 5.5,
+                                    borderColor: 'rgba(214, 158, 46, 0.7)',
+                                    borderWidth: 2,
+                                    borderDash: [6, 4],
+                                    label: {
+                                        display: true,
+                                        content: 'Início campanha MKT',
+                                        position: 'start',
+                                        backgroundColor: 'rgba(214, 158, 46, 0.9)',
+                                        color: '#fff',
+                                        font: { size: 9, weight: '600' },
+                                        padding: 4
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { size: 9 } }
+                        },
+                        y: {
+                            type: 'linear',
+                            position: 'left',
+                            title: { display: true, text: 'Presença', font: { size: 9 } },
+                            grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' },
+                            ticks: { font: { size: 9 } }
+                        },
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            title: { display: true, text: 'Intenção (%)', font: { size: 9 } },
+                            min: 0,
+                            max: 60,
+                            grid: { drawOnChartArea: false },
+                            ticks: { font: { size: 9 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initChart);
+    </script>
+</body>
+</html>
