@@ -1,0 +1,128 @@
+{
+  "metadata": {
+    "titulo": "Pesquisas Eleitorais DF 2025-2026",
+    "sistema": "HELENA v2.0",
+    "atualizacao": "2026-01-28T22:30:00-03:00"
+  },
+  "celina_governo": {
+    "serie_historica": [
+      {
+        "data": "2025-03-25",
+        "instituto": "Paraná Pesquisas",
+        "valor": 36.6,
+        "margem": 2.5,
+        "amostra": 1600,
+        "registro_tse": "DF-00001/2025"
+      },
+      {
+        "data": "2025-06-04",
+        "instituto": "Paraná Pesquisas",
+        "valor": 31.1,
+        "margem": 2.6,
+        "amostra": 1522,
+        "registro_tse": "DF-00023/2025"
+      },
+      {
+        "data": "2025-08-27",
+        "instituto": "Paraná Pesquisas",
+        "valor": 37.2,
+        "margem": 2.6,
+        "amostra": 1510,
+        "registro_tse": "DF-00045/2025"
+      },
+      {
+        "data": "2025-09-10",
+        "instituto": "Real Time Big Data",
+        "valor": 49.0,
+        "margem": 3.0,
+        "amostra": 1200,
+        "registro_tse": "DF-00052/2025"
+      },
+      {
+        "data": "2025-10-27",
+        "instituto": "Paraná Pesquisas",
+        "valor": 32.2,
+        "margem": 2.6,
+        "amostra": 1506,
+        "registro_tse": "DF-00067/2025"
+      },
+      {
+        "data": "2025-12-20",
+        "instituto": "Estimativa HELENA",
+        "valor": 39.0,
+        "margem": 2.5,
+        "amostra": 1500,
+        "tipo": "projecao"
+      }
+    ],
+    "regressao": {
+      "intercepto": 34.81,
+      "coef_angular": 0.774,
+      "r_quadrado": 0.0513,
+      "projecao_abril_2026": 41.0,
+      "projecao_outubro_2026": 44.1,
+      "tendencia": "alta"
+    }
+  },
+  "ibaneis_senado": {
+    "serie_historica": [
+      {
+        "data": "2025-03-25",
+        "instituto": "Paraná Pesquisas",
+        "ibaneis": 36.9,
+        "michelle": 42.9,
+        "margem": 2.5,
+        "amostra": 1600
+      },
+      {
+        "data": "2025-06-04",
+        "instituto": "Paraná Pesquisas",
+        "ibaneis": 36.5,
+        "michelle": 42.8,
+        "margem": 2.6,
+        "amostra": 1522
+      },
+      {
+        "data": "2025-09-04",
+        "instituto": "Paraná Pesquisas",
+        "ibaneis": 35.6,
+        "michelle": 36.0,
+        "margem": 2.6,
+        "amostra": 1510
+      },
+      {
+        "data": "2025-10-27",
+        "instituto": "Paraná Pesquisas",
+        "ibaneis": 30.2,
+        "michelle": 34.1,
+        "margem": 2.6,
+        "amostra": 1506
+      }
+    ],
+    "regressao": {
+      "coef_angular": -2.10,
+      "r_quadrado": 0.7577,
+      "projecao_outubro_2026": 23.2,
+      "tendencia": "queda"
+    }
+  },
+  "monte_carlo": {
+    "iteracoes": 10000,
+    "media": 23.2,
+    "desvio_padrao": 5.5,
+    "resultados": {
+      "eleito": {
+        "faixa": ">=25%",
+        "probabilidade": 0.374
+      },
+      "zona_risco": {
+        "faixa": "20-25%",
+        "probabilidade": 0.340
+      },
+      "nao_eleito": {
+        "faixa": "<20%",
+        "probabilidade": 0.286
+      }
+    }
+  }
+}

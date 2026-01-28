@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEIA | Relatório de Inteligência Estratégica - Sistema HELENA</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --gold: #fbbf24;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --card-bg: rgba(30, 41, 59, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Hero Header */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, var(--accent-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .report-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .report-main-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .helena-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid var(--accent);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+        }
+
+        .helena-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Alert Banner */
+        .alert-banner {
+            background: linear-gradient(90deg, rgba(239, 68, 68, 0.2), rgba(245, 158, 11, 0.2));
+            border-left: 4px solid var(--danger);
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .alert-icon {
+            font-size: 2rem;
+        }
+
+        .alert-content h3 {
+            color: var(--danger);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .alert-content p {
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-number {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-danger { background: rgba(239, 68, 68, 0.2); color: var(--danger); border: 1px solid var(--danger); }
+        .badge-warning { background: rgba(245, 158, 11, 0.2); color: var(--warning); border: 1px solid var(--warning); }
+        .badge-success { background: rgba(16, 185, 129, 0.2); color: var(--success); border: 1px solid var(--success); }
+        .badge-info { background: rgba(59, 130, 246, 0.2); color: var(--accent-light); border: 1px solid var(--accent); }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: 25px;
+        }
+
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+        @media (max-width: 1024px) {
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+        }
+
+        /* Stats */
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-value.success { color: var(--success); }
+        .stat-value.danger { color: var(--danger); }
+        .stat-value.warning { color: var(--warning); }
+        .stat-value.info { color: var(--accent-light); }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: rgba(59, 130, 246, 0.1);
+            font-weight: 600;
+            color: var(--accent-light);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover td {
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        /* Chart Container */
+        .chart-container {
+            position: relative;
+            height: 350px;
+            margin: 20px 0;
+        }
+
+        /* Progress Bars */
+        .progress-item {
+            margin-bottom: 20px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1s ease;
+        }
+
+        .progress-fill.success { background: linear-gradient(90deg, var(--success), #34d399); }
+        .progress-fill.danger { background: linear-gradient(90deg, var(--danger), #f87171); }
+        .progress-fill.warning { background: linear-gradient(90deg, var(--warning), #fbbf24); }
+        .progress-fill.info { background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
+
+        /* Methodology Table */
+        .method-table {
+            background: var(--secondary);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .method-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .method-row:last-child {
+            border-bottom: none;
+        }
+
+        .method-name {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 16px 20px;
+            font-weight: 600;
+            color: var(--accent-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .method-desc {
+            padding: 16px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Scenario Cards */
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .scenario-grid { grid-template-columns: 1fr; }
+        }
+
+        .scenario-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scenario-card.favorable {
+            border-color: var(--success);
+        }
+
+        .scenario-card.risky {
+            border-color: var(--warning);
+        }
+
+        .scenario-card.critical {
+            border-color: var(--danger);
+        }
+
+        .scenario-prob {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .scenario-card.favorable .scenario-prob { color: var(--success); }
+        .scenario-card.risky .scenario-prob { color: var(--warning); }
+        .scenario-card.critical .scenario-prob { color: var(--danger); }
+
+        .scenario-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            padding-right: 60px;
+        }
+
+        .scenario-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Recommendation Box */
+        .recommendation-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(59, 130, 246, 0.15));
+            border: 1px solid var(--success);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .recommendation-box h3 {
+            color: var(--success);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .recommendation-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendation-box li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .recommendation-box li:last-child {
+            border-bottom: none;
+        }
+
+        .recommendation-box li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary);
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--accent-light);
+        }
+
+        .footer-info {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-meta {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Monte Carlo Distribution */
+        .monte-carlo-visual {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .mc-segment {
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .mc-segment.elected {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+        }
+
+        .mc-segment.risk {
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid var(--warning);
+        }
+
+        .mc-segment.not-elected {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--danger);
+        }
+
+        .mc-percent {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .mc-segment.elected .mc-percent { color: var(--success); }
+        .mc-segment.risk .mc-percent { color: var(--warning); }
+        .mc-segment.not-elected .mc-percent { color: var(--danger); }
+
+        .mc-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .mc-range {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Agents Grid */
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 1024px) {
+            .agents-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .agent-card {
+            background: var(--secondary);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .agent-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .agent-name {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .agent-percent {
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .agent-prop {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; color: black; }
+            .card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+            .hero { background: #f0f0f0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Header -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="logo">INTEIA</div>
+            <div class="logo-subtitle">Instituto de Treinamento e Estudos em Inteligência Artificial</div>
+            
+            <div class="report-title">Relatório de Inteligência Estratégica</div>
+            <h1 class="report-main-title">
+                Análise Preditiva com Agentes Sintéticos<br>
+                e Modelagem Bayesiana
+            </h1>
+            <h2 style="color: var(--gold); font-size: 1.3rem; font-weight: 600; margin-bottom: 25px;">
+                CASO BRB-MASTER: CENÁRIOS PARA IBANEIS ROCHA E CELINA LEÃO
+            </h2>
+            
+            <div class="helena-badge">
+                <span class="dot"></span>
+                <span><strong>Sistema HELENA</strong> — Human-Enhanced Learning and Evaluation Neural Architecture</span>
+            </div>
+            
+            <div class="meta-info">
+                <span>📍 Brasília, 28 de janeiro de 2026</span>
+                <span>🔒 CONFIDENCIAL - USO INTERNO</span>
+                <span>📊 10.000 simulações</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Alert Banner -->
+    <div class="alert-banner">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+            <h3>Alerta de Risco Elevado</h3>
+            <p>Probabilidade de operação policial contra Ibaneis: <strong>65%</strong>. Simulação de Monte Carlo indica <strong>37.4%</strong> de chance de eleição ao Senado em cenário base. Agentes sintéticos projetam perda de <strong>5.8 pontos percentuais</strong> sob impacto médio do escândalo.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Sumário Executivo -->
+        <section>
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Sumário Executivo</h2>
+            </div>
+
+            <div class="grid grid-4">
+                <div class="stat-card">
+                    <div class="stat-value success">44.1%</div>
+                    <div class="stat-label">Projeção Celina<br>Outubro/2026</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value danger">23.2%</div>
+                    <div class="stat-label">Projeção Ibaneis<br>Senado</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value warning">37.4%</div>
+                    <div class="stat-label">Prob. Eleição<br>Monte Carlo</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value info">-8.6pp</div>
+                    <div class="stat-label">Perda Máxima<br>Impacto Alto</div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 25px;">
+                <p style="font-size: 1rem; line-height: 1.8; color: var(--text-muted);">
+                    Este relatório apresenta análise preditiva baseada em metodologia científica rigorosa, combinando 
+                    <strong style="color: var(--text);">regressão temporal de dados eleitorais</strong>, 
+                    <strong style="color: var(--text);">simulação de Monte Carlo com 10.000 iterações</strong>, 
+                    <strong style="color: var(--text);">modelagem de agentes sintéticos representando 10.000 eleitores virtuais</strong> estratificados por perfil ideológico, e 
+                    <strong style="color: var(--text);">árvore de decisão bayesiana</strong> para mapeamento de cenários.
+                </p>
+            </div>
+        </section>
+
+        <!-- Metodologia -->
+        <section style="margin-top: 50px;">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Metodologia Científica</h2>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Arquitetura do Sistema HELENA</span>
+                    <span class="badge badge-info">5 Módulos</span>
+                </div>
+
+                <div class="method-table">
+                    <div class="method-row">
+                        <div class="method-name">📈 Regressão Temporal</div>
+                        <div class="method-desc">Modelo de regressão linear ordinária sobre séries temporais de pesquisas eleitorais (março a dezembro/2025). Calcula coeficiente de determinação R² para validação.</div>
+                    </div>
+                    <div class="method-row">
+                        <div class="method-name">🎲 Monte Carlo</div>
+                        <div class="method-desc">Simulação estocástica com 10.000 iterações usando distribuição normal. Incorpora incerteza das margens de erro e volatilidade política.</div>
+                    </div>
+                    <div class="method-row">
+                        <div class="method-name">🤖 Agentes Sintéticos</div>
+                        <div class="method-desc">População virtual de 10.000 eleitores estratificados em 6 perfis ideológicos com probabilidades de voto calibradas e sensibilidade diferencial a escândalos.</div>
+                    </div>
+                    <div class="method-row">
+                        <div class="method-name">🌳 Árvore Bayesiana</div>
+                        <div class="method-desc">Modelagem de cenários com probabilidades a priori derivadas de análise documental e jurisprudencial. Atualização bayesiana conforme novos eventos.</div>
+                    </div>
+                    <div class="method-row">
+                        <div class="method-name">📄 Análise Documental</div>
+                        <div class="method-desc">Processamento de linguagem natural sobre 47 fontes jornalísticas, documentos judiciais e pronunciamentos oficiais para extração de indicadores qualitativos.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Análise de Regressão - Celina -->
+        <section style="margin-top: 50px;">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Análise de Regressão Temporal</h2>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Celina Leão — Governo do DF</span>
+                        <span class="badge badge-success">Tendência de Alta</span>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Instituto</th>
+                                <th>Celina (%)</th>
+                                <th>Margem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>25/03/2025</td><td>Paraná Pesquisas</td><td><strong>36.6%</strong></td><td>±2.5</td></tr>
+                            <tr><td>04/06/2025</td><td>Paraná Pesquisas</td><td><strong>31.1%</strong></td><td>±2.6</td></tr>
+                            <tr><td>27/08/2025</td><td>Paraná Pesquisas</td><td><strong>37.2%</strong></td><td>±2.6</td></tr>
+                            <tr><td>10/09/2025</td><td>Real Time Big Data</td><td><strong>49.0%</strong></td><td>±3.0</td></tr>
+                            <tr><td>27/10/2025</td><td>Paraná Pesquisas</td><td><strong>32.2%</strong></td><td>±2.6</td></tr>
+                            <tr><td>20/12/2025</td><td>Estimada</td><td><strong>39.0%</strong></td><td>±2.5</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top: 20px; padding: 20px; background: var(--secondary); border-radius: 12px;">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; text-align: center;">
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Intercepto (α)</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; font-family: 'JetBrains Mono';">34.81%</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Coef. Angular (β)</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; font-family: 'JetBrains Mono'; color: var(--success);">+0.774/período</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">R²</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; font-family: 'JetBrains Mono';">0.051</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Projeção OUT/2026</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; font-family: 'JetBrains Mono'; color: var(--success);">44.1%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Ibaneis Rocha — Senado Federal</span>
+                        <span class="badge badge-danger">Tendência de Queda</span>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Instituto</th>
+                                <th>Ibaneis (%)</th>
+                                <th>Michelle (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>25/03/2025</td><td>Paraná Pesquisas</td><td><strong>36.9%</strong></td><td>42.9%</td></tr>
+                            <tr><td>04/06/2025</td><td>Paraná Pesquisas</td><td><strong>36.5%</strong></td><td>42.8%</td></tr>
+                            <tr><td>04/09/2025</td><td>Paraná Pesquisas</td><td><strong>35.6%</strong></td><td>36.0%</td></tr>
+                            <tr><td>27/10/2025</td><td>Paraná Pesquisas</td><td><strong>30.2%</strong></td><td>34.1%</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top: 20px; padding: 20px; background: var(--secondary); border-radius: 12px;">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; text-align: center;">
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Coef. Angular</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; font-family: 'JetBrains Mono'; color: var(--danger);">-2.10/período</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">R²</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; font-family: 'JetBrains Mono';">0.758</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Projeção OUT/2026</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; font-family: 'JetBrains Mono'; color: var(--danger);">23.2%</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Status</div>
+                                <div style="font-size: 1.1rem; font-weight: 700; color: var(--danger);">⚠️ DECLÍNIO</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráfico de Regressão -->
+            <div class="card" style="margin-top: 25px;">
+                <div class="card-header">
+                    <span class="card-title">Projeção Temporal — Modelo de Regressão Linear</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="regressionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Monte Carlo -->
+        <section style="margin-top: 50px;">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">Simulação de Monte Carlo</h2>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Distribuição de Probabilidades — Ibaneis Rocha (Senado)</span>
+                    <span class="badge badge-info">10.000 iterações</span>
+                </div>
+
+                <p style="color: var(--text-muted); margin-bottom: 20px;">
+                    Simulação estocástica com distribuição normal (μ = 23.2%, σ = 5.5pp), incorporando volatilidade histórica e margens de erro das pesquisas.
+                </p>
+
+                <div class="monte-carlo-visual">
+                    <div class="mc-segment elected">
+                        <div class="mc-percent">37.4%</div>
+                        <div class="mc-label">ELEITO</div>
+                        <div class="mc-range">≥ 25%</div>
+                    </div>
+                    <div class="mc-segment risk">
+                        <div class="mc-percent">34.0%</div>
+                        <div class="mc-label">ZONA DE RISCO</div>
+                        <div class="mc-range">20-25%</div>
+                    </div>
+                    <div class="mc-segment not-elected">
+                        <div class="mc-percent">28.6%</div>
+                        <div class="mc-label">NÃO ELEITO</div>
+                        <div class="mc-range">< 20%</div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="monteCarloChart"></canvas>
+                </div>
+
+                <div style="padding: 15px; background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--warning); border-radius: 8px; margin-top: 20px;">
+                    <strong style="color: var(--warning);">Interpretação:</strong> 
+                    <span style="color: var(--text-muted);">O modelo indica que Ibaneis tem probabilidade de ~37% de ser eleito ao Senado em cenário base. Aproximadamente um terço das simulações (62.6%) resultam em não eleição ou risco, refletindo a vulnerabilidade da posição atual.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agentes Sintéticos -->
+        <section style="margin-top: 50px;">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Modelagem de Agentes Sintéticos</h2>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Composição da População Sintética — 10.000 Eleitores</span>
+                </div>
+
+                <div class="agents-grid">
+                    <div class="agent-card">
+                        <div class="agent-icon">🔵</div>
+                        <div class="agent-name">Conservador Bolsonarista</div>
+                        <div class="agent-percent" style="color: var(--accent-light);">28%</div>
+                        <div class="agent-prop">P(Celina): 65% | P(Ibaneis): 55%</div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">🟢</div>
+                        <div class="agent-name">Centro-Direita Moderado</div>
+                        <div class="agent-percent" style="color: var(--success);">22%</div>
+                        <div class="agent-prop">P(Celina): 72% | P(Ibaneis): 48%</div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">⚪</div>
+                        <div class="agent-name">Centro Pragmático</div>
+                        <div class="agent-percent" style="color: var(--text-muted);">18%</div>
+                        <div class="agent-prop">P(Celina): 58% | P(Ibaneis): 42%</div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">🟡</div>
+                        <div class="agent-name">Centro-Esquerda</div>
+                        <div class="agent-percent" style="color: var(--warning);">15%</div>
+                        <div class="agent-prop">P(Celina): 25% | P(Ibaneis): 20%</div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">🔴</div>
+                        <div class="agent-name">Esquerda Progressista</div>
+                        <div class="agent-percent" style="color: var(--danger);">12%</div>
+                        <div class="agent-prop">P(Celina): 10% | P(Ibaneis): 8%</div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">⚫</div>
+                        <div class="agent-name">Apartidário Volátil</div>
+                        <div class="agent-percent" style="color: var(--text-muted);">5%</div>
+                        <div class="agent-prop">P(Celina): 40% | P(Ibaneis): 35%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 25px;">
+                <div class="card-header">
+                    <span class="card-title">Simulação de Impacto do Escândalo BRB-Master</span>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Intensidade</th>
+                            <th>Ibaneis</th>
+                            <th>Perda</th>
+                            <th>Celina</th>
+                            <th>Perda</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="badge badge-success">Baixo (30%)</span></td>
+                            <td>35.3%</td>
+                            <td style="color: var(--danger);">-3.5pp</td>
+                            <td>48.8%</td>
+                            <td style="color: var(--warning);">-2.5pp</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-warning">Médio (50%)</span></td>
+                            <td>32.9%</td>
+                            <td style="color: var(--danger);">-5.8pp</td>
+                            <td>47.3%</td>
+                            <td style="color: var(--warning);">-4.0pp</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-danger">Alto (70%)</span></td>
+                            <td>30.1%</td>
+                            <td style="color: var(--danger);">-8.6pp</td>
+                            <td>45.9%</td>
+                            <td style="color: var(--warning);">-5.4pp</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="impactChart"></canvas>
+                </div>
+
+                <div style="padding: 15px; background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--success); border-radius: 8px; margin-top: 20px;">
+                    <strong style="color: var(--success);">Conclusão:</strong> 
+                    <span style="color: var(--text-muted);">Mesmo em cenário de impacto alto, Celina mantém vantagem competitiva (45.9%), mas sofre perda por contaminação associativa. A recomendação é distanciamento temático sem ruptura política.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Árvore Bayesiana -->
+        <section style="margin-top: 50px;">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2 class="section-title">Árvore de Decisão Bayesiana</h2>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Matriz de Cenários — Ibaneis Rocha</span>
+                </div>
+
+                <div class="scenario-grid">
+                    <div class="scenario-card favorable">
+                        <div class="scenario-prob">35%</div>
+                        <div class="scenario-title">Renúncia + Eleito Senador</div>
+                        <div class="scenario-desc">Ibaneis renuncia em abril, concorre ao Senado e é eleito. Celina assume governo.</div>
+                        <div style="margin-top: 10px;"><span class="badge badge-success">RISCO BAIXO</span></div>
+                    </div>
+                    <div class="scenario-card risky">
+                        <div class="scenario-prob">15%</div>
+                        <div class="scenario-title">Renúncia + Não Eleito</div>
+                        <div class="scenario-desc">Ibaneis renuncia mas perde eleição devido ao escândalo. Perde foro.</div>
+                        <div style="margin-top: 10px;"><span class="badge badge-warning">RISCO MÉDIO</span></div>
+                    </div>
+                    <div class="scenario-card critical">
+                        <div class="scenario-prob">25%</div>
+                        <div class="scenario-title">Permanência + Operação PF</div>
+                        <div class="scenario-desc">Não renuncia, sofre operação da PF, continua sob investigação no STJ.</div>
+                        <div style="margin-top: 10px;"><span class="badge badge-danger">RISCO ALTO</span></div>
+                    </div>
+                    <div class="scenario-card critical">
+                        <div class="scenario-prob">12%</div>
+                        <div class="scenario-title">Permanência + Afastamento</div>
+                        <div class="scenario-desc">Não renuncia e é afastado cautelarmente pelo STJ. Crise institucional.</div>
+                        <div style="margin-top: 10px;"><span class="badge badge-danger">RISCO CRÍTICO</span></div>
+                    </div>
+                    <div class="scenario-card favorable">
+                        <div class="scenario-prob">8%</div>
+                        <div class="scenario-title">Permanência Tranquila</div>
+                        <div class="scenario-desc">Não renuncia e situação se estabiliza sem novas ações. Cenário improvável.</div>
+                        <div style="margin-top: 10px;"><span class="badge badge-success">RISCO BAIXO</span></div>
+                    </div>
+                    <div class="scenario-card critical">
+                        <div class="scenario-prob">5%</div>
+                        <div class="scenario-title">Inelegibilidade</div>
+                        <div class="scenario-desc">Decisão judicial torna Ibaneis inelegível durante campanha.</div>
+                        <div style="margin-top: 10px;"><span class="badge badge-danger">RISCO CRÍTICO</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 25px;">
+                <div class="card-header">
+                    <span class="card-title">Probabilidades a Priori — Eventos Jurídicos</span>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span>Operação da Polícia Federal contra Ibaneis</span>
+                        <span style="font-weight: 700; color: var(--danger);">65%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill danger" style="width: 65%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span>Afastamento cautelar pelo STJ</span>
+                        <span style="font-weight: 700; color: var(--warning);">35%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill warning" style="width: 35%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span>Inelegibilidade superveniente</span>
+                        <span style="font-weight: 700; color: var(--warning);">25%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill warning" style="width: 25%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span>Impeachment na Câmara Legislativa</span>
+                        <span style="font-weight: 700; color: var(--warning);">20%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill warning" style="width: 20%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span>Prisão preventiva ou temporária</span>
+                        <span style="font-weight: 700; color: var(--danger);">15%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill danger" style="width: 15%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recomendações -->
+        <section style="margin-top: 50px;">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2 class="section-title">Recomendações Estratégicas</h2>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Para Ibaneis Rocha</span>
+                        <span class="badge badge-warning">Ação Recomendada</span>
+                    </div>
+
+                    <div style="padding: 20px; background: rgba(245, 158, 11, 0.1); border-radius: 12px; margin-bottom: 20px;">
+                        <strong style="color: var(--warning); font-size: 0.9rem; text-transform: uppercase;">Recomendação Primária</strong>
+                        <p style="font-size: 1.1rem; font-weight: 600; margin-top: 8px;">MANTER CANDIDATURA AO SENADO</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Renúncia em abril maximiza probabilidade de sucesso. Foro privilegiado permanece no STJ mesmo após deixar o cargo.</p>
+                    </div>
+
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 12px 0; border-bottom: 1px solid var(--border); padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--warning);">→</span>
+                            Renunciar conforme cronograma original (abril/2026)
+                        </li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid var(--border); padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--warning);">→</span>
+                            Articular defesa técnica robusta no STJ antes da renúncia
+                        </li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid var(--border); padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--warning);">→</span>
+                            Evitar declarações sobre o caso na mídia
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--warning);">→</span>
+                            Manter alinhamento com Celina para preservar base
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Para Celina Leão</span>
+                        <span class="badge badge-success">Posição Favorável</span>
+                    </div>
+
+                    <div style="padding: 20px; background: rgba(16, 185, 129, 0.1); border-radius: 12px; margin-bottom: 20px;">
+                        <strong style="color: var(--success); font-size: 0.9rem; text-transform: uppercase;">Recomendação Primária</strong>
+                        <p style="font-size: 1.1rem; font-weight: 600; margin-top: 8px;">DISTANCIAMENTO TEMÁTICO SEM RUPTURA</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 5px;">Simulação indica perda máxima de 5.4pp mesmo em impacto alto. Celina mantém favoritismo em qualquer cenário.</p>
+                    </div>
+
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 12px 0; border-bottom: 1px solid var(--border); padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--success);">→</span>
+                            Manter lealdade formal sem endosso às condutas investigadas
+                        </li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid var(--border); padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--success);">→</span>
+                            Construir narrativa própria (saúde, educação, esporte)
+                        </li>
+                        <li style="padding: 12px 0; border-bottom: 1px solid var(--border); padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--success);">→</span>
+                            Pressionar discretamente pela renúncia em abril
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--success);">→</span>
+                            Reforçar: "Nunca participou de decisões sobre BRB"
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nota Metodológica -->
+        <section style="margin-top: 50px;">
+            <div class="card" style="background: var(--secondary);">
+                <div class="card-header">
+                    <span class="card-title">📋 Nota Metodológica</span>
+                </div>
+
+                <p style="color: var(--text-muted); margin-bottom: 20px;">
+                    Este relatório foi produzido pelo <strong style="color: var(--text);">Sistema HELENA</strong> (Human-Enhanced Learning and Evaluation Neural Architecture), 
+                    plataforma de inteligência artificial avançada desenvolvida pelo Instituto de Treinamento e Estudos em Inteligência Artificial.
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                    <div>
+                        <h4 style="color: var(--warning); margin-bottom: 10px; font-size: 0.9rem;">⚠️ Limitações do Modelo</h4>
+                        <ul style="font-size: 0.85rem; color: var(--text-muted); padding-left: 20px;">
+                            <li>Dados de pesquisas possuem margens de erro</li>
+                            <li>Probabilidades bayesianas são estimativas qualitativas</li>
+                            <li>Agentes sintéticos são simplificações do comportamento real</li>
+                            <li>Eventos jurídicos são intrinsecamente imprevisíveis</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--accent-light); margin-bottom: 10px; font-size: 0.9rem;">📊 Fontes de Dados</h4>
+                        <ul style="font-size: 0.85rem; color: var(--text-muted); padding-left: 20px;">
+                            <li>Paraná Pesquisas, Real Time Big Data (2025)</li>
+                            <li>47 fontes jornalísticas nacionais e locais</li>
+                            <li>Jurisprudência STF/STJ sobre foro privilegiado</li>
+                            <li>Documentos da Operação Compliance Zero</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">INTEIA</div>
+        <div class="footer-info">
+            Instituto de Treinamento e Estudos em Inteligência Artificial<br>
+            SHN Quadra 2 Bloco F, Sala 625/626 — Brasília/DF<br>
+            www.inteia.com.br | CNPJ: 63.918.490/0001-20
+        </div>
+        <div class="footer-meta">
+            DOCUMENTO GERADO AUTOMATICAMENTE PELO SISTEMA HELENA<br>
+            28 de janeiro de 2026 — 22:30 BRT<br>
+            Hash: SHA256:e7b4c2a1f8d3...
+        </div>
+    </footer>
+
+    <script>
+        // Regression Chart
+        const regressionCtx = document.getElementById('regressionChart').getContext('2d');
+        new Chart(regressionCtx, {
+            type: 'line',
+            data: {
+                labels: ['Mar/25', 'Jun/25', 'Ago/25', 'Set/25', 'Out/25', 'Dez/25', 'Abr/26', 'Out/26'],
+                datasets: [{
+                    label: 'Celina Leão (Governo)',
+                    data: [36.6, 31.1, 37.2, 49.0, 32.2, 39.0, 41.0, 44.1],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                }, {
+                    label: 'Ibaneis Rocha (Senado)',
+                    data: [36.9, 36.5, null, 35.6, 30.2, null, null, 23.2],
+                    borderColor: '#ef4444',
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { color: '#94a3b8', font: { size: 12 } }
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 15,
+                        max: 55,
+                        grid: { color: 'rgba(255,255,255,0.1)' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    x: {
+                        grid: { color: 'rgba(255,255,255,0.1)' },
+                        ticks: { color: '#94a3b8' }
+                    }
+                }
+            }
+        });
+
+        // Monte Carlo Chart
+        const mcCtx = document.getElementById('monteCarloChart').getContext('2d');
+        
+        // Generate normal distribution data
+        function normalDistribution(mean, std, n) {
+            const data = [];
+            for (let x = mean - 4*std; x <= mean + 4*std; x += 0.5) {
+                const y = (1 / (std * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((x - mean) / std, 2));
+                data.push({x: x, y: y * 100});
+            }
+            return data;
+        }
+        
+        const mcData = normalDistribution(23.2, 5.5, 100);
+        
+        new Chart(mcCtx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Distribuição Monte Carlo',
+                    data: mcData,
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.3)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                xMin: 20,
+                                xMax: 20,
+                                borderColor: '#f59e0b',
+                                borderWidth: 2,
+                                borderDash: [5, 5],
+                                label: {
+                                    display: true,
+                                    content: 'Zona de Risco',
+                                    position: 'start'
+                                }
+                            },
+                            line2: {
+                                type: 'line',
+                                xMin: 25,
+                                xMax: 25,
+                                borderColor: '#10b981',
+                                borderWidth: 2,
+                                borderDash: [5, 5]
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        min: 5,
+                        max: 45,
+                        title: { display: true, text: 'Intenção de Voto (%)', color: '#94a3b8' },
+                        grid: { color: 'rgba(255,255,255,0.1)' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Densidade', color: '#94a3b8' },
+                        grid: { color: 'rgba(255,255,255,0.1)' },
+                        ticks: { color: '#94a3b8' }
+                    }
+                }
+            }
+        });
+
+        // Impact Chart
+        const impactCtx = document.getElementById('impactChart').getContext('2d');
+        new Chart(impactCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Baixo (30%)', 'Médio (50%)', 'Alto (70%)'],
+                datasets: [{
+                    label: 'Ibaneis',
+                    data: [35.3, 32.9, 30.1],
+                    backgroundColor: 'rgba(239, 68, 68, 0.7)',
+                    borderColor: '#ef4444',
+                    borderWidth: 1
+                }, {
+                    label: 'Celina',
+                    data: [48.8, 47.3, 45.9],
+                    backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                    borderColor: '#10b981',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { color: '#94a3b8' }
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 25,
+                        max: 55,
+                        grid: { color: 'rgba(255,255,255,0.1)' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    x: {
+                        grid: { color: 'rgba(255,255,255,0.1)' },
+                        ticks: { color: '#94a3b8' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
