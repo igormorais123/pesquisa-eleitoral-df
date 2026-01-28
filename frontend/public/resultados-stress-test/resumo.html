@@ -454,37 +454,101 @@
         }
         .chat-foot .hint { font-size: 9px; color: var(--text-muted); margin-top: 8px; text-align: center; }
 
-        /* PRINT */
+        /* PRINT - Cabe em 1 pagina A4 (paisagem ou retrato) */
         @media print {
-            @page { size: A4 landscape; margin: 5mm; }
+            @page { margin: 4mm; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            html, body { background: #fff !important; color: #0f172a !important; font-size: 9pt; }
+            html, body {
+                background: #fff !important;
+                color: #0f172a !important;
+                font-size: 7pt !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
             .side-mark, .top-controls, .chat-fab, .chat-panel { display: none !important; }
-            .main-container { margin: 0 !important; padding: 0 !important; max-width: 287mm !important; }
-            .hero-header { padding: 3mm !important; margin-bottom: 3mm !important; background: #fef9c3 !important; border: 1pt solid #d69e2e !important; }
-            .hero-top { margin-bottom: 2mm !important; }
-            .logo-box { width: 28px !important; height: 28px !important; font-size: 10px !important; background: #d69e2e !important; }
-            .hero-title h1 { font-size: 14pt !important; }
-            .executive-summary { padding: 3mm !important; margin-bottom: 3mm !important; background: #fef2f2 !important; border: 1pt solid #ef4444 !important; }
-            .executive-summary h2 { font-size: 10pt !important; }
-            .conclusion-text { font-size: 9pt !important; }
+            .main-container {
+                margin: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+
+            /* Hero Header - ultra compacto */
+            .hero-header {
+                padding: 2mm !important;
+                margin-bottom: 2mm !important;
+                background: #fffbeb !important;
+                border: 0.5pt solid #d69e2e !important;
+                border-radius: 2pt !important;
+            }
+            .hero-top { margin-bottom: 1.5mm !important; gap: 2mm !important; }
+            .logo-section { gap: 2mm !important; }
+            .logo-box { width: 20px !important; height: 20px !important; font-size: 8px !important; background: #d69e2e !important; border-radius: 3pt !important; }
+            .logo-text .logo-name { font-size: 10pt !important; }
+            .logo-text .logo-tagline { font-size: 6pt !important; margin-top: 0 !important; }
+            .logo-text .logo-stanford { font-size: 5pt !important; margin-top: 0 !important; }
+            .author-section .author-label { font-size: 5pt !important; }
+            .author-section .author-name { font-size: 8pt !important; }
+            .author-section .author-title { font-size: 6pt !important; }
+            .hero-content { gap: 2mm !important; }
+            .hero-title h1 { font-size: 11pt !important; margin-bottom: 1px !important; }
+            .hero-title .subtitle { font-size: 7pt !important; margin-bottom: 1mm !important; }
+            .hero-meta { gap: 3mm !important; }
+            .meta-item { font-size: 6pt !important; gap: 2px !important; }
+            .meta-item svg { width: 10px !important; height: 10px !important; }
+            .badge-confidencial { padding: 2px 5px !important; font-size: 6pt !important; }
+
+            /* Executive Summary - compacto */
+            .executive-summary {
+                padding: 2mm !important;
+                margin-bottom: 2mm !important;
+                background: #fef2f2 !important;
+                border: 0.5pt solid #ef4444 !important;
+                border-radius: 2pt !important;
+            }
+            .executive-summary h2 { font-size: 8pt !important; margin-bottom: 1.5mm !important; gap: 2mm !important; }
+            .executive-summary h2 svg { width: 12px !important; height: 12px !important; }
+            .conclusion-text { font-size: 7pt !important; line-height: 1.3 !important; margin-bottom: 2mm !important; }
             .key-points { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 2mm !important; }
-            .key-point { padding: 2mm !important; }
-            .key-point .number { font-size: 16pt !important; }
-            .key-point .label { font-size: 7pt !important; }
-            .charts-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 3mm !important; margin-bottom: 3mm !important; }
-            .chart-card { padding: 2mm !important; }
-            .chart-card h3 { font-size: 9pt !important; }
-            .chart-container { height: 28mm !important; }
-            .chart-insight { font-size: 7pt !important; padding: 1.5mm !important; background: #fef9c3 !important; }
-            .section { margin-bottom: 3mm !important; }
-            .section-header { margin-bottom: 2mm !important; }
-            .section-title { font-size: 10pt !important; }
-            .recs-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 2mm !important; }
-            .rec-card { padding: 2mm !important; }
-            .rec-card h4 { font-size: 9pt !important; }
-            .rec-card p { font-size: 8pt !important; }
-            .footer { padding: 2mm !important; font-size: 7pt !important; }
+            .key-point { padding: 1.5mm !important; border-radius: 2pt !important; }
+            .key-point .number { font-size: 14pt !important; }
+            .key-point .label { font-size: 6pt !important; margin-top: 1px !important; }
+
+            /* Charts - compacto lado a lado */
+            .charts-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 2mm !important;
+                margin-bottom: 2mm !important;
+            }
+            .chart-card { padding: 1.5mm !important; border-radius: 2pt !important; }
+            .chart-card h3 { font-size: 7pt !important; margin-bottom: 1mm !important; }
+            .chart-legend { margin-bottom: 1mm !important; gap: 3mm !important; }
+            .legend-item { font-size: 6pt !important; gap: 2px !important; }
+            .legend-line { width: 10px !important; height: 2px !important; }
+            .chart-container { height: 22mm !important; }
+            .chart-insight { font-size: 6pt !important; padding: 1mm !important; margin-top: 1mm !important; background: #fef9c3 !important; border-radius: 1pt !important; }
+            .chart-source { font-size: 5pt !important; margin-top: 1mm !important; }
+
+            /* Recommendations - 2x2 compacto */
+            .section { margin-bottom: 2mm !important; }
+            .section-header { margin-bottom: 1.5mm !important; gap: 2mm !important; }
+            .section-icon { width: 18px !important; height: 18px !important; border-radius: 2pt !important; }
+            .section-icon svg { width: 10px !important; height: 10px !important; }
+            .section-title { font-size: 8pt !important; }
+            .section-subtitle { font-size: 6pt !important; }
+            .recs-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 1.5mm !important; }
+            .rec-card { padding: 1.5mm !important; border-radius: 2pt !important; border-left-width: 2pt !important; }
+            .rec-badge { font-size: 5pt !important; padding: 1px 3px !important; margin-bottom: 1mm !important; }
+            .rec-card h4 { font-size: 7pt !important; margin-bottom: 1px !important; }
+            .rec-card p { font-size: 6pt !important; line-height: 1.2 !important; }
+
+            /* Footer - minimo */
+            .footer {
+                padding: 1.5mm !important;
+                margin-top: 1.5mm !important;
+                font-size: 6pt !important;
+                border-top: 0.5pt solid #e2e8f0 !important;
+            }
         }
 
         /* Mobile */
