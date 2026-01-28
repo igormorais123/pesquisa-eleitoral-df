@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEIA | Relatório Completo - Ibaneis Rocha Senado 2026</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.2.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <style>
+        :root {
+            --amber: #d69e2e;
+            --amber-light: #f6e05e;
+            --amber-dark: #b7791f;
+            --orange-dark: #c2410c;
+            --success: #22c55e;
+            --warning: #eab308;
+            --blue: #3b82f6;
+            --purple: #8b5cf6;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg-card: rgba(255,255,255,0.03);
+            --bg-card-hover: rgba(255,255,255,0.06);
+            --border: rgba(255,255,255,0.08);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f5f9;
+            --border: #e2e8f0;
+            --text: #0f172a;
+            --text-muted: #64748b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+        
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; }
+        .logo-box {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 14px; color: #fff;
+        }
+        .logo-text { font-size: 24px; font-weight: 800; }
+        .logo-text span { color: var(--amber); }
+        .header-actions { display: flex; gap: 0.5rem; align-items: center; }
+        .badge {
+            padding: 6px 12px;
+            background: rgba(214,158,46,0.1);
+            border: 1px solid rgba(214,158,46,0.3);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--amber);
+            text-transform: uppercase;
+        }
+        .btn {
+            padding: 8px 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn:hover { background: var(--bg-card-hover); color: var(--text); }
+
+        /* Title */
+        .title-section { margin-bottom: 2rem; }
+        .title-section h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .title-section .subtitle { font-size: 1rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .title-section .meta { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.05));
+            border: 2px solid var(--blue);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .summary-box h2 {
+            font-size: 1.125rem;
+            color: var(--blue);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .summary-box p { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; }
+        .summary-box p:last-child { margin-bottom: 0; }
+        .summary-box strong { color: var(--amber); }
+        .summary-box em { color: var(--purple); font-style: normal; font-weight: 600; }
+
+        /* Section */
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .section h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .section h4 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--text-muted);
+        }
+        .section p { font-size: 0.9375rem; line-height: 1.7; margin-bottom: 1rem; }
+        .section ul { margin-left: 1.25rem; margin-bottom: 1rem; }
+        .section li { font-size: 0.9375rem; margin-bottom: 0.5rem; }
+        .section li strong { color: var(--amber); }
+
+        /* Chart */
+        .chart-container { height: 300px; position: relative; margin: 1rem 0; }
+        .chart-insight {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(59,130,246,0.08);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .chart-insight strong { color: var(--amber); }
+
+        /* Evidence Box */
+        .evidence-box {
+            background: rgba(34, 197, 94, 0.08);
+            border-left: 4px solid var(--success);
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .evidence-box h5 {
+            font-size: 0.8125rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .evidence-box p { font-size: 0.875rem; margin: 0; }
+
+        /* Warning Box */
+        .warning-box {
+            background: rgba(234, 179, 8, 0.08);
+            border-left: 4px solid var(--warning);
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .warning-box h5 {
+            font-size: 0.8125rem;
+            font-weight: 700;
+            color: var(--warning);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        .warning-box p { font-size: 0.875rem; margin: 0; }
+
+        /* Critical Box */
+        .critical-box {
+            background: rgba(194, 65, 12, 0.08);
+            border-left: 4px solid var(--orange-dark);
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .critical-box h5 {
+            font-size: 0.8125rem;
+            font-weight: 700;
+            color: var(--orange-dark);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        .critical-box p { font-size: 0.875rem; margin: 0; }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .stat {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .stat .value { font-size: 1.75rem; font-weight: 800; }
+        .stat .label { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; }
+        .stat.blue .value { color: var(--blue); }
+        .stat.green .value { color: var(--success); }
+        .stat.orange .value { color: var(--orange-dark); }
+        .stat.yellow .value { color: var(--warning); }
+
+        /* Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.875rem;
+        }
+        .data-table th {
+            text-align: left;
+            padding: 0.75rem;
+            background: var(--bg);
+            border-bottom: 2px solid var(--border);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .data-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .data-table tr:hover { background: var(--bg-card-hover); }
+
+        /* Timeline */
+        .timeline { margin: 1.5rem 0; }
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-left: 2px solid var(--border);
+            margin-left: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 1.25rem;
+            width: 10px;
+            height: 10px;
+            background: var(--blue);
+            border-radius: 50%;
+        }
+        .timeline-item.critical::before { background: var(--orange-dark); }
+        .timeline-item.warning::before { background: var(--warning); }
+        .timeline-date {
+            font-weight: 700;
+            font-size: 0.8125rem;
+            color: var(--amber);
+            min-width: 80px;
+        }
+        .timeline-content h5 { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .timeline-content p { font-size: 0.8125rem; color: var(--text-muted); margin: 0; }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            color: #fff;
+            margin-top: 2rem;
+        }
+        .cta h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .cta p { font-size: 0.9375rem; opacity: 0.9; margin-bottom: 1rem; }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+            margin: 0 0.5rem;
+        }
+        .cta-btn:hover { background: rgba(255,255,255,0.3); }
+
+        /* Footer */
+        .footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+        .footer a { color: var(--amber); text-decoration: none; }
+
+        /* Chat FAB */
+        .chat-fab {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            border-radius: 28px;
+            border: none;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            cursor: pointer;
+            color: #f8fafc;
+            font-weight: 600;
+            font-size: 14px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+        }
+        .chat-fab:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+        .chat-fab .chat-icon { font-size: 24px; }
+        .chat-fab .chat-text { text-align: left; line-height: 1.4; }
+        .chat-fab .chat-text strong { color: var(--amber); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .header { flex-direction: column; gap: 1rem; text-align: center; }
+            .header-actions { justify-content: center; }
+        }
+
+        /* Print */
+        @media print {
+            body { background: #fff !important; color: #000 !important; }
+            .chat-fab, .btn, .cta { display: none !important; }
+            .section { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <div class="logo-box">IA</div>
+                <div style="display: flex; flex-direction: column;">
+                    <div class="logo-text">INTE<span>IA</span></div>
+                    <span style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">Inteligência Estratégica Eleitoral</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="resumo.html" class="btn">← Resumo</a>
+                <button class="btn" onclick="window.print()">🖨️ Imprimir</button>
+                <button class="btn" onclick="toggleTheme()">🌓 Tema</button>
+                <div class="badge">Confidencial</div>
+            </div>
+        </header>
+
+        <div class="title-section">
+            <h1>Ibaneis Rocha ao Senado 2026</h1>
+            <div class="subtitle">Análise Estratégica Completa: A Equação Celina-Ibaneis</div>
+            <div class="meta">INTEIA | 28 Janeiro 2026 | Simulação: 1.000 Eleitores Sintéticos | 5 Institutos de Pesquisa</div>
+        </div>
+
+        <div class="summary-box">
+            <h2>🎯 Tese Central</h2>
+            <p>
+                <strong>A matemática eleitoral é inequívoca: Celina Leão é o ativo estratégico mais valioso para a eleição de Ibaneis ao Senado.</strong>
+                A inversão da percepção comum — de que Ibaneis "puxa" Celina — é um erro estratégico que pode custar ambas as eleições.
+            </p>
+            <p>
+                Os dados demonstram que <em>83% dos eleitores de Celina consideram votar em Ibaneis para o Senado</em>, 
+                mas essa transferência <strong>só ocorre se Celina estiver em posição competitiva</strong>. 
+                Uma campanha fraca de Celina não só perde o Governo — derruba Ibaneis junto.
+            </p>
+            <p>
+                <strong>Implicação prática:</strong> Investir na campanha de Celina é investir na própria eleição de Ibaneis. 
+                Não há cenário de vitória para Ibaneis no Senado com derrota de Celina para o Governo.
+            </p>
+        </div>
+
+        <div class="section">
+            <h3>📊 O Cenário Atual: Números que Importam</h3>
+            
+            <div class="stats-grid">
+                <div class="stat blue">
+                    <div class="value">30.6%</div>
+                    <div class="label">Celina - Intenção de voto Governo</div>
+                </div>
+                <div class="stat green">
+                    <div class="value">83%</div>
+                    <div class="label">Transferência Celina → Ibaneis</div>
+                </div>
+                <div class="stat orange">
+                    <div class="value">57%</div>
+                    <div class="label">Migram se surgir "outsider"</div>
+                </div>
+                <div class="stat yellow">
+                    <div class="value">67%</div>
+                    <div class="label">Abandonam se escândalo</div>
+                </div>
+            </div>
+
+            <h4>Cenário Governo DF 2026</h4>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Candidato</th>
+                        <th>Partido</th>
+                        <th>Intenção (%)</th>
+                        <th>Rejeição (%)</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Celina Leão</strong></td>
+                        <td>PP</td>
+                        <td>30.6%</td>
+                        <td>28.5%</td>
+                        <td>✅ Líder</td>
+                    </tr>
+                    <tr>
+                        <td>Arruda</td>
+                        <td>PSD</td>
+                        <td>16.3%</td>
+                        <td>45.0%</td>
+                        <td>⚠️ Inelegibilidade contestada</td>
+                    </tr>
+                    <tr>
+                        <td>Leandro Grass</td>
+                        <td>PV</td>
+                        <td>8.4%</td>
+                        <td>25.0%</td>
+                        <td>⚠️ Inelegibilidade em recurso</td>
+                    </tr>
+                    <tr>
+                        <td>Paula Belmonte</td>
+                        <td>PSDB</td>
+                        <td>5.4%</td>
+                        <td>15.0%</td>
+                        <td>🔵 Em construção</td>
+                    </tr>
+                    <tr>
+                        <td>Ricardo Cappelli</td>
+                        <td>PSB</td>
+                        <td>4.2%</td>
+                        <td>20.0%</td>
+                        <td>🔵 Nome do governo federal</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="evidence-box">
+                <h5>📈 Evidência Chave</h5>
+                <p>Celina lidera, mas com <strong>voto frágil e defensivo</strong>. 70% dos eleitores votam nela para "barrar o outro lado", não por convicção. 
+                Isso significa que a liderança pode evaporar rapidamente se surgir alternativa percebida como "nova" ou "técnica".</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🔗 A Equação de Interdependência: Por que Celina Elege Ibaneis</h3>
+            
+            <p>
+                A relação entre as candidaturas de Celina (Governo) e Ibaneis (Senado) não é de "cabo eleitoral" tradicional. 
+                É de <strong>interdependência estrutural</strong>. Veja os mecanismos:
+            </p>
+
+            <h4>1. Máquina Administrativa</h4>
+            <p>
+                Em abril de 2026, Ibaneis se desincompatibiliza e <strong>Celina assume o Governo</strong>. 
+                Nos 6 meses pré-eleição, ela comandará a máquina do GDF — secretarias, contratos, nomeações, entregas. 
+                É essa estrutura que financia e organiza a campanha. Se Celina for uma governadora fraca ou contestada, 
+                Ibaneis perde acesso à infraestrutura eleitoral.
+            </p>
+
+            <h4>2. Transferência de Votos</h4>
+            <div class="chart-container">
+                <canvas id="chartTransferencia"></canvas>
+            </div>
+            <div class="chart-insight">
+                <strong>Leitura:</strong> A taxa de transferência de votos de Celina para Ibaneis é diretamente proporcional 
+                ao desempenho dela nas pesquisas. Quanto mais forte Celina, maior a transferência. 
+                Se ela cair para 25%, a transferência despenca para 55% — insuficiente para vencer.
+            </div>
+
+            <h4>3. Palanque e Visibilidade</h4>
+            <p>
+                Eleição para Senado depende de "carona" no palanque majoritário. 
+                Sem uma campanha robusta de Celina para o Governo, Ibaneis não terá a visibilidade necessária. 
+                Os dados de correlação entre presença na mídia e intenção de voto são inequívocos: 
+                <strong>quanto mais exposição, mais votos</strong>. A campanha de Celina é o veículo dessa exposição.
+            </p>
+
+            <div class="critical-box">
+                <h5>⚠️ Risco Crítico Identificado</h5>
+                <p><strong>57% dos eleitores de Celina migrariam para um candidato "técnico" e "de fora da política"</strong> — 
+                perfil de outsider. Se surgir alguém assim (empresário, juiz, apresentador), 
+                a liderança de Celina colapsa e arrasta Ibaneis junto. Monitoramento contínuo é mandatório.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🗳️ Cenário Senado DF 2026: A Disputa Pelas Duas Vagas</h3>
+
+            <p>
+                O DF elege <strong>dois senadores em 2026</strong> (fim de mandato de Izalci e Leila Barros). 
+                Damares (Republicanos), com base evangélica consolidada, parte como favorita para uma vaga. 
+                A segunda vaga é o campo de batalha real.
+            </p>
+
+            <div class="chart-container" style="height: 280px;">
+                <canvas id="chartSenadoCompleto"></canvas>
+            </div>
+
+            <h4>Análise dos Competidores</h4>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Candidato</th>
+                        <th>Partido</th>
+                        <th>Projeção</th>
+                        <th>Base</th>
+                        <th>Ameaça a Ibaneis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Damares Alves</strong></td>
+                        <td>Republicanos</td>
+                        <td>32%</td>
+                        <td>Evangélicos (consolidada)</td>
+                        <td>🟢 Baixa - não compete diretamente</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ibaneis Rocha</strong></td>
+                        <td>MDB</td>
+                        <td>28%</td>
+                        <td>GDF + centro-direita secular</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Izalci Lucas</td>
+                        <td>PL</td>
+                        <td>18%</td>
+                        <td>Bolsonarismo, educação</td>
+                        <td>🟡 Média - disputa voto de direita</td>
+                    </tr>
+                    <tr>
+                        <td>Esquerda (PT/PSB)</td>
+                        <td>Federação</td>
+                        <td>14%</td>
+                        <td>Base progressista</td>
+                        <td>🟢 Baixa - públicos distintos</td>
+                    </tr>
+                    <tr>
+                        <td>Outros</td>
+                        <td>Diversos</td>
+                        <td>8%</td>
+                        <td>Fragmentado</td>
+                        <td>🔵 Variável</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning-box">
+                <h5>⚡ Ponto de Atenção: Izalci Lucas</h5>
+                <p>Izalci (PL) disputa parte do mesmo eleitorado de Ibaneis — direita secular, classe média. 
+                Se Bolsonaro apoiar Izalci explicitamente, pode haver fragmentação do voto de direita. 
+                A estratégia deve ser <strong>evitar confronto direto</strong> e posicionar Ibaneis como "complementar" a Damares, não competidor.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>📅 Cronograma Estratégico: Marcos Críticos</h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan-Mar 2026</div>
+                    <div class="timeline-content">
+                        <h5>Fase de Posicionamento</h5>
+                        <p>Consolidar aliança Celina-Ibaneis na mídia. Evitar qualquer ruído de divisão. Estruturar campanha integrada.</p>
+                    </div>
+                </div>
+                <div class="timeline-item critical">
+                    <div class="timeline-date">Abril 2026</div>
+                    <div class="timeline-content">
+                        <h5>Desincompatibilização de Ibaneis</h5>
+                        <p>Celina assume o Governo. Momento crítico: transição deve ser percebida como "continuidade melhorada", não ruptura.</p>
+                    </div>
+                </div>
+                <div class="timeline-item warning">
+                    <div class="timeline-date">Mai-Jun 2026</div>
+                    <div class="timeline-content">
+                        <h5>Entregas de Governo</h5>
+                        <p>Celina como Governadora deve entregar obras/programas visíveis. São os fatos que blindam contra "candidato técnico".</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Jul-Ago 2026</div>
+                    <div class="timeline-content">
+                        <h5>Campanha Eleitoral</h5>
+                        <p>Campanhas integradas. Ibaneis no palanque de Celina. Mensagem: "Celina governa, Ibaneis defende em Brasília".</p>
+                    </div>
+                </div>
+                <div class="timeline-item critical">
+                    <div class="timeline-date">Set-Out 2026</div>
+                    <div class="timeline-content">
+                        <h5>Reta Final</h5>
+                        <p>Máxima exposição. Monitoramento intensivo de ataques e candidaturas-surpresa. Zero tolerância com escândalos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🎯 Plano de Ação: 10 Recomendações Estratégicas</h3>
+
+            <div class="critical-box">
+                <h5>1. Blindar Celina contra Outsiders (CRÍTICO)</h5>
+                <p>Monitorar qualquer movimentação de "candidato novo". Agir preventivamente: cooptação ou desconstrução antes que ganhem tração.</p>
+            </div>
+
+            <div class="critical-box">
+                <h5>2. Integração Total de Campanhas (CRÍTICO)</h5>
+                <p>Mesmo comitê, mesma estrutura, mesma mensagem. A percepção de "chapa unida" é fundamental. Divisão = derrota.</p>
+            </div>
+
+            <div class="warning-box">
+                <h5>3. Blindagem Anticorrupção (IMPORTANTE)</h5>
+                <p>67% abandonam se escândalo. Auditoria interna imediata em todas as áreas sensíveis. Qualquer denúncia, mesmo falsa, é letal.</p>
+            </div>
+
+            <div class="warning-box">
+                <h5>4. Entregas Visíveis Abr-Set (IMPORTANTE)</h5>
+                <p>Celina como Governadora deve entregar: obras, programas sociais, inaugurações. Fatos concretos são o melhor cabo eleitoral.</p>
+            </div>
+
+            <div class="evidence-box">
+                <h5>5. Posicionamento de Ibaneis (ESTRATÉGICO)</h5>
+                <p>Não competir com Damares pelo voto evangélico. Posicionar-se como "guardião da continuidade" — Senador que defende o projeto do DF em Brasília.</p>
+            </div>
+
+            <div class="evidence-box">
+                <h5>6. Evitar Confronto com Izalci (ESTRATÉGICO)</h5>
+                <p>Não atacar Izalci diretamente. Deixar que ele se desgaste na disputa interna do PL (Michelle, Bia Kicis). Não fragmentar voto de direita.</p>
+            </div>
+
+            <div class="evidence-box">
+                <h5>7. Presença Constante na Mídia (ESTRATÉGICO)</h5>
+                <p>Dados mostram: quando Celina some da mídia, números caem. Manter exposição constante — eventos, redes, notícias — até outubro.</p>
+            </div>
+
+            <div class="evidence-box">
+                <h5>8. Narrativa de Complementariedade (TÁTICO)</h5>
+                <p>"Celina governa o DF, Ibaneis defende o DF em Brasília." Mensagem de time, não de candidaturas separadas.</p>
+            </div>
+
+            <div class="evidence-box">
+                <h5>9. Monitoramento de Redes (TÁTICO)</h5>
+                <p>Alertas em tempo real para: menções negativas, candidaturas emergentes, ataques coordenados. Resposta rápida é essencial.</p>
+            </div>
+
+            <div class="evidence-box">
+                <h5>10. Construir Voto Positivo (TÁTICO)</h5>
+                <p>70% do voto é defensivo (contra adversário). Criar conexão emocional positiva — motivos para votar EM Celina/Ibaneis, não apenas contra.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>📈 Projeção de Cenários</h3>
+
+            <div class="chart-container">
+                <canvas id="chartCenarios"></canvas>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Cenário</th>
+                        <th>Celina Governo</th>
+                        <th>Ibaneis Senado</th>
+                        <th>Probabilidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: rgba(34, 197, 94, 0.1);">
+                        <td><strong>Ótimo</strong></td>
+                        <td>✅ Vence 1º turno</td>
+                        <td>✅ Eleito (1ª ou 2ª vaga)</td>
+                        <td>35%</td>
+                    </tr>
+                    <tr style="background: rgba(234, 179, 8, 0.1);">
+                        <td><strong>Base</strong></td>
+                        <td>✅ Vence 2º turno</td>
+                        <td>✅ Eleito (2ª vaga)</td>
+                        <td>40%</td>
+                    </tr>
+                    <tr style="background: rgba(194, 65, 12, 0.1);">
+                        <td><strong>Risco</strong></td>
+                        <td>❌ Perde 2º turno</td>
+                        <td>⚠️ Disputa acirrada</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr style="background: rgba(239, 68, 68, 0.1);">
+                        <td><strong>Crítico</strong></td>
+                        <td>❌ Não vai ao 2º turno</td>
+                        <td>❌ Não eleito</td>
+                        <td>5%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="chart-insight">
+                <strong>Interpretação:</strong> O cenário mais provável (75% combinados) é de vitória de ambos. 
+                Porém, os cenários de risco e crítico dependem diretamente do surgimento de outsider ou escândalo. 
+                Esses são os vetores de ameaça que requerem monitoramento constante.
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>💡 Conclusão Executiva</h3>
+            <p>
+                <strong>A eleição de Ibaneis ao Senado passa, necessariamente, por uma vitória robusta de Celina ao Governo.</strong>
+            </p>
+            <p>
+                Não se trata de "apoiar" Celina por gentileza política. É matemática eleitoral: 
+                a estrutura, a máquina, o palanque e a transferência de votos dependem de uma campanha de Governo forte.
+            </p>
+            <p>
+                A recomendação central é simples: <strong>tratar as duas campanhas como uma só</strong>. 
+                Recursos compartilhados, mensagem unificada, estratégia integrada.
+            </p>
+            <p>
+                Os dados são claros. A estratégia está definida. A execução determinará o resultado.
+            </p>
+        </div>
+
+        <div class="cta">
+            <h3>Próximos Passos</h3>
+            <p>Tire dúvidas sobre os dados ou solicite análises adicionais</p>
+            <a href="../resultados-stress-test/index.html#chat" class="cta-btn">💬 Falar com Helena (IA)</a>
+            <a href="resumo.html" class="cta-btn">📄 Ver Resumo Executivo</a>
+        </div>
+
+        <footer class="footer">
+            <div>
+                <strong>INTEIA</strong> - Inteligência Estratégica Eleitoral |
+                <a href="mailto:igor@inteia.com.br">igor@inteia.com.br</a> |
+                <a href="https://inteia.com.br">inteia.com.br</a>
+            </div>
+            <div>© 2026 INTEIA | Todos os direitos reservados</div>
+        </footer>
+    </div>
+
+    <a href="../resultados-stress-test/index.html#chat" class="chat-fab">
+        <span class="chat-icon">🤖</span>
+        <span class="chat-text">Fale com <strong>Helena</strong><br>IA Estratégica</span>
+    </a>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            initCharts();
+        }
+
+        (function() {
+            const saved = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+
+        let charts = {};
+
+        function initCharts() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            Chart.defaults.color = isDark ? '#94a3b8' : '#64748b';
+            Chart.defaults.borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
+            Chart.defaults.font.family = 'Inter, sans-serif';
+
+            // Chart 1: Transferência
+            if (charts.transferencia) charts.transferencia.destroy();
+            const ctx1 = document.getElementById('chartTransferencia').getContext('2d');
+            
+            const gradient1 = ctx1.createLinearGradient(0, 0, 0, 300);
+            gradient1.addColorStop(0, 'rgba(59, 130, 246, 0.3)');
+            gradient1.addColorStop(1, 'rgba(59, 130, 246, 0.02)');
+
+            charts.transferencia = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ['Celina 20%', 'Celina 25%', 'Celina 30%', 'Celina 35%', 'Celina 40%', 'Celina 45%'],
+                    datasets: [
+                        {
+                            label: 'Transferência Celina→Ibaneis (%)',
+                            data: [45, 55, 68, 78, 83, 88],
+                            borderColor: '#22c55e',
+                            backgroundColor: 'transparent',
+                            borderWidth: 3,
+                            pointRadius: 6,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Intenção de voto Ibaneis Senado (%)',
+                            data: [12, 18, 26, 33, 39, 45],
+                            borderColor: '#3b82f6',
+                            backgroundColor: gradient1,
+                            borderWidth: 3,
+                            pointRadius: 6,
+                            tension: 0.3,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top', labels: { font: { size: 11 }, usePointStyle: true } }
+                    },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: { min: 0, max: 100, ticks: { callback: v => v + '%' } }
+                    }
+                }
+            });
+
+            // Chart 2: Senado Completo
+            if (charts.senado) charts.senado.destroy();
+            const ctx2 = document.getElementById('chartSenadoCompleto').getContext('2d');
+            
+            charts.senado = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Damares (REP)', 'Ibaneis (MDB)', 'Izalci (PL)', 'Esquerda', 'Outros'],
+                    datasets: [{
+                        label: 'Projeção Senado (%)',
+                        data: [32, 28, 18, 14, 8],
+                        backgroundColor: [
+                            'rgba(34, 197, 94, 0.8)',
+                            'rgba(59, 130, 246, 0.8)',
+                            'rgba(234, 179, 8, 0.8)',
+                            'rgba(239, 68, 68, 0.6)',
+                            'rgba(148, 163, 184, 0.5)'
+                        ],
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    yMin: 25, yMax: 25,
+                                    borderColor: 'rgba(214, 158, 46, 0.8)',
+                                    borderWidth: 2,
+                                    borderDash: [6, 4],
+                                    label: {
+                                        display: true,
+                                        content: '← Limiar 2ª vaga',
+                                        position: 'end',
+                                        backgroundColor: 'rgba(214, 158, 46, 0.9)',
+                                        color: '#fff',
+                                        font: { size: 10 }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { min: 0, max: 40, ticks: { callback: v => v + '%' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // Chart 3: Cenários
+            if (charts.cenarios) charts.cenarios.destroy();
+            const ctx3 = document.getElementById('chartCenarios').getContext('2d');
+            
+            charts.cenarios = new Chart(ctx3, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Ótimo (35%)', 'Base (40%)', 'Risco (20%)', 'Crítico (5%)'],
+                    datasets: [{
+                        data: [35, 40, 20, 5],
+                        backgroundColor: [
+                            'rgba(34, 197, 94, 0.8)',
+                            'rgba(59, 130, 246, 0.8)',
+                            'rgba(234, 179, 8, 0.8)',
+                            'rgba(239, 68, 68, 0.8)'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: { position: 'right', labels: { font: { size: 12 }, padding: 16 } }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initCharts);
+    </script>
+</body>
+</html>
