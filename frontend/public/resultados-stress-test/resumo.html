@@ -192,27 +192,87 @@
         }
         .footer a { color: var(--amber); text-decoration: none; }
 
-        /* PRINT - Uma página A4 */
+        /* PRINT - Uma página A4 - ULTRA COMPACTO */
         @media print {
-            @page { size: A4 portrait; margin: 6mm; }
+            @page { size: A4 portrait; margin: 5mm 6mm; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            html, body { width: 210mm; height: 297mm; background: #fff !important; color: #000 !important; font-size: 9px; }
-            .container { max-width: 100%; padding: 0; }
+            html, body { 
+                width: 210mm; 
+                max-height: 287mm;
+                overflow: hidden;
+                background: #fff !important; 
+                color: #000 !important; 
+                font-size: 8px; 
+            }
+            .container { max-width: 100%; padding: 0; max-height: 287mm; overflow: hidden; }
             .btn, .header-actions button { display: none !important; }
             .chat-fab { display: none !important; }
-            .header { margin-bottom: 3mm; padding-bottom: 2mm; }
-            .logo-box { background: #d69e2e !important; }
-            .conclusion-box { background: #fff7ed !important; border-color: #c2410c !important; padding: 4mm; }
-            .kpis { gap: 2mm; margin-bottom: 2mm; }
-            .kpi { padding: 3mm; }
-            .kpi .value { font-size: 14pt; }
-            .charts-row { gap: 2mm; margin-bottom: 2mm; }
-            .chart-section { padding: 3mm; }
-            .chart-container { height: 70px !important; }
-            .recs { margin-bottom: 2mm; }
-            .recs-grid { gap: 1.5mm; }
-            .rec { padding: 2mm 3mm; }
-            .footer { margin-top: 2mm; padding-top: 1mm; }
+            
+            /* Header compacto */
+            .header { margin-bottom: 2mm; padding-bottom: 1.5mm; }
+            .logo-box { width: 22px !important; height: 22px !important; font-size: 8px !important; background: #d69e2e !important; }
+            .logo-text { font-size: 12px !important; }
+            .logo > div > span { font-size: 6px !important; }
+            
+            /* Title compacto */
+            .title-section { margin-bottom: 2mm; }
+            .title-section h1 { font-size: 12px !important; }
+            .title-section .date { font-size: 7px !important; }
+            
+            /* Conclusion compacto */
+            .conclusion-box { 
+                background: #fff7ed !important; 
+                border-color: #c2410c !important; 
+                padding: 2.5mm 3mm !important; 
+                margin-bottom: 2mm !important;
+            }
+            .conclusion-box p { font-size: 8px !important; line-height: 1.3 !important; }
+            
+            /* KPIs ultra compactos */
+            .kpis { gap: 1.5mm !important; margin-bottom: 2mm !important; }
+            .kpi { padding: 2mm 1.5mm !important; }
+            .kpi .value { font-size: 14px !important; }
+            .kpi .label { font-size: 6px !important; }
+            
+            /* GRÁFICOS - lado a lado, bem compactos */
+            .charts-row { 
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 2mm !important; 
+                margin-bottom: 2mm !important; 
+            }
+            .chart-section { padding: 2mm !important; }
+            .chart-section h3 { font-size: 8px !important; margin-bottom: 1mm !important; }
+            .chart-container { height: 55px !important; }
+            .chart-legend { margin-bottom: 1mm !important; }
+            .legend-item { font-size: 6px !important; }
+            .legend-line { width: 12px !important; }
+            .chart-insight { 
+                padding: 2mm !important; 
+                font-size: 6px !important; 
+                margin-top: 1mm !important;
+                background: #fef9c3 !important;
+            }
+            
+            /* Recommendations ultra compactas */
+            .recs { margin-bottom: 1.5mm !important; }
+            .recs h3 { font-size: 9px !important; margin-bottom: 1.5mm !important; }
+            .recs-grid { 
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 1.5mm !important; 
+            }
+            .rec { padding: 1.5mm 2mm !important; }
+            .rec-badge { font-size: 5px !important; padding: 0.5px 2px !important; }
+            .rec .rec-title { font-size: 7px !important; }
+            .rec .rec-desc { font-size: 6px !important; line-height: 1.2 !important; }
+            
+            /* Footer mínimo */
+            .footer { 
+                margin-top: 1.5mm !important; 
+                padding-top: 1mm !important; 
+                font-size: 6px !important;
+            }
         }
 
         /* Screen-only elements */
