@@ -469,6 +469,59 @@ inteia.com.br | igor@inteia.com.br
 © 2026 INTEIA. Todos os direitos reservados.
 ```
 
+### CSS de Impressão - Padrão 1 Página A4 Paisagem
+
+**IMPORTANTE**: Para relatórios que precisam caber em 1 página, usar este padrão testado e aprovado.
+
+**Regras Fundamentais:**
+- Usar **mm** (milímetros) para espaçamentos e tamanhos de elementos
+- Usar **pt** (pontos) para tamanhos de fonte
+- **NÃO usar px** - pixels não são precisos na impressão
+- Gráficos: altura mínima **28mm** para serem legíveis
+- Grids: forçar com `display: grid !important` e `grid-template-columns: ... !important`
+- Margens da página: **5mm** é o ideal
+- Sempre incluir `-webkit-print-color-adjust: exact`
+
+```css
+/* PRINT - 1 PAGE A4 LANDSCAPE */
+@media print {
+    @page { size: A4 landscape; margin: 5mm; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html, body { background: #fff !important; }
+    .sidebar, .topbar, .fab, .no-print { display: none !important; }
+    .main { margin: 0 !important; padding: 0 !important; }
+    .container { max-width: 100% !important; padding: 0 !important; }
+
+    /* Header compacto */
+    .header { margin-bottom: 3mm !important; }
+    .logo-box { width: 7mm !important; height: 7mm !important; font-size: 9pt !important; }
+    .logo-text { font-size: 14pt !important; }
+    .title { font-size: 12pt !important; }
+    .subtitle { font-size: 8pt !important; }
+
+    /* Gráficos - USAR mm PARA ALTURA */
+    .grid2 {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 3mm !important;
+    }
+    .chart-box { height: 28mm !important; }  /* ~106px - tamanho ideal */
+
+    /* Cards em 4 colunas */
+    .grid4 {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 2mm !important;
+    }
+    .mini h4 { font-size: 7pt !important; }
+    .mini p { font-size: 6pt !important; }
+
+    .footer { font-size: 6pt !important; }
+}
+```
+
+**Referência implementada:** `frontend/public/analise-ibaneis-2026/index.html`
+
 ---
 
 ## ÍNDICES DE NAVEGAÇÃO

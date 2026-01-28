@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEIA | Ibaneis Senado 2026 - Análise Estratégica</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --amber: #d69e2e;
+            --amber-dark: #b7791f;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --warning: #eab308;
+        }
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-muted: #64748b;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: rgba(255,255,255,0.03);
+            --border-color: rgba(255,255,255,0.08);
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        /* Screen Layout */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 50px;
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            z-index: 100;
+        }
+        .sidebar .logo { width: 32px; height: 32px; background: var(--amber); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 11px; color: #fff; }
+        .sidebar .vertical { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 10px; font-weight: 600; color: var(--amber); letter-spacing: 0.1em; }
+
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 50px;
+            right: 0;
+            height: 44px;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 16px;
+            gap: 10px;
+            z-index: 99;
+        }
+        .btn { padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 500; cursor: pointer; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 4px; }
+        .btn-primary { background: var(--amber); color: #fff; border: none; }
+
+        .main { margin-left: 50px; margin-top: 44px; padding: 16px; min-height: calc(100vh - 44px); }
+        .container { max-width: 900px; margin: 0 auto; }
+
+        /* Components */
+        .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+        .logo-section { display: flex; align-items: center; gap: 8px; }
+        .logo-box { width: 36px; height: 36px; background: var(--amber); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: #fff; }
+        .logo-text { font-size: 18px; font-weight: 800; }
+        .logo-text span { color: var(--amber); }
+        .badge { padding: 4px 10px; background: rgba(214,158,46,0.1); border: 1px solid rgba(214,158,46,0.3); border-radius: 6px; font-size: 9px; font-weight: 600; color: var(--amber); }
+        .title { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+        .subtitle { font-size: 11px; color: var(--text-muted); }
+        .meta { display: flex; gap: 12px; margin-top: 6px; font-size: 10px; color: var(--text-muted); }
+
+        /* Problem Box */
+        .problem { background: rgba(239,68,68,0.05); border: 2px solid var(--danger); border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+        .problem h2 { font-size: 12px; color: var(--danger); margin-bottom: 4px; }
+        .problem .q { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+        .gap-row { display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .gap-num { text-align: center; }
+        .gap-num .val { font-size: 28px; font-weight: 800; }
+        .gap-num .lbl { font-size: 9px; color: var(--text-muted); }
+        .gap-num.g .val { color: var(--success); }
+        .gap-num.r .val { color: var(--danger); }
+        .gap-arrow { font-size: 18px; color: var(--text-muted); }
+        .gap-lost { background: rgba(239,68,68,0.1); border: 1px solid var(--danger); border-radius: 8px; padding: 6px 12px; text-align: center; }
+        .gap-lost .val { font-size: 22px; font-weight: 800; color: var(--danger); }
+        .gap-lost .lbl { font-size: 8px; color: var(--danger); font-weight: 600; }
+
+        /* Grid */
+        .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+        .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 10px; }
+        .card-title { font-size: 10px; font-weight: 600; margin-bottom: 6px; }
+        .chart-box { height: 130px; }
+
+        /* Mini Cards */
+        .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+        .mini { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px; position: relative; padding-left: 12px; }
+        .mini::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 8px 0 0 8px; }
+        .mini.diag::before { background: var(--danger); }
+        .mini.sol::before { background: var(--success); }
+        .mini .icon { font-size: 14px; }
+        .mini h4 { font-size: 9px; font-weight: 600; margin: 2px 0; }
+        .mini p { font-size: 8px; color: var(--text-muted); line-height: 1.3; }
+        .mini .tag { font-size: 7px; font-weight: 600; margin-top: 3px; }
+        .mini.diag .tag { color: var(--danger); }
+        .mini.sol .tag { color: var(--success); }
+
+        /* Celina */
+        .celina { background: rgba(34,197,94,0.05); border: 2px solid var(--success); border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+        .celina h2 { font-size: 12px; color: var(--success); margin-bottom: 6px; }
+        .celina p { font-size: 11px; line-height: 1.5; }
+        .celina strong { color: var(--success); }
+        .celina-stats { display: flex; gap: 16px; margin-top: 8px; }
+        .celina-stat { text-align: center; }
+        .celina-stat .val { font-size: 18px; font-weight: 800; color: var(--success); }
+        .celina-stat .lbl { font-size: 8px; color: var(--text-muted); }
+
+        .footer { text-align: center; padding: 10px; font-size: 9px; color: var(--text-muted); }
+        .footer a { color: var(--amber); text-decoration: none; }
+
+        .fab { position: fixed; right: 16px; bottom: 16px; padding: 10px 14px; background: #0f172a; color: #fff; border-radius: 16px; font-size: 11px; text-decoration: none; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+        .fab span { color: var(--amber); }
+
+        /* PRINT - 1 PAGE A4 LANDSCAPE */
+        @media print {
+            @page { size: A4 landscape; margin: 5mm; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            html, body { background: #fff !important; }
+            .sidebar, .topbar, .fab { display: none !important; }
+            .main { margin: 0 !important; padding: 0 !important; }
+            .container { max-width: 100% !important; padding: 0 !important; }
+
+            /* Header compacto */
+            .header { margin-bottom: 3mm !important; }
+            .logo-box { width: 7mm !important; height: 7mm !important; font-size: 9pt !important; border-radius: 1.5mm !important; }
+            .logo-text { font-size: 14pt !important; }
+            .badge { padding: 1mm 2mm !important; font-size: 7pt !important; }
+            .title { font-size: 12pt !important; }
+            .subtitle { font-size: 8pt !important; }
+            .meta { font-size: 7pt !important; gap: 4mm !important; margin-top: 1mm !important; }
+
+            /* Problem box */
+            .problem { padding: 2mm 3mm !important; margin-bottom: 3mm !important; border-width: 0.5mm !important; }
+            .problem h2 { font-size: 8pt !important; margin-bottom: 1mm !important; }
+            .problem .q { font-size: 9pt !important; margin-bottom: 2mm !important; }
+            .gap-row { gap: 4mm !important; }
+            .gap-num .val { font-size: 18pt !important; }
+            .gap-num .lbl { font-size: 6pt !important; }
+            .gap-lost { padding: 1mm 3mm !important; }
+            .gap-lost .val { font-size: 14pt !important; }
+            .gap-lost .lbl { font-size: 6pt !important; }
+            .gap-arrow { font-size: 12pt !important; }
+
+            /* Gráficos - MAIOR */
+            .grid2 {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 3mm !important;
+                margin-bottom: 3mm !important;
+            }
+            .card { padding: 2mm !important; }
+            .card-title { font-size: 8pt !important; margin-bottom: 1mm !important; }
+            .chart-box { height: 28mm !important; }
+
+            /* Cards 4 colunas */
+            .grid4 {
+                display: grid !important;
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 2mm !important;
+                margin-bottom: 3mm !important;
+            }
+            .mini { padding: 1.5mm 1.5mm 1.5mm 3mm !important; }
+            .mini::before { width: 1mm !important; }
+            .mini .icon { font-size: 10pt !important; }
+            .mini h4 { font-size: 7pt !important; margin: 0.5mm 0 !important; }
+            .mini p { font-size: 6pt !important; line-height: 1.3 !important; }
+            .mini .tag { font-size: 6pt !important; margin-top: 0.5mm !important; }
+
+            /* Celina */
+            .celina { padding: 2mm 3mm !important; margin-bottom: 2mm !important; border-width: 0.5mm !important; }
+            .celina h2 { font-size: 8pt !important; margin-bottom: 1mm !important; }
+            .celina p { font-size: 7pt !important; line-height: 1.3 !important; }
+            .celina-stats {
+                display: flex !important;
+                flex-direction: row !important;
+                gap: 5mm !important;
+                margin-top: 2mm !important;
+            }
+            .celina-stat .val { font-size: 12pt !important; }
+            .celina-stat .lbl { font-size: 6pt !important; }
+
+            .footer { padding: 1mm !important; font-size: 6pt !important; }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main { margin-left: 0; }
+            .topbar { left: 0; }
+            .grid2, .grid4 { grid-template-columns: 1fr; }
+            .gap-row { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">IA</div>
+        <span class="vertical">INTEIA</span>
+    </aside>
+
+    <div class="topbar">
+        <a href="completo.html" class="btn">📊 Completo</a>
+        <button class="btn" onclick="toggleTheme()">🌓</button>
+        <button class="btn btn-primary" onclick="window.print()">🖨️ Imprimir</button>
+    </div>
+
+    <main class="main">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <div>
+                    <div class="logo-section">
+                        <div class="logo-box">IA</div>
+                        <div class="logo-text">INTE<span>IA</span></div>
+                    </div>
+                    <h1 class="title">Ibaneis ao Senado 2026: O Paradoxo da Aprovação</h1>
+                    <p class="subtitle">Por que 69% de aprovação não vira 30% de voto — e como resolver</p>
+                    <div class="meta">
+                        <span>📅 Janeiro 2026</span>
+                        <span>📊 1.000 eleitores</span>
+                        <span>👤 Igor Morais</span>
+                    </div>
+                </div>
+                <div class="badge">🔒 Confidencial</div>
+            </div>
+
+            <!-- Problem -->
+            <div class="problem">
+                <h2>🚨 O PROBLEMA CENTRAL</h2>
+                <p class="q">Por que um governador com 69% de aprovação tem apenas 26% de intenção de voto?</p>
+                <div class="gap-row">
+                    <div class="gap-num g">
+                        <div class="val">69%</div>
+                        <div class="lbl">Aprovação</div>
+                    </div>
+                    <div class="gap-arrow">→</div>
+                    <div class="gap-lost">
+                        <div class="val">-43pp</div>
+                        <div class="lbl">PERDA</div>
+                    </div>
+                    <div class="gap-arrow">→</div>
+                    <div class="gap-num r">
+                        <div class="val">26%</div>
+                        <div class="lbl">Voto</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="grid2">
+                <div class="card">
+                    <div class="card-title">📊 Onde Estão os 43pp Perdidos?</div>
+                    <div class="chart-box"><canvas id="c1"></canvas></div>
+                </div>
+                <div class="card">
+                    <div class="card-title">📈 Potencial de Conversão</div>
+                    <div class="chart-box"><canvas id="c2"></canvas></div>
+                </div>
+            </div>
+
+            <!-- Diagnosis -->
+            <div class="grid4">
+                <div class="mini diag">
+                    <div class="icon">🏛️</div>
+                    <h4>Crédito Difuso</h4>
+                    <p>Aprova o governo mas não associa a Ibaneis pessoalmente</p>
+                    <div class="tag">-15pp</div>
+                </div>
+                <div class="mini diag">
+                    <div class="icon">🔄</div>
+                    <h4>Fadiga Política</h4>
+                    <p>Eleitor quer renovação. "Bom, mas chega"</p>
+                    <div class="tag">-12pp</div>
+                </div>
+                <div class="mini diag">
+                    <div class="icon">❓</div>
+                    <h4>Senador ≠ Governador</h4>
+                    <p>Não entende o cargo. "Pra que ele quer?"</p>
+                    <div class="tag">-10pp</div>
+                </div>
+                <div class="mini diag">
+                    <div class="icon">⚠️</div>
+                    <h4>Rejeição (28,6%)</h4>
+                    <p>Teto de rejeição limita crescimento</p>
+                    <div class="tag">-6pp</div>
+                </div>
+            </div>
+
+            <!-- Solutions -->
+            <div class="grid4">
+                <div class="mini sol">
+                    <div class="icon">1</div>
+                    <h4>Personalizar Aprovação</h4>
+                    <p>"O governo que você aprova é IBANEIS"</p>
+                    <div class="tag">+8pp</div>
+                </div>
+                <div class="mini sol">
+                    <div class="icon">2</div>
+                    <h4>Narrativa Continuidade</h4>
+                    <p>"Celina aqui, Ibaneis defende lá"</p>
+                    <div class="tag">+10pp</div>
+                </div>
+                <div class="mini sol">
+                    <div class="icon">3</div>
+                    <h4>Explicar Senador</h4>
+                    <p>"Senador traz recursos pro DF"</p>
+                    <div class="tag">+6pp</div>
+                </div>
+                <div class="mini sol">
+                    <div class="icon">4</div>
+                    <h4>Chapa com Celina</h4>
+                    <p>Celina indica o 2º voto feminino</p>
+                    <div class="tag">+12pp</div>
+                </div>
+            </div>
+
+            <!-- Celina -->
+            <div class="celina">
+                <h2>🎯 A CHAVE: POR QUE CELINA RESOLVE</h2>
+                <p>Celina é a <strong>ponte entre aprovação e voto</strong>. Herda a aprovação do governo, domina periferias (onde Ibaneis é fraco), e indica: <strong>"Seu 2º voto é Ibaneis"</strong>. Com 2 vagas em disputa, ela fecha o 2º voto para ele.</p>
+                <div class="celina-stats">
+                    <div class="celina-stat"><div class="val">62%</div><div class="lbl">Base feminina</div></div>
+                    <div class="celina-stat"><div class="val">34%</div><div class="lbl">Periferias</div></div>
+                    <div class="celina-stat"><div class="val">2º voto</div><div class="lbl">Indicação</div></div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <strong>INTEIA</strong> — Inteligência Estratégica | CNPJ: 63.918.490/0001-20 | <a href="https://inteia.com.br">inteia.com.br</a> | igor@inteia.com.br
+            </footer>
+        </div>
+    </main>
+
+    <a href="completo.html#chat" class="fab">💬 Falar com <span>Helena IA</span></a>
+
+    <script>
+        function toggleTheme() {
+            const h = document.documentElement;
+            h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            localStorage.setItem('theme', h.getAttribute('data-theme'));
+            drawCharts();
+        }
+        const st = localStorage.getItem('theme');
+        if (st) document.documentElement.setAttribute('data-theme', st);
+
+        let c1, c2;
+        function drawCharts() {
+            const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const txt = dark ? '#f8fafc' : '#0f172a';
+            const grid = dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+
+            if (c1) c1.destroy();
+            c1 = new Chart(document.getElementById('c1'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Crédito difuso', 'Fadiga', 'Senador≠Gov', 'Rejeição'],
+                    datasets: [{ data: [15, 12, 10, 6], backgroundColor: ['#ef4444', '#eab308', '#3b82f6', '#94a3b8'], borderWidth: 0 }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { position: 'right', labels: { color: txt, font: { size: 8 }, boxWidth: 8, padding: 4 } } }
+                }
+            });
+
+            if (c2) c2.destroy();
+            c2 = new Chart(document.getElementById('c2'), {
+                type: 'bar',
+                data: {
+                    labels: ['Atual', '+Personal.', '+Narrativa', '+Senado', '+Celina'],
+                    datasets: [{ data: [26, 34, 44, 50, 62], backgroundColor: ['#ef4444', '#eab308', '#d69e2e', '#3b82f6', '#22c55e'], borderRadius: 3 }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, max: 70, ticks: { color: txt, font: { size: 7 } }, grid: { color: grid } },
+                        x: { ticks: { color: txt, font: { size: 6 } }, grid: { display: false } }
+                    }
+                }
+            });
+        }
+        document.addEventListener('DOMContentLoaded', drawCharts);
+    </script>
+</body>
+</html>
