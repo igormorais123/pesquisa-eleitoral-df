@@ -18,12 +18,12 @@ import os
 plt.style.use('seaborn-v0_8-whitegrid')
 plt.rcParams['figure.figsize'] = (16, 10)
 plt.rcParams['font.family'] = 'sans-serif'
-plt.rcParams['font.size'] = 14
-plt.rcParams['axes.titlesize'] = 18
-plt.rcParams['axes.labelsize'] = 14
-plt.rcParams['xtick.labelsize'] = 12
-plt.rcParams['ytick.labelsize'] = 12
-plt.rcParams['legend.fontsize'] = 12
+plt.rcParams['font.size'] = 18
+plt.rcParams['axes.titlesize'] = 24
+plt.rcParams['axes.labelsize'] = 18
+plt.rcParams['xtick.labelsize'] = 16
+plt.rcParams['ytick.labelsize'] = 16
+plt.rcParams['legend.fontsize'] = 16
 plt.rcParams['axes.titleweight'] = 'bold'
 
 # Cores da marca INTEIA
@@ -460,7 +460,7 @@ def grafico_9_pre_pos_mkt(df):
 
 def grafico_10_timeline_eventos(df):
     """Gráfico 10: Timeline com eventos anotados"""
-    fig, ax = plt.subplots(figsize=(18, 10))
+    fig, ax = plt.subplots(figsize=(20, 12))
 
     eventos = carregar_eventos()
 
@@ -469,7 +469,7 @@ def grafico_10_timeline_eventos(df):
 
     # Linha principal
     ax.plot(df_principal['data_pesquisa'], df_principal['celina_leao'],
-            marker='o', markersize=10, linewidth=3, color=CORES['celina'],
+            marker='o', markersize=12, linewidth=4, color=CORES['celina'],
             label='Celina Leão', zorder=5)
 
     # Adicionar eventos
@@ -493,24 +493,26 @@ def grafico_10_timeline_eventos(df):
 
             ax.annotate(evento['titulo'][:25],
                        xy=(data_evento, y_val),
-                       xytext=(10, y_offset * 15),
+                       xytext=(10, y_offset * 18),
                        textcoords='offset points',
-                       fontsize=8,
+                       fontsize=14,
+                       fontweight='bold',
                        color=cor,
                        arrowprops=dict(arrowstyle='->', color=cor, alpha=0.5),
-                       bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))
+                       bbox=dict(boxstyle='round,pad=0.4', facecolor='white', alpha=0.9, edgecolor=cor))
             y_offset = -y_offset if y_offset > 0 else -(y_offset - 1)
 
-    ax.set_xlabel('Data', fontsize=12, fontweight='bold')
-    ax.set_ylabel('Intenção de Voto (%)', fontsize=12, fontweight='bold')
+    ax.set_xlabel('Data', fontsize=18, fontweight='bold')
+    ax.set_ylabel('Intenção de Voto (%)', fontsize=18, fontweight='bold')
     ax.set_title('TIMELINE: EVOLUÇÃO COM EVENTOS RELEVANTES\nAnálise de Impacto de Acontecimentos na Intenção de Voto',
-                 fontsize=16, fontweight='bold', pad=20)
+                 fontsize=22, fontweight='bold', pad=25)
 
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%b/%Y'))
+    ax.tick_params(axis='both', labelsize=14)
     plt.xticks(rotation=45)
     ax.set_facecolor(CORES['fundo'])
     ax.grid(True, alpha=0.3)
-    ax.legend(loc='upper left')
+    ax.legend(loc='upper left', fontsize=14)
 
     adicionar_marca_agua(ax, fig)
     plt.tight_layout()
