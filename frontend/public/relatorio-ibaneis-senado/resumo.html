@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>INTEIA | Ibaneis Senado 2026 - Análise Estratégica</title>
+    <meta name="description" content="Análise de Viabilidade - Candidatura ao Senado Federal 2026">
+    <meta name="author" content="Igor Morais Vasconcelos - INTEIA">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --amber: #d69e2e;
+            --amber-light: #f6e05e;
+            --amber-dark: #b7791f;
+            --success: #22c55e;
+            --success-bg: rgba(34, 197, 94, 0.1);
+            --warning: #eab308;
+            --warning-bg: rgba(234, 179, 8, 0.1);
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.1);
+            --info: #3b82f6;
+            --info-bg: rgba(59, 130, 246, 0.1);
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            --sidebar-bg: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            --hero-bg: linear-gradient(135deg, rgba(214, 158, 46, 0.08) 0%, rgba(214, 158, 46, 0.02) 100%);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --text-light: #64748b;
+            --sidebar-bg: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+            --hero-bg: linear-gradient(135deg, rgba(214, 158, 46, 0.05) 0%, transparent 50%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Sidebar */
+        .side-mark {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid rgba(214, 158, 46, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            padding: var(--space-lg) 0;
+        }
+
+        .side-mark .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 12px;
+            color: #ffffff;
+        }
+
+        .side-mark .vertical-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--amber);
+            text-transform: uppercase;
+        }
+
+        .side-mark .author-info {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            text-align: center;
+        }
+
+        .side-mark .author-name { font-size: 9px; font-weight: 600; color: #ffffff; display: block; margin-bottom: 6px; }
+        .side-mark .author-role { font-size: 8px; color: var(--amber); display: block; }
+
+        /* Top Controls */
+        .top-controls {
+            position: fixed;
+            top: 0;
+            left: 60px;
+            right: 0;
+            height: 56px;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 var(--space-xl);
+            gap: var(--space-md);
+            z-index: 99;
+        }
+
+        .theme-toggle, .print-btn-top, .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 8px 16px;
+            border-radius: var(--radius-lg);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .theme-toggle {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .print-btn-top {
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border: none;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .nav-btn {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .nav-btn:hover { background: rgba(214, 158, 46, 0.1); color: var(--amber); }
+
+        .theme-toggle svg, .print-btn-top svg { width: 16px; height: 16px; }
+        [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+        [data-theme="light"] .theme-toggle .icon-moon { display: none; }
+
+        /* Main */
+        .main-container {
+            margin-left: 60px;
+            margin-top: 56px;
+            min-height: calc(100vh - 56px);
+            padding-bottom: 60px;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+        }
+
+        /* Hero Header */
+        .hero-header {
+            background: var(--hero-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .logo-section { display: flex; align-items: center; gap: var(--space-md); }
+
+        .logo-box {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        .logo-name { font-size: 24px; font-weight: 800; color: var(--text-primary); }
+        .logo-name .highlight { color: var(--amber); }
+        .logo-tagline { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        .classification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: rgba(214, 158, 46, 0.1);
+            border: 1px solid rgba(214, 158, 46, 0.3);
+            border-radius: var(--radius-lg);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--amber);
+            text-transform: uppercase;
+        }
+
+        .hero-title-section h1 { font-size: 22px; font-weight: 700; color: var(--text-primary); margin-bottom: var(--space-xs); }
+        .hero-title-section .subtitle { font-size: 13px; color: var(--text-muted); }
+
+        .hero-meta { display: flex; gap: var(--space-lg); margin-top: var(--space-md); flex-wrap: wrap; }
+        .meta-item { display: flex; align-items: center; gap: var(--space-sm); font-size: 12px; color: var(--text-muted); }
+
+        /* Executive Summary */
+        .executive-summary {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(214, 158, 46, 0.05) 100%);
+            border: 2px solid var(--success);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .executive-summary h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .executive-summary .conclusion-text {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .executive-summary .highlight-box {
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            margin-top: var(--space-md);
+            font-size: 14px;
+            color: var(--text-primary);
+            border-left: 4px solid var(--success);
+        }
+
+        /* KPI Cards */
+        .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); margin-bottom: var(--space-xl); }
+        .kpi-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: var(--space-md); text-align: center; }
+        .kpi-value { font-size: 26px; font-weight: 800; }
+        .kpi-value.success { color: var(--success); }
+        .kpi-value.danger { color: var(--danger); }
+        .kpi-value.warning { color: var(--warning); }
+        .kpi-value.info { color: var(--info); }
+        .kpi-label { font-size: 10px; color: var(--text-muted); font-weight: 500; }
+        .kpi-sublabel { font-size: 9px; color: var(--text-light); margin-top: 2px; }
+
+        /* Section */
+        .section { margin-bottom: var(--space-xl); }
+        .section-header { display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md); }
+        .section-title { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+
+        /* Two Column Layout */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+
+        /* Charts */
+        .chart-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: var(--space-md); }
+        .chart-title { font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-sm); }
+        .chart-container { height: 200px; position: relative; }
+
+        /* Key Points */
+        .key-points-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+        .key-point-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            position: relative;
+            padding-left: calc(var(--space-md) + 4px);
+        }
+        .key-point-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+        }
+        .key-point-card.green::before { background: var(--success); }
+        .key-point-card.amber::before { background: var(--amber); }
+        .key-point-number { font-size: 22px; font-weight: 800; color: var(--text-primary); }
+        .key-point-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+        .key-point-desc { font-size: 10px; color: var(--text-light); }
+
+        /* Action Box */
+        .action-box {
+            background: linear-gradient(135deg, rgba(214, 158, 46, 0.1) 0%, rgba(214, 158, 46, 0.02) 100%);
+            border: 2px solid var(--amber);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        .action-box h3 { font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: var(--space-sm); }
+        .action-list { list-style: none; padding: 0; margin: 0; }
+        .action-list li { font-size: 12px; color: var(--text-secondary); padding: 4px 0; padding-left: 20px; position: relative; }
+        .action-list li::before { content: '→'; position: absolute; left: 0; color: var(--amber); font-weight: 700; }
+
+        /* Footer */
+        .footer {
+            margin-top: var(--space-xl);
+            padding: var(--space-md);
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .footer-text { font-size: 10px; color: var(--text-muted); }
+        .footer-text a { color: var(--amber); text-decoration: none; }
+
+        /* Chat FAB */
+        .chat-fab {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 20px;
+            border: none;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            cursor: pointer;
+            color: #f8fafc;
+            font-weight: 600;
+            font-size: 12px;
+            transition: transform 0.2s;
+        }
+        .chat-fab:hover { transform: translateY(-2px); }
+        .chat-fab .chat-icon { font-size: 20px; }
+        .chat-fab span { color: var(--amber); }
+
+        /* Print */
+        @media print {
+            @page { size: A4 portrait; margin: 1.5cm; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            html, body { background: #fff !important; font-size: 9pt !important; }
+            .side-mark, .top-controls, .chat-fab { display: none !important; }
+            .main-container { margin: 0 !important; padding: 0 !important; }
+            .content-wrapper { max-width: 100% !important; padding: 0 !important; }
+            .hero-header { padding: 12pt !important; margin-bottom: 10pt !important; border: 1pt solid #333 !important; }
+            .executive-summary { padding: 10pt !important; margin-bottom: 10pt !important; border: 1.5pt solid #166534 !important; }
+            .kpi-grid { gap: 8pt !important; margin-bottom: 12pt !important; }
+            .kpi-card { padding: 8pt !important; border: 0.5pt solid #ccc !important; }
+            .kpi-value { font-size: 16pt !important; }
+            .two-col { gap: 10pt !important; }
+            .chart-card { padding: 8pt !important; border: 0.5pt solid #ccc !important; }
+            .chart-container { height: 150px !important; }
+            .key-points-grid { gap: 6pt !important; }
+            .key-point-card { padding: 6pt !important; border: 0.5pt solid #ccc !important; }
+            .action-box { padding: 8pt !important; margin-top: 10pt !important; }
+            .footer { padding: 8pt !important; }
+        }
+
+        @media (max-width: 768px) {
+            .side-mark { display: none; }
+            .main-container { margin-left: 0; }
+            .top-controls { left: 0; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .two-col { grid-template-columns: 1fr; }
+            .key-points-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Side Mark -->
+    <aside class="side-mark">
+        <div class="logo-icon">IA</div>
+        <span class="vertical-text">INTEIA</span>
+        <div class="author-info">
+            <span class="author-name">Igor Morais</span>
+            <span class="author-role">Presidente</span>
+        </div>
+    </aside>
+
+    <!-- Top Controls -->
+    <div class="top-controls">
+        <a href="index.html" class="nav-btn">📊 Relatório Completo</a>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="print-btn-top" onclick="window.print()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+            Imprimir A4
+        </button>
+    </div>
+
+    <!-- Main -->
+    <main class="main-container">
+        <div class="content-wrapper">
+
+            <!-- Hero Header -->
+            <header class="hero-header">
+                <div class="hero-top">
+                    <div class="logo-section">
+                        <div class="logo-box">IA</div>
+                        <div>
+                            <div class="logo-name">INTE<span class="highlight">IA</span></div>
+                            <div class="logo-tagline">Inteligência Estratégica</div>
+                        </div>
+                    </div>
+                    <div class="classification-badge">
+                        🔒 Confidencial - Uso Estratégico
+                    </div>
+                </div>
+                <div class="hero-title-section">
+                    <h1>Análise Estratégica: Ibaneis Rocha ao Senado 2026</h1>
+                    <p class="subtitle">Disputa por 2 vagas: viabilidade e interdependência com Celina Leão</p>
+                </div>
+                <div class="hero-meta">
+                    <div class="meta-item">📅 Janeiro 2026</div>
+                    <div class="meta-item">📊 Base: 1.000 eleitores + Institutos</div>
+                    <div class="meta-item">👤 Igor Morais Vasconcelos</div>
+                </div>
+            </header>
+
+            <!-- Executive Summary -->
+            <div class="executive-summary">
+                <h2>✅ CONCLUSÃO ESTRATÉGICA</h2>
+                <p class="conclusion-text">
+                    <strong>Com 2 vagas em disputa, Ibaneis pode ser eleito junto com Michelle — mas só com Celina.</strong>
+                    Em 2026 o DF elege 2 senadores. Michelle deve ocupar a 1ª vaga (voto bolsonarista).
+                    Ibaneis disputa a 2ª vaga contra outros candidatos. A transferência de votos de Celina é decisiva.
+                </p>
+                <div class="highlight-box">
+                    <strong>Fato incontroverso:</strong> Celina domina Ceilândia (34%), Samambaia (33%) e Taguatinga (31%).
+                    Com chapa casada, Ibaneis garante a 2ª vaga. Sem Celina, outro candidato pode ultrapassá-lo.
+                </div>
+            </div>
+
+            <!-- KPIs -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-value warning">21-31%</div>
+                    <div class="kpi-label">Ibaneis Senado</div>
+                    <div class="kpi-sublabel">Real Time Big Data</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value danger">28-34%</div>
+                    <div class="kpi-label">Michelle (1ª vaga)</div>
+                    <div class="kpi-sublabel">Voto bolsonarista garantido</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value success">40-50%</div>
+                    <div class="kpi-label">Celina Gov.</div>
+                    <div class="kpi-sublabel">Favorita ao governo</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value info">62%</div>
+                    <div class="kpi-label">Voto Feminino</div>
+                    <div class="kpi-sublabel">Base de Celina</div>
+                </div>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div class="two-col">
+                <!-- Chart 1 -->
+                <div class="chart-card">
+                    <div class="chart-title">📊 Disputa pelas 2 Vagas - Senado DF 2026</div>
+                    <div class="chart-container">
+                        <canvas id="chartSenado"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 2 -->
+                <div class="chart-card">
+                    <div class="chart-title">📈 Transferência de Voto por Região</div>
+                    <div class="chart-container">
+                        <canvas id="chartTransferencia"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Points -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-title">🎯 Por Que Ibaneis Precisa de Celina para Garantir a 2ª Vaga</span>
+                </div>
+                <div class="key-points-grid">
+                    <div class="key-point-card green">
+                        <div class="key-point-label">Domínio Periferias</div>
+                        <div class="key-point-number">34%</div>
+                        <div class="key-point-desc">Celina lidera nas regiões mais populosas do DF</div>
+                    </div>
+                    <div class="key-point-card green">
+                        <div class="key-point-label">Base Feminina</div>
+                        <div class="key-point-number">62%</div>
+                        <div class="key-point-desc">Mulheres de Celina fecham a 2ª vaga para Ibaneis por indicação</div>
+                    </div>
+                    <div class="key-point-card amber">
+                        <div class="key-point-label">Chapa Casada</div>
+                        <div class="key-point-number">2 votos</div>
+                        <div class="key-point-desc">Eleitor vota em 2 senadores — Celina indica Ibaneis como 2º nome</div>
+                    </div>
+                    <div class="key-point-card amber">
+                        <div class="key-point-label">Disputa da 2ª Vaga</div>
+                        <div class="key-point-number">Aberta</div>
+                        <div class="key-point-desc">Ibaneis disputa 2ª vaga com candidatos de centro e esquerda</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Box -->
+            <div class="action-box">
+                <h3>⚡ ESTRATÉGIA: GARANTIR A 2ª VAGA</h3>
+                <ul class="action-list">
+                    <li><strong>Chapa casada explícita:</strong> "Vote Celina governadora + Ibaneis senador"</li>
+                    <li><strong>Conquistar evangélicos:</strong> Celina na frente consolidando voto evangélico moderado</li>
+                    <li><strong>Indicação direta:</strong> Celina pede voto para Ibaneis como "seu senador"</li>
+                    <li><strong>Não atacar Michelle:</strong> São 2 vagas — foco em garantir a 2ª, não disputar a 1ª</li>
+                </ul>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-text">
+                    <strong>INTEIA</strong> — Inteligência Estratégica | CNPJ: 63.918.490/0001-20<br>
+                    <a href="https://inteia.com.br">inteia.com.br</a> | igor@inteia.com.br | Janeiro 2026
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Chat FAB -->
+    <a href="index.html#chat" class="chat-fab">
+        <span class="chat-icon">💬</span>
+        Falar com <span>Helena IA</span>
+    </a>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+            localStorage.setItem('theme', html.getAttribute('data-theme'));
+            updateCharts();
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // Charts
+        let chartSenado, chartTransferencia;
+
+        function getChartColors() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            return {
+                text: isDark ? '#f8fafc' : '#0f172a',
+                grid: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                amber: '#d69e2e',
+                danger: '#ef4444',
+                success: '#22c55e',
+                info: '#3b82f6'
+            };
+        }
+
+        function updateCharts() {
+            const colors = getChartColors();
+
+            // Chart 1 - Senado (2 vagas)
+            if (chartSenado) chartSenado.destroy();
+            const ctx1 = document.getElementById('chartSenado').getContext('2d');
+            chartSenado = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['Michelle\n(1ª vaga)', 'Ibaneis\n(2ª vaga?)', 'Izalci', 'Outros'],
+                    datasets: [{
+                        label: 'Intenção de Voto (%)',
+                        data: [31, 26, 18, 25],
+                        backgroundColor: [colors.danger, colors.amber, colors.info, colors.grid],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => ctx.parsed.y + '%'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 40,
+                            ticks: { color: colors.text, font: { size: 10 } },
+                            grid: { color: colors.grid }
+                        },
+                        x: {
+                            ticks: { color: colors.text, font: { size: 9 } },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // Chart 2 - Transferência
+            if (chartTransferencia) chartTransferencia.destroy();
+            const ctx2 = document.getElementById('chartTransferencia').getContext('2d');
+            chartTransferencia = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Ceilândia', 'Samambaia', 'Taguatinga', 'Plano Piloto'],
+                    datasets: [{
+                        label: 'Celina',
+                        data: [34, 33, 31, 18],
+                        backgroundColor: colors.success,
+                        borderRadius: 4
+                    }, {
+                        label: 'Potencial Ibaneis',
+                        data: [28, 27, 26, 22],
+                        backgroundColor: colors.amber,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: colors.text, font: { size: 10 }, boxWidth: 12 }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 40,
+                            ticks: { color: colors.text, font: { size: 10 } },
+                            grid: { color: colors.grid }
+                        },
+                        x: {
+                            ticks: { color: colors.text, font: { size: 9 } },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', updateCharts);
+    </script>
+</body>
+</html>
