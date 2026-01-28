@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INTEIA | Resumo Executivo - Stress Test 2026</title>
+    <meta name="description" content="Resumo Executivo - Stress Test Eleitoral Governador DF 2026">
+    <meta name="author" content="Igor Morais Vasconcelos - INTEIA">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -12,205 +14,326 @@
             --amber: #d69e2e;
             --amber-light: #f6e05e;
             --amber-dark: #b7791f;
-            --orange-dark: #c2410c;
             --success: #22c55e;
+            --success-bg: rgba(34, 197, 94, 0.1);
             --warning: #eab308;
+            --warning-bg: rgba(234, 179, 8, 0.1);
             --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.1);
             --info: #3b82f6;
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
         }
-        [data-theme="dark"] {
-            --bg: #0f172a;
-            --bg-card: rgba(255,255,255,0.03);
-            --bg-secondary: #1e293b;
-            --border: rgba(255,255,255,0.08);
-            --text: #f8fafc;
-            --text-muted: #94a3b8;
-        }
+
         [data-theme="light"] {
-            --bg: #f8fafc;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
             --bg-card: #ffffff;
-            --bg-secondary: #f1f5f9;
-            --border: #e2e8f0;
-            --text: #0f172a;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
             --text-muted: #64748b;
+            --sidebar-bg: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            --hero-bg: linear-gradient(135deg, rgba(214, 158, 46, 0.08) 0%, rgba(214, 158, 46, 0.02) 100%);
         }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --sidebar-bg: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+            --hero-bg: linear-gradient(135deg, rgba(214, 158, 46, 0.05) 0%, transparent 50%);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.5;
-            font-size: 12px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
-        .container { max-width: 297mm; margin: 0 auto; padding: 6mm 8mm; }
 
-        /* Header */
-        .header {
+        /* Sidebar */
+        .side-mark {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 56px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid rgba(214, 158, 46, 0.2);
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            margin-bottom: 4mm;
-            padding-bottom: 3mm;
-            border-bottom: 1px solid var(--border);
+            justify-content: space-between;
+            z-index: 100;
+            padding: var(--space-lg) 0;
         }
-        .logo { display: flex; align-items: center; gap: 10px; }
-        .logo-box {
-            width: 32px; height: 32px;
-            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
-            border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 11px; color: #fff;
-            box-shadow: 0 2px 8px rgba(214,158,46,0.3);
+        .side-mark .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 11px;
+            color: #ffffff;
         }
-        .logo-info { display: flex; flex-direction: column; }
-        .logo-text { font-size: 16px; font-weight: 800; letter-spacing: -0.02em; }
-        .logo-text span { color: var(--amber); }
-        .logo-tagline { font-size: 8px; color: var(--text-muted); font-weight: 500; letter-spacing: 0.02em; }
-        .header-actions { display: flex; gap: 6px; align-items: center; }
-        .badge {
-            padding: 4px 8px;
-            background: rgba(214,158,46,0.1);
-            border: 1px solid rgba(214,158,46,0.3);
-            border-radius: 4px;
-            font-size: 9px;
+        .side-mark .vertical-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 10px;
             font-weight: 600;
+            letter-spacing: 0.12em;
             color: var(--amber);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
-        .btn {
+
+        /* Top Controls */
+        .top-controls {
+            position: fixed;
+            top: 0;
+            left: 56px;
+            right: 0;
+            height: 52px;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             align-items: center;
-            gap: 4px;
-            padding: 6px 10px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            color: var(--text-muted);
-            font-size: 10px;
+            justify-content: flex-end;
+            padding: 0 var(--space-lg);
+            gap: var(--space-sm);
+            z-index: 99;
+        }
+        .btn-control {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: var(--radius-md);
+            font-size: 12px;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
         }
-        .btn:hover { background: var(--bg-secondary); border-color: var(--amber); color: var(--text); }
-        .btn svg { width: 14px; height: 14px; }
-
-        /* Title */
-        .title-section { margin-bottom: 4mm; }
-        .title-section h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 2px; }
-        .title-section .date { font-size: 10px; color: var(--text-muted); }
-
-        /* Conclusion Box */
-        .conclusion-box {
-            background: linear-gradient(135deg, rgba(194,65,12,0.08), rgba(234,179,8,0.02));
-            border: 1px solid var(--orange-dark);
-            border-radius: 8px;
-            padding: 10px 14px;
-            margin-bottom: 4mm;
+        .btn-control:hover { background: var(--bg-card); border-color: var(--amber); }
+        .btn-control svg { width: 14px; height: 14px; }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border: none;
+            color: #ffffff;
+            font-weight: 600;
         }
-        .conclusion-box p { font-size: 11px; line-height: 1.5; }
-        .conclusion-box strong { color: var(--orange-dark); font-weight: 600; }
+        .btn-primary:hover { opacity: 0.9; }
+        [data-theme="dark"] .icon-sun { display: none; }
+        [data-theme="light"] .icon-moon { display: none; }
 
-        /* KPIs */
-        .kpis {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 4mm;
-            margin-bottom: 4mm;
+        /* Main Container */
+        .main-container {
+            margin-left: 56px;
+            margin-top: 52px;
+            padding: var(--space-lg);
+            max-width: 1100px;
         }
-        .kpi {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 12px;
+
+        /* Hero Header */
+        .hero-header {
+            background: var(--hero-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        .logo-section { display: flex; align-items: center; gap: var(--space-md); }
+        .logo-box {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(214, 158, 46, 0.25);
+        }
+        .logo-text .logo-name { font-size: 18px; font-weight: 800; }
+        .logo-text .logo-name .highlight { color: var(--amber); }
+        .logo-text .logo-tagline { font-size: 11px; color: var(--text-muted); display: block; margin-top: 2px; }
+        .logo-text .logo-stanford { font-size: 9px; color: var(--amber); opacity: 0.9; display: block; margin-top: 2px; }
+        .author-section { text-align: right; }
+        .author-section .author-label { font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        .author-section .author-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+        .author-section .author-title { font-size: 10px; color: var(--amber); }
+        .hero-content { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: var(--space-md); }
+        .hero-title h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+        .hero-title .subtitle { font-size: 12px; color: var(--text-muted); margin-bottom: var(--space-sm); }
+        .hero-meta { display: flex; gap: var(--space-md); flex-wrap: wrap; }
+        .meta-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-secondary); }
+        .meta-item svg { width: 14px; height: 14px; color: var(--amber); }
+        .badge-confidencial {
+            padding: 6px 12px;
+            background: rgba(214,158,46,0.1);
+            border: 1px solid rgba(214,158,46,0.3);
+            border-radius: var(--radius-md);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--amber);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* Executive Summary */
+        .executive-summary {
+            background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(239,68,68,0.02) 100%);
+            border: 1px solid var(--danger);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+        .executive-summary h2 {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: var(--space-md);
+        }
+        .executive-summary h2 svg { width: 18px; height: 18px; }
+        .conclusion-text { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-lg); }
+        .conclusion-text strong { color: var(--text-primary); }
+        .key-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+        .key-point {
             text-align: center;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            padding: var(--space-md);
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
         }
-        .kpi:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        .kpi .value { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
-        .kpi .label { font-size: 9px; color: var(--text-muted); line-height: 1.3; margin-top: 2px; }
-        .kpi.alert .value { color: var(--orange-dark); }
-        .kpi.success .value { color: var(--success); }
-        .kpi.warning .value { color: var(--warning); }
+        .key-point .number { font-size: 26px; font-weight: 800; }
+        .key-point .label { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+        .key-point.danger .number { color: var(--danger); }
+        .key-point.warning .number { color: var(--warning); }
+        .key-point.success .number { color: var(--success); }
 
-        /* Charts Row */
-        .charts-row {
+        /* Charts Section */
+        .charts-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4mm;
-            margin-bottom: 4mm;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
         }
-        .chart-section {
+        .chart-card {
             background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: var(--space-md);
         }
-        .chart-section h3 { font-size: 11px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
-        .chart-container { height: 100px; position: relative; }
+        .chart-card h3 {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+        .chart-container { height: 140px; position: relative; }
+        .chart-legend { display: flex; gap: var(--space-md); margin-bottom: var(--space-sm); }
+        .legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--text-muted); }
+        .legend-line { width: 16px; height: 3px; border-radius: 2px; }
         .chart-insight {
-            margin-top: 6px;
-            padding: 6px 8px;
-            background: var(--bg-secondary);
-            border-radius: 6px;
-            font-size: 9px;
+            margin-top: var(--space-sm);
+            padding: var(--space-sm);
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            font-size: 10px;
             color: var(--text-muted);
-            line-height: 1.4;
         }
-        .chart-insight strong { color: var(--amber); font-weight: 600; }
-
-        /* Legend */
-        .chart-legend {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 6px;
-        }
-        .legend-item { display: flex; align-items: center; gap: 5px; font-size: 9px; color: var(--text-muted); }
-        .legend-line { width: 18px; height: 3px; border-radius: 2px; }
-        .legend-line.celina { background: linear-gradient(90deg, #60a5fa, #3b82f6); }
+        .chart-insight strong { color: var(--amber); }
+        .chart-source { font-size: 8px; color: var(--text-muted); margin-top: 6px; opacity: 0.8; }
 
         /* Recommendations */
-        .recs { margin-bottom: 4mm; }
-        .recs h3 { font-size: 12px; font-weight: 600; margin-bottom: 3mm; }
-        .recs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
-        .rec {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 10px;
-            border-left: 3px solid var(--orange-dark);
-            transition: transform 0.15s ease;
+        .section { margin-bottom: var(--space-lg); }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
         }
-        .rec:hover { transform: translateX(2px); }
-        .rec.important { border-left-color: var(--warning); }
-        .rec .rec-title { font-weight: 600; font-size: 10px; margin-bottom: 2px; color: var(--text); }
-        .rec .rec-desc { font-size: 9px; color: var(--text-muted); line-height: 1.4; }
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .section-icon svg { width: 16px; height: 16px; color: #fff; }
+        .section-title { font-size: 14px; font-weight: 700; }
+        .section-subtitle { font-size: 11px; color: var(--text-muted); }
+        .recs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
+        .rec-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            border-left: 3px solid var(--danger);
+        }
+        .rec-card.important { border-left-color: var(--warning); }
         .rec-badge {
             display: inline-block;
-            font-size: 7px;
+            font-size: 9px;
             font-weight: 700;
             text-transform: uppercase;
-            padding: 2px 5px;
-            border-radius: 3px;
-            margin-bottom: 4px;
-            letter-spacing: 0.03em;
+            padding: 3px 8px;
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--space-sm);
         }
-        .rec-badge.urgent { background: rgba(194,65,12,0.12); color: var(--orange-dark); }
-        .rec-badge.important { background: rgba(234,179,8,0.15); color: #a16207; }
+        .rec-badge.urgent { background: var(--danger-bg); color: var(--danger); }
+        .rec-badge.important { background: var(--warning-bg); color: var(--warning); }
+        .rec-card h4 { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+        .rec-card p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
 
         /* Footer */
         .footer {
-            margin-top: 4mm;
-            padding-top: 3mm;
-            border-top: 1px solid var(--border);
+            padding: var(--space-md);
+            border-top: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 9px;
+            font-size: 10px;
             color: var(--text-muted);
         }
-        .footer a { color: var(--amber); text-decoration: none; font-weight: 500; }
-        .footer a:hover { text-decoration: underline; }
+        .footer a { color: var(--amber); text-decoration: none; }
 
         /* Chat FAB */
         .chat-fab {
@@ -233,9 +356,8 @@
             transition: all 0.2s ease;
         }
         .chat-fab:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
-        .chat-fab svg { width: 20px; height: 20px; color: var(--amber); }
-        .chat-fab .chat-text { line-height: 1.3; }
-        .chat-fab .chat-text strong { color: var(--amber); }
+        .chat-fab svg { width: 18px; height: 18px; color: var(--amber); }
+        .chat-fab strong { color: var(--amber); }
 
         /* Chat Panel */
         .chat-panel {
@@ -243,9 +365,9 @@
             right: 20px;
             bottom: 85px;
             width: min(400px, calc(100vw - 40px));
-            height: min(500px, calc(100vh - 120px));
-            border-radius: 16px;
-            border: 1px solid var(--border);
+            height: min(480px, calc(100vh - 120px));
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-color);
             background: var(--bg-card);
             box-shadow: 0 20px 60px rgba(0,0,0,0.25);
             display: none;
@@ -261,8 +383,7 @@
             align-items: center;
             justify-content: space-between;
         }
-        .chat-head .title { display: flex; flex-direction: column; }
-        .chat-head .title strong { font-size: 14px; color: #fff; }
+        .chat-head .title strong { font-size: 14px; color: #fff; display: block; }
         .chat-head .title .mini { font-size: 10px; color: rgba(255,255,255,0.8); }
         .chat-head .close-btn {
             background: rgba(255,255,255,0.2);
@@ -275,9 +396,7 @@
             align-items: center;
             justify-content: center;
             color: #fff;
-            transition: background 0.15s ease;
         }
-        .chat-head .close-btn:hover { background: rgba(255,255,255,0.3); }
         .chat-body {
             flex: 1;
             overflow-y: auto;
@@ -294,8 +413,8 @@
             line-height: 1.5;
         }
         .msg.assistant {
-            background: var(--bg-secondary);
-            color: var(--text);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
             align-self: flex-start;
             border-bottom-left-radius: 4px;
         }
@@ -305,220 +424,181 @@
             align-self: flex-end;
             border-bottom-right-radius: 4px;
         }
-        .msg.loading { opacity: 0.7; }
         .chat-foot {
             padding: 12px 16px;
-            border-top: 1px solid var(--border);
-            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
         }
         .chat-foot .row { display: flex; gap: 8px; }
         .chat-foot textarea {
             flex: 1;
             resize: none;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 10px;
             font-size: 12px;
             font-family: inherit;
-            background: var(--bg);
-            color: var(--text);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
             outline: none;
-            transition: border-color 0.15s ease;
         }
         .chat-foot textarea:focus { border-color: var(--amber); }
         .chat-foot button {
             padding: 10px 16px;
             background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
             border: none;
-            border-radius: 8px;
+            border-radius: var(--radius-md);
             color: #fff;
             font-weight: 600;
             font-size: 12px;
             cursor: pointer;
-            transition: transform 0.15s ease;
         }
-        .chat-foot button:hover { transform: scale(1.02); }
         .chat-foot .hint { font-size: 9px; color: var(--text-muted); margin-top: 8px; text-align: center; }
 
-        /* PRINT - A4 LANDSCAPE */
+        /* PRINT */
         @media print {
             @page { size: A4 landscape; margin: 5mm; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            html, body {
-                width: 297mm;
-                height: 210mm;
-                max-height: 200mm;
-                overflow: hidden;
-                background: #fff !important;
-                color: #0f172a !important;
-                font-size: 9pt;
-            }
-            .container { max-width: 287mm; padding: 0; margin: 0 auto; }
-            .btn, .header-actions button { display: none !important; }
-            .chat-fab, .chat-panel { display: none !important; }
-
-            .header { margin-bottom: 3mm; padding-bottom: 2mm; }
-            .logo-box { width: 26px !important; height: 26px !important; font-size: 10px !important; background: #d69e2e !important; }
-            .logo-text { font-size: 14pt !important; }
-            .logo-tagline { font-size: 7pt !important; }
-
-            .title-section { margin-bottom: 3mm; }
-            .title-section h1 { font-size: 14pt !important; font-weight: 700 !important; }
-            .title-section .date { font-size: 8pt !important; }
-
-            .conclusion-box {
-                background: #fff7ed !important;
-                border: 1.5pt solid #c2410c !important;
-                padding: 3mm 4mm !important;
-                margin-bottom: 3mm !important;
-                border-radius: 4pt !important;
-            }
-            .conclusion-box p { font-size: 9pt !important; line-height: 1.4 !important; }
-            .conclusion-box strong { color: #c2410c !important; }
-
-            .kpis {
-                display: grid !important;
-                grid-template-columns: repeat(3, 1fr) !important;
-                gap: 3mm !important;
-                margin-bottom: 3mm !important;
-            }
-            .kpi {
-                padding: 3mm !important;
-                background: #f8fafc !important;
-                border: 0.5pt solid #e2e8f0 !important;
-                border-radius: 4pt !important;
-            }
-            .kpi .value { font-size: 18pt !important; font-weight: 700 !important; }
-            .kpi.alert .value { color: #c2410c !important; }
-            .kpi.success .value { color: #16a34a !important; }
-            .kpi.warning .value { color: #ca8a04 !important; }
-            .kpi .label { font-size: 7pt !important; color: #64748b !important; }
-
-            .charts-row {
-                display: grid !important;
-                grid-template-columns: 1fr 1fr !important;
-                gap: 4mm !important;
-                margin-bottom: 3mm !important;
-            }
-            .chart-section {
-                padding: 3mm !important;
-                background: #f8fafc !important;
-                border: 0.5pt solid #e2e8f0 !important;
-                border-radius: 4pt !important;
-            }
-            .chart-section h3 { font-size: 9pt !important; font-weight: 600 !important; margin-bottom: 2mm !important; }
+            html, body { background: #fff !important; color: #0f172a !important; font-size: 9pt; }
+            .side-mark, .top-controls, .chat-fab, .chat-panel { display: none !important; }
+            .main-container { margin: 0 !important; padding: 0 !important; max-width: 287mm !important; }
+            .hero-header { padding: 3mm !important; margin-bottom: 3mm !important; background: #fef9c3 !important; border: 1pt solid #d69e2e !important; }
+            .hero-top { margin-bottom: 2mm !important; }
+            .logo-box { width: 28px !important; height: 28px !important; font-size: 10px !important; background: #d69e2e !important; }
+            .hero-title h1 { font-size: 14pt !important; }
+            .executive-summary { padding: 3mm !important; margin-bottom: 3mm !important; background: #fef2f2 !important; border: 1pt solid #ef4444 !important; }
+            .executive-summary h2 { font-size: 10pt !important; }
+            .conclusion-text { font-size: 9pt !important; }
+            .key-points { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 2mm !important; }
+            .key-point { padding: 2mm !important; }
+            .key-point .number { font-size: 16pt !important; }
+            .key-point .label { font-size: 7pt !important; }
+            .charts-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 3mm !important; margin-bottom: 3mm !important; }
+            .chart-card { padding: 2mm !important; }
+            .chart-card h3 { font-size: 9pt !important; }
             .chart-container { height: 28mm !important; }
-            .chart-legend { margin-bottom: 1.5mm !important; }
-            .legend-item { font-size: 7pt !important; }
-            .legend-line { width: 14px !important; height: 3px !important; }
-            .chart-insight {
-                padding: 2mm 3mm !important;
-                font-size: 7pt !important;
-                margin-top: 2mm !important;
-                background: #fef9c3 !important;
-                border-radius: 3pt !important;
-            }
-            .chart-insight strong { color: #0f172a !important; }
-
-            .recs { margin-bottom: 2mm !important; }
-            .recs h3 { font-size: 10pt !important; font-weight: 600 !important; margin-bottom: 2mm !important; }
-            .recs-grid {
-                display: grid !important;
-                grid-template-columns: 1fr 1fr !important;
-                gap: 2mm !important;
-            }
-            .rec {
-                padding: 2mm 3mm !important;
-                background: #fff !important;
-                border-radius: 3pt !important;
-            }
-            .rec.urgent, .rec:not(.important) { border-left: 2pt solid #c2410c !important; }
-            .rec.important { border-left: 2pt solid #eab308 !important; }
-            .rec-badge { font-size: 6pt !important; padding: 1px 3px !important; }
-            .rec-badge.urgent { background: #fff7ed !important; color: #c2410c !important; }
-            .rec-badge.important { background: #fef9c3 !important; color: #a16207 !important; }
-            .rec .rec-title { font-size: 8pt !important; font-weight: 600 !important; }
-            .rec .rec-desc { font-size: 7pt !important; line-height: 1.3 !important; color: #64748b !important; }
-
-            .footer {
-                margin-top: 2mm !important;
-                padding-top: 2mm !important;
-                font-size: 7pt !important;
-                border-top: 0.5pt solid #e2e8f0 !important;
-            }
-            .footer a { color: #d69e2e !important; }
+            .chart-insight { font-size: 7pt !important; padding: 1.5mm !important; background: #fef9c3 !important; }
+            .section { margin-bottom: 3mm !important; }
+            .section-header { margin-bottom: 2mm !important; }
+            .section-title { font-size: 10pt !important; }
+            .recs-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 2mm !important; }
+            .rec-card { padding: 2mm !important; }
+            .rec-card h4 { font-size: 9pt !important; }
+            .rec-card p { font-size: 8pt !important; }
+            .footer { padding: 2mm !important; font-size: 7pt !important; }
         }
 
         /* Mobile */
         @media (max-width: 768px) {
-            .container { padding: 1rem; }
-            .kpis { grid-template-columns: 1fr; }
-            .charts-row { grid-template-columns: 1fr; }
+            .side-mark { display: none; }
+            .top-controls { left: 0; }
+            .main-container { margin-left: 0; padding: var(--space-md); }
+            .key-points { grid-template-columns: 1fr; }
+            .charts-grid { grid-template-columns: 1fr; }
             .recs-grid { grid-template-columns: 1fr; }
-            .chat-fab { right: 12px; bottom: 12px; padding: 10px 14px; }
-            .chat-fab .chat-text { display: none; }
-            .chat-panel { right: 10px; bottom: 70px; width: calc(100vw - 20px); }
+            .hero-top { flex-direction: column; }
+            .author-section { text-align: left; }
+            .chat-fab { padding: 10px; }
+            .chat-fab span { display: none; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo">
-                <div class="logo-box">IA</div>
-                <div class="logo-info">
-                    <div class="logo-text">INTE<span>IA</span></div>
-                    <span class="logo-tagline">Tecnologia de Stanford. Agora no Brasil.</span>
+    <!-- Sidebar -->
+    <aside class="side-mark">
+        <div class="logo-icon">IA</div>
+        <span class="vertical-text">INTEIA</span>
+        <span class="vertical-text" style="font-size:8px;opacity:0.7;">2026</span>
+    </aside>
+
+    <!-- Top Controls -->
+    <div class="top-controls">
+        <a href="index.html" class="btn-control">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Ver Completo
+        </a>
+        <button class="btn-control" onclick="toggleTheme()">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            Tema
+        </button>
+        <button class="btn-control btn-primary" onclick="window.print()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Imprimir
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Hero Header -->
+        <header class="hero-header">
+            <div class="hero-top">
+                <div class="logo-section">
+                    <div class="logo-box">IA</div>
+                    <div class="logo-text">
+                        <span class="logo-name">INTE<span class="highlight">IA</span></span>
+                        <span class="logo-tagline">Inteligencia Estrategica</span>
+                        <span class="logo-stanford">Tecnologia de Stanford. Agora no Brasil.</span>
+                    </div>
+                </div>
+                <div class="author-section">
+                    <div class="author-label">Pesquisador Responsavel</div>
+                    <div class="author-name">Igor Morais Vasconcelos</div>
+                    <div class="author-title">Presidente INTEIA</div>
                 </div>
             </div>
-            <div class="header-actions">
-                <button class="btn" onclick="window.print()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-                    Imprimir
-                </button>
-                <button class="btn" onclick="toggleTheme()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-                    Tema
-                </button>
-                <div class="badge">Confidencial</div>
+            <div class="hero-content">
+                <div class="hero-title">
+                    <h1>Stress Test Eleitoral 2026</h1>
+                    <p class="subtitle">Resumo Executivo - Analise de Resiliencia do Voto</p>
+                    <div class="hero-meta">
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
+                            <span>28 Janeiro 2026</span>
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                            <span>1.000 Eleitores</span>
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            <span>4 Modulos Stress</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="badge-confidencial">Confidencial</div>
             </div>
         </header>
 
-        <!-- Title -->
-        <div class="title-section">
-            <h1>Stress Test Eleitoral 2026</h1>
-            <div class="date">Resumo Executivo | 28 Janeiro 2026 | 1.000 Eleitores Sinteticos</div>
-        </div>
-
-        <!-- Conclusion -->
-        <div class="conclusion-box">
-            <p>
+        <!-- Executive Summary -->
+        <section class="executive-summary">
+            <h2>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                CONCLUSAO - Helena, Agente de IA Avancada
+            </h2>
+            <p class="conclusion-text">
                 <strong>Voce lidera, mas seu voto e fragil.</strong> A maioria vota em voce para barrar o outro lado, nao por conviccao.
                 Se aparecer alguem "novo" e "tecnico", mais da metade considera trocar.
-                Se surgir escandalo, dois em cada tres abandonam voce.
+                Se surgir escandalo, <strong>dois em cada tres abandonam voce</strong>.
             </p>
-        </div>
-
-        <!-- KPIs -->
-        <div class="kpis">
-            <div class="kpi alert">
-                <div class="value">57%</div>
-                <div class="label">trocariam por alguem "de fora"</div>
+            <div class="key-points">
+                <div class="key-point danger">
+                    <div class="number">57%</div>
+                    <div class="label">Trocariam por alguem "de fora"</div>
+                </div>
+                <div class="key-point warning">
+                    <div class="number">67%</div>
+                    <div class="label">Abandonam se escandalo</div>
+                </div>
+                <div class="key-point success">
+                    <div class="number">83%</div>
+                    <div class="label">Resistem a ataques</div>
+                </div>
             </div>
-            <div class="kpi warning">
-                <div class="value">67%</div>
-                <div class="label">abandonam se escandalo</div>
-            </div>
-            <div class="kpi success">
-                <div class="value">83%</div>
-                <div class="label">resistem a ataques</div>
-            </div>
-        </div>
+        </section>
 
         <!-- Charts -->
-        <div class="charts-row">
-            <div class="chart-section">
+        <div class="charts-grid">
+            <div class="chart-card">
                 <h3>Correlacao: Presenca na Midia x Votos</h3>
                 <div class="chart-container">
                     <canvas id="chartCorrelacao"></canvas>
@@ -528,10 +608,10 @@
                 </div>
             </div>
 
-            <div class="chart-section">
+            <div class="chart-card">
                 <h3>Evolucao da Intencao de Voto - 2025</h3>
                 <div class="chart-legend">
-                    <div class="legend-item"><div class="legend-line celina"></div><span>Celina Leao</span></div>
+                    <div class="legend-item"><div class="legend-line" style="background:#3b82f6;"></div><span>Celina Leao</span></div>
                     <div class="legend-item"><div class="legend-line" style="background:#22c55e;"></div><span>Ibaneis</span></div>
                     <div class="legend-item"><div class="legend-line" style="background:#ef4444;"></div><span>PT (Grass)</span></div>
                 </div>
@@ -541,38 +621,46 @@
                 <div class="chart-insight">
                     <strong>Tendencia:</strong> Celina em crescimento consistente (36% a 48%). Ibaneis estavel. PT estagnado 10-14%.
                 </div>
-                <div style="font-size:7px;color:var(--text-muted);margin-top:4px;">
-                    Fonte: Parana Pesquisas, Real Time Big Data, Colectta (2025). Cenarios comparaveis sem fragmentacao.
+                <div class="chart-source">
+                    Fonte: Parana Pesquisas, Real Time Big Data, Colectta (2025). Cenarios comparaveis.
                 </div>
             </div>
         </div>
 
         <!-- Recommendations -->
-        <div class="recs">
-            <h3>O que fazer agora</h3>
-            <div class="recs-grid">
-                <div class="rec">
-                    <span class="rec-badge urgent">Urgente</span>
-                    <div class="rec-title">Fique atenta a nomes "novos"</div>
-                    <div class="rec-desc">Empresario, juiz, apresentador - qualquer figura "de fora" e ameaca.</div>
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                 </div>
-                <div class="rec">
-                    <span class="rec-badge urgent">Urgente</span>
-                    <div class="rec-title">Zero tolerancia com irregularidades</div>
-                    <div class="rec-desc">Qualquer denuncia pode derrubar 67% da base. Auditoria interna agora.</div>
-                </div>
-                <div class="rec important">
-                    <span class="rec-badge important">Importante</span>
-                    <div class="rec-title">De motivos para votarem EM voce</div>
-                    <div class="rec-desc">Hoje votam para evitar a esquerda. Mostre entregas concretas.</div>
-                </div>
-                <div class="rec important">
-                    <span class="rec-badge important">Importante</span>
-                    <div class="rec-title">Nao desapareca da midia</div>
-                    <div class="rec-desc">Quando some, numeros caem. Presenca constante ate outubro.</div>
+                <div>
+                    <h2 class="section-title">O que fazer agora</h2>
+                    <p class="section-subtitle">Acoes em ordem de urgencia</p>
                 </div>
             </div>
-        </div>
+            <div class="recs-grid">
+                <div class="rec-card">
+                    <span class="rec-badge urgent">Urgente</span>
+                    <h4>Fique atenta a nomes "novos"</h4>
+                    <p>Empresario, juiz, apresentador - qualquer figura "de fora" e ameaca real. 57% migrariam.</p>
+                </div>
+                <div class="rec-card">
+                    <span class="rec-badge urgent">Urgente</span>
+                    <h4>Zero tolerancia com irregularidades</h4>
+                    <p>Qualquer denuncia pode derrubar 67% da base. Auditoria interna preventiva agora.</p>
+                </div>
+                <div class="rec-card important">
+                    <span class="rec-badge important">Importante</span>
+                    <h4>De motivos para votarem EM voce</h4>
+                    <p>Hoje votam para evitar a esquerda, nao por adesao. Mostre entregas concretas.</p>
+                </div>
+                <div class="rec-card important">
+                    <span class="rec-badge important">Importante</span>
+                    <h4>Nao desapareca da midia</h4>
+                    <p>Quando some, numeros caem. Presenca constante ate outubro e fundamental.</p>
+                </div>
+            </div>
+        </section>
 
         <!-- Footer -->
         <footer class="footer">
@@ -584,7 +672,7 @@
     <!-- Chat FAB -->
     <button class="chat-fab" onclick="toggleChat()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-        <span class="chat-text">Falar com <strong>Helena</strong></span>
+        <span>Falar com <strong>Helena</strong></span>
     </button>
 
     <!-- Chat Panel -->
@@ -629,63 +717,60 @@
             Chart.defaults.color = isDark ? '#94a3b8' : '#64748b';
             Chart.defaults.borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
             Chart.defaults.font.family = 'Inter, sans-serif';
-            Chart.defaults.font.size = 9;
+            Chart.defaults.font.size = 10;
 
             // Chart 1: Correlacao
             if (chart1) chart1.destroy();
-            const meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez','Jan'];
-            const presenca = [98,107,145,125,137,160,125,195,230,180,145,170,155];
-            const intencao = [33,35,37,35,33,31,28,37,49,32,36,40,40];
+            const meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+            const presenca = [98,107,145,125,137,160,155,195,230,180,165,170];
+            const intencao = [34,35,37,39,41,43,44,46,49,48,48,48];
 
             chart1 = new Chart(document.getElementById('chartCorrelacao').getContext('2d'), {
                 type: 'bar',
                 data: {
                     labels: meses,
                     datasets: [
-                        { label: 'Presenca', data: presenca, backgroundColor: isDark ? 'rgba(51,65,85,0.8)' : 'rgba(71,85,105,0.6)', borderRadius: 3, yAxisID: 'y', order: 2 },
-                        { label: 'Votos %', data: intencao, type: 'line', borderColor: '#c2410c', backgroundColor: '#c2410c', pointRadius: 2, tension: 0.3, yAxisID: 'y1', order: 1 }
+                        { label: 'Presenca', data: presenca, backgroundColor: isDark ? 'rgba(51,65,85,0.8)' : 'rgba(71,85,105,0.5)', borderRadius: 3, yAxisID: 'y', order: 2 },
+                        { label: 'Votos %', data: intencao, type: 'line', borderColor: '#c2410c', backgroundColor: '#c2410c', pointRadius: 3, tension: 0.3, yAxisID: 'y1', order: 1, borderWidth: 2 }
                     ]
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        x: { grid: { display: false }, ticks: { font: { size: 8 } } },
-                        y: { position: 'left', grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 8 } } },
-                        y1: { position: 'right', min: 0, max: 60, grid: { drawOnChartArea: false }, ticks: { font: { size: 8 } } }
+                        x: { grid: { display: false }, ticks: { font: { size: 9 } } },
+                        y: { position: 'left', grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 9 } } },
+                        y1: { position: 'right', min: 0, max: 60, grid: { drawOnChartArea: false }, ticks: { font: { size: 9 } } }
                     }
                 }
             });
 
-            // Chart 2: Evolucao 2025
+            // Chart 2: Evolucao 2025 - Dados reais
             if (chart2) chart2.destroy();
             const ctx2 = document.getElementById('chartProjecao').getContext('2d');
-            const gradient = ctx2.createLinearGradient(0, 0, 0, 100);
-            gradient.addColorStop(0, 'rgba(59,130,246,0.25)');
+            const gradient = ctx2.createLinearGradient(0, 0, 0, 140);
+            gradient.addColorStop(0, 'rgba(59,130,246,0.3)');
             gradient.addColorStop(1, 'rgba(59,130,246,0.02)');
 
-            // Dados baseados em pesquisas reais 2025 (cenarios comparaveis, sem fragmentacao por Arruda)
-            // Mar: 36.6% (Parana), Jun: 42.8% (Parana), Ago: 45.6% (Parana), Set: 49% (RTBD), Dez: 48% (media RTBD/Colectta)
-            // Grass: Mar 11.2%, Jun 9.8%, Ago 11.9%, Set 14%, Dez ~13%
             chart2 = new Chart(ctx2, {
                 type: 'line',
                 data: {
-                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    labels: meses,
                     datasets: [
-                        // Celina: tendencia de crescimento real - Jan-Fev interpolado, Mar 36.6, Jun 42.8, Ago 45.6, Set 49, Dez ~48
-                        { label: 'Celina Leao', data: [34,35,37,39,41,43,44,46,49,48,48,48], borderColor: '#3b82f6', backgroundColor: gradient, borderWidth: 2, pointRadius: 3, tension: 0.4, fill: true },
-                        // Ibaneis (Senado): estavel com leve crescimento
+                        // Celina: tendencia real - Mar 36.6, Jun 42.8, Ago 45.6, Set 49, Dez ~48
+                        { label: 'Celina Leao', data: [34,35,37,39,41,43,44,46,49,48,48,48], borderColor: '#3b82f6', backgroundColor: gradient, borderWidth: 2.5, pointRadius: 4, tension: 0.4, fill: true },
+                        // Ibaneis: estavel
                         { label: 'Ibaneis', data: [24,25,26,26,27,27,28,28,29,29,30,30], borderColor: '#22c55e', borderWidth: 2, pointRadius: 3, tension: 0.4, fill: false },
-                        // Grass (PT): estagnado entre 10-14% conforme pesquisas
-                        { label: 'PT (Grass)', data: [11,11,11,10,10,10,11,12,14,13,13,13], borderColor: '#ef4444', borderWidth: 1.5, borderDash: [4,3], pointRadius: 2, tension: 0.4, fill: false }
+                        // Grass (PT): estagnado
+                        { label: 'PT (Grass)', data: [11,11,11,10,10,10,11,12,14,13,13,13], borderColor: '#ef4444', borderWidth: 2, borderDash: [5,3], pointRadius: 3, tension: 0.4, fill: false }
                     ]
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        x: { grid: { display: false }, ticks: { font: { size: 8 } } },
-                        y: { min: 0, max: 55, grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 8 }, callback: v => v+'%' } }
+                        x: { grid: { display: false }, ticks: { font: { size: 9 } } },
+                        y: { min: 0, max: 55, grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 9 }, callback: v => v+'%' } }
                     }
                 }
             });
@@ -721,8 +806,9 @@
             addMsg('user', txt);
 
             const loadingDiv = document.createElement('div');
-            loadingDiv.className = 'msg assistant loading';
+            loadingDiv.className = 'msg assistant';
             loadingDiv.textContent = 'Analisando...';
+            loadingDiv.style.opacity = '0.7';
             chatBody.appendChild(loadingDiv);
             chatBody.scrollTop = chatBody.scrollHeight;
 
@@ -732,27 +818,18 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ pergunta: txt })
                 });
-
                 const data = await res.json();
                 loadingDiv.remove();
-
-                if (data.error) {
-                    addMsg('assistant', 'Erro: ' + data.error);
-                } else {
-                    addMsg('assistant', data.resposta || 'Erro ao processar resposta.');
-                }
+                addMsg('assistant', data.resposta || data.error || 'Erro ao processar.');
             } catch (e) {
                 loadingDiv.remove();
-                addMsg('assistant', 'Erro de conexao com o servidor. Tente novamente.');
+                addMsg('assistant', 'Erro de conexao. Tente novamente.');
             }
         }
 
         chatSend.addEventListener('click', onSend);
         chatInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                onSend();
-            }
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); onSend(); }
         });
     </script>
 </body>
