@@ -147,6 +147,33 @@
             margin-bottom: 0.75rem;
         }
         .chart-container { height: 280px; position: relative; }
+
+        /* Legenda customizada */
+        .chart-legend {
+            display: flex;
+            gap: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+        .legend-line {
+            width: 28px;
+            height: 4px;
+            border-radius: 2px;
+        }
+        .legend-line.celina {
+            background: linear-gradient(90deg, #60a5fa, #3b82f6);
+        }
+        .legend-line.oposicao {
+            background: repeating-linear-gradient(90deg, #9ca3af, #9ca3af 4px, transparent 4px, transparent 8px);
+            height: 3px;
+        }
+
         .chart-insight {
             margin-top: 0.75rem;
             padding: 0.75rem;
@@ -393,6 +420,19 @@
         <!-- Projeção -->
         <div class="chart-section">
             <h3>Projeção: Evolução da Intenção de Voto</h3>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.5;">
+                A projeção abaixo mostra o <strong style="color: var(--text);">"Ponto de Inflexão"</strong> (Mês 4), onde a injeção de recursos operacionais permite um descolamento dos adversários.
+            </p>
+            <div class="chart-legend">
+                <div class="legend-item">
+                    <div class="legend-line celina"></div>
+                    <span>Celina Leão</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-line oposicao"></div>
+                    <span>Oposição Unificada</span>
+                </div>
+            </div>
             <div class="chart-container" style="height: 220px;">
                 <canvas id="chartProjecao"></canvas>
             </div>
@@ -625,8 +665,7 @@
                     interaction: { mode: 'index', intersect: false },
                     plugins: {
                         legend: {
-                            position: 'top',
-                            labels: { font: { size: 10 }, usePointStyle: true, padding: 12 }
+                            display: false
                         },
                         tooltip: {
                             backgroundColor: '#1e293b',
