@@ -127,9 +127,17 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
             </div>
           )}
 
-          {/* Badge INTEIA - visível em desktop */}
-          <div className="hidden lg:block">
+          {/* Badge INTEIA com slogan - visível em desktop */}
+          <div className="hidden lg:flex items-center gap-4">
             <InteiaBadge variant="gradient" size="sm" />
+            <div className="flex flex-col">
+              <span className="text-[10px] text-muted-foreground leading-tight">
+                Primeiro sistema de pesquisa eleitoral validada com agentes de IA
+              </span>
+              <span className="text-[9px] text-amber-500/70 leading-tight">
+                Tecnologia de Stanford. Agora no Brasil.
+              </span>
+            </div>
           </div>
         </div>
 
