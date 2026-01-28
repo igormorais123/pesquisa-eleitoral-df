@@ -443,8 +443,8 @@ export default function HubPage() {
             {/* User */}
             <div className="flex items-center gap-3">
               <div className="hidden sm:block text-right">
-                <p className="text-sm font-medium text-foreground">{usuario?.nome || 'Usuário'}</p>
-                <p className="text-xs text-muted-foreground">{usuario?.email || ''}</p>
+                <p className="text-sm font-medium text-foreground">professorigor</p>
+                <p className="text-xs text-muted-foreground">professorigor</p>
               </div>
               <button
                 onClick={() => logout()}
