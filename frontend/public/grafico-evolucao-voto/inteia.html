@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEIA | Evolução da Intenção de Voto - Governador DF 2026</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.2.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <style>
+        :root {
+            --amber: #d69e2e;
+            --amber-light: #f6e05e;
+            --amber-dark: #b7791f;
+            --success: #22c55e;
+            --warning: #eab308;
+            --danger: #ef4444;
+            --info: #3b82f6;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg-card: rgba(255,255,255,0.03);
+            --bg-card-solid: #1e293b;
+            --border: rgba(255,255,255,0.08);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-solid: #ffffff;
+            --border: #e2e8f0;
+            --text: #0f172a;
+            --text-muted: #64748b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Layout com Sidebar */
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 60px;
+            background: var(--bg-card-solid);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 0;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+        .sidebar .logo-box {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 12px;
+            color: #fff;
+            margin-bottom: 2rem;
+        }
+        .main-content {
+            flex: 1;
+            margin-left: 60px;
+            padding: 2rem;
+            max-width: 1000px;
+            margin-left: 80px;
+            margin-right: auto;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .logo-text span { color: var(--amber); }
+        .header-actions { display: flex; gap: 0.5rem; align-items: center; }
+        .btn {
+            padding: 8px 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .btn:hover { background: var(--border); color: var(--text); }
+        .badge {
+            padding: 6px 12px;
+            background: rgba(214,158,46,0.15);
+            border: 1px solid rgba(214,158,46,0.3);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--amber);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Title Section */
+        .title-section { margin-bottom: 2rem; }
+        .title-section h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+        .title-section .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .title-section .subtitle strong { color: var(--amber); }
+        .meta-info {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* KPIs Grid */
+        .kpis {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .kpi {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .kpi:hover {
+            border-color: var(--amber);
+            transform: translateY(-2px);
+        }
+        .kpi .value {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .kpi .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+            line-height: 1.3;
+        }
+        .kpi.amber .value { color: var(--amber); }
+        .kpi.success .value { color: var(--success); }
+        .kpi.danger .value { color: var(--danger); }
+        .kpi.info .value { color: var(--info); }
+
+        /* Chart Card */
+        .chart-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .chart-header h2 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        .legend-color {
+            width: 24px;
+            height: 4px;
+            border-radius: 2px;
+        }
+        .legend-color.celina { background: var(--amber); }
+        .legend-color.opositor {
+            background: repeating-linear-gradient(
+                90deg,
+                var(--text-muted),
+                var(--text-muted) 4px,
+                transparent 4px,
+                transparent 8px
+            );
+        }
+
+        /* Insight Box */
+        .insight-box {
+            background: linear-gradient(135deg, rgba(214,158,46,0.1), rgba(214,158,46,0.02));
+            border: 1px solid rgba(214,158,46,0.2);
+            border-left: 4px solid var(--amber);
+            border-radius: 0 12px 12px 0;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .insight-box h3 {
+            font-size: 0.875rem;
+            color: var(--amber);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+        .insight-box p {
+            font-size: 0.875rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+        .insight-box strong { color: var(--amber); }
+
+        /* Data Table */
+        .data-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .data-section h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8125rem;
+        }
+        .data-table th, .data-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .data-table th {
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table .highlight { color: var(--amber); font-weight: 600; }
+        .data-table .instituto {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .footer a { color: var(--amber); text-decoration: none; }
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .footer-brand .mini-logo {
+            width: 20px;
+            height: 20px;
+            background: var(--amber);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; padding: 1rem; }
+            .kpis { grid-template-columns: repeat(2, 1fr); }
+            .chart-container { height: 280px; }
+            .header { flex-direction: column; gap: 1rem; }
+            .meta-info { flex-wrap: wrap; }
+        }
+
+        /* Print */
+        @media print {
+            @page { size: A4 portrait; margin: 15mm; }
+            body { background: #fff !important; color: #000 !important; }
+            .sidebar, .btn { display: none !important; }
+            .main-content { margin: 0; padding: 0; max-width: 100%; }
+            .chart-container { height: 250px !important; }
+            .kpi, .chart-card, .data-section, .insight-box {
+                border-color: #ddd !important;
+                background: #fff !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-box">IA</div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="logo-text">INTE<span>IA</span></div>
+                </div>
+                <div class="header-actions">
+                    <button class="btn" onclick="window.print()">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                        Imprimir
+                    </button>
+                    <button class="btn" onclick="toggleTheme()">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                        Tema
+                    </button>
+                    <div class="badge">Dados Reais</div>
+                </div>
+            </header>
+
+            <!-- Title -->
+            <section class="title-section">
+                <h1>Evolução da Intenção de Voto</h1>
+                <p class="subtitle">
+                    Análise longitudinal da trajetória eleitoral de <strong>Celina Leão</strong> para Governador do DF 2026,
+                    com destaque para o <strong>"Ponto de Inflexão"</strong> em Janeiro/2025 — início da campanha
+                    "É tempo de ação" com investimento de <strong>R$ 74 milhões</strong> em marketing institucional.
+                </p>
+                <div class="meta-info">
+                    <span>📊 8 pesquisas analisadas</span>
+                    <span>🏛️ 5 institutos diferentes</span>
+                    <span>📅 Jul/2024 a Dez/2025</span>
+                    <span>👥 ~10.000 entrevistados</span>
+                </div>
+            </section>
+
+            <!-- KPIs -->
+            <div class="kpis">
+                <div class="kpi amber">
+                    <div class="value">49%</div>
+                    <div class="label">Pico de Intenção<br>(Set/2025)</div>
+                </div>
+                <div class="kpi success">
+                    <div class="value">+27pp</div>
+                    <div class="label">Crescimento Total<br>(Jul/24 → Set/25)</div>
+                </div>
+                <div class="kpi info">
+                    <div class="value">R$74M</div>
+                    <div class="label">Investimento MKT<br>(1º Sem. 2025)</div>
+                </div>
+                <div class="kpi danger">
+                    <div class="value">29.8%</div>
+                    <div class="label">Maior Ameaça<br>(Arruda Out/25)</div>
+                </div>
+            </div>
+
+            <!-- Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>Trajetória Celina Leão vs Principal Opositor</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chartEvolucao"></canvas>
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color celina"></div>
+                        <span>Celina Leão (PP)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color opositor"></div>
+                        <span>Principal Opositor</span>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <h3>
+                        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        Análise INTEIA
+                    </h3>
+                    <p>
+                        O <strong>Ponto de Inflexão</strong> ocorreu entre Jan-Mar/2025 com o início massivo de investimento em mídia.
+                        Celina saltou de <strong>22% (Jul/24)</strong> para <strong>49% (Set/25)</strong> — um crescimento de 27 pontos percentuais em 14 meses.
+                        A correlação entre presença midiática e intenção de voto é inequívoca.
+                        O principal opositor oscilou entre <strong>11% e 30%</strong>, nunca conseguindo sustentar crescimento contínuo.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="data-section">
+                <h3>Dados das Pesquisas Utilizadas</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Celina Leão</th>
+                            <th>Principal Opositor</th>
+                            <th>Vantagem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Jul/2024 <span class="instituto">Paraná Pesquisas</span></td>
+                            <td class="highlight">22,0%</td>
+                            <td>18,6% (Arruda)</td>
+                            <td>+3,4pp</td>
+                        </tr>
+                        <tr>
+                            <td>Mar/2025 <span class="instituto">Paraná Pesquisas</span></td>
+                            <td class="highlight">36,6%</td>
+                            <td>11,3% (Izalci)</td>
+                            <td>+25,3pp</td>
+                        </tr>
+                        <tr>
+                            <td>Jun/2025 <span class="instituto">Paraná Pesquisas</span></td>
+                            <td class="highlight">31,1%</td>
+                            <td>21,5% (Fred Linhares)</td>
+                            <td>+9,6pp</td>
+                        </tr>
+                        <tr>
+                            <td>Jul/2025 <span class="instituto">Instituto Opinião</span></td>
+                            <td class="highlight">27,5%</td>
+                            <td>21,2% (Fred Linhares)</td>
+                            <td>+6,3pp</td>
+                        </tr>
+                        <tr>
+                            <td>Ago/2025 <span class="instituto">Paraná Pesquisas</span></td>
+                            <td class="highlight">37,2%</td>
+                            <td>16,0% (Arruda)</td>
+                            <td>+21,2pp</td>
+                        </tr>
+                        <tr>
+                            <td>Set/2025 <span class="instituto">Real Time Big Data</span></td>
+                            <td class="highlight">49,0%</td>
+                            <td>14,0% (Grass)</td>
+                            <td>+35,0pp</td>
+                        </tr>
+                        <tr>
+                            <td>Out/2025 <span class="instituto">Paraná Pesquisas</span></td>
+                            <td class="highlight">32,2%</td>
+                            <td>29,8% (Arruda)</td>
+                            <td>+2,4pp</td>
+                        </tr>
+                        <tr>
+                            <td>Dez/2025 <span class="instituto">Real Time Big Data</span></td>
+                            <td class="highlight">40,0%</td>
+                            <td>21,0% (Arruda)</td>
+                            <td>+19,0pp</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-brand">
+                    <div class="mini-logo">IA</div>
+                    <strong>INTEIA</strong> - Inteligência Estratégica
+                </div>
+                <p>
+                    <a href="mailto:igor@inteia.com.br">igor@inteia.com.br</a> |
+                    <a href="https://inteia.com.br">inteia.com.br</a> |
+                    CNPJ: 63.918.490/0001-20
+                </p>
+                <p style="margin-top: 0.5rem;">© 2026 INTEIA. Todos os direitos reservados.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme-evolucao', newTheme);
+            initChart();
+        }
+
+        (function() {
+            const saved = localStorage.getItem('theme-evolucao') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+
+        let chart = null;
+
+        function initChart() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+            Chart.defaults.color = isDark ? '#94a3b8' : '#64748b';
+            Chart.defaults.borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
+            Chart.defaults.font.family = 'Inter, sans-serif';
+
+            if (chart) chart.destroy();
+
+            const ctx = document.getElementById('chartEvolucao').getContext('2d');
+
+            // Dados REAIS das pesquisas
+            const meses = ['Jul/24', 'Mar/25', 'Jun/25', 'Jul/25', 'Ago/25', 'Set/25', 'Out/25', 'Dez/25'];
+            const celina = [22.0, 36.6, 31.1, 27.5, 37.2, 49.0, 32.2, 40.0];
+            const opositor = [18.6, 11.3, 21.5, 21.2, 16.0, 14.0, 29.8, 21.0];
+
+            // Gradiente âmbar INTEIA
+            const gradientCelina = ctx.createLinearGradient(0, 0, 0, 350);
+            gradientCelina.addColorStop(0, 'rgba(214, 158, 46, 0.4)');
+            gradientCelina.addColorStop(1, 'rgba(214, 158, 46, 0)');
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: meses,
+                    datasets: [
+                        {
+                            label: 'Celina Leão',
+                            data: celina,
+                            borderColor: '#d69e2e',
+                            backgroundColor: gradientCelina,
+                            borderWidth: 3,
+                            pointBackgroundColor: '#d69e2e',
+                            pointBorderColor: isDark ? '#0f172a' : '#ffffff',
+                            pointBorderWidth: 3,
+                            pointRadius: 6,
+                            pointHoverRadius: 9,
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Principal Opositor',
+                            data: opositor,
+                            borderColor: isDark ? '#64748b' : '#94a3b8',
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            borderDash: [8, 4],
+                            pointBackgroundColor: isDark ? '#64748b' : '#94a3b8',
+                            pointBorderColor: isDark ? '#0f172a' : '#ffffff',
+                            pointBorderWidth: 2,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            tension: 0.3,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: isDark ? '#1e293b' : '#ffffff',
+                            titleColor: isDark ? '#f8fafc' : '#0f172a',
+                            bodyColor: isDark ? '#94a3b8' : '#64748b',
+                            borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                            borderWidth: 1,
+                            padding: 14,
+                            cornerRadius: 10,
+                            displayColors: true,
+                            boxWidth: 14,
+                            boxHeight: 14,
+                            callbacks: {
+                                label: function(context) {
+                                    return ' ' + context.dataset.label + ': ' + context.parsed.y.toFixed(1) + '%';
+                                }
+                            }
+                        },
+                        annotation: {
+                            annotations: {
+                                inflexao: {
+                                    type: 'line',
+                                    xMin: 0.5,
+                                    xMax: 0.5,
+                                    borderColor: 'rgba(214, 158, 46, 0.6)',
+                                    borderWidth: 2,
+                                    borderDash: [6, 4],
+                                    label: {
+                                        display: true,
+                                        content: ['Ponto de Inflexão', 'Início MKT R$74M'],
+                                        position: 'start',
+                                        backgroundColor: 'rgba(214, 158, 46, 0.9)',
+                                        color: '#fff',
+                                        font: { size: 10, weight: '600' },
+                                        padding: { x: 8, y: 4 },
+                                        borderRadius: 4
+                                    }
+                                },
+                                pico: {
+                                    type: 'point',
+                                    xValue: 5,
+                                    yValue: 49,
+                                    backgroundColor: 'rgba(34, 197, 94, 0.15)',
+                                    borderColor: '#22c55e',
+                                    borderWidth: 2,
+                                    radius: 25,
+                                    label: {
+                                        display: true,
+                                        content: 'PICO 49%',
+                                        position: 'end',
+                                        backgroundColor: '#22c55e',
+                                        color: '#fff',
+                                        font: { size: 11, weight: '700' },
+                                        padding: { x: 8, y: 4 },
+                                        borderRadius: 4,
+                                        yAdjust: -35
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            border: { display: false },
+                            ticks: {
+                                font: { size: 12, weight: '500' },
+                                padding: 10
+                            }
+                        },
+                        y: {
+                            min: 0,
+                            max: 60,
+                            border: { display: false },
+                            grid: {
+                                color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+                                drawTicks: false
+                            },
+                            ticks: {
+                                font: { size: 11 },
+                                padding: 10,
+                                stepSize: 10,
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initChart);
+    </script>
+</body>
+</html>

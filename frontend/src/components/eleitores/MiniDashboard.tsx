@@ -171,7 +171,7 @@ export function MiniDashboard({
           <h3 className="font-medium text-foreground">Resumo do Grupo Selecionado</h3>
         </div>
         <Link
-          href="/"
+          href="/dashboard"
           className="text-xs text-primary hover:underline flex items-center gap-1"
         >
           Ver dashboard completo

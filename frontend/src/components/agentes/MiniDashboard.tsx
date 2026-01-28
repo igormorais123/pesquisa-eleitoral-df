@@ -190,7 +190,7 @@ export function MiniDashboard({ eleitores, totalGeral }: MiniDashboardProps) {
             </div>
           </div>
           <Link
-            href="/"
+            href="/dashboard"
             className="text-xs text-primary hover:text-primary/80 flex items-center gap-1 transition-colors"
           >
             Dashboard

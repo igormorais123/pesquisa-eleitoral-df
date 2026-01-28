@@ -24,14 +24,14 @@ const DADOS_EMPRESA = {
 export function InteiaFooter({ variant = 'compact', className }: InteiaFooterProps) {
   if (variant === 'minimal') {
     return (
-      <footer className={cn('border-t border-border py-4', className)}>
+      <footer className={cn('border-t py-4 border-border/50 bg-background/50 dark:border-white/5 dark:bg-slate-950/50', className)}>
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <InteiaLogo size="xs" variant="full" />
             <span className="hidden sm:inline">|</span>
             <span className="text-xs">{new Date().getFullYear()}</span>
           </div>
-          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+          <div className="flex items-center gap-4 text-xs text-muted-foreground/70">
             <span>CNPJ: {DADOS_EMPRESA.cnpj}</span>
             <span className="hidden sm:inline">|</span>
             <span className="hidden sm:inline">{DADOS_EMPRESA.presidente}</span>

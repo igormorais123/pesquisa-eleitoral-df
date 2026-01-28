@@ -216,7 +216,21 @@ export async function filtrarParlamentares(filtros: {
 
 // Sessões
 export async function salvarSessao(sessao: SessaoEntrevista): Promise<void> {
+  // Sempre salva localmente primeiro
   await db.sessoes.put(sessao);
+
+  // Se a sessão está concluída, sincroniza com o servidor
+  if (sessao.status === 'concluida') {
+    try {
+      // Import dinâmico para evitar circular dependency
+      const { salvarSessao: salvarNoServidor } = await import('@/services/sessoes-api');
+      await salvarNoServidor(sessao);
+      console.log('[Sync] Sessão concluída salva no servidor:', sessao.id);
+    } catch (error) {
+      console.warn('[Sync] Erro ao salvar sessão no servidor (será sincronizada depois):', error);
+      // Não falha - a sincronização bidirecional pegará depois
+    }
+  }
 }
 
 export async function obterSessao(id: string): Promise<SessaoEntrevista | undefined> {

@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className="light" suppressHydrationWarning>
+    <html lang="pt-BR" className="dark" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -35,11 +35,11 @@ export default function RootLayout({
                 try {
                   var stored = localStorage.getItem('pesquisa-eleitoral-theme');
                   var parsed = stored ? JSON.parse(stored) : null;
-                  var theme = parsed?.state?.theme || 'light';
+                  var theme = parsed?.state?.theme || 'dark';
                   document.documentElement.classList.remove('light', 'dark');
                   document.documentElement.classList.add(theme);
                 } catch(e) {
-                  document.documentElement.classList.add('light');
+                  document.documentElement.classList.add('dark');
                 }
               })();
             `,

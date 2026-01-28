@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   MessageSquare,
   Plus,
@@ -12,13 +12,25 @@ import {
   BarChart3,
   Coins,
   User,
+  RefreshCw,
+  Cloud,
 } from 'lucide-react';
 import { db } from '@/lib/db/dexie';
 import { formatarDataHora, formatarMoeda, cn } from '@/lib/utils';
 import { useAuthStore } from '@/stores/auth-store';
+import { useSyncSessoes } from '@/hooks/use-sync-sessoes';
 
 export default function PaginaEntrevistas() {
   const { usuario } = useAuthStore();
+  const queryClient = useQueryClient();
+  const { sincronizar, carregando: sincronizando, ultimaSync } = useSyncSessoes();
+
+  // Função para sincronizar e atualizar a lista
+  const handleSincronizar = async () => {
+    await sincronizar();
+    // Invalidar a query para recarregar os dados
+    queryClient.invalidateQueries({ queryKey: ['sessoes'] });
+  };
 
   // Buscar sessões do banco - filtrar por usuário logado
   const { data: sessoes, isLoading } = useQuery({
@@ -51,13 +63,26 @@ export default function PaginaEntrevistas() {
           </p>
         </div>
 
-        <Link
-          href="/entrevistas/nova"
-          className="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors"
-        >
-          <Plus className="w-5 h-5" />
-          Nova Entrevista
-        </Link>
+        <div className="flex items-center gap-3">
+          {/* Botão de Sincronização */}
+          <button
+            onClick={handleSincronizar}
+            disabled={sincronizando}
+            className="flex items-center gap-2 px-4 py-3 bg-secondary hover:bg-secondary/80 text-secondary-foreground rounded-lg transition-colors disabled:opacity-50"
+            title={ultimaSync ? `Última sync: ${formatarDataHora(ultimaSync.toISOString())}` : 'Sincronizar com a nuvem'}
+          >
+            <Cloud className={cn('w-5 h-5', sincronizando && 'animate-pulse')} />
+            <RefreshCw className={cn('w-4 h-4', sincronizando && 'animate-spin')} />
+          </button>
+
+          <Link
+            href="/entrevistas/nova"
+            className="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors"
+          >
+            <Plus className="w-5 h-5" />
+            Nova Entrevista
+          </Link>
+        </div>
       </div>
 
       {/* Cards de resumo */}

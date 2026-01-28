@@ -608,18 +608,18 @@ function ModalDetalhes({ detalhes, onClose }: ModalDetalhesProps) {
           </h3>
           <div className="grid grid-cols-2 gap-3">
             {[
-              { icon: Wallet, label: 'Classe', value: detalhes.perfilDominante.classeEconomica, color: 'emerald' },
-              { icon: GraduationCap, label: 'Escolaridade', value: detalhes.perfilDominante.escolaridade, color: 'blue' },
-              { icon: Church, label: 'Religião', value: detalhes.perfilDominante.religiao, color: 'amber' },
-              { icon: Vote, label: 'Orientação', value: detalhes.perfilDominante.orientacaoPolitica, color: 'rose' },
-              { icon: Calendar, label: 'Faixa Etária', value: detalhes.perfilDominante.faixaEtaria, color: 'cyan' },
-            ].map(({ icon: Icon, label, value, color }) => (
+              { icon: Wallet, label: 'Classe', value: detalhes.perfilDominante.classeEconomica, iconColor: 'text-emerald-400' },
+              { icon: GraduationCap, label: 'Escolaridade', value: detalhes.perfilDominante.escolaridade, iconColor: 'text-blue-400' },
+              { icon: Church, label: 'Religião', value: detalhes.perfilDominante.religiao, iconColor: 'text-amber-400' },
+              { icon: Vote, label: 'Orientação', value: detalhes.perfilDominante.orientacaoPolitica, iconColor: 'text-rose-400' },
+              { icon: Calendar, label: 'Faixa Etária', value: detalhes.perfilDominante.faixaEtaria, iconColor: 'text-cyan-400' },
+            ].map(({ icon: Icon, label, value, iconColor }) => (
               <div
                 key={label}
                 className="p-3 bg-slate-800/50 rounded-xl border border-slate-700/50"
               >
                 <div className="flex items-center gap-2 mb-1">
-                  <Icon className={`w-4 h-4 text-${color}-400`} />
+                  <Icon className={`w-4 h-4 ${iconColor}`} />
                   <span className="text-xs text-slate-500">{label}</span>
                 </div>
                 <p className="text-sm font-medium text-slate-200 truncate">{value}</p>

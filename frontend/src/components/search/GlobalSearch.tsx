@@ -28,7 +28,7 @@ interface SearchResult {
 
 // Páginas disponíveis para navegação
 const PAGINAS: SearchResult[] = [
-  { id: 'home', type: 'pagina', titulo: 'Dashboard', subtitulo: 'Página inicial com resumo', href: '/', icon: Home },
+  { id: 'home', type: 'pagina', titulo: 'Dashboard', subtitulo: 'Página inicial com resumo', href: '/dashboard', icon: Home },
   { id: 'eleitores', type: 'pagina', titulo: 'Eleitores', subtitulo: 'Gerenciar perfis de eleitores', href: '/eleitores', icon: Users },
   { id: 'entrevistas', type: 'pagina', titulo: 'Entrevistas', subtitulo: 'Criar e gerenciar entrevistas', href: '/entrevistas', icon: FileText },
   { id: 'resultados', type: 'pagina', titulo: 'Resultados', subtitulo: 'Análise de resultados', href: '/resultados', icon: BarChart2 },

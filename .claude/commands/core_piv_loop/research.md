@@ -157,40 +157,14 @@ YYYY-MM-DD
 - [ ] Complexidade acidental foi marcada?
 ```
 
-## ⚠️ CHECKPOINT HUMANO
+## Regra de Pausa Automática
 
-**PARAR AQUI e validar com o usuário:**
+**PAUSAR apenas quando:** 10+ iterações OU 30+ minutos de trabalho contínuo
 
-```
-╔══════════════════════════════════════════════════════════════╗
-║                    CHECKPOINT DE PESQUISA                     ║
-╠══════════════════════════════════════════════════════════════╣
-║                                                                ║
-║  RESUMO DA ANÁLISE                                            ║
-║  ├── Componentes afetados: X                                  ║
-║  ├── Dependências mapeadas: Y                                 ║
-║  ├── Riscos identificados: Z                                  ║
-║  └── Complexidade acidental encontrada: W                     ║
-║                                                                ║
-║  VALIDAÇÃO NECESSÁRIA                                         ║
-║  ├── [ ] Análise está correta?                                ║
-║  ├── [ ] Algo foi esquecido?                                  ║
-║  └── [ ] Podemos prosseguir para planejamento?                ║
-║                                                                ║
-║  Próximo: /plan-feature (após aprovação)                      ║
-╚══════════════════════════════════════════════════════════════╝
-```
-
-## Regra Anti-Vibecoding
-
-Se durante a pesquisa você perceber que está em **mais de 10 turns** na mesma conversa:
-
-1. **PARE**
-2. Compile descobertas no documento de pesquisa
-3. Salve o estado
-4. Considere nova conversa com contexto limpo
-
-> "Após 10 turns, você não está discutindo. Está gerenciando contexto."
+Ao atingir limite:
+1. Compile descobertas no documento de pesquisa
+2. Salve o estado
+3. Considere nova conversa com contexto limpo
 
 ## Caso Especial: Código Muito Emaranhado
 

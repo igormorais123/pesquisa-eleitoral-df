@@ -27,6 +27,7 @@ import {
   CreditCard,
   HelpCircle,
   Keyboard,
+  LayoutGrid,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
@@ -100,7 +101,7 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
   }, []);
 
   return (
-    <header className="sticky top-0 z-30 bg-card/80 backdrop-blur-xl border-b border-border">
+    <header className="sticky top-0 z-30 backdrop-blur-xl border-b bg-card/80 border-border/50 dark:bg-slate-950/80 dark:border-white/5">
       <div className="flex items-center justify-between h-16 px-6">
         {/* Lado Esquerdo - Título */}
         <div className="flex items-center gap-4">
@@ -126,9 +127,17 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
             </div>
           )}
 
-          {/* Badge INTEIA - visível em desktop */}
-          <div className="hidden lg:block">
+          {/* Badge INTEIA com slogan - visível em desktop */}
+          <div className="hidden lg:flex items-center gap-4">
             <InteiaBadge variant="gradient" size="sm" />
+            <div className="flex flex-col">
+              <span className="text-[10px] text-muted-foreground leading-tight">
+                Primeiro sistema de pesquisa eleitoral validada com agentes de IA
+              </span>
+              <span className="text-[9px] text-amber-500/70 leading-tight">
+                Tecnologia de Stanford. Agora no Brasil.
+              </span>
+            </div>
           </div>
         </div>
 
@@ -295,6 +304,15 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
             )}
           </div>
 
+          {/* Hub de Projetos */}
+          <Link
+            href="/"
+            className="p-2 rounded-lg hover:bg-secondary transition-colors"
+            title="Hub de Projetos"
+          >
+            <LayoutGrid className="w-5 h-5 text-amber-400" />
+          </Link>
+
           {/* Tema */}
           <button
             className="p-2 rounded-lg hover:bg-secondary transition-colors"
@@ -363,6 +381,18 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
 
               {/* Opções do Menu */}
               <div className="py-2">
+                {/* Hub de Projetos */}
+                <Link
+                  href="/"
+                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground hover:bg-secondary transition-colors"
+                >
+                  <LayoutGrid className="w-4 h-4 text-amber-400" />
+                  <div>
+                    <p className="font-medium">Hub de Projetos</p>
+                    <p className="text-[10px] text-muted-foreground">Todos os projetos INTEIA</p>
+                  </div>
+                </Link>
+
                 {/* Admin Usuários - apenas para admins */}
                 {usuario?.papel === 'admin' && (
                   <Link

@@ -11,7 +11,7 @@ import path from 'path';
 // Força rota dinâmica
 export const dynamic = 'force-dynamic';
 
-const CANDIDATOS_FILE = path.join(process.cwd(), '..', 'agentes', 'banco-candidatos-df-2026.json');
+const CANDIDATOS_FILE = path.join(process.cwd(), 'public', 'data', 'banco-candidatos-df-2026.json');
 
 export async function GET(request: NextRequest) {
   try {

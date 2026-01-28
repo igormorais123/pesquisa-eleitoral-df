@@ -34,7 +34,7 @@ import { InteiaLogo } from '@/components/branding';
 const menuItems = [
   {
     titulo: 'Início',
-    href: '/',
+    href: '/dashboard',
     icone: Home,
     descricao: 'Visão geral do sistema',
   },
@@ -170,8 +170,8 @@ export function Sidebar() {
   const sidebarContent = (
     <>
       {/* Logo INTEIA */}
-      <div className="p-4 border-b border-border">
-        <Link href="/" className="flex items-center gap-3" onClick={fecharMobile}>
+      <div className="p-4 border-b border-border dark:border-white/10">
+        <Link href="/dashboard" className="flex items-center gap-3" onClick={fecharMobile}>
           {recolhido ? (
             <InteiaLogo size="sm" variant="icon" />
           ) : (
@@ -268,7 +268,7 @@ export function Sidebar() {
       </nav>
 
       {/* Botão Recolher - apenas desktop */}
-      <div className="hidden lg:block p-4 border-t border-border">
+      <div className="hidden lg:block p-4 border-t border-border dark:border-white/10">
         <button
           onClick={toggleRecolhido}
           className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-all"
@@ -291,7 +291,9 @@ export function Sidebar() {
       {/* Sidebar Desktop - fixa, escondida em mobile */}
       <aside
         className={cn(
-          'hidden lg:flex fixed left-0 top-0 z-40 h-screen bg-card border-r border-border transition-all duration-300 flex-col',
+          'hidden lg:flex fixed left-0 top-0 z-40 h-screen backdrop-blur-xl border-r transition-all duration-300 flex-col',
+          'bg-card/80 border-border/50',
+          'dark:bg-slate-900/80 dark:border-white/5',
           recolhido ? 'w-20' : 'w-64'
         )}
       >
@@ -310,7 +312,9 @@ export function Sidebar() {
       {/* Sidebar Mobile - drawer lateral */}
       <aside
         className={cn(
-          'lg:hidden fixed left-0 top-0 z-50 h-screen w-72 bg-card border-r border-border flex flex-col transition-transform duration-300 ease-in-out',
+          'lg:hidden fixed left-0 top-0 z-50 h-screen w-72 backdrop-blur-xl border-r flex flex-col transition-transform duration-300 ease-in-out',
+          'bg-card/95 border-border/50',
+          'dark:bg-slate-900/95 dark:border-white/5',
           mobileAberto ? 'translate-x-0' : '-translate-x-full'
         )}
       >

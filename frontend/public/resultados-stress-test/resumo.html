@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEIA | Resumo Executivo - Stress Test 2026</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23d69e2e' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EIA%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.2.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <style>
+        :root {
+            --amber: #d69e2e;
+            --amber-dark: #b7791f;
+            --orange-dark: #c2410c;
+            --success: #22c55e;
+            --warning: #eab308;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.08);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --text: #0f172a;
+            --text-muted: #64748b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.4;
+            font-size: 11px;
+        }
+        .container { max-width: 210mm; margin: 0 auto; padding: 8mm; }
+
+        /* Header Compacto */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4mm;
+            padding-bottom: 2mm;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { display: flex; align-items: center; gap: 6px; }
+        .logo-box {
+            width: 28px; height: 28px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 5px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 10px; color: #fff;
+        }
+        .logo-text { font-size: 14px; font-weight: 800; }
+        .logo-text span { color: var(--amber); }
+        .header-actions { display: flex; gap: 4px; align-items: center; }
+        .badge {
+            padding: 3px 6px;
+            background: rgba(214,158,46,0.1);
+            border: 1px solid rgba(214,158,46,0.3);
+            border-radius: 4px;
+            font-size: 8px;
+            font-weight: 600;
+            color: var(--amber);
+            text-transform: uppercase;
+        }
+        .btn {
+            padding: 4px 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-muted);
+            font-size: 9px;
+            cursor: pointer;
+        }
+        .btn:hover { background: var(--border); }
+
+        /* Title Compacto */
+        .title-section { margin-bottom: 3mm; }
+        .title-section h1 { font-size: 14px; font-weight: 700; margin-bottom: 1px; }
+        .title-section .date { font-size: 9px; color: var(--text-muted); }
+
+        /* Conclusion Box Compacto */
+        .conclusion-box {
+            background: linear-gradient(135deg, rgba(194,65,12,0.08), rgba(234,179,8,0.03));
+            border: 1px solid var(--orange-dark);
+            border-radius: 6px;
+            padding: 6px 8px;
+            margin-bottom: 3mm;
+        }
+        .conclusion-box p { font-size: 10px; line-height: 1.4; }
+        .conclusion-box strong { color: var(--orange-dark); }
+
+        /* KPIs Compactos */
+        .kpis {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3mm;
+            margin-bottom: 3mm;
+        }
+        .kpi {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 5px;
+            text-align: center;
+        }
+        .kpi .value { font-size: 18px; font-weight: 800; }
+        .kpi .label { font-size: 7px; color: var(--text-muted); line-height: 1.2; }
+        .kpi.alert .value { color: var(--orange-dark); }
+        .kpi.success .value { color: var(--success); }
+        .kpi.warning .value { color: var(--warning); }
+
+        /* GRÁFICOS LADO A LADO */
+        .charts-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3mm;
+            margin-bottom: 3mm;
+        }
+        .chart-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 5px;
+        }
+        .chart-section h3 { font-size: 9px; font-weight: 600; margin-bottom: 3px; }
+        .chart-container { height: 90px; position: relative; }
+        .chart-insight {
+            margin-top: 3px;
+            padding: 4px;
+            background: rgba(214,158,46,0.06);
+            border-radius: 4px;
+            font-size: 7px;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+        .chart-insight strong { color: var(--amber); }
+
+        /* Legenda compacta */
+        .chart-legend {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 3px;
+        }
+        .legend-item { display: flex; align-items: center; gap: 4px; font-size: 7px; color: var(--text-muted); }
+        .legend-line { width: 16px; height: 3px; border-radius: 1px; }
+        .legend-line.celina { background: linear-gradient(90deg, #60a5fa, #3b82f6); }
+        .legend-line.oposicao { background: repeating-linear-gradient(90deg, #9ca3af, #9ca3af 3px, transparent 3px, transparent 6px); height: 2px; }
+
+        /* Recommendations Compactas - 2 colunas */
+        .recs { margin-bottom: 3mm; }
+        .recs h3 { font-size: 10px; font-weight: 600; margin-bottom: 2mm; }
+        .recs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm; }
+        .rec {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 4px 5px;
+            border-left: 2px solid var(--orange-dark);
+        }
+        .rec.important { border-left-color: var(--warning); }
+        .rec .rec-title { font-weight: 600; font-size: 8px; margin-bottom: 1px; }
+        .rec .rec-desc { font-size: 7px; color: var(--text-muted); line-height: 1.3; }
+        .rec-badge {
+            display: inline-block;
+            font-size: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 1px 3px;
+            border-radius: 2px;
+            margin-bottom: 2px;
+        }
+        .rec-badge.urgent { background: rgba(194,65,12,0.15); color: var(--orange-dark); }
+        .rec-badge.important { background: rgba(234,179,8,0.15); color: var(--warning); }
+
+        /* Footer Compacto */
+        .footer {
+            margin-top: 3mm;
+            padding-top: 2mm;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 7px;
+            color: var(--text-muted);
+        }
+        .footer a { color: var(--amber); text-decoration: none; }
+
+        /* PRINT - Uma página A4 - ULTRA COMPACTO */
+        @media print {
+            @page { size: A4 portrait; margin: 5mm 6mm; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            html, body { 
+                width: 210mm; 
+                max-height: 287mm;
+                overflow: hidden;
+                background: #fff !important; 
+                color: #000 !important; 
+                font-size: 8px; 
+            }
+            .container { max-width: 100%; padding: 0; max-height: 287mm; overflow: hidden; }
+            .btn, .header-actions button { display: none !important; }
+            .chat-fab { display: none !important; }
+            
+            /* Header compacto */
+            .header { margin-bottom: 2mm; padding-bottom: 1.5mm; }
+            .logo-box { width: 22px !important; height: 22px !important; font-size: 8px !important; background: #d69e2e !important; }
+            .logo-text { font-size: 12px !important; }
+            .logo > div > span { font-size: 6px !important; }
+            
+            /* Title compacto */
+            .title-section { margin-bottom: 2mm; }
+            .title-section h1 { font-size: 12px !important; }
+            .title-section .date { font-size: 7px !important; }
+            
+            /* Conclusion compacto */
+            .conclusion-box { 
+                background: #fff7ed !important; 
+                border-color: #c2410c !important; 
+                padding: 2.5mm 3mm !important; 
+                margin-bottom: 2mm !important;
+            }
+            .conclusion-box p { font-size: 8px !important; line-height: 1.3 !important; }
+            
+            /* KPIs ultra compactos */
+            .kpis { gap: 1.5mm !important; margin-bottom: 2mm !important; }
+            .kpi { padding: 2mm 1.5mm !important; }
+            .kpi .value { font-size: 14px !important; }
+            .kpi .label { font-size: 6px !important; }
+            
+            /* GRÁFICOS - lado a lado, bem compactos */
+            .charts-row { 
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 2mm !important; 
+                margin-bottom: 2mm !important; 
+            }
+            .chart-section { padding: 2mm !important; }
+            .chart-section h3 { font-size: 8px !important; margin-bottom: 1mm !important; }
+            .chart-container { height: 55px !important; }
+            .chart-legend { margin-bottom: 1mm !important; }
+            .legend-item { font-size: 6px !important; }
+            .legend-line { width: 12px !important; }
+            .chart-insight { 
+                padding: 2mm !important; 
+                font-size: 6px !important; 
+                margin-top: 1mm !important;
+                background: #fef9c3 !important;
+            }
+            
+            /* Recommendations ultra compactas */
+            .recs { margin-bottom: 1.5mm !important; }
+            .recs h3 { font-size: 9px !important; margin-bottom: 1.5mm !important; }
+            .recs-grid { 
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 1.5mm !important; 
+            }
+            .rec { padding: 1.5mm 2mm !important; }
+            .rec-badge { font-size: 5px !important; padding: 0.5px 2px !important; }
+            .rec .rec-title { font-size: 7px !important; }
+            .rec .rec-desc { font-size: 6px !important; line-height: 1.2 !important; }
+            
+            /* Footer mínimo */
+            .footer { 
+                margin-top: 1.5mm !important; 
+                padding-top: 1mm !important; 
+                font-size: 6px !important;
+            }
+        }
+
+        /* Screen-only elements */
+        @media screen {
+            .chat-fab {
+                position: fixed;
+                right: 15px;
+                bottom: 15px;
+                z-index: 200;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 10px 14px;
+                border-radius: 20px;
+                border: none;
+                background: linear-gradient(135deg, #0f172a, #1e293b);
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                cursor: pointer;
+                color: #f8fafc;
+                font-weight: 600;
+                font-size: 11px;
+                text-decoration: none;
+            }
+            .chat-fab:hover { transform: translateY(-2px); }
+            .chat-fab .chat-icon { font-size: 18px; }
+        }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .container { padding: 1rem; }
+            .kpis { grid-template-columns: 1fr; }
+            .charts-row { grid-template-columns: 1fr; }
+            .recs-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-box">IA</div>
+                <div>
+                    <div class="logo-text">INTE<span>IA</span></div>
+                    <span style="font-size: 7px; color: var(--text-muted);">Pesquisa eleitoral validada com agentes de IA</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn" onclick="window.print()">🖨️ Imprimir</button>
+                <button class="btn" onclick="toggleTheme()">🌓 Tema</button>
+                <div class="badge">Confidencial</div>
+            </div>
+        </header>
+
+        <!-- Title -->
+        <div class="title-section">
+            <h1>Stress Test Eleitoral 2026</h1>
+            <div class="date">Resumo Executivo | 28 Janeiro 2026 | 1.000 Eleitores Sintéticos</div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="conclusion-box">
+            <p>
+                <strong>Você lidera, mas seu voto é frágil.</strong> A maioria vota em você para barrar o outro lado, não por convicção.
+                Se aparecer alguém "novo" e "técnico", mais da metade considera trocar.
+                Se surgir escândalo, dois em cada três abandonam você.
+            </p>
+        </div>
+
+        <!-- KPIs -->
+        <div class="kpis">
+            <div class="kpi alert">
+                <div class="value">57%</div>
+                <div class="label">trocariam por alguém "de fora"</div>
+            </div>
+            <div class="kpi warning">
+                <div class="value">67%</div>
+                <div class="label">abandonam se escândalo</div>
+            </div>
+            <div class="kpi success">
+                <div class="value">83%</div>
+                <div class="label">resistem a ataques</div>
+            </div>
+        </div>
+
+        <!-- GRÁFICOS LADO A LADO -->
+        <div class="charts-row">
+            <!-- Gráfico 1: Correlação -->
+            <div class="chart-section">
+                <h3>Correlação: Presença na Mídia × Votos</h3>
+                <div class="chart-container">
+                    <canvas id="chartCorrelacao"></canvas>
+                </div>
+                <div class="chart-insight">
+                    <strong>Insight:</strong> Mais exposição = mais votos. Em set/25 você bateu 49% com pico de mídia.
+                </div>
+            </div>
+
+            <!-- Gráfico 2: Projeção -->
+            <div class="chart-section">
+                <h3>Projeção: Evolução da Intenção de Voto</h3>
+                <div class="chart-legend">
+                    <div class="legend-item"><div class="legend-line celina"></div><span>Celina Leão</span></div>
+                    <div class="legend-item"><div class="legend-line oposicao"></div><span>Oposição</span></div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chartProjecao"></canvas>
+                </div>
+                <div class="chart-insight">
+                    <strong>Ponto de Inflexão (Abr):</strong> Com recursos operacionais, descolamento dos adversários.
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations - 2x2 grid -->
+        <div class="recs">
+            <h3>O que fazer agora</h3>
+            <div class="recs-grid">
+                <div class="rec">
+                    <span class="rec-badge urgent">Urgente</span>
+                    <div class="rec-title">Fique atenta a nomes "novos"</div>
+                    <div class="rec-desc">Empresário, juiz, apresentador — qualquer figura "de fora" é ameaça.</div>
+                </div>
+                <div class="rec">
+                    <span class="rec-badge urgent">Urgente</span>
+                    <div class="rec-title">Zero tolerância com irregularidades</div>
+                    <div class="rec-desc">Qualquer denúncia pode derrubar 67% da base. Auditoria interna agora.</div>
+                </div>
+                <div class="rec important">
+                    <span class="rec-badge important">Importante</span>
+                    <div class="rec-title">Dê motivos para votarem EM você</div>
+                    <div class="rec-desc">Hoje votam para evitar a esquerda. Mostre entregas concretas.</div>
+                </div>
+                <div class="rec important">
+                    <span class="rec-badge important">Importante</span>
+                    <div class="rec-title">Não desapareça da mídia</div>
+                    <div class="rec-desc">Quando some, números caem. Presença constante até outubro.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div><strong>INTEIA</strong> - Inteligência Estratégica | <a href="mailto:igor@inteia.com.br">igor@inteia.com.br</a> | <a href="https://inteia.com.br">inteia.com.br</a></div>
+            <div>© 2026 INTEIA</div>
+        </footer>
+    </div>
+
+    <!-- Chat FAB (screen only) -->
+    <a href="index.html#chat" class="chat-fab">
+        <span class="chat-icon">💬</span>
+        <span>Falar com Helena</span>
+    </a>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            initCharts();
+        }
+
+        let chart1 = null, chart2 = null;
+
+        function initCharts() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            Chart.defaults.color = isDark ? '#94a3b8' : '#64748b';
+            Chart.defaults.borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
+            Chart.defaults.font.family = 'Inter, sans-serif';
+            Chart.defaults.font.size = 8;
+
+            // Chart 1: Correlação
+            if (chart1) chart1.destroy();
+            const meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez','Jan'];
+            const presenca = [98,107,145,125,137,160,125,195,230,180,145,170,155];
+            const intencao = [33,35,37,35,33,31,28,37,49,32,36,40,40];
+
+            chart1 = new Chart(document.getElementById('chartCorrelacao').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: meses,
+                    datasets: [
+                        { label: 'Presença', data: presenca, backgroundColor: isDark ? 'rgba(51,65,85,0.8)' : 'rgba(71,85,105,0.6)', borderRadius: 2, yAxisID: 'y', order: 2 },
+                        { label: 'Votos %', data: intencao, type: 'line', borderColor: '#c2410c', backgroundColor: '#c2410c', pointRadius: 2, tension: 0.3, yAxisID: 'y1', order: 1 }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { font: { size: 7 } } },
+                        y: { position: 'left', grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 7 } } },
+                        y1: { position: 'right', min: 0, max: 60, grid: { drawOnChartArea: false }, ticks: { font: { size: 7 } } }
+                    }
+                }
+            });
+
+            // Chart 2: Projeção
+            if (chart2) chart2.destroy();
+            const ctx2 = document.getElementById('chartProjecao').getContext('2d');
+            const gradient = ctx2.createLinearGradient(0, 0, 0, 100);
+            gradient.addColorStop(0, 'rgba(59,130,246,0.4)');
+            gradient.addColorStop(1, 'rgba(59,130,246,0.02)');
+
+            chart2 = new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                    datasets: [
+                        { label: 'Celina', data: [22,25,28,32,40,48], borderColor: '#3b82f6', backgroundColor: gradient, borderWidth: 2, pointRadius: 3, tension: 0.4, fill: true },
+                        { label: 'Oposição', data: [22,22,21,21,21,21], borderColor: '#9ca3af', borderWidth: 1.5, borderDash: [4,3], pointRadius: 2, tension: 0.2, fill: false }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        annotation: {
+                            annotations: {
+                                inflexao: { type: 'line', xMin: 3, xMax: 3, borderColor: 'rgba(214,158,46,0.7)', borderWidth: 1.5, borderDash: [3,3],
+                                    label: { display: true, content: 'Inflexão', position: 'start', backgroundColor: 'rgba(214,158,46,0.8)', color: '#fff', font: { size: 7, weight: 'bold' } }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { font: { size: 7 } } },
+                        y: { min: 0, max: 55, grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 7 }, callback: v => v+'%' } }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initCharts);
+    </script>
+</body>
+</html>

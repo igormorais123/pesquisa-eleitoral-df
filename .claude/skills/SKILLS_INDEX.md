@@ -8,6 +8,7 @@
 
 | Skill | Propósito | Localização |
 |-------|-----------|-------------|
+| **design-system-inteia** | Design system completo (cores, componentes, layouts) | `.claude/skills/design-system-inteia/` |
 | **branding-inteia** | Padrões visuais, cores, logo, estética | `.claude/skills/branding-inteia/` |
 | **navegacao-projeto** | Como navegar pelas pastas do projeto | `.claude/skills/navegacao-projeto/` |
 | **funcoes-programa** | Como usar as funcionalidades do sistema | `.claude/skills/funcoes-programa/` |
@@ -20,6 +21,14 @@
 ---
 
 ## QUANDO USAR CADA SKILL
+
+### design-system-inteia ⭐ PRINCIPAL
+- **USAR SEMPRE** ao criar qualquer componente UI
+- Cores, gradientes, sombras, bordas
+- Botões, cards, inputs, modais
+- Layouts de página e seções
+- Responsividade e animações
+- Referência: `.claude/identity/` para tokens e exemplos
 
 ### branding-inteia
 - Criar novos componentes UI
@@ -113,8 +122,18 @@ Configurar no CLAUDE.md para carregar skills específicas no início da sessão.
 
 ```
 CLAUDE.md (raiz)
+├── .claude/identity/              # 🆕 Identidade Visual Completa
+│   ├── README.md                  # Visão geral
+│   ├── cores.md                   # Paleta de cores
+│   ├── tipografia.md              # Fontes e hierarquia
+│   ├── componentes.md             # Padrões de componentes
+│   ├── layouts.md                 # Estruturas de página
+│   └── tokens.json                # Design tokens exportáveis
+│
 └── .claude/skills/
     ├── SKILLS_INDEX.md (este arquivo)
+    ├── design-system-inteia/      # 🆕 Skill principal de UI
+    │   └── SKILL.md
     ├── branding-inteia/
     │   └── SKILL.md
     ├── navegacao-projeto/
@@ -126,8 +145,8 @@ CLAUDE.md (raiz)
     ├── templates-relatorios/
     │   └── SKILL.md
     └── executar-pesquisa-eleitoral/
-        ├── SKILL.md              # Documentação completa
-        └── executar_pesquisa.py  # Script executável
+        ├── SKILL.md
+        └── executar_pesquisa.py
 ```
 
 ---
@@ -168,10 +187,23 @@ Ver índice completo em: `.claude/commands/COMMANDS_INDEX.md`
 
 | Métrica | Valor |
 |---------|-------|
-| Total de Skills | 8 |
+| Total de Skills | 9 |
 | Total de Comandos | 8 |
-| Última Atualização | 2026-01-26 |
-| Próxima Revisão | 2026-02-26 |
+| Última Atualização | 2026-01-27 |
+| Próxima Revisão | 2026-02-27 |
+
+## IDENTIDADE VISUAL
+
+Nova pasta `.claude/identity/` contém documentação completa de design:
+
+| Arquivo | Conteúdo |
+|---------|----------|
+| `README.md` | Visão geral e filosofia |
+| `cores.md` | Paleta completa (âmbar, slate, status) |
+| `tipografia.md` | Fonte Inter, hierarquia, estilos |
+| `componentes.md` | Botões, cards, inputs, modais, navegação |
+| `layouts.md` | Hero, seções, grids, responsividade |
+| `tokens.json` | Design tokens programáticos |
 
 ---
 

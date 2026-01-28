@@ -8,6 +8,7 @@ import { MobileNav } from '@/components/layout/MobileNav';
 import { InteiaFooter } from '@/components/branding';
 import { useAuthStore } from '@/stores/auth-store';
 import { useSidebarStore } from '@/stores/sidebar-store';
+import { useSyncSessoes } from '@/hooks/use-sync-sessoes';
 import { cn } from '@/lib/utils';
 
 export default function DashboardLayout({
@@ -19,6 +20,9 @@ export default function DashboardLayout({
   const { autenticado, token, verificarToken } = useAuthStore();
   const { recolhido } = useSidebarStore();
   const [verificando, setVerificando] = useState(true);
+
+  // Hook de sincronização - carrega sessões do servidor automaticamente após login
+  const { carregando: sincronizando, sessoesCarregadas } = useSyncSessoes();
 
   useEffect(() => {
     const verificar = async () => {
@@ -60,19 +64,25 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-background bg-pattern">
+    <div className="min-h-screen bg-background">
+      {/* Background visual - adapta ao tema */}
+      {/* Modo escuro: gradientes âmbar sutis sobre slate escuro */}
+      {/* Modo claro: gradientes âmbar sutis sobre fundo claro */}
+      <div className="fixed inset-0 bg-gradient-to-b from-amber-900/5 via-background to-background pointer-events-none dark:from-amber-900/5" />
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-r from-amber-600/5 to-amber-500/5 rounded-full blur-[200px] pointer-events-none" />
+
       <Sidebar />
       {/* Em mobile (< lg): sem margin, conteúdo ocupa tela toda */}
       {/* Em desktop (lg+): margin-left baseado no estado recolhido */}
       <div
         className={cn(
-          'transition-all duration-300',
+          'relative transition-all duration-300',
           recolhido ? 'lg:ml-20' : 'lg:ml-64'
         )}
       >
         <Header />
         {/* Main content - Padding extra no bottom para mobile nav */}
-        <main className="p-4 sm:p-6 bg-gradient-subtle min-h-[calc(100vh-4rem)] pb-20 lg:pb-6">
+        <main className="relative p-4 sm:p-6 min-h-[calc(100vh-4rem)] pb-20 lg:pb-6">
           {children}
         </main>
         {/* Footer INTEIA */}
