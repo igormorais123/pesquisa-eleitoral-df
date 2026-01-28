@@ -764,8 +764,8 @@ export default function LoginPage() {
             <div className="mt-6 p-4 rounded-xl bg-amber-500/5 border border-amber-500/10">
               <p className="text-sm text-amber-400/70 mb-2">Acesso de demonstração</p>
               <div className="flex items-center gap-4 text-sm">
-                <code className="px-3 py-1.5 rounded-lg bg-white/5 text-amber-400 font-mono">admin</code>
-                <code className="px-3 py-1.5 rounded-lg bg-white/5 text-amber-400 font-mono">admin123</code>
+                <code className="px-3 py-1.5 rounded-lg bg-white/5 text-amber-400 font-mono">professorigor</code>
+                <code className="px-3 py-1.5 rounded-lg bg-white/5 text-amber-400 font-mono">professorigor</code>
               </div>
             </div>
 
