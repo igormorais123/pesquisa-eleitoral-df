@@ -374,15 +374,15 @@ const CardProjetoDestaque = ({ projeto, index }: { projeto: Projeto; index: numb
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
-      className="col-span-2 row-span-2"
+      className="col-span-1 sm:col-span-2 sm:row-span-2"
     >
       <Link href={projeto.href} target={projeto.externo ? '_blank' : undefined} rel={projeto.externo ? 'noopener noreferrer' : undefined}>
         <div className={`
-          relative h-full min-h-[400px] rounded-3xl overflow-hidden group cursor-pointer
+          relative h-full min-h-[280px] sm:min-h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden group cursor-pointer
           bg-gradient-to-br ${projeto.corGradiente} p-[1px]
         `}>
           {/* Inner card */}
-          <div className="h-full bg-card rounded-[23px] p-8 flex flex-col relative overflow-hidden dark:bg-slate-900/95">
+          <div className="h-full bg-card rounded-[15px] sm:rounded-[23px] p-5 sm:p-8 flex flex-col relative overflow-hidden dark:bg-slate-900/95">
             {/* Background effect */}
             <div className={`absolute top-0 right-0 w-96 h-96 bg-gradient-to-br ${projeto.corGradiente} opacity-10 blur-3xl rounded-full transform translate-x-1/2 -translate-y-1/2 group-hover:opacity-20 transition-opacity duration-500`} />
 
@@ -398,24 +398,24 @@ const CardProjetoDestaque = ({ projeto, index }: { projeto: Projeto; index: numb
             </div>
 
             {/* Icon */}
-            <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${projeto.corGradiente} flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform duration-300`}>
-              <projeto.icone className="w-8 h-8 text-white" />
+            <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br ${projeto.corGradiente} flex items-center justify-center mb-4 sm:mb-6 shadow-xl group-hover:scale-110 transition-transform duration-300`}>
+              <projeto.icone className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
             </div>
 
             {/* Content */}
             <div className="flex-1 relative z-10">
-              <h3 className="text-3xl font-bold text-foreground mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+              <h3 className="text-xl sm:text-3xl font-bold text-foreground mb-2 sm:mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
                 {projeto.nome}
               </h3>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+              <p className="text-muted-foreground text-sm sm:text-lg leading-relaxed mb-4 sm:mb-6 line-clamp-3 sm:line-clamp-none">
                 {projeto.descricaoLonga || projeto.descricao}
               </p>
 
               {/* Features */}
               {projeto.features && (
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
                   {projeto.features.map((feature, i) => (
-                    <span key={i} className="px-3 py-1 rounded-full bg-secondary text-muted-foreground text-sm border border-border dark:bg-white/5 dark:border-white/10">
+                    <span key={i} className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-secondary text-muted-foreground text-xs sm:text-sm border border-border dark:bg-white/5 dark:border-white/10">
                       {feature}
                     </span>
                   ))}
@@ -452,11 +452,11 @@ const CardProjeto = ({ projeto, index }: { projeto: Projeto; index: number }) =>
     >
       <Wrapper {...wrapperProps as any}>
         <div className={`
-          relative h-full min-h-[280px] rounded-2xl overflow-hidden group
-          bg-card border border-border p-6 flex flex-col
+          relative h-full min-h-[200px] sm:min-h-[280px] rounded-2xl overflow-hidden group
+          bg-card border border-border p-4 sm:p-6 flex flex-col
           dark:bg-white/[0.02] dark:border-white/5
-          ${!isDisabled ? 'cursor-pointer hover:border-amber-500/30 hover:bg-secondary dark:hover:bg-white/[0.04]' : 'opacity-60 cursor-not-allowed'}
-          transition-all duration-300
+          ${!isDisabled ? 'cursor-pointer hover:border-amber-500/30 hover:bg-secondary dark:hover:bg-white/[0.04] active:scale-[0.98]' : 'opacity-60 cursor-not-allowed'}
+          transition-all duration-200
         `}>
           {/* Status */}
           <div className="flex items-center justify-between mb-4">
@@ -536,8 +536,8 @@ export default function HubPage() {
       </div>
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-xl border-b border-border/50 dark:bg-slate-950/80 dark:border-white/5">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-xl border-b border-border/50 dark:bg-slate-950/80 dark:border-white/5 safe-area-top">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
           <LogoINTEIA />
 
           <div className="flex items-center gap-4">
@@ -572,13 +572,13 @@ export default function HubPage() {
       </header>
 
       {/* Main Content */}
-      <main ref={containerRef} className="relative pt-24 pb-16 px-6 min-h-screen">
+      <main ref={containerRef} className="relative pt-20 sm:pt-24 pb-16 px-4 sm:px-6 min-h-screen-safe">
         <div className="max-w-7xl mx-auto">
           {/* Hero */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
+            className="text-center mb-8 sm:mb-16"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -602,21 +602,21 @@ export default function HubPage() {
             </p>
           </motion.div>
 
-          {/* Categorias */}
+          {/* Categorias - scroll horizontal em mobile */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex flex-wrap justify-center gap-2 mb-12"
+            className="flex overflow-x-auto sm:flex-wrap sm:justify-center gap-2 mb-8 sm:mb-12 pb-2 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide no-tap-highlight"
           >
             {categorias.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setCategoriaAtiva(cat.id)}
                 className={`
-                  flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all
+                  flex items-center gap-2 px-4 py-2.5 sm:py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap flex-shrink-0 active:scale-95
                   ${categoriaAtiva === cat.id
-                    ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/25'
+                    ? 'bg-amber-600 dark:bg-amber-500 text-white shadow-lg shadow-amber-500/25'
                     : 'bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground border border-border dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10'
                   }
                 `}
@@ -653,7 +653,7 @@ export default function HubPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
             >
               {/* Projetos em destaque (ocupam 2 colunas) */}
               {projetosDestaque.map((projeto, index) => (
@@ -688,8 +688,8 @@ export default function HubPage() {
       </main>
 
       {/* Footer */}
-      <footer className="relative border-t border-border/50 py-8 px-6 dark:border-white/5">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="relative border-t border-border/50 py-6 sm:py-8 px-4 sm:px-6 dark:border-white/5">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center">
               <span className="text-white font-bold text-xs">IA</span>
