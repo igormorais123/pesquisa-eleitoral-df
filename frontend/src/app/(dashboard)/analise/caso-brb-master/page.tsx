@@ -8,7 +8,7 @@ export default function CasoBrbMasterPage() {
   const [fullscreen, setFullscreen] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
-  const appUrl = 'https://inteia-analise-politica-2026.vercel.app/';
+  const appUrl = '/analise/casomaster/';
 
   return (
     <div className={`${fullscreen ? 'fixed inset-0 z-50' : 'min-h-screen'} bg-slate-950 flex flex-col`}>
