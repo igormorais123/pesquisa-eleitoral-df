@@ -42,7 +42,7 @@ const projetos: Projeto[] = [
     icone: Shield,
     cor: 'orange',
     corGradiente: 'from-orange-500 to-amber-600',
-    href: '/analise-politica',
+    href: '/analise/caso-brb-master',
     status: 'novo',
     categoria: 'pesquisa',
     destaque: true,

@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ArrowLeft, Maximize2, Minimize2, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
-export default function AnalisePoliticaPage() {
+export default function CasoBrbMasterPage() {
   const [fullscreen, setFullscreen] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
@@ -24,12 +24,12 @@ export default function AnalisePoliticaPage() {
           </Link>
           <span className="text-white/20">|</span>
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-md bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center">
+            <div className="w-6 h-6 rounded-md bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center">
               <span className="text-white font-bold text-[10px]">IA</span>
             </div>
-            <span className="text-white font-semibold text-sm">Análise Política DF 2026</span>
+            <span className="text-white font-semibold text-sm">Caso BRB-Master 2026</span>
             <span className="px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 text-[10px] font-medium border border-red-500/30">
-              Caso BRB-Master
+              Monte Carlo + HELENA
             </span>
           </div>
         </div>
@@ -57,10 +57,10 @@ export default function AnalisePoliticaPage() {
       {!loaded && (
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center animate-pulse">
+            <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center animate-pulse">
               <span className="text-white font-bold">IA</span>
             </div>
-            <p className="text-white/50 text-sm">Carregando sistema de análise...</p>
+            <p className="text-white/50 text-sm">Carregando análise estratégica...</p>
           </div>
         </div>
       )}
@@ -71,7 +71,7 @@ export default function AnalisePoliticaPage() {
         className={`flex-1 w-full border-0 ${loaded ? 'block' : 'hidden'}`}
         onLoad={() => setLoaded(true)}
         allow="clipboard-read; clipboard-write"
-        title="Sistema de Análise Política INTEIA 2026"
+        title="INTEIA - Caso BRB-Master 2026"
       />
     </div>
   );
