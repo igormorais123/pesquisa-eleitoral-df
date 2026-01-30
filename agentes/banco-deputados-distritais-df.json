@@ -129,7 +129,7 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "base_aliada"
+    "relacao_governo_atual": "oposicao_forte"
   },
   {
     "id": "dep-dist-002",
@@ -256,7 +256,7 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "base_aliada"
+    "relacao_governo_atual": "oposicao_forte"
   },
   {
     "id": "dep-dist-003",
@@ -1142,7 +1142,7 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "base_aliada"
+    "relacao_governo_atual": "oposicao_forte"
   },
   {
     "id": "dep-dist-010",
@@ -1273,7 +1273,7 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "base_aliada"
+    "relacao_governo_atual": "oposicao_forte"
   },
   {
     "id": "dep-dist-011",
@@ -2163,7 +2163,7 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "base_aliada"
+    "relacao_governo_atual": "oposicao_forte"
   },
   {
     "id": "dep-dist-018",
@@ -2291,7 +2291,7 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "base_aliada"
+    "relacao_governo_atual": "oposicao_moderada"
   },
   {
     "id": "dep-dist-019",

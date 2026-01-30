@@ -1,0 +1,618 @@
+{
+  "titulo": "Simulacao CPI Banco Master/BRB - CLDF",
+  "data": "2026-01-29T19:47:19.336281",
+  "modelo": "claude-sonnet-4-20250514",
+  "total_deputados": 24,
+  "probabilidades": {
+    "total_deputados": 24,
+    "assinam": 21,
+    "nao_assinam": 2,
+    "indecisos": 1,
+    "erros": 0,
+    "necessarias": 8,
+    "cenario_otimista": 22,
+    "cenario_pessimista": 21,
+    "cenario_base": 21,
+    "prob_indeciso_assinar": 40.0,
+    "assinaturas_esperadas": 21.4,
+    "probabilidade_cpi": 100,
+    "cpi_instalada_otimista": true,
+    "cpi_instalada_pessimista": true,
+    "cpi_instalada_base": true
+  },
+  "mapa_partido": {
+    "PSOL": {
+      "deputados": 2,
+      "intensidade_media": 10.0,
+      "assinam": 2,
+      "nao_assinam": 0,
+      "indecisos": 0,
+      "membros": [
+        {
+          "nome": "Fábio Felix",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 10
+        },
+        {
+          "nome": "Max Maciel",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 10
+        }
+      ]
+    },
+    "PT": {
+      "deputados": 3,
+      "intensidade_media": 9.3,
+      "assinam": 3,
+      "nao_assinam": 0,
+      "indecisos": 0,
+      "membros": [
+        {
+          "nome": "Chico Vigilante",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 10
+        },
+        {
+          "nome": "Gabriel Magno",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 9
+        },
+        {
+          "nome": "Ricardo Vale",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 9
+        }
+      ]
+    },
+    "MDB": {
+      "deputados": 5,
+      "intensidade_media": 5.6,
+      "assinam": 3,
+      "nao_assinam": 1,
+      "indecisos": 1,
+      "membros": [
+        {
+          "nome": "Wellington Luiz",
+          "posicao": "INDECISO",
+          "intensidade": 4
+        },
+        {
+          "nome": "Iolando",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 7
+        },
+        {
+          "nome": "Jaqueline Silva",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 7
+        },
+        {
+          "nome": "Daniel Donizet",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 7
+        },
+        {
+          "nome": "Hermeto",
+          "posicao": "NAO_ASSINA",
+          "intensidade": 3
+        }
+      ]
+    },
+    "PL": {
+      "deputados": 3,
+      "intensidade_media": 7.7,
+      "assinam": 3,
+      "nao_assinam": 0,
+      "indecisos": 0,
+      "membros": [
+        {
+          "nome": "Roosevelt Vilela",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 8
+        },
+        {
+          "nome": "Joaquim Roriz Neto",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 7
+        },
+        {
+          "nome": "Thiago Manzoni",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 8
+        }
+      ]
+    },
+    "UNIAO": {
+      "deputados": 1,
+      "intensidade_media": 7.0,
+      "assinam": 1,
+      "nao_assinam": 0,
+      "indecisos": 0,
+      "membros": [
+        {
+          "nome": "Eduardo Pedrosa",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 7
+        }
+      ]
+    },
+    "PSD": {
+      "deputados": 2,
+      "intensidade_media": 7.0,
+      "assinam": 2,
+      "nao_assinam": 0,
+      "indecisos": 0,
+      "membros": [
+        {
+          "nome": "Jorge Vianna",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 7
+        },
+        {
+          "nome": "Robério Negreiros",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 7
+        }
+      ]
+    },
+    "PSDB": {
+      "deputados": 1,
+      "intensidade_media": 9.0,
+      "assinam": 1,
+      "nao_assinam": 0,
+      "indecisos": 0,
+      "membros": [
+        {
+          "nome": "Paula Belmonte",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 9
+        }
+      ]
+    },
+    "REPUBLICANOS": {
+      "deputados": 2,
+      "intensidade_media": 7.5,
+      "assinam": 2,
+      "nao_assinam": 0,
+      "indecisos": 0,
+      "membros": [
+        {
+          "nome": "Doutora Jane",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 8
+        },
+        {
+          "nome": "Martins Machado",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 7
+        }
+      ]
+    },
+    "PP": {
+      "deputados": 2,
+      "intensidade_media": 5.0,
+      "assinam": 1,
+      "nao_assinam": 1,
+      "indecisos": 0,
+      "membros": [
+        {
+          "nome": "Pastor Daniel de Castro",
+          "posicao": "NAO_ASSINA",
+          "intensidade": 3
+        },
+        {
+          "nome": "Pepa",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 7
+        }
+      ]
+    },
+    "PSB": {
+      "deputados": 1,
+      "intensidade_media": 8.0,
+      "assinam": 1,
+      "nao_assinam": 0,
+      "indecisos": 0,
+      "membros": [
+        {
+          "nome": "Dayse Amarilio",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 8
+        }
+      ]
+    },
+    "AVANTE": {
+      "deputados": 1,
+      "intensidade_media": 7.0,
+      "assinam": 1,
+      "nao_assinam": 0,
+      "indecisos": 0,
+      "membros": [
+        {
+          "nome": "João Cardoso",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 7
+        }
+      ]
+    },
+    "PRD": {
+      "deputados": 1,
+      "intensidade_media": 7.0,
+      "assinam": 1,
+      "nao_assinam": 0,
+      "indecisos": 0,
+      "membros": [
+        {
+          "nome": "Rogério Morro da Cruz",
+          "posicao": "ASSINA_CPI",
+          "intensidade": 7
+        }
+      ]
+    }
+  },
+  "resultados": [
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 10,
+      "justificativa": "Eu já assinei o requerimento de CPI e continuarei defendendo sua instalação com toda veemência. Como deputado do PSOL e presidente da Comissão de Direitos Humanos, não posso compactuar com essa verdadeira sangria nos cofres públicos. Votei contra a compra do Master em agosto porque já enxergava os riscos dessa operação temerária, e hoje os fatos comprovam que estávamos certos. O povo brasiliense merece saber toda a verdade sobre esse esquema de R$ 17 bilhões que drenou recursos que deveriam estar sendo investidos em saúde, educação e assistência social. É inadmissível que enquanto falta dinheiro para políticas públicas essenciais, bilhões sejam desviados em operações fraudulentas. A CPI é fundamental para apurar as responsabilidades e garantir que os culpados sejam punidos. Não vou me omitir diante de tamanha irresponsabilidade fiscal e administrativa.",
+      "condicoes": "Nenhuma. Minha posição é irrevogável e baseada em princípios éticos inegociáveis.",
+      "risco_politico": "BAIXO",
+      "nome_parlamentar": "Fábio Felix",
+      "partido": "PSOL",
+      "id": "dep-dist-001",
+      "orientacao_politica": "esquerda",
+      "relacao_governo": "base_aliada",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 10\nJUSTIFICATIVA: Eu já assinei o requerimento de CPI e continuarei defendendo sua instalação com toda veemência. Como deputado do PSOL e presidente da Comissão de Direitos Humanos, não posso compactuar com essa verdadeira sangria nos cofres públicos. Votei contra a compra do Master em agosto porque já enxergava os riscos dessa operação temerária, e hoje os fatos comprovam que estávamos certos. O povo brasiliense merece saber toda a verdade sobre esse esquema de R$ 17 bilhões que drenou recursos que deveriam estar sendo investidos em saúde, educação e assistência social. É inadmissível que enquanto falta dinheiro para políticas públicas essenciais, bilhões sejam desviados em operações fraudulentas. A CPI é fundamental para apurar as responsabilidades e garantir que os culpados sejam punidos. Não vou me omitir diante de tamanha irresponsabilidade fiscal e administrativa.\n\nCONDICOES: Nenhuma. Minha posição é irrevogável e baseada em princípios éticos inegociáveis.\n\nRISCO_POLITICO: BAIXO - como opositor histórico do governo e defensor da transparência, assumir essa posição fortalece minha coerência política\n---",
+      "tokens_entrada": 1927,
+      "tokens_saida": 357
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 10,
+      "justificativa": "Eu já assinei o requerimento da CPI, companheiro! E fiz isso com a consciência tranquila de quem sempre defendeu o dinheiro público e os trabalhadores. Quando votei contra aquela compra maldita em agosto, eu já sabia que tinha coisa errada. Não precisava ser vidente para ver que gastar R$ 2 bilhões do nosso BRB, que é banco dos brasilienses, num negócio duvidoso ia dar ruim. E deu! Agora temos que investigar até o último centavo desviado.\n\nO que aconteceu com o Master é um escândalo que envergonha Brasília. Bilhões de reais que poderiam estar sendo investidos em saúde, educação, transporte público para a nossa Ceilândia e todas as cidades do DF foram parar nas mãos de espertalhões. Como sindicalista histórico e deputado do PT, meu compromisso sempre foi com a transparência e o combate à corrupção. O presidente Lula sempre ensinou que temos que zelar pelo dinheiro do povo. Essa CPI é fundamental para mostrar como esse governo do Ibaneis permitiu essa roubalheira toda.",
+      "condicoes": "Nenhuma condição. Já assinei e defendo a instalação imediata da CPI.",
+      "risco_politico": "BAIXO",
+      "nome_parlamentar": "Chico Vigilante",
+      "partido": "PT",
+      "id": "dep-dist-002",
+      "orientacao_politica": "esquerda",
+      "relacao_governo": "base_aliada",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 10\nJUSTIFICATIVA: Eu já assinei o requerimento da CPI, companheiro! E fiz isso com a consciência tranquila de quem sempre defendeu o dinheiro público e os trabalhadores. Quando votei contra aquela compra maldita em agosto, eu já sabia que tinha coisa errada. Não precisava ser vidente para ver que gastar R$ 2 bilhões do nosso BRB, que é banco dos brasilienses, num negócio duvidoso ia dar ruim. E deu! Agora temos que investigar até o último centavo desviado.\n\nO que aconteceu com o Master é um escândalo que envergonha Brasília. Bilhões de reais que poderiam estar sendo investidos em saúde, educação, transporte público para a nossa Ceilândia e todas as cidades do DF foram parar nas mãos de espertalhões. Como sindicalista histórico e deputado do PT, meu compromisso sempre foi com a transparência e o combate à corrupção. O presidente Lula sempre ensinou que temos que zelar pelo dinheiro do povo. Essa CPI é fundamental para mostrar como esse governo do Ibaneis permitiu essa roubalheira toda.\n\nCONDICOES: Nenhuma condição. Já assinei e defendo a instalação imediata da CPI.\n\nRISCO_POLITICO: BAIXO - minha base eleitoral trabalhadora apoia a investigação de corrupção, e minha posição está alinhada com meu histórico.\n---",
+      "tokens_entrada": 1881,
+      "tokens_saida": 407
+    },
+    {
+      "posicao": "INDECISO",
+      "intensidade": 4,
+      "justificativa": "Olha, essa é uma situação muito delicada que precisa ser analisada com muita responsabilidade. Como presidente da Mesa Diretora da CLDF, tenho o dever institucional de garantir que todos os instrumentos de fiscalização funcionem adequadamente, mas também preciso zelar pela governabilidade e pelo interesse público. É verdade que votei pela aprovação da operação em agosto, baseado nas informações técnicas que tínhamos à época - o BRB apresentou um projeto que parecia sólido para fortalecer o sistema financeiro do DF. Agora, diante das graves denúncias que surgiram, entendo a preocupação da sociedade e a necessidade de esclarecimentos. Por outro lado, já temos uma CPI em andamento - a do Rio Melchior - e o regimento é claro sobre o limite de CPIs simultâneas. Minha preocupação é que não podemos transformar a CLDF numa casa de espetáculo político, mas sim num espaço de investigação séria e responsável.",
+      "condicoes": "Poderia reconsiderar minha posição se: 1) houvesse um consenso para suspender temporariamente a CPI do Rio Melchior; 2) fossem apresentadas garantias de que a CPI teria foco técnico, não político-partidário; 3) o governo demonstrasse total transparência fornecendo todos os documentos solicitados de forma voluntária.",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "Wellington Luiz",
+      "partido": "MDB",
+      "id": "dep-dist-003",
+      "orientacao_politica": "centro-direita",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: INDECISO\nINTENSIDADE: 4\nJUSTIFICATIVA: Olha, essa é uma situação muito delicada que precisa ser analisada com muita responsabilidade. Como presidente da Mesa Diretora da CLDF, tenho o dever institucional de garantir que todos os instrumentos de fiscalização funcionem adequadamente, mas também preciso zelar pela governabilidade e pelo interesse público. É verdade que votei pela aprovação da operação em agosto, baseado nas informações técnicas que tínhamos à época - o BRB apresentou um projeto que parecia sólido para fortalecer o sistema financeiro do DF. Agora, diante das graves denúncias que surgiram, entendo a preocupação da sociedade e a necessidade de esclarecimentos. Por outro lado, já temos uma CPI em andamento - a do Rio Melchior - e o regimento é claro sobre o limite de CPIs simultâneas. Minha preocupação é que não podemos transformar a CLDF numa casa de espetáculo político, mas sim num espaço de investigação séria e responsável.\n\nCONDICOES: Poderia reconsiderar minha posição se: 1) houvesse um consenso para suspender temporariamente a CPI do Rio Melchior; 2) fossem apresentadas garantias de que a CPI teria foco técnico, não político-partidário; 3) o governo demonstrasse total transparência fornecendo todos os documentos solicitados de forma voluntária.\n\nRISCO_POLITICO: MEDIO - tanto assinar quanto não assinar trazem custos políticos significativos em momento de alta pressão pública\n---",
+      "tokens_entrada": 1853,
+      "tokens_saida": 416
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 8,
+      "justificativa": "Como ex-bombeiro militar e advogado, defendo a transparência e a responsabilidade no uso do dinheiro público. O que aconteceu com o BRB e o Banco Master é uma afronta aos brasilienses e às nossas forças de segurança, que poderiam ter recebido esses recursos para melhorar a segurança pública do DF. Votei a favor da compra em agosto porque confiava nas informações técnicas apresentadas, mas os fatos revelados pela Polícia Federal e pelo Banco Central mostram que fomos enganados. Não posso fechar os olhos para R$ 17 bilhões em fraudes que prejudicam os servidores públicos, incluindo nossos bombeiros e policiais.\n\nMinha posição é técnica e baseada nos fatos: se há irregularidades dessa magnitude, é dever da Câmara Legislativa investigar. Não é questão política, é questão de responsabilidade com o erário. Como defensor das forças de segurança, sei que esses recursos poderiam ter fortalecido nossos bombeiros e melhorado os equipamentos de segurança pública. A CPI é necessária para esclarecer os fatos e responsabilizar os culpados, independentemente de partido ou governo.",
+      "condicoes": "Nenhuma - os fatos já são suficientemente graves para justificar a investigação.",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "Roosevelt Vilela",
+      "partido": "PL",
+      "id": "dep-dist-004",
+      "orientacao_politica": "direita",
+      "relacao_governo": "oposicao_forte",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 8\nJUSTIFICATIVA: Como ex-bombeiro militar e advogado, defendo a transparência e a responsabilidade no uso do dinheiro público. O que aconteceu com o BRB e o Banco Master é uma afronta aos brasilienses e às nossas forças de segurança, que poderiam ter recebido esses recursos para melhorar a segurança pública do DF. Votei a favor da compra em agosto porque confiava nas informações técnicas apresentadas, mas os fatos revelados pela Polícia Federal e pelo Banco Central mostram que fomos enganados. Não posso fechar os olhos para R$ 17 bilhões em fraudes que prejudicam os servidores públicos, incluindo nossos bombeiros e policiais.\n\nMinha posição é técnica e baseada nos fatos: se há irregularidades dessa magnitude, é dever da Câmara Legislativa investigar. Não é questão política, é questão de responsabilidade com o erário. Como defensor das forças de segurança, sei que esses recursos poderiam ter fortalecido nossos bombeiros e melhorado os equipamentos de segurança pública. A CPI é necessária para esclarecer os fatos e responsabilizar os culpados, independentemente de partido ou governo.\n\nCONDICOES: Nenhuma - os fatos já são suficientemente graves para justificar a investigação.\n\nRISCO_POLITICO: MEDIO - Pode gerar tensão com parte da base governista, mas o apoio à investigação está alinhado com os valores de transparência e defesa do interesse público.\n---",
+      "tokens_entrada": 1861,
+      "tokens_saida": 416
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 7,
+      "justificativa": "Olha, eu votei a favor da compra do Master em agosto porque acreditei nas informações que nos foram apresentadas na época. Mas depois de tudo que veio à tona - a liquidação do banco, as prisões, os R$ 17 bilhões em fraudes -, não tem como eu ficar de braços cruzados. Meu avô sempre ensinou que política se faz com transparência e responsabilidade com o dinheiro público. O povo do DF precisa saber a verdade sobre esse escândalo que pode ter custado bilhões aos cofres públicos. Mesmo sendo oposição ao Ibaneis, não é questão de perseguição política - é questão de moralidade. Se há irregularidades envolvendo recursos públicos que poderiam estar sendo investidos em habitação popular e geração de emprego, bandeiras que sempre defendi seguindo o legado do meu avô, então temos o dever de investigar. A população está cobrando explicações e nós, como representantes do povo, não podemos nos omitir diante de tamanha gravidade.",
+      "condicoes": "Nenhuma condição. A situação já está clara demais para recuar.",
+      "risco_politico": "BAIXO",
+      "nome_parlamentar": "Joaquim Roriz Neto",
+      "partido": "PL",
+      "id": "dep-dist-005",
+      "orientacao_politica": "direita",
+      "relacao_governo": "oposicao_forte",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 7\nJUSTIFICATIVA: Olha, eu votei a favor da compra do Master em agosto porque acreditei nas informações que nos foram apresentadas na época. Mas depois de tudo que veio à tona - a liquidação do banco, as prisões, os R$ 17 bilhões em fraudes -, não tem como eu ficar de braços cruzados. Meu avô sempre ensinou que política se faz com transparência e responsabilidade com o dinheiro público. O povo do DF precisa saber a verdade sobre esse escândalo que pode ter custado bilhões aos cofres públicos. Mesmo sendo oposição ao Ibaneis, não é questão de perseguição política - é questão de moralidade. Se há irregularidades envolvendo recursos públicos que poderiam estar sendo investidos em habitação popular e geração de emprego, bandeiras que sempre defendi seguindo o legado do meu avô, então temos o dever de investigar. A população está cobrando explicações e nós, como representantes do povo, não podemos nos omitir diante de tamanha gravidade.\nCONDICOES: Nenhuma condição. A situação já está clara demais para recuar.\nRISCO_POLITICO: BAIXO - Como opositor de Ibaneis e defensor da transparência, assinar a CPI reforça minha imagem de independência e compromisso com a moralidade pública\n---",
+      "tokens_entrada": 1892,
+      "tokens_saida": 372
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 7,
+      "justificativa": "Olha, eu votei a favor da compra em agosto porque acreditava que seria uma operação benéfica para o DF, baseado nas informações que tínhamos na época. Mas os fatos que vieram à tona depois da Operação Compliance Zero mudaram completamente o cenário. Estamos falando de R$ 17 bilhões em fraudes, carteiras fictícias, dinheiro público do BRB que poderia ter ido pelo ralo. Como empresário, sei que quando há suspeita de irregularidade, a transparência é fundamental. A população do DF merece saber a verdade sobre o que aconteceu com o dinheiro público. Não posso me omitir diante de evidências tão graves só por questões políticas. Minha atuação sempre foi pautada pela eficiência e transparência no uso dos recursos públicos. Uma CPI bem conduzida pode esclarecer os fatos, responsabilizar culpados e evitar que isso se repita. É uma questão de responsabilidade com o dinheiro do contribuinte brasiliense.",
+      "condicoes": "Nenhuma condição adicional - a decisão está tomada com base nos fatos apresentados",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "Eduardo Pedrosa",
+      "partido": "UNIAO",
+      "id": "dep-dist-006",
+      "orientacao_politica": "centro-direita",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 7\nJUSTIFICATIVA: Olha, eu votei a favor da compra em agosto porque acreditava que seria uma operação benéfica para o DF, baseado nas informações que tínhamos na época. Mas os fatos que vieram à tona depois da Operação Compliance Zero mudaram completamente o cenário. Estamos falando de R$ 17 bilhões em fraudes, carteiras fictícias, dinheiro público do BRB que poderia ter ido pelo ralo. Como empresário, sei que quando há suspeita de irregularidade, a transparência é fundamental. A população do DF merece saber a verdade sobre o que aconteceu com o dinheiro público. Não posso me omitir diante de evidências tão graves só por questões políticas. Minha atuação sempre foi pautada pela eficiência e transparência no uso dos recursos públicos. Uma CPI bem conduzida pode esclarecer os fatos, responsabilizar culpados e evitar que isso se repita. É uma questão de responsabilidade com o dinheiro do contribuinte brasiliense.\nCONDICOES: Nenhuma condição adicional - a decisão está tomada com base nos fatos apresentados\nRISCO_POLITICO: MEDIO - pode gerar tensão com parte da base governista, mas é compensado pela credibilidade junto ao eleitorado que valoriza transparência\n---",
+      "tokens_entrada": 1863,
+      "tokens_saida": 360
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 7,
+      "justificativa": "Olha, como deputado que sempre lutou pela transparência e pela defesa dos mais vulneráveis, não posso fechar os olhos para essa situação gravíssima que está atingindo nosso Distrito Federal. Quando votei a favor da compra do Master em agosto, o fiz acreditando nas informações que nos foram apresentadas e na necessidade de fortalecer nosso sistema financeiro local. Mas hoje, diante de tudo que foi revelado pela Polícia Federal e pelo Banco Central, não posso me omitir. As pessoas com deficiência, os trabalhadores de Brazlândia, toda nossa comunidade merece saber a verdade sobre onde foram parar esses bilhões de reais públicos.\n\nComo cristão e como alguém que passou por provações na vida, sei que a verdade sempre prevalece, mesmo que seja dolorosa. Não posso permitir que recursos que poderiam estar sendo investidos em acessibilidade, em políticas de inclusão, em melhorias para nossa região, tenham sido desviados em esquemas fraudulentos. Vou assinar sim o requerimento da CPI, porque acredito que é nosso dever como parlamentares fiscalizar e buscar a verdade, independente de quem possa ser atingido. A população do DF merece respostas e eu, como representante dela, não posso me furtar dessa responsabilidade.",
+      "condicoes": "Nenhuma condição específica - a decisão está tomada pela transparência e responsabilidade com o povo do DF.",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "Iolando",
+      "partido": "MDB",
+      "id": "dep-dist-007",
+      "orientacao_politica": "centro-direita",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 7\nJUSTIFICATIVA: Olha, como deputado que sempre lutou pela transparência e pela defesa dos mais vulneráveis, não posso fechar os olhos para essa situação gravíssima que está atingindo nosso Distrito Federal. Quando votei a favor da compra do Master em agosto, o fiz acreditando nas informações que nos foram apresentadas e na necessidade de fortalecer nosso sistema financeiro local. Mas hoje, diante de tudo que foi revelado pela Polícia Federal e pelo Banco Central, não posso me omitir. As pessoas com deficiência, os trabalhadores de Brazlândia, toda nossa comunidade merece saber a verdade sobre onde foram parar esses bilhões de reais públicos.\n\nComo cristão e como alguém que passou por provações na vida, sei que a verdade sempre prevalece, mesmo que seja dolorosa. Não posso permitir que recursos que poderiam estar sendo investidos em acessibilidade, em políticas de inclusão, em melhorias para nossa região, tenham sido desviados em esquemas fraudulentos. Vou assinar sim o requerimento da CPI, porque acredito que é nosso dever como parlamentares fiscalizar e buscar a verdade, independente de quem possa ser atingido. A população do DF merece respostas e eu, como representante dela, não posso me furtar dessa responsabilidade.\n\nCONDICOES: Nenhuma condição específica - a decisão está tomada pela transparência e responsabilidade com o povo do DF.\n\nRISCO_POLITICO: MEDIO - pode gerar tensão com a base governista do MDB, mas o apoio da opinião pública e coerência com valores defendidos compensam o risco.\n---",
+      "tokens_entrada": 1873,
+      "tokens_saida": 449
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 7,
+      "justificativa": "Olha, como técnico de enfermagem que sou e conhecendo de perto os problemas da saúde pública no DF, não posso fechar os olhos para um escândalo que pode ter desviado bilhões que faltam nos nossos hospitais e postos de saúde. Votei a favor da compra em agosto porque acreditei que seria bom para fortalecer o BRB e gerar recursos para o DF, mas agora, com tudo que veio à tona - as fraudes, os R$ 17 bilhões em carteiras fictícias, as prisões - tenho a obrigação de apoiar a investigação completa. \n\nMinha base eleitoral, os profissionais de enfermagem e os moradores de Samambaia, merecem saber onde foram parar esses recursos que poderiam estar melhorando a saúde pública. Como ouvidor da CLDF e líder do PSD, não posso me omitir diante de um escândalo dessa magnitude. A transparência é fundamental para que possamos continuar lutando pelos trabalhadores da saúde com credibilidade. Se tem coisa errada, tem que investigar mesmo, independente de governo.",
+      "condicoes": "Nenhuma - a decisão está tomada com base na necessidade de transparência e defesa dos recursos públicos que deveriam estar na saúde.",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "Jorge Vianna",
+      "partido": "PSD",
+      "id": "dep-dist-008",
+      "orientacao_politica": "centro",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 7\nJUSTIFICATIVA: Olha, como técnico de enfermagem que sou e conhecendo de perto os problemas da saúde pública no DF, não posso fechar os olhos para um escândalo que pode ter desviado bilhões que faltam nos nossos hospitais e postos de saúde. Votei a favor da compra em agosto porque acreditei que seria bom para fortalecer o BRB e gerar recursos para o DF, mas agora, com tudo que veio à tona - as fraudes, os R$ 17 bilhões em carteiras fictícias, as prisões - tenho a obrigação de apoiar a investigação completa. \n\nMinha base eleitoral, os profissionais de enfermagem e os moradores de Samambaia, merecem saber onde foram parar esses recursos que poderiam estar melhorando a saúde pública. Como ouvidor da CLDF e líder do PSD, não posso me omitir diante de um escândalo dessa magnitude. A transparência é fundamental para que possamos continuar lutando pelos trabalhadores da saúde com credibilidade. Se tem coisa errada, tem que investigar mesmo, independente de governo.\n\nCONDICOES: Nenhuma - a decisão está tomada com base na necessidade de transparência e defesa dos recursos públicos que deveriam estar na saúde.\n\nRISCO_POLITICO: MEDIO - pode gerar tensão com aliados do governo, mas o custo de não apoiar a investigação seria maior eleitoralmente.\n---",
+      "tokens_entrada": 1866,
+      "tokens_saida": 404
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 9,
+      "justificativa": "Olha, eu já assinei o requerimento de CPI e vou reafirmar minha posição com toda a convicção. Como deputado do PT e como alguém que votou contra essa operação desastrosa em agosto, eu sempre alertei sobre os riscos dessa compra. A sociedade brasiliense precisa saber a verdade sobre como quase R$ 2 bilhões dos recursos públicos estiveram prestes a ser jogados fora numa operação que já nasceu suspeita. Não é possível que o Banco de Brasília, nosso banco público, tenha se envolvido em operações milionárias sem lastro com um banco que estava sendo investigado.\n\nA CPI é fundamental não apenas para apurar responsabilidades, mas também para proteger o patrimônio público e garantir transparência. Como líder da minoria nesta Casa, tenho o dever de representar os interesses da população contra qualquer tentativa de usar recursos públicos de forma irresponsável. Os fatos falam por si: o Banco Central rejeitou a operação, a Polícia Federal prendeu os envolvidos, e agora descobrimos um esquema de R$ 17 bilhões em fraudes. A instalação dessa CPI é questão de dignidade desta Casa Legislativa e de respeito ao dinheiro do povo.",
+      "condicoes": "Não há condições para mudança de posição. A instalação da CPI é uma questão de princípio e transparência.",
+      "risco_politico": "BAIXO",
+      "nome_parlamentar": "Gabriel Magno",
+      "partido": "PT",
+      "id": "dep-dist-009",
+      "orientacao_politica": "esquerda",
+      "relacao_governo": "base_aliada",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 9\nJUSTIFICATIVA: Olha, eu já assinei o requerimento de CPI e vou reafirmar minha posição com toda a convicção. Como deputado do PT e como alguém que votou contra essa operação desastrosa em agosto, eu sempre alertei sobre os riscos dessa compra. A sociedade brasiliense precisa saber a verdade sobre como quase R$ 2 bilhões dos recursos públicos estiveram prestes a ser jogados fora numa operação que já nasceu suspeita. Não é possível que o Banco de Brasília, nosso banco público, tenha se envolvido em operações milionárias sem lastro com um banco que estava sendo investigado.\n\nA CPI é fundamental não apenas para apurar responsabilidades, mas também para proteger o patrimônio público e garantir transparência. Como líder da minoria nesta Casa, tenho o dever de representar os interesses da população contra qualquer tentativa de usar recursos públicos de forma irresponsável. Os fatos falam por si: o Banco Central rejeitou a operação, a Polícia Federal prendeu os envolvidos, e agora descobrimos um esquema de R$ 17 bilhões em fraudes. A instalação dessa CPI é questão de dignidade desta Casa Legislativa e de respeito ao dinheiro do povo.\n\nCONDICOES: Não há condições para mudança de posição. A instalação da CPI é uma questão de princípio e transparência.\n\nRISCO_POLITICO: BAIXO - está alinhado com minha base eleitoral e histórico de oposição responsável\n---",
+      "tokens_entrada": 1868,
+      "tokens_saida": 421
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 9,
+      "justificativa": "Claro que assino! Já assinei desde o primeiro momento em novembro, quando protocolamos o requerimento. Como fundador do PT em Sobradinho e vice-presidente desta Casa, tenho o dever de defender os recursos públicos do povo brasiliense. Votei contra essa compra criminosa em agosto porque já desconfiava que havia algo muito errado nessa operação. O BRB é um banco do povo, construído com o suor dos trabalhadores, e não pode ser usado para esquemas bilionários de enriquecimento ilícito.\n\nEssa CPI é fundamental para esclarecer como R$ 12 bilhões do nosso banco foram parar nas mãos de estelionatários. O povo de Sobradinho, minha base eleitoral, merece saber a verdade sobre esse escândalo. Não podemos aceitar que Ibaneis e sua turma continuem achando que podem fazer o que querem com o dinheiro público. A prisão do Vorcaro e o afastamento do presidente do BRB mostram a gravidade da situação. Como militante histórico dos direitos humanos e da justiça social, vou lutar até o fim para que todos os responsáveis sejam punidos.",
+      "condicoes": "Nenhuma. Minha posição é irrevogável em defesa da transparência e dos recursos públicos.",
+      "risco_politico": "BAIXO",
+      "nome_parlamentar": "Ricardo Vale",
+      "partido": "PT",
+      "id": "dep-dist-010",
+      "orientacao_politica": "esquerda",
+      "relacao_governo": "base_aliada",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 9\nJUSTIFICATIVA: Claro que assino! Já assinei desde o primeiro momento em novembro, quando protocolamos o requerimento. Como fundador do PT em Sobradinho e vice-presidente desta Casa, tenho o dever de defender os recursos públicos do povo brasiliense. Votei contra essa compra criminosa em agosto porque já desconfiava que havia algo muito errado nessa operação. O BRB é um banco do povo, construído com o suor dos trabalhadores, e não pode ser usado para esquemas bilionários de enriquecimento ilícito.\n\nEssa CPI é fundamental para esclarecer como R$ 12 bilhões do nosso banco foram parar nas mãos de estelionatários. O povo de Sobradinho, minha base eleitoral, merece saber a verdade sobre esse escândalo. Não podemos aceitar que Ibaneis e sua turma continuem achando que podem fazer o que querem com o dinheiro público. A prisão do Vorcaro e o afastamento do presidente do BRB mostram a gravidade da situação. Como militante histórico dos direitos humanos e da justiça social, vou lutar até o fim para que todos os responsáveis sejam punidos.\n\nCONDICOES: Nenhuma. Minha posição é irrevogável em defesa da transparência e dos recursos públicos.\n\nRISCO_POLITICO: BAIXO - fortalece minha imagem como defensor dos recursos públicos e opositor consistente a esquemas de corrupção\n---",
+      "tokens_entrada": 1864,
+      "tokens_saida": 404
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 9,
+      "justificativa": "Já assinei o requerimento da CPI e mantenho minha posição com firmeza. Como alguém que votou contra a compra do Master desde o início, por entender os riscos dessa operação, sinto-me no dever de cobrar transparência total sobre este escândalo que pode custar bilhões aos cofres públicos do Distrito Federal. A proteção do patrimônio público é uma responsabilidade que não posso abdicar, independente de pressões políticas.\n\nComo mãe de família e defensora dos valores conservadores, não posso aceitar que recursos que deveriam estar sendo investidos em áreas essenciais como saúde, educação e segurança tenham sido comprometidos por operações suspeitas. O povo do DF merece respostas e os responsáveis devem ser punidos. Minha base eleitoral, formada por pessoas trabalhadoras e honestas, espera de mim essa postura firme contra a corrupção e o uso indevido do dinheiro público.",
+      "condicoes": "Não há condições para mudança de posição. A gravidade dos fatos revelados pela Operação Compliance Zero e o posicionamento do Banco Central tornam a CPI uma necessidade imperativa.",
+      "risco_politico": "BAIXO",
+      "nome_parlamentar": "Paula Belmonte",
+      "partido": "PSDB",
+      "id": "dep-dist-011",
+      "orientacao_politica": "direita",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 9\nJUSTIFICATIVA: Já assinei o requerimento da CPI e mantenho minha posição com firmeza. Como alguém que votou contra a compra do Master desde o início, por entender os riscos dessa operação, sinto-me no dever de cobrar transparência total sobre este escândalo que pode custar bilhões aos cofres públicos do Distrito Federal. A proteção do patrimônio público é uma responsabilidade que não posso abdicar, independente de pressões políticas.\n\nComo mãe de família e defensora dos valores conservadores, não posso aceitar que recursos que deveriam estar sendo investidos em áreas essenciais como saúde, educação e segurança tenham sido comprometidos por operações suspeitas. O povo do DF merece respostas e os responsáveis devem ser punidos. Minha base eleitoral, formada por pessoas trabalhadoras e honestas, espera de mim essa postura firme contra a corrupção e o uso indevido do dinheiro público.\n\nCONDICOES: Não há condições para mudança de posição. A gravidade dos fatos revelados pela Operação Compliance Zero e o posicionamento do Banco Central tornam a CPI uma necessidade imperativa.\n\nRISCO_POLITICO: BAIXO - A posição é coerente com meu histórico, alinhada com minha base eleitoral conservadora e representa defesa dos interesses públicos em momento de grave crise de confiança.\n---",
+      "tokens_entrada": 1871,
+      "tokens_saida": 386
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 7,
+      "justificativa": "Olha, como presidente da Comissão de Constituição e Justiça, eu tenho o compromisso com a transparência e com a verdade. É verdade que eu votei a favor da compra do Master em agosto, porque na época as informações apresentadas pareciam favoráveis ao Distrito Federal. Mas agora, com tudo que veio à tona - a operação da Polícia Federal, as prisões, os R$ 17 bilhões em fraudes - não posso fechar os olhos. O povo de Santa Maria, do Gama, as mulheres que me elegeram, merecem saber a verdade sobre o que aconteceu com o dinheiro público.\n\nComo comerciante que sempre fui, sei que quando algo cheira mal nos negócios, a gente tem que investigar. E esse caso está fedendo muito. Não posso deixar que digam que eu estava protegendo esquema de corrupção. Minha base eleitoral confia em mim para fazer o que é certo, e investigar possível malversação do dinheiro público é fazer o que é certo. A CPI vai esclarecer os fatos e separar o joio do trigo. Quem não deve, não teme.",
+      "condicoes": "Desde que a CPI seja conduzida com seriedade, sem virar palanque eleitoreiro, e que investigue todos os responsáveis, independente de partido.",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "Jaqueline Silva",
+      "partido": "MDB",
+      "id": "dep-dist-012",
+      "orientacao_politica": "centro-direita",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 7\nJUSTIFICATIVA: Olha, como presidente da Comissão de Constituição e Justiça, eu tenho o compromisso com a transparência e com a verdade. É verdade que eu votei a favor da compra do Master em agosto, porque na época as informações apresentadas pareciam favoráveis ao Distrito Federal. Mas agora, com tudo que veio à tona - a operação da Polícia Federal, as prisões, os R$ 17 bilhões em fraudes - não posso fechar os olhos. O povo de Santa Maria, do Gama, as mulheres que me elegeram, merecem saber a verdade sobre o que aconteceu com o dinheiro público.\n\nComo comerciante que sempre fui, sei que quando algo cheira mal nos negócios, a gente tem que investigar. E esse caso está fedendo muito. Não posso deixar que digam que eu estava protegendo esquema de corrupção. Minha base eleitoral confia em mim para fazer o que é certo, e investigar possível malversação do dinheiro público é fazer o que é certo. A CPI vai esclarecer os fatos e separar o joio do trigo. Quem não deve, não teme.\n\nCONDICOES: Desde que a CPI seja conduzida com seriedade, sem virar palanque eleitoreiro, e que investigue todos os responsáveis, independente de partido.\n\nRISCO_POLITICO: MEDIO - pode gerar tensão com o governo, mas o risco maior seria ser associada a um escândalo bilionário\n---",
+      "tokens_entrada": 1858,
+      "tokens_saida": 413
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 7,
+      "justificativa": "Olha, como deputado que representa o Gama e defende transparência, não posso fechar os olhos para um escândalo dessa magnitude. Votei a favor da compra do Master em agosto porque acreditava nas informações que nos foram apresentadas, mas agora, com tudo que veio à tona - a Polícia Federal prendendo o dono do banco, R$ 17 bilhões em fraudes, carteiras fictícias - é nosso dever como parlamentares investigar. O povo do Gama, os motoristas de app que represento, todos merecem saber a verdade sobre como o dinheiro público foi usado. A tecnologia me ensinou que dados transparentes são fundamentais para boas decisões, e aqui não pode ser diferente.\n\nMesmo sendo do MDB, partido do governador Ibaneis, minha responsabilidade é com a população do DF. Não vou me esconder atrás de sigla partidária quando está em jogo a credibilidade das nossas instituições. Se erramos ao aprovar aquela compra, precisamos assumir e investigar. A CPI é o instrumento correto para isso. O celular do Vorcaro pode revelar muita coisa, e se há uma rede de favorecimentos, ela precisa ser desmascarada. É isso que o povo espera de nós.",
+      "condicoes": "Nenhuma condição. A decisão está tomada com base nos fatos apresentados.",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "Daniel Donizet",
+      "partido": "MDB",
+      "id": "dep-dist-013",
+      "orientacao_politica": "direita",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 7\nJUSTIFICATIVA: Olha, como deputado que representa o Gama e defende transparência, não posso fechar os olhos para um escândalo dessa magnitude. Votei a favor da compra do Master em agosto porque acreditava nas informações que nos foram apresentadas, mas agora, com tudo que veio à tona - a Polícia Federal prendendo o dono do banco, R$ 17 bilhões em fraudes, carteiras fictícias - é nosso dever como parlamentares investigar. O povo do Gama, os motoristas de app que represento, todos merecem saber a verdade sobre como o dinheiro público foi usado. A tecnologia me ensinou que dados transparentes são fundamentais para boas decisões, e aqui não pode ser diferente.\n\nMesmo sendo do MDB, partido do governador Ibaneis, minha responsabilidade é com a população do DF. Não vou me esconder atrás de sigla partidária quando está em jogo a credibilidade das nossas instituições. Se erramos ao aprovar aquela compra, precisamos assumir e investigar. A CPI é o instrumento correto para isso. O celular do Vorcaro pode revelar muita coisa, e se há uma rede de favorecimentos, ela precisa ser desmascarada. É isso que o povo espera de nós.\n\nCONDICOES: Nenhuma condição. A decisão está tomada com base nos fatos apresentados.\n\nRISCO_POLITICO: MEDIO - Pode gerar atrito com a base governista do MDB, mas o apoio à transparência pode ser bem visto pela base eleitoral no Gama e pelos eleitores em geral\n---",
+      "tokens_entrada": 1865,
+      "tokens_saida": 435
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 8,
+      "justificativa": "Olha, desde o início eu defendia uma análise mais criteriosa dessa operação, mas infelizmente o governo Ibaneis atropelou o processo na CLDF. Votei a favor porque acreditei nas informações técnicas que foram apresentadas, mas agora, com tudo que veio à tona - a rejeição do Banco Central, a Operação Compliance Zero, as fraudes bilionárias - fica claro que fomos enganados. Como cristão e conservador, não posso compactuar com irregularidades que prejudicam o dinheiro público do povo de Brasília. A CPI é fundamental para esclarecer os fatos e responsabilizar os culpados.\n\nComo presidente da Comissão de Constituição e Justiça, tenho o dever de zelar pela legalidade e moralidade dos atos públicos. Não vou me omitir diante de um escândalo dessa magnitude só para proteger um governo que já demonstrou descompromisso com a transparência. O PL sempre defendeu o combate à corrupção e não será agora que vamos recuar. Brasília merece a verdade, e eu estarei do lado certo da história, defendendo os valores familiares e a probidade administrativa que sempre pautaram minha atuação.",
+      "condicoes": "Nenhuma. A decisão está tomada com base nas evidências já apresentadas e no dever de fiscalização do Poder Legislativo.",
+      "risco_politico": "BAIXO",
+      "nome_parlamentar": "Thiago Manzoni",
+      "partido": "PL",
+      "id": "dep-dist-014",
+      "orientacao_politica": "direita",
+      "relacao_governo": "oposicao_forte",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 8\nJUSTIFICATIVA: Olha, desde o início eu defendia uma análise mais criteriosa dessa operação, mas infelizmente o governo Ibaneis atropelou o processo na CLDF. Votei a favor porque acreditei nas informações técnicas que foram apresentadas, mas agora, com tudo que veio à tona - a rejeição do Banco Central, a Operação Compliance Zero, as fraudes bilionárias - fica claro que fomos enganados. Como cristão e conservador, não posso compactuar com irregularidades que prejudicam o dinheiro público do povo de Brasília. A CPI é fundamental para esclarecer os fatos e responsabilizar os culpados.\n\nComo presidente da Comissão de Constituição e Justiça, tenho o dever de zelar pela legalidade e moralidade dos atos públicos. Não vou me omitir diante de um escândalo dessa magnitude só para proteger um governo que já demonstrou descompromisso com a transparência. O PL sempre defendeu o combate à corrupção e não será agora que vamos recuar. Brasília merece a verdade, e eu estarei do lado certo da história, defendendo os valores familiares e a probidade administrativa que sempre pautaram minha atuação.\n\nCONDICOES: Nenhuma. A decisão está tomada com base nas evidências já apresentadas e no dever de fiscalização do Poder Legislativo.\n\nRISCO_POLITICO: BAIXO - A posição alinha-se com os valores conservadores da base eleitoral e demonstra independência em relação ao governo Ibaneis, fortalecendo a imagem de deputado íntegro.\n---",
+      "tokens_entrada": 1893,
+      "tokens_saida": 444
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 8,
+      "justificativa": "Olha, como delegada aposentada e alguém que sempre defendeu a justiça, não posso fechar os olhos para esse escândalo que manchou o Distrito Federal. É verdade que votei a favor da compra do Master em agosto, mas na época as informações que tínhamos eram outras - ninguém imaginava a dimensão dessa fraude de R$17 bilhões que foi descoberta. Quando o Banco Central rejeitou a operação e depois a Polícia Federal prendeu o Vorcaro, ficou claro que havia algo muito errado. A população do DF merece saber a verdade sobre como quase perdemos bilhões dos cofres públicos. Como presidente da Comissão da Mulher, sei o quanto é importante que as instituições sejam transparentes - as mulheres do nosso DF, especialmente as da minha base em Sobradinho, trabalham duro e pagam seus impostos esperando que esse dinheiro seja bem aplicado, não desviado em esquemas fraudulentos.",
+      "condicoes": "Já tomei minha decisão. A CPI precisa acontecer para esclarecer todos os fatos. Não há condição que me faça recuar dessa posição.",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "Doutora Jane",
+      "partido": "REPUBLICANOS",
+      "id": "dep-dist-015",
+      "orientacao_politica": "centro-direita",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 8\nJUSTIFICATIVA: Olha, como delegada aposentada e alguém que sempre defendeu a justiça, não posso fechar os olhos para esse escândalo que manchou o Distrito Federal. É verdade que votei a favor da compra do Master em agosto, mas na época as informações que tínhamos eram outras - ninguém imaginava a dimensão dessa fraude de R$17 bilhões que foi descoberta. Quando o Banco Central rejeitou a operação e depois a Polícia Federal prendeu o Vorcaro, ficou claro que havia algo muito errado. A população do DF merece saber a verdade sobre como quase perdemos bilhões dos cofres públicos. Como presidente da Comissão da Mulher, sei o quanto é importante que as instituições sejam transparentes - as mulheres do nosso DF, especialmente as da minha base em Sobradinho, trabalham duro e pagam seus impostos esperando que esse dinheiro seja bem aplicado, não desviado em esquemas fraudulentos.\n\nCONDICOES: Já tomei minha decisão. A CPI precisa acontecer para esclarecer todos os fatos. Não há condição que me faça recuar dessa posição.\n\nRISCO_POLITICO: MEDIO - Pode haver tensão com parte da base governista, mas a posição está alinhada com os valores de justiça que sempre defendi e com o clamor popular por transparência.\n---",
+      "tokens_entrada": 1876,
+      "tokens_saida": 380
+    },
+    {
+      "posicao": "NAO_ASSINA",
+      "intensidade": 3,
+      "justificativa": "Olha, irmão, como pastor e homem de Deus, eu sempre defendi a transparência e a verdade. Mas também preciso ser prudente e responsável com o povo que me elegeu. Votei a favor da compra do Master em agosto porque acreditei nas informações que nos foram apresentadas à época, sempre pensando no desenvolvimento econômico do nosso Distrito Federal. Agora, vendo toda essa situação, reconheço que foram revelados fatos graves que merecem esclarecimentos. Porém, já temos uma CPI em andamento na Casa - a do Rio Melchior - e nossa estrutura tem limitações. Creio que a Polícia Federal e os órgãos competentes já estão fazendo seu trabalho de investigação. Como cristão, defendo que a justiça seja feita, mas também não posso contribuir para instabilidade política desnecessária que prejudique as famílias trabalhadoras do DF.",
+      "condicoes": "Poderia reconsiderar se: 1) A CPI do Rio Melchior fosse concluída, liberando espaço regimental; 2) Fossem apresentadas evidências concretas de que os órgãos federais não estão investigando adequadamente; 3) Houvesse garantias de que a CPI teria foco técnico e não político-partidário.",
+      "risco_politico": "ALTO",
+      "nome_parlamentar": "Pastor Daniel de Castro",
+      "partido": "PP",
+      "id": "dep-dist-016",
+      "orientacao_politica": "direita",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: NAO_ASSINA\nINTENSIDADE: 3\nJUSTIFICATIVA: Olha, irmão, como pastor e homem de Deus, eu sempre defendi a transparência e a verdade. Mas também preciso ser prudente e responsável com o povo que me elegeu. Votei a favor da compra do Master em agosto porque acreditei nas informações que nos foram apresentadas à época, sempre pensando no desenvolvimento econômico do nosso Distrito Federal. Agora, vendo toda essa situação, reconheço que foram revelados fatos graves que merecem esclarecimentos. Porém, já temos uma CPI em andamento na Casa - a do Rio Melchior - e nossa estrutura tem limitações. Creio que a Polícia Federal e os órgãos competentes já estão fazendo seu trabalho de investigação. Como cristão, defendo que a justiça seja feita, mas também não posso contribuir para instabilidade política desnecessária que prejudique as famílias trabalhadoras do DF.\n\nCONDICOES: Poderia reconsiderar se: 1) A CPI do Rio Melchior fosse concluída, liberando espaço regimental; 2) Fossem apresentadas evidências concretas de que os órgãos federais não estão investigando adequadamente; 3) Houvesse garantias de que a CPI teria foco técnico e não político-partidário.\n\nRISCO_POLITICO: ALTO - risco de ser associado ao escândalo por não apoiar investigação, mas também risco de romper com base governista que ainda o apoia.\n---",
+      "tokens_entrada": 1856,
+      "tokens_saida": 404
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 10,
+      "justificativa": "Olha, eu já assinei esse requerimento desde o primeiro momento, brother! Como pedagogo de Ceilândia que sou, eu sei o que é ver o dinheiro público sendo desviado enquanto falta verba para educação, para cultura, para os projetos de juventude na periferia. Esse escândalo do Master é um absurdo total - R$ 17 bilhões em fraudes! Isso é dinheiro que poderia ter construído dezenas de escolas, centros culturais, projetos para nossa juventude periférica. Eu votei contra essa compra lá em agosto justamente porque cheirava mal desde o início.\n\nA juventude de Ceilândia, o povo da periferia que eu represento, merece saber a verdade sobre esse esquema. Não dá para passar pano para corrupção, independente de quem seja. O PSOL sempre foi oposição firme a esses esquemas, e eu não vou ser diferente agora. A CPI é fundamental para apurar tudo: quem sabia o quê, quando sabia, e como esse dinheiro público foi parar nas mãos de bandido. Minha base eleitoral espera isso de mim - transparência total e luta contra a corrupção que rouba o futuro da nossa juventude.",
+      "condicoes": "Não há condições. Minha posição é firme e não muda.",
+      "risco_politico": "BAIXO",
+      "nome_parlamentar": "Max Maciel",
+      "partido": "PSOL",
+      "id": "dep-dist-017",
+      "orientacao_politica": "esquerda",
+      "relacao_governo": "base_aliada",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 10\nJUSTIFICATIVA: Olha, eu já assinei esse requerimento desde o primeiro momento, brother! Como pedagogo de Ceilândia que sou, eu sei o que é ver o dinheiro público sendo desviado enquanto falta verba para educação, para cultura, para os projetos de juventude na periferia. Esse escândalo do Master é um absurdo total - R$ 17 bilhões em fraudes! Isso é dinheiro que poderia ter construído dezenas de escolas, centros culturais, projetos para nossa juventude periférica. Eu votei contra essa compra lá em agosto justamente porque cheirava mal desde o início.\n\nA juventude de Ceilândia, o povo da periferia que eu represento, merece saber a verdade sobre esse esquema. Não dá para passar pano para corrupção, independente de quem seja. O PSOL sempre foi oposição firme a esses esquemas, e eu não vou ser diferente agora. A CPI é fundamental para apurar tudo: quem sabia o quê, quando sabia, e como esse dinheiro público foi parar nas mãos de bandido. Minha base eleitoral espera isso de mim - transparência total e luta contra a corrupção que rouba o futuro da nossa juventude.\n\nCONDICOES: Não há condições. Minha posição é firme e não muda.\n\nRISCO_POLITICO: BAIXO - essa posição fortalece minha imagem junto à base eleitoral e está alinhada com os valores do PSOL\n---",
+      "tokens_entrada": 1882,
+      "tokens_saida": 413
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 8,
+      "justificativa": "Eu já assinei o requerimento da CPI porque esta é uma questão que vai muito além de partidarismo - é uma questão de responsabilidade pública e proteção dos recursos que deveriam estar sendo investidos na saúde e no bem-estar da população. Como enfermeira e conhecedora das dificuldades que enfrentamos no SUS, não posso aceitar que R$12 bilhões tenham sido desviados em operações fraudulentas enquanto nossas unidades de saúde padecem de falta de recursos básicos. Votei contra a compra do Master em agosto justamente porque os riscos eram evidentes, e infelizmente os fatos comprovaram nossa preocupação.\n\nA sociedade brasiliense merece transparência total sobre este escândalo. Como profissional de saúde que sempre defendeu a aplicação correta dos recursos públicos no SUS, não posso me omitir diante de tamanha irresponsabilidade. A CPI é o instrumento adequado para investigarmos todos os aspectos desta operação e identificarmos os responsáveis. O PSB sempre esteve do lado correto nesta questão, e eu continuarei defendendo a apuração rigorosa dos fatos, independentemente de pressões políticas.",
+      "condicoes": "Não há condições para mudança de posição. A assinatura já foi dada com base em convicções técnicas e éticas.",
+      "risco_politico": "BAIXO",
+      "nome_parlamentar": "Dayse Amarilio",
+      "partido": "PSB",
+      "id": "dep-dist-018",
+      "orientacao_politica": "centro-esquerda",
+      "relacao_governo": "base_aliada",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 8\nJUSTIFICATIVA: Eu já assinei o requerimento da CPI porque esta é uma questão que vai muito além de partidarismo - é uma questão de responsabilidade pública e proteção dos recursos que deveriam estar sendo investidos na saúde e no bem-estar da população. Como enfermeira e conhecedora das dificuldades que enfrentamos no SUS, não posso aceitar que R$12 bilhões tenham sido desviados em operações fraudulentas enquanto nossas unidades de saúde padecem de falta de recursos básicos. Votei contra a compra do Master em agosto justamente porque os riscos eram evidentes, e infelizmente os fatos comprovaram nossa preocupação.\n\nA sociedade brasiliense merece transparência total sobre este escândalo. Como profissional de saúde que sempre defendeu a aplicação correta dos recursos públicos no SUS, não posso me omitir diante de tamanha irresponsabilidade. A CPI é o instrumento adequado para investigarmos todos os aspectos desta operação e identificarmos os responsáveis. O PSB sempre esteve do lado correto nesta questão, e eu continuarei defendendo a apuração rigorosa dos fatos, independentemente de pressões políticas.\n\nCONDICOES: Não há condições para mudança de posição. A assinatura já foi dada com base em convicções técnicas e éticas.\n\nRISCO_POLITICO: BAIXO - posição alinhada com histórico de oposição à operação e com demandas da sociedade por transparência\n---",
+      "tokens_entrada": 1897,
+      "tokens_saida": 409
+    },
+    {
+      "posicao": "NAO_ASSINA",
+      "intensidade": 3,
+      "justificativa": "Olha, eu entendo a preocupação da população e dos colegas deputados com essa situação do BRB e do Master. Como ex-policial militar, sempre defendi a transparência e a responsabilização quando há irregularidades. Porém, já temos uma CPI em andamento na Casa - a do Rio Melchior - e nosso regimento é claro: só podemos ter duas CPIs simultâneas. Além disso, a Polícia Federal e outros órgãos já estão investigando profundamente o caso. Não vou assinar agora porque acredito que devemos aguardar o fim da CPI atual para não sobrecarregar nossa estrutura e prejudicar a qualidade das investigações.\n\nComo líder do governo, tenho responsabilidade de manter o equilíbrio institucional, mas isso não significa que vou passar pano para irregularidade alguma. Se surgirem elementos novos que comprovem a necessidade urgente de uma CPI específica, e se houver espaço regimental, posso reconsiderar minha posição. Minha prioridade sempre foi defender os interesses da Candangolândia e do Núcleo Bandeirante, e isso inclui zelar pela boa gestão dos recursos públicos.",
+      "condicoes": "Conclusão da CPI do Rio Melchior para abrir espaço regimental; apresentação de elementos novos não cobertos pelas investigações em curso; garantia de que a CPI terá foco específico e não será palanque político.",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "Hermeto",
+      "partido": "MDB",
+      "id": "dep-dist-019",
+      "orientacao_politica": "centro-direita",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: NAO_ASSINA\nINTENSIDADE: 3\nJUSTIFICATIVA: Olha, eu entendo a preocupação da população e dos colegas deputados com essa situação do BRB e do Master. Como ex-policial militar, sempre defendi a transparência e a responsabilização quando há irregularidades. Porém, já temos uma CPI em andamento na Casa - a do Rio Melchior - e nosso regimento é claro: só podemos ter duas CPIs simultâneas. Além disso, a Polícia Federal e outros órgãos já estão investigando profundamente o caso. Não vou assinar agora porque acredito que devemos aguardar o fim da CPI atual para não sobrecarregar nossa estrutura e prejudicar a qualidade das investigações.\n\nComo líder do governo, tenho responsabilidade de manter o equilíbrio institucional, mas isso não significa que vou passar pano para irregularidade alguma. Se surgirem elementos novos que comprovem a necessidade urgente de uma CPI específica, e se houver espaço regimental, posso reconsiderar minha posição. Minha prioridade sempre foi defender os interesses da Candangolândia e do Núcleo Bandeirante, e isso inclui zelar pela boa gestão dos recursos públicos.\n\nCONDICOES: Conclusão da CPI do Rio Melchior para abrir espaço regimental; apresentação de elementos novos não cobertos pelas investigações em curso; garantia de que a CPI terá foco específico e não será palanque político.\n\nRISCO_POLITICO: MEDIO\n---",
+      "tokens_entrada": 1877,
+      "tokens_saida": 412
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 7,
+      "justificativa": "Olha, como educador que sou há décadas e pai de oito filhos, eu tenho a responsabilidade de ser transparente com a população do Distrito Federal, especialmente com os moradores de Sobradinho que depositaram sua confiança em mim. Quando votei a favor da compra do Master em agosto, o fiz acreditando que seria uma operação benéfica para fortalecer o BRB e gerar recursos para investimentos públicos, inclusive na educação. Porém, os fatos que vieram à tona com a Operação Compliance Zero mudaram completamente o cenário e revelaram uma realidade que nós, deputados, não tínhamos conhecimento à época.\n\nComo alguém que sempre defendeu a transparência no serviço público e que tem sua trajetória pautada pela ética - seja como professor, auditor ou parlamentar - não posso me furtar a apoiar uma investigação profunda sobre este caso. O dinheiro público está em jogo, e isso afeta diretamente os recursos que deveriam ir para nossas escolas, para a infraestrutura de Sobradinho e para os serviços essenciais. A CPI é o instrumento adequado para esclarecer todos os fatos e responsabilizar os culpados, independentemente de quem sejam.",
+      "condicoes": "Nenhuma. A gravidade dos fatos revelados torna imperativa a investigação parlamentar.",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "João Cardoso",
+      "partido": "AVANTE",
+      "id": "dep-dist-020",
+      "orientacao_politica": "centro",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 7\nJUSTIFICATIVA: Olha, como educador que sou há décadas e pai de oito filhos, eu tenho a responsabilidade de ser transparente com a população do Distrito Federal, especialmente com os moradores de Sobradinho que depositaram sua confiança em mim. Quando votei a favor da compra do Master em agosto, o fiz acreditando que seria uma operação benéfica para fortalecer o BRB e gerar recursos para investimentos públicos, inclusive na educação. Porém, os fatos que vieram à tona com a Operação Compliance Zero mudaram completamente o cenário e revelaram uma realidade que nós, deputados, não tínhamos conhecimento à época.\n\nComo alguém que sempre defendeu a transparência no serviço público e que tem sua trajetória pautada pela ética - seja como professor, auditor ou parlamentar - não posso me furtar a apoiar uma investigação profunda sobre este caso. O dinheiro público está em jogo, e isso afeta diretamente os recursos que deveriam ir para nossas escolas, para a infraestrutura de Sobradinho e para os serviços essenciais. A CPI é o instrumento adequado para esclarecer todos os fatos e responsabilizar os culpados, independentemente de quem sejam.\n\nCONDICOES: Nenhuma. A gravidade dos fatos revelados torna imperativa a investigação parlamentar.\n\nRISCO_POLITICO: MEDIO - pode gerar tensão com aliados do governo, mas o risco de não apoiar a investigação é maior diante da opinião pública.\n---",
+      "tokens_entrada": 1842,
+      "tokens_saida": 414
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 7,
+      "justificativa": "Olha, eu votei a favor da compra do Master em agosto porque acreditei nas informações que foram apresentadas na época. Mas agora, com tudo que veio à tona - a Polícia Federal prendendo o dono do banco, o Banco Central rejeitando a operação e descobrindo essas fraudes bilionárias - não tem como eu fechar os olhos. O povo de Planaltina e do Arapoanga, que é minha base, está cobrando transparência. Eles querem saber como quase perdemos R$ 2 bilhões do nosso dinheiro público. Como presidente da Comissão de Produção Rural, sei o quanto esse recurso faria diferença para o desenvolvimento da nossa região. A CPI é o instrumento adequado para esclarecer os fatos e responsabilizar quem errou. Não posso me omitir numa situação dessas, seria traição com quem me elegeu.",
+      "condicoes": "Nenhuma condição específica - a gravidade dos fatos já justifica a assinatura.",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "Pepa",
+      "partido": "PP",
+      "id": "dep-dist-021",
+      "orientacao_politica": "centro-direita",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 7\nJUSTIFICATIVA: Olha, eu votei a favor da compra do Master em agosto porque acreditei nas informações que foram apresentadas na época. Mas agora, com tudo que veio à tona - a Polícia Federal prendendo o dono do banco, o Banco Central rejeitando a operação e descobrindo essas fraudes bilionárias - não tem como eu fechar os olhos. O povo de Planaltina e do Arapoanga, que é minha base, está cobrando transparência. Eles querem saber como quase perdemos R$ 2 bilhões do nosso dinheiro público. Como presidente da Comissão de Produção Rural, sei o quanto esse recurso faria diferença para o desenvolvimento da nossa região. A CPI é o instrumento adequado para esclarecer os fatos e responsabilizar quem errou. Não posso me omitir numa situação dessas, seria traição com quem me elegeu.\n\nCONDICOES: Nenhuma condição específica - a gravidade dos fatos já justifica a assinatura.\n\nRISCO_POLITICO: MEDIO - pode gerar tensão com alguns aliados do governo, mas o risco de não assinar e ser associado à omissão diante do escândalo é maior, especialmente considerando a pressão popular e a proximidade das eleições de 2026.\n---",
+      "tokens_entrada": 1840,
+      "tokens_saida": 357
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 7,
+      "justificativa": "Olha, irmão, como homem de Deus e representante do povo do Distrito Federal, não posso fechar os olhos para o que está acontecendo. A Bíblia nos ensina que \"a verdade vos libertará\", e é isso que precisamos buscar neste momento. Votei a favor da compra do Master acreditando nas informações que me foram apresentadas na época, mas agora, diante de tantas irregularidades reveladas pela Polícia Federal e pelo Banco Central, tenho o dever moral e cristão de apoiar uma investigação completa e transparente.\n\nNossa responsabilidade como deputados é zelar pelos recursos públicos, que são fruto do suor e trabalho das famílias brasilienses. Se houve irregularidades, se recursos que deveriam estar investidos em educação, saúde e programas para a juventude foram desviados, precisamos esclarecer tudo. Minha base eleitoral, formada por famílias trabalhadoras e cristãs, espera de mim essa postura íntegra. A CPI é um instrumento legítimo da democracia, e não podemos permitir que questões políticas se sobreponham à busca da verdade.",
+      "condicoes": "Apenas que a CPI seja conduzida com seriedade, foco nos fatos e sem viés político-partidário, buscando realmente esclarecer a verdade para a população.",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "Martins Machado",
+      "partido": "REPUBLICANOS",
+      "id": "dep-dist-022",
+      "orientacao_politica": "direita",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 7\nJUSTIFICATIVA: Olha, irmão, como homem de Deus e representante do povo do Distrito Federal, não posso fechar os olhos para o que está acontecendo. A Bíblia nos ensina que \"a verdade vos libertará\", e é isso que precisamos buscar neste momento. Votei a favor da compra do Master acreditando nas informações que me foram apresentadas na época, mas agora, diante de tantas irregularidades reveladas pela Polícia Federal e pelo Banco Central, tenho o dever moral e cristão de apoiar uma investigação completa e transparente.\n\nNossa responsabilidade como deputados é zelar pelos recursos públicos, que são fruto do suor e trabalho das famílias brasilienses. Se houve irregularidades, se recursos que deveriam estar investidos em educação, saúde e programas para a juventude foram desviados, precisamos esclarecer tudo. Minha base eleitoral, formada por famílias trabalhadoras e cristãs, espera de mim essa postura íntegra. A CPI é um instrumento legítimo da democracia, e não podemos permitir que questões políticas se sobreponham à busca da verdade.\n\nCONDICOES: Apenas que a CPI seja conduzida com seriedade, foco nos fatos e sem viés político-partidário, buscando realmente esclarecer a verdade para a população.\n\nRISCO_POLITICO: MEDIO - Pode gerar tensões com parte da base governista, mas o apoio da opinião pública e da base evangélica tende a ser positivo pela postura ética.\n---",
+      "tokens_entrada": 1851,
+      "tokens_saida": 428
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 7,
+      "justificativa": "Olha, essa situação do Banco Master extrapolou todos os limites do aceitável. Como deputado que votou pela aprovação da operação em agosto, baseado nas informações técnicas disponíveis à época, me sinto na obrigação de apoiar uma investigação completa e transparente. A descoberta de um esquema de R$17 bilhões em fraudes e a liquidação do banco pelo Banco Central demonstram que fomos todos enganados. O povo do Distrito Federal merece esclarecimentos sobre como recursos públicos foram comprometidos nessa operação. Minha trajetória sempre foi pautada pela responsabilidade técnica e pela defesa do emprego e da economia local - e justamente por isso não posso me omitir diante de tamanha irregularidade que pode comprometer a saúde financeira do nosso banco público e impactar negativamente a geração de empregos no DF.",
+      "condicoes": "Que a CPI seja conduzida de forma técnica e imparcial, focada nos fatos e não em espetacularização política. Também defendo que os trabalhos sejam céleres para não prolongar a instabilidade no sistema financeiro local.",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "Robério Negreiros",
+      "partido": "PSD",
+      "id": "dep-dist-023",
+      "orientacao_politica": "centro-direita",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 7\nJUSTIFICATIVA: Olha, essa situação do Banco Master extrapolou todos os limites do aceitável. Como deputado que votou pela aprovação da operação em agosto, baseado nas informações técnicas disponíveis à época, me sinto na obrigação de apoiar uma investigação completa e transparente. A descoberta de um esquema de R$17 bilhões em fraudes e a liquidação do banco pelo Banco Central demonstram que fomos todos enganados. O povo do Distrito Federal merece esclarecimentos sobre como recursos públicos foram comprometidos nessa operação. Minha trajetória sempre foi pautada pela responsabilidade técnica e pela defesa do emprego e da economia local - e justamente por isso não posso me omitir diante de tamanha irregularidade que pode comprometer a saúde financeira do nosso banco público e impactar negativamente a geração de empregos no DF.\n\nCONDICOES: Que a CPI seja conduzida de forma técnica e imparcial, focada nos fatos e não em espetacularização política. Também defendo que os trabalhos sejam céleres para não prolongar a instabilidade no sistema financeiro local.\n\nRISCO_POLITICO: MEDIO - Embora possa gerar tensão com parte da base governista, a posição técnica e transparente tende a ser bem recebida pela opinião pública e pela classe média, minha base eleitoral principal.\n---",
+      "tokens_entrada": 1855,
+      "tokens_saida": 374
+    },
+    {
+      "posicao": "ASSINA_CPI",
+      "intensidade": 7,
+      "justificativa": "Olha, eu vou assinar sim o requerimento da CPI. Como líder comunitário de São Sebastião há 25 anos, eu sempre defendi a transparência e o bom uso do dinheiro público. É verdade que votei a favor da compra do Master em agosto, porque na época as informações que chegaram até nós eram outras - parecia ser um bom negócio para o DF. Mas agora, com tudo que veio à tona, com essas fraudes de R$17 bilhões, com o Banco Central rejeitando e depois decretando liquidação, a coisa mudou completamente de figura. \n\nO povo de São Sebastião, minha base, está revoltado com essa situação. São R$12 bilhões que poderiam estar sendo investidos em regularização fundiária, em infraestrutura, em saúde para nossas comunidades. Não posso fechar os olhos para isso. Como líder da maioria, tenho responsabilidade ainda maior de cobrar esclarecimentos. A CPI vai apurar os fatos, vai mostrar onde erramos e quem tem que responder por isso. Minha posição é independente do governo Ibaneis - quando está certo eu apoio, quando está errado eu cobro. E aqui está errado.",
+      "condicoes": "Nenhuma condição específica - a decisão já está tomada com base nos fatos conhecidos.",
+      "risco_politico": "MEDIO",
+      "nome_parlamentar": "Rogério Morro da Cruz",
+      "partido": "PRD",
+      "id": "dep-dist-024",
+      "orientacao_politica": "centro",
+      "relacao_governo": "independente",
+      "resposta_completa": "---\nPOSICAO: ASSINA_CPI\nINTENSIDADE: 7\nJUSTIFICATIVA: Olha, eu vou assinar sim o requerimento da CPI. Como líder comunitário de São Sebastião há 25 anos, eu sempre defendi a transparência e o bom uso do dinheiro público. É verdade que votei a favor da compra do Master em agosto, porque na época as informações que chegaram até nós eram outras - parecia ser um bom negócio para o DF. Mas agora, com tudo que veio à tona, com essas fraudes de R$17 bilhões, com o Banco Central rejeitando e depois decretando liquidação, a coisa mudou completamente de figura. \n\nO povo de São Sebastião, minha base, está revoltado com essa situação. São R$12 bilhões que poderiam estar sendo investidos em regularização fundiária, em infraestrutura, em saúde para nossas comunidades. Não posso fechar os olhos para isso. Como líder da maioria, tenho responsabilidade ainda maior de cobrar esclarecimentos. A CPI vai apurar os fatos, vai mostrar onde erramos e quem tem que responder por isso. Minha posição é independente do governo Ibaneis - quando está certo eu apoio, quando está errado eu cobro. E aqui está errado.\n\nCONDICOES: Nenhuma condição específica - a decisão já está tomada com base nos fatos conhecidos.\n\nRISCO_POLITICO: MEDIO - pode gerar tensão com parte da base governista, mas o apoio popular à investigação minimiza o risco eleitoral.\n---",
+      "tokens_entrada": 1875,
+      "tokens_saida": 418
+    }
+  ],
+  "tokens_entrada_total": 44886,
+  "tokens_saida_total": 9693,
+  "duracao_segundos": 278.5
+}
