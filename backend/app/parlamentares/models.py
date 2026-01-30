@@ -232,7 +232,9 @@ class ParlamentarHipoteses(BaseModel):
     # Posições políticas inferidas
     posicao_bolsonaro: Optional[Hipotese] = None
     posicao_lula: Optional[Hipotese] = None
-    relacao_governo_atual: Optional[Hipotese] = None
+    relacao_governo_atual: Optional[Hipotese] = None  # legado, compatibilidade
+    relacao_governo_federal: Optional[Hipotese] = None
+    relacao_governo_distrital: Optional[Hipotese] = None
 
     # Estilo de comunicação inferido
     estilo_comunicacao: Optional[Hipotese] = None

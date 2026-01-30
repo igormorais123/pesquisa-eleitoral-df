@@ -128,7 +128,11 @@ Voce e {dep['nome_parlamentar']} ({dep['partido']}), deputado(a) distrital do Di
 - Partido: {dep['partido']}
 - Idade: {dep.get('idade', 'N/A')}
 - Orientacao politica: {dep.get('orientacao_politica', 'N/A')}
-- Relacao com governo Ibaneis: {dep.get('relacao_governo_atual', 'N/A')}
+- Relacao com governo Ibaneis (GDF): {dep.get('relacao_governo_distrital', dep.get('relacao_governo_atual', 'N/A'))}
+- Relacao com governo federal (Lula): {dep.get('relacao_governo_federal', 'N/A')}
+- Dependencia de emendas do GDF: {dep.get('dependencia_emendas', 'N/A')}
+- Risco de retaliacao: {dep.get('risco_retaliacao', 'N/A')}
+- Disciplina de bancada: {dep.get('disciplina_bancada', 'N/A')}
 - Posicao sobre Bolsonaro: {dep.get('posicao_bolsonaro', 'N/A')}
 - Posicao sobre Lula: {dep.get('posicao_lula', 'N/A')}
 - Temas de atuacao: {', '.join(dep.get('temas_atuacao', []))}
@@ -228,7 +232,9 @@ def gerar_insights_exclusivos(client, provider: str, resultados: List[Dict[str, 
             "partido": r.get("partido"),
             "posicao": r.get("posicao"),
             "intensidade": r.get("intensidade"),
-            "relacao_governo": r.get("relacao_governo"),
+            "relacao_gov_distrital": r.get("relacao_governo_distrital", r.get("relacao_governo", "")),
+            "relacao_gov_federal": r.get("relacao_governo_federal", ""),
+            "dependencia_emendas": r.get("dependencia_emendas", ""),
             "risco": r.get("risco_politico"),
             "resumo_justificativa": just,
         })
@@ -313,7 +319,12 @@ def simular_deputado(client, dep, provider: str):
         resultado['partido'] = partido
         resultado['id'] = dep['id']
         resultado['orientacao_politica'] = dep.get('orientacao_politica', '')
-        resultado['relacao_governo'] = dep.get('relacao_governo_atual', '')
+        resultado['relacao_governo_distrital'] = dep.get('relacao_governo_distrital', '')
+        resultado['relacao_governo_federal'] = dep.get('relacao_governo_federal', '')
+        resultado['relacao_governo'] = dep.get('relacao_governo_distrital', dep.get('relacao_governo_atual', ''))
+        resultado['dependencia_emendas'] = dep.get('dependencia_emendas', '')
+        resultado['risco_retaliacao'] = dep.get('risco_retaliacao', '')
+        resultado['disciplina_bancada'] = dep.get('disciplina_bancada', '')
         resultado['resposta_completa'] = resposta_texto
         resultado['tokens_entrada'] = tokens_entrada
         resultado['tokens_saida'] = tokens_saida
@@ -331,7 +342,9 @@ def simular_deputado(client, dep, provider: str):
             'partido': partido,
             'id': dep['id'],
             'orientacao_politica': dep.get('orientacao_politica', ''),
-            'relacao_governo': dep.get('relacao_governo_atual', ''),
+            'relacao_governo_distrital': dep.get('relacao_governo_distrital', ''),
+            'relacao_governo_federal': dep.get('relacao_governo_federal', ''),
+            'relacao_governo': dep.get('relacao_governo_distrital', dep.get('relacao_governo_atual', '')),
             'posicao': 'ERRO',
             'intensidade': 0,
             'resposta_completa': f'Erro: {str(e)}',

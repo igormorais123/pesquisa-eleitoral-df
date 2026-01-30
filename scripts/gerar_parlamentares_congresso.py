@@ -588,14 +588,27 @@ def gerar_deputado_federal(id_seq: int, uf: str) -> Dict:
         )[0],
     }.get(orientacao, "neutro")
 
-    # Relação com governo
-    relacao_governo = {
+    # Relação com governo federal (Lula/PT)
+    relacao_governo_federal = {
         "direita": "oposicao_forte",
         "centro-direita": random.choice(["oposicao_moderada", "independente"]),
         "centro": random.choice(["independente", "base_aliada"]),
         "centro-esquerda": random.choice(["base_aliada", "independente"]),
         "esquerda": "base_aliada",
     }.get(orientacao, "independente")
+
+    # Relação com governo distrital (Ibaneis/MDB) - lógica invertida para CLDF
+    COALIZAO_IBANEIS = {"MDB", "PP", "PSD", "REPUBLICANOS", "UNIAO", "AVANTE", "PRD"}
+    OPOSICAO_IBANEIS_ESQ = {"PT", "PSOL", "PSB", "REDE", "PDT"}
+    partido_sigla = partido_info["sigla"]
+    if partido_sigla in COALIZAO_IBANEIS:
+        relacao_governo_distrital = "base_aliada"
+    elif partido_sigla in OPOSICAO_IBANEIS_ESQ:
+        relacao_governo_distrital = "oposicao"
+    elif partido_sigla == "PL":
+        relacao_governo_distrital = "oposicao_moderada"
+    else:
+        relacao_governo_distrital = "independente"
 
     # Comissões
     comissoes = random.sample(COMISSOES_CAMARA, random.randint(2, 4))
@@ -679,7 +692,8 @@ def gerar_deputado_federal(id_seq: int, uf: str) -> Dict:
         "vieses_cognitivos": random.sample(VIESES, random.randint(2, 4)),
         "fontes_informacao": random.sample(FONTES_INFO, random.randint(3, 5)),
         "aliancas_politicas": [partido_info["sigla"]],
-        "relacao_governo_atual": relacao_governo,
+        "relacao_governo_federal": relacao_governo_federal,
+        "relacao_governo_distrital": relacao_governo_distrital,
         "email_contato": f"dep.{nome_parlamentar.lower().replace(' ', '')}@camara.leg.br",
         "telefone_gabinete": f"(61) 3215-{random.randint(1000, 9999)}",
         "gabinete_localizacao": f"Gabinete {random.randint(100, 999)} - Anexo IV",
@@ -850,8 +864,8 @@ def gerar_senador(id_seq: int, uf: str, posicao: int) -> Dict:
         )[0],
     }.get(orientacao, "neutro")
 
-    # Relação com governo
-    relacao_governo = {
+    # Relação com governo federal (Lula/PT) - senadores atuam na esfera federal
+    relacao_governo_federal = {
         "direita": "oposicao_forte",
         "centro-direita": random.choice(["oposicao_moderada", "independente"]),
         "centro": random.choice(["independente", "base_aliada"]),
@@ -951,7 +965,7 @@ def gerar_senador(id_seq: int, uf: str, posicao: int) -> Dict:
         "vieses_cognitivos": random.sample(VIESES, random.randint(2, 4)),
         "fontes_informacao": random.sample(FONTES_INFO, random.randint(3, 5)),
         "aliancas_politicas": [partido_info["sigla"]],
-        "relacao_governo_atual": relacao_governo,
+        "relacao_governo_federal": relacao_governo_federal,
         "email_contato": f"sen.{nome_parlamentar.lower().replace(' ', '')}@senado.leg.br",
         "telefone_gabinete": f"(61) 3303-{random.randint(1000, 9999)}",
         "gabinete_localizacao": f"Senado Federal Anexo {random.randint(1, 2)}",
