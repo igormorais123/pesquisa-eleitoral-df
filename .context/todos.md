@@ -6,6 +6,16 @@
 
 <!-- Tarefas atualmente sendo trabalhadas -->
 
+- [ ] Integrar geração automática de "Insights Exclusivos" via IA (Opus) nos relatórios (evitar texto fixo)
+- [ ] Padronizar execução de pesquisa premium usando POLARIS + pacote `resultados/pesquisas/`
+
+## Concluídas Recentemente ✅ (2026-01-30)
+
+- [x] Criar padrão premium de pesquisa eleitoral (skills + templates + comando)
+- [x] Adicionar comando `/compact` (compilar sessão + commit + reset de contexto)
+- [x] Corrigir dados de relação com governo em deputados CLDF (evitar oposição marcada como base)
+- [x] Melhorar relatório/simulação CPI Banco Master (assinaturas vs instalação + checagem factual + UX)
+
 ## Concluídas Recentemente ✅ (2026-01-27)
 
 - [x] **Hub de Projetos INTEIA** - Página intermediária estilo Apple para escolha de projetos

@@ -69,6 +69,31 @@ origins = ["http://localhost:3000", "https://inteia.com.br"]
 - Pesquisador responsável: Igor Morais
 - Formato preferido: HTML com Chart.js
 
+## Pesquisa Premium (Padrão INTEIA)
+
+### Conceito
+
+- **Frontstage (cliente)**: conclusão objetiva + ações + cenários + riscos.
+- **Backstage (técnico)**: pacote auditável com dados, validação, red team e premissas.
+
+### Skills e templates
+
+- `.claude/skills/pesquisa-eleitoral-premium/SKILL.md`
+- `.claude/skills/auditoria-e-validacao-pesquisa/SKILL.md`
+- `.claude/skills/insights-estrategicos-preditivos/SKILL.md`
+- `.claude/skills/polaris-sdk-pesquisa/SKILL.md`
+- `.claude/templates/relatorio-cliente-premium.html`
+- `.claude/commands/pesquisa_eleitoral/pesquisa-premium.md`
+
+### Local de pacotes
+
+- `resultados/pesquisas/{slug}_{YYYYMMDD_HHMM}/`
+
+## Gestão de Contexto
+
+- Regra 40%: compilar `SESSAO_TEMP.md` + atualizar `WORK_LOG.md` + commitar e executar `/compact`.
+- Regra 60%: STOP (zona burra). Compilar e reiniciar imediatamente.
+
 ## Erros Comuns Resolvidos
 
 | Erro | Causa | Solução |

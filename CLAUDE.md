@@ -159,13 +159,24 @@ The synthetic voter profiles in `agentes/banco-eleitores-df.json` include:
 
 Key variables in `.env`:
 ```
-CLAUDE_API_KEY=sk-ant-...          # Anthropic API
+IA_PROVIDER=claude_code            # Preferir assinatura Claude Code CLI
+IA_MODELO_ENTREVISTAS=sonnet       # Alias (mais moderno)
+IA_MODELO_INSIGHTS=opus            # Alias
+
+CLAUDE_API_KEY=sk-ant-...          # API Anthropic (opcional; fallback)
 SECRET_KEY=...                      # JWT signing
 DATABASE_URL=postgresql://...       # PostgreSQL connection
 FRONTEND_URL=http://localhost:3000
 BACKEND_URL=http://localhost:8000
 VERCEL_TOKEN=vck_...               # Vercel API Token
 ```
+
+## Padrao IA (IMPORTANTE)
+
+- Por padrao, o projeto deve evitar chamadas via API e usar `IA_PROVIDER=claude_code`.
+- Para rodar no modo assinatura, o ambiente precisa ter `claude` instalado e autenticado.
+- A API (CLAUDE_API_KEY) fica como fallback quando o CLI nao estiver disponivel.
+- Em pesquisas preditivas, evitar 0%/100% por default (clamp 1..99) e registrar incerteza.
 
 ## Vercel Deploy (IMPORTANTE!)
 
@@ -239,10 +250,19 @@ Ver arquivo: GPS_NAVEGACAO_AGENTES.md
 
 ### Regra dos 40 porcento
 Quando o agente atingir 40 porcento da janela de contexto:
-1. PARAR novas leituras de arquivos
-2. COMPILAR descobertas em SESSAO_TEMP.md
-3. SALVAR persistencia em WORK_LOG.md
-4. Considerar REINICIAR sessao com contexto limpo
+1. PARAR novas leituras extensas (evitar arquivos grandes)
+2. COMPILAR descobertas em `SESSAO_TEMP.md` (objetivo, feito, arquivos tocados, decisoes, proximos passos)
+3. ATUALIZAR persistencia:
+   - `WORK_LOG.md`
+   - `.context/todos.md`
+   - `.context/insights.md`
+   - `.memoria/CONTEXTO_ATIVO.md`
+   - `.memoria/APRENDIZADOS.md`
+4. HIGIENE GIT:
+   - Rodar `git status`
+   - NUNCA commitar segredos (ex.: exports de env)
+   - Commits pequenos e coesos
+5. Executar `/compact` e reiniciar com contexto limpo
 
 ### Zonas de Operacao
 
@@ -280,6 +300,15 @@ Consultar: `.claude/skills/SKILLS_INDEX.md`
 | **navegacao-projeto** | Navegar pelas pastas | Início de sessão, encontrar arquivos |
 | **funcoes-programa** | Usar funcionalidades | Implementar features, usar APIs |
 | **criacao-skills** | Criar novas skills | Documentar conhecimento, ensinar IAs |
+
+### Skills de Pesquisa (Premium)
+
+| Skill | Propósito | Quando Usar |
+|-------|-----------|-------------|
+| **pesquisa-eleitoral-premium** | Fluxo premium end-to-end (auditável) | Pesquisas com entrega nível consultoria |
+| **auditoria-e-validacao-pesquisa** | Quality gates + red team + correção na origem | Antes de concluir/entregar ao cliente |
+| **insights-estrategicos-preditivos** | Insights + previsões com evidência e confiança | “Insights Exclusivos”, cenários e recomendações |
+| **polaris-sdk-pesquisa** | Motor de pesquisa científica (POLARIS) | Executar pesquisas premium end-to-end via SDK |
 
 ### Localização das Skills
 

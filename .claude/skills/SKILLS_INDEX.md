@@ -15,6 +15,10 @@
 | **criacao-skills** | Boas práticas para criar novas skills | `.claude/skills/criacao-skills/` |
 | **templates-relatorios** | Padrão visual e estrutural de relatórios INTEIA | `.claude/skills/templates-relatorios/` |
 | **executar-pesquisa-eleitoral** | Executar pesquisas eleitorais via IA (sem UI) | `.claude/skills/executar-pesquisa-eleitoral/` |
+| **pesquisa-eleitoral-premium** | Fluxo premium end-to-end (auditável) | `.claude/skills/pesquisa-eleitoral-premium/` |
+| **auditoria-e-validacao-pesquisa** | Quality gates, red team, correção na origem | `.claude/skills/auditoria-e-validacao-pesquisa/` |
+| **insights-estrategicos-preditivos** | Insights + previsões com evidência e confiança | `.claude/skills/insights-estrategicos-preditivos/` |
+| **polaris-sdk-pesquisa** | Motor POLARIS (metodologia + execução + relatório) | `.claude/skills/polaris-sdk-pesquisa/` |
 | **piv-loop** | Ciclo Plan-Implement-Verify para desenvolvimento | `.claude/commands/core_piv_loop/` |
 | **pesquisa-eleitoral** | Comandos para execução de pesquisas | `.claude/commands/pesquisa_eleitoral/` |
 
@@ -187,9 +191,9 @@ Ver índice completo em: `.claude/commands/COMMANDS_INDEX.md`
 
 | Métrica | Valor |
 |---------|-------|
-| Total de Skills | 9 |
+| Total de Skills | 13 |
 | Total de Comandos | 8 |
-| Última Atualização | 2026-01-27 |
+| Última Atualização | 2026-01-30 |
 | Próxima Revisão | 2026-02-27 |
 
 ## IDENTIDADE VISUAL

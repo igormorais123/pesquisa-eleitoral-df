@@ -18,6 +18,7 @@ Sistema completo de comandos seguindo metodologia PIV (Prime-Implement-Validate)
 ├── commands/
 │   ├── COMMANDS_INDEX.md          # Este arquivo
 │   ├── commit.md                  # Commits padronizados
+│   ├── compact.md                 # Compactar contexto (NOVO)
 │   ├── init-project.md            # Inicializar ambiente
 │   │
 │   ├── core_piv_loop/             # Ciclo PIV principal
@@ -35,6 +36,7 @@ Sistema completo de comandos seguindo metodologia PIV (Prime-Implement-Validate)
 │   │
 │   └── pesquisa_eleitoral/        # Comandos específicos
 │       ├── executar-pesquisa.md   # Executar pesquisa
+│       ├── pesquisa-premium.md    # Pesquisa premium (NOVO)
 │       ├── gerar-relatorio.md     # Gerar relatório
 │       └── analisar-eleitor.md    # Analisar eleitor
 │
@@ -138,6 +140,7 @@ Ao atingir limite: compilar descobertas, salvar estado, considerar nova conversa
 | Comando | Descrição | Quando Usar |
 |---------|-----------|-------------|
 | `/commit` | Commit padronizado em português | Após validação |
+| `/compact` | Compilar sessão + commit + reset de contexto | Ao chegar em ~40% de contexto |
 | `/init-project` | Configurar ambiente de dev | Primeiro setup |
 
 ### Pesquisa Eleitoral
@@ -145,6 +148,7 @@ Ao atingir limite: compilar descobertas, salvar estado, considerar nova conversa
 | Comando | Descrição | Quando Usar |
 |---------|-----------|-------------|
 | `/executar-pesquisa` | Executar pesquisa completa | Nova pesquisa |
+| `/pesquisa-premium` | Pesquisa premium (auditável) | Entrega nível consultoria |
 | `/gerar-relatorio` | Gerar relatório INTEIA | Após pesquisa |
 | `/analisar-eleitor` | Analisar perfil de eleitor | Análise individual |
 

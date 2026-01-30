@@ -45,20 +45,29 @@ Voce esta na zona de atencao se:
 
 Quando atingir 40 porcento:
 
-1. Criar arquivo SESSAO_TEMP.md com:
-   - O que foi descoberto
-   - Arquivos importantes encontrados
-   - Proximos passos planejados
+1. Criar/atualizar arquivo `SESSAO_TEMP.md` com:
+   - Objetivo da sessao
+   - O que foi feito (checklist de entrega)
+   - Arquivos criados/alterados (lista curta)
+   - Decisoes importantes + racional
+   - Inconsistencias encontradas
+   - Proximos passos (max 5)
 
-2. Atualizar WORK_LOG.md com:
-   - Resumo da sessao
-   - Decisoes tomadas
-   - Links para arquivos relevantes
+2. Atualizar rastreadores do projeto (OBRIGATORIO):
+   - `WORK_LOG.md` (resumo + decisao + links)
+   - `.context/todos.md` (tarefas: feito/em progresso/pendente)
+   - `.context/insights.md` (insights persistentes)
+   - `.memoria/CONTEXTO_ATIVO.md` (estado da sessao)
+   - `.memoria/APRENDIZADOS.md` (o que virou regra)
 
-3. Comunicar ao usuario:
-   - Atingi 40 porcento do contexto
-   - Vou compilar descobertas
-   - Deseja continuar ou reiniciar?
+3. Higiene de versionamento (OBRIGATORIO):
+   - Rodar `git status` e identificar arquivos sensiveis
+   - NUNCA commitar segredos (ex.: exports de env/keys)
+   - Criar commit(s) pequenos e coesos com mensagem clara
+
+4. Executar compactacao de contexto (PADRAO):
+   - Rodar o comando `/compact` (ver `.claude/commands/compact.md`)
+   - Reiniciar a conversa/sessao usando apenas `SESSAO_TEMP.md` + `WORK_LOG.md`
 
 ---
 
