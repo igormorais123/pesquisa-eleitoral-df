@@ -18,6 +18,7 @@ import shutil
 from datetime import datetime
 from pathlib import Path
 from collections import defaultdict
+from typing import Any, Dict, List, Optional, Tuple
 
 # Fix encoding para Windows
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
@@ -26,7 +27,9 @@ sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='repla
 # Configuracoes
 # Padrao: usar alias do Claude Code (mais moderno). Pode ser sobrescrito via env.
 MODELO = os.environ.get("IA_MODELO_ENTREVISTAS") or os.environ.get("MODELO") or "sonnet"
+MODELO_ANALISE = os.environ.get("IA_MODELO_ANALISE") or "opus"
 MAX_TOKENS = 1500
+MAX_TOKENS_ANALISE = int(os.environ.get("IA_MAX_TOKENS_ANALISE", "1800"))
 ARQUIVO_DEPUTADOS = Path(__file__).parent.parent / "agentes" / "banco-deputados-distritais-df.json"
 ARQUIVO_SAIDA = Path(__file__).parent.parent / "memorias" / "pesquisas_parlamentares" / f"cpi_banco_master_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
 
@@ -151,7 +154,7 @@ Voce e {dep['nome_parlamentar']} ({dep['partido']}), deputado(a) distrital do Di
     return persona
 
 
-def _call_claude_code(prompt: str, modelo: str) -> tuple[str, int, int]:
+def _call_claude_code(prompt: str, modelo: str) -> Tuple[str, int, int]:
     """Chama Claude Code CLI (assinatura) e retorna (texto, in_tokens, out_tokens)."""
 
     claude_bin = os.environ.get("CLAUDE_CODE_BIN", "claude")
@@ -179,6 +182,99 @@ def _call_claude_code(prompt: str, modelo: str) -> tuple[str, int, int]:
     return str(data.get("result", "")), int(usage.get("input_tokens", 0) or 0), int(
         usage.get("output_tokens", 0) or 0
     )
+
+
+def _resolver_modelo_api(modelo_alias: str) -> str:
+    """Mapeia aliases (sonnet/opus) para nomes de modelo na Anthropic API."""
+
+    alias = (modelo_alias or "").strip().lower()
+    if alias in ("sonnet", "claude-sonnet", "sonnet-4"):
+        return "claude-sonnet-4-20250514"
+    if alias in ("opus", "claude-opus", "opus-4.5", "opus-4-5"):
+        return "claude-opus-4-5-20251101"
+    # fallback: permitir modelo completo ser passado
+    return modelo_alias
+
+
+def _call_ia(client, provider: str, modelo: str, system: str, user: str, max_tokens: int) -> Tuple[str, int, int]:
+    """Chamada unificada (Claude Code CLI ou Anthropic API)."""
+
+    if provider == "claude_code":
+        prompt = f"SISTEMA:\n{system}\n\nUSUARIO:\n{user}"
+        return _call_claude_code(prompt, modelo)
+
+    model_api = _resolver_modelo_api(modelo)
+    response = client.messages.create(
+        model=model_api,
+        max_tokens=max_tokens,
+        system=system,
+        messages=[{"role": "user", "content": user}],
+    )
+    texto = response.content[0].text
+    return texto, int(response.usage.input_tokens), int(response.usage.output_tokens)
+
+
+def gerar_insights_exclusivos(client, provider: str, resultados: List[Dict[str, Any]], probabilidades: Dict[str, Any]) -> Dict[str, Any]:
+    """Gera insights via IA (preferencial) com fallback seguro."""
+
+    # Dataset compacto (evitar explodir tokens)
+    linhas = []
+    for r in sorted(resultados, key=lambda x: (x.get("posicao", ""), -int(x.get("intensidade", 0))), reverse=False):
+        just = (r.get("justificativa") or "").replace("\n", " ").strip()
+        if len(just) > 240:
+            just = just[:240].rstrip() + "..."
+        linhas.append({
+            "deputado": r.get("nome_parlamentar"),
+            "partido": r.get("partido"),
+            "posicao": r.get("posicao"),
+            "intensidade": r.get("intensidade"),
+            "relacao_governo": r.get("relacao_governo"),
+            "risco": r.get("risco_politico"),
+            "resumo_justificativa": just,
+        })
+
+    system = (
+        "Voce e HELENA MONTENEGRO, analista politica senior da INTEIA. "
+        "Sua missao e gerar insights estrategicos de ALTA DENSIDADE a partir de um dataset de simulacao. "
+        "Regras: (1) Nao invente fatos externos. (2) Quando algo depender do contexto politico externo, rotule como INFERENCIA e declare premissas. "
+        "(3) Cite evidencias do dataset (nomes/contagens) em cada insight. (4) Forneca contra-hipotese e sinais de monitoramento."
+    )
+
+    user = (
+        "Tarefa: gerar 4 insights no estilo 'Insights Exclusivos INTEIA' com base SOMENTE no dataset abaixo. "
+        "Voce pode propor hipoteses politicas, mas nao pode afirmar fatos externos como se fossem confirmados. "
+        "Formato de saida: JSON valido, sem markdown, com a estrutura:\n"
+        "{\n  \"insights\": [\n    {\n      \"titulo\": string,\n      \"tipo\": \"DESCRITIVO\"|\"HIPOTESE\"|\"PREDICAO\",\n      \"confianca\": number,\n      \"tese\": string,\n      \"mecanismo\": [string],\n      \"evidencias\": [string],\n      \"contra_hipotese\": string,\n      \"sinais\": [string],\n      \"acao\": string\n    }\n  ],\n  \"notas\": {\"limitacoes\": [string]}\n}\n"
+        "Restricoes: max 1200 caracteres por insight (somando campos).\n\n"
+        f"Resumo numerico: assinam={probabilidades.get('assinam')} nao_assinam={probabilidades.get('nao_assinam')} indecisos={probabilidades.get('indecisos')} necessario={probabilidades.get('necessarias')}\n\n"
+        f"Dataset (24 deputados):\n{json.dumps(linhas, ensure_ascii=False)}"
+    )
+
+    try:
+        texto, in_tok, out_tok = _call_ia(
+            client,
+            provider=provider,
+            modelo=MODELO_ANALISE,
+            system=system,
+            user=user,
+            max_tokens=MAX_TOKENS_ANALISE,
+        )
+        data = json.loads((texto or "").strip())
+        data.setdefault("_meta", {})
+        data["_meta"].update({
+            "modelo": MODELO_ANALISE,
+            "provider": provider,
+            "tokens_entrada": in_tok,
+            "tokens_saida": out_tok,
+        })
+        return data
+    except Exception as e:
+        # fallback: manter bloco fixo antigo (na renderizacao)
+        return {
+            "insights": [],
+            "notas": {"limitacoes": [f"Falha ao gerar insights via IA: {type(e).__name__}"]},
+            "_meta": {"modelo": MODELO_ANALISE, "provider": provider, "erro": str(e)},
+        }
 
 
 def simular_deputado(client, dep, provider: str):
@@ -387,7 +483,7 @@ def gerar_mapa_calor_por_partido(resultados):
     return mapa
 
 
-def gerar_relatorio_html(resultados, probabilidades, mapa_partido):
+def gerar_relatorio_html(resultados, probabilidades, mapa_partido, insights_data: Optional[Dict[str, Any]] = None):
     """Gera relatorio HTML completo com mapa de calor"""
     timestamp = datetime.now().strftime("%d/%m/%Y %H:%M")
 
@@ -503,6 +599,81 @@ def gerar_relatorio_html(resultados, probabilidades, mapa_partido):
             </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">{resposta}</div>
         </div>"""
+
+    # Insights (preferencialmente gerados via IA)
+    insights_html = ""
+    if insights_data and insights_data.get("insights"):
+        for ins in insights_data.get("insights", [])[:6]:
+            titulo = (ins.get("titulo") or "Insight").strip()
+            tipo = (ins.get("tipo") or "HIPOTESE").strip().upper()
+            confianca = ins.get("confianca")
+            try:
+                conf_txt = f"{float(confianca):.2f}" if confianca is not None else "-"
+            except Exception:
+                conf_txt = "-"
+
+            icon = "&#x1F4A1;"
+            if tipo == "DESCRITIVO":
+                icon = "&#x1F50D;"
+            elif tipo == "PREDICAO":
+                icon = "&#x1F3AF;"
+
+            tese = (ins.get("tese") or "").strip()
+            acao = (ins.get("acao") or "").strip()
+
+            evidencias = ins.get("evidencias") or []
+            evid_html = ""
+            if isinstance(evidencias, list) and evidencias:
+                evid_html = "<ul class=\"clean\">" + "".join(
+                    f"<li>{str(e)[:260]}</li>" for e in evidencias[:4]
+                ) + "</ul>"
+
+            insights_html += f"""
+            <div class=\"insight-box\">
+                <h3>{icon} {titulo} <span style=\"color:#94a3b8;font-size:12px;font-weight:700;\">({tipo} | conf={conf_txt})</span></h3>
+                <p>{tese}</p>
+                {evid_html}
+                <div style=\"margin-top:10px;color:#cbd5e1;font-size:13px;\"><strong>Acao:</strong> {acao}</div>
+            </div>
+            """
+
+    if not insights_html:
+        # fallback (bloco fixo legado)
+        insights_html = """
+            <div class=\"insight-box\">
+                <h3>&#x1F50D; O que ninguem esta vendo: A Chave e o MDB</h3>
+                <p>A narrativa publica foca na oposicao (PT/PSOL) vs base do governo. Mas a chave real esta DENTRO do MDB.
+                O partido tem 5 deputados na CLDF e Wellington Luiz, como presidente da Casa, e o verdadeiro gatilho.
+                Se o escandalo continuar crescendo e ameacar as pretensoes de Ibaneis ao Senado em 2026,
+                deputados do MDB podem "permitir" a CPI como forma de distanciamento estrategico do governador.
+                A CPI nao seria contra o MDB - seria a favor da sobrevivencia eleitoral de cada um.</p>
+            </div>
+
+            <div class=\"insight-box\">
+                <h3>&#x1F4A1; O Efeito Celular de Vorcaro</h3>
+                <p>A apreensao do celular de Daniel Vorcaro pela PF e o fator mais subestimado.
+                Esse dispositivo contem registros de comunicacoes com politicos de todos os espectros.
+                Deputados que votaram a favor da compra em agosto estao em posicao vulneravel.
+                A CPI na CLDF pode ser uma forma de "se antecipar" as revelacoes - quem investiga nao e investigado.
+                Isso muda o calculo para independentes como Joao Cardoso (Avante) e Jorge Vianna (PSD).</p>
+            </div>
+
+            <div class=\"insight-box\">
+                <h3>&#x26A0; A Armadilha do Regimento</h3>
+                <p>O limite de 2 CPIs simultaneas e a verdadeira blindagem. A CPI do Rio Melchior ocupa uma vaga.
+                A estrategia do governo seria manter essa CPI ativa e abrir uma segunda CPI sobre outro tema (ICMS, Feminicidio, IGESDF)
+                para impedir regimentalmente a CPI do BRB. Isso e mais efetivo que bloquear assinaturas.
+                A oposicao precisa de maioria absoluta (13 votos) para abrir uma terceira CPI simultanea - praticamente impossivel.</p>
+            </div>
+
+            <div class=\"insight-box\">
+                <h3>&#x1F3AF; O Fator 2026: Eleicoes Distritais</h3>
+                <p>Todos os 24 deputados tem mandato ate janeiro 2027 e buscarao reeleicao em outubro 2026.
+                Quem votou a favor da compra do Master precisa de uma narrativa de defesa.
+                Apoiar a CPI agora ("fui enganado pelo governo") e mais seguro eleitoralmente do que defender Ibaneis.
+                O timing e critico: quanto mais proximo de outubro, maior a pressao por distanciamento do escandalo.</p>
+            </div>
+        """
 
     html = f"""<!DOCTYPE html>
 <html lang="pt-BR">
@@ -847,40 +1018,7 @@ def gerar_relatorio_html(resultados, probabilidades, mapa_partido):
         <!-- INSIGHTS EXCLUSIVOS -->
         <div class="section">
             <h2>Insights Exclusivos INTEIA</h2>
-
-            <div class="insight-box">
-                <h3>&#x1F50D; O que ninguem esta vendo: A Chave e o MDB</h3>
-                <p>A narrativa publica foca na oposicao (PT/PSOL) vs base do governo. Mas a chave real esta DENTRO do MDB.
-                O partido tem 5 deputados na CLDF e Wellington Luiz, como presidente da Casa, e o verdadeiro gatilho.
-                Se o escandalo continuar crescendo e ameacar as pretensoes de Ibaneis ao Senado em 2026,
-                deputados do MDB podem "permitir" a CPI como forma de distanciamento estrategico do governador.
-                A CPI nao seria contra o MDB - seria a favor da sobrevivencia eleitoral de cada um.</p>
-            </div>
-
-            <div class="insight-box">
-                <h3>&#x1F4A1; O Efeito Celular de Vorcaro</h3>
-                <p>A apreensao do celular de Daniel Vorcaro pela PF e o fator mais subestimado.
-                Esse dispositivo contem registros de comunicacoes com politicos de todos os espectros.
-                Deputados que votaram a favor da compra em agosto estao em posicao vulneravel.
-                A CPI na CLDF pode ser uma forma de "se antecipar" as revelacoes - quem investiga nao e investigado.
-                Isso muda o calculo para independentes como Joao Cardoso (Avante) e Jorge Vianna (PSD).</p>
-            </div>
-
-            <div class="insight-box">
-                <h3>&#x26A0; A Armadilha do Regimento</h3>
-                <p>O limite de 2 CPIs simultaneas e a verdadeira blindagem. A CPI do Rio Melchior ocupa uma vaga.
-                A estrategia do governo seria manter essa CPI ativa e abrir uma segunda CPI sobre outro tema (ICMS, Feminicidio, IGESDF)
-                para impedir regimentalmente a CPI do BRB. Isso e mais efetivo que bloquear assinaturas.
-                A oposicao precisa de maioria absoluta (13 votos) para abrir uma terceira CPI simultanea - praticamente impossivel.</p>
-            </div>
-
-            <div class="insight-box">
-                <h3>&#x1F3AF; O Fator 2026: Eleicoes Distritais</h3>
-                <p>Todos os 24 deputados tem mandato ate janeiro 2027 e buscarao reeleicao em outubro 2026.
-                Quem votou a favor da compra do Master precisa de uma narrativa de defesa.
-                Apoiar a CPI agora ("fui enganado pelo governo") e mais seguro eleitoralmente do que defender Ibaneis.
-                O timing e critico: quanto mais proximo de outubro, maior a pressao por distanciamento do escandalo.</p>
-            </div>
+            {insights_html}
         </div>
 
         <!-- RESPOSTAS COMPLETAS -->
@@ -1009,6 +1147,18 @@ def main():
     probabilidades = calcular_probabilidades(resultados)
     mapa_partido = gerar_mapa_calor_por_partido(resultados)
 
+    gerar_insights = os.environ.get("IA_GERAR_INSIGHTS_EXCLUSIVOS", "true").lower() in ("1", "true", "yes")
+    insights_exclusivos = None
+    tokens_insights_in = 0
+    tokens_insights_out = 0
+    if gerar_insights:
+        print("\n[INFO] Gerando insights exclusivos via IA...")
+        insights_exclusivos = gerar_insights_exclusivos(client, provider, resultados, probabilidades)
+        meta = insights_exclusivos.get("_meta") if isinstance(insights_exclusivos, dict) else None
+        if isinstance(meta, dict):
+            tokens_insights_in = int(meta.get("tokens_entrada", 0) or 0)
+            tokens_insights_out = int(meta.get("tokens_saida", 0) or 0)
+
     # Exibir resumo
     print(f"  Assinam CPI:    {probabilidades['assinam']}")
     print(f"  Nao Assinam:    {probabilidades['nao_assinam']}")
@@ -1038,12 +1188,16 @@ def main():
         'titulo': 'Simulacao CPI Banco Master/BRB - CLDF',
         'data': datetime.now().isoformat(),
         'modelo': MODELO,
+        'modelo_analise': MODELO_ANALISE,
         'total_deputados': len(deputados),
         'probabilidades': probabilidades,
         'mapa_partido': {k: {kk: vv for kk, vv in v.items()} for k, v in mapa_partido.items()},
         'resultados': [{k: v for k, v in r.items()} for r in resultados],
+        'insights_exclusivos': insights_exclusivos,
         'tokens_entrada_total': total_tokens_entrada,
         'tokens_saida_total': total_tokens_saida,
+        'tokens_entrada_insights': tokens_insights_in,
+        'tokens_saida_insights': tokens_insights_out,
         'duracao_segundos': round(duracao, 1)
     }
 
@@ -1052,7 +1206,7 @@ def main():
     print(f"\n[OK] JSON salvo em: {ARQUIVO_SAIDA}")
 
     # Gerar HTML
-    html = gerar_relatorio_html(resultados, probabilidades, mapa_partido)
+    html = gerar_relatorio_html(resultados, probabilidades, mapa_partido, insights_data=insights_exclusivos)
     arquivo_html = ARQUIVO_SAIDA.with_suffix('.html')
     with open(arquivo_html, 'w', encoding='utf-8') as f:
         f.write(html)
