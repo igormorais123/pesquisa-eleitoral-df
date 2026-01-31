@@ -17,18 +17,21 @@ from sqlalchemy.pool import NullPool
 
 from app.core.config import configuracoes
 
-# Converter URL para formato assíncrono
+# Converter URL para formato assíncrono com psycopg (não asyncpg!)
+# psycopg3 suporta ?sslmode=require nativamente no DSN, sem config SSL manual.
 DATABASE_URL = configuracoes.DATABASE_URL.replace(
-    "postgresql://", "postgresql+asyncpg://"
+    "postgresql://", "postgresql+psycopg://"
 )
 
+# Garantir sslmode=require para conexões Render (externas)
+if "render.com" in configuracoes.DATABASE_URL and "sslmode" not in DATABASE_URL:
+    DATABASE_URL += "?sslmode=require" if "?" not in DATABASE_URL else "&sslmode=require"
+
 # Engine assíncrono
-# Nota: No Render, usamos a URL interna (sem .render.com) que não precisa de SSL.
-# Se usar URL externa no futuro, adicionar connect_args={"ssl": ssl_context}
 engine = create_async_engine(
     DATABASE_URL,
     echo=configuracoes.AMBIENTE == "development",
-    poolclass=NullPool,  # Melhor para apps web assíncronos
+    poolclass=NullPool,
     future=True,
 )
 
