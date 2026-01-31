@@ -10,7 +10,7 @@ import time
 import shutil
 from typing import Any, Dict, List, Optional
 
-from anthropic import Anthropic
+from anthropic import Anthropic, AsyncAnthropic
 
 from app.core.config import configuracoes
 
@@ -46,6 +46,7 @@ class ClaudeServico:
 
     def __init__(self):
         self.client = None
+        self.async_client = None
 
         # Provider preferencial: Claude Code (assinatura) via CLI
         # Fallback: Anthropic API via key (quando CLI indisponivel/sem login)
@@ -54,6 +55,7 @@ class ClaudeServico:
         if self.provider == "anthropic_api":
             if configuracoes.CLAUDE_API_KEY:
                 self.client = Anthropic(api_key=configuracoes.CLAUDE_API_KEY)
+                self.async_client = AsyncAnthropic(api_key=configuracoes.CLAUDE_API_KEY)
 
         # Em modo claude_code, o client pode ser inicializado sob demanda como fallback.
 
@@ -141,6 +143,78 @@ class ClaudeServico:
             "output_tokens": getattr(response.usage, "output_tokens", 0),
         }
         return texto, usage
+
+    # ============================================
+    # VERSÕES ASYNC (para BackgroundTasks e contextos async)
+    # Evitam bloquear o event loop com chamadas HTTP sync
+    # ============================================
+
+    async def _call_anthropic_api_async(
+        self,
+        prompt: str,
+        modelo: str,
+        max_tokens: int,
+    ) -> tuple[str, dict[str, Any]]:
+        """Versão async da chamada Anthropic — não bloqueia o event loop."""
+        self._verificar_cliente(forcar_api=True)
+
+        if not self.async_client:
+            # Inicializar sob demanda se necessário
+            if configuracoes.CLAUDE_API_KEY:
+                self.async_client = AsyncAnthropic(api_key=configuracoes.CLAUDE_API_KEY)
+            else:
+                raise ValueError("CLAUDE_API_KEY não configurada para chamada async")
+
+        modelo_resolvido = self._resolver_modelo_api(modelo)
+        response = await self.async_client.messages.create(
+            model=modelo_resolvido,
+            max_tokens=max_tokens,
+            messages=[{"role": "user", "content": prompt}],
+        )
+
+        texto = response.content[0].text
+        usage = {
+            "input_tokens": getattr(response.usage, "input_tokens", 0),
+            "output_tokens": getattr(response.usage, "output_tokens", 0),
+        }
+        return texto, usage
+
+    async def _call_modelo_async(
+        self,
+        prompt: str,
+        modelo: str,
+        max_tokens: int,
+        json_schema: Optional[dict[str, Any]] = None,
+    ) -> tuple[str, dict[str, Any], str]:
+        """Versão async de _call_modelo — para contextos async (BackgroundTasks)."""
+
+        if self.provider == "claude_code":
+            try:
+                # Claude Code CLI é sempre sync (subprocess) — roda em thread
+                import asyncio
+                texto, usage = await asyncio.to_thread(
+                    self._call_claude_code,
+                    prompt=prompt, modelo=modelo, json_schema=json_schema,
+                )
+                return texto, usage, "claude_code"
+            except Exception:
+                allow_fallback = bool(getattr(configuracoes, "IA_ALLOW_API_FALLBACK", False))
+
+                if allow_fallback and configuracoes.CLAUDE_API_KEY:
+                    texto, usage = await self._call_anthropic_api_async(
+                        prompt=prompt, modelo=modelo, max_tokens=max_tokens
+                    )
+                    return texto, usage, "anthropic_api"
+                raise
+
+        texto, usage = await self._call_anthropic_api_async(
+            prompt=prompt, modelo=modelo, max_tokens=max_tokens
+        )
+        return texto, usage, "anthropic_api"
+
+    # ============================================
+    # VERSÕES SYNC (para CLIs, scripts, contextos sync)
+    # ============================================
 
     def _call_modelo(
         self,
@@ -635,8 +709,8 @@ Responda APENAS com JSON válido no seguinte formato:
             "required": ["resposta"],
         }
 
-        # Chamar modelo (CLI por padrao; API como fallback)
-        resposta_texto, usage, provedor = self._call_modelo(
+        # Chamar modelo (async — não bloqueia event loop em BackgroundTasks)
+        resposta_texto, usage, provedor = await self._call_modelo_async(
             prompt=prompt,
             modelo=modelo,
             max_tokens=2000,
@@ -816,8 +890,8 @@ Responda APENAS com JSON válido no seguinte formato:
             "required": ["resposta"],
         }
 
-        # Chamar modelo (CLI por padrao; API como fallback)
-        resposta_texto, usage, provedor = self._call_modelo(
+        # Chamar modelo (async — não bloqueia event loop em BackgroundTasks)
+        resposta_texto, usage, provedor = await self._call_modelo_async(
             prompt=prompt,
             modelo=modelo,
             max_tokens=2000,
