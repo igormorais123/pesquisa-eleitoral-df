@@ -7,6 +7,7 @@
 
 ## Fontes
 - (wikipedia) https://pt.wikipedia.org/wiki/Dias_Toffoli
+- (pesquisa_perplexity) https://portal.stf.jus.br/textos/verTexto.asp?pagina=DiasToffoliDadosDatas&servico=bibliotecaConsultaProdutoBibliotecaPastaMinistro
 
 ## Dados Publicos (campos)
 - wikipedia_bio_completa: 17 de dezembro de 2009até 28 de maio de 2012(substituto)

@@ -7,6 +7,7 @@
 
 ## Fontes
 - (wikipedia) https://pt.wikipedia.org/wiki/Gilmar_Mendes
+- (pesquisa_perplexity) https://portal.stf.jus.br/textos/verTexto.asp?pagina=GilmarMendesPrincipal&servico=bibliotecaConsultaProdutoBibliotecaPastaMinistro
 
 ## Dados Publicos (campos)
 - wikipedia_bio_completa: Ordem do Mérito Militar[3]

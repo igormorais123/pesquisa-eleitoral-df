@@ -7,6 +7,8 @@
 
 ## Fontes
 - (wikipedia) https://pt.wikipedia.org/wiki/Edson_Fachin
+- (pesquisa_perplexity) https://portal.stf.jus.br/textos/verTexto.asp?pagina=principal&servico=sobreStfMinistroEdsonFachin
+- (pesquisa_perplexity) https://portal.stf.jus.br/textos/verTexto.asp?pagina=EdsonFachinDadosDatas&servico=bibliotecaConsultaProdutoBibliotecaPastaMinistro
 
 ## Dados Publicos (campos)
 - wikipedia_bio_completa: Luiz Edson Fachin(Passo Fundo[nota 1],8 de fevereirode1958) é umjurista,magistradoeescritorbrasileiro, atualmente ministro epresidentedoSupremo Tribunal FederaldoBrasil.[3]Foi presidente doTribunal Superior Eleitoral(TSE) de fevereiro a agosto de 2022.[4]

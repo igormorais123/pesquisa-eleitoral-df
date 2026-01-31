@@ -1,13 +1,17 @@
 {
   "id": "tjdft-teofilo-rodrigues-caetano-neto",
-  "nome": "Des. Te\u00f3filo Rodrigues Caetano Neto",
+  "nome": "Des. Teófilo Rodrigues Caetano Neto",
   "nome_completo": null,
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
   "dados_publicos": {
     "assessor": "Aline de Sousa Correia",
-    "telefones_gabinete": "(61)3103-7268, (61)3103-7269"
+    "telefones_gabinete": "(61)3103-7268, (61)3103-7269",
+    "dados_dossie": {
+      "perfil_ideologico": "Discreto e institucional. Segue a maioria, evitando polêmicas.31  \n11.",
+      "analise_comportamental": "Discreto e institucional. Segue a maioria, evitando polêmicas.31  \n11."
+    }
   },
   "atuacao_profissional": {},
   "padroes_decisao": {},
@@ -16,7 +20,10 @@
       "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
       "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
     ],
-    "tracos_operacionais": [],
+    "tracos_operacionais": [
+      "Perfil ideologico: Discreto e institucional. Segue a maioria, evitando polêmicas.31  \n11.",
+      "Analise comportamental: Discreto e institucional. Segue a maioria, evitando polêmicas.31  \n11."
+    ],
     "confianca_global": null
   },
   "riscos_e_cuidados": [
@@ -28,7 +35,12 @@
       "url": "https://www.tjdft.jus.br/institucional/composicao/2a-instancia/desembargadores/ordem-alfabetica",
       "tipo": "site-oficial",
       "observacao": "Ordem alfabetica (2a instancia)"
+    },
+    {
+      "url": "",
+      "tipo": "pesquisa_perplexity",
+      "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }
   ],
-  "atualizado_em": "2026-01-30"
+  "atualizado_em": "2026-01-31"
 }

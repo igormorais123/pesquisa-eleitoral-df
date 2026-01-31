@@ -7,6 +7,7 @@
 
 ## Fontes
 - (wikipedia) https://pt.wikipedia.org/wiki/Andr%C3%A9_Mendon%C3%A7a
+- (pesquisa_perplexity) https://portal.stf.jus.br/textos/verTexto.asp?pagina=AndreMendoncaPrincipal&servico=bibliotecaConsultaProdutoBibliotecaPastaMinistro
 
 ## Dados Publicos (campos)
 - wikipedia_bio_completa: Grã-CruzOrdem de Rio Branco.[2]

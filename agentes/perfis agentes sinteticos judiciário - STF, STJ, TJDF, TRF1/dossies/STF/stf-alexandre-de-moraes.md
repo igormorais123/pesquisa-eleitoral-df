@@ -7,6 +7,7 @@
 
 ## Fontes
 - (wikipedia) https://pt.wikipedia.org/wiki/Alexandre_de_Moraes
+- (pesquisa_perplexity) https://portal.stf.jus.br/ostf/ministros/verMinistro.asp?id=50&periodo=STF
 
 ## Dados Publicos (campos)
 - wikipedia_bio_completa: Alexandre de Moraes(São Paulo,13 de dezembrode1968) é umjurista,magistrado,professor catedráticoe ex-políticobrasileiro, sendo ministro e vice-presidente doSupremo Tribunal Federal(STF) e ex-presidente doTribunal Superior Eleitoral(TSE).[7]

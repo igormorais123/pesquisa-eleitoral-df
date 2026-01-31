@@ -7,6 +7,7 @@
 
 ## Fontes
 - (wikipedia) https://pt.wikipedia.org/wiki/Cristiano_Zanin
+- (pesquisa_perplexity) https://portal.stf.jus.br/textos/verTexto.asp?pagina=CristianoZaninPrincipal&servico=bibliotecaConsultaProdutoBibliotecaPastaMinistro
 
 ## Dados Publicos (campos)
 - wikipedia_bio_completa: Cristiano Zanin Martins(Piracicaba,15 de novembrode1975)[2]é ummagistradobrasileiro, atualmente ministro doSupremo Tribunal Federal(STF).

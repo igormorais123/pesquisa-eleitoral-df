@@ -1,13 +1,16 @@
 {
   "id": "tjdft-waldir-leoncio-cordeiro-lopes-junior",
-  "nome": "Des. Waldir Le\u00f4ncio Cordeiro Lopes J\u00fanior",
+  "nome": "Des. Waldir Leôncio Cordeiro Lopes Júnior",
   "nome_completo": null,
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
   "dados_publicos": {
     "assessor": "Daniele Cavalcante Siqueira",
-    "telefones_gabinete": "(61)3103-7716, (61)3103-7776"
+    "telefones_gabinete": "(61)3103-7716, (61)3103-7776",
+    "dados_dossie": {
+      "analise_comportamental": "Perfil gestor, focado em tecnologia e metas. Penalista de origem, mas com visão administrativa moderna."
+    }
   },
   "atuacao_profissional": {},
   "padroes_decisao": {},
@@ -16,7 +19,9 @@
       "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
       "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
     ],
-    "tracos_operacionais": [],
+    "tracos_operacionais": [
+      "Analise comportamental: Perfil gestor, focado em tecnologia e metas. Penalista de origem, mas com visão administrativa moderna."
+    ],
     "confianca_global": null
   },
   "riscos_e_cuidados": [
@@ -28,7 +33,12 @@
       "url": "https://www.tjdft.jus.br/institucional/composicao/2a-instancia/desembargadores/ordem-alfabetica",
       "tipo": "site-oficial",
       "observacao": "Ordem alfabetica (2a instancia)"
+    },
+    {
+      "url": "",
+      "tipo": "pesquisa_perplexity",
+      "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }
   ],
-  "atualizado_em": "2026-01-30"
+  "atualizado_em": "2026-01-31"
 }

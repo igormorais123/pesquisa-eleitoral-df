@@ -7,6 +7,7 @@
 
 ## Fontes
 - (wikipedia) https://pt.wikipedia.org/wiki/Nunes_Marques
+- (pesquisa_perplexity) https://portal.stf.jus.br/textos/verTexto.asp?pagina=NunesMarquesPrincipal&servico=bibliotecaConsultaProdutoBibliotecaPastaMinistro
 
 ## Dados Publicos (campos)
 - wikipedia_bio_completa: Kassio Nunes Marques(Teresina,16 de maiode1972)[3][4]é ummagistradobrasileiro, atual ministro doSupremo Tribunal Federal(STF) e doTribunal Superior Eleitoral(TSE).

@@ -7,6 +7,10 @@
 
 ## Fontes
 - (wikipedia) https://pt.wikipedia.org/wiki/Fl%C3%A1vio_Dino
+- (pesquisa_perplexity) https://portal.stf.jus.br/textos/verTexto.asp?pagina=FlavioDinoPrincipal&servico=bibliotecaConsultaProdutoBibliotecaPastaMinistro
+- (pesquisa_perplexity) https://www.stj.jus.br/publicacaoinstitucional/index.php/relatorio/article/download/4244/6356
+- (pesquisa_perplexity) https://www.tjdft.jus.br/institucional/composicao/2a-instancia/desembargadores/ordem-alfabetica
+- (pesquisa_perplexity) https://portal.trf1.jus.br/Setorial/Asmag/RelatoriosAsmag/composicaoOrgaosJulgadores.php
 
 ## Dados Publicos (campos)
 - wikipedia_bio_completa: Flávio Dino de Castro e CostaGCMD(São Luís,30 de abrilde1968)[2]é ummagistrado,professor,jurista, ex-advogadoe ex-políticobrasileiro. É ministro doSupremo Tribunal Federal(STF) desde 2024. Foiministro da Justiça e Segurança PúblicadoBrasilde 2023 a 2024[3]e exerceu o cargo desenadorem fevereiro de 2024, tendo sido eleito pelo estado doMaranhão,[4]do qual foigovernadorentre 2015 e 2022. É tambémprofessordedireito constitucionaldaUniversidade Federal do Maranhão(UFMA) desde 1994.

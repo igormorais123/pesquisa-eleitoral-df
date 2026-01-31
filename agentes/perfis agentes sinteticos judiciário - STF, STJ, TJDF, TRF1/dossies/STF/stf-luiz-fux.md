@@ -7,6 +7,7 @@
 
 ## Fontes
 - (wikipedia) https://pt.wikipedia.org/wiki/Luiz_Fux
+- (pesquisa_perplexity) https://portal.stf.jus.br/textos/verTexto.asp?pagina=LuizFuxPrincipal&servico=bibliotecaConsultaProdutoBibliotecaPastaMinistro
 
 ## Dados Publicos (campos)
 - wikipedia_bio_completa: Luiz FuxComMM•ComCN[4](Rio de Janeiro,26 de abrilde1953) é umjurista,professor universitárioemagistradobrasileiro, atualministrodoSupremo Tribunal Federal(STF). Foi ministro doTribunal Superior Eleitoralde 2014 a 2018, tendo sido presidente da corte eleitoral entre fevereiro e agosto de 2018. Exerceu também a função deministrodoSuperior Tribunal de Justiça(STJ) de 2001 a 2011.[5][6]

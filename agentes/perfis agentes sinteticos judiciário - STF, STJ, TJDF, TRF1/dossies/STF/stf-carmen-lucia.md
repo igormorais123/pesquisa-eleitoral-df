@@ -7,6 +7,7 @@
 
 ## Fontes
 - (wikipedia) https://pt.wikipedia.org/wiki/C%C3%A1rmen_L%C3%BAcia
+- (pesquisa_perplexity) https://portal.stf.jus.br/textos/verTexto.asp?pagina=CarmenLuciaPrincipal&servico=bibliotecaConsultaProdutoBibliotecaPastaMinistro
 
 ## Dados Publicos (campos)
 - wikipedia_bio_completa: Cármen Lúcia Antunes Rocha(Montes Claros,[1]19 de abrilde1954) é umajurista,professoraemagistradabrasileira, atual ministra doSupremo Tribunal Federal(STF) e presidente doTribunal Superior Eleitoral(TSE),[3]tendo sidopresidenteda corte suprema[4]e doConselho Nacional de Justiça(CNJ) de 2016 a 2018.[5][6]Exerceu posteriormente o cargo de presidente do TSE[7]e de presidente da segunda turma doSupremo Tribunal Federal(STF).

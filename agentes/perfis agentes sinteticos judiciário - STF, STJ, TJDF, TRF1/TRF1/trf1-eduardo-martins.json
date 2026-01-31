@@ -6,11 +6,15 @@
   "cargo": "Desembargador Federal",
   "situacao": "titular",
   "dados_publicos": {
-    "gabinete_texto": "Ed. Sede I - T\u00e9rreo, Sala 12",
+    "gabinete_texto": "Ed. Sede I - Térreo, Sala 12",
     "funcao_administrativa": null,
     "pagina_trf1": "https://www.trf1.jus.br/trf1/em-atividade/eduardo-martim",
     "telefone": "(61) 3314-5225",
-    "biografia_trf1_texto": "* * *\n\n6396 visualiza\u00e7\u00f5es\n\n**Informativos**\n\n[Avisos](https://www.trf1.jus.br/trf1/informativos/avisos)\n\n[Infojef](https://www.trf1.jus.br/trf1/informativos/infojef)\n\n[Not\u00edcias](https://www.trf1.jus.br/trf1/noticias)\n\n[Mat\u00e9rias Especiais](https://www.trf1.jus.br/trf1/noticias/?palavra=&categoria=Mat%C3%A9rias+Especiais)\n\n**[LGPD](https://www.trf1.jus.br/trf1/lgpd/lgpd)**\n\n**Magistrado**\n\n[Organiza\u00e7\u00e3o e Composi\u00e7\u00e3o](https://www.trf1.jus.br/trf1/magistrado/organizacao-e-composicao)\n\n[Desembargadoras e Desembargadores Federais](https://www.trf1.jus.br/trf1/magistrado/desembargadoras-e-desembargadores-federais)\n\n[Ju\u00edzes Federais](https://www.trf1.jus.br/trf1/magistrado/juizes-federais)\n\n[Sistemas](https://www.trf1.jus.br/trf1/magistrado/sistemas)\n\n**[Mem\u00f3ria](https://www.trf1.jus.br/trf1/exposicoes/nasce-um-tribunal)**\n\n**Servidor**\n\n[Contracheque/DIRF](https://portal.trf1.jus.br/Consulta/ContraCheque/ContraCheque.php)\n\n[Imposto de Renda](https://portal.trf1.jus.br/Consulta/ContraCheque/ContraCheque.php)\n\n[Ambienta\u00e7\u00e3o](https://www.trf1.jus.br/trf1/servidor/ambientacao)\n\n[Educa\u00e7\u00e3o Corporativa](https://www.trf1.jus.br/trf1/servidor/educacao-corporativa)\n\n[Avalia\u00e7\u00e3o de Desempenho](https://sca.trf1.jus.br/auth/realms/JF1/protocol/openid-connect/auth?client_id=educador-judiciario&redirect_uri=https%3A%2F%2Fsistemas.trf1.jus.br%2Feducajud%2F&state=e225ff63-0490-4fdf-9f33-7cffd7774372&nonce=f6eca0a0-cc8a-4b2f-8c7f-ad4a513d1ecf&response_mode=fragment&response_type=code&scope=openid)\n\n[Sistema Integrado de Avalia\u00e7\u00e3o de Desempenho Funcional - Siades](https://www.trf1.jus.br/trf1/servidor/sistema-integrado-de-avaliacao-de-desempenho-funcional---siades)\n\n[Contatos](https://www.trf1.jus.br/trf1/servidor/contatos)\n\n**[Informativos](https://www.trf1.jus.br/trf1/informativos)**\n\n**[LGPD](https://www.trf1.jus.br/trf1/servicos/lgpd)**\n\n**[Magistrado](https://www.trf1.jus.br/trf1/magistrado)**\n\n**[Mem\u00f3ria](https://www.trf1.jus.br/trf1/memoria-institucional/nasce-um-tribunal)**\n\n**[Servidor](https://www.trf1.jus.br/trf1/servidor)**"
+    "biografia_trf1_texto": "* * *\n\n6396 visualizações\n\n**Informativos**\n\n[Avisos](https://www.trf1.jus.br/trf1/informativos/avisos)\n\n[Infojef](https://www.trf1.jus.br/trf1/informativos/infojef)\n\n[Notícias](https://www.trf1.jus.br/trf1/noticias)\n\n[Matérias Especiais](https://www.trf1.jus.br/trf1/noticias/?palavra=&categoria=Mat%C3%A9rias+Especiais)\n\n**[LGPD](https://www.trf1.jus.br/trf1/lgpd/lgpd)**\n\n**Magistrado**\n\n[Organização e Composição](https://www.trf1.jus.br/trf1/magistrado/organizacao-e-composicao)\n\n[Desembargadoras e Desembargadores Federais](https://www.trf1.jus.br/trf1/magistrado/desembargadoras-e-desembargadores-federais)\n\n[Juízes Federais](https://www.trf1.jus.br/trf1/magistrado/juizes-federais)\n\n[Sistemas](https://www.trf1.jus.br/trf1/magistrado/sistemas)\n\n**[Memória](https://www.trf1.jus.br/trf1/exposicoes/nasce-um-tribunal)**\n\n**Servidor**\n\n[Contracheque/DIRF](https://portal.trf1.jus.br/Consulta/ContraCheque/ContraCheque.php)\n\n[Imposto de Renda](https://portal.trf1.jus.br/Consulta/ContraCheque/ContraCheque.php)\n\n[Ambientação](https://www.trf1.jus.br/trf1/servidor/ambientacao)\n\n[Educação Corporativa](https://www.trf1.jus.br/trf1/servidor/educacao-corporativa)\n\n[Avaliação de Desempenho](https://sca.trf1.jus.br/auth/realms/JF1/protocol/openid-connect/auth?client_id=educador-judiciario&redirect_uri=https%3A%2F%2Fsistemas.trf1.jus.br%2Feducajud%2F&state=e225ff63-0490-4fdf-9f33-7cffd7774372&nonce=f6eca0a0-cc8a-4b2f-8c7f-ad4a513d1ecf&response_mode=fragment&response_type=code&scope=openid)\n\n[Sistema Integrado de Avaliação de Desempenho Funcional - Siades](https://www.trf1.jus.br/trf1/servidor/sistema-integrado-de-avaliacao-de-desempenho-funcional---siades)\n\n[Contatos](https://www.trf1.jus.br/trf1/servidor/contatos)\n\n**[Informativos](https://www.trf1.jus.br/trf1/informativos)**\n\n**[LGPD](https://www.trf1.jus.br/trf1/servicos/lgpd)**\n\n**[Magistrado](https://www.trf1.jus.br/trf1/magistrado)**\n\n**[Memória](https://www.trf1.jus.br/trf1/memoria-institucional/nasce-um-tribunal)**\n\n**[Servidor](https://www.trf1.jus.br/trf1/servidor)**",
+    "dados_dossie": {
+      "perfil_ideologico": "Pragmático/Dynasty**. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao c",
+      "analise_comportamental": "Pragmático/Dynasty**. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao conservadorismo em temas morais, mas é garantista em processos disciplinares e penais.20"
+    }
   },
   "atuacao_profissional": {},
   "padroes_decisao": {},
@@ -19,7 +23,10 @@
       "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
       "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
     ],
-    "tracos_operacionais": [],
+    "tracos_operacionais": [
+      "Perfil ideologico: Pragmático/Dynasty**. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao c",
+      "Analise comportamental: Pragmático/Dynasty**. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao c"
+    ],
     "confianca_global": null
   },
   "riscos_e_cuidados": [
@@ -36,7 +43,12 @@
       "url": "https://www.trf1.jus.br/trf1/em-atividade/eduardo-martim",
       "tipo": "site-oficial",
       "observacao": "Pagina individual"
+    },
+    {
+      "url": "",
+      "tipo": "pesquisa_perplexity",
+      "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }
   ],
-  "atualizado_em": "2026-01-30"
+  "atualizado_em": "2026-01-31"
 }

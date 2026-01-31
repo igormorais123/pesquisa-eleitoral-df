@@ -6,11 +6,14 @@
   "cargo": "Desembargador Federal",
   "situacao": "titular",
   "dados_publicos": {
-    "gabinete_texto": "Ed. Sede III - 2\u00ba andar",
+    "gabinete_texto": "Ed. Sede III - 2º andar",
     "funcao_administrativa": null,
     "pagina_trf1": "https://www.trf1.jus.br/trf1/em-atividade/ana-carolina-roman-",
     "telefone": "(61) 3314-5225",
-    "biografia_trf1_texto": "**Nomeada por Decreto Presidencial de 16/05/2023, com posse e exerc\u00edcio em 07/06/2023.**\n\nPossui mestrado em Constitui\u00e7\u00e3o e Sociedade pelo Instituto Brasiliense de Direito P\u00fablico (2020). Atualmente \u00e9 procurador da rep\u00fablica do Minist\u00e9rio P\u00fablico Federal. Tem experi\u00eancia na \u00e1rea de Direito, com \u00eanfase em Direito Constitucional\n\n**Forma\u00e7\u00e3o acad\u00eamica/titula\u00e7\u00e3o**\n\n**2018 - 2020**\n\nMestrado em Constitui\u00e7\u00e3o e Sociedade. Instituto Brasiliense de Direito P\u00fablico, IDP, Bras\u00edlia, Brasil T\u00edtulo: O CASO TRABALHADORES DA FAZENDA BRASIL VERDE VS BRASIL: A APLICA\u00c7\u00c3O DA PROBI\u00c7\u00c3O DA ESCRAVID\u00c3O PELA CORTE INTERAMERICANA DE DIREITOS HUMANOS E SEUS REFLEXOS NA TUTELA DE DIREITOS PELO SUPREMO TRIBUNAL FEDERAL, Ano de obten\u00e7\u00e3o: 2020\n\n**2004 - 2006**\n\nEspecializa\u00e7\u00e3o em Especializa\u00e7\u00e3o em Direitos Humanos. Faculdade de Direito da USP, FDUSP, S\u00e3o Paulo, Brasil T\u00edtulo: TRABALHO FOR\u00c7ADO NO BRASIL: ESTUDO SOBRE O ART. 149 DO C\u00d3DIGO PENAL\n\n**Atua\u00e7\u00e3o profissional**\n\nMinist\u00e9rio P\u00fablico Federal - MPF \n\nV\u00ednculo institucional 2004 - Atual V\u00ednculo: Servidor p\u00fablico , Enquadramento funcional: Procurador da Rep\u00fablica"
+    "biografia_trf1_texto": "**Nomeada por Decreto Presidencial de 16/05/2023, com posse e exercício em 07/06/2023.**\n\nPossui mestrado em Constituição e Sociedade pelo Instituto Brasiliense de Direito Público (2020). Atualmente é procurador da república do Ministério Público Federal. Tem experiência na área de Direito, com ênfase em Direito Constitucional\n\n**Formação acadêmica/titulação**\n\n**2018 - 2020**\n\nMestrado em Constituição e Sociedade. Instituto Brasiliense de Direito Público, IDP, Brasília, Brasil Título: O CASO TRABALHADORES DA FAZENDA BRASIL VERDE VS BRASIL: A APLICAÇÃO DA PROBIÇÃO DA ESCRAVIDÃO PELA CORTE INTERAMERICANA DE DIREITOS HUMANOS E SEUS REFLEXOS NA TUTELA DE DIREITOS PELO SUPREMO TRIBUNAL FEDERAL, Ano de obtenção: 2020\n\n**2004 - 2006**\n\nEspecialização em Especialização em Direitos Humanos. Faculdade de Direito da USP, FDUSP, São Paulo, Brasil Título: TRABALHO FORÇADO NO BRASIL: ESTUDO SOBRE O ART. 149 DO CÓDIGO PENAL\n\n**Atuação profissional**\n\nMinistério Público Federal - MPF \n\nVínculo institucional 2004 - Atual Vínculo: Servidor público , Enquadramento funcional: Procurador da República",
+    "dados_dossie": {
+      "analise_comportamental": "** Recém empossado (2024). Origem Bahia.37"
+    }
   },
   "atuacao_profissional": {},
   "padroes_decisao": {},
@@ -19,7 +22,9 @@
       "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
       "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
     ],
-    "tracos_operacionais": [],
+    "tracos_operacionais": [
+      "Analise comportamental: ** Recém empossado (2024). Origem Bahia.37"
+    ],
     "confianca_global": null
   },
   "riscos_e_cuidados": [
@@ -36,7 +41,12 @@
       "url": "https://www.trf1.jus.br/trf1/em-atividade/ana-carolina-roman-",
       "tipo": "site-oficial",
       "observacao": "Pagina individual"
+    },
+    {
+      "url": "",
+      "tipo": "pesquisa_perplexity",
+      "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }
   ],
-  "atualizado_em": "2026-01-30"
+  "atualizado_em": "2026-01-31"
 }

@@ -1,16 +1,20 @@
 {
   "id": "trf1-rui-goncalves",
-  "nome": "Rui Gon\u00e7alves",
+  "nome": "Rui Gonçalves",
   "nome_completo": null,
   "orgao": "TRF1",
   "cargo": "Desembargador Federal",
   "situacao": "titular",
   "dados_publicos": {
-    "gabinete_texto": "Ed. Sede II - 3\u00b0 andar - 3N",
+    "gabinete_texto": "Ed. Sede II - 3° andar - 3N",
     "funcao_administrativa": null,
     "pagina_trf1": "https://www.trf1.jus.br/trf1/em-atividade/rui-goncalves-",
     "telefone": "(61) 3314-5225",
-    "biografia_trf1_texto": "Nomeado por Decreto Presidencial de 27/04/2023, com posse e exerc\u00edcio em 10/05/2023.\n\nDesembargador Federal RUI COSTA GON\u00c7ALVES,nascido em Manaus (AM), no dia 05 de dezembro de 1962, tomou posse no cargo de Juiz Federal em 09 de novembro de 1992 e no cargo de Desembargador Federal em 10 de maio de 2023 no Tribunal Regional Federal da 1\u00aa Regi\u00e3o.\n\nInstru\u00e7\u00e3o Gradua\u00e7\u00e3o em Ci\u00eancias Econ\u00f4micas, pela Funda\u00e7\u00e3o Universidade do Amazonas, em 1983; Gradua\u00e7\u00e3o em Direito pela Funda\u00e7\u00e3o Universidade do Amazonas, em 1989.\n\nAtividade Profissional Desembargador Federal do TRF1. Exerceu as fun\u00e7\u00f5es de Promotor de Justi\u00e7a do Estado do Amazonas, de Juiz Federal no Estado do Par\u00e1, Piau\u00ed e Distrito Federal, de Juiz do Tribunal Regional Eleitoral do Par\u00e1, Amap\u00e1, Piau\u00ed e Amazonas. Foi Juiz Federal Presidente e Relator da Turma Recursal \u00danica da Se\u00e7\u00e3o Judici\u00e1ria do Piau\u00ed. Foi Coordenador eventual dos Juizados Especiais Federais da Se\u00e7\u00e3o Judici\u00e1ria do Distrito Federal. Foi Presidente e Coordenador da Turma Recursal \u00danica dos Juizados Especiais Federais da Se\u00e7\u00e3o Judici\u00e1ria do Distrito Federal. Foi Membro da Turma Nacional de Uniformiza\u00e7\u00e3o de Jurisprud\u00eancia dos Juizados Especiais Federais no Conselho da Justi\u00e7a Federal, representante da Justi\u00e7a Federal na 1\u00aa Regi\u00e3o. Foi representante da 1\u00aa Regi\u00e3o na Reuni\u00e3o sobre Estrutura\u00e7\u00e3o das Turmas Recursais dos Juizados Especiais Federais no Conselho da Justi\u00e7a Federal. Exerceu o cargo de Diretor do Foro da Se\u00e7\u00e3o Judici\u00e1ria do Piau\u00ed e de Diretor do Foro da Se\u00e7\u00e3o Judici\u00e1ria do Distrito Federal, Tem atua\u00e7\u00e3o na \u00e1rea de Direito Tribut\u00e1rio, Previdenci\u00e1rio e Eleitoral. \u00c9 autor de v\u00e1rios artigos cient\u00edficos publicados em peri\u00f3dicos conceituados."
+    "biografia_trf1_texto": "Nomeado por Decreto Presidencial de 27/04/2023, com posse e exercício em 10/05/2023.\n\nDesembargador Federal RUI COSTA GONÇALVES,nascido em Manaus (AM), no dia 05 de dezembro de 1962, tomou posse no cargo de Juiz Federal em 09 de novembro de 1992 e no cargo de Desembargador Federal em 10 de maio de 2023 no Tribunal Regional Federal da 1ª Região.\n\nInstrução Graduação em Ciências Econômicas, pela Fundação Universidade do Amazonas, em 1983; Graduação em Direito pela Fundação Universidade do Amazonas, em 1989.\n\nAtividade Profissional Desembargador Federal do TRF1. Exerceu as funções de Promotor de Justiça do Estado do Amazonas, de Juiz Federal no Estado do Pará, Piauí e Distrito Federal, de Juiz do Tribunal Regional Eleitoral do Pará, Amapá, Piauí e Amazonas. Foi Juiz Federal Presidente e Relator da Turma Recursal Única da Seção Judiciária do Piauí. Foi Coordenador eventual dos Juizados Especiais Federais da Seção Judiciária do Distrito Federal. Foi Presidente e Coordenador da Turma Recursal Única dos Juizados Especiais Federais da Seção Judiciária do Distrito Federal. Foi Membro da Turma Nacional de Uniformização de Jurisprudência dos Juizados Especiais Federais no Conselho da Justiça Federal, representante da Justiça Federal na 1ª Região. Foi representante da 1ª Região na Reunião sobre Estruturação das Turmas Recursais dos Juizados Especiais Federais no Conselho da Justiça Federal. Exerceu o cargo de Diretor do Foro da Seção Judiciária do Piauí e de Diretor do Foro da Seção Judiciária do Distrito Federal, Tem atuação na área de Direito Tributário, Previdenciário e Eleitoral. É autor de vários artigos científicos publicados em periódicos conceituados.",
+    "dados_dossie": {
+      "perfil_ideologico": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30",
+      "analise_comportamental": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30"
+    }
   },
   "atuacao_profissional": {},
   "padroes_decisao": {},
@@ -19,7 +23,10 @@
       "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
       "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
     ],
-    "tracos_operacionais": [],
+    "tracos_operacionais": [
+      "Perfil ideologico: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30",
+      "Analise comportamental: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30"
+    ],
     "confianca_global": null
   },
   "riscos_e_cuidados": [
@@ -36,7 +43,12 @@
       "url": "https://www.trf1.jus.br/trf1/em-atividade/rui-goncalves-",
       "tipo": "site-oficial",
       "observacao": "Pagina individual"
+    },
+    {
+      "url": "",
+      "tipo": "pesquisa_perplexity",
+      "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }
   ],
-  "atualizado_em": "2026-01-30"
+  "atualizado_em": "2026-01-31"
 }
