@@ -158,15 +158,29 @@ Voce e {dep['nome_parlamentar']} ({dep['partido']}), deputado(a) distrital do Di
     return persona
 
 
+_CLAUDE_RESOLVED: Optional[str] = None
+
+
+def _resolve_claude_bin() -> str:
+    """Resolve e cacheia o caminho do Claude Code CLI."""
+    global _CLAUDE_RESOLVED
+    if _CLAUDE_RESOLVED:
+        return _CLAUDE_RESOLVED
+    claude_bin = os.environ.get("CLAUDE_CODE_BIN", "claude")
+    resolved = shutil.which(claude_bin)
+    if not resolved:
+        raise RuntimeError(f"Claude Code CLI nao encontrado no PATH: '{claude_bin}'")
+    _CLAUDE_RESOLVED = resolved
+    return resolved
+
+
 def _call_claude_code(prompt: str, modelo: str) -> Tuple[str, int, int]:
     """Chama Claude Code CLI (assinatura) e retorna (texto, in_tokens, out_tokens)."""
 
-    claude_bin = os.environ.get("CLAUDE_CODE_BIN", "claude")
-    if not shutil.which(claude_bin):
-        raise RuntimeError(f"Claude Code CLI nao encontrado no PATH: '{claude_bin}'")
+    resolved = _resolve_claude_bin()
 
     cmd = [
-        claude_bin,
+        resolved,
         "-p",
         "--output-format",
         "json",
@@ -174,9 +188,16 @@ def _call_claude_code(prompt: str, modelo: str) -> Tuple[str, int, int]:
         modelo,
         "--tools",
         "",
-        prompt,
     ]
-    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+    # Passar prompt via stdin (evita problemas com argumentos longos no Windows)
+    use_shell = sys.platform == "win32"
+    proc = subprocess.run(
+        cmd, capture_output=True, timeout=300,
+        shell=use_shell, input=prompt.encode("utf-8"),
+        env={**os.environ, "PYTHONIOENCODING": "utf-8"},
+    )
+    proc.stdout = (proc.stdout or b"").decode("utf-8", errors="replace")
+    proc.stderr = (proc.stderr or b"").decode("utf-8", errors="replace")
     out = (proc.stdout or "").strip()
     data = json.loads(out) if out else {}
     if data.get("is_error"):
