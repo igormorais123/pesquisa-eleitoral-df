@@ -19,7 +19,7 @@ from app.esquemas.entrevista import (
     StatusEntrevista,
 )
 from app.servicos.claude_servico import obter_claude_servico
-from app.servicos.eleitor_helper import obter_eleitores_por_ids
+from app.servicos.eleitor_helper import obter_eleitores_por_ids, obter_eleitores_por_ids_async
 from app.db.session import get_db_context
 from app.servicos.memoria_servico import criar_memoria_servico
 
@@ -217,10 +217,16 @@ class EntrevistaServico:
         # Obter eleitores e serviços
         claude = obter_claude_servico()
 
-        eleitores = obter_eleitores_por_ids(entrevista["eleitores_ids"])
+        eleitores = await obter_eleitores_por_ids_async(entrevista["eleitores_ids"])
+        if not eleitores:
+            raise ValueError(
+                f"Nenhum eleitor encontrado para {len(entrevista['eleitores_ids'])} IDs fornecidos"
+            )
         perguntas = entrevista["perguntas"]
 
         total_chamadas = len(eleitores) * len(perguntas)
+        if total_chamadas == 0:
+            raise ValueError("Nenhuma chamada a processar (perguntas vazias)")
         chamadas_feitas = 0
         custo_total = 0.0
         tokens_entrada = 0

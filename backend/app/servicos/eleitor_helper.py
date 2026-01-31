@@ -61,6 +61,16 @@ async def _contar_eleitores_db() -> int:
         return len(result.all())
 
 
+async def obter_eleitores_por_ids_async(ids: List[str]) -> List[Dict]:
+    """
+    Versão async para uso em contextos async (BackgroundTasks, etc).
+    Acessa PostgreSQL diretamente sem ponte sync/async.
+    """
+    if not ids:
+        return []
+    return await _obter_eleitores_por_ids_db(ids)
+
+
 def obter_eleitores_por_ids(ids: List[str]) -> List[Dict]:
     """
     Obtém eleitores por IDs (compatível com código síncrono).
