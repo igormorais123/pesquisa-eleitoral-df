@@ -23,19 +23,15 @@ DATABASE_URL = configuracoes.DATABASE_URL.replace(
 )
 
 # Remover sslmode da query string (asyncpg usa connect_args, não query params)
-import ssl as _ssl
 _clean_url = DATABASE_URL.replace("?sslmode=require", "").replace("&sslmode=require", "")
 
 # Detectar se estamos em produção (Render exige SSL)
 _is_production = configuracoes.AMBIENTE == "production" or "render.com" in DATABASE_URL
 
-# Criar contexto SSL para asyncpg quando necessário
+# asyncpg aceita ssl="require" (string) para conexão SSL sem verificação de certificado
 _connect_args = {}
 if _is_production:
-    _ssl_ctx = _ssl.create_default_context()
-    _ssl_ctx.check_hostname = False
-    _ssl_ctx.verify_mode = _ssl.CERT_NONE
-    _connect_args["ssl"] = _ssl_ctx
+    _connect_args["ssl"] = "require"
 
 # Engine assíncrono
 engine = create_async_engine(
