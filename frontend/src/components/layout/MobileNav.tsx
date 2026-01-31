@@ -67,8 +67,8 @@ export function MobileNav() {
   return (
     <>
       {/* Bottom Navigation Bar - Visível apenas em mobile */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-xl border-t lg:hidden safe-area-bottom bg-card/95 border-border/50 dark:bg-slate-900/95 dark:border-white/5">
-        <div className="flex items-center justify-around h-16">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-xl border-t lg:hidden safe-area-bottom bg-card/95 border-border/50 dark:bg-slate-900/95 dark:border-white/5 no-tap-highlight">
+        <div className="flex items-center justify-around h-16 px-1">
           {menuPrincipal.map((item) => {
             const ativo = pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(`${item.href}/`));
             const Icone = item.icone;
@@ -78,12 +78,22 @@ export function MobileNav() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'flex flex-col items-center justify-center gap-1 py-2 px-3 min-w-[64px] transition-colors',
-                  ativo ? 'text-primary' : 'text-muted-foreground'
+                  'flex flex-col items-center justify-center gap-0.5 py-2 px-2 min-w-[56px] rounded-xl transition-all active:scale-90 active:opacity-80',
+                  ativo
+                    ? 'text-primary'
+                    : 'text-muted-foreground'
                 )}
               >
-                <Icone className={cn('w-5 h-5', ativo && 'text-primary')} />
-                <span className="text-[10px] font-medium">{item.titulo}</span>
+                <div className={cn(
+                  'flex items-center justify-center w-8 h-8 rounded-xl transition-colors',
+                  ativo && 'bg-primary/15'
+                )}>
+                  <Icone className={cn('w-5 h-5', ativo && 'text-primary')} />
+                </div>
+                <span className={cn(
+                  'text-[10px] font-medium leading-tight',
+                  ativo && 'text-primary'
+                )}>{item.titulo}</span>
               </Link>
             );
           })}
@@ -91,10 +101,12 @@ export function MobileNav() {
           {/* Botão Menu Extra */}
           <button
             onClick={() => setMenuAberto(true)}
-            className="flex flex-col items-center justify-center gap-1 py-2 px-3 min-w-[64px] text-muted-foreground transition-colors"
+            className="flex flex-col items-center justify-center gap-0.5 py-2 px-2 min-w-[56px] text-muted-foreground transition-all active:scale-90 active:opacity-80 rounded-xl"
           >
-            <Menu className="w-5 h-5" />
-            <span className="text-[10px] font-medium">Mais</span>
+            <div className="flex items-center justify-center w-8 h-8 rounded-xl">
+              <Menu className="w-5 h-5" />
+            </div>
+            <span className="text-[10px] font-medium leading-tight">Mais</span>
           </button>
         </div>
       </nav>
@@ -181,7 +193,8 @@ export function MobileNav() {
             </div>
 
             {/* Safe area padding */}
-            <div className="h-8" />
+            <div className="safe-area-bottom" />
+            <div className="h-4" />
           </div>
         </>
       )}

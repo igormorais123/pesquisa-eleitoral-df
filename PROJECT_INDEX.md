@@ -98,6 +98,7 @@ pesquisa-eleitoral-df/
 ├── docs/                       # Documentação
 ├── scripts/                    # Scripts de utilidade
 ├── resultados/                 # Resultados de simulações
+│   └── pesquisas/              # Pacotes auditáveis (INTEIA Premium)
 └── memorias/                   # Memórias persistentes
 ```
 

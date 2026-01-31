@@ -8,6 +8,14 @@ considerando cargo, partido, histórico de votações e posicionamentos.
 from typing import Any, Dict, List, Optional
 
 
+def _valor(x: Any, default: Any = None) -> Any:
+    """Extrai campo no formato {'valor': ..., 'confianca': ...} ou retorna o valor puro."""
+
+    if isinstance(x, dict) and "valor" in x:
+        return x.get("valor", default)
+    return x if x is not None else default
+
+
 def construir_prompt_parlamentar(
     parlamentar: Dict[str, Any],
     pergunta: str,
@@ -35,12 +43,26 @@ def construir_prompt_parlamentar(
     cargo = cartao.get("cargo", parlamentar.get("profissao", "Deputado"))
     partido = cartao.get("partido", "SEM PARTIDO")
     casa = cartao.get("casa_legislativa", "").upper()
-    genero = parlamentar.get("genero", "masculino")
-    religiao = parlamentar.get("religiao", "Não informada")
+    genero = _valor(parlamentar.get("genero"), "masculino")
+    religiao = _valor(parlamentar.get("religiao"), "Não informada")
 
     # Posicionamento político
-    orientacao = parlamentar.get("orientacao_politica", "centro")
-    posicao_bolsonaro = parlamentar.get("posicao_bolsonaro", "neutro")
+    orientacao = _valor(parlamentar.get("orientacao_politica"), "centro")
+    posicao_bolsonaro = _valor(parlamentar.get("posicao_bolsonaro"), "neutro")
+    posicao_lula = _valor(parlamentar.get("posicao_lula"), "neutro")
+
+    # Relação com governo contextualizada por esfera legislativa
+    perfil_inf = parlamentar.get("perfil_inferido", {})
+    casa_lower = cartao.get("casa_legislativa", "").lower()
+    if casa_lower == "cldf":
+        relacao_governo = _valor(perfil_inf.get("relacao_governo_distrital",
+                                 parlamentar.get("relacao_governo_distrital")), "indefinido")
+        governo_label = "governo do DF (Ibaneis/MDB)"
+    else:
+        relacao_governo = _valor(perfil_inf.get("relacao_governo_federal",
+                                 parlamentar.get("relacao_governo_federal",
+                                 parlamentar.get("relacao_governo"))), "indefinido")
+        governo_label = "governo Lula"
 
     # Formação e carreira
     formacao = cartao.get("formacao", [])
@@ -56,13 +78,13 @@ def construir_prompt_parlamentar(
     comissoes_texto = "\n".join([f"   • {c}" for c in comissoes]) if comissoes else "   • Não informadas"
 
     # Valores e preocupações
-    valores = parlamentar.get("valores", [])
+    valores = _valor(parlamentar.get("valores"), [])
     if isinstance(valores, list):
         valores_texto = "\n".join([f"   • {v}" for v in valores]) if valores else "   • Não especificados"
     else:
         valores_texto = "   • Não especificados"
 
-    preocupacoes = parlamentar.get("preocupacoes", [])
+    preocupacoes = _valor(parlamentar.get("preocupacoes"), [])
     if isinstance(preocupacoes, list):
         preocupacoes_texto = "\n".join([f"   • {p}" for p in preocupacoes]) if preocupacoes else "   • Não especificadas"
     else:
@@ -77,12 +99,29 @@ def construir_prompt_parlamentar(
     instrucao = parlamentar.get("instrucao_comportamental", "")
 
     # Interesses e fontes
-    interesse_politico = parlamentar.get("interesse_politico", "alto")
+    interesse_politico = _valor(parlamentar.get("interesse_politico"), "alto")
     fontes = parlamentar.get("fontes_informacao", ["Assessoria parlamentar", "Mídia especializada"])
     fontes_texto = "\n".join([f"   • {f}" for f in fontes])
 
     # Estilo
-    estilo_decisao = parlamentar.get("estilo_decisao", "pragmatico")
+    estilo_decisao = _valor(parlamentar.get("estilo_decisao"), "pragmatico")
+
+    # Incentivos (quando existir enriquecimento no perfil)
+    incentivos = parlamentar.get("incentivos_politicos", {})
+    if not isinstance(incentivos, dict):
+        incentivos = {}
+    dependencia_emendas = _valor(incentivos.get("dependencia_emendas"), "desconhecida")
+    risco_retaliacao = _valor(incentivos.get("risco_retaliacao"), "desconhecido")
+    disciplina_bancada = _valor(incentivos.get("disciplina_bancada"), "desconhecida")
+
+    # Relacoes (quando existir informacao GDF/federal)
+    relacoes_gov = parlamentar.get("relacoes_governo")
+    rel_gdf = None
+    if isinstance(relacoes_gov, dict):
+        rel_gdf = relacoes_gov.get("gdf")
+    rel_gdf_txt = "N/A"
+    if isinstance(rel_gdf, dict):
+        rel_gdf_txt = str(rel_gdf.get("posicao") or "N/A")
 
     prompt = f"""SISTEMA: Você é um simulador avançado de comportamento parlamentar brasileiro.
 
@@ -104,13 +143,15 @@ Princípios fundamentais que regem TODAS as suas respostas:
    Seu partido ({partido}) influencia suas posições. Você raramente contraria
    a orientação da bancada sem motivo forte.
 
-4. CÁLCULO ELEITORAL
-   Toda resposta considera impacto na base eleitoral. Parlamentares pensam
-   em reeleição e imagem pública.
+ 4. CÁLCULO ELEITORAL E INSTITUCIONAL
+    Toda resposta considera impacto na base eleitoral, na relação com lideranças,
+    e na governabilidade. Parlamentares evitam custos reais (retaliação, isolamento,
+    perda de espaço) quando possível.
 
-5. ARTICULAÇÃO POLÍTICA
-   Você sabe negociar, evitar armadilhas retóricas e preservar alianças.
-   Respostas podem ser estrategicamente vagas quando necessário.
+ 5. ARTICULAÇÃO POLÍTICA (REALISMO)
+    Você sabe negociar, evitar armadilhas retóricas e preservar alianças.
+    Respostas podem ser estrategicamente vagas; "apoio apuração" não implica
+    necessariamente apoiar uma CPI/medida concreta.
 
 6. ESPECIALIZAÇÃO TEMÁTICA
    Seus temas de atuação são sua área de conforto. Em outros temas,
@@ -134,10 +175,18 @@ Princípios fundamentais que regem TODAS as suas respostas:
    Profissão: {profissao}
 
 🗳️ PERFIL POLÍTICO:
-   Orientação: {orientacao}
-   Posição Bolsonaro: {posicao_bolsonaro}
-   Interesse político: {interesse_politico}
-   Estilo de decisão: {estilo_decisao}
+    Orientação: {orientacao}
+    Posição Bolsonaro: {posicao_bolsonaro}
+    Posição Lula: {posicao_lula}
+    Relação com {governo_label}: {relacao_governo}
+    Relação com GDF (se disponível): {rel_gdf_txt}
+    Interesse político: {interesse_politico}
+    Estilo de decisão: {estilo_decisao}
+
+ ⚖️ INCENTIVOS E RESTRIÇÕES (MUNDO REAL):
+    Dependência de emendas/execução do governo: {dependencia_emendas}
+    Risco de retaliação institucional: {risco_retaliacao}
+    Disciplina/pressão da bancada: {disciplina_bancada}
 
 📋 ATUAÇÃO PARLAMENTAR:
 
@@ -205,12 +254,12 @@ Antes de responder, você DEVE processar internamente:
 ║                            REGRAS INVIOLÁVEIS                                ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
-❌ PROIBIDO:
+ ❌ PROIBIDO:
    • Contradizer abertamente votações passadas sem justificativa
    • Criticar o próprio partido ou lideranças diretamente
    • Usar linguagem incompatível com cargo institucional
    • Começar com "Como {nome_parlamentar}, eu..." (seja natural)
-   • Admitir motivações puramente eleitoreiras
+    • Confessar troca de favores explícita (use linguagem institucional: "governabilidade", "cautela", "responsabilidade")
 
 ✅ PERMITIDO E ENCORAJADO:
    • Ser evasivo em temas polêmicos se for estratégico
@@ -270,14 +319,24 @@ def construir_prompt_parlamentar_simplificado(
     Usa menos tokens mas mantém a essência do personagem.
     """
     nome = parlamentar.get("nome_parlamentar", parlamentar.get("nome", "Parlamentar"))
-    cargo = parlamentar.get("cargo", "Deputado")
-    partido = parlamentar.get("partido", "")
-    orientacao = parlamentar.get("orientacao_politica", "centro")
-    temas = parlamentar.get("temas_atuacao", [])[:3]
+    cargo = _valor(parlamentar.get("cargo"), "Deputado")
+    partido = _valor(parlamentar.get("partido"), "")
+    orientacao = _valor(parlamentar.get("orientacao_politica"), "centro")
+    casa_simp = _valor(parlamentar.get("casa_legislativa"), "").lower()
+    if casa_simp == "cldf":
+        relacao_governo = _valor(parlamentar.get("relacao_governo_distrital",
+                                 parlamentar.get("relacao_governo")), "indefinido")
+        gov_label = "governo do DF"
+    else:
+        relacao_governo = _valor(parlamentar.get("relacao_governo_federal",
+                                 parlamentar.get("relacao_governo")), "indefinido")
+        gov_label = "governo Lula"
+    temas = _valor(parlamentar.get("temas_atuacao"), [])[:3]
 
     prompt = f"""Você é {nome}, {cargo} do {partido}.
-Orientação política: {orientacao}
-Temas principais: {', '.join(temas) if temas else 'diversos'}
+ Orientação política: {orientacao}
+ Relação com {gov_label}: {relacao_governo}
+  Temas principais: {', '.join(temas) if temas else 'diversos'}
 
 Responda à seguinte pergunta mantendo coerência com seu perfil político:
 

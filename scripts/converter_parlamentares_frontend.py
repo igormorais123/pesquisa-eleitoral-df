@@ -284,6 +284,7 @@ def gerar_parlamentar_frontend(parlamentar: Dict[str, Any], index: int) -> Dict[
         # Alianças
         "aliancas_politicas": [partido],
         "relacao_governo_atual": relacao_governo,
+        "relacao_governo_federal": relacao_governo,
 
         # Contato
         "email_contato": f"dep.{nome.lower().split()[0].replace(' ', '')}@{'camara' if casa == 'camara_federal' else 'senado'}.leg.br",

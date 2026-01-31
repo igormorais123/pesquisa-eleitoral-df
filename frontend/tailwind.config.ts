@@ -52,6 +52,20 @@ const config: Config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        // Paleta âmbar INTEIA - sobrescreve Tailwind para alinhar com marca
+        amber: {
+          50: '#fdf8ed',
+          100: '#f9edcc',
+          200: '#f3d994',
+          300: '#edc35c',
+          400: '#e8b23d',
+          500: '#d69e2e', // INTEIA primary brand color
+          600: '#b7791f', // INTEIA dark amber
+          700: '#8c5c17',
+          800: '#6b4712',
+          900: '#4a3110',
+          950: '#2a1a08',
+        },
         // Cores personalizadas para o sistema eleitoral
         eleitor: {
           masculino: '#3b82f6',

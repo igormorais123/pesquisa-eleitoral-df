@@ -45,6 +45,38 @@ class CLDFProvider:
         self._cache: Dict[str, Any] = {}
         self._fonte_ativa: Optional[str] = None
 
+        # Overrides manuais (corrige legado sem editar agentes/)
+        self._overrides: Dict[str, Any] = {}
+        overrides_file = CLDF_DIR / "overrides.json"
+        if overrides_file.exists():
+            try:
+                with open(overrides_file, "r", encoding="utf-8") as f:
+                    self._overrides = json.load(f).get("overrides", {}) or {}
+            except Exception as e:
+                logger.warning(f"Nao foi possivel carregar overrides CLDF: {e}")
+
+    def _deep_merge(self, base: Dict[str, Any], override: Dict[str, Any]) -> Dict[str, Any]:
+        """Merge recursivo simples (override vence)."""
+
+        out = dict(base)
+        for k, v in (override or {}).items():
+            if isinstance(out.get(k), dict) and isinstance(v, dict):
+                out[k] = self._deep_merge(out[k], v)
+            else:
+                out[k] = v
+        return out
+
+    def _aplicar_overrides(self, deputado: Dict[str, Any]) -> Dict[str, Any]:
+        nome_parlamentar = deputado.get("nome_parlamentar") or deputado.get("nome")
+        if not nome_parlamentar:
+            return deputado
+
+        override = self._overrides.get(nome_parlamentar)
+        if not override:
+            return deputado
+
+        return self._deep_merge(deputado, override)
+
     async def _tentar_api_cldf(self) -> Optional[List[Dict]]:
         """
         Tenta buscar dados de API pública da CLDF.
@@ -193,7 +225,7 @@ class CLDFProvider:
         """
         # Se já está no formato esperado (legado)
         if "nome_parlamentar" in dados and "partido" in dados:
-            return dados
+            return self._aplicar_overrides(dados)
 
         # Mapear campos comuns
         mapeamentos = {
@@ -217,7 +249,7 @@ class CLDFProvider:
             if key not in resultado:
                 resultado[key] = value
 
-        return resultado
+        return self._aplicar_overrides(resultado)
 
     async def salvar_snapshot(self, deputados: List[Dict]) -> str:
         """Salva snapshot dos deputados com data"""

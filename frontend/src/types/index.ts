@@ -486,6 +486,11 @@ export interface Parlamentar {
   fontes_informacao?: string[];
   aliancas_politicas?: string[];
   relacao_governo_atual?: RelacaoGoverno;
+  relacao_governo_federal?: RelacaoGoverno;
+  relacao_governo_distrital?: RelacaoGoverno;
+  dependencia_emendas?: string;
+  risco_retaliacao?: string;
+  disciplina_bancada?: string;
   // Novos campos para parlamentares nacionais
   estado?: string; // Nome completo do estado
   regiao?: string; // Norte, Nordeste, Sul, Sudeste, Centro-Oeste

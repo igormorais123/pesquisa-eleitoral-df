@@ -102,7 +102,7 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-30 backdrop-blur-xl border-b bg-card/80 border-border/50 dark:bg-slate-950/80 dark:border-white/5">
-      <div className="flex items-center justify-between h-16 px-6">
+      <div className="flex items-center justify-between h-14 sm:h-16 px-4 sm:px-6">
         {/* Lado Esquerdo - Título */}
         <div className="flex items-center gap-4">
           {/* Botão menu mobile */}
@@ -185,7 +185,7 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
 
             {/* Dropdown de notificações */}
             {notificacoesAbertas && (
-              <div className="absolute right-0 top-full mt-2 w-80 sm:w-96 bg-card border border-border rounded-xl shadow-2xl overflow-hidden z-50">
+              <div className="fixed sm:absolute left-2 right-2 sm:left-auto sm:right-0 top-14 sm:top-full sm:mt-2 w-auto sm:w-96 bg-card border border-border rounded-xl shadow-2xl overflow-hidden z-50">
                 {/* Header */}
                 <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-secondary/50">
                   <div className="flex items-center gap-2">
@@ -355,7 +355,7 @@ export function Header({ titulo, subtitulo }: HeaderProps) {
             </button>
 
             {/* Dropdown Menu - Estilo SaaS */}
-            <div className="absolute right-0 top-full mt-2 w-72 bg-card border border-border rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+            <div className="fixed sm:absolute left-2 right-2 sm:left-auto sm:right-0 top-14 sm:top-full sm:mt-2 w-auto sm:w-72 bg-card border border-border rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
               {/* Header do Perfil */}
               <div className="p-4 border-b border-border">
                 <div className="flex items-center gap-3">

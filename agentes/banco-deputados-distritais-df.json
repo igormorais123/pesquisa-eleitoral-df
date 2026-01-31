@@ -129,7 +129,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "base_aliada"
+    "relacao_governo_federal": "base_aliada",
+    "relacao_governo_distrital": "oposicao",
+    "dependencia_emendas": "baixa",
+    "risco_retaliacao": "baixo",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "oposicao"
   },
   {
     "id": "dep-dist-002",
@@ -256,7 +261,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "base_aliada"
+    "relacao_governo_federal": "base_aliada",
+    "relacao_governo_distrital": "oposicao",
+    "dependencia_emendas": "baixa",
+    "risco_retaliacao": "baixo",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "oposicao"
   },
   {
     "id": "dep-dist-003",
@@ -384,7 +394,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "alto",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-004",
@@ -510,7 +525,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "oposicao_forte"
+    "relacao_governo_federal": "oposicao_forte",
+    "relacao_governo_distrital": "oposicao_moderada",
+    "dependencia_emendas": "baixa",
+    "risco_retaliacao": "baixo",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "oposicao_moderada"
   },
   {
     "id": "dep-dist-005",
@@ -634,7 +654,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "oposicao_forte"
+    "relacao_governo_federal": "oposicao_forte",
+    "relacao_governo_distrital": "oposicao_moderada",
+    "dependencia_emendas": "baixa",
+    "risco_retaliacao": "baixo",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "oposicao_moderada"
   },
   {
     "id": "dep-dist-006",
@@ -758,7 +783,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "medio",
+    "disciplina_bancada": "media",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-007",
@@ -888,7 +918,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "alto",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-008",
@@ -1015,7 +1050,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "medio",
+    "disciplina_bancada": "media",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-009",
@@ -1142,7 +1182,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "base_aliada"
+    "relacao_governo_federal": "base_aliada",
+    "relacao_governo_distrital": "oposicao",
+    "dependencia_emendas": "baixa",
+    "risco_retaliacao": "baixo",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "oposicao"
   },
   {
     "id": "dep-dist-010",
@@ -1273,7 +1318,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "base_aliada"
+    "relacao_governo_federal": "base_aliada",
+    "relacao_governo_distrital": "oposicao",
+    "dependencia_emendas": "baixa",
+    "risco_retaliacao": "baixo",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "oposicao"
   },
   {
     "id": "dep-dist-011",
@@ -1397,6 +1447,11 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
+    "relacao_governo_federal": "oposicao_moderada",
+    "relacao_governo_distrital": "independente",
+    "dependencia_emendas": "baixa",
+    "risco_retaliacao": "baixo",
+    "disciplina_bancada": "media",
     "relacao_governo_atual": "independente"
   },
   {
@@ -1522,7 +1577,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "alto",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-013",
@@ -1650,7 +1710,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "medio",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-014",
@@ -1776,7 +1841,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "oposicao_forte"
+    "relacao_governo_federal": "oposicao_forte",
+    "relacao_governo_distrital": "oposicao_moderada",
+    "dependencia_emendas": "baixa",
+    "risco_retaliacao": "baixo",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "oposicao_moderada"
   },
   {
     "id": "dep-dist-015",
@@ -1903,7 +1973,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "medio",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-016",
@@ -2035,7 +2110,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "medio",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-017",
@@ -2163,7 +2243,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "base_aliada"
+    "relacao_governo_federal": "base_aliada",
+    "relacao_governo_distrital": "oposicao",
+    "dependencia_emendas": "baixa",
+    "risco_retaliacao": "baixo",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "oposicao"
   },
   {
     "id": "dep-dist-018",
@@ -2291,7 +2376,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "base_aliada"
+    "relacao_governo_federal": "base_aliada",
+    "relacao_governo_distrital": "oposicao",
+    "dependencia_emendas": "baixa",
+    "risco_retaliacao": "baixo",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "oposicao"
   },
   {
     "id": "dep-dist-019",
@@ -2419,7 +2509,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "alto",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-020",
@@ -2545,7 +2640,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "medio",
+    "disciplina_bancada": "media",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-021",
@@ -2670,7 +2770,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "medio",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-022",
@@ -2796,7 +2901,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "medio",
+    "disciplina_bancada": "alta",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-023",
@@ -2927,7 +3037,12 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "medio",
+    "disciplina_bancada": "media",
+    "relacao_governo_atual": "base_aliada"
   },
   {
     "id": "dep-dist-024",
@@ -3051,6 +3166,11 @@
     "uf": "DF",
     "telefone_gabinete": "",
     "gabinete_localizacao": "",
-    "relacao_governo_atual": "independente"
+    "relacao_governo_federal": "independente",
+    "relacao_governo_distrital": "base_aliada",
+    "dependencia_emendas": "alta",
+    "risco_retaliacao": "medio",
+    "disciplina_bancada": "media",
+    "relacao_governo_atual": "base_aliada"
   }
 ]

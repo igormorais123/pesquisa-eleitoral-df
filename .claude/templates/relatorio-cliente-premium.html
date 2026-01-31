@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INTEIA | Relatorio Premium</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --amber: #d69e2e;
+        --amber-dark: #b7791f;
+        --success: #22c55e;
+        --warning: #eab308;
+        --danger: #ef4444;
+        --info: #3b82f6;
+      }
+      [data-theme='dark'] {
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-card: rgba(255, 255, 255, 0.04);
+        --border: rgba(255, 255, 255, 0.10);
+        --text-primary: #f8fafc;
+        --text-muted: #94a3b8;
+      }
+      [data-theme='light'] {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-card: #ffffff;
+        --border: #e2e8f0;
+        --text-primary: #0f172a;
+        --text-muted: #64748b;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      /* Hero */
+      .hero {
+        background: radial-gradient(ellipse 70% 70% at 50% -20%, rgba(214, 158, 46, 0.18), transparent),
+          linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+        border: 1px solid rgba(214, 158, 46, 0.25);
+        border-radius: 16px;
+        padding: 28px;
+        margin-bottom: 18px;
+      }
+      .hero-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 12px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0f172a;
+        font-weight: 900;
+      }
+      .brand-title {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+      }
+      .brand-title .name {
+        font-weight: 900;
+        font-size: 16px;
+        letter-spacing: -0.02em;
+      }
+      .brand-title .tag {
+        color: var(--text-muted);
+        font-size: 12px;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .btn {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        color: var(--text-primary);
+        padding: 8px 12px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .btn.primary {
+        background: linear-gradient(135deg, rgba(214, 158, 46, 0.20), rgba(183, 121, 31, 0.20));
+        border-color: rgba(214, 158, 46, 0.35);
+      }
+      .btn:hover {
+        border-color: rgba(214, 158, 46, 0.55);
+      }
+
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        margin-bottom: 6px;
+      }
+      .hero p {
+        color: var(--text-muted);
+        font-size: 13px;
+      }
+      .meta-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+      .chip.confidential {
+        border-color: rgba(239, 68, 68, 0.35);
+        color: #fca5a5;
+        background: rgba(239, 68, 68, 0.12);
+        font-weight: 800;
+      }
+
+      /* Tabs */
+      .tabs {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 18px 0;
+      }
+      .tab {
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: var(--bg-card);
+        color: var(--text-muted);
+        font-size: 12px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .tab.active {
+        color: var(--text-primary);
+        border-color: rgba(214, 158, 46, 0.5);
+        background: linear-gradient(135deg, rgba(214, 158, 46, 0.14), rgba(183, 121, 31, 0.10));
+      }
+      .panel {
+        display: none;
+      }
+      .panel.active {
+        display: block;
+      }
+
+      /* Cards */
+      .card {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px;
+        margin-bottom: 14px;
+      }
+      .card h2 {
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid rgba(214, 158, 46, 0.7);
+      }
+      .card p,
+      .card li {
+        color: var(--text-muted);
+        font-size: 13px;
+      }
+      ul {
+        margin-left: 18px;
+      }
+      li {
+        margin: 6px 0;
+      }
+
+      .callout {
+        border: 2px solid rgba(239, 68, 68, 0.45);
+        background: rgba(239, 68, 68, 0.12);
+      }
+      .callout .big {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--text-primary);
+      }
+
+      /* Print */
+      @media print {
+        @page {
+          size: A4 portrait;
+          margin: 10mm;
+        }
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+        body {
+          background: #ffffff !important;
+          color: #0f172a !important;
+        }
+        .tabs,
+        .hero-actions {
+          display: none !important;
+        }
+        .panel {
+          display: block !important;
+        }
+        .card {
+          background: #ffffff !important;
+          border: 1px solid #e2e8f0 !important;
+        }
+        .card p,
+        .card li {
+          color: #334155 !important;
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 840px) {
+        .hero-top {
+          flex-direction: column;
+        }
+        .hero-actions {
+          justify-content: flex-start;
+        }
+        .container {
+          padding: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- HERO -->
+      <header class="hero">
+        <div class="hero-top">
+          <div class="brand">
+            <div class="logo">IA</div>
+            <div class="brand-title">
+              <div class="name">INTE<span style="color: var(--amber)">IA</span></div>
+              <div class="tag">Inteligencia Estrategica</div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn" id="theme-toggle">Tema</button>
+            <button class="btn primary" onclick="window.print()">Imprimir</button>
+          </div>
+        </div>
+
+        <h1>{{TITULO}}</h1>
+        <p>{{SUBTITULO}}</p>
+
+        <div class="meta-row">
+          <span class="chip confidential">CONFIDENCIAL</span>
+          <span class="chip">Data: {{DATA}}</span>
+          <span class="chip">Amostra: {{AMOSTRA}}</span>
+          <span class="chip">Modelo: {{MODELO}}</span>
+        </div>
+      </header>
+
+      <!-- TABS -->
+      <nav class="tabs" role="tablist">
+        <button class="tab active" data-tab="executivo">Resumo Executivo</button>
+        <button class="tab" data-tab="metodologia">Metodologia & Validação</button>
+        <button class="tab" data-tab="transparencia">Dados & Transparência</button>
+        <button class="tab" data-tab="predicoes">Previsões & Cenários</button>
+        <button class="tab" data-tab="acao">Plano de Ação</button>
+      </nav>
+
+      <!-- PAINÉIS -->
+      <section class="panel active" id="tab-executivo">
+        <div class="card callout">
+          <h2>Conclusão Principal</h2>
+          <p class="big">{{CONCLUSAO_PRINCIPAL}}</p>
+          <p style="margin-top: 8px">{{ALERTA_GERAL}}</p>
+        </div>
+
+        <div class="card">
+          <h2>5 Insights (suco)</h2>
+          {{INSIGHTS_TOP5_HTML}}
+        </div>
+
+        <div class="card">
+          <h2>5 Ações Prioritárias</h2>
+          {{ACOES_TOP5_HTML}}
+        </div>
+      </section>
+
+      <section class="panel" id="tab-metodologia">
+        <div class="card">
+          <h2>Metodologia</h2>
+          {{METODOLOGIA_HTML}}
+        </div>
+        <div class="card">
+          <h2>Validação e Limitações</h2>
+          {{VALIDACAO_HTML}}
+        </div>
+      </section>
+
+      <section class="panel" id="tab-transparencia">
+        <div class="card">
+          <h2>Trilha de Auditoria</h2>
+          {{AUDITORIA_HTML}}
+        </div>
+        <div class="card">
+          <h2>Notas de Transparência</h2>
+          <ul>
+            <li>Afirmações externas devem ter URL e data.</li>
+            <li>Dados brutos ficam em anexo (não enviados por padrão).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel" id="tab-predicoes">
+        <div class="card">
+          <h2>Cenários</h2>
+          {{CENARIOS_HTML}}
+        </div>
+        <div class="card">
+          <h2>Premissas & Sensibilidade</h2>
+          {{PREMISSAS_HTML}}
+        </div>
+      </section>
+
+      <section class="panel" id="tab-acao">
+        <div class="card">
+          <h2>Plano de Ação</h2>
+          {{PLANO_ACAO_HTML}}
+        </div>
+        <div class="card">
+          <h2>Riscos & Mitigação</h2>
+          {{RISCOS_HTML}}
+        </div>
+      </section>
+
+      <footer style="margin-top: 18px; color: var(--text-muted); font-size: 11px; text-align: center">
+        <div>INTEIA - Inteligencia Estrategica</div>
+        <div>CNPJ: 63.918.490/0001-20 | SHN Quadra 2 Bloco F, Sala 625/626 - Brasilia/DF</div>
+        <div>inteia.com.br | igor@inteia.com.br</div>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        // Tabs
+        var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+        var panels = {
+          executivo: document.getElementById('tab-executivo'),
+          metodologia: document.getElementById('tab-metodologia'),
+          transparencia: document.getElementById('tab-transparencia'),
+          predicoes: document.getElementById('tab-predicoes'),
+          acao: document.getElementById('tab-acao')
+        };
+
+        function setActive(key) {
+          tabs.forEach(function (t) {
+            t.classList.toggle('active', t.getAttribute('data-tab') === key);
+          });
+          Object.keys(panels).forEach(function (k) {
+            panels[k].classList.toggle('active', k === key);
+          });
+        }
+
+        tabs.forEach(function (t) {
+          t.addEventListener('click', function () {
+            setActive(t.getAttribute('data-tab'));
+          });
+        });
+
+        // Theme
+        var themeBtn = document.getElementById('theme-toggle');
+        var saved = localStorage.getItem('inteia-theme');
+        if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+        themeBtn.addEventListener('click', function () {
+          var current = document.documentElement.getAttribute('data-theme') || 'dark';
+          var next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('inteia-theme', next);
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -472,203 +472,85 @@
         .footer a { color: var(--amber); text-decoration: none; font-weight: 500; }
         .footer a:hover { text-decoration: underline; }
 
-        /* PRINT - A4 LANDSCAPE 1 PAGE */
+        /* PRINT - A4 LANDSCAPE 1 PAGE - ULTRA COMPACT */
         @media print {
-            @page {
-                size: A4 landscape;
-                margin: 4mm;
-            }
-            * {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                box-shadow: none !important;
-            }
-            html, body {
-                background: #fff !important;
-                font-size: 8pt !important;
-                line-height: 1.2 !important;
-            }
-
-            /* Esconder elementos nao-print */
+            @page { size: A4 landscape; margin: 3mm; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; box-shadow: none !important; }
+            html, body { background: #fff !important; font-size: 6pt !important; line-height: 1.1 !important; }
             .sidebar, .topbar { display: none !important; }
+            .main { margin: 0 !important; padding: 0 !important; min-height: auto !important; }
+            .container { max-width: 100% !important; padding: 0 !important; }
 
-            /* Reset layout */
-            .main {
-                margin: 0 !important;
-                padding: 0 !important;
-                min-height: auto !important;
-            }
-            .container {
-                max-width: 100% !important;
-                padding: 0 !important;
-            }
+            /* HEADER */
+            .header { display: flex !important; align-items: flex-start !important; margin-bottom: 1.5mm !important; padding-bottom: 1mm !important; border-bottom: 0.2mm solid #ccc !important; }
+            .logo-section { margin-bottom: 0 !important; gap: 1.5mm !important; }
+            .logo-box { width: 5mm !important; height: 5mm !important; font-size: 6pt !important; border-radius: 0.8mm !important; }
+            .logo-text { font-size: 8pt !important; line-height: 1 !important; }
+            .logo-tagline { font-size: 4pt !important; margin-top: 0 !important; }
+            .title { font-size: 8pt !important; margin-bottom: 0.3mm !important; line-height: 1 !important; }
+            .subtitle { font-size: 5pt !important; line-height: 1.1 !important; display: none !important; }
+            .meta { gap: 1.5mm !important; margin-top: 0.8mm !important; }
+            .meta-item { font-size: 4pt !important; padding: 0.3mm 1mm !important; border-radius: 0.3mm !important; gap: 0.5mm !important; }
+            .meta-item svg { width: 1.5mm !important; height: 1.5mm !important; }
 
-            /* HEADER - compacto */
-            .header {
-                display: flex !important;
-                align-items: center !important;
-                margin-bottom: 2mm !important;
-                padding-bottom: 1.5mm !important;
-                border-bottom: 0.3mm solid #e2e8f0 !important;
-            }
-            .logo-section {
-                margin-bottom: 0 !important;
-                gap: 2mm !important;
-            }
-            .logo-box {
-                width: 6mm !important;
-                height: 6mm !important;
-                font-size: 7pt !important;
-                border-radius: 1mm !important;
-            }
-            .logo-text-group { gap: 0 !important; }
-            .logo-text { font-size: 10pt !important; line-height: 1 !important; }
-            .logo-tagline { font-size: 5pt !important; margin-top: 0 !important; }
-            .title { font-size: 9pt !important; margin-bottom: 0.5mm !important; line-height: 1.1 !important; }
-            .subtitle { font-size: 6pt !important; line-height: 1.2 !important; }
-            .meta {
-                gap: 2mm !important;
-                margin-top: 1mm !important;
-            }
-            .meta-item {
-                font-size: 5pt !important;
-                padding: 0.5mm 1.5mm !important;
-                border-radius: 0.5mm !important;
-                gap: 1mm !important;
-            }
-            .meta-item svg { width: 2mm !important; height: 2mm !important; }
+            /* PROBLEM */
+            .problem { padding: 1.5mm !important; margin-bottom: 1.5mm !important; border-radius: 1mm !important; }
+            .problem::before { height: 0.4mm !important; }
+            .problem-header { margin-bottom: 0.5mm !important; gap: 1mm !important; }
+            .problem-header svg { width: 2.5mm !important; height: 2.5mm !important; }
+            .problem h2 { font-size: 5pt !important; }
+            .problem .q { font-size: 6pt !important; margin-bottom: 1mm !important; line-height: 1.1 !important; }
+            .gap-row { gap: 2mm !important; }
+            .gap-num { padding: 1mm 2mm !important; min-width: auto !important; border-radius: 0.8mm !important; }
+            .gap-num .val { font-size: 10pt !important; line-height: 1 !important; }
+            .gap-num .lbl { font-size: 4pt !important; margin-top: 0.3mm !important; }
+            .gap-arrow { width: 3mm !important; height: 3mm !important; background: transparent !important; }
+            .gap-arrow svg { width: 2.5mm !important; height: 2.5mm !important; }
+            .gap-lost { padding: 1mm 2mm !important; border-width: 0.4mm !important; border-radius: 0.8mm !important; }
+            .gap-lost .val { font-size: 9pt !important; line-height: 1 !important; }
+            .gap-lost .lbl { font-size: 4pt !important; }
 
-            /* PROBLEM BOX - compacto */
-            .problem {
-                padding: 2mm !important;
-                margin-bottom: 2mm !important;
-                border-radius: 1.5mm !important;
-            }
-            .problem::before { height: 0.5mm !important; }
-            .problem-header { margin-bottom: 1mm !important; gap: 1.5mm !important; }
-            .problem-header svg { width: 3mm !important; height: 3mm !important; }
-            .problem h2 { font-size: 6pt !important; letter-spacing: 0.05em !important; }
-            .problem .q { font-size: 7pt !important; margin-bottom: 1.5mm !important; line-height: 1.2 !important; }
-            .gap-row { gap: 3mm !important; }
-            .gap-num {
-                padding: 1.5mm 2.5mm !important;
-                min-width: auto !important;
-                border-radius: 1mm !important;
-            }
-            .gap-num .val { font-size: 12pt !important; line-height: 1 !important; }
-            .gap-num .lbl { font-size: 5pt !important; margin-top: 0.5mm !important; }
-            .gap-arrow {
-                width: 4mm !important;
-                height: 4mm !important;
-                background: transparent !important;
-            }
-            .gap-arrow svg { width: 3mm !important; height: 3mm !important; }
-            .gap-lost {
-                padding: 1.5mm 2.5mm !important;
-                border-width: 0.5mm !important;
-                border-radius: 1mm !important;
-            }
-            .gap-lost .val { font-size: 11pt !important; line-height: 1 !important; }
-            .gap-lost .lbl { font-size: 5pt !important; }
-
-            /* CHARTS - lado a lado */
-            .grid2 {
-                display: grid !important;
-                grid-template-columns: 1fr 1fr !important;
-                gap: 2mm !important;
-                margin-bottom: 2mm !important;
-            }
-            .card {
-                padding: 1.5mm !important;
-                border-radius: 1mm !important;
-                border-width: 0.2mm !important;
-            }
-            .card-title {
-                font-size: 6pt !important;
-                margin-bottom: 1mm !important;
-                gap: 1mm !important;
-            }
-            .card-title svg { width: 2.5mm !important; height: 2.5mm !important; }
-            .chart-box { height: 22mm !important; }
+            /* CHARTS */
+            .grid2 { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 1.5mm !important; margin-bottom: 1.5mm !important; }
+            .card { padding: 1mm !important; border-radius: 0.8mm !important; border-width: 0.15mm !important; }
+            .card-title { font-size: 5pt !important; margin-bottom: 0.5mm !important; gap: 0.8mm !important; }
+            .card-title svg { width: 2mm !important; height: 2mm !important; }
+            .chart-box { height: 18mm !important; }
 
             /* SECTION HEADERS */
-            .section-header { margin-bottom: 1mm !important; gap: 2mm !important; }
-            .section-header h3 { font-size: 5pt !important; letter-spacing: 0.08em !important; }
-            .section-header .line { height: 0.2mm !important; }
+            .section-header { margin-bottom: 0.8mm !important; gap: 1.5mm !important; }
+            .section-header h3 { font-size: 4pt !important; }
+            .section-header .line { height: 0.15mm !important; }
 
-            /* MINI CARDS - 4 colunas forcado */
-            .grid4 {
-                display: grid !important;
-                grid-template-columns: repeat(4, 1fr) !important;
-                gap: 1.5mm !important;
-                margin-bottom: 2mm !important;
-            }
-            .mini {
-                padding: 1.5mm 1.5mm 1.5mm 2.5mm !important;
-                border-radius: 1mm !important;
-                border-width: 0.2mm !important;
-            }
-            .mini::before { width: 0.7mm !important; border-radius: 1mm 0 0 1mm !important; }
-            .mini .icon {
-                width: 4mm !important;
-                height: 4mm !important;
-                margin-bottom: 0.8mm !important;
-                border-radius: 0.7mm !important;
-            }
-            .mini .icon svg { width: 2.5mm !important; height: 2.5mm !important; }
-            .mini h4 { font-size: 6pt !important; margin-bottom: 0.5mm !important; line-height: 1.1 !important; }
-            .mini p { font-size: 5pt !important; line-height: 1.2 !important; }
-            .mini .tag { font-size: 7pt !important; margin-top: 0.8mm !important; }
+            /* MINI CARDS */
+            .grid4 { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 1mm !important; margin-bottom: 1.5mm !important; }
+            .mini { padding: 1mm 1mm 1mm 2mm !important; border-radius: 0.8mm !important; border-width: 0.15mm !important; }
+            .mini::before { width: 0.5mm !important; }
+            .mini .icon { width: 3mm !important; height: 3mm !important; margin-bottom: 0.5mm !important; border-radius: 0.5mm !important; }
+            .mini .icon svg { width: 2mm !important; height: 2mm !important; }
+            .mini h4 { font-size: 5pt !important; margin-bottom: 0.3mm !important; line-height: 1 !important; }
+            .mini p { font-size: 4pt !important; line-height: 1.1 !important; }
+            .mini .tag { font-size: 6pt !important; margin-top: 0.5mm !important; }
 
-            /* INSIGHT BOX - compacto */
-            .insight {
-                padding: 2mm !important;
-                margin-bottom: 1.5mm !important;
-                border-radius: 1.5mm !important;
-            }
-            .insight::before { height: 0.5mm !important; }
-            .insight-header { margin-bottom: 1mm !important; gap: 1.5mm !important; }
-            .insight-header svg { width: 3mm !important; height: 3mm !important; }
-            .insight h2 { font-size: 6pt !important; }
-            .insight p { font-size: 6pt !important; line-height: 1.3 !important; }
-            .insight-stats {
-                display: flex !important;
-                gap: 3mm !important;
-                margin-top: 1.5mm !important;
-            }
-            .insight-stat {
-                padding: 1.2mm 2.5mm !important;
-                min-width: auto !important;
-                border-radius: 1mm !important;
-                border-width: 0.2mm !important;
-            }
-            .insight-stat .val { font-size: 9pt !important; line-height: 1 !important; }
-            .insight-stat .lbl { font-size: 4.5pt !important; margin-top: 0.3mm !important; }
+            /* INSIGHT */
+            .insight { padding: 1.5mm !important; margin-bottom: 1mm !important; border-radius: 1mm !important; }
+            .insight::before { height: 0.4mm !important; }
+            .insight-header { margin-bottom: 0.5mm !important; gap: 1mm !important; }
+            .insight-header svg { width: 2.5mm !important; height: 2.5mm !important; }
+            .insight h2 { font-size: 5pt !important; }
+            .insight p { font-size: 5pt !important; line-height: 1.2 !important; }
+            .insight-stats { display: flex !important; gap: 2mm !important; margin-top: 1mm !important; }
+            .insight-stat { padding: 0.8mm 2mm !important; min-width: auto !important; border-radius: 0.8mm !important; border-width: 0.15mm !important; }
+            .insight-stat .val { font-size: 7pt !important; line-height: 1 !important; }
+            .insight-stat .lbl { font-size: 3.5pt !important; margin-top: 0.2mm !important; }
 
             /* METHODOLOGY */
-            .methodology {
-                display: flex !important;
-                flex-wrap: nowrap !important;
-                justify-content: center !important;
-                padding: 1mm 0 !important;
-                margin-bottom: 1mm !important;
-                gap: 4mm !important;
-                border-width: 0.2mm !important;
-            }
-            .method-badge {
-                font-size: 5pt !important;
-                gap: 1mm !important;
-                white-space: nowrap !important;
-            }
-            .method-badge svg { width: 2.5mm !important; height: 2.5mm !important; }
+            .methodology { display: flex !important; flex-wrap: nowrap !important; justify-content: center !important; padding: 0.8mm 0 !important; margin-bottom: 0.5mm !important; gap: 3mm !important; border-width: 0.15mm !important; }
+            .method-badge { font-size: 4pt !important; gap: 0.8mm !important; white-space: nowrap !important; }
+            .method-badge svg { width: 2mm !important; height: 2mm !important; }
 
             /* FOOTER */
-            .footer {
-                padding: 1mm !important;
-                font-size: 5pt !important;
-                border-width: 0.2mm !important;
-                margin-top: 0.5mm !important;
-            }
+            .footer { padding: 0.5mm !important; font-size: 4pt !important; border-width: 0.15mm !important; margin-top: 0 !important; }
         }
 
         @media (max-width: 768px) {

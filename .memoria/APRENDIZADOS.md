@@ -65,3 +65,43 @@ Qual foi o impacto da ação.
 ---
 
 *Este arquivo cresce ao longo do tempo. Não deletar entradas antigas.*
+
+---
+
+## 2026-01-30 - Padrão Premium de Pesquisa (Frontstage/Backstage)
+
+### Contexto
+Necessidade de transformar pesquisas com agentes sintéticos em entregas nível consultoria (alto valor), mantendo rigor, auditabilidade e saída curta para cliente.
+
+### Aprendizado
+Separar a pesquisa em duas camadas aumenta qualidade e reduz risco:
+- **Frontstage (cliente)**: conclusão objetiva + ações + cenários.
+- **Backstage (técnico)**: dados brutos, validação, red team, premissas, rastreabilidade.
+
+### Ação
+- Criadas skills e templates para pesquisa premium:
+  - `.claude/skills/pesquisa-eleitoral-premium/SKILL.md`
+  - `.claude/skills/auditoria-e-validacao-pesquisa/SKILL.md`
+  - `.claude/skills/insights-estrategicos-preditivos/SKILL.md`
+  - `.claude/templates/relatorio-cliente-premium.html`
+
+### Resultado
+Pipeline repetível para gerar pesquisas cada vez melhores sem reinventar metodologia.
+
+---
+
+## 2026-01-30 - Compactação de Contexto como Gate Operacional (40%/60%)
+
+### Contexto
+Grandes tarefas e muitos artefatos degradam desempenho quando a IA entra na “zona burra” (>60%).
+
+### Aprendizado
+Compactar contexto cedo (em ~40%) é um gate operacional tão importante quanto testes: mantém a IA na zona inteligente e reduz regressões.
+
+### Ação
+- Atualizado `GESTAO_CONTEXTO.md` e `CLAUDE.md` com protocolo de compactação + commit.
+- Criado comando `.claude/commands/compact.md`.
+- Padronizado uso de `SESSAO_TEMP.md` + `WORK_LOG.md` + `.context/*` + `.memoria/*`.
+
+### Resultado
+Fluxo de trabalho contínuo, com checkpoints auditáveis e reinícios limpos sem perda de estado.

@@ -20,11 +20,29 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=3600, stale-while-revalidate=86400"
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
         },
         {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/relatorio-celina/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/(resultados-stress-test|analise-ibaneis-2026|previsao-ibaneis-celina-2026|relatorio-ibaneis-senado|caso-brb-master|relatorios|resultados-intencao-voto|grafico-evolucao-voto|curriculo-igor)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
         }
       ]
     },

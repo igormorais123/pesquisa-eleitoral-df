@@ -69,9 +69,15 @@ cd backend
 cp .env.example .env
 ```
 
-Editar `backend/.env`:
+Editar `backend/.env` (recomendado: assinatura Claude Code):
 ```env
-CLAUDE_API_KEY=sk-ant-api03-SUA_CHAVE_AQUI
+IA_PROVIDER=claude_code
+IA_MODELO_ENTREVISTAS=sonnet
+IA_MODELO_INSIGHTS=opus
+IA_ALLOW_API_FALLBACK=false
+
+# (Opcional) API - use apenas se IA_PROVIDER=anthropic_api
+CLAUDE_API_KEY=
 SECRET_KEY=chave-secreta-para-jwt-gerar-uma-forte
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/pesquisa_eleitoral
 FRONTEND_URL=http://localhost:3000
@@ -87,9 +93,7 @@ cp .env.example .env.local
 
 Editar `frontend/.env.local`:
 ```env
-ANTHROPIC_API_KEY=sk-ant-api03-SUA_CHAVE_AQUI
 NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
-SECRET_KEY=mesma-chave-do-backend
 NODE_ENV=development
 ```
 
@@ -152,11 +156,15 @@ Problemas comuns a verificar:
    - **Root Directory:** `backend`
    - **Runtime:** Docker
    - **Environment Variables:**
-     - CLAUDE_API_KEY
-     - SECRET_KEY
-     - DATABASE_URL (usar Render PostgreSQL ou outro)
-     - FRONTEND_URL (URL do Vercel após deploy)
-     - AMBIENTE=production
+      - IA_PROVIDER (recomendado: anthropic_api em servidor)
+      - IA_MODELO_ENTREVISTAS
+      - IA_MODELO_INSIGHTS
+      - IA_ALLOW_API_FALLBACK
+      - CLAUDE_API_KEY (se IA_PROVIDER=anthropic_api)
+      - SECRET_KEY
+      - DATABASE_URL (usar Render PostgreSQL ou outro)
+      - FRONTEND_URL (URL do Vercel após deploy)
+      - AMBIENTE=production
 
 ### PASSO 9: Deploy na Vercel (Frontend)
 
@@ -165,10 +173,8 @@ Problemas comuns a verificar:
 3. Configurar:
    - **Root Directory:** `frontend`
    - **Environment Variables:**
-     - ANTHROPIC_API_KEY
-     - NEXT_PUBLIC_BACKEND_URL (URL do Render)
-     - SECRET_KEY
-     - NODE_ENV=production
+      - NEXT_PUBLIC_BACKEND_URL (URL do Render)
+      - NODE_ENV=production
 
 ### PASSO 10: Testes Finais em Produção
 

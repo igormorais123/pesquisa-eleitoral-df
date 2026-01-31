@@ -99,6 +99,27 @@ class ParlamentarAgentAdapter:
                 "confianca": hipoteses.relacao_governo_atual.confianca.value
             }
 
+        # Campos explícitos por esfera
+        if hipoteses.relacao_governo_federal:
+            perfil_inferido["relacao_governo_federal"] = {
+                "valor": hipoteses.relacao_governo_federal.valor,
+                "confianca": hipoteses.relacao_governo_federal.confianca.value
+            }
+        if hipoteses.relacao_governo_distrital:
+            perfil_inferido["relacao_governo_distrital"] = {
+                "valor": hipoteses.relacao_governo_distrital.valor,
+                "confianca": hipoteses.relacao_governo_distrital.confianca.value
+            }
+
+        # Extras (quando presentes)
+        incentivos = getattr(hipoteses, "incentivos_politicos", None)
+        if isinstance(incentivos, dict) and incentivos:
+            perfil_inferido["incentivos_politicos"] = incentivos
+
+        relacoes_gov = getattr(hipoteses, "relacoes_governo", None)
+        if isinstance(relacoes_gov, dict) and relacoes_gov:
+            perfil_inferido["relacoes_governo"] = relacoes_gov
+
         if hipoteses.estilo_comunicacao:
             perfil_inferido["estilo_comunicacao"] = {
                 "valor": hipoteses.estilo_comunicacao.valor,
@@ -235,9 +256,17 @@ class ParlamentarAgentAdapter:
         if hipoteses.posicao_bolsonaro:
             partes.append(f"Em relação a Bolsonaro, você é {hipoteses.posicao_bolsonaro.valor.replace('_', ' ')}.")
 
-        if hipoteses.relacao_governo_atual:
-            relacao = hipoteses.relacao_governo_atual.valor.replace('_', ' ')
+        # Relação com governo contextualizada por esfera
+        casa = self.parlamentar.fatos.casa_legislativa.value if self.parlamentar.fatos.casa_legislativa else ""
+        if casa == "cldf" and hipoteses.relacao_governo_distrital:
+            relacao = hipoteses.relacao_governo_distrital.valor.replace('_', ' ')
+            partes.append(f"Em relação ao governo do DF (Ibaneis Rocha/MDB), você faz parte da {relacao}.")
+        elif hipoteses.relacao_governo_federal:
+            relacao = hipoteses.relacao_governo_federal.valor.replace('_', ' ')
             partes.append(f"Em relação ao governo Lula, você faz parte da {relacao}.")
+        elif hipoteses.relacao_governo_atual:
+            relacao = hipoteses.relacao_governo_atual.valor.replace('_', ' ')
+            partes.append(f"Em relação ao governo atual, você faz parte da {relacao}.")
 
         # Temas de atuação
         derivados = self.parlamentar.derivados

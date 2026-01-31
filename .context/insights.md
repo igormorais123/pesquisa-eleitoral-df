@@ -68,6 +68,25 @@ O projeto Pesquisa Eleitoral DF 2026 usa agentes IA sintéticos para simular res
 3. Análise de sentimento nas respostas
 4. Geração automática de word clouds
 
+## Sessão 2026-01-30 (Pesquisa Premium + CPI Master)
+
+### Insights de Processo
+
+- “Zona burra” é um problema operacional: compactar em 40% com `SESSAO_TEMP.md` + commit mantém performance.
+- Commits pequenos e coesos reduzem regressões e preservam rastreabilidade do raciocínio.
+
+### Insights de Produto (Pesquisa)
+
+- Separar entrega em **Frontstage (cliente)** vs **Backstage (técnico)** aumenta qualidade e reduz risco de narrativa.
+- Todo insight premium precisa de: tese, mecanismo, evidência, contra-hipótese, sinais e ação.
+- A classificação `DADO_INTERNO | FONTE_EXTERNA | INFERENCIA` reduz alucinação e deixa o relatório auditável.
+
+### Insights Técnicos
+
+- A seção “Insights Exclusivos INTEIA” em alguns relatórios estava “boa”, mas era texto fixo no gerador. Melhor: gerar via Opus com evidências e confiança.
+- Evitar erro clássico: misturar “assinaturas suficientes” com “instalação efetiva” (pauta/regimento pode atrasar mesmo com assinaturas).
+- Erros recorrentes devem ser corrigidos na origem (ex.: `relacao_governo_atual` inconsistente em base de deputados CLDF).
+
 ---
 
 *Atualizar após cada análise significativa ou descoberta importante.*

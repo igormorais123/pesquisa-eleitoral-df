@@ -35,6 +35,33 @@ class Configuracoes(BaseSettings):
     # API Claude - NUNCA expor publicamente
     CLAUDE_API_KEY: str = ""
 
+    # ==========================================
+    # IA - Provedor e Modelos
+    #
+    # IMPORTANTE:
+    # - Por padrao, preferimos Claude Code CLI (assinatura) por custo/latencia.
+    # - API (Anthropic) fica como fallback/alternativa quando o CLI nao estiver
+    #   autenticado ou quando rodar em servidor sem Claude Code.
+    # ==========================================
+
+    # Provedor de IA: "claude_code" (CLI) | "anthropic_api" (API key)
+    IA_PROVIDER: str = "claude_code"
+
+    # Caminho/bin do Claude Code CLI (normalmente "claude")
+    CLAUDE_CODE_BIN: str = "claude"
+
+    # Modelos (aceita alias do Claude Code: "sonnet"/"opus" ou nome completo)
+    IA_MODELO_ENTREVISTAS: str = "sonnet"
+    IA_MODELO_INSIGHTS: str = "opus"
+
+    # Evitar probabilidades absolutas por padrao (clamp 1..99)
+    IA_EVITAR_PROB_ABSOLUTA: bool = True
+    IA_PROB_EPSILON: float = 1.0
+
+    # Por padrao, NAO fazer fallback silencioso para API.
+    # So habilite se voce aceitar custo por token quando o Claude Code nao estiver autenticado.
+    IA_ALLOW_API_FALLBACK: bool = False
+
     # JWT
     SECRET_KEY: str = DEFAULT_SECRET_KEY
     ALGORITHM: str = "HS256"

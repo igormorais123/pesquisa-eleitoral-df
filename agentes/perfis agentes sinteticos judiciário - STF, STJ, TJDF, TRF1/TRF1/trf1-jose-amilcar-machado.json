@@ -1,0 +1,55 @@
+{
+  "id": "trf1-jose-amilcar-machado",
+  "nome": "José Amilcar Machado",
+  "nome_completo": null,
+  "orgao": "TRF1",
+  "cargo": "Desembargador Federal",
+  "situacao": "titular",
+  "dados_publicos": {
+    "gabinete_texto": "Ed. Sede I - 3º andar - Sala 4",
+    "funcao_administrativa": null,
+    "pagina_trf1": "https://www.trf1.jus.br/trf1/em-atividade/jose-amilcar-machado",
+    "telefone": "(61) 3314-5225",
+    "biografia_trf1_texto": "**Nomeado por Decreto Presidencial de 09/12/1999, com posse e exercício em 17/12/1999.**\n\nJosé Amilcar Machado, nascido no dia 01 de janeiro de 1952, é mineiro, natural da cidade de Patrocínio. Formado pela Faculdade de Direito da Universidade Federal de Minas Gerais, hoje é Juiz Federal.\n\n### Atividade Profissional\n\nIniciou sua carreira jurídica como Auxiliar Judiciário pelo Tribunal de Alçada de Minas Gerais e logo tornou-se Oficial de Gabinete do mesmo. Sócio-fundador e Diretor-Secretário da ADESP- Advogados Especializados- exerceu a advocacia na 1ª Subseção da Ordem dos Advogados do Brasil em Minas Gerais. Tomou posse como Juiz Federal, em 23 de fevereiro de 1987, pelo extinto Tribunal Federal de Recursos, nomeado pelo então Presidente da República, José Sarney. Foi Juiz Substituto pela 16ª Vara Federal do Rio de Janeiro e removido como titular na 5ª Vara Federal de Minas Gerais. Foi seis vezes convocado para compor o Tribunal Regional Federal da 1ª Região, com sede em Brasília. Foi eleito, no biênio 1999/2001, para integrar como Juiz-Substituto o Tribunal Regional Eleitoral de Minas, com vaga destinada a Juiz Federal. Juiz Federal Diretor do Foro da Seção de Minas Gerais, em dezembro de 1999 foi promovido, por merecimento, ao cargo de Juiz do TRF 1ª Região.",
+    "biografia_trf1_secoes": {
+      "Atividade Profissional": "Iniciou sua carreira jurídica como Auxiliar Judiciário pelo Tribunal de Alçada de Minas Gerais e logo tornou-se Oficial de Gabinete do mesmo. Sócio-fundador e Diretor-Secretário da ADESP- Advogados Especializados- exerceu a advocacia na 1ª Subseção da Ordem dos Advogados do Brasil em Minas Gerais. Tomou posse como Juiz Federal, em 23 de fevereiro de 1987, pelo extinto Tribunal Federal de Recursos, nomeado pelo então Presidente da República, José Sarney. Foi Juiz Substituto pela 16ª Vara Federal do Rio de Janeiro e removido como titular na 5ª Vara Federal de Minas Gerais. Foi seis vezes convocado para compor o Tribunal Regional Federal da 1ª Região, com sede em Brasília. Foi eleito, no biênio 1999/2001, para integrar como Juiz-Substituto o Tribunal Regional Eleitoral de Minas, com vaga destinada a Juiz Federal. Juiz Federal Diretor do Foro da Seção de Minas Gerais, em dezembro de 1999 foi promovido, por merecimento, ao cargo de Juiz do TRF 1ª Região."
+    },
+    "dados_dossie": {
+      "analise_comportamental": "Focou na interiorização."
+    }
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [
+      "Analise comportamental: Focou na interiorização."
+    ],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://www.trf1.jus.br/trf1/desembargadores-federais/em-atividade",
+      "tipo": "site-oficial",
+      "observacao": "Lista (Em atividade)"
+    },
+    {
+      "url": "https://www.trf1.jus.br/trf1/em-atividade/jose-amilcar-machado",
+      "tipo": "site-oficial",
+      "observacao": "Pagina individual"
+    },
+    {
+      "url": "",
+      "tipo": "pesquisa_perplexity",
+      "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
+    }
+  ],
+  "atualizado_em": "2026-01-31"
+}

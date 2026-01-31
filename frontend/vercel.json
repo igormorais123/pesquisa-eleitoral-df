@@ -3,5 +3,11 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "outputDirectory": ".next"
+  "outputDirectory": ".next",
+  "rewrites": [
+    {
+      "source": "/analise/casomaster/:path*",
+      "destination": "https://inteia-analise-politica-2026.vercel.app/analise/casomaster/:path*"
+    }
+  ]
 }

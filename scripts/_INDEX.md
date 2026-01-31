@@ -96,6 +96,15 @@ Scripts para validar e corrigir o banco de eleitores:
 
 ---
 
+## Execucao Agentica (sem UI)
+
+| Arquivo | Descricao | Uso |
+|---------|-----------|-----|
+| [agentico/rodar_entrevista_via_backend.py](agentico/rodar_entrevista_via_backend.py) | Inicia entrevista existente via API (background) | `python3 scripts/agentico/rodar_entrevista_via_backend.py --help` |
+| [agentico/criar_e_rodar_entrevista_cldf.py](agentico/criar_e_rodar_entrevista_cldf.py) | Cria + roda entrevista com os 24 da CLDF | `python3 scripts/agentico/criar_e_rodar_entrevista_cldf.py --help` |
+
+---
+
 ## Parlamentares
 
 | Arquivo | Descricao |
@@ -105,6 +114,8 @@ Scripts para validar e corrigir o banco de eleitores:
 | [enriquecer_parlamentares.py](enriquecer_parlamentares.py) | Enriquece dados parlamentares |
 | [converter_parlamentares_frontend.py](converter_parlamentares_frontend.py) | Converte para formato frontend |
 | [converter_personas_gestores.py](converter_personas_gestores.py) | Converte personas de gestores |
+| [parlamentares/gerar_overrides_cldf_stub.py](parlamentares/gerar_overrides_cldf_stub.py) | Gera/atualiza stub do overrides CLDF |
+| [parlamentares/validar_cldf_overrides.py](parlamentares/validar_cldf_overrides.py) | Valida consistencia minima CLDF (heuristica) |
 
 ---
 

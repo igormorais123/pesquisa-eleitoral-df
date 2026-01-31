@@ -45,6 +45,35 @@ class ParlamentarService:
         self._loaded = False
         self._snapshot_date: Optional[str] = None
 
+        # Overrides incrementais (principalmente CLDF)
+        self._overrides_cldf: Dict[str, Any] = {}
+
+    def _deep_merge(self, base: Dict[str, Any], override: Dict[str, Any]) -> Dict[str, Any]:
+        out = dict(base)
+        for k, v in (override or {}).items():
+            if isinstance(out.get(k), dict) and isinstance(v, dict):
+                out[k] = self._deep_merge(out[k], v)
+            else:
+                out[k] = v
+        return out
+
+    def _carregar_overrides_cldf(self) -> None:
+        if self._overrides_cldf:
+            return
+
+        arquivo = DATA_DIR / "cldf" / "overrides.json"
+        if not arquivo.exists():
+            return
+
+        try:
+            with open(arquivo, "r", encoding="utf-8") as f:
+                data = json.load(f) or {}
+            overrides = data.get("overrides")
+            if isinstance(overrides, dict):
+                self._overrides_cldf = overrides
+        except Exception as e:
+            logger.warning(f"Falha ao carregar overrides CLDF: {e}")
+
     def _carregar_json_legado(self, arquivo: Path, casa: CasaLegislativaEnum) -> List[ParlamentarProfile]:
         """
         Carrega parlamentares de arquivos JSON legados (formato anterior).
@@ -60,6 +89,11 @@ class ParlamentarService:
 
             parlamentares = []
             for item in dados:
+                if casa == CasaLegislativaEnum.cldf:
+                    self._carregar_overrides_cldf()
+                    nome = item.get("nome_parlamentar") or item.get("nome")
+                    if nome and nome in self._overrides_cldf:
+                        item = self._deep_merge(item, self._overrides_cldf[nome])
                 perfil = self._converter_legado_para_profile(item, casa)
                 if perfil:
                     parlamentares.append(perfil)
@@ -143,6 +177,20 @@ class ParlamentarService:
             # CAMADA 3: HIPÓTESES (inferências do arquivo legado)
             hipoteses = ParlamentarHipoteses()
 
+            # Extras (schema evolutivo): manter campos novos sem quebrar o legado.
+            # Ex.: relacoes_governo (gdf/federal) e incentivos_politicos.
+            if isinstance(dados.get("relacoes_governo"), dict):
+                try:
+                    setattr(hipoteses, "relacoes_governo", dados.get("relacoes_governo"))
+                except Exception:
+                    pass
+
+            if isinstance(dados.get("incentivos_politicos"), dict):
+                try:
+                    setattr(hipoteses, "incentivos_politicos", dados.get("incentivos_politicos"))
+                except Exception:
+                    pass
+
             # Orientação política (se informada no legado)
             if dados.get("orientacao_politica"):
                 try:
@@ -178,7 +226,7 @@ class ParlamentarService:
                     evidencias=["Posicionamentos públicos", "Votações nominais"]
                 )
 
-            # Relação com governo
+            # Relação com governo (legado + novos campos explícitos)
             if dados.get("relacao_governo_atual"):
                 try:
                     relacao = dados["relacao_governo_atual"]
@@ -192,6 +240,66 @@ class ParlamentarService:
                         )
                 except Exception:
                     pass
+
+            # Campo explícito: relação governo federal
+            rel_fed = dados.get("relacao_governo_federal")
+            if rel_fed and rel_fed in [e.value for e in RelacaoGovernoEnum]:
+                hipoteses.relacao_governo_federal = Hipotese(
+                    label="relacao_governo_federal",
+                    valor=rel_fed,
+                    confianca=NivelConfiancaEnum.media,
+                    rationale="Relação com governo federal (Lula/PT)",
+                    evidencias=["Bloco parlamentar", "Votações nominais"]
+                )
+            elif hipoteses.relacao_governo_atual:
+                # Fallback: se não tem campo explícito, herda do legado
+                hipoteses.relacao_governo_federal = Hipotese(
+                    label="relacao_governo_federal",
+                    valor=hipoteses.relacao_governo_atual.valor,
+                    confianca=hipoteses.relacao_governo_atual.confianca,
+                    rationale="Herdado de relacao_governo_atual (legado)",
+                    evidencias=hipoteses.relacao_governo_atual.evidencias or []
+                )
+
+            # Campo explícito: relação governo distrital
+            rel_dist = dados.get("relacao_governo_distrital")
+            if rel_dist and rel_dist in [e.value for e in RelacaoGovernoEnum]:
+                hipoteses.relacao_governo_distrital = Hipotese(
+                    label="relacao_governo_distrital",
+                    valor=rel_dist,
+                    confianca=NivelConfiancaEnum.alta,
+                    rationale="Relação com governo distrital (Ibaneis/MDB)",
+                    evidencias=["Alinhamento partidário", "Votações na CLDF"]
+                )
+
+            # Override estruturado para CLDF (GDF) prevalece sobre campo legado
+            if casa == CasaLegislativaEnum.cldf and isinstance(dados.get("relacoes_governo"), dict):
+                gdf = (dados.get("relacoes_governo") or {}).get("gdf")
+                if isinstance(gdf, dict):
+                    pos = gdf.get("posicao")
+                    if pos in [e.value for e in RelacaoGovernoEnum]:
+                        confianca_str = (gdf.get("confianca") or "media").lower()
+                        confianca = {
+                            "alta": NivelConfiancaEnum.alta,
+                            "media": NivelConfiancaEnum.media,
+                            "baixa": NivelConfiancaEnum.baixa,
+                        }.get(confianca_str, NivelConfiancaEnum.media)
+
+                        hipoteses.relacao_governo_distrital = Hipotese(
+                            label="relacao_governo_distrital",
+                            valor=pos,
+                            confianca=confianca,
+                            rationale="Override manual para GDF (CLDF)",
+                            evidencias=["Override: relacoes_governo.gdf"],
+                        )
+                        # Manter legado atualizado para compatibilidade
+                        hipoteses.relacao_governo_atual = Hipotese(
+                            label="relacao_governo_atual",
+                            valor=pos,
+                            confianca=confianca,
+                            rationale="Override manual para GDF (CLDF), com fonte/nota quando disponível",
+                            evidencias=["Override: relacoes_governo.gdf"],
+                        )
 
             # Estilo de comunicação
             if dados.get("estilo_comunicacao"):

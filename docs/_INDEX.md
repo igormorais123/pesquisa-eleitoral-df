@@ -115,6 +115,18 @@ Documentacao especifica para gestores publicos:
 
 ---
 
+## INTEIA - Operacao Agentica (/inteia)
+
+| Arquivo | Descricao |
+|---------|-----------|
+| [BOAS_PRATICAS_PESQUISA_AGENTICA.md](inteia/BOAS_PRATICAS_PESQUISA_AGENTICA.md) | Padrao operacional (realismo, memoria, contexto) |
+| [EXECUCAO_AGENTICA_CLAUDE_CODE.md](inteia/EXECUCAO_AGENTICA_CLAUDE_CODE.md) | Modo Claude Code CLI vs API fallback |
+| [PADRAO_RESULTADOS_TEMPLATES_E_MEMORIA.md](inteia/PADRAO_RESULTADOS_TEMPLATES_E_MEMORIA.md) | Estrutura canonica de pesquisa e persistencia |
+| [CRITICA_DO_PLANO_E_LIMITACOES.md](inteia/CRITICA_DO_PLANO_E_LIMITACOES.md) | Riscos, mitigacoes e trade-offs |
+| [plano-ajuste-agentes-parlamentares-cldf.md](plano-ajuste-agentes-parlamentares-cldf.md) | Plano estrutural para CLDF (fatos/inferencias, priors, auditoria) |
+
+---
+
 ## Documentos Especiais
 
 | Arquivo | Descricao |

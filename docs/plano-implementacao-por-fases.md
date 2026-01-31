@@ -42,7 +42,13 @@ Antes de sair codificando, é importante identificar as principais tarefas do pr
 
 6. **Configurar Variáveis de Ambiente (API Keys, URLs, DB):**
 
-7. Crie o arquivo .env na pasta backend copiando o modelo .env.example. Preencha com os valores necessários: especialmente CLAUDE_API_KEY (sua chave da API da Anthropic Claude) e DATABASE_URL do PostgreSQL local ou de teste. Use uma URL de banco de dados local (p.ex: sqlite:///./app.db temporariamente para testes rápidos, ou PostgreSQL via Docker). Ajuste FRONTEND_URL para o endereço local (ex: http://localhost:3000).
+7. Crie o arquivo .env na pasta backend copiando o modelo .env.example. **Por padrão, o projeto usa a assinatura do Claude Code** (sem API) via `IA_PROVIDER=claude_code`. Configure:
+
+   - `IA_PROVIDER=claude_code`
+   - `IA_MODELO_ENTREVISTAS=sonnet`
+   - `IA_MODELO_INSIGHTS=opus`
+
+   Se você NÃO tiver Claude Code no ambiente (ex.: servidor), aí sim use `IA_PROVIDER=anthropic_api` e preencha `CLAUDE_API_KEY`. Também configure `DATABASE_URL` do PostgreSQL.
 
 8. Se optar por PostgreSQL via Docker, certifique-se de que o serviço está rodando. Você pode usar o docker-compose up -d conforme o README para subir um contêiner com o banco e talvez o backend junto, mas inicialmente pode rodar sem docker para facilitar depuração.
 

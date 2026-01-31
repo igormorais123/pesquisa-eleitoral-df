@@ -64,7 +64,7 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen-safe bg-background">
       {/* Background visual - adapta ao tema */}
       {/* Modo escuro: gradientes âmbar sutis sobre slate escuro */}
       {/* Modo claro: gradientes âmbar sutis sobre fundo claro */}
@@ -82,7 +82,7 @@ export default function DashboardLayout({
       >
         <Header />
         {/* Main content - Padding extra no bottom para mobile nav */}
-        <main className="relative p-4 sm:p-6 min-h-[calc(100vh-4rem)] pb-20 lg:pb-6">
+        <main className="relative p-4 sm:p-6 min-h-[calc(100dvh-4rem)] pb-24 lg:pb-6">
           {children}
         </main>
         {/* Footer INTEIA */}

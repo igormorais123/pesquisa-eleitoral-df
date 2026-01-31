@@ -45,3 +45,10 @@ logs/*.log
 Intenção de voto Celina Leao 01.2024-01.2026/outputs/youtube_slides/
 *.mp4
 *.pptx
+
+# exports de ambiente (podem conter segredos)
+*temp_env*.json
+C:Usersigormpesquisa-eleitoral-dftemp_env.json
+
+# venvs locais específicos
+agentes/.venv-juris/
