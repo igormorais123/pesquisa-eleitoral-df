@@ -592,68 +592,41 @@ async def debug_entrevista_flow():
         "allow_fallback": getattr(configuracoes, "IA_ALLOW_API_FALLBACK", "NOT SET"),
     }
 
-    # Step 2: DB - testar conexão com diferentes configs SSL via asyncpg direto
-    import ssl as _ssl_mod
-    import asyncpg
+    # Step 2: DB - testar conexão via ORM (psycopg3 com sslmode=require)
+    from app.db.session import DATABASE_URL as _db_url_used, engine as _engine
 
-    raw_db_url = configuracoes.DATABASE_URL
-    # Converter para asyncpg format (sem o +asyncpg prefix)
-    asyncpg_url = raw_db_url.replace("?sslmode=require", "").replace("&sslmode=require", "")
-
-    ssl_configs = {
-        "no_ssl": None,
-        "ssl_true": True,
-        "ssl_require_str": "require",
-        "ssl_prefer_str": "prefer",
-        "ssl_ctx_no_verify": None,  # will be set below
-    }
-    # Create SSL context
-    ctx = _ssl_mod.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_mode = _ssl_mod.CERT_NONE
-    ssl_configs["ssl_ctx_no_verify"] = ctx
-
-    steps["2_db_url_info"] = {
-        "has_render": "render.com" in raw_db_url,
-        "has_sslmode": "sslmode" in raw_db_url,
-        "url_tail": raw_db_url[-30:] if raw_db_url else "EMPTY",
+    steps["2_db_info"] = {
+        "driver": _db_url_used.split("://")[0] if "://" in _db_url_used else "unknown",
+        "has_sslmode": "sslmode" in _db_url_used,
+        "url_tail": _db_url_used[-40:] if _db_url_used else "EMPTY",
     }
 
-    for ssl_name, ssl_val in ssl_configs.items():
-        try:
-            t0 = time.time()
-            conn = await asyncpg.connect(asyncpg_url, ssl=ssl_val, timeout=10)
-            count = await conn.fetchval("SELECT COUNT(*) FROM eleitores")
-            await conn.close()
-            t1 = time.time()
-            steps[f"2_db_{ssl_name}"] = {"ok": True, "count": count, "time_ms": int((t1 - t0) * 1000)}
-            break  # Found working config!
-        except Exception as e:
-            steps[f"2_db_{ssl_name}"] = {"error": f"{type(e).__name__}: {str(e)[:100]}"}
-
-    # Step 2b: If any SSL config worked, test the ORM path
+    # Test raw engine connection
     eleitores = []
-    working_ssl = None
-    for ssl_name in ssl_configs:
-        if steps.get(f"2_db_{ssl_name}", {}).get("ok"):
-            working_ssl = ssl_name
-            break
+    try:
+        from sqlalchemy import text as sa_text
+        t0 = time.time()
+        async with _engine.connect() as conn:
+            result = await conn.execute(sa_text("SELECT COUNT(*) FROM eleitores"))
+            count = result.scalar()
+        t1 = time.time()
+        steps["2_db_engine"] = {"ok": True, "count": count, "time_ms": int((t1 - t0) * 1000)}
+    except Exception as e:
+        steps["2_db_engine"] = {"error": f"{type(e).__name__}: {str(e)[:200]}"}
 
-    if working_ssl:
-        try:
-            from app.servicos.eleitor_helper import obter_eleitores_por_ids_async
-            t0 = time.time()
-            eleitores = await obter_eleitores_por_ids_async(["df-0001"])
-            t1 = time.time()
-            steps["2_db_orm"] = {
-                "count": len(eleitores),
-                "time_ms": int((t1 - t0) * 1000),
-                "first_name": eleitores[0].get("nome", "?") if eleitores else "EMPTY",
-            }
-        except Exception as e:
-            steps["2_db_orm"] = {"error": f"{type(e).__name__}: {e}"}
-    else:
-        steps["2_db_orm"] = {"skipped": "no working SSL config found"}
+    # Test ORM helper
+    try:
+        from app.servicos.eleitor_helper import obter_eleitores_por_ids_async
+        t0 = time.time()
+        eleitores = await obter_eleitores_por_ids_async(["df-0001"])
+        t1 = time.time()
+        steps["2_db_orm"] = {
+            "count": len(eleitores),
+            "time_ms": int((t1 - t0) * 1000),
+            "first_name": eleitores[0].get("nome", "?") if eleitores else "EMPTY",
+        }
+    except Exception as e:
+        steps["2_db_orm"] = {"error": f"{type(e).__name__}: {str(e)[:200]}"}
 
     # Step 3: Claude service init
     try:
@@ -688,7 +661,7 @@ async def debug_entrevista_flow():
         steps["4_api_call"] = {"error": f"{type(e).__name__}: {e}"}
 
     # Step 5: Full flow test (prompt + API)
-    if steps.get("2_db_eleitores", {}).get("count", 0) > 0 and "error" not in steps.get("4_api_call", {}):
+    if steps.get("2_db_orm", {}).get("count", 0) > 0 and "error" not in steps.get("4_api_call", {}):
         try:
             t0 = time.time()
             resultado = await claude.processar_resposta(
