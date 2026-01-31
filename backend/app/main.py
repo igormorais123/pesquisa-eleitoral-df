@@ -41,6 +41,7 @@ from app.api.rotas import (
     usuarios,
     pesquisas_parlamentares,
     pesquisas_podc,
+    whatsapp,
 )
 from app.parlamentares.routes import router as parlamentares_router
 from app.core.config import configuracoes, validar_configuracoes
@@ -78,6 +79,9 @@ async def lifespan(app: FastAPI):
             RespostaPesquisa,
             MetricasGlobais,
         )  # noqa: F401
+        from app.modelos.contato_whatsapp import ContatoWhatsApp  # noqa: F401
+        from app.modelos.conversa_whatsapp import ConversaWhatsApp  # noqa: F401
+        from app.modelos.mensagem_whatsapp import MensagemWhatsApp  # noqa: F401
 
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
@@ -434,6 +438,29 @@ Baseada na teoria clássica de Fayol, mede como gestores distribuem tempo entre:
 - IAD = (P+O)/(D+C)
 - IAD > 1: Perfil Proativo (formulador)
 - IAD < 1: Perfil Reativo (executor)
+        """,
+    },
+    {
+        "name": "WhatsApp - Oráculo Eleitoral",
+        "description": """
+Sistema multi-agente de inteligência eleitoral via WhatsApp.
+
+**Oráculo Eleitoral** — 8 agentes IA especializados coordenados por supervisor LangGraph:
+- **Oráculo de Dados**: Consulta dados eleitorais (eleitores, candidatos, estatísticas)
+- **Simulador**: Cenários e projeções eleitorais (Monte Carlo)
+- **Estrategista**: Análise estratégica profunda (Claude Opus)
+- **Memória Viva**: Histórico de conversas e decisões
+- **Radar Social**: Monitoramento de notícias e sentimento
+- **Criador de Conteúdo**: Posts, slogans, roteiros
+- **Central de Cabos**: Gestão de cabos eleitorais
+- **Pesquisador**: Pesquisa profunda e dossiês
+
+**Endpoints:**
+- `GET /webhook` — Verificação Meta Cloud API
+- `POST /webhook` — Receber mensagens WhatsApp
+- `GET /status` — Status do sistema
+- `GET/POST /contatos` — Gestão de contatos autorizados
+- `GET /conversas/{id}/mensagens` — Histórico de mensagens
         """,
     },
     {
@@ -799,4 +826,10 @@ app.include_router(
     sessoes.router,
     prefix="/api/v1/sessoes",
     tags=["Sessões de Entrevista"],
+)
+
+app.include_router(
+    whatsapp.router,
+    prefix="/api/v1/whatsapp",
+    tags=["WhatsApp - Oráculo Eleitoral"],
 )

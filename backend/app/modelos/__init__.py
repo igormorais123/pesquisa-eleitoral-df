@@ -31,6 +31,11 @@ from app.modelos.pesquisa import Pesquisa, StatusPesquisa, TipoPesquisa
 from app.modelos.pesquisa_podc import PesquisaPODC, RespostaPODC, EstatisticasPODC
 from app.modelos.resposta import Resposta
 
+# Modelos WhatsApp (Oráculo Eleitoral)
+from app.modelos.contato_whatsapp import ContatoWhatsApp
+from app.modelos.conversa_whatsapp import ConversaWhatsApp
+from app.modelos.mensagem_whatsapp import MensagemWhatsApp
+
 __all__ = [
     # Base
     "Base",
@@ -62,4 +67,8 @@ __all__ = [
     "TipoPergunta",
     "TipoAnalise",
     "TipoMemoria",
+    # Modelos WhatsApp
+    "ContatoWhatsApp",
+    "ConversaWhatsApp",
+    "MensagemWhatsApp",
 ]

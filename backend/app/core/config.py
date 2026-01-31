@@ -87,6 +87,29 @@ class Configuracoes(BaseSettings):
     GOOGLE_CLIENT_SECRET: str = ""
     GOOGLE_REDIRECT_URI: str = "http://localhost:3000/api/auth/callback/google"
 
+    # ==========================================
+    # WhatsApp Meta Cloud API (Oráculo Eleitoral)
+    # ==========================================
+    WHATSAPP_TOKEN: str = ""
+    WHATSAPP_PHONE_ID: str = ""
+    WHATSAPP_VERIFY_TOKEN: str = "oraculo_verify_2026"
+    WHATSAPP_APP_SECRET: str = ""
+    WHATSAPP_API_VERSION: str = "v21.0"
+
+    # Redis
+    REDIS_URL: str = "redis://localhost:6379/0"
+
+    # OpenAI (Whisper para transcrição de áudio)
+    OPENAI_API_KEY: str = ""
+
+    # LangSmith (monitoramento de agentes)
+    LANGSMITH_API_KEY: str = ""
+    LANGSMITH_PROJECT: str = "oraculo-eleitoral"
+
+    # Limites WhatsApp
+    WHATSAPP_MAX_MSG_PER_SECOND: int = 80
+    WHATSAPP_DAILY_CONTACT_LIMIT: int = 1000
+
     # Admin padrao (Professor Igor)
     ADMIN_USER_ID: str = "user-001"
     ADMIN_USERNAME: str = "professorigor"

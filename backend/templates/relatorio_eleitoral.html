@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <title>{{ titulo }} — Oráculo Eleitoral</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #0f172a;
+            background: #ffffff;
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 30px 40px;
+            position: relative;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-box {
+            background: #d69e2e;
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 16px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .logo-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo-name .highlight {
+            color: #d69e2e;
+        }
+
+        .badge-confidencial {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .header .meta {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 40px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            border-bottom: 2px solid #d69e2e;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .kpi-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .kpi-card .number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #d69e2e;
+        }
+
+        .kpi-card .label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .grafico {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .grafico img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th {
+            background: #f1f5f9;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            color: #475569;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 14px;
+        }
+
+        .rec-card {
+            background: #fffbeb;
+            border-left: 4px solid #d69e2e;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rec-card.urgente {
+            border-left-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        .rec-card.importante {
+            border-left-color: #eab308;
+            background: #fefce8;
+        }
+
+        .rec-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .rec-card p {
+            font-size: 13px;
+            color: #475569;
+        }
+
+        .resumo-box {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .resumo-box h3 {
+            color: #d69e2e;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding: 20px 40px;
+            background: #f8fafc;
+            border-top: 2px solid #d69e2e;
+            text-align: center;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .footer .inteia {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .footer .ia-aviso {
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        @media print {
+            @page { size: A4; margin: 10mm; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            body { font-size: 10pt; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18pt; }
+            .container { padding: 15px 20px; }
+            .kpi-grid { gap: 8px; }
+            .kpi-card .number { font-size: 18pt; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div class="logo">
+                <div class="logo-box">IA</div>
+                <span class="logo-name">INTE<span class="highlight">IA</span></span>
+            </div>
+            <span class="badge-confidencial">Confidencial</span>
+        </div>
+        <h1>{{ titulo }}</h1>
+        <div class="meta">
+            {{ data }} | Oráculo Eleitoral |
+            {% if cliente %}Cliente: {{ cliente }}{% endif %}
+            {% if periodo %}| Período: {{ periodo }}{% endif %}
+        </div>
+    </div>
+
+    <div class="container">
+        {% if resumo %}
+        <div class="resumo-box">
+            <h3>Conclusão Principal</h3>
+            <p>{{ resumo }}</p>
+        </div>
+        {% endif %}
+
+        {% if metricas %}
+        <div class="kpi-grid">
+            {% for label, valor in metricas.items() %}
+            <div class="kpi-card">
+                <div class="number">{{ valor }}</div>
+                <div class="label">{{ label }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if graficos %}
+        <div class="section">
+            <h2 class="section-title">Análise Visual</h2>
+            {% for nome, b64 in graficos.items() %}
+            {% if b64 %}
+            <div class="grafico">
+                <img src="data:image/png;base64,{{ b64 }}" alt="{{ nome }}"/>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if intencao_voto %}
+        <div class="section">
+            <h2 class="section-title">Intenção de Voto</h2>
+            <table>
+                <thead>
+                    <tr><th>Candidato</th><th>Percentual</th></tr>
+                </thead>
+                <tbody>
+                    {% for candidato, pct in intencao_voto.items() %}
+                    <tr><td>{{ candidato }}</td><td><strong>{{ pct }}%</strong></td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        {% if destaques %}
+        <div class="section">
+            <h2 class="section-title">Destaques da Semana</h2>
+            <ul>
+                {% for destaque in destaques %}
+                <li>{{ destaque }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if recomendacoes %}
+        <div class="section">
+            <h2 class="section-title">Recomendações Estratégicas</h2>
+            {% for rec in recomendacoes %}
+            <div class="rec-card {{ rec.get('prioridade', '') }}">
+                <h4>{{ rec.get('titulo', 'Recomendação') }}</h4>
+                <p>{{ rec.get('descricao', '') }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="footer">
+        <div class="inteia">INTEIA — Inteligência Estratégica</div>
+        CNPJ: 63.918.490/0001-20 | SHN Quadra 2 Bloco F, Sala 625/626 — Brasília/DF<br/>
+        inteia.com.br | igor@inteia.com.br<br/>
+        <div class="ia-aviso">
+            Documento gerado por IA — Oráculo Eleitoral | © 2026 INTEIA. Todos os direitos reservados.
+        </div>
+    </div>
+</body>
+</html>

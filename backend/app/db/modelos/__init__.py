@@ -18,6 +18,11 @@ from app.modelos.pesquisa_podc import (
     EstatisticasPODC,
 )
 
+# Modelos WhatsApp (Oráculo Eleitoral)
+from app.modelos.contato_whatsapp import ContatoWhatsApp
+from app.modelos.conversa_whatsapp import ConversaWhatsApp
+from app.modelos.mensagem_whatsapp import MensagemWhatsApp
+
 __all__ = [
     "Pesquisa",
     "PerguntaPesquisa",
@@ -27,4 +32,8 @@ __all__ = [
     "PesquisaPODC",
     "RespostaPODC",
     "EstatisticasPODC",
+    # Modelos WhatsApp
+    "ContatoWhatsApp",
+    "ConversaWhatsApp",
+    "MensagemWhatsApp",
 ]

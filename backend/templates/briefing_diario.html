@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <title>Briefing Diário — {{ data }}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #0f172a;
+            background: #ffffff;
+            line-height: 1.5;
+            padding: 0;
+            font-size: 13px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 20px 30px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-box {
+            background: #d69e2e;
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 14px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+        }
+
+        .logo-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo-name .highlight {
+            color: #d69e2e;
+        }
+
+        .badge {
+            background: rgba(214, 158, 46, 0.2);
+            color: #f6e05e;
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .header .meta {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 30px;
+        }
+
+        .destaque-box {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .destaque-box h3 {
+            color: #d69e2e;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .destaque-box p {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .kpi-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .kpi-card .number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #d69e2e;
+        }
+
+        .kpi-card .label {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .kpi-card .trend {
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        .trend-up { color: #22c55e; }
+        .trend-down { color: #ef4444; }
+        .trend-stable { color: #64748b; }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+            border-bottom: 2px solid #d69e2e;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 18px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .alerta {
+            background: #fef2f2;
+            border-left: 3px solid #ef4444;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 0 6px 6px 0;
+            font-size: 12px;
+        }
+
+        .alerta strong {
+            color: #ef4444;
+        }
+
+        .acao {
+            background: #fffbeb;
+            border-left: 3px solid #d69e2e;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 0 6px 6px 0;
+            font-size: 12px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: #f8fafc;
+            border-top: 2px solid #d69e2e;
+            text-align: center;
+            font-size: 10px;
+            color: #64748b;
+        }
+
+        .footer .inteia {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        @media print {
+            @page { size: A4; margin: 8mm; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            body { font-size: 9pt; }
+            .header { padding: 12px 15px; }
+            .header h1 { font-size: 16pt; }
+            .container { padding: 10px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div class="logo">
+                <div class="logo-box">IA</div>
+                <span class="logo-name">INTE<span class="highlight">IA</span></span>
+            </div>
+            <span class="badge">Briefing Diário</span>
+        </div>
+        <h1>Briefing — {{ data }}</h1>
+        <div class="meta">
+            Oráculo Eleitoral |
+            {% if cliente %}{{ cliente }}{% endif %}
+            | Gerado às {{ hora }}
+        </div>
+    </div>
+
+    <div class="container">
+        {% if resumo %}
+        <div class="destaque-box">
+            <h3>Situação Atual</h3>
+            <p>{{ resumo }}</p>
+        </div>
+        {% endif %}
+
+        {% if metricas %}
+        <div class="kpi-grid">
+            {% for label, dados in metricas.items() %}
+            <div class="kpi-card">
+                <div class="number">{{ dados.valor }}</div>
+                <div class="label">{{ label }}</div>
+                {% if dados.tendencia %}
+                <div class="trend {% if dados.tendencia == 'up' %}trend-up{% elif dados.tendencia == 'down' %}trend-down{% else %}trend-stable{% endif %}">
+                    {% if dados.tendencia == 'up' %}▲{% elif dados.tendencia == 'down' %}▼{% else %}→{% endif %}
+                    {{ dados.variacao|default('') }}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if alertas %}
+        <div class="section">
+            <h2 class="section-title">Alertas</h2>
+            {% for alerta in alertas %}
+            <div class="alerta">
+                <strong>{{ alerta.tipo|upper }}:</strong> {{ alerta.mensagem }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if destaques %}
+        <div class="section">
+            <h2 class="section-title">Destaques das Últimas 24h</h2>
+            <ul>
+                {% for destaque in destaques %}
+                <li>{{ destaque }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if acoes %}
+        <div class="section">
+            <h2 class="section-title">Ações Prioritárias para Hoje</h2>
+            {% for acao in acoes %}
+            <div class="acao">
+                <strong>{{ loop.index }}.</strong> {{ acao }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if agenda %}
+        <div class="section">
+            <h2 class="section-title">Agenda do Dia</h2>
+            <ul>
+                {% for item in agenda %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="footer">
+        <div class="inteia">INTEIA — Inteligência Estratégica</div>
+        CNPJ: 63.918.490/0001-20 | SHN Quadra 2 Bloco F, Sala 625/626 — Brasília/DF<br/>
+        inteia.com.br | igor@inteia.com.br<br/>
+        Documento gerado por IA — Oráculo Eleitoral | © 2026 INTEIA
+    </div>
+</body>
+</html>

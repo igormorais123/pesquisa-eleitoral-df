@@ -2,10 +2,15 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install system dependencies
+# Install system dependencies (inclui ffmpeg para áudio e libs para WeasyPrint PDF)
 RUN apt-get update && apt-get install -y \
     gcc \
     libpq-dev \
+    ffmpeg \
+    libpango1.0-dev \
+    libcairo2-dev \
+    libgdk-pixbuf2.0-dev \
+    libffi-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for caching

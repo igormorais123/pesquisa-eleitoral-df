@@ -1,0 +1,175 @@
+# INTEIA - Oráculo Eleitoral — Produção
+# docker-compose -f docker-compose.prod.yml up -d
+
+services:
+  # Banco de Dados PostgreSQL
+  db:
+    image: postgres:15-alpine
+    container_name: inteia-prod-db
+    restart: always
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-pesquisa_eleitoral}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pesquisa-network
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+
+  # Redis (broker Celery + cache + rate limiting)
+  redis:
+    image: redis:7-alpine
+    container_name: inteia-prod-redis
+    restart: always
+    ports:
+      - "127.0.0.1:6379:6379"
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pesquisa-network
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+
+  # Backend FastAPI
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: inteia-prod-backend
+    restart: always
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-pesquisa_eleitoral}
+      - REDIS_URL=redis://redis:6379/0
+      - CLAUDE_API_KEY=${CLAUDE_API_KEY}
+      - SECRET_KEY=${SECRET_KEY}
+      - ALGORITHM=${ALGORITHM:-HS256}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES:-30}
+      - FRONTEND_URL=${FRONTEND_URL:-https://inteia.com.br}
+      - WHATSAPP_TOKEN=${WHATSAPP_TOKEN}
+      - WHATSAPP_PHONE_ID=${WHATSAPP_PHONE_ID}
+      - WHATSAPP_APP_SECRET=${WHATSAPP_APP_SECRET}
+      - WHATSAPP_VERIFY_TOKEN=${WHATSAPP_VERIFY_TOKEN}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LANGSMITH_API_KEY=${LANGSMITH_API_KEY}
+      - LANGSMITH_PROJECT=${LANGSMITH_PROJECT:-oraculo-eleitoral}
+      - AMBIENTE=producao
+    volumes:
+      - ./agentes:/app/data/agentes:ro
+      - ./memorias:/app/data/memorias
+      - ./resultados:/app/data/resultados
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - pesquisa-network
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4 --log-level info
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+
+  # Celery Worker (processamento de agentes IA)
+  celery-worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: inteia-prod-worker
+    restart: always
+    command: celery -A app.tarefas.celery_app worker -l info -c 4 --max-tasks-per-child=100
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-pesquisa_eleitoral}
+      - REDIS_URL=redis://redis:6379/0
+      - CLAUDE_API_KEY=${CLAUDE_API_KEY}
+      - WHATSAPP_TOKEN=${WHATSAPP_TOKEN}
+      - WHATSAPP_PHONE_ID=${WHATSAPP_PHONE_ID}
+      - WHATSAPP_APP_SECRET=${WHATSAPP_APP_SECRET}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LANGSMITH_API_KEY=${LANGSMITH_API_KEY}
+      - LANGSMITH_PROJECT=${LANGSMITH_PROJECT:-oraculo-eleitoral}
+      - AMBIENTE=producao
+    depends_on:
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    networks:
+      - pesquisa-network
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+
+  # Celery Beat (tarefas agendadas)
+  celery-beat:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: inteia-prod-beat
+    restart: always
+    command: celery -A app.tarefas.celery_app beat -l info
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-pesquisa_eleitoral}
+      - REDIS_URL=redis://redis:6379/0
+      - AMBIENTE=producao
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - pesquisa-network
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+
+  # Flower (monitoramento — acessível apenas internamente)
+  flower:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: inteia-prod-flower
+    restart: always
+    command: celery -A app.tarefas.celery_app flower --port=5555 --basic_auth=${FLOWER_USER:-admin}:${FLOWER_PASSWORD:-inteia2026}
+    ports:
+      - "127.0.0.1:5555:5555"
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - pesquisa-network
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  pesquisa-network:
+    driver: bridge

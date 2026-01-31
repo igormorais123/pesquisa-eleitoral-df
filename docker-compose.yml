@@ -73,8 +73,87 @@ services:
       - pesquisa-network
     command: npm run dev
 
+  # Redis (broker Celery + cache)
+  redis:
+    image: redis:7-alpine
+    container_name: inteia-oraculo-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pesquisa-network
+
+  # Celery Worker (processamento de agentes IA)
+  celery-worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: inteia-oraculo-worker
+    restart: unless-stopped
+    command: celery -A app.tarefas.celery_app worker -l info -c 4
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/pesquisa_eleitoral
+      - REDIS_URL=redis://redis:6379/0
+      - CLAUDE_API_KEY=${CLAUDE_API_KEY}
+      - WHATSAPP_TOKEN=${WHATSAPP_TOKEN}
+      - WHATSAPP_PHONE_ID=${WHATSAPP_PHONE_ID}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LANGSMITH_API_KEY=${LANGSMITH_API_KEY}
+    volumes:
+      - ./backend:/app
+    depends_on:
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    networks:
+      - pesquisa-network
+
+  # Celery Beat (tarefas agendadas - briefing diário, relatório semanal)
+  celery-beat:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: inteia-oraculo-beat
+    restart: unless-stopped
+    command: celery -A app.tarefas.celery_app beat -l info
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/pesquisa_eleitoral
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - pesquisa-network
+
+  # Flower (monitoramento Celery)
+  flower:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: inteia-oraculo-flower
+    restart: unless-stopped
+    command: celery -A app.tarefas.celery_app flower --port=5555
+    ports:
+      - "5555:5555"
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - pesquisa-network
+
 volumes:
   postgres_data:
+  redis_data:
 
 networks:
   pesquisa-network:
