@@ -15,24 +15,21 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.servicos.whatsapp_servico import whatsapp_servico
-from app.servicos.audio_servico import transcrever_audio
 from app.db.session import get_db_context
 
-# Importação condicional do supervisor (será criado posteriormente)
+# Importação condicional do supervisor
 try:
-    from app.agentes.supervisor import processar_mensagem_supervisor
+    from app.agentes.supervisor import invocar_supervisor
 except ImportError:
-    processar_mensagem_supervisor = None
+    invocar_supervisor = None
 
-# Importação condicional dos modelos (podem ainda não existir)
+# Importação condicional dos modelos
 try:
-    from app.modelos.contato import Contato
-    from app.modelos.mensagem import Mensagem
-    from app.modelos.metrica import MetricaMensagem
+    from app.modelos.contato_whatsapp import ContatoWhatsApp
+    from app.modelos.mensagem_whatsapp import MensagemWhatsApp
 except ImportError:
-    Contato = None
-    Mensagem = None
-    MetricaMensagem = None
+    ContatoWhatsApp = None
+    MensagemWhatsApp = None
 
 logger = logging.getLogger(__name__)
 
@@ -203,21 +200,20 @@ class PipelineWhatsApp:
             Objeto Contato do banco de dados, ou None se os modelos
             não estiverem disponíveis.
         """
-        if Contato is None:
-            logger.warning("Modelo Contato não disponível. Pulando identificação de contato.")
+        if ContatoWhatsApp is None:
+            logger.warning("Modelo ContatoWhatsApp não disponível. Pulando identificação de contato.")
             return None
 
         try:
-            query = select(Contato).where(Contato.telefone == telefone)
+            query = select(ContatoWhatsApp).where(ContatoWhatsApp.telefone == telefone)
             resultado = await db.execute(query)
             contato = resultado.scalar_one_or_none()
 
             if contato is None:
                 # Criar novo contato
-                contato = Contato(
+                contato = ContatoWhatsApp(
                     telefone=telefone,
                     nome=nome or "Desconhecido",
-                    criado_em=datetime.now(timezone.utc),
                 )
                 db.add(contato)
                 await db.flush()
@@ -286,7 +282,8 @@ class PipelineWhatsApp:
                 logger.error("Falha ao baixar áudio. Mídia ID: %s", midia_id)
                 return "[Erro: não foi possível baixar o áudio]"
 
-            # Transcrever usando Whisper
+            # Transcrever usando Whisper (import lazy para evitar pydub no top-level)
+            from app.servicos.audio_servico import transcrever_audio
             texto = await transcrever_audio(audio_bytes, idioma="pt")
             logger.info(
                 "Áudio transcrito com sucesso. Mídia ID: %s, Caracteres: %d",
@@ -353,7 +350,7 @@ class PipelineWhatsApp:
             "custo_estimado": 0.0,
         }
 
-        if processar_mensagem_supervisor is None:
+        if invocar_supervisor is None:
             logger.warning(
                 "Supervisor LangGraph não disponível. "
                 "Retornando resposta padrão."
@@ -365,22 +362,21 @@ class PipelineWhatsApp:
             return resultado_padrao
 
         try:
-            # Montar contexto para o supervisor
-            contexto = {
-                "mensagem": texto,
-                "telefone": telefone,
-                "contato_id": getattr(contato, "id", None),
-                "contato_nome": getattr(contato, "nome", "Desconhecido"),
-                "imagem": imagem_bytes,
-                "timestamp": datetime.now(timezone.utc).isoformat(),
-            }
+            contato_id = getattr(contato, "id", None)
 
-            resultado_supervisor = await processar_mensagem_supervisor(contexto)
+            resultado_supervisor = await invocar_supervisor(
+                mensagem=texto,
+                telefone=telefone,
+                conversa_id=contato_id,
+            )
 
             return {
                 "resposta": resultado_supervisor.get("resposta", ""),
-                "tokens_utilizados": resultado_supervisor.get("tokens_utilizados", 0),
-                "custo_estimado": resultado_supervisor.get("custo_estimado", 0.0),
+                "tokens_utilizados": (
+                    resultado_supervisor.get("tokens_entrada", 0)
+                    + resultado_supervisor.get("tokens_saida", 0)
+                ),
+                "custo_estimado": resultado_supervisor.get("custo", 0.0),
             }
 
         except Exception as e:
@@ -403,9 +399,9 @@ class PipelineWhatsApp:
             True se o envio foi bem-sucedido, False caso contrário.
         """
         try:
-            resultado = await self._servico_whatsapp.enviar_mensagem_texto(
+            resultado = await self._servico_whatsapp.enviar_texto(
                 telefone=telefone,
-                mensagem=texto,
+                texto=texto,
             )
             return resultado is not None
 
@@ -442,42 +438,36 @@ class PipelineWhatsApp:
         """
         try:
             contato_id = getattr(contato, "id", None)
+            conversa_id = getattr(contato, "id", None)  # Simplificado; em prod usar conversa real
 
             # Salvar mensagem recebida
-            if Mensagem is not None:
-                mensagem_recebida = Mensagem(
+            if MensagemWhatsApp is not None and contato_id and conversa_id:
+                mensagem_recebida = MensagemWhatsApp(
+                    conversa_id=conversa_id,
                     contato_id=contato_id,
-                    direcao="recebida",
+                    direcao="entrada",
                     tipo=dados_mensagem.get("tipo", "texto"),
                     conteudo=texto_mensagem,
-                    mensagem_id_whatsapp=dados_mensagem.get("mensagem_id", ""),
-                    timestamp=datetime.now(timezone.utc),
+                    whatsapp_msg_id=dados_mensagem.get("mensagem_id", ""),
+                    status_entrega="entregue",
                 )
                 db.add(mensagem_recebida)
 
-                # Salvar resposta enviada
+                # Salvar resposta enviada (com métricas embutidas)
                 if texto_resposta:
-                    mensagem_enviada = Mensagem(
+                    mensagem_enviada = MensagemWhatsApp(
+                        conversa_id=conversa_id,
                         contato_id=contato_id,
-                        direcao="enviada",
+                        direcao="saida",
                         tipo="texto",
                         conteudo=texto_resposta,
-                        timestamp=datetime.now(timezone.utc),
+                        status_entrega="enviada",
+                        tokens_entrada=tokens_utilizados // 2,
+                        tokens_saida=tokens_utilizados - (tokens_utilizados // 2),
+                        custo=custo_estimado,
+                        tempo_resposta_ms=tempo_resposta_ms,
                     )
                     db.add(mensagem_enviada)
-
-            # Salvar métricas
-            if MetricaMensagem is not None:
-                metrica = MetricaMensagem(
-                    contato_id=contato_id,
-                    mensagem_id_whatsapp=dados_mensagem.get("mensagem_id", ""),
-                    tempo_resposta_ms=tempo_resposta_ms,
-                    tokens_utilizados=tokens_utilizados,
-                    custo_estimado=custo_estimado,
-                    tipo_mensagem=dados_mensagem.get("tipo", "texto"),
-                    timestamp=datetime.now(timezone.utc),
-                )
-                db.add(metrica)
 
             await db.commit()
             logger.debug(

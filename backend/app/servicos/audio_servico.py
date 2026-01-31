@@ -13,8 +13,6 @@ import os
 import logging
 from pathlib import Path
 
-from pydub import AudioSegment
-
 from app.core.config import configuracoes
 
 logger = logging.getLogger(__name__)
@@ -93,7 +91,8 @@ def _converter_ogg_para_mp3(ogg_bytes: bytes) -> bytes:
             tmp_ogg.write(ogg_bytes)
             caminho_ogg = tmp_ogg.name
 
-        # Converter OGG -> MP3
+        # Converter OGG -> MP3 (import lazy para compatibilidade com Python 3.13+)
+        from pydub import AudioSegment
         audio = AudioSegment.from_ogg(caminho_ogg)
 
         with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp_mp3:

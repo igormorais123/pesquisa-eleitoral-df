@@ -152,16 +152,26 @@ def _transcrever_audio(media_id: str) -> str:
     """
     Transcreve uma mensagem de audio usando o servico de audio.
 
+    Baixa a midia do WhatsApp e transcreve usando Whisper (local ou API).
+
     Args:
         media_id: ID da midia de audio no WhatsApp.
 
     Returns:
         Texto transcrito do audio.
     """
-    from app.servicos.audio_servico import audio_servico
+    import asyncio
+    from app.servicos.whatsapp_servico import whatsapp_servico
+    from app.servicos.audio_servico import transcrever_audio
 
-    texto_transcrito = audio_servico.transcrever(media_id)
-    return texto_transcrito
+    # Baixar audio do WhatsApp e transcrever (funcoes async chamadas de contexto sync)
+    loop = asyncio.new_event_loop()
+    try:
+        audio_bytes = loop.run_until_complete(whatsapp_servico.baixar_midia(media_id))
+        texto_transcrito = loop.run_until_complete(transcrever_audio(audio_bytes, idioma="pt"))
+        return texto_transcrito
+    finally:
+        loop.close()
 
 
 def _executar_agente(
@@ -184,20 +194,23 @@ def _executar_agente(
     Returns:
         Texto da resposta gerada pelo agente.
     """
-    from app.agentes.supervisor import grafo_supervisor
+    import asyncio
+    from app.agentes.supervisor import invocar_supervisor
 
-    # Monta o estado inicial para o grafo
-    estado_inicial = {
-        "mensagem": mensagem,
-        "telefone": telefone,
-        "conversa_id": conversa_id,
-        "contato_id": contato_id,
-    }
+    # Invoca o supervisor (async) a partir do contexto sync do Celery
+    loop = asyncio.new_event_loop()
+    try:
+        resultado = loop.run_until_complete(
+            invocar_supervisor(
+                mensagem=mensagem,
+                telefone=telefone,
+                conversa_id=conversa_id,
+            )
+        )
+    finally:
+        loop.close()
 
-    # Invoca o grafo supervisor
-    resultado = grafo_supervisor.invoke(estado_inicial)
-
-    # Extrai a resposta final do resultado do grafo
+    # Extrai a resposta final do resultado do supervisor
     resposta = resultado.get("resposta", "")
     if not resposta:
         logger.warning(
@@ -221,7 +234,12 @@ def _enviar_resposta_whatsapp(telefone: str, resposta: str) -> None:
     """
     from app.servicos.whatsapp_servico import whatsapp_servico
 
-    whatsapp_servico.enviar_mensagem(telefone=telefone, mensagem=resposta)
+    import asyncio
+    loop = asyncio.new_event_loop()
+    try:
+        loop.run_until_complete(whatsapp_servico.enviar_texto(telefone=telefone, texto=resposta))
+    finally:
+        loop.close()
     logger.info("Resposta enviada pelo WhatsApp para %s", telefone)
 
 
@@ -247,29 +265,39 @@ def _registrar_interacao(
     agora = datetime.now(timezone.utc)
 
     # Registra usando SQL direto para evitar dependencia de modelos ORM especificos
-    sessao.execute(
+    from sqlalchemy import text
+
+    stmt = text(
         """
-        INSERT INTO mensagens (conversa_id, contato_id, conteudo, tipo, direcao, criado_em)
-        VALUES (:conversa_id, :contato_id, :conteudo, :tipo, :direcao, :criado_em)
-        """,
-        [
-            {
-                "conversa_id": conversa_id,
-                "contato_id": contato_id,
-                "conteudo": mensagem_entrada,
-                "tipo": tipo_msg,
-                "direcao": "entrada",
-                "criado_em": agora,
-            },
-            {
-                "conversa_id": conversa_id,
-                "contato_id": contato_id,
-                "conteudo": resposta_saida,
-                "tipo": "texto",
-                "direcao": "saida",
-                "criado_em": agora,
-            },
-        ],
+        INSERT INTO mensagens_whatsapp
+            (conversa_id, contato_id, conteudo, tipo, direcao, status_entrega, criado_em)
+        VALUES
+            (:conversa_id, :contato_id, :conteudo, :tipo, :direcao, :status_entrega, :criado_em)
+        """
+    )
+    sessao.execute(
+        stmt,
+        {
+            "conversa_id": conversa_id,
+            "contato_id": contato_id,
+            "conteudo": mensagem_entrada,
+            "tipo": tipo_msg,
+            "direcao": "entrada",
+            "status_entrega": "entregue",
+            "criado_em": agora,
+        },
+    )
+    sessao.execute(
+        stmt,
+        {
+            "conversa_id": conversa_id,
+            "contato_id": contato_id,
+            "conteudo": resposta_saida,
+            "tipo": "texto",
+            "direcao": "saida",
+            "status_entrega": "enviada",
+            "criado_em": agora,
+        },
     )
     logger.info(
         "Interacao registrada no banco | conversa_id=%s | contato_id=%s",
