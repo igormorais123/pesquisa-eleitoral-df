@@ -575,6 +575,96 @@ async def health_check():
     return {"status": "healthy"}
 
 
+# TEMPORARY: Debug endpoint para diagnosticar entrevistas travadas
+@app.get("/debug/entrevista-flow")
+async def debug_entrevista_flow():
+    """Testa cada etapa do fluxo de entrevista passo a passo."""
+    import time
+    from app.core.config import configuracoes
+
+    steps = {}
+
+    # Step 1: Config
+    steps["1_config"] = {
+        "provider": getattr(configuracoes, "IA_PROVIDER", "NOT SET"),
+        "has_api_key": bool(configuracoes.CLAUDE_API_KEY),
+        "api_key_prefix": configuracoes.CLAUDE_API_KEY[:12] + "..." if configuracoes.CLAUDE_API_KEY else "EMPTY",
+        "allow_fallback": getattr(configuracoes, "IA_ALLOW_API_FALLBACK", "NOT SET"),
+    }
+
+    # Step 2: DB - buscar eleitor
+    try:
+        from app.servicos.eleitor_helper import obter_eleitores_por_ids_async
+        t0 = time.time()
+        eleitores = await obter_eleitores_por_ids_async(["df-0001"])
+        t1 = time.time()
+        steps["2_db_eleitores"] = {
+            "count": len(eleitores),
+            "time_ms": int((t1 - t0) * 1000),
+            "first_name": eleitores[0].get("nome", "?") if eleitores else "EMPTY",
+            "first_keys": list(eleitores[0].keys())[:10] if eleitores else [],
+        }
+    except Exception as e:
+        steps["2_db_eleitores"] = {"error": f"{type(e).__name__}: {e}"}
+
+    # Step 3: Claude service init
+    try:
+        from app.servicos.claude_servico import obter_claude_servico
+        claude = obter_claude_servico()
+        steps["3_claude_service"] = {
+            "provider": claude.provider,
+            "has_client": claude.client is not None,
+            "has_async_client": claude.async_client is not None,
+            "client_type": type(claude.client).__name__ if claude.client else "None",
+            "async_client_type": type(claude.async_client).__name__ if claude.async_client else "None",
+        }
+    except Exception as e:
+        steps["3_claude_service"] = {"error": f"{type(e).__name__}: {e}"}
+
+    # Step 4: API call test (small)
+    try:
+        t0 = time.time()
+        texto, usage = await claude._call_anthropic_api_async(
+            prompt="Diga apenas 'OK' em uma palavra.",
+            modelo="sonnet",
+            max_tokens=10,
+        )
+        t1 = time.time()
+        steps["4_api_call"] = {
+            "response": texto[:100],
+            "time_ms": int((t1 - t0) * 1000),
+            "tokens_in": usage.get("input_tokens", 0),
+            "tokens_out": usage.get("output_tokens", 0),
+        }
+    except Exception as e:
+        steps["4_api_call"] = {"error": f"{type(e).__name__}: {e}"}
+
+    # Step 5: Full flow test (prompt + API)
+    if steps.get("2_db_eleitores", {}).get("count", 0) > 0 and "error" not in steps.get("4_api_call", {}):
+        try:
+            t0 = time.time()
+            resultado = await claude.processar_resposta(
+                eleitor=eleitores[0],
+                pergunta="Em quem votaria para governador do DF?",
+                tipo_pergunta="aberta",
+            )
+            t1 = time.time()
+            steps["5_full_flow"] = {
+                "time_ms": int((t1 - t0) * 1000),
+                "has_resposta": "resposta_texto" in resultado,
+                "resposta_preview": str(resultado.get("resposta_texto", ""))[:200],
+                "custo": resultado.get("custo_reais", 0),
+                "tokens_in": resultado.get("tokens_entrada", 0),
+                "tokens_out": resultado.get("tokens_saida", 0),
+            }
+        except Exception as e:
+            steps["5_full_flow"] = {"error": f"{type(e).__name__}: {e}"}
+    else:
+        steps["5_full_flow"] = {"skipped": "prerequisite failed"}
+
+    return steps
+
+
 # Registrar rotas
 app.include_router(
     autenticacao.router,
