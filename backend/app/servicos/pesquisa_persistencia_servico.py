@@ -289,7 +289,8 @@ class PesquisaPersistenciaServico:
         resposta_texto: str,
         resposta_valor: Optional[Any] = None,
         fluxo_cognitivo: Optional[dict[str, Any]] = None,
-        modelo_usado: str = "claude-sonnet-4-20250514",
+        # Modelo/alias registrado (pode ser "sonnet" quando executado via Claude Code)
+        modelo_usado: str = "sonnet",
         tokens_entrada: int = 0,
         tokens_saida: int = 0,
         custo: float = 0.0,

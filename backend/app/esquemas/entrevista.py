@@ -157,7 +157,8 @@ class RespostaEleitor(BaseModel):
     fluxo_cognitivo: Optional[FluxoCognitivo] = None
 
     # Metadados
-    modelo_usado: str = "claude-sonnet-4-20250514"
+    # Pode ser alias ("sonnet") quando executado via Claude Code
+    modelo_usado: str = "sonnet"
     tokens_entrada: int = 0
     tokens_saida: int = 0
     custo_reais: float = 0.0

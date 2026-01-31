@@ -68,3 +68,8 @@ const response = await api.get('/eleitores');
 ## Backups
 
 Pasta `backups/` contem versoes anteriores dos arquivos JSON.
+
+## Nota importante (CLDF)
+
+- O backend aplica correcoes incrementais via `data/parlamentares/cldf/overrides.json` (nao edite o legado para ajustes finos).
+- Documentacao: `data/parlamentares/cldf/README.md`

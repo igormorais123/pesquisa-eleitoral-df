@@ -5,7 +5,9 @@ Processa entrevistas usando o modelo cognitivo de 4 etapas.
 """
 
 import json
+import subprocess
 import time
+import shutil
 from typing import Any, Dict, List, Optional
 
 from anthropic import Anthropic
@@ -21,15 +23,22 @@ PRECOS_MODELOS = {
     "claude-3-5-haiku-20241022": {"entrada": 0.25, "saida": 1.25},
 }
 
+# Aliases do Claude Code -> nomes completos (compatibilidade com API)
+ALIASES_MODELOS = {
+    "sonnet": "claude-sonnet-4-5-20250929",
+    "opus": "claude-opus-4-5-20251101",
+}
+
 # Preco base para estimativas (usa Opus 4.5 para seguranca)
 PRECO_ESTIMATIVA = PRECOS_MODELOS["claude-opus-4-5-20251101"]
 
 # Taxa de conversão USD -> BRL
 TAXA_CONVERSAO = 6.0
 
-# Modelos por tipo de tarefa
-MODELO_ENTREVISTAS = "claude-sonnet-4-5-20250929"  # Sonnet 4.5 para todas as entrevistas
-MODELO_INSIGHTS = "claude-opus-4-5-20251101"  # Opus 4.5 para insights e relatorios
+# Modelos por tipo de tarefa (centralizados via .env)
+# Aceita alias do Claude Code (ex.: "sonnet"/"opus") ou nome completo.
+MODELO_ENTREVISTAS = getattr(configuracoes, "IA_MODELO_ENTREVISTAS", "") or "claude-sonnet-4-5-20250929"
+MODELO_INSIGHTS = getattr(configuracoes, "IA_MODELO_INSIGHTS", "") or "claude-opus-4-5-20251101"
 
 
 class ClaudeServico:
@@ -37,13 +46,151 @@ class ClaudeServico:
 
     def __init__(self):
         self.client = None
-        if configuracoes.CLAUDE_API_KEY:
-            self.client = Anthropic(api_key=configuracoes.CLAUDE_API_KEY)
 
-    def _verificar_cliente(self):
-        """Verifica se o cliente está configurado"""
+        # Provider preferencial: Claude Code (assinatura) via CLI
+        # Fallback: Anthropic API via key (quando CLI indisponivel/sem login)
+        self.provider = getattr(configuracoes, "IA_PROVIDER", "anthropic_api")
+
+        if self.provider == "anthropic_api":
+            if configuracoes.CLAUDE_API_KEY:
+                self.client = Anthropic(api_key=configuracoes.CLAUDE_API_KEY)
+
+        # Em modo claude_code, o client pode ser inicializado sob demanda como fallback.
+
+    def _resolver_modelo_api(self, modelo: str) -> str:
+        """Converte alias (sonnet/opus) para modelo completo quando usando API."""
+
+        m = (modelo or "").strip()
+        return ALIASES_MODELOS.get(m, m)
+
+    def _tem_claude_code(self) -> bool:
+        bin_path = getattr(configuracoes, "CLAUDE_CODE_BIN", "claude")
+        return bool(shutil.which(bin_path))
+
+    def _call_claude_code(
+        self,
+        prompt: str,
+        modelo: str,
+        json_schema: Optional[dict[str, Any]] = None,
+        timeout_s: int = 300,
+    ) -> tuple[str, dict[str, Any]]:
+        """Chama Claude Code CLI (assinatura) em modo nao-interativo."""
+
+        bin_path = getattr(configuracoes, "CLAUDE_CODE_BIN", "claude")
+        if not shutil.which(bin_path):
+            raise RuntimeError(
+                f"Claude Code CLI nao encontrado no PATH: '{bin_path}'. Instale/adicione ao PATH ou use IA_PROVIDER=anthropic_api."
+            )
+
+        cmd: list[str] = [
+            bin_path,
+            "-p",
+            "--output-format",
+            "json",
+            "--model",
+            modelo,
+            "--tools",
+            "",
+        ]
+        if json_schema is not None:
+            cmd.extend(["--json-schema", json.dumps(json_schema, ensure_ascii=True)])
+
+        cmd.append(prompt)
+
+        proc = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=timeout_s,
+        )
+
+        stdout = (proc.stdout or "").strip()
+        stderr = (proc.stderr or "").strip()
+
+        # Claude Code retorna um JSON "result" por padrao quando --output-format json
+        try:
+            data = json.loads(stdout) if stdout else {}
+        except json.JSONDecodeError:
+            # Em ultimo caso, devolve o texto bruto
+            return stdout or stderr, {"raw_stdout": stdout, "raw_stderr": stderr}
+
+        if data.get("is_error"):
+            # Ex.: "Invalid API key · Please run /login"
+            raise RuntimeError(data.get("result") or "Erro ao chamar Claude Code")
+
+        return str(data.get("result", "")), (data.get("usage") or {})
+
+    def _call_anthropic_api(
+        self,
+        prompt: str,
+        modelo: str,
+        max_tokens: int,
+    ) -> tuple[str, dict[str, Any]]:
+        self._verificar_cliente(forcar_api=True)
+
+        modelo_resolvido = self._resolver_modelo_api(modelo)
+        response = self.client.messages.create(
+            model=modelo_resolvido,
+            max_tokens=max_tokens,
+            messages=[{"role": "user", "content": prompt}],
+        )
+
+        texto = response.content[0].text
+        usage = {
+            "input_tokens": getattr(response.usage, "input_tokens", 0),
+            "output_tokens": getattr(response.usage, "output_tokens", 0),
+        }
+        return texto, usage
+
+    def _call_modelo(
+        self,
+        prompt: str,
+        modelo: str,
+        max_tokens: int,
+        json_schema: Optional[dict[str, Any]] = None,
+    ) -> tuple[str, dict[str, Any], str]:
+        """Chama o provedor preferencial e faz fallback quando possivel."""
+
+        if self.provider == "claude_code":
+            try:
+                texto, usage = self._call_claude_code(
+                    prompt=prompt, modelo=modelo, json_schema=json_schema
+                )
+                return texto, usage, "claude_code"
+            except Exception:
+                allow_fallback = bool(getattr(configuracoes, "IA_ALLOW_API_FALLBACK", False))
+
+                # Fallback para API SOMENTE se explicitamente habilitado
+                if allow_fallback and configuracoes.CLAUDE_API_KEY:
+                    texto, usage = self._call_anthropic_api(
+                        prompt=prompt, modelo=modelo, max_tokens=max_tokens
+                    )
+                    return texto, usage, "anthropic_api"
+                raise
+
+        texto, usage = self._call_anthropic_api(prompt=prompt, modelo=modelo, max_tokens=max_tokens)
+        return texto, usage, "anthropic_api"
+
+    def _verificar_cliente(self, forcar_api: bool = False):
+        """Verifica se o provedor necessario esta disponivel."""
+
+        if self.provider == "claude_code" and not forcar_api:
+            if not self._tem_claude_code():
+                if configuracoes.CLAUDE_API_KEY:
+                    # Vai cair no fallback da API
+                    return
+                raise ValueError(
+                    "Claude Code CLI indisponivel e CLAUDE_API_KEY nao configurada. "
+                    "Instale/autentique o Claude Code (claude setup-token + /login) ou configure CLAUDE_API_KEY."
+                )
+            return
+
+        # API
         if not self.client:
-            raise ValueError("API Key do Claude não configurada")
+            if configuracoes.CLAUDE_API_KEY:
+                self.client = Anthropic(api_key=configuracoes.CLAUDE_API_KEY)
+            else:
+                raise ValueError("CLAUDE_API_KEY nao configurada (IA_PROVIDER=anthropic_api)")
 
     def _parece_candidato(self, opcao: str) -> bool:
         """Verifica se uma opção parece ser um nome de candidato."""
@@ -90,7 +237,11 @@ class ClaudeServico:
         Returns:
             Custo em reais
         """
-        precos = PRECOS_MODELOS.get(modelo, PRECOS_MODELOS["claude-sonnet-4-20250514"])
+        modelo_resolvido = self._resolver_modelo_api(modelo)
+        precos = PRECOS_MODELOS.get(
+            modelo_resolvido,
+            PRECOS_MODELOS["claude-sonnet-4-20250514"],
+        )
 
         custo_entrada = (tokens_entrada / 1_000_000) * precos["entrada"]
         custo_saida = (tokens_saida / 1_000_000) * precos["saida"]
@@ -464,24 +615,42 @@ Responda APENAS com JSON válido no seguinte formato:
         # Medir tempo
         inicio = time.time()
 
-        # Chamar API
-        response = self.client.messages.create(
-            model=modelo,
+        # JSON Schema (melhora robustez quando rodando via Claude Code CLI)
+        json_schema = {
+            "type": "object",
+            "properties": {
+                "raciocinio": {"type": "object"},
+                "resposta": {
+                    "type": "object",
+                    "properties": {
+                        "texto": {"type": "string"},
+                        "tom": {"type": "string"},
+                        "certeza": {"type": "number"},
+                    },
+                    "required": ["texto"],
+                },
+                "resposta_estruturada": {"type": "object"},
+                "meta": {"type": "object"},
+            },
+            "required": ["resposta"],
+        }
+
+        # Chamar modelo (CLI por padrao; API como fallback)
+        resposta_texto, usage, provedor = self._call_modelo(
+            prompt=prompt,
+            modelo=modelo,
             max_tokens=2000,
-            messages=[{"role": "user", "content": prompt}],
+            json_schema=json_schema,
         )
 
         tempo_ms = int((time.time() - inicio) * 1000)
 
-        # Extrair tokens
-        tokens_entrada = response.usage.input_tokens
-        tokens_saida = response.usage.output_tokens
+        # Extrair tokens (quando disponivel)
+        tokens_entrada = int(usage.get("input_tokens", 0) or 0)
+        tokens_saida = int(usage.get("output_tokens", 0) or 0)
 
-        # Calcular custo
-        custo = self.calcular_custo(tokens_entrada, tokens_saida, modelo)
-
-        # Parsear resposta JSON
-        resposta_texto = response.content[0].text
+        # Calcular custo (CLI = assinatura => custo 0)
+        custo = 0.0 if provedor == "claude_code" else self.calcular_custo(tokens_entrada, tokens_saida, modelo)
         try:
             resposta_json = json.loads(resposta_texto)
         except json.JSONDecodeError:
@@ -569,10 +738,14 @@ Responda APENAS com JSON válido no seguinte formato:
         return {
             "eleitor_id": eleitor.get("id"),
             "eleitor_nome": eleitor.get("nome"),
+            "tipo_respondente": "eleitor",
+            "respondente_id": eleitor.get("id"),
+            "respondente_nome": eleitor.get("nome"),
             "resposta_texto": resposta_final,
             "resposta_estruturada": resposta_estruturada,
             "fluxo_cognitivo": resposta_json,
             "modelo_usado": modelo,
+            "provedor_usado": provedor,
             "tokens_entrada": tokens_entrada,
             "tokens_saida": tokens_saida,
             "custo_reais": custo,
@@ -625,24 +798,40 @@ Responda APENAS com JSON válido no seguinte formato:
         # Medir tempo
         inicio = time.time()
 
-        # Chamar API
-        response = self.client.messages.create(
-            model=modelo,
+        json_schema = {
+            "type": "object",
+            "properties": {
+                "raciocinio": {"type": "object"},
+                "resposta": {
+                    "type": "object",
+                    "properties": {
+                        "texto": {"type": "string"},
+                        "tom": {"type": "string"},
+                        "certeza": {"type": "number"},
+                    },
+                    "required": ["texto"],
+                },
+                "meta": {"type": "object"},
+            },
+            "required": ["resposta"],
+        }
+
+        # Chamar modelo (CLI por padrao; API como fallback)
+        resposta_texto, usage, provedor = self._call_modelo(
+            prompt=prompt,
+            modelo=modelo,
             max_tokens=2000,
-            messages=[{"role": "user", "content": prompt}],
+            json_schema=json_schema,
         )
 
         tempo_ms = int((time.time() - inicio) * 1000)
 
-        # Extrair tokens
-        tokens_entrada = response.usage.input_tokens
-        tokens_saida = response.usage.output_tokens
+        # Extrair tokens (quando disponivel)
+        tokens_entrada = int(usage.get("input_tokens", 0) or 0)
+        tokens_saida = int(usage.get("output_tokens", 0) or 0)
 
-        # Calcular custo
-        custo = self.calcular_custo(tokens_entrada, tokens_saida, modelo)
-
-        # Parsear resposta JSON
-        resposta_texto = response.content[0].text
+        # Calcular custo (CLI = assinatura => custo 0)
+        custo = 0.0 if provedor == "claude_code" else self.calcular_custo(tokens_entrada, tokens_saida, modelo)
         try:
             resposta_json = json.loads(resposta_texto)
         except json.JSONDecodeError:
@@ -680,12 +869,19 @@ Responda APENAS com JSON válido no seguinte formato:
             resposta_final = resposta_texto
 
         return {
+            # Campos legados (compatibilidade)
             "eleitor_id": parlamentar.get("id"),
             "eleitor_nome": parlamentar.get("nome_parlamentar", parlamentar.get("nome")),
-            "tipo_sujeito": "parlamentar",
+
+            # Campos novos (generalizado)
+            "tipo_respondente": "parlamentar",
+            "respondente_id": parlamentar.get("id"),
+            "respondente_nome": parlamentar.get("nome_parlamentar", parlamentar.get("nome")),
+
             "resposta_texto": resposta_final,
             "fluxo_cognitivo": resposta_json,
             "modelo_usado": modelo,
+            "provedor_usado": provedor,
             "tokens_entrada": tokens_entrada,
             "tokens_saida": tokens_saida,
             "custo_reais": custo,
@@ -710,6 +906,28 @@ Responda APENAS com JSON válido no seguinte formato:
             Estimativa detalhada de custos
         """
         total_chamadas = total_perguntas * total_eleitores
+
+        # Se estiver usando Claude Code (assinatura) como provedor, o custo em R$ via API nao se aplica.
+        if self.provider == "claude_code":
+            return {
+                "total_perguntas": total_perguntas,
+                "total_eleitores": total_eleitores,
+                "total_chamadas": total_chamadas,
+                "proporcao_opus": proporcao_opus,
+                "chamadas_opus": int(total_chamadas * proporcao_opus),
+                "chamadas_sonnet": total_chamadas - int(total_chamadas * proporcao_opus),
+                "modelo_entrevistas": MODELO_ENTREVISTAS,
+                "modelo_insights": MODELO_INSIGHTS,
+                "tokens_entrada_estimados": None,
+                "tokens_saida_estimados": None,
+                "custo_estimado": 0.0,
+                "custo_maximo_opus": 0.0,
+                "economia_vs_opus": 0.0,
+                "custo_por_eleitor": 0.0,
+                "custo_por_pergunta": 0.0,
+                "provedor": "claude_code",
+                "observacao": "Estimativa monetaria desabilitada: execucao via assinatura Claude Code.",
+            }
 
         # Tokens médios estimados
         tokens_entrada_medio = 2000

@@ -251,11 +251,17 @@ Respostas mais longas = mais tokens = mais custo. Perguntas abertas geram respos
 2. Verifique se o backend está rodando
 3. Verifique a URL da API no frontend
 
-### "CLAUDE_API_KEY não definida"
+### "IA não configurada" (Claude Code ou API)
 
-1. Verifique o arquivo `.env`
-2. A chave deve começar com `sk-ant-api03-`
-3. Reinicie os containers após alterar
+O projeto suporta 2 modos:
+
+1) **Recomendado (assinatura):** `IA_PROVIDER=claude_code`
+   - requer `claude` instalado e autenticado (`claude setup-token` + `/login`)
+
+2) **Fallback:** `IA_PROVIDER=anthropic_api`
+   - requer `CLAUDE_API_KEY` (começa com `sk-ant-api03-`)
+
+Depois de alterar `.env`, reinicie os containers/servicos.
 
 ### Entrevista não inicia
 

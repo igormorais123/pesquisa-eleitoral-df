@@ -20,6 +20,7 @@ from app.esquemas.entrevista import (
 )
 from app.servicos.claude_servico import obter_claude_servico
 from app.servicos.eleitor_helper import obter_eleitores_por_ids
+from app.servicos.parlamentar_helper import obter_parlamentares_por_ids
 from app.db.session import get_db_context
 from app.servicos.memoria_servico import criar_memoria_servico
 
@@ -118,10 +119,19 @@ class EntrevistaServico:
         for i, p in enumerate(dados.perguntas):
             perguntas.append({"id": f"{entrevista_id}-p{i+1:02d}", **p.model_dump()})
 
+        # Respondentes (modo novo x legado)
+        tipo_respondente = (dados.tipo_respondente.value if dados.tipo_respondente else "eleitor")
+        respondentes_ids = None
+        if dados.tipo_respondente and dados.respondentes_ids:
+            respondentes_ids = list(dados.respondentes_ids)
+        else:
+            respondentes_ids = list(dados.eleitores_ids or [])
+
         # Estimar custo
         claude = obter_claude_servico()
         estimativa = claude.estimar_custo(
-            total_perguntas=len(perguntas), total_eleitores=len(dados.eleitores_ids)
+            total_perguntas=len(perguntas),
+            total_eleitores=len(respondentes_ids),
         )
 
         entrevista = {
@@ -131,8 +141,14 @@ class EntrevistaServico:
             "tipo": dados.tipo.value,
             "instrucao_geral": dados.instrucao_geral,
             "perguntas": perguntas,
-            "eleitores_ids": dados.eleitores_ids,
-            "total_eleitores": len(dados.eleitores_ids),
+            # Respondentes (compatibilidade)
+            "eleitores_ids": list(dados.eleitores_ids or []),
+
+            # Respondentes (novo)
+            "tipo_respondente": tipo_respondente,
+            "respondentes_ids": respondentes_ids,
+
+            "total_eleitores": len(respondentes_ids),
             "status": StatusEntrevista.rascunho.value,
             "progresso": 0,
             "custo_estimado": estimativa["custo_estimado"],
@@ -143,6 +159,7 @@ class EntrevistaServico:
             "iniciado_em": None,
             "pausado_em": None,
             "concluido_em": None,
+            "execucao_meta": None,
         }
 
         self._entrevistas.append(entrevista)
@@ -217,10 +234,18 @@ class EntrevistaServico:
         # Obter eleitores e serviços
         claude = obter_claude_servico()
 
-        eleitores = obter_eleitores_por_ids(entrevista["eleitores_ids"])
+        # Resolver respondentes
+        tipo_respondente = entrevista.get("tipo_respondente") or "eleitor"
+        respondentes_ids = entrevista.get("respondentes_ids") or entrevista.get("eleitores_ids") or []
+
+        if tipo_respondente == "parlamentar":
+            respondentes = obter_parlamentares_por_ids(respondentes_ids)
+        else:
+            respondentes = obter_eleitores_por_ids(respondentes_ids)
+
         perguntas = entrevista["perguntas"]
 
-        total_chamadas = len(eleitores) * len(perguntas)
+        total_chamadas = len(respondentes) * len(perguntas)
         chamadas_feitas = 0
         custo_total = 0.0
         tokens_entrada = 0
@@ -230,8 +255,19 @@ class EntrevistaServico:
         inicio_exec = datetime.now()
 
         try:
+            # Salvar metadados da execucao (para auditoria/reuso)
+            entrevista["execucao_meta"] = {
+                "iniciado_em": entrevista.get("iniciado_em"),
+                "tipo_respondente": tipo_respondente,
+                "total_respondentes": len(respondentes),
+                "total_perguntas": len(perguntas),
+                "modelo_entrevistas": getattr(claude, "selecionar_modelo", lambda *_: None)("", {}, "entrevista"),
+                "provider_preferido": getattr(claude, "provider", None),
+            }
+            self._salvar_dados()
+
             for pergunta in perguntas:
-                for i in range(0, len(eleitores), batch_size):
+                for i in range(0, len(respondentes), batch_size):
                     # Verificar se foi pausado/cancelado
                     estado = self._execucao_ativa.get(entrevista_id, {})
                     if estado.get("cancelado"):
@@ -248,16 +284,24 @@ class EntrevistaServico:
                         raise Exception(f"Limite de custo atingido: R$ {custo_total:.2f}")
 
                     # Processar batch
-                    batch = eleitores[i : i + batch_size]
+                    batch = respondentes[i : i + batch_size]
                     batch_tasks = []
 
-                    for eleitor in batch:
-                        task = claude.processar_resposta(
-                            eleitor=eleitor,
-                            pergunta=pergunta["texto"],
-                            tipo_pergunta=pergunta["tipo"],
-                            opcoes=pergunta.get("opcoes"),
-                        )
+                    for sujeito in batch:
+                        if tipo_respondente == "parlamentar":
+                            task = claude.processar_resposta_parlamentar(
+                                parlamentar=sujeito,
+                                pergunta=pergunta["texto"],
+                                tipo_pergunta=pergunta["tipo"],
+                                opcoes=pergunta.get("opcoes"),
+                            )
+                        else:
+                            task = claude.processar_resposta(
+                                eleitor=sujeito,
+                                pergunta=pergunta["texto"],
+                                tipo_pergunta=pergunta["tipo"],
+                                opcoes=pergunta.get("opcoes"),
+                            )
                         batch_tasks.append(task)
 
                     # Executar batch em paralelo
@@ -276,7 +320,7 @@ class EntrevistaServico:
                         tokens_saida += resultado_dict["tokens_saida"]
 
                         # Identificar eleitor do batch
-                        eleitor_atual = batch[idx] if idx < len(batch) else None
+                        respondente_atual = batch[idx] if idx < len(batch) else None
 
                         # Salvar resposta no JSON
                         resposta = {
@@ -302,7 +346,7 @@ class EntrevistaServico:
                                     resposta_texto=resultado_dict.get("resposta_texto", ""),
                                     resposta_valor=resultado_dict.get("resposta_valor"),
                                     fluxo_cognitivo=resultado_dict.get("fluxo_cognitivo"),
-                                    modelo_usado=resultado_dict.get("modelo_usado", "claude-sonnet-4-5-20250929"),
+                                    modelo_usado=resultado_dict.get("modelo_usado", "sonnet"),
                                     tokens_entrada=resultado_dict.get("tokens_entrada", 0),
                                     tokens_saida=resultado_dict.get("tokens_saida", 0),
                                     custo=resultado_dict.get("custo_reais", 0.0),
@@ -311,12 +355,17 @@ class EntrevistaServico:
                                         "entrevista_id": entrevista_id,
                                         "entrevista_titulo": entrevista.get("titulo"),
                                         "pergunta_ordem": pergunta.get("ordem"),
-                                        "eleitor_perfil": eleitor_atual if eleitor_atual else None,
+                                        "tipo_respondente": resultado_dict.get("tipo_respondente") or tipo_respondente,
+                                        "respondente_id": resultado_dict.get("respondente_id"),
+                                        "respondente_nome": resultado_dict.get("respondente_nome"),
+                                        "respondente_perfil": respondente_atual if respondente_atual else None,
                                     },
-                                    metadados={
-                                        "fonte": "entrevista_servico",
-                                        "versao": "1.0",
-                                    },
+                                     metadados={
+                                         "fonte": "entrevista_servico",
+                                         "versao": "1.1",
+                                         "provedor_usado": resultado_dict.get("provedor_usado"),
+                                         "modelo_usado": resultado_dict.get("modelo_usado"),
+                                     },
                                 )
                         except Exception as mem_err:
                             # Log do erro mas não interrompe a execução

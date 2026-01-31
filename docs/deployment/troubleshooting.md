@@ -93,28 +93,38 @@ ports:
 
 ## Backend/API
 
-### Erro: "CLAUDE_API_KEY não está definida"
+### Erro: "IA não configurada" (Claude Code ou API)
 
-**Sintoma:**
-```
-❌ Erro de configuração: CLAUDE_API_KEY não está definida
+**Sintomas comuns:**
+
+- Backend reclama de `CLAUDE_API_KEY` (quando `IA_PROVIDER=anthropic_api`)
+- Execucao falha com mensagem do Claude Code pedindo `/login` (quando `IA_PROVIDER=claude_code`)
+
+**Solucao (recomendado: Claude Code / assinatura):**
+
+1) No `.env` (raiz ou `backend/.env`):
+
+```env
+IA_PROVIDER=claude_code
 ```
 
-**Solução:**
+2) No ambiente onde o backend roda:
+
 ```bash
-# 1. Verifique se existe no .env
-cat .env | grep CLAUDE_API_KEY
-
-# 2. Se não existir, adicione
-echo 'CLAUDE_API_KEY=sk-ant-api03-sua-chave' >> .env
-
-# 3. Se usando Docker, recrie o container
-docker compose down
-docker compose up -d
-
-# 4. Se rodando manualmente, exporte
-export CLAUDE_API_KEY=sk-ant-api03-sua-chave
+claude --version
+claude setup-token
+claude   # dentro, faça /login
+claude -p "Responda apenas: OK"
 ```
+
+**Solucao (API - somente se necessario):**
+
+```env
+IA_PROVIDER=anthropic_api
+CLAUDE_API_KEY=sk-ant-api03-sua-chave
+```
+
+Nota: por padrao, o projeto evita API. Se voce estiver com `IA_PROVIDER=claude_code` e receber erro pedindo `/login`, autentique o Claude Code no mesmo ambiente onde o backend roda.
 
 ---
 

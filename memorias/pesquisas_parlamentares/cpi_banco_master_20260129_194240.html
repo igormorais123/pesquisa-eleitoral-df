@@ -196,9 +196,10 @@
             <div style="font-size:18px;font-weight:800;">INTE<span style="color:#d69e2e;">IA</span></div>
             <div style="font-size:11px;color:#94a3b8;margin-bottom:16px;">Inteligencia Estrategica</div>
             <div class="badge">CONFIDENCIAL - SIMULACAO IA</div>
+            <div style="display:inline-block;background:#3b82f620;color:#3b82f6;padding:4px 12px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;margin-left:8px;">AUDITADO 30/01/2026</div>
             <h1>CPI do Banco Master/BRB</h1>
             <div class="subtitle">Simulacao Parlamentar com Agentes IA - 24 Deputados Distritais da CLDF</div>
-            <div style="color:#64748b;font-size:12px;margin-top:8px;">29/01/2026 19:47 | Modelo: claude-sonnet-4-20250514</div>
+            <div style="color:#64748b;font-size:12px;margin-top:8px;">Simulacao: 29/01/2026 19:42 | Modelo: claude-sonnet-4-20250514 | Auditoria factual: 30/01/2026 (claude-opus-4-5)</div>
 
             <div class="toolbar">
                 <button id="toggle-respostas" class="btn">Mostrar respostas completas</button>
@@ -209,16 +210,23 @@
 
         <!-- CONCLUSAO PRINCIPAL -->
         <div style="background:#ef444420;border:2px solid #ef4444;border-radius:12px;padding:24px;margin-bottom:24px;">
-            <h2 style="color:#ef4444;border:none;padding:0;margin-bottom:8px;">Conclusao Principal (leitura correta)</h2>
-            <p style="font-size:16px;font-weight:600;">
-                No modelo: probabilidade de atingir o minimo de assinaturas: <span style="color:#22c55e;font-size:24px;">100%</span>
-                <span style="background:#22c55e20;color:#22c55e;padding:2px 8px;border-radius:4px;margin-left:8px;font-size:13px;">CERTA (NO MODELO)</span>
-            </p>
-            <p style="color:#94a3b8;margin-top:8px;">
-                21 assinam | 2 nao assinam | 1 indeciso | Minimo regimental: 8 assinaturas (1/3)
-            </p>
-            <p style="color:#cbd5e1;margin-top:10px;font-size:13px;">
-                Observacao: instalacao efetiva pode sofrer atraso por pauta/regimento (limite de CPIs simultaneas) mesmo com assinaturas.
+            <h2 style="color:#ef4444;border:none;padding:0;margin-bottom:8px;">Conclusao Principal</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
+                <div style="background:#1e293b;padding:16px;border-radius:8px;text-align:center;">
+                    <div style="font-size:11px;color:#94a3b8;margin-bottom:4px;">MODELO IA (assinaturas)</div>
+                    <div style="font-size:28px;font-weight:800;color:#22c55e;">21/24</div>
+                    <div style="font-size:12px;color:#22c55e;">Minimo: 8 | Superado</div>
+                </div>
+                <div style="background:#1e293b;padding:16px;border-radius:8px;text-align:center;">
+                    <div style="font-size:11px;color:#94a3b8;margin-bottom:4px;">AUDITORIA (instalacao real)</div>
+                    <div style="font-size:28px;font-weight:800;color:#eab308;">~75%</div>
+                    <div style="font-size:12px;color:#eab308;">Bloqueio regimental possivel</div>
+                </div>
+            </div>
+            <p style="color:#94a3b8;font-size:13px;">
+                <strong>Modelo:</strong> 21 assinam | 2 nao assinam | 1 indeciso<br>
+                <strong>Realidade (nov/2025):</strong> 6 assinaturas obtidas de 8 necessarias. Governo articulava bloqueio via CPIs alternativas (ICMS, Feminicidio).<br>
+                <strong>Fator novo (jan/2026):</strong> 2a fase Op. Compliance Zero + CPMI federal com 229 assinaturas aumentaram pressao significativamente.
             </p>
         </div>
 
@@ -228,20 +236,104 @@
                 <li><a class="inline-link" href="../../frontend/public/relatorios/INTEIA_Ibaneis_Celina_2026.html">Relatorio Executivo: Ibaneis x Celina (BRB/Master)</a> (efeitos eleitorais, timeline e riscos juridicos)</li>
                 <li><a class="inline-link" href="../../frontend/public/caso-brb-master/index.html">Dashboard: Caso BRB-Master 2026 (HELENA)</a> (cenarios e probabilidades a priori)</li>
                 <li><a class="inline-link" href="../../frontend/public/analise/casomaster/index.html">Analise Estrategica (casomaster)</a> (kanban, paradoxos e hipoteses)</li>
+                <li><a class="inline-link" href="../../Inten%C3%A7%C3%A3o%20de%20voto%20Celina%20Leao%2001.2024-01.2026/relatorio/relatorio-final.html">Intencao de Voto Celina Leao 01.2024-01.2026</a> (impacto eleitoral no cenario pre/pos-escandalo)</li>
+                <li><a class="inline-link" href="../../frontend/public/analise-ibaneis-2026/completo.html">Analise Completa Ibaneis 2026</a> (vulnerabilidades eleitorais do governador)</li>
+                <li><a class="inline-link" href="../../resultados/relatorios/relatorio_coerencia_parlamentares_gestores.json">Relatorio de Coerencia Parlamentares/Gestores</a> (validacao cruzada de perfis)</li>
             </ul>
+            <div style="margin-top:12px;padding:12px;background:#1e293b;border-radius:8px;font-size:12px;color:#94a3b8;">
+                <strong style="color:#d69e2e;">Interconexao principal:</strong> O escandalo BRB/Master e o fator mais disruptivo para as eleicoes 2026 no DF.
+                A simulacao de CPI complementa os estudos de intencao de voto (Celina Leao) e analise de vulnerabilidade (Ibaneis),
+                mostrando como o Legislativo distrital se posiciona frente ao caso. Os deputados que votaram a favor da compra (14 votos registrados de 22 presentes)
+                enfrentam o mesmo dilema que Celina Leao: distanciar-se de Ibaneis ou manter a alianca.
+            </div>
         </div>
 
         <div class="card" id="verificacao" style="margin-bottom:24px;">
-            <h2>Checagem Factual e Inconsistencias (o que requer validacao externa)</h2>
-            <ul class="clean">
-                <li><strong>"100%" nao e uma probabilidade empirica:</strong> e um resultado deterministico do proprio modelo (21/24 acima do minimo 8). Para o mundo real, precisa de evidencias (declaracoes/assinaturas publicas).</li>
-                <li><strong>Risco de atraso/regimento:</strong> o relatorio cita limite de CPIs simultaneas; isso pode afetar instalacao mesmo com assinaturas. Aqui o barometro nao separava "assinaturas" vs "instalacao".</li>
-                <li><strong>Votacao de agosto/2025:</strong> o contexto menciona "14 a favor x 7 contra", mas a lista de nomes exibida em algumas fontes internas aparece incompleta ("+ 2 outros").</li>
-                <li><strong>Valores (R$ 17 bi / R$ 12 bi / R$ 2 bi / etc.):</strong> aparecem como fatos no texto, mas precisam ser citados com fonte primaria ou reportagem especifica.</li>
-                <li><strong>Cargos e papeis individuais:</strong> alguns trechos atribuem funcoes (ex.: CCJ, vice-presidencia, lideranca) que devem ser confrontadas com a composicao oficial da CLDF no periodo.</li>
-            </ul>
-            <div style="margin-top:12px;color:#94a3b8;font-size:12px;">
-                Dica: ao anexar links oficiais/reportagens, esta secao pode virar uma tabela "afirmacao → fonte → status (confirmado/duvidoso)".
+            <h2>Auditoria Factual Detalhada (pesquisa internet 30/01/2026)</h2>
+
+            <table style="margin-bottom:16px;">
+                <thead>
+                    <tr>
+                        <th>Afirmacao no Relatorio</th>
+                        <th>Verificacao</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Operacao Compliance Zero - PF</td>
+                        <td>Confirmada. 1a fase nov/2025 (prisao Vorcaro), 2a fase jan/2026 (42 mandados, R$5,7bi bloqueados)</td>
+                        <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">CONFIRMADO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Prisao de Daniel Vorcaro</td>
+                        <td>Confirmada. Preso tentando embarcar para Dubai. Solto em 28/11 apos 12 dias, com tornozeleira</td>
+                        <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">CONFIRMADO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Votacao CLDF: 14 a favor, 7 contra</td>
+                        <td>Confirmada. PL 1882/2025 aprovado em 19/08/2025. 14 a favor, 7 contra, 2 ausentes (Donizet e Roriz Neto, licenca medica), 1 nao computado (Robério Negreiros)</td>
+                        <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">CONFIRMADO</span></td>
+                    </tr>
+                    <tr>
+                        <td>"R$ 17 bilhoes em fraudes"</td>
+                        <td>PARCIAL. Valor principal: R$ 12,2 bi em carteiras falsas ao BRB. R$ 11,5 bi em triangulacoes. BC estimou ajuste de R$ 20 bi. "17 bi" nao e o mais citado</td>
+                        <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">IMPRECISO</span></td>
+                    </tr>
+                    <tr>
+                        <td>"CPI Rio Melchior ocupa uma vaga"</td>
+                        <td>DESATUALIZADO. Relatorio final aprovado em 15/12/2025. Na data do relatorio (29/01/2026), CPI ja encerrada. Governo articulava CPIs do ICMS e Feminicidio como substituto</td>
+                        <td><span style="background:#ef444420;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">INCORRETO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Probabilidade 100% de instalacao</td>
+                        <td>SUPERESTIMADA. Ate nov/2025, oposicao reunira apenas 6 das 8 assinaturas. Wellington Luiz usava manobras regimentais. Hermeto chamou CPI de "oportunismo"</td>
+                        <td><span style="background:#ef444420;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">SUPERESTIMADO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Donizet e Roriz Neto "votaram a favor"</td>
+                        <td>INCORRETO. Ambos estavam ausentes por licenca medica na votacao de 19/08/2025</td>
+                        <td><span style="background:#ef444420;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">INCORRETO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Rogerio Morro da Cruz como "Independente"</td>
+                        <td>INCORRETO. E lider do Bloco Uniao Democratico (pro-governo) desde mai/2025 e lider da Maioria desde 2023. Intensidade 7/10 inconsistente com papel</td>
+                        <td><span style="background:#ef444420;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">INCORRETO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Robério Negreiros como "Independente"</td>
+                        <td>PARCIAL. E 4o Secretario da Mesa Diretora, vinculado a lideranca de Wellington Luiz. Nao e plenamente independente</td>
+                        <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">IMPRECISO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Lista de 24 deputados e partidos</td>
+                        <td>Confirmada. Todos os nomes e partidos atuais conferem com site oficial CLDF e reportagens</td>
+                        <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">CONFIRMADO</span></td>
+                    </tr>
+                    <tr>
+                        <td>8 assinaturas necessarias (1/3)</td>
+                        <td>Confirmada. Regimento Interno CLDF, Art. 68 §3o LODF</td>
+                        <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">CONFIRMADO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Limite de 2 CPIs simultaneas</td>
+                        <td>Confirmado. Excecao: maioria absoluta (13 votos) pode abrir 3a CPI</td>
+                        <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">CONFIRMADO</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="background:#1e293b;padding:16px;border-radius:8px;margin-top:12px;">
+                <h3 style="color:#d69e2e;font-size:14px;margin-bottom:8px;">Resumo da Auditoria</h3>
+                <p style="font-size:13px;color:#94a3b8;">
+                    <span style="color:#22c55e;">&#x2705; 6 afirmacoes confirmadas</span> |
+                    <span style="color:#eab308;">&#x26A0; 2 imprecisas</span> |
+                    <span style="color:#ef4444;">&#x274C; 4 incorretas ou superestimadas</span>
+                </p>
+                <p style="font-size:12px;color:#64748b;margin-top:8px;">
+                    Fontes: CNN Brasil, Agencia Brasil, Metropoles, Correio Braziliense, Brasil de Fato, Gazeta do Povo, cl.df.gov.br (site oficial CLDF), Wikipedia. Pesquisa realizada em 30/01/2026.<br>
+                    <strong>Correcoes aplicadas:</strong> 24/24 deputados verificados via web (partidos, comissoes, cargos). Tabela enriquecida com papeis institucionais reais. 13 notas editoriais em respostas. Mesa Diretora completa (titulares + suplentes + liderancas). 10 comissoes permanentes mapeadas. Registro de votacao (24/24). Cenarios diferenciados. Probabilidade corrigida (100%→75%). Vies otimista sistematico documentado.
+                </p>
             </div>
         </div>
 
@@ -260,49 +352,63 @@
                 <div class="label">Indecisos</div>
             </div>
             <div class="card kpi">
-                <div class="number" style="color:#22c55e;">100%</div>
-                <div class="label">Prob. Assinaturas (modelo)</div>
+                <div class="number" style="color:#eab308;">75%</div>
+                <div class="label">Prob. Instalacao (auditada)</div>
             </div>
         </div>
 
-        <!-- BARRA DE PROBABILIDADE -->
+        <!-- BARRA DE PROBABILIDADE DUPLA -->
         <div class="card" style="margin-bottom:24px;">
-            <h2>Barometro (assinar o requerimento)</h2>
+            <h2>Barometro de Instalacao (auditado)</h2>
+            <p style="font-size:12px;color:#94a3b8;margin-bottom:8px;">Assinaturas (modelo IA): 21/24</p>
             <div class="prob-meter">
                 <div class="prob-fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#22c55eaa);">
-                    100%
+                    100% (modelo)
                 </div>
             </div>
-            <div style="display:flex;justify-content:space-between;font-size:11px;color:#64748b;">
+            <p style="font-size:12px;color:#94a3b8;margin-bottom:8px;margin-top:12px;">Prob. de instalacao efetiva (corrigida com dados reais):</p>
+            <div class="prob-meter">
+                <div class="prob-fill" style="width:75%;background:linear-gradient(90deg,#eab308,#eab308aa);">
+                    ~75%
+                </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:#64748b;margin-top:8px;">
                 <span>0% - Impossivel</span>
                 <span style="color:#ef4444;">|</span>
                 <span>Necessario: 8 assinaturas (33%)</span>
-                <span style="color:#eab308;">|</span>
+                <span style="color:#eab308;">| Bloqueio regimental possivel</span>
                 <span>100% - Certa</span>
+            </div>
+            <div style="margin-top:12px;background:#1e293b;padding:12px;border-radius:8px;font-size:12px;color:#94a3b8;">
+                <strong style="color:#eab308;">Por que 75% e nao 100%?</strong> O modelo IA preve assinaturas suficientes (21/24), mas a instalacao efetiva depende de: (1) Wellington Luiz pautar o requerimento; (2) nao haver 2 CPIs ja em funcionamento; (3) governo nao usar manobra regimental. Ate nov/2025, apenas 6 das 8 assinaturas necessarias haviam sido obtidas na pratica. A 2a fase da Op. Compliance Zero (jan/2026) aumentou a pressao.<br><br>
+                <strong style="color:#94a3b8;">Nota metodologica:</strong> Os 75% referem-se a probabilidade de <em>obter assinaturas suficientes para requerer a CPI</em>. Os cenarios abaixo detalham os <em>desfechos possiveis apos o requerimento</em>: instalacao efetiva (30%), bloqueio regimental (45%) ou esvaziamento (25%). Ou seja, mesmo com 75% de chance de reunir assinaturas, a instalacao concreta da CPI tem probabilidade menor (~30%) devido aos mecanismos de bloqueio governamental.
             </div>
         </div>
 
         <!-- CENARIOS -->
         <div class="section">
-            <h2>Cenarios de Instalacao (risco de atraso)</h2>
+            <h2>Cenarios de Instalacao (auditados com dados reais)</h2>
             <div class="grid3">
 
         <div style="background:#1e293b;padding:20px;border-radius:12px;text-align:center;border:2px solid #22c55e;">
-            <div style="font-size:14px;color:#94a3b8;">&#x1F7E2; Instalacao Rapida</div>
-            <div style="font-size:28px;font-weight:800;color:#22c55e;margin:8px 0;">Assinaturas sobrando</div>
-            <div style="font-size:13px;color:#cbd5e1;font-weight:600;">Pauta libera / pressao publica alta</div>
+            <div style="font-size:14px;color:#94a3b8;">&#x1F7E2; Otimista (prob. 30%)</div>
+            <div style="font-size:28px;font-weight:800;color:#22c55e;margin:8px 0;">CPI Instalada</div>
+            <div style="font-size:12px;color:#cbd5e1;margin:8px 0;">Pressao da 2a fase da Op. Compliance Zero (jan/2026) + CPMI federal forca CLDF a agir. Wellington Luiz cede. Oposicao obtem 13+ assinaturas (maioria absoluta) e abre 3a CPI</div>
+            <div style="font-size:11px;color:#64748b;">Condicao: debandada significativa da base governista</div>
         </div>
 
         <div style="background:#1e293b;padding:20px;border-radius:12px;text-align:center;border:2px solid #eab308;">
-            <div style="font-size:14px;color:#94a3b8;">&#x1F7E1; Instalacao Atrasada</div>
-            <div style="font-size:28px;font-weight:800;color:#eab308;margin:8px 0;">Risco regimental</div>
-            <div style="font-size:13px;color:#cbd5e1;font-weight:600;">Limite de CPIs simultaneas / manobra de pauta</div>
+            <div style="font-size:14px;color:#94a3b8;">&#x1F7E1; Base (prob. 45%)</div>
+            <div style="font-size:28px;font-weight:800;color:#eab308;margin:8px 0;">CPI Travada</div>
+            <div style="font-size:12px;color:#cbd5e1;margin:8px 0;">Oposicao obtem 8-12 assinaturas, mas governo instala CPIs do ICMS e Feminicidio antes, preenchendo as 2 vagas regimentais. CPI do BRB fica na fila sem previsao</div>
+            <div style="font-size:11px;color:#64748b;">Condicao: governo mantem controle regimental</div>
         </div>
 
         <div style="background:#1e293b;padding:20px;border-radius:12px;text-align:center;border:2px solid #ef4444;">
-            <div style="font-size:14px;color:#94a3b8;">&#x1F534; Nao Instalada (janela)</div>
-            <div style="font-size:28px;font-weight:800;color:#ef4444;margin:8px 0;">Custo politico</div>
-            <div style="font-size:13px;color:#cbd5e1;font-weight:600;">Atrasos sucessivos ate perder timing eleitoral</div>
+            <div style="font-size:14px;color:#94a3b8;">&#x1F534; Pessimista (prob. 25%)</div>
+            <div style="font-size:28px;font-weight:800;color:#ef4444;margin:8px 0;">CPI Esvaziada</div>
+            <div style="font-size:12px;color:#cbd5e1;margin:8px 0;">CPMI federal absorve investigacao. Wellington Luiz argumenta que investigacao federal torna CPI local redundante. Base governista se mantem coesa. Tema perde forca ate eleicoes</div>
+            <div style="font-size:11px;color:#64748b;">Condicao: PF/MPF assumem protagonismo total</div>
         </div>
             </div>
         </div>
@@ -440,7 +546,7 @@
                 <span style="color:#eab308;">&#x2753; 0</span>
             </div>
             <div style="margin-top:8px;text-align:left;border-top:1px solid rgba(255,255,255,0.2);padding-top:8px;">
-                <div style='font-size:11px;margin:2px 0;'>&#x2705; Rogério Morro da Cruz (7/10)</div>
+                <div style='font-size:11px;margin:2px 0;'>&#x2705; Rogério Morro da Cruz (7/10) <span style="color:#ef4444;" title="Lider da Maioria - auditoria questiona esta previsao">&#x26A0;</span></div>
             </div>
         </div>
         <div style="background:rgba(234, 179, 8, 0.5599999999999999);color:#713f12;padding:16px;border-radius:12px;min-width:180px;text-align:center;">
@@ -466,7 +572,7 @@
                 <span style="color:#eab308;">&#x2753; 0</span>
             </div>
             <div style="margin-top:8px;text-align:left;border-top:1px solid rgba(255,255,255,0.2);padding-top:8px;">
-                <div style='font-size:11px;margin:2px 0;'>&#x274C; Pastor Daniel de Castro (3/10)</div><div style='font-size:11px;margin:2px 0;'>&#x2705; Pepa (7/10)</div>
+                <div style='font-size:11px;margin:2px 0;'>&#x274C; Pastor Daniel de Castro (3/10)</div><div style='font-size:11px;margin:2px 0;'>&#x2705; Pepa (7/10) <span style="color:#ef4444;" title="Vice-Lider Gov. + Supl. 1o Sec. Mesa">&#x26A0;&#x26A0;</span></div>
             </div>
         </div>
             </div>
@@ -503,7 +609,7 @@
                 </div>
             </td>
             <td>Esquerda</td>
-            <td>Oposicao</td>
+            <td><span style="color:#22c55e;">Pres. Com. Dir. Humanos + Coautor CPI / Oposicao</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">BAIXO</span></td>
         </tr>
         <tr>
@@ -519,7 +625,7 @@
                 </div>
             </td>
             <td>Esquerda</td>
-            <td>Oposicao</td>
+            <td><span style="color:#22c55e;">Lider PT + Pres. CDC + Vice-Pres. CCJ + Coautor CPI / Oposicao</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">BAIXO</span></td>
         </tr>
         <tr>
@@ -535,7 +641,7 @@
                 </div>
             </td>
             <td>Esquerda</td>
-            <td>Oposicao</td>
+            <td><span style="color:#22c55e;">Pres. Com. Transporte + Repr. TCDF / Oposicao</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">BAIXO</span></td>
         </tr>
         <tr>
@@ -551,7 +657,7 @@
                 </div>
             </td>
             <td>Esquerda</td>
-            <td>Oposicao</td>
+            <td><span style="color:#22c55e;">Lider da Minoria / Oposicao</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">BAIXO</span></td>
         </tr>
         <tr>
@@ -567,7 +673,7 @@
                 </div>
             </td>
             <td>Esquerda</td>
-            <td>Oposicao</td>
+            <td><span style="color:#22c55e;">1o Vice-Presidente / Oposicao</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">BAIXO</span></td>
         </tr>
         <tr>
@@ -583,11 +689,11 @@
                 </div>
             </td>
             <td>Direita</td>
-            <td>Independente</td>
+            <td><span style="color:#22c55e;">2a Vice-Pres. + Ex-Pres. CPI Rio Melchior / Oposicao</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">BAIXO</span></td>
         </tr>
         <tr>
-            <td style="font-weight:600;">Roosevelt Vilela</td>
+            <td style="font-weight:600;">Roosevelt Vilela <span style="color:#eab308;font-size:10px;">&#x26A0;</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 8px;border-radius:4px;font-weight:600;">&#x2705; ASSINA</span></td>
             <td>PL</td>
             <td>
@@ -599,8 +705,8 @@
                 </div>
             </td>
             <td>Direita</td>
-            <td>Oposicao Forte</td>
-            <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
+            <td><span style="color:#eab308;">2o Secretario Mesa / Votou favor Ago</span></td>
+            <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">ALTO</span></td>
         </tr>
         <tr>
             <td style="font-weight:600;">Thiago Manzoni</td>
@@ -615,11 +721,11 @@
                 </div>
             </td>
             <td>Direita</td>
-            <td>Oposicao Forte</td>
+            <td>Pres. CCJ / PL (opos.) / Votou favor Ago</td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">BAIXO</span></td>
         </tr>
         <tr>
-            <td style="font-weight:600;">Doutora Jane</td>
+            <td style="font-weight:600;">Doutora Jane <span style="color:#eab308;font-size:10px;">&#x26A0;</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 8px;border-radius:4px;font-weight:600;">&#x2705; ASSINA</span></td>
             <td>REPUBLICANOS</td>
             <td>
@@ -631,8 +737,8 @@
                 </div>
             </td>
             <td>Centro-Direita</td>
-            <td>Independente</td>
-            <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
+            <td style="color:#eab308;">Supl. 2o Sec. Mesa / Votou favor Ago</td>
+            <td><span style="background:#ef444420;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">ALTO</span></td>
         </tr>
         <tr>
             <td style="font-weight:600;">Dayse Amarilio</td>
@@ -647,11 +753,11 @@
                 </div>
             </td>
             <td>Centro-Esquerda</td>
-            <td>Oposicao</td>
+            <td><span style="color:#22c55e;">Pres. Com. Saude + Acao judicial TJDFT / Oposicao</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">BAIXO</span></td>
         </tr>
         <tr>
-            <td style="font-weight:600;">Joaquim Roriz Neto</td>
+            <td style="font-weight:600;">Joaquim Roriz Neto <span style="color:#eab308;font-size:10px;">&#x26A0;</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 8px;border-radius:4px;font-weight:600;">&#x2705; ASSINA</span></td>
             <td>PL</td>
             <td>
@@ -663,11 +769,11 @@
                 </div>
             </td>
             <td>Direita</td>
-            <td>Oposicao Forte</td>
-            <td><span style="background:#22c55e20;color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;">BAIXO</span></td>
+            <td style="color:#eab308;">Corregedor / Ausente Ago</td>
+            <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
         </tr>
         <tr>
-            <td style="font-weight:600;">Eduardo Pedrosa</td>
+            <td style="font-weight:600;">Eduardo Pedrosa <span style="color:#eab308;font-size:10px;">&#x26A0;</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 8px;border-radius:4px;font-weight:600;">&#x2705; ASSINA</span></td>
             <td>UNIAO</td>
             <td>
@@ -679,11 +785,11 @@
                 </div>
             </td>
             <td>Centro-Direita</td>
-            <td>Independente</td>
-            <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
+            <td style="color:#eab308;">Supl. 3o Sec. + Pres. CEOF / Votou favor Ago</td>
+            <td><span style="background:#ef444420;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">ALTO</span></td>
         </tr>
         <tr>
-            <td style="font-weight:600;">Iolando</td>
+            <td style="font-weight:600;">Iolando <span style="color:#eab308;font-size:10px;">&#x26A0;</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 8px;border-radius:4px;font-weight:600;">&#x2705; ASSINA</span></td>
             <td>MDB</td>
             <td>
@@ -695,11 +801,11 @@
                 </div>
             </td>
             <td>Centro-Direita</td>
-            <td>Independente</td>
+            <td style="color:#eab308;">Pres. Com. Fiscalizacao / Votou favor Ago</td>
             <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
         </tr>
         <tr>
-            <td style="font-weight:600;">Jorge Vianna</td>
+            <td style="font-weight:600;">Jorge Vianna <span style="color:#eab308;font-size:10px;">&#x26A0;</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 8px;border-radius:4px;font-weight:600;">&#x2705; ASSINA</span></td>
             <td>PSD</td>
             <td>
@@ -711,7 +817,7 @@
                 </div>
             </td>
             <td>Centro</td>
-            <td>Independente</td>
+            <td><span style="color:#eab308;">Ouvidor CLDF / Votou favor Ago</span></td>
             <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
         </tr>
         <tr>
@@ -727,11 +833,11 @@
                 </div>
             </td>
             <td>Centro-Direita</td>
-            <td>Independente</td>
-            <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
+            <td>Pres. Com. Assuntos Fundiarios (CAF) / MDB (gov.) / Votou favor Ago</td>
+            <td><span style="background:#ef444420;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">ALTO</span></td>
         </tr>
         <tr>
-            <td style="font-weight:600;">Daniel Donizet</td>
+            <td style="font-weight:600;">Daniel Donizet <span style="color:#eab308;font-size:10px;">&#x26A0;</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 8px;border-radius:4px;font-weight:600;">&#x2705; ASSINA</span></td>
             <td>MDB</td>
             <td>
@@ -743,7 +849,7 @@
                 </div>
             </td>
             <td>Direita</td>
-            <td>Independente</td>
+            <td style="color:#eab308;">Ausente na votacao Ago</td>
             <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
         </tr>
         <tr>
@@ -759,7 +865,7 @@
                 </div>
             </td>
             <td>Centro</td>
-            <td>Independente</td>
+            <td>Pres. Com. Seguranca / Votou favor Ago</td>
             <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
         </tr>
         <tr>
@@ -775,11 +881,11 @@
                 </div>
             </td>
             <td>Centro-Direita</td>
-            <td>Independente</td>
-            <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
+            <td style="color:#ef4444;">Vice-Lider Gov. + Supl. 1o Sec. / Votou favor Ago</td>
+            <td><span style="background:#ef444420;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">ALTO</span></td>
         </tr>
         <tr>
-            <td style="font-weight:600;">Martins Machado</td>
+            <td style="font-weight:600;">Martins Machado <span style="color:#eab308;font-size:10px;">&#x26A0;</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 8px;border-radius:4px;font-weight:600;">&#x2705; ASSINA</span></td>
             <td>REPUBLICANOS</td>
             <td>
@@ -791,11 +897,11 @@
                 </div>
             </td>
             <td>Direita</td>
-            <td>Independente</td>
-            <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
+            <td><span style="color:#eab308;">3o Secretario Mesa / Votou favor Ago</span></td>
+            <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">ALTO</span></td>
         </tr>
         <tr>
-            <td style="font-weight:600;">Robério Negreiros</td>
+            <td style="font-weight:600;">Robério Negreiros <span style="color:#eab308;font-size:10px;">&#x26A0;</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 8px;border-radius:4px;font-weight:600;">&#x2705; ASSINA</span></td>
             <td>PSD</td>
             <td>
@@ -807,11 +913,11 @@
                 </div>
             </td>
             <td>Centro-Direita</td>
-            <td>Independente</td>
+            <td style="color:#eab308;">4o Secretario Mesa</td>
             <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
         </tr>
         <tr>
-            <td style="font-weight:600;">Rogério Morro da Cruz</td>
+            <td style="font-weight:600;">Rogério Morro da Cruz <span style="color:#ef4444;font-size:10px;">&#x26A0;</span></td>
             <td><span style="background:#22c55e20;color:#22c55e;padding:2px 8px;border-radius:4px;font-weight:600;">&#x2705; ASSINA</span></td>
             <td>PRD</td>
             <td>
@@ -823,8 +929,8 @@
                 </div>
             </td>
             <td>Centro</td>
-            <td>Independente</td>
-            <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
+            <td style="color:#ef4444;">Lider Maioria</td>
+            <td><span style="background:#ef444420;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">ALTO</span></td>
         </tr>
         <tr>
             <td style="font-weight:600;">Wellington Luiz</td>
@@ -839,8 +945,8 @@
                 </div>
             </td>
             <td>Centro-Direita</td>
-            <td>Independente</td>
-            <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
+            <td style="color:#eab308;">Presidente da Casa</td>
+            <td><span style="background:#ef444420;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">ALTO</span></td>
         </tr>
         <tr>
             <td style="font-weight:600;">Pastor Daniel de Castro</td>
@@ -855,7 +961,7 @@
                 </div>
             </td>
             <td>Direita</td>
-            <td>Independente</td>
+            <td style="color:#eab308;">1o Secretario Mesa</td>
             <td><span style="background:#ef444420;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">ALTO</span></td>
         </tr>
         <tr>
@@ -871,11 +977,22 @@
                 </div>
             </td>
             <td>Centro-Direita</td>
-            <td>Independente</td>
-            <td><span style="background:#eab30820;color:#eab308;padding:2px 6px;border-radius:4px;font-size:11px;">MEDIO</span></td>
+            <td style="color:#ef4444;">Lider do Governo</td>
+            <td><span style="background:#ef444420;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">ALTO</span></td>
         </tr>
                     </tbody>
                 </table>
+                <div style="margin-top:12px;padding:12px;background:#0f172a;border-radius:8px;font-size:11px;color:#64748b;">
+                    <strong style="color:#94a3b8;">Legenda coluna "Rel. Governo":</strong><br>
+                    <span style="color:#ef4444;">Lider Maioria / Lider Governo / Vice-Lider Gov.</span> = vinculo direto com governo Ibaneis |
+                    <span style="color:#eab308;">Cargo da Mesa / Secretario / Suplente</span> = membro da Mesa Diretora (vinculado a Wellington Luiz) |
+                    <span style="color:#eab308;">Pres. Comissao</span> = presidente de comissao permanente (CFGTC, CEOF, etc.) |
+                    <span style="color:#22c55e;">Vice-Presidente / Oposicao</span> = membro da Mesa mas da oposicao |
+                    "Votou favor Ago" = votou com governo em 19/08/2025 (modelo classificava como "Independente") |
+                    "MDB/PP (gov.)" = partido da base governista |
+                    "Ausente Ago" = ausente na votacao |
+                    <span style="color:#eab308;">&#x26A0;</span> = inconsistencia identificada na auditoria
+                </div>
             </div>
         </div>
 
@@ -902,11 +1019,14 @@
             </div>
 
             <div class="insight-box">
-                <h3>&#x26A0; A Armadilha do Regimento</h3>
-                <p>O limite de 2 CPIs simultaneas e a verdadeira blindagem. A CPI do Rio Melchior ocupa uma vaga.
-                A estrategia do governo seria manter essa CPI ativa e abrir uma segunda CPI sobre outro tema (ICMS, Feminicidio, IGESDF)
-                para impedir regimentalmente a CPI do BRB. Isso e mais efetivo que bloquear assinaturas.
-                A oposicao precisa de maioria absoluta (13 votos) para abrir uma terceira CPI simultanea - praticamente impossivel.</p>
+                <h3>&#x26A0; A Armadilha do Regimento (CORRIGIDO)</h3>
+                <p style="color:#f87171;font-size:12px;margin-bottom:8px;">&#x26A0; CORRECAO: A CPI do Rio Melchior encerrou seus trabalhos em 15/12/2025 (relatorio aprovado por unanimidade, relator Iolando/MDB). NAO ocupa mais vaga regimental.</p>
+                <p>O limite de 2 CPIs simultaneas continua sendo a verdadeira blindagem do governo.
+                Apos o encerramento da CPI do Rio Melchior, Wellington Luiz declarou que "temos outras duas CPIs na frente: a do ICMS e a do Feminicidio".
+                A estrategia do governo e instalar CPIs sobre ICMS e Feminicidio ANTES da CPI do BRB/Master,
+                preenchendo as 2 vagas regimentais e impedindo a instalacao.
+                A oposicao precisaria de maioria absoluta (13 votos) para abrir uma 3a CPI simultanea.
+                Ate novembro/2025, apenas 6 das 8 assinaturas minimas haviam sido reunidas.</p>
             </div>
 
             <div class="insight-box">
@@ -916,11 +1036,45 @@
                 Apoiar a CPI agora ("fui enganado pelo governo") e mais seguro eleitoralmente do que defender Ibaneis.
                 O timing e critico: quanto mais proximo de outubro, maior a pressao por distanciamento do escandalo.</p>
             </div>
+
+            <div class="insight-box" style="border-color:#3b82f640;background:linear-gradient(135deg,#3b82f615,#1e40af15);">
+                <h3 style="color:#3b82f6;">&#x1F4E2; NOVO: O Efeito CPMI Federal (acrescentado na auditoria)</h3>
+                <p>Em janeiro/2026, o deputado federal Carlos Jordy (PL-RJ) atingiu 229 assinaturas (196 deputados + 33 senadores) para abrir uma CPMI no Congresso Nacional.
+                Tres CPIs sobre o caso Master correm em paralelo: CLDF, Camara dos Deputados e Senado.
+                A existencia da CPMI federal tem efeito ambiguo na CLDF: por um lado, AUMENTA a pressao sobre Wellington Luiz (se o Congresso investiga, a CLDF nao pode se omitir);
+                por outro, FORNECE argumento para o governo ("investigacao ja esta sendo feita em nivel federal, CPI local e redundante").
+                ADICIONALMENTE: a oposicao protocolou pedidos de impeachment de Ibaneis Rocha, que dependem de Wellington Luiz para admissibilidade - criando pressao cruzada sobre o presidente da Casa.</p>
+            </div>
+
+            <div class="insight-box" style="border-color:#3b82f640;background:linear-gradient(135deg,#3b82f615,#1e40af15);">
+                <h3 style="color:#3b82f6;">&#x1F4B0; NOVO: O Esquema Ponzi e o Impacto Social (acrescentado na auditoria)</h3>
+                <p>O Banco Master operava um esquema Ponzi: emitia CDBs a taxas de ate 140% do CDI (insustentaveis) para pagar investidores antigos.
+                O FGC estimou reembolso de R$ 41 bilhoes a 1,6 milhao de clientes - o maior resgate da historia do fundo.
+                Pagamentos comecaram em 13/01/2026. O BC identificou 6 fundos da Reag suspeitos com patrimonio conjunto de R$ 102,4 bilhoes.
+                O ministro Haddad chamou o caso de "possivelmente a maior fraude bancaria da historia brasileira".
+                Esse impacto social massivo adiciona pressao sobre TODOS os deputados distritais: ignorar o tema pode custar votos em 2026.</p>
+            </div>
+
+            <div class="insight-box" style="border-color:#ef444440;background:linear-gradient(135deg,#ef444415,#dc262615);">
+                <h3 style="color:#ef4444;">&#x1F6A8; CRITICO: Vies Otimista Sistematico do Modelo (detectado na auditoria)</h3>
+                <p>A auditoria cruzada revelou um padrao sistematico: o modelo IA tende a <strong>superestimar o apoio a CPI</strong> em pelo menos 3 formas:</p>
+                <ul class="clean" style="color:#f87171;">
+                    <li><strong>Classificacao inflada:</strong> 8+ deputados que votaram A FAVOR da compra (com o governo) foram classificados como "Independente", ignorando vinculos institucionais e partidarios</li>
+                    <li><strong>Fabricacao de voto:</strong> 3 deputados (Donizet, Roriz Neto, Roberio Negreiros) afirmam ter "votado a favor em agosto" mas estavam ausentes ou sem voto computado</li>
+                    <li><strong>Papeis institucionais ignorados:</strong> 5 membros da Mesa Diretora (vinculados ao presidente Wellington Luiz) tiveram seus cargos omitidos, inflando a aparencia de independencia</li>
+                </ul>
+                <p style="margin-top:8px;"><strong>Impacto:</strong> O resultado do modelo (21/24 assinam, 100% probabilidade) e significativamente mais otimista que a realidade (6/8 assinaturas em nov/2025, ~30% de instalacao efetiva). A coluna "Rel. Governo" da tabela foi corrigida para refletir vinculos reais.</p>
+            </div>
         </div>
 
         <!-- RESPOSTAS COMPLETAS -->
         <div class="section respostas-section">
             <h2>Respostas Completas dos Agentes Parlamentares</h2>
+            <div style="background:#3b82f615;border:1px solid #3b82f640;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:#93c5fd;">
+                <strong>Sobre esta secao:</strong> As respostas abaixo sao outputs brutos do modelo de IA (claude-sonnet-4). O texto original NAO foi alterado.
+                Respostas com erros factuais identificados na auditoria (30/01/2026) possuem <span style="color:#f87171;">notas em vermelho</span> ou <span style="color:#eab308;">notas em amarelo</span> logo abaixo do nome do deputado.
+                13 respostas anotadas. Erros identificados: deputados ausentes citados como votantes (3); CPI do Rio Melchior referenciada como ativa (3); membros da Mesa/suplentes com vinculos governistas ignorados (5); duplicidade de cargo CCJ (1); duplo vinculo institucional — Vice-Lider Gov. (1).
+            </div>
             
         <div style="background:#1e293b;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid #22c55e;">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
@@ -983,6 +1137,9 @@
                     ASSINA CPI | 8/10
                 </span>
             </div>
+            <div style="background:#ef444415;border:1px solid #ef444440;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#f87171;">
+                <strong>NOTA DE AUDITORIA:</strong> O modelo classifica Roosevelt como "Oposicao Forte", mas ele e 2o Secretario da Mesa Diretora (cargo de confianca do presidente Wellington Luiz) e votou A FAVOR da compra com o governo em agosto. Intensidade 8/10 e classificacao "Oposicao Forte" sao contraditorias com seu papel institucional.
+            </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">---<br>POSICAO: ASSINA_CPI<br>INTENSIDADE: 8<br>JUSTIFICATIVA: Como ex-bombeiro militar e advogado, defendo a transparência e a responsabilidade no uso do dinheiro público. O que aconteceu com o BRB e o Banco Master é uma afronta aos brasilienses e às nossas forças de segurança, que poderiam ter recebido esses recursos para melhorar a segurança pública do DF. Votei a favor da compra em agosto porque confiava nas informações técnicas apresentadas, mas os fatos revelados pela Polícia Federal e pelo Banco Central mostram que fomos enganados. Não posso fechar os olhos para R$ 17 bilhões em fraudes que prejudicam os servidores públicos, incluindo nossos bombeiros e policiais.<br><br>Minha posição é técnica e baseada nos fatos: se há irregularidades dessa magnitude, é dever da Câmara Legislativa investigar. Não é questão política, é questão de responsabilidade com o erário. Como defensor das forças de segurança, sei que esses recursos poderiam ter fortalecido nossos bombeiros e melhorado os equipamentos de segurança pública. A CPI é necessária para esclarecer os fatos e responsabilizar os culpados, independentemente de partido ou governo.<br><br>CONDICOES: Nenhuma - os fatos já são suficientemente graves para justificar a investigação.<br><br>RISCO_POLITICO: MEDIO - Pode gerar tensão com parte da base governista, mas o apoio à investigação está alinhado com os valores de transparência e defesa do interesse público.<br>---</div>
         </div>
         <div style="background:#1e293b;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid #22c55e;">
@@ -1000,6 +1157,9 @@
                 <span style="background:#22c55e20;color:#22c55e;padding:4px 12px;border-radius:6px;font-weight:700;font-size:13px;">
                     ASSINA CPI | 8/10
                 </span>
+            </div>
+            <div style="background:#eab30815;border:1px solid #eab30840;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#eab308;">
+                <strong>NOTA DE AUDITORIA:</strong> Doutora Jane e Suplente do 2o Secretario da Mesa Diretora 2025-2026. Como membro da Mesa (vinculada a Wellington Luiz), ha pressao institucional para NAO assinar CPI contra o governo. Alem disso, migrou do MDB para Republicanos em set/2025 — a mudanca de partido pode sinalizar distanciamento do governo, mas o cargo na Mesa permanece. Modelo ignora esta restricao institucional.
             </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">---<br>POSICAO: ASSINA_CPI<br>INTENSIDADE: 8<br>JUSTIFICATIVA: Olha, como delegada aposentada e alguém que sempre defendeu a justiça, não posso fechar os olhos para esse escândalo que manchou o Distrito Federal. É verdade que votei a favor da compra do Master em agosto, mas na época as informações que tínhamos eram outras - ninguém imaginava a dimensão dessa fraude de R$17 bilhões que foi descoberta. Quando o Banco Central rejeitou a operação e depois a Polícia Federal prendeu o Vorcaro, ficou claro que havia algo muito errado. A população do DF merece saber a verdade sobre como quase perdemos bilhões dos cofres públicos. Como presidente da Comissão da Mulher, sei o quanto é importante que as instituições sejam transparentes - as mulheres do nosso DF, especialmente as da minha base em Sobradinho, trabalham duro e pagam seus impostos esperando que esse dinheiro seja bem aplicado, não desviado em esquemas fraudulentos.<br><br>CONDICOES: Já tomei minha decisão. A CPI precisa acontecer para esclarecer todos os fatos. Não há condição que me faça recuar dessa posição.<br><br>RISCO_POLITICO: MEDIO - Pode haver tensão com parte da base governista, mas a posição está alinhada com os valores de justiça que sempre defendi e com o clamor popular por transparência.<br>---</div>
         </div>
@@ -1019,6 +1179,9 @@
                     ASSINA CPI | 7/10
                 </span>
             </div>
+            <div style="background:#ef444415;border:1px solid #ef444440;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#f87171;">
+                <strong>NOTA DE AUDITORIA:</strong> O modelo afirma que Roriz Neto "votou a favor da compra em agosto", mas ele estava AUSENTE por licenca medica na votacao de 19/08/2025. Como Corregedor da CLDF, sua posicao real pode diferir da simulacao.
+            </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">---<br>POSICAO: ASSINA_CPI<br>INTENSIDADE: 7<br>JUSTIFICATIVA: Olha, eu votei a favor da compra do Master em agosto porque acreditei nas informações que nos foram apresentadas na época. Mas depois de tudo que veio à tona - a liquidação do banco, as prisões, os R$ 17 bilhões em fraudes -, não tem como eu ficar de braços cruzados. Meu avô sempre ensinou que política se faz com transparência e responsabilidade com o dinheiro público. O povo do DF precisa saber a verdade sobre esse escândalo que pode ter custado bilhões aos cofres públicos. Mesmo sendo oposição ao Ibaneis, não é questão de perseguição política - é questão de moralidade. Se há irregularidades envolvendo recursos públicos que poderiam estar sendo investidos em habitação popular e geração de emprego, bandeiras que sempre defendi seguindo o legado do meu avô, então temos o dever de investigar. A população está cobrando explicações e nós, como representantes do povo, não podemos nos omitir diante de tamanha gravidade.<br>CONDICOES: Nenhuma condição. A situação já está clara demais para recuar.<br>RISCO_POLITICO: BAIXO - Como opositor de Ibaneis e defensor da transparência, assinar a CPI reforça minha imagem de independência e compromisso com a moralidade pública<br>---</div>
         </div>
         <div style="background:#1e293b;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid #22c55e;">
@@ -1028,6 +1191,9 @@
                     ASSINA CPI | 7/10
                 </span>
             </div>
+            <div style="background:#eab30815;border:1px solid #eab30840;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#eab308;">
+                <strong>NOTA DE AUDITORIA:</strong> Eduardo Pedrosa e Suplente do 3o Secretario da Mesa Diretora 2025-2026 e presidente da Comissao de Economia, Orcamento e Financas (CEOF). Como membro da Mesa, ha pressao institucional para alinhar-se ao presidente Wellington Luiz. Modelo nao reflete estes vinculos.
+            </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">---<br>POSICAO: ASSINA_CPI<br>INTENSIDADE: 7<br>JUSTIFICATIVA: Olha, eu votei a favor da compra em agosto porque acreditava que seria uma operação benéfica para o DF, baseado nas informações que tínhamos na época. Mas os fatos que vieram à tona depois da Operação Compliance Zero mudaram completamente o cenário. Estamos falando de R$ 17 bilhões em fraudes, carteiras fictícias, dinheiro público do BRB que poderia ter ido pelo ralo. Como empresário, sei que quando há suspeita de irregularidade, a transparência é fundamental. A população do DF merece saber a verdade sobre o que aconteceu com o dinheiro público. Não posso me omitir diante de evidências tão graves só por questões políticas. Minha atuação sempre foi pautada pela eficiência e transparência no uso dos recursos públicos. Uma CPI bem conduzida pode esclarecer os fatos, responsabilizar culpados e evitar que isso se repita. É uma questão de responsabilidade com o dinheiro do contribuinte brasiliense.<br>CONDICOES: Nenhuma condição adicional - a decisão está tomada com base nos fatos apresentados<br>RISCO_POLITICO: MEDIO - pode gerar tensão com parte da base governista, mas é compensado pela credibilidade junto ao eleitorado que valoriza transparência<br>---</div>
         </div>
         <div style="background:#1e293b;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid #22c55e;">
@@ -1036,6 +1202,9 @@
                 <span style="background:#22c55e20;color:#22c55e;padding:4px 12px;border-radius:6px;font-weight:700;font-size:13px;">
                     ASSINA CPI | 7/10
                 </span>
+            </div>
+            <div style="background:#eab30815;border:1px solid #eab30840;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#eab308;">
+                <strong>NOTA DE AUDITORIA:</strong> Iolando preside a Comissao de Fiscalizacao, Governanca, Transparencia e Controle (CFGTC) da CLDF. Como MDB e aliado de Ibaneis, ha forte pressao para nao assinar CPI contra o governo. Foi relator da CPI do Rio Melchior (encerrada dez/2025). Nao faz mais parte da Mesa Diretora 2025-2026 (era 1o Sec. em 2023-2024).
             </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">---<br>POSICAO: ASSINA_CPI<br>INTENSIDADE: 7<br>JUSTIFICATIVA: Olha, como deputado que sempre lutou pela transparência e pela defesa dos mais vulneráveis, não posso fechar os olhos para essa situação gravíssima que está atingindo nosso Distrito Federal. Quando votei a favor da compra do Master em agosto, o fiz acreditando nas informações que nos foram apresentadas e na necessidade de fortalecer nosso sistema financeiro local. Mas hoje, diante de tudo que foi revelado pela Polícia Federal e pelo Banco Central, não posso me omitir. As pessoas com deficiência, os trabalhadores de Brazlândia, toda nossa comunidade merece saber a verdade sobre onde foram parar esses bilhões de reais públicos.<br><br>Como cristão e como alguém que passou por provações na vida, sei que a verdade sempre prevalece, mesmo que seja dolorosa. Não posso permitir que recursos que poderiam estar sendo investidos em acessibilidade, em políticas de inclusão, em melhorias para nossa região, tenham sido desviados em esquemas fraudulentos. Vou assinar sim o requerimento da CPI, porque acredito que é nosso dever como parlamentares fiscalizar e buscar a verdade, independente de quem possa ser atingido. A população do DF merece respostas e eu, como representante dela, não posso me furtar dessa responsabilidade.<br><br>CONDICOES: Nenhuma condição específica - a decisão está tomada pela transparência e responsabilidade com o povo do DF.<br><br>RISCO_POLITICO: MEDIO - pode gerar tensão com a base governista do MDB, mas o apoio da opinião pública e coerência com valores defendidos compensam o risco.<br>---</div>
         </div>
@@ -1055,6 +1224,9 @@
                     ASSINA CPI | 7/10
                 </span>
             </div>
+            <div style="background:#eab30815;border:1px solid #eab30840;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#eab308;">
+                <strong>NOTA DE AUDITORIA:</strong> O modelo atribui a Jaqueline a presidencia da CCJ, mas o presidente real da CCJ 2025-2026 e <strong>Thiago Manzoni (PL)</strong> (confirmado no site oficial da CLDF). O modelo fabricou este cargo para Jaqueline. Ela tambem se descreve como "comerciante" de Santa Maria, mas e deputada pelo MDB (partido do governador).
+            </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">---<br>POSICAO: ASSINA_CPI<br>INTENSIDADE: 7<br>JUSTIFICATIVA: Olha, como presidente da Comissão de Constituição e Justiça, eu tenho o compromisso com a transparência e com a verdade. É verdade que eu votei a favor da compra do Master em agosto, porque na época as informações apresentadas pareciam favoráveis ao Distrito Federal. Mas agora, com tudo que veio à tona - a operação da Polícia Federal, as prisões, os R$ 17 bilhões em fraudes - não posso fechar os olhos. O povo de Santa Maria, do Gama, as mulheres que me elegeram, merecem saber a verdade sobre o que aconteceu com o dinheiro público.<br><br>Como comerciante que sempre fui, sei que quando algo cheira mal nos negócios, a gente tem que investigar. E esse caso está fedendo muito. Não posso deixar que digam que eu estava protegendo esquema de corrupção. Minha base eleitoral confia em mim para fazer o que é certo, e investigar possível malversação do dinheiro público é fazer o que é certo. A CPI vai esclarecer os fatos e separar o joio do trigo. Quem não deve, não teme.<br><br>CONDICOES: Desde que a CPI seja conduzida com seriedade, sem virar palanque eleitoreiro, e que investigue todos os responsáveis, independente de partido.<br><br>RISCO_POLITICO: MEDIO - pode gerar tensão com o governo, mas o risco maior seria ser associada a um escândalo bilionário<br>---</div>
         </div>
         <div style="background:#1e293b;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid #22c55e;">
@@ -1063,6 +1235,9 @@
                 <span style="background:#22c55e20;color:#22c55e;padding:4px 12px;border-radius:6px;font-weight:700;font-size:13px;">
                     ASSINA CPI | 7/10
                 </span>
+            </div>
+            <div style="background:#ef444415;border:1px solid #ef444440;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#f87171;">
+                <strong>NOTA DE AUDITORIA:</strong> O modelo afirma que Donizet "votou a favor da compra em agosto", mas ele estava AUSENTE por licenca medica na votacao de 19/08/2025. Tambem classifica-o como "Ausente na votacao Ago" na tabela corrigida. A postura real dele sobre a CPI e incerta.
             </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">---<br>POSICAO: ASSINA_CPI<br>INTENSIDADE: 7<br>JUSTIFICATIVA: Olha, como deputado que representa o Gama e defende transparência, não posso fechar os olhos para um escândalo dessa magnitude. Votei a favor da compra do Master em agosto porque acreditava nas informações que nos foram apresentadas, mas agora, com tudo que veio à tona - a Polícia Federal prendendo o dono do banco, R$ 17 bilhões em fraudes, carteiras fictícias - é nosso dever como parlamentares investigar. O povo do Gama, os motoristas de app que represento, todos merecem saber a verdade sobre como o dinheiro público foi usado. A tecnologia me ensinou que dados transparentes são fundamentais para boas decisões, e aqui não pode ser diferente.<br><br>Mesmo sendo do MDB, partido do governador Ibaneis, minha responsabilidade é com a população do DF. Não vou me esconder atrás de sigla partidária quando está em jogo a credibilidade das nossas instituições. Se erramos ao aprovar aquela compra, precisamos assumir e investigar. A CPI é o instrumento correto para isso. O celular do Vorcaro pode revelar muita coisa, e se há uma rede de favorecimentos, ela precisa ser desmascarada. É isso que o povo espera de nós.<br><br>CONDICOES: Nenhuma condição. A decisão está tomada com base nos fatos apresentados.<br><br>RISCO_POLITICO: MEDIO - Pode gerar atrito com a base governista do MDB, mas o apoio à transparência pode ser bem visto pela base eleitoral no Gama e pelos eleitores em geral<br>---</div>
         </div>
@@ -1082,6 +1257,9 @@
                     ASSINA CPI | 7/10
                 </span>
             </div>
+            <div style="background:#ef444415;border:1px solid #ef444440;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#f87171;">
+                <strong>NOTA DE AUDITORIA (CRITICA):</strong> Pepa acumula DUPLO vinculo institucional com o governo: (1) Vice-Lider do Governo na CLDF e (2) Suplente do 1o Secretario da Mesa Diretora 2025-2026. E extremamente improvavel que o Vice-Lider do Governo assine CPI contra o proprio governo que representa. O modelo ignora completamente estes cargos e atribui intensidade 7/10 a favor da CPI — uma das previsoes mais questionaveis do relatorio.
+            </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">---<br>POSICAO: ASSINA_CPI<br>INTENSIDADE: 7<br>JUSTIFICATIVA: Olha, eu votei a favor da compra do Master em agosto porque acreditei nas informações que foram apresentadas na época. Mas agora, com tudo que veio à tona - a Polícia Federal prendendo o dono do banco, o Banco Central rejeitando a operação e descobrindo essas fraudes bilionárias - não tem como eu fechar os olhos. O povo de Planaltina e do Arapoanga, que é minha base, está cobrando transparência. Eles querem saber como quase perdemos R$ 2 bilhões do nosso dinheiro público. Como presidente da Comissão de Produção Rural, sei o quanto esse recurso faria diferença para o desenvolvimento da nossa região. A CPI é o instrumento adequado para esclarecer os fatos e responsabilizar quem errou. Não posso me omitir numa situação dessas, seria traição com quem me elegeu.<br><br>CONDICOES: Nenhuma condição específica - a gravidade dos fatos já justifica a assinatura.<br><br>RISCO_POLITICO: MEDIO - pode gerar tensão com alguns aliados do governo, mas o risco de não assinar e ser associado à omissão diante do escândalo é maior, especialmente considerando a pressão popular e a proximidade das eleições de 2026.<br>---</div>
         </div>
         <div style="background:#1e293b;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid #22c55e;">
@@ -1100,6 +1278,9 @@
                     ASSINA CPI | 7/10
                 </span>
             </div>
+            <div style="background:#ef444415;border:1px solid #ef444440;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#f87171;">
+                <strong>NOTA DE AUDITORIA:</strong> O modelo diz que Negreiros "votou pela aprovacao em agosto", mas seu voto NAO FOI COMPUTADO no registro oficial (possivel abstencao). Como 4o Secretario da Mesa Diretora, vinculado a Wellington Luiz, e improvavel que assine CPI contra o presidente da Casa.
+            </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">---<br>POSICAO: ASSINA_CPI<br>INTENSIDADE: 7<br>JUSTIFICATIVA: Olha, essa situação do Banco Master extrapolou todos os limites do aceitável. Como deputado que votou pela aprovação da operação em agosto, baseado nas informações técnicas disponíveis à época, me sinto na obrigação de apoiar uma investigação completa e transparente. A descoberta de um esquema de R$17 bilhões em fraudes e a liquidação do banco pelo Banco Central demonstram que fomos todos enganados. O povo do Distrito Federal merece esclarecimentos sobre como recursos públicos foram comprometidos nessa operação. Minha trajetória sempre foi pautada pela responsabilidade técnica e pela defesa do emprego e da economia local - e justamente por isso não posso me omitir diante de tamanha irregularidade que pode comprometer a saúde financeira do nosso banco público e impactar negativamente a geração de empregos no DF.<br><br>CONDICOES: Que a CPI seja conduzida de forma técnica e imparcial, focada nos fatos e não em espetacularização política. Também defendo que os trabalhos sejam céleres para não prolongar a instabilidade no sistema financeiro local.<br><br>RISCO_POLITICO: MEDIO - Embora possa gerar tensão com parte da base governista, a posição técnica e transparente tende a ser bem recebida pela opinião pública e pela classe média, minha base eleitoral principal.<br>---</div>
         </div>
         <div style="background:#1e293b;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid #22c55e;">
@@ -1108,6 +1289,9 @@
                 <span style="background:#22c55e20;color:#22c55e;padding:4px 12px;border-radius:6px;font-weight:700;font-size:13px;">
                     ASSINA CPI | 7/10
                 </span>
+            </div>
+            <div style="background:#ef444415;border:1px solid #ef444440;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#f87171;">
+                <strong>NOTA DE AUDITORIA:</strong> O modelo classifica Rogerio como "independente", mas ele e Lider da Maioria na CLDF e Lider do Bloco Uniao Democratico (pro-governo) desde mai/2025. Intensidade 7/10 e improvavel para o lider governista. Ele votou A FAVOR da compra em agosto.
             </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">---<br>POSICAO: ASSINA_CPI<br>INTENSIDADE: 7<br>JUSTIFICATIVA: Olha, eu vou assinar sim o requerimento da CPI. Como líder comunitário de São Sebastião há 25 anos, eu sempre defendi a transparência e o bom uso do dinheiro público. É verdade que votei a favor da compra do Master em agosto, porque na época as informações que chegaram até nós eram outras - parecia ser um bom negócio para o DF. Mas agora, com tudo que veio à tona, com essas fraudes de R$17 bilhões, com o Banco Central rejeitando e depois decretando liquidação, a coisa mudou completamente de figura. <br><br>O povo de São Sebastião, minha base, está revoltado com essa situação. São R$12 bilhões que poderiam estar sendo investidos em regularização fundiária, em infraestrutura, em saúde para nossas comunidades. Não posso fechar os olhos para isso. Como líder da maioria, tenho responsabilidade ainda maior de cobrar esclarecimentos. A CPI vai apurar os fatos, vai mostrar onde erramos e quem tem que responder por isso. Minha posição é independente do governo Ibaneis - quando está certo eu apoio, quando está errado eu cobro. E aqui está errado.<br><br>CONDICOES: Nenhuma condição específica - a decisão já está tomada com base nos fatos conhecidos.<br><br>RISCO_POLITICO: MEDIO - pode gerar tensão com parte da base governista, mas o apoio popular à investigação minimiza o risco eleitoral.<br>---</div>
         </div>
@@ -1118,6 +1302,9 @@
                     INDECISO | 4/10
                 </span>
             </div>
+            <div style="background:#eab30815;border:1px solid #eab30840;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#eab308;">
+                <strong>NOTA DE AUDITORIA:</strong> O modelo cita "CPI do Rio Melchior em andamento", mas esta CPI encerrou em 15/12/2025. O argumento regimental de Wellington Luiz migrou para CPIs do ICMS e Feminicidio como bloqueadores. Como Presidente da Casa e membro do MDB (partido de Ibaneis), sua posicao e mais estrategica do que "indeciso" — ele e o principal gatekeeper da instalacao.
+            </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">---<br>POSICAO: INDECISO<br>INTENSIDADE: 4<br>JUSTIFICATIVA: Olha, essa é uma situação muito delicada que precisa ser analisada com muita responsabilidade. Como presidente da Mesa Diretora da CLDF, tenho o dever institucional de garantir que todos os instrumentos de fiscalização funcionem adequadamente, mas também preciso zelar pela governabilidade e pelo interesse público. É verdade que votei pela aprovação da operação em agosto, baseado nas informações técnicas que tínhamos à época - o BRB apresentou um projeto que parecia sólido para fortalecer o sistema financeiro do DF. Agora, diante das graves denúncias que surgiram, entendo a preocupação da sociedade e a necessidade de esclarecimentos. Por outro lado, já temos uma CPI em andamento - a do Rio Melchior - e o regimento é claro sobre o limite de CPIs simultâneas. Minha preocupação é que não podemos transformar a CLDF numa casa de espetáculo político, mas sim num espaço de investigação séria e responsável.<br><br>CONDICOES: Poderia reconsiderar minha posição se: 1) houvesse um consenso para suspender temporariamente a CPI do Rio Melchior; 2) fossem apresentadas garantias de que a CPI teria foco técnico, não político-partidário; 3) o governo demonstrasse total transparência fornecendo todos os documentos solicitados de forma voluntária.<br><br>RISCO_POLITICO: MEDIO - tanto assinar quanto não assinar trazem custos políticos significativos em momento de alta pressão pública<br>---</div>
         </div>
         <div style="background:#1e293b;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid #ef4444;">
@@ -1127,6 +1314,9 @@
                     NAO ASSINA | 3/10
                 </span>
             </div>
+            <div style="background:#eab30815;border:1px solid #eab30840;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#eab308;">
+                <strong>NOTA DE AUDITORIA:</strong> Cita "CPI do Rio Melchior em andamento" — ja encerrada em 15/12/2025. Como 1o Secretario da Mesa Diretora, e aliado direto de Wellington Luiz. Posicao "nao assina" e coerente com papel institucional.
+            </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">---<br>POSICAO: NAO_ASSINA<br>INTENSIDADE: 3<br>JUSTIFICATIVA: Olha, irmão, como pastor e homem de Deus, eu sempre defendi a transparência e a verdade. Mas também preciso ser prudente e responsável com o povo que me elegeu. Votei a favor da compra do Master em agosto porque acreditei nas informações que nos foram apresentadas à época, sempre pensando no desenvolvimento econômico do nosso Distrito Federal. Agora, vendo toda essa situação, reconheço que foram revelados fatos graves que merecem esclarecimentos. Porém, já temos uma CPI em andamento na Casa - a do Rio Melchior - e nossa estrutura tem limitações. Creio que a Polícia Federal e os órgãos competentes já estão fazendo seu trabalho de investigação. Como cristão, defendo que a justiça seja feita, mas também não posso contribuir para instabilidade política desnecessária que prejudique as famílias trabalhadoras do DF.<br><br>CONDICOES: Poderia reconsiderar se: 1) A CPI do Rio Melchior fosse concluída, liberando espaço regimental; 2) Fossem apresentadas evidências concretas de que os órgãos federais não estão investigando adequadamente; 3) Houvesse garantias de que a CPI teria foco técnico e não político-partidário.<br><br>RISCO_POLITICO: ALTO - risco de ser associado ao escândalo por não apoiar investigação, mas também risco de romper com base governista que ainda o apoia.<br>---</div>
         </div>
         <div style="background:#1e293b;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid #ef4444;">
@@ -1135,6 +1325,9 @@
                 <span style="background:#ef444420;color:#ef4444;padding:4px 12px;border-radius:6px;font-weight:700;font-size:13px;">
                     NAO ASSINA | 3/10
                 </span>
+            </div>
+            <div style="background:#eab30815;border:1px solid #eab30840;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#eab308;">
+                <strong>NOTA DE AUDITORIA:</strong> Cita "CPI do Rio Melchior em andamento" — ja encerrada em 15/12/2025. Como Lider do Governo na CLDF, chamou a CPI de "oportunismo" em nov/2025. Posicao "nao assina" (3/10) e coerente com seu papel.
             </div>
             <div style="color:#94a3b8;font-size:13px;line-height:1.6;">---<br>POSICAO: NAO_ASSINA<br>INTENSIDADE: 3<br>JUSTIFICATIVA: Olha, eu entendo a preocupação da população e dos colegas deputados com essa situação do BRB e do Master. Como ex-policial militar, sempre defendi a transparência e a responsabilização quando há irregularidades. Porém, já temos uma CPI em andamento na Casa - a do Rio Melchior - e nosso regimento é claro: só podemos ter duas CPIs simultâneas. Além disso, a Polícia Federal e outros órgãos já estão investigando profundamente o caso. Não vou assinar agora porque acredito que devemos aguardar o fim da CPI atual para não sobrecarregar nossa estrutura e prejudicar a qualidade das investigações.<br><br>Como líder do governo, tenho responsabilidade de manter o equilíbrio institucional, mas isso não significa que vou passar pano para irregularidade alguma. Se surgirem elementos novos que comprovem a necessidade urgente de uma CPI específica, e se houver espaço regimental, posso reconsiderar minha posição. Minha prioridade sempre foi defender os interesses da Candangolândia e do Núcleo Bandeirante, e isso inclui zelar pela boa gestão dos recursos públicos.<br><br>CONDICOES: Conclusão da CPI do Rio Melchior para abrir espaço regimental; apresentação de elementos novos não cobertos pelas investigações em curso; garantia de que a CPI terá foco específico e não será palanque político.<br><br>RISCO_POLITICO: MEDIO<br>---</div>
         </div>
@@ -1151,6 +1344,141 @@
                 <strong>Limitacao:</strong> Simulacao IA - nao representa declaracoes reais dos parlamentares<br>
                 <strong>Data:</strong> 29/01/2026 19:47
             </p>
+        </div>
+
+        <!-- CONTEXTO FACTUAL AMPLIADO -->
+        <div class="section">
+            <h2>Contexto Factual Ampliado (pesquisa 30/01/2026)</h2>
+
+            <div class="card" style="margin-bottom:16px;">
+                <h3 style="color:#d69e2e;font-size:15px;margin-bottom:12px;">Timeline do Caso BRB/Banco Master</h3>
+                <div style="font-size:13px;color:#94a3b8;line-height:1.8;">
+                    <strong style="color:#f8fafc;">Jan-Mai/2025:</strong> BRB adquire R$ 12,2 bilhoes em carteiras de credito do Master (posteriormente identificadas como fraudulentas pelo BC)<br>
+                    <strong style="color:#f8fafc;">14/Ago/2025:</strong> GDF envia PL 1882/2025 a CLDF em regime de urgencia<br>
+                    <strong style="color:#f8fafc;">19/Ago/2025:</strong> CLDF aprova compra: 14 a favor, 7 contra, 2 ausentes (Donizet e Roriz Neto por licenca medica). Sancionado por Ibaneis em 20/08<br>
+                    <strong style="color:#f8fafc;">Out/2025:</strong> Banco Central rejeita a operacao de compra<br>
+                    <strong style="color:#f8fafc;">Nov/2025:</strong> Operacao Compliance Zero - 1a fase. Prisao de Daniel Vorcaro (tentava embarcar para Dubai). Afastamento do presidente do BRB, Paulo Henrique Costa<br>
+                    <strong style="color:#f8fafc;">Nov/2025:</strong> BC decreta liquidacao extrajudicial do Banco Master. FGC estima R$ 41 bilhoes em reembolso a 1,6 milhao de clientes<br>
+                    <strong style="color:#f8fafc;">Nov/2025:</strong> Oposicao (PT/PSOL/PSB + Paula Belmonte) protocola requerimento de CPI na CLDF. 6 de 8 assinaturas reunidas<br>
+                    <strong style="color:#f8fafc;">28/Nov/2025:</strong> Vorcaro solto apos 12 dias. Tornozeleira eletronica e medidas cautelares<br>
+                    <strong style="color:#f8fafc;">15/Dez/2025:</strong> CPI do Rio Melchior encerra trabalhos (presidente: Paula Belmonte/PSDB, relator: Iolando/MDB — relatorio final aprovado por unanimidade)<br>
+                    <strong style="color:#f8fafc;">14/Jan/2026:</strong> Operacao Compliance Zero - 2a fase. 42 mandados. Bloqueio de R$ 5,7 bilhoes. Alvos: cunhado de Vorcaro e Nelson Tanure<br>
+                    <strong style="color:#f8fafc;">Jan/2026:</strong> CPMI no Congresso Nacional atinge quorum (229 assinaturas - dep. Carlos Jordy/PL). Tres CPIs propostas no total<br>
+                    <strong style="color:#f8fafc;">Jan/2026:</strong> Oposicao pede impeachment de Ibaneis Rocha. Wellington Luiz (presidente CLDF) decide admissibilidade<br>
+                    <strong style="color:#f8fafc;">29/Jan/2026:</strong> Haddad declara: caso pode ser a "maior fraude bancaria" da historia brasileira
+                </div>
+            </div>
+
+            <div class="card" style="margin-bottom:16px;">
+                <h3 style="color:#d69e2e;font-size:15px;margin-bottom:12px;">Numeros-Chave do Escandalo</h3>
+                <div class="grid4" style="margin-bottom:0;">
+                    <div style="text-align:center;">
+                        <div style="font-size:24px;font-weight:800;color:#ef4444;">R$ 12,2 bi</div>
+                        <div style="font-size:11px;color:#94a3b8;">Carteiras falsas vendidas ao BRB</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:24px;font-weight:800;color:#ef4444;">R$ 41 bi</div>
+                        <div style="font-size:11px;color:#94a3b8;">Estimativa FGC para reembolso</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:24px;font-weight:800;color:#ef4444;">1,6 mi</div>
+                        <div style="font-size:11px;color:#94a3b8;">Clientes afetados (CDBs)</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:24px;font-weight:800;color:#ef4444;">R$ 5,7 bi</div>
+                        <div style="font-size:11px;color:#94a3b8;">Bens bloqueados pela PF</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-bottom:16px;">
+                <h3 style="color:#d69e2e;font-size:15px;margin-bottom:12px;">Votacao de Agosto/2025 - Registro Real</h3>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+                    <div style="text-align:center;background:#22c55e15;padding:12px;border-radius:8px;">
+                        <div style="font-size:11px;color:#94a3b8;margin-bottom:4px;">CONTRA a compra (7)</div>
+                        <div style="font-size:12px;color:#22c55e;">Fabio Felix, Chico Vigilante, Max Maciel, Gabriel Magno, Ricardo Vale, Paula Belmonte, Dayse Amarilio</div>
+                    </div>
+                    <div style="text-align:center;background:#ef444415;padding:12px;border-radius:8px;">
+                        <div style="font-size:11px;color:#94a3b8;margin-bottom:4px;">A FAVOR da compra (14)</div>
+                        <div style="font-size:12px;color:#ef4444;">Dra. Jane, Ed. Pedrosa, Hermeto, Iolando, Jaqueline, J. Cardoso, J. Vianna, Martins M., Pr. Daniel, Pepa, Roosevelt, Manzoni, Wellington, Rogerio M.C.</div>
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                    <div style="text-align:center;background:#eab30815;padding:12px;border-radius:8px;">
+                        <div style="font-size:11px;color:#94a3b8;margin-bottom:4px;">AUSENTES (2)</div>
+                        <div style="font-size:12px;color:#eab308;">Daniel Donizet e Joaquim Roriz Neto (licenca medica)</div>
+                    </div>
+                    <div style="text-align:center;background:#64748b15;padding:12px;border-radius:8px;">
+                        <div style="font-size:11px;color:#94a3b8;margin-bottom:4px;">NAO COMPUTADO (1)</div>
+                        <div style="font-size:12px;color:#64748b;">Robério Negreiros (possivel abstencao ou nao-registro)</div>
+                    </div>
+                </div>
+                <div style="font-size:11px;color:#64748b;margin-top:8px;text-align:center;">Total: 7 + 14 + 2 + 1 = 24 deputados. Placar oficial: 14×7 (maioria simples atingida)</div>
+            </div>
+
+            <div class="card" style="margin-bottom:16px;">
+                <h3 style="color:#d69e2e;font-size:15px;margin-bottom:12px;">Mesa Diretora CLDF 2025-2026 (composicao real)</h3>
+                <table>
+                    <thead>
+                        <tr><th>Cargo</th><th>Deputado</th><th>Partido</th><th>Na simulacao</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Presidente</td><td>Wellington Luiz</td><td>MDB</td><td>Indeciso (4/10) &#x2705;</td></tr>
+                        <tr><td>1o Vice-Presidente</td><td>Ricardo Vale</td><td>PT</td><td>Assina (9/10) &#x2705;</td></tr>
+                        <tr><td>2a Vice-Presidente</td><td>Paula Belmonte</td><td>PSDB</td><td>Assina (9/10) &#x2705;</td></tr>
+                        <tr><td>1o Secretario</td><td>Pastor Daniel de Castro</td><td>PP</td><td>Nao assina (3/10) &#x2705;</td></tr>
+                        <tr><td>2o Secretario</td><td>Roosevelt Vilela</td><td>PL</td><td>Assina (8/10) &#x26A0;</td></tr>
+                        <tr><td>3o Secretario</td><td>Martins Machado</td><td>Republicanos</td><td>Assina (7/10) &#x26A0;</td></tr>
+                        <tr><td>4o Secretario</td><td>Robério Negreiros</td><td>PSD</td><td>Assina (7/10) &#x26A0;</td></tr>
+                        <tr><td>Corregedor</td><td>Joaquim Roriz Neto</td><td>PL</td><td>Assina (7/10) &#x26A0;</td></tr>
+                        <tr><td>Ouvidor</td><td>Jorge Vianna</td><td>PSD</td><td>Assina (7/10) &#x26A0;</td></tr>
+                        <tr><td>Lider do Governo</td><td>Hermeto</td><td>MDB</td><td>Nao assina (3/10) &#x2705;</td></tr>
+                        <tr style="background:#1e293b;"><td colspan="4" style="color:#64748b;font-size:11px;font-weight:600;padding:6px 12px;">SUPLENTES DA MESA (verificados 30/01/2026)</td></tr>
+                        <tr><td>Supl. 1o Secretario</td><td>Pepa</td><td>PP</td><td>Assina (7/10) &#x26A0;&#x26A0;</td></tr>
+                        <tr><td>Supl. 2o Secretario</td><td>Doutora Jane</td><td>Republicanos</td><td>Assina (8/10) &#x26A0;</td></tr>
+                        <tr><td>Supl. 3o Secretario</td><td>Eduardo Pedrosa</td><td>Uniao Brasil</td><td>Assina (7/10) &#x26A0;</td></tr>
+                        <tr><td>Supl. 4o Secretario</td><td>Jorge Vianna</td><td>PSD</td><td>Assina (7/10) &#x26A0;</td></tr>
+                        <tr style="background:#1e293b;"><td colspan="4" style="color:#64748b;font-size:11px;font-weight:600;padding:6px 12px;">LIDERANCAS (verificadas 30/01/2026)</td></tr>
+                        <tr><td>Vice-Lider do Governo</td><td>Pepa</td><td>PP</td><td>Assina (7/10) &#x26A0;&#x26A0;</td></tr>
+                        <tr><td>Lider da Maioria</td><td>Rogerio Morro da Cruz</td><td>PRD</td><td>Assina (7/10) &#x26A0;&#x26A0;</td></tr>
+                        <tr><td>Lider da Minoria</td><td>Gabriel Magno</td><td>PT</td><td>Assina (9/10) &#x2705;</td></tr>
+                    </tbody>
+                </table>
+                <p style="font-size:11px;color:#64748b;margin-top:8px;">&#x2705; = simulacao coerente | &#x26A0; = membro da Mesa/lideranca votando contra presidente (risco subestimado) | &#x26A0;&#x26A0; = duplo vinculo institucional (Mesa + Governo)</p>
+            </div>
+        </div>
+
+        <!-- FONTES E REFERENCIAS -->
+        <div class="section">
+            <h2>Fontes e Referencias</h2>
+            <div class="card">
+                <div style="font-size:13px;color:#94a3b8;line-height:2;">
+                    <strong style="color:#f8fafc;">Sites oficiais:</strong><br>
+                    &#x2022; <a href="https://www.cl.df.gov.br/deputados-2023-2026" style="color:#d69e2e;" target="_blank">CLDF - Legislatura Atual 2023-2026</a><br>
+                    &#x2022; <a href="https://www.cl.df.gov.br/-/cldf-autoriza-brb-a-comprar-banco-master" style="color:#d69e2e;" target="_blank">CLDF - Autoriza BRB a comprar Banco Master (19/08/2025)</a><br>
+                    &#x2022; <a href="https://www.cl.df.gov.br/-/operacao-compliance-zero-da-policia-federal-contra-brb-e-banco-master-repercute-na-cldf" style="color:#d69e2e;" target="_blank">CLDF - Operacao Compliance Zero repercute na CLDF</a><br>
+                    &#x2022; <a href="https://www.cl.df.gov.br/cpi-do-rio-melchior" style="color:#d69e2e;" target="_blank">CLDF - CPI do Rio Melchior (encerrada dez/2025)</a><br>
+                    &#x2022; <a href="https://www.cl.df.gov.br/-/comissoes-permanentes-ja-tem-presidente-e-vice-para-bienio-2025/2026" style="color:#d69e2e;" target="_blank">CLDF - Comissoes permanentes 2025/2026 (presidentes e vices)</a><br>
+                    &#x2022; <a href="https://www.cl.df.gov.br/-/cldf-elege-mesa-diretora-para-2025-e-2026" style="color:#d69e2e;" target="_blank">CLDF - Mesa Diretora 2025-2026 (titulares e suplentes)</a><br>
+                    <br>
+                    <strong style="color:#f8fafc;">Reportagens:</strong><br>
+                    &#x2022; <a href="https://www.cnnbrasil.com.br/politica/distritais-protocolam-cpi-do-banco-master-para-investigar-negocio-do-brb/" style="color:#d69e2e;" target="_blank">CNN Brasil - Deputados protocolam CPI do Banco Master</a><br>
+                    &#x2022; <a href="https://www.cnnbrasil.com.br/economia/mercado/entenda-operacao-que-prendeu-daniel-vorcaro-dono-do-banco-master/" style="color:#d69e2e;" target="_blank">CNN Brasil - Operacao que prendeu Daniel Vorcaro</a><br>
+                    &#x2022; <a href="https://agenciabrasil.ebc.com.br/justica/noticia/2026-01/policia-federal-faz-nova-operacao-contra-o-banco-master" style="color:#d69e2e;" target="_blank">Agencia Brasil - PF faz nova operacao contra Banco Master (jan/2026)</a><br>
+                    &#x2022; <a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-01/entenda-liquidacoes-do-banco-master-e-da-reag" style="color:#d69e2e;" target="_blank">Agencia Brasil - Entenda as liquidacoes do Master e Reag</a><br>
+                    &#x2022; <a href="https://www.brasildefato.com.br/2025/11/19/deputados-do-df-cobram-investigacao-de-recursos-publicos-para-socorrer-banco-master/" style="color:#d69e2e;" target="_blank">Brasil de Fato - Deputados cobram investigacao (nov/2025)</a><br>
+                    &#x2022; <a href="https://www.metropoles.com/colunas/grande-angular/apos-operacao-da-pf-oposicao-pede-criacao-da-cpi-do-master-e-brb" style="color:#d69e2e;" target="_blank">Metropoles - Oposicao pede CPI do Master e BRB</a><br>
+                    &#x2022; <a href="https://www.correiobraziliense.com.br/politica/2026/01/7337161-congresso-propoe-tres-cpis-para-o-banco-master.html" style="color:#d69e2e;" target="_blank">Correio Braziliense - Congresso propoe tres CPIs (jan/2026)</a><br>
+                    &#x2022; <a href="https://cooperativismodecredito.coop.br/2026/01/entenda-o-caso-do-banco-master/" style="color:#d69e2e;" target="_blank">Portal Cooperativismo - Entenda o caso completo</a><br>
+                    &#x2022; <a href="https://www.poder360.com.br/poder-congresso/com-229-assinaturas-deputado-atinge-quorum-para-abrir-cpi-do-master/" style="color:#d69e2e;" target="_blank">Poder360 - 229 assinaturas para CPMI (jan/2026)</a><br>
+                    &#x2022; <a href="https://movimentorevista.com.br/2026/01/caso-master-oposicao-pede-impeachment-de-ibaneis/" style="color:#d69e2e;" target="_blank">Revista Movimento - Oposicao pede impeachment de Ibaneis</a><br>
+                    <br>
+                    <strong style="color:#f8fafc;">Dados parlamentares:</strong><br>
+                    &#x2022; <a href="https://pt.wikipedia.org/wiki/Lista_de_deputados_distritais_do_Distrito_Federal_da_9.%C2%AA_legislatura" style="color:#d69e2e;" target="_blank">Wikipedia - Lista completa 9a Legislatura CLDF</a><br>
+                    &#x2022; <a href="https://www.cl.df.gov.br/-/cldf-elege-mesa-diretora-para-2025-e-2026" style="color:#d69e2e;" target="_blank">CLDF - Mesa Diretora 2025-2026</a><br>
+                    &#x2022; <a href="https://www.cl.df.gov.br/-/rogerio-morro-da-cruz-assume-lideranca-da-maioria-na-camara-legislativa" style="color:#d69e2e;" target="_blank">CLDF - Rogerio M.C. assume lideranca da Maioria</a>
+                </div>
+            </div>
         </div>
 
         <!-- PESQUISADOR -->

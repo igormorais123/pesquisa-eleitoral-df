@@ -69,11 +69,17 @@ cp .env.example .env
 nano .env
 ```
 
-**Variáveis obrigatórias:**
+**Variáveis recomendadas (padrão: assinatura Claude Code):**
 
 ```env
-# API Claude (obtenha em console.anthropic.com)
-CLAUDE_API_KEY=sk-ant-api03-xxxxx
+# IA (padrão: Claude Code CLI / assinatura)
+IA_PROVIDER=claude_code
+IA_MODELO_ENTREVISTAS=sonnet
+IA_MODELO_INSIGHTS=opus
+IA_ALLOW_API_FALLBACK=false
+
+# API Claude (opcional; use só se IA_PROVIDER=anthropic_api)
+CLAUDE_API_KEY=
 
 # Segurança (gere uma chave única)
 SECRET_KEY=sua-chave-secreta-unica-de-32-caracteres
@@ -156,7 +162,13 @@ source venv/bin/activate
 # 4. Instale dependências
 pip install -r requirements.txt
 
-# 5. Configure variáveis
+ 
+# 5. Configure variáveis (recomendado: assinatura)
+export IA_PROVIDER=claude_code
+export IA_MODELO_ENTREVISTAS=sonnet
+export IA_MODELO_INSIGHTS=opus
+
+# (Opcional) API
 export CLAUDE_API_KEY=sk-ant-api03-xxxxx
 export SECRET_KEY=sua-chave-secreta
 export DATABASE_URL=postgresql://postgres:postgres@localhost:5432/pesquisa_eleitoral
@@ -210,7 +222,7 @@ createdb pesquisa_eleitoral
 ### Checklist Pré-Deploy
 
 - [ ] `SECRET_KEY` única e segura (32+ caracteres)
-- [ ] `CLAUDE_API_KEY` válida
+- [ ] IA configurada (preferencialmente `IA_PROVIDER=claude_code` + Claude Code autenticado)
 - [ ] PostgreSQL com senha forte
 - [ ] HTTPS configurado
 - [ ] Firewall configurado (apenas portas 80/443)

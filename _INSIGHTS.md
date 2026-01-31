@@ -76,11 +76,16 @@ Os 1000+ eleitores em `agentes/banco-eleitores-df.json`:
 - Baseados em dados PDAD (Pesquisa Distrital por Amostra de Domicilios)
 - **NUNCA** sao pessoas reais - nao confundir
 
-### 3. Dois Modelos Claude
+### 3. IA: Provedor + Modelos (padrao novo)
 
-- **Claude Opus 4.5**: Para respostas complexas de eleitores
-- **Claude Sonnet 4**: Para operacoes rapidas/simples
-- Configurado em `frontend/src/lib/claude/`
+- **Padrao**: `IA_PROVIDER=claude_code` (usa assinatura Claude Code CLI local)
+- **Fallback**: `IA_PROVIDER=anthropic_api` (usa `CLAUDE_API_KEY`)
+- **Modelos**:
+  - Entrevistas: `IA_MODELO_ENTREVISTAS=sonnet` (alias mais moderno)
+  - Insights: `IA_MODELO_INSIGHTS=opus`
+- Backend centraliza isso em `backend/app/servicos/claude_servico.py`
+
+Nota: evitar probabilidades absolutas (0%/100%) em previsoes por default (clamp 1..99).
 
 ### 4. Autenticacao JWT + bcrypt
 

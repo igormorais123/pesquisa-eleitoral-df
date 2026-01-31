@@ -30,6 +30,7 @@ Simula pesquisas com 1000+ perfis de eleitores do Distrito Federal.
 | **Frontend (UI)** | [frontend/_INDEX.md](frontend/_INDEX.md) |
 | **Backend (API)** | [backend/_INDEX.md](backend/_INDEX.md) |
 | **Dados de eleitores** | [agentes/_INDEX.md](agentes/_INDEX.md) |
+| **Dados verificados (overrides/snapshots)** | [data/_INDEX.md](data/_INDEX.md) |
 | **Documentacao** | [docs/_INDEX.md](docs/_INDEX.md) |
 | **Scripts utilitarios** | [scripts/_INDEX.md](scripts/_INDEX.md) |
 | **Notas e insights** | [_INSIGHTS.md](_INSIGHTS.md) |

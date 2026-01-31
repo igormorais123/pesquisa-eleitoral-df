@@ -15,20 +15,45 @@ nano .env
 
 ---
 
-## Variáveis Obrigatórias
+## Variáveis de IA (recomendado)
 
-### CLAUDE_API_KEY
+### IA_PROVIDER
 
-**Descrição:** Chave de API da Anthropic para acessar os modelos Claude.
+**Descrição:** Define como o sistema executa as entrevistas.
+
+- `claude_code` (PADRÃO): usa o **Claude Code CLI** (assinatura) localmente.
+- `anthropic_api`: usa a **API da Anthropic** via `CLAUDE_API_KEY`.
+
+**Exemplo:**
+```env
+IA_PROVIDER=claude_code
+```
+
+### IA_MODELO_ENTREVISTAS / IA_MODELO_INSIGHTS
+
+**Descrição:** Modelos/aliases usados nas chamadas.
+
+**Recomendado:**
+```env
+IA_MODELO_ENTREVISTAS=sonnet
+IA_MODELO_INSIGHTS=opus
+```
+
+### IA_ALLOW_API_FALLBACK
+
+**Descrição:** Permite fallback automático para API quando `IA_PROVIDER=claude_code` falhar.
+
+**Padrão recomendado:** `false` (evita gasto acidental por token).
+
+```env
+IA_ALLOW_API_FALLBACK=false
+```
+
+### CLAUDE_API_KEY (opcional)
+
+**Descrição:** Chave da API da Anthropic (usar apenas quando necessário/sem Claude Code CLI).
 
 **Formato:** `sk-ant-api03-xxxxxxxxxxxxxxxx`
-
-**Como obter:**
-1. Acesse [console.anthropic.com](https://console.anthropic.com)
-2. Faça login ou crie uma conta
-3. Vá em "API Keys"
-4. Clique em "Create Key"
-5. Copie a chave gerada
 
 **Exemplo:**
 ```env
@@ -373,7 +398,16 @@ curl https://api.anthropic.com/v1/messages \
 
 ## Troubleshooting
 
-### "CLAUDE_API_KEY não está definida"
+### "IA não configurada" (Claude Code ou API)
+
+Se estiver em `IA_PROVIDER=claude_code`:
+
+```bash
+claude --version
+claude -p "Responda apenas: OK"
+```
+
+Se estiver em `IA_PROVIDER=anthropic_api`:
 
 ```bash
 # Verifique se está no arquivo
@@ -381,7 +415,7 @@ grep CLAUDE_API_KEY .env
 
 # Verifique se está sendo carregada
 cd backend
-python -c "from app.core.config import configuracoes; print(configuracoes.CLAUDE_API_KEY[:10] + '...')"
+python -c "from app.core.config import configuracoes; print((configuracoes.CLAUDE_API_KEY or '')[:10] + '...')"
 ```
 
 ### "SECRET_KEY padrão detectada"
