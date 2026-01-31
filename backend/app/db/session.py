@@ -22,24 +22,14 @@ DATABASE_URL = configuracoes.DATABASE_URL.replace(
     "postgresql://", "postgresql+asyncpg://"
 )
 
-# Remover sslmode da query string (asyncpg usa connect_args, não query params)
-_clean_url = DATABASE_URL.replace("?sslmode=require", "").replace("&sslmode=require", "")
-
-# Detectar se estamos em produção (Render exige SSL)
-_is_production = configuracoes.AMBIENTE == "production" or "render.com" in DATABASE_URL
-
-# asyncpg aceita ssl="require" (string) para conexão SSL sem verificação de certificado
-_connect_args = {}
-if _is_production:
-    _connect_args["ssl"] = "require"
-
 # Engine assíncrono
+# Nota: No Render, usamos a URL interna (sem .render.com) que não precisa de SSL.
+# Se usar URL externa no futuro, adicionar connect_args={"ssl": ssl_context}
 engine = create_async_engine(
-    _clean_url,
+    DATABASE_URL,
     echo=configuracoes.AMBIENTE == "development",
     poolclass=NullPool,  # Melhor para apps web assíncronos
     future=True,
-    connect_args=_connect_args,
 )
 
 # Session factory
