@@ -1,0 +1,37 @@
+{
+  "id": "tjdft-arquibaldo-carneiro-portela",
+  "nome": "Des. Arquibaldo Carneiro Portela",
+  "nome_completo": null,
+  "orgao": "TJDFT",
+  "cargo": "Desembargador",
+  "situacao": "titular",
+  "dados_publicos": {
+    "assessor": "Washington Ney da Silva",
+    "telefones_gabinete": "(61)3103-7686",
+    "biografia_tjdft_url": "https://www.tjdft.jus.br/institucional/gestao-do-conhecimento/gestao-da-memoria/biografias/arquibaldo-carneiro-portela.pdf",
+    "biografia_tjdft_texto": "137 \n \n \nBIOGRAFIA \nDESEMBARGADOR \nARQUIBALDO CARNEIRO \n \nDADOS PESSOAIS \nNOME: Arquibaldo Carneiro Portela \nDATA DE NASCIMENTO: 1\u00ba/4/1964 \nLOCAL DE NASCIMENTO: Bras\u00edlia (DF) \nNACIONALIDADE: Brasileira \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Superior: Bacharel em Direito pelo UniCeub, em . \n \n \nCARGOS OCUPADOS \n \n\u00bb Foi servidor do TSE; \n\u00bb TRF da 1\u00aa Regi\u00e3o Analista Judici\u00e1rio e Oficial de Gabinete do Desembargador Federal Nelson Gomes da \nSilva; \n\u00bb STJ foi Assessor do Ministro do Superior Tribunal de Justi\u00e7a Ant\u00f4nio torre\u00e3o Braz. \n\u00bb Ingressou na magistratura do Distrito Federal e dos Territ\u00f3rios no cargo de Juiz de Direito Substituto, em \n15/4/1994. \n\u00bb Promovido ao cargo de Juiz de Direito do TJDFT, em 2/2/1996. \n\u00bb Juiz de Direito Titular da vara do tribunal do J\u00fari e dos Delitos de Tr\u00e2nsito do Gama/DF de 2/2/1996 a \n1\u00ba/2/2004; \n\u00bb Juiz de Direito Titular da 1\u00aa Vara Criminal do Gama/DF de 2/2/2004 a 25/6/2017; \n\u00bb Juiz de Direito Titular da 4 \u00aa Vara de Entorpecentes do TJDF de 26/6/2017 a 21/8/2019. \n\u00bb Removido pelo crit\u00e9rio de merecimento ao cargo de Juiz de Direito Substituto de Segundo Grau, conforme \nPortaria GPR 1.394 de 29/7/2019, com posse em 27/7/2019. \n\u00bb Atuou na 6\u00aa Turma C\u00edvel e na 2\u00aa C\u00e2mara C\u00edvel do TJDFT. \n\u00bb Na Justi\u00e7a Eleitoral do DF foi juiz titular da 15\u00aa e da 17\u00aa Zonas Eleitorais e \n\u00bb Desembargador Eleitoral do TRE/DF. \n\u00bb Diretor do F\u00f3rum do Gama por cerca de dezessete anos; \n\u00bb Atuou no Projeto Cidadania e Justi\u00e7a na Escola. \n\u00bb Promovido, pelo crit\u00e9rio de antiguidade, ao cargo de Desembargador do TJDFT, conforme Portaria GPR \n1.776, de 19/10/2021, com posse em 26/11/2021. \n \nT\u00cdTULOS E HONRARIAS \n \n\u00bb Outorgado com a comenda da Ordem do M\u00e9rito Judici\u00e1rio do Distrito Federal e dos Territ\u00f3rios, constante \ndo Quadro Ordin\u00e1rio, Grau Gr\u00e3o-Colar, em 30/11/2021.",
+    "biografia_tjdft_resumo": "137 \n \n \nBIOGRAFIA \nDESEMBARGADOR \nARQUIBALDO CARNEIRO \n \nDADOS PESSOAIS \nNOME: Arquibaldo Carneiro Portela \nDATA DE NASCIMENTO: 1\u00ba/4/1964 \nLOCAL DE NASCIMENTO: Bras\u00edlia (DF) \nNACIONALIDADE: Brasileira \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Superior: Bacharel em Direito pelo UniCeub, em . \n \n \nCARGOS OCUPADOS \n \n\u00bb Foi servidor do TSE; \n\u00bb TRF da 1\u00aa Regi\u00e3o Analista Judici\u00e1rio e Oficial de Gabinete do Desembargador Federal Nelson Gomes da \nSilva; \n\u00bb STJ foi Assessor do Ministro do Superior Tribunal de Justi\u00e7a Ant\u00f4nio torre\u00e3o Braz. \n\u00bb Ingressou na magistratura do Distrito Federal e dos Territ\u00f3rios no cargo de Juiz de Direito Substituto, em \n15/4/1994. \n\u00bb Promovido ao cargo de Juiz de Direito do TJDFT, em 2/2/1996. \n\u00bb Juiz de Direito Titular da vara do tribunal do J\u00fari e dos Delitos de Tr\u00e2nsito do Gama/DF de 2/2/1996 a \n1\u00ba/2/2004; \n\u00bb Juiz de Direito Titular da 1\u00aa Vara Criminal do Gama/DF de..."
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://www.tjdft.jus.br/institucional/composicao/2a-instancia/desembargadores/ordem-alfabetica",
+      "tipo": "site-oficial",
+      "observacao": "Ordem alfabetica (2a instancia)"
+    }
+  ],
+  "atualizado_em": "2026-01-30"
+}

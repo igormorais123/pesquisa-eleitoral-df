@@ -1,0 +1,47 @@
+{
+  "id": "stj-isabel-gallotti",
+  "nome": "Isabel Gallotti",
+  "nome_completo": null,
+  "orgao": "STJ",
+  "cargo": "Ministro",
+  "situacao": "titular",
+  "dados_publicos": {
+    "posse_texto": "02010-08-10 10 de agosto de 2010",
+    "origem_texto": "TRF-1",
+    "wikipedia_resumo": {
+      "titulo": "Isabel Gallotti",
+      "descricao": "magistrada brasileira",
+      "extrato": "Maria Isabel Diniz Gallotti Rodrigues OMM \u00e9 uma magistrada brasileira. Desde 10 de agosto de 2010 \u00e9 ministra do Superior Tribunal de Justi\u00e7a (STJ).",
+      "url": {
+        "page": "https://pt.wikipedia.org/wiki/Isabel_Gallotti",
+        "revisions": "https://pt.wikipedia.org/wiki/Isabel_Gallotti?action=history",
+        "edit": "https://pt.wikipedia.org/wiki/Isabel_Gallotti?action=edit",
+        "talk": "https://pt.wikipedia.org/wiki/Discuss%C3%A3o:Isabel_Gallotti"
+      }
+    },
+    "wikipedia_extrato": "Maria Isabel Diniz Gallotti Rodrigues OMM (Rio de Janeiro, 28 de julho de 1963) \u00e9 uma magistrada brasileira. Desde 10 de agosto de 2010 \u00e9 ministra do Superior Tribunal de Justi\u00e7a (STJ).\n\u00c9 filha, neta e bisneta de ex-ministros do Supremo Tribunal Federal, respectivamente, Octavio Pires e Albuquerque Gallotti, Lu\u00eds d'Assun\u00e7\u00e3o Gallotti e Ant\u00f4nio Pires e Albuquerque, bem como esposa do ministro do Tribunal de Contas da Uni\u00e3o Walton Alencar Rodrigues.\n\n\nCarreira\nGraduada em direito pela Universidade de Bras\u00edlia (UnB) em 1985, obteve da mesma universidade, em 1988, certificado de especializa\u00e7\u00e3o em direito e Estado.\nAtuou como advogada no Distrito Federal de 1985 at\u00e9 1989, quando foi aprovada em concurso p\u00fablico para o cargo de procuradora da Rep\u00fablica. Em 2001, ingressou na magistratura ao ser nomeada para o cargo de ju\u00edza federal do Tribunal Regional Federal da 1.\u00aa Regi\u00e3o (TRF-1), por meio do quinto constitucional, em vaga destinada a membros do Minist\u00e9rio P\u00fablico.\nEm 2004, Gallotti foi admitida pelo presidente Luiz In\u00e1cio Lula da Silva \u00e0 Ordem do M\u00e9rito Militar no grau de Oficial especial.\nEm 2010, nomeada pelo presidente Lula para vaga destinada a membro de Tribunal Regional Federal, tornou-se ministra do Superior Tribunal de Justi\u00e7a (STJ), tomando posse no dia 10 de agosto.\nEm 2022, foi eleita pelo Superior Tribunal de Justi\u00e7a, de onde \u00e9 oriunda, para o cargo de Ministra Substituta do Tribunal Superior Eleitoral, na vaga destinada \u00e0 ministros do STJ. Tomou posse em 20 de setembro de 2022. Seu mandato como substituta, se encerra em setembro de 2024. Em 21 de novembro de 2023, tomou posse como ministra efetiva do TSE.\n\n\nRefer\u00eancias\n\n\nLiga\u00e7\u00f5es externas",
+    "wikipedia_extrato_resumo": "Maria Isabel Diniz Gallotti Rodrigues OMM (Rio de Janeiro, 28 de julho de 1963) \u00e9 uma magistrada brasileira. Desde 10 de agosto de 2010 \u00e9 ministra do Superior Tribunal de Justi\u00e7a (STJ).\n\u00c9 filha, neta e bisneta de ex-ministros do Supremo Tribunal Federal, respectivamente, Octavio Pires e Albuquerque Gallotti, Lu\u00eds d'Assun\u00e7\u00e3o Gallotti e Ant\u00f4nio Pires e Albuquerque, bem como esposa do ministro do Tribunal de Contas da Uni\u00e3o Walton Alencar Rodrigues.\n\n\nCarreira\nGraduada em direito pela Universidade de Bras\u00edlia (UnB) em 1985, obteve da mesma universidade, em 1988, certificado de especializa\u00e7\u00e3o em direito e Estado.\nAtuou como advogada no Distrito Federal de 1985 at\u00e9 1989, quando foi aprovada em concurso p\u00fablico para o cargo de procuradora da Rep\u00fablica. Em 2001, ingressou na magistratura ao ser nomeada para o cargo de ju\u00edza federal do Tribunal Regional Federal da 1.\u00aa Regi\u00e3o (TRF-1), por meio do quinto constitucional, em vaga destinada a membros do Minist\u00e9rio P\u00fablico.\nEm 2004, Gallotti foi admitida pelo presidente Luiz In\u00e1cio Lula da Silva \u00e0 Ordem do M\u00e9rito Militar no grau de Oficial especial.\nEm 2010, nomeada pelo presidente Lula para vaga destinada a membro de Tribunal Regional Federal, ..."
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://pt.wikipedia.org/wiki/Isabel_Gallotti",
+      "tipo": "wikipedia",
+      "observacao": "Pagina do ministro (link) ou lista"
+    }
+  ],
+  "atualizado_em": "2026-01-30"
+}

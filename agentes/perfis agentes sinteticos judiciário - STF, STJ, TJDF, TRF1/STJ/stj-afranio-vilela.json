@@ -1,0 +1,34 @@
+{
+  "id": "stj-afranio-vilela",
+  "nome": "Afr\u00e2nio Vilela",
+  "nome_completo": null,
+  "orgao": "STJ",
+  "cargo": "Ministro",
+  "situacao": "titular",
+  "dados_publicos": {
+    "posse_texto": "02023-11-22 22 de novembro de 2023",
+    "origem_texto": "TJ-MG"
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://pt.wikipedia.org/wiki/Afr%C3%A2nio_Vilela",
+      "tipo": "wikipedia",
+      "observacao": "Pagina do ministro (link) ou lista"
+    }
+  ],
+  "atualizado_em": "2026-01-30"
+}

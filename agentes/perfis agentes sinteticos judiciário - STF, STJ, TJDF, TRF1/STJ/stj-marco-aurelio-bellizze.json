@@ -1,0 +1,34 @@
+{
+  "id": "stj-marco-aurelio-bellizze",
+  "nome": "Marco Aur\u00e9lio Bellizze",
+  "nome_completo": null,
+  "orgao": "STJ",
+  "cargo": "Ministro",
+  "situacao": "titular",
+  "dados_publicos": {
+    "posse_texto": "02011-09-05 5 de setembro de 2011",
+    "origem_texto": "TJ-RJ"
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://pt.wikipedia.org/wiki/Marco_Aur%C3%A9lio_Bellizze",
+      "tipo": "wikipedia",
+      "observacao": "Pagina do ministro (link) ou lista"
+    }
+  ],
+  "atualizado_em": "2026-01-30"
+}

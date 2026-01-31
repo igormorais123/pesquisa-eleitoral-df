@@ -1,0 +1,42 @@
+{
+  "id": "trf1-marcus-bastos",
+  "nome": "Marcus Bastos",
+  "nome_completo": null,
+  "orgao": "TRF1",
+  "cargo": "Desembargador Federal",
+  "situacao": "titular",
+  "dados_publicos": {
+    "gabinete_texto": "Ed. Sede II - 4\u00ba Andar - Sala 4S",
+    "funcao_administrativa": null,
+    "pagina_trf1": "https://www.trf1.jus.br/trf1/em-atividade/marcus-bastos",
+    "telefone": "(61) 3314-5225",
+    "biografia_trf1_texto": "Nomeado por Decreto Presidencial de 27 de abril de 2023, com posse e exerc\u00edcio em 10 de maio de 2023.\n\nBacharel em Direito pela Universidade de Bras\u00edlia (UnB), em 26 de dezembro de 1987.\n\nEspecializa\u00e7\u00e3o lato sensu em Direito Penal pelo Centro de Estudos Judici\u00e1rios do Conselho da Justi\u00e7a Federal e pela Universidade de Bras\u00edlia, em 27 de novembro de 1998.\n\nFoi aprovado nos concursos p\u00fablicos para os cargos de Advogado, da Funda\u00e7\u00e3o Pioneiras Sociais, em 18 de dezembro de 1989; T\u00e9cnico Judici\u00e1rio, do Tribunal Superior do Trabalho, em 22 de mar\u00e7o de 1991; Procurador do Trabalho Substituto, do Minist\u00e9rio P\u00fablico do Trabalho, em 13 de novembro de 1991; Promotor de Justi\u00e7a Adjunto, do Minist\u00e9rio P\u00fablico do Distrito Federal e dos Territ\u00f3rios, em 25 de novembro de 1991 e Juiz Federal Substituto, do Tribunal Regional Federal da 1\u00aa Regi\u00e3o, em 12 de maio de 1992.\n\nExerceu os cargos de Auxiliar de Servi\u00e7os na Central de Medicamentos/Minist\u00e9rio da Sa\u00fade, em 1983/1984; Estagi\u00e1rio na Consultoria Jur\u00eddica do Conselho Nacional de Desenvolvimento Cient\u00edfico e Tecnol\u00f3gico - CNPq, no per\u00edodo de 16 de dezembro de 1985 a 31 de outubro de 1986; Advogado (Fun\u00e7\u00e3o de Assessoramento Superior) junto \u00e0 Consultoria Jur\u00eddica da Secretaria Especial de Ci\u00eancia e Tecnologia da Presid\u00eancia da Rep\u00fablica (Minist\u00e9rio da Ci\u00eancia e Tecnologia), no per\u00edodo de 15 de outubro de 1988 e 15 de mar\u00e7o de 1990 e Promotor de Justi\u00e7a Adjunto do Minist\u00e9rio P\u00fablico do Distrito Federal e dos Territ\u00f3rios, no per\u00edodo de 05 de dezembro de 1991 e 09 de agosto de 1992. Advogado militante no foro de Bras\u00edlia/DF, entre 1\u00ba de janeiro de 1988 e 04 de dezembro de 1991.\n\nAprovado no primeiro concurso para o cargo de Juiz Federal Substituto, realizado pelo Tribunal Regional Federal da 1\u00aa Regi\u00e3o, tomou posse no cargo de Juiz Federal Substituto, em 10 de agosto de 1992, tendo sido lotado na 1\u00aa Vara da Se\u00e7\u00e3o Judici\u00e1ria do Amap\u00e1, onde se titularizou em fevereiro de 1995. Foi Diretor do Foro da Se\u00e7\u00e3o Judici\u00e1ria do Amap\u00e1, nos per\u00edodos de 1992 a 1994 e 1994 a 1996. Integrou o Tribunal Regional Eleitoral do Amap\u00e1 como membro titular, nos per\u00edodos de 1992 a 1994 e 1994 a 1996. Removeu-se, em 1996, para a 12\u00aa Vara da Se\u00e7\u00e3o Judici\u00e1ria do Distrito Federal. No Distrito Federal, exerceu o cargo de Diretor do Foro, no per\u00edodo de 2009 a 2010. Ocupou o cargo de Juiz Auxiliar da Corregedoria do Conselho Nacional de Justi\u00e7a, no per\u00edodo de 2005 a 2008.\n\n\u00c9 professor do Curso de Direito do Centro Universit\u00e1rio de Bras\u00edlia (UniCEUB), desde 2001."
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://www.trf1.jus.br/trf1/desembargadores-federais/em-atividade",
+      "tipo": "site-oficial",
+      "observacao": "Lista (Em atividade)"
+    },
+    {
+      "url": "https://www.trf1.jus.br/trf1/em-atividade/marcus-bastos",
+      "tipo": "site-oficial",
+      "observacao": "Pagina individual"
+    }
+  ],
+  "atualizado_em": "2026-01-30"
+}

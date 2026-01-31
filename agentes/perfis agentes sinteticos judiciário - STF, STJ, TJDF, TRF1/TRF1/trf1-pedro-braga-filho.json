@@ -1,0 +1,40 @@
+{
+  "id": "trf1-pedro-braga-filho",
+  "nome": "Pedro Braga Filho",
+  "nome_completo": null,
+  "orgao": "TRF1",
+  "cargo": "Desembargador Federal",
+  "situacao": "titular",
+  "dados_publicos": {
+    "gabinete_texto": "Ed. Sede II - 1\u00ba andar - Sala 1N",
+    "funcao_administrativa": null,
+    "pagina_trf1": "https://www.trf1.jus.br/trf1/em-atividade/pedro-braga-filho"
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://www.trf1.jus.br/trf1/desembargadores-federais/em-atividade",
+      "tipo": "site-oficial",
+      "observacao": "Lista (Em atividade)"
+    },
+    {
+      "url": "https://www.trf1.jus.br/trf1/em-atividade/pedro-braga-filho",
+      "tipo": "site-oficial",
+      "observacao": "Pagina individual"
+    }
+  ],
+  "atualizado_em": "2026-01-30"
+}

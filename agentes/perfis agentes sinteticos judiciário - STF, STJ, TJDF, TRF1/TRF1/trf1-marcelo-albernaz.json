@@ -1,0 +1,42 @@
+{
+  "id": "trf1-marcelo-albernaz",
+  "nome": "Marcelo Albernaz",
+  "nome_completo": null,
+  "orgao": "TRF1",
+  "cargo": "Desembargador Federal",
+  "situacao": "titular",
+  "dados_publicos": {
+    "gabinete_texto": "Ed. Sede II - 9\u00ba andar - Sala 9S",
+    "funcao_administrativa": null,
+    "pagina_trf1": "https://www.trf1.jus.br/trf1/em-atividade/marcelo-albernaz",
+    "telefone": "(61) 3314-5225",
+    "biografia_trf1_texto": "**Marcelo Velasco Nascimento Albernaz**, nascido em Goi\u00e2nia/GO, no dia 21/12/1973. \u00c9 magistrado federal desde fevereiro de 1997, quando tomou posse no cargo de Juiz Federal Substituto, com primeira lota\u00e7\u00e3o na 3\u00aa Vara da Se\u00e7\u00e3o Judici\u00e1ria de Goi\u00e1s (c\u00edvel). Em 1999, foi promovido ao cargo de Juiz Federal da 1\u00aa Vara da Se\u00e7\u00e3o Judici\u00e1ria do Tocantins (compet\u00eancia geral), onde exerceu, em diversas oportunidades, as fun\u00e7\u00f5es de Vice-Diretor do Foro, Diretor do Foro e Presidente da Turma Recursal. Foi membro titular e substituto do Tribunal Regional Eleitoral do Estado do Tocantins por v\u00e1rios per\u00edodos, tendo exercido a fun\u00e7\u00e3o de Ouvidor Regional Eleitoral e de Corregedor Regional Eleitoral. Em 2012, foi removido para a Se\u00e7\u00e3o Judici\u00e1ria do Distrito Federal (SJDF), sendo sua \u00faltima lota\u00e7\u00e3o a 21\u00aa Vara, especializada em mat\u00e9ria de sa\u00fade, educa\u00e7\u00e3o e conselhos profissionais. Exerceu a fun\u00e7\u00e3o de Diretor do Foro da SJDF no bi\u00eanio de 2020-2022. Foi convocado para substitui\u00e7\u00e3o e aux\u00edlio de v\u00e1rios Desembargadores Federais do TRF1 de 2004 a 2023, tendo atuado, como juiz convocado, nas quatro se\u00e7\u00f5es especializadas e na Corregedoria Regional do Tribunal TRF1. Integrou listas consecutivas de promo\u00e7\u00e3o por merecimento em 2021, 2022 e 2023, sendo nomeado para exercer o cargo de Desembargador Federal do TRF1 em abril de 2023. Tomou posse como Desembargador Federal do TRF1 no dia 9/5/2023, integrando a Primeira Se\u00e7\u00e3o e a Primeira Turma. Antes de ingressar na magistratura federal, foi Fiscal de Posturas da Prefeitura de Goi\u00e2nia/GO (1992-1994), Delegado de Pol\u00edcia do Estado do Goi\u00e1s \u2013 1\u00ba lugar no concurso (1994), Promotor de Justi\u00e7a e Promotor Eleitoral do Estado de Goi\u00e1s \u2013 1\u00ba lugar do concurso (1994-1995) e Juiz Substituto e Juiz Eleitoral do Estado de Goi\u00e1s \u2013 1\u00ba lugar do concurso (1995-1997). Bacharel em Direito pela Universidade Cat\u00f3lica de Goi\u00e1s (atual PUC/GO) desde 1993, especializou-se em Direito Sanit\u00e1rio pela ESMPU/FIOCRUZ (2013) e concluiu mestrado em Ci\u00eancias Jur\u00eddicas pela Universidade Aut\u00f3noma de Lisboa (2018, com reconhecimento pela UCB em 2019). Concluiu cr\u00e9ditos de doutorado na Universidade Aut\u00f3noma de Lisboa, aguardando a elabora\u00e7\u00e3o de tese para conclus\u00e3o do curso. Durante a carreira profissional, frequentou v\u00e1rios cursos oficiais de curta e m\u00e9dia dura\u00e7\u00e3o ministrados por Escolas de Magistratura. Tem experi\u00eancia docente, principalmente nas \u00e1reas de Direito Civil, Processual Civil, Processual Penal, Eleitoral, Gest\u00e3o Judici\u00e1ria e Processo Eletr\u00f4nico. Foi agraciado com o t\u00edtulo de Cidad\u00e3o Tocantinense por meio da Lei Estadual n. 3.726/2020. Recebeu a Medalha Tiradentes (2005) e o Diploma de Colaborador Benem\u00e9rito (2010) da Pol\u00edcia Militar do Estado do Tocantins."
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://www.trf1.jus.br/trf1/desembargadores-federais/em-atividade",
+      "tipo": "site-oficial",
+      "observacao": "Lista (Em atividade)"
+    },
+    {
+      "url": "https://www.trf1.jus.br/trf1/em-atividade/marcelo-albernaz",
+      "tipo": "site-oficial",
+      "observacao": "Pagina individual"
+    }
+  ],
+  "atualizado_em": "2026-01-30"
+}

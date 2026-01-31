@@ -1,0 +1,47 @@
+{
+  "id": "stj-messod-azulay",
+  "nome": "Messod Azulay",
+  "nome_completo": null,
+  "orgao": "STJ",
+  "cargo": "Ministro",
+  "situacao": "titular",
+  "dados_publicos": {
+    "posse_texto": "02022-12-06 6 de dezembro de 2022",
+    "origem_texto": "TRF-2",
+    "wikipedia_resumo": {
+      "titulo": "Messod Azulay",
+      "descricao": "jurista, magistrado brasileiro e ministro do Superior Tribunal de Justi\u00e7a",
+      "extrato": "Messod Azulay Neto \u00e9 um jurista e magistrado brasileiro, sendo ministro do Superior Tribunal de Justi\u00e7a (STJ) desde 2022.",
+      "url": {
+        "page": "https://pt.wikipedia.org/wiki/Messod_Azulay",
+        "revisions": "https://pt.wikipedia.org/wiki/Messod_Azulay?action=history",
+        "edit": "https://pt.wikipedia.org/wiki/Messod_Azulay?action=edit",
+        "talk": "https://pt.wikipedia.org/wiki/Discuss%C3%A3o:Messod_Azulay"
+      }
+    },
+    "wikipedia_extrato": "Messod Azulay Neto (Rio de Janeiro, 26 de outubro de 1963) \u00e9 um jurista e magistrado brasileiro, sendo ministro do Superior Tribunal de Justi\u00e7a (STJ) desde 2022.\nAnteriormente, foi Juiz Federal do Tribunal Regional Federal da 2.\u00aa Regi\u00e3o (TRF-2), cargo no qual ingressou pelo quinto constitucional em vaga destinada \u00e0 lista s\u00eaxtupla da Ordem dos Advogados do Brasil.\n\n\nForma\u00e7\u00e3o e doc\u00eancia\nMessod Azulay formou-se em direito pela Faculdade de Direito da Universidade Federal do Rio de Janeiro, com cursos de extens\u00e3o nas \u00e1reas administrativa e empresarial pela Funda\u00e7\u00e3o Getulio Vargas.\nLecionou direito penal e processo penal na Associa\u00e7\u00e3o Educacional S\u00e3o Paulo Ap\u00f3stolo (Assespa) de agosto de 2006 a dezembro de 2009.\n\n\nCarreira\nAtuou como advogado entre 1986 e 2005.\nEm 1993, ingressou no quadro de advogados da Telecomunica\u00e7\u00f5es do Rio de Janeiro (Telerj), e assumiu a chefia do departamento jur\u00eddico da empresa em 1998. Ap\u00f3s a privatiza\u00e7\u00e3o da Telerj, Azulay assumiu o cargo de assessor jur\u00eddico da holding Telemar Participa\u00e7\u00f5es S/A.\nEm 2005, foi nomeado para o cargo de desembargador do Tribunal Regional Federal da 2.\u00aa Regi\u00e3o (TRF-2) pelo presidente Luiz In\u00e1cio Lula da Silva, por meio do quinto constitucional, em vaga destinada a membro da advocacia, tomando posse no dia 5 de julho.\nEm 2022, foi indicado pelo presidente Jair Bolsonaro para o cargo de ministro do Superior Tribunal de Justi\u00e7a, a partir de lista qu\u00e1drupla votada pelos integrantes do tribunal, para vaga destinada a membro de Tribunal Regional Federal. Em 22 de novembro, a indica\u00e7\u00e3o foi aprovada pelo plen\u00e1rio do Senado Federal com 61 votos favor\u00e1veis e 2 absten\u00e7\u00f5es. Tomou posse como ministro do STJ no dia 6 de dezembro.\n\n\nVida pessoal\nFilho de judeus marroquinos, Azulay \u00e9 judeu ortodoxo, tendo declarado: \"Sou um judeu religioso, praticante, os preceitos judaicos influenciaram a minha vida inteira. Mas o Brasil \u00e9 um pa\u00eds laico, e \u00e9 preciso separar a religi\u00e3o do estado e do que julgamos. A forma\u00e7\u00e3o judaica religiosa, os valores da Tor\u00e1, sempre me acompanham. Eu n\u00e3o julgo com a Tor\u00e1, mas tenho a Tor\u00e1 dentro de mim\".\n\n\nRefer\u00eancias",
+    "wikipedia_extrato_resumo": "Messod Azulay Neto (Rio de Janeiro, 26 de outubro de 1963) \u00e9 um jurista e magistrado brasileiro, sendo ministro do Superior Tribunal de Justi\u00e7a (STJ) desde 2022.\nAnteriormente, foi Juiz Federal do Tribunal Regional Federal da 2.\u00aa Regi\u00e3o (TRF-2), cargo no qual ingressou pelo quinto constitucional em vaga destinada \u00e0 lista s\u00eaxtupla da Ordem dos Advogados do Brasil.\n\n\nForma\u00e7\u00e3o e doc\u00eancia\nMessod Azulay formou-se em direito pela Faculdade de Direito da Universidade Federal do Rio de Janeiro, com cursos de extens\u00e3o nas \u00e1reas administrativa e empresarial pela Funda\u00e7\u00e3o Getulio Vargas.\nLecionou direito penal e processo penal na Associa\u00e7\u00e3o Educacional S\u00e3o Paulo Ap\u00f3stolo (Assespa) de agosto de 2006 a dezembro de 2009.\n\n\nCarreira\nAtuou como advogado entre 1986 e 2005.\nEm 1993, ingressou no quadro de advogados da Telecomunica\u00e7\u00f5es do Rio de Janeiro (Telerj), e assumiu a chefia do departamento jur\u00eddico da empresa em 1998. Ap\u00f3s a privatiza\u00e7\u00e3o da Telerj, Azulay assumiu o cargo de assessor jur\u00eddico da holding Telemar Participa\u00e7\u00f5es S/A.\nEm 2005, foi nomeado para o cargo de desembargador do Tribunal Regional Federal da 2.\u00aa Regi\u00e3o (TRF-2) pelo presidente Luiz In\u00e1cio Lula da Silva, por meio do quinto co..."
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://pt.wikipedia.org/wiki/Messod_Azulay",
+      "tipo": "wikipedia",
+      "observacao": "Pagina do ministro (link) ou lista"
+    }
+  ],
+  "atualizado_em": "2026-01-30"
+}

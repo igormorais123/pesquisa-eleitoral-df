@@ -1,0 +1,47 @@
+{
+  "id": "stj-og-fernandes",
+  "nome": "Og Fernandes",
+  "nome_completo": null,
+  "orgao": "STJ",
+  "cargo": "Ministro",
+  "situacao": "titular",
+  "dados_publicos": {
+    "posse_texto": "02008-06-17 17 de junho de 2008",
+    "origem_texto": "TJ-PE",
+    "wikipedia_resumo": {
+      "titulo": "Og Fernandes",
+      "descricao": "jurista brasileiro, Ministro do STJ",
+      "extrato": "Geraldo Og Nic\u00e9as Marques Fernandes \u00e9 um magistrado brasileiro, atualmente ministro do Superior Tribunal de Justi\u00e7a (STJ).",
+      "url": {
+        "page": "https://pt.wikipedia.org/wiki/Og_Fernandes",
+        "revisions": "https://pt.wikipedia.org/wiki/Og_Fernandes?action=history",
+        "edit": "https://pt.wikipedia.org/wiki/Og_Fernandes?action=edit",
+        "talk": "https://pt.wikipedia.org/wiki/Discuss%C3%A3o:Og_Fernandes"
+      }
+    },
+    "wikipedia_extrato": "Geraldo Og Nic\u00e9as Marques Fernandes (Recife, 26 de novembro de 1951) \u00e9 um magistrado brasileiro, atualmente ministro do Superior Tribunal de Justi\u00e7a (STJ).\n\n\nBiografia\nOg Fernandes graduou-se em direito pela Universidade Federal de Pernambuco (UFPE) e em jornalismo pela Universidade Cat\u00f3lica de Pernambuco (UNICAP) em 1974. Como jornalista, foi rep\u00f3rter do jornal Di\u00e1rio de Pernambuco entre 1973 e 1981. Em 1975, foi professor auxiliar de hist\u00f3ria no Col\u00e9gio Militar do Recife (CMR).\nAtuou como advogado na \u00e1rea criminal de 1977 a 1981, tendo sido assessor de gabinete do Secret\u00e1rio da Justi\u00e7a do Estado de Pernambuco em 1978 e assessor jur\u00eddico do Sistema Penitenci\u00e1rio do Estado de Pernambuco de 1978 a 1981.\nEm 1981, ingressou na magistratura como juiz de direito substituto. Foi promovido em 1997 a desembargador do Tribunal de Justi\u00e7a de Pernambuco (TJ-PE), tornando-se presidente do tribunal em 2008. Nesse mesmo ano, foi nomeado para o cargo de ministro do Superior Tribunal de Justi\u00e7a (STJ), em vaga destinada a membro de tribunal estadual.\n\n\nRefer\u00eancias",
+    "wikipedia_extrato_resumo": "Geraldo Og Nic\u00e9as Marques Fernandes (Recife, 26 de novembro de 1951) \u00e9 um magistrado brasileiro, atualmente ministro do Superior Tribunal de Justi\u00e7a (STJ).\n\n\nBiografia\nOg Fernandes graduou-se em direito pela Universidade Federal de Pernambuco (UFPE) e em jornalismo pela Universidade Cat\u00f3lica de Pernambuco (UNICAP) em 1974. Como jornalista, foi rep\u00f3rter do jornal Di\u00e1rio de Pernambuco entre 1973 e 1981. Em 1975, foi professor auxiliar de hist\u00f3ria no Col\u00e9gio Militar do Recife (CMR).\nAtuou como advogado na \u00e1rea criminal de 1977 a 1981, tendo sido assessor de gabinete do Secret\u00e1rio da Justi\u00e7a do Estado de Pernambuco em 1978 e assessor jur\u00eddico do Sistema Penitenci\u00e1rio do Estado de Pernambuco de 1978 a 1981.\nEm 1981, ingressou na magistratura como juiz de direito substituto. Foi promovido em 1997 a desembargador do Tribunal de Justi\u00e7a de Pernambuco (TJ-PE), tornando-se presidente do tribunal em 2008. Nesse mesmo ano, foi nomeado para o cargo de ministro do Superior Tribunal de Justi\u00e7a (STJ), em vaga destinada a membro de tribunal estadual.\n\n\nRefer\u00eancias"
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://pt.wikipedia.org/wiki/Og_Fernandes",
+      "tipo": "wikipedia",
+      "observacao": "Pagina do ministro (link) ou lista"
+    }
+  ],
+  "atualizado_em": "2026-01-30"
+}

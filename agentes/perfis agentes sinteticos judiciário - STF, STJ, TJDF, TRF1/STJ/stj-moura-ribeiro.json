@@ -1,0 +1,47 @@
+{
+  "id": "stj-moura-ribeiro",
+  "nome": "Moura Ribeiro",
+  "nome_completo": null,
+  "orgao": "STJ",
+  "cargo": "Ministro",
+  "situacao": "titular",
+  "dados_publicos": {
+    "posse_texto": "02013-08-28 28 de agosto de 2013",
+    "origem_texto": "TJ-SP",
+    "wikipedia_resumo": {
+      "titulo": "Moura Ribeiro",
+      "descricao": null,
+      "extrato": "Paulo Dias de Moura Ribeiro GOMM \u00e9 um magistrado e professor brasileiro, atual ministro do Superior Tribunal de Justi\u00e7a (STJ).",
+      "url": {
+        "page": "https://pt.wikipedia.org/wiki/Moura_Ribeiro",
+        "revisions": "https://pt.wikipedia.org/wiki/Moura_Ribeiro?action=history",
+        "edit": "https://pt.wikipedia.org/wiki/Moura_Ribeiro?action=edit",
+        "talk": "https://pt.wikipedia.org/wiki/Discuss%C3%A3o:Moura_Ribeiro"
+      }
+    },
+    "wikipedia_extrato": "Paulo Dias de Moura Ribeiro GOMM (Santos, 28 de setembro de 1953) \u00e9 um magistrado e professor brasileiro, atual ministro do Superior Tribunal de Justi\u00e7a (STJ).\n\n\nCarreira\nMoura Ribeiro formou-se em direito pela Universidade Cat\u00f3lica de Santos em 1976. Concluiu o mestrado em 2000 e o doutorado em 2003, pela Pontif\u00edcia Universidade Cat\u00f3lica de S\u00e3o Paulo e sob a orienta\u00e7\u00e3o do professor Jos\u00e9 Manoel de Arruda Alvim Netto.\nAtuou como advogado desde 1977 at\u00e9 1983, quando ingressou na carreira da magistratura paulista como juiz de direito. Foi promovido a desembargador do Tribunal de Justi\u00e7a do Estado de S\u00e3o Paulo em 2005.\nEm 2013, foi nomeado ministro do Superior Tribunal de Justi\u00e7a, em vaga destinada a membro de Tribunal de Justi\u00e7a estadual.\nEm 9 de maio de 2014, foi agraciado com a gr\u00e3-cruz da Ordem do Ipiranga pelo Governo do Estado de S\u00e3o Paulo. Em mar\u00e7o de 2023, foi admitido pelo presidente Luiz In\u00e1cio Lula da Silva \u00e0 Ordem do M\u00e9rito Militar no grau de Grande-Oficial especial.\n\n\nRefer\u00eancias",
+    "wikipedia_extrato_resumo": "Paulo Dias de Moura Ribeiro GOMM (Santos, 28 de setembro de 1953) \u00e9 um magistrado e professor brasileiro, atual ministro do Superior Tribunal de Justi\u00e7a (STJ).\n\n\nCarreira\nMoura Ribeiro formou-se em direito pela Universidade Cat\u00f3lica de Santos em 1976. Concluiu o mestrado em 2000 e o doutorado em 2003, pela Pontif\u00edcia Universidade Cat\u00f3lica de S\u00e3o Paulo e sob a orienta\u00e7\u00e3o do professor Jos\u00e9 Manoel de Arruda Alvim Netto.\nAtuou como advogado desde 1977 at\u00e9 1983, quando ingressou na carreira da magistratura paulista como juiz de direito. Foi promovido a desembargador do Tribunal de Justi\u00e7a do Estado de S\u00e3o Paulo em 2005.\nEm 2013, foi nomeado ministro do Superior Tribunal de Justi\u00e7a, em vaga destinada a membro de Tribunal de Justi\u00e7a estadual.\nEm 9 de maio de 2014, foi agraciado com a gr\u00e3-cruz da Ordem do Ipiranga pelo Governo do Estado de S\u00e3o Paulo. Em mar\u00e7o de 2023, foi admitido pelo presidente Luiz In\u00e1cio Lula da Silva \u00e0 Ordem do M\u00e9rito Militar no grau de Grande-Oficial especial.\n\n\nRefer\u00eancias"
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://pt.wikipedia.org/wiki/Moura_Ribeiro",
+      "tipo": "wikipedia",
+      "observacao": "Pagina do ministro (link) ou lista"
+    }
+  ],
+  "atualizado_em": "2026-01-30"
+}

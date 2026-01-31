@@ -1,0 +1,37 @@
+{
+  "id": "tjdft-jose-firmo-reis-soub",
+  "nome": "Des. JOSE FIRMO REIS SOUB",
+  "nome_completo": null,
+  "orgao": "TJDFT",
+  "cargo": "Desembargador",
+  "situacao": "titular",
+  "dados_publicos": {
+    "assessor": "Madhu Haridasan",
+    "telefones_gabinete": "(61)3103-6884, (61)99334-8154",
+    "biografia_tjdft_url": "https://www.tjdft.jus.br/institucional/gestao-do-conhecimento/gestao-da-memoria/biografias/139-jose-firmo-reis-soub.pdf",
+    "biografia_tjdft_texto": "139 \n \n \nBIOGRAFIA \nDESEMBARGADOR \nJOS\u00c9 FIRMO \n \nDADOS PESSOAIS \nNOME: Jos\u00e9 Firmo Reis Soub \nDATA DE NASCIMENTO: 18/4/1961 \nLOCAL DE NASCIMENTO: Ilh\u00e9us/BA \nNACIONALIDADE: brasileira \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Superior: Bacharel em Direito pelo Centro de Ensino Unificado de Bras\u00edlia \u2013 CEUB, em 1983. \nP\u00f3s-gradua\u00e7\u00e3o: Direito P\u00fablico pela Associa\u00e7\u00e3o de Ensino Unificado do DF \u2013 AEUDF, em 1984. \n \nCARGOS OCUPADOS \n \n\u00bb Foi funcion\u00e1rio de Gabinete Parlamentar da C\u00e2mara dos Deputados. \n\u00bb Primeira atividade pr\u00e1tica na \u00e1rea jur\u00eddica ocorreu na Assessoria Jur\u00eddica da Comiss\u00e3o Executiva do Plano \nda Lavoura Cacaueira \u2013 CEPLAC e no N\u00facleo de Previd\u00eancia e Assist\u00eancia Social/NUPAS do mesmo \u00f3rg\u00e3o. \n\u00bb Ingressou no Minist\u00e9rio P\u00fablico do Distrito Federal e Territ\u00f3rios como Defensor P\u00fablico, cargo inicial da \ncarreira, em 30/11/1984. \n\u00bb Promovido ao cargo de Procurador de Justi\u00e7a no Minist\u00e9rio P\u00fablico do Distrito Federal e Territ\u00f3rios, em \n30/4/1998. \n\u00bb Vice-Procurador-Geral de Justi\u00e7a no bi\u00eanio 2004/2006. \n\u00bb Exerceu o cargo de Procurador-Geral de Justi\u00e7a interino em raz\u00e3o das vac\u00e2ncias ocorridas em 2012 e 2014. \n\u00bb Nomeado, em 8/8/2022, pela Presid\u00eancia da Rep\u00fablica para ocupar o cargo de Desembargador do Tribunal \nde Justi\u00e7a do Distrito Federal e dos Territ\u00f3rios \u2013 em vaga destinada a membro do Minist\u00e9rio P\u00fablico do \nDistrito Federal e Territ\u00f3rios, com posse em 2/9/2022. \n \nMAGIST\u00c9RIO \n \n\u00bb Professor de Direito Penal na AEUDF/ICAT. \n \nOUTROS T\u00cdTULOS \n \n\u00bb Agraciado com a comenda de Ordem do M\u00e9rito Judici\u00e1rio do Distrito Federal e dos Territ\u00f3rios, no mais \nalto grau: Gr\u00e3o-Colar, Tribunal de Justi\u00e7a do Distrito Federal e dos Territ\u00f3rios, em 2/9/2022.",
+    "biografia_tjdft_resumo": "139 \n \n \nBIOGRAFIA \nDESEMBARGADOR \nJOS\u00c9 FIRMO \n \nDADOS PESSOAIS \nNOME: Jos\u00e9 Firmo Reis Soub \nDATA DE NASCIMENTO: 18/4/1961 \nLOCAL DE NASCIMENTO: Ilh\u00e9us/BA \nNACIONALIDADE: brasileira \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Superior: Bacharel em Direito pelo Centro de Ensino Unificado de Bras\u00edlia \u2013 CEUB, em 1983. \nP\u00f3s-gradua\u00e7\u00e3o: Direito P\u00fablico pela Associa\u00e7\u00e3o de Ensino Unificado do DF \u2013 AEUDF, em 1984. \n \nCARGOS OCUPADOS \n \n\u00bb Foi funcion\u00e1rio de Gabinete Parlamentar da C\u00e2mara dos Deputados. \n\u00bb Primeira atividade pr\u00e1tica na \u00e1rea jur\u00eddica ocorreu na Assessoria Jur\u00eddica da Comiss\u00e3o Executiva do Plano \nda Lavoura Cacaueira \u2013 CEPLAC e no N\u00facleo de Previd\u00eancia e Assist\u00eancia Social/NUPAS do mesmo \u00f3rg\u00e3o. \n\u00bb Ingressou no Minist\u00e9rio P\u00fablico do Distrito Federal e Territ\u00f3rios como Defensor P\u00fablico, cargo inicial da \ncarreira, em 30/11/1984. \n\u00bb Promovido ao cargo de Procurador de Justi\u00e7a no Minist\u00e9rio P..."
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://www.tjdft.jus.br/institucional/composicao/2a-instancia/desembargadores/ordem-alfabetica",
+      "tipo": "site-oficial",
+      "observacao": "Ordem alfabetica (2a instancia)"
+    }
+  ],
+  "atualizado_em": "2026-01-30"
+}
