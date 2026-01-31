@@ -37,6 +37,43 @@ def _run_async(coro):
         return asyncio.run(coro)
 
 
+# ============================================
+# VERSÕES ASYNC (para BackgroundTasks e contextos async)
+# ============================================
+
+async def obter_parlamentares_por_ids_async(ids: List[str]) -> List[Dict[str, Any]]:
+    """
+    Versão async para uso em contextos async (BackgroundTasks, etc).
+    Evita o problema de asyncio.run() dentro de loop já ativo.
+    """
+    if not ids:
+        return []
+    servico = ParlamentarService()
+    await servico.carregar_todos()
+    parlamentares = []
+    for parlamentar_id in ids:
+        profile = await servico.obter_por_id(parlamentar_id)
+        if profile:
+            adapter = ParlamentarAgentAdapter(profile)
+            parlamentares.append(adapter.to_agent_dict())
+    return parlamentares
+
+
+async def obter_parlamentar_por_id_async(parlamentar_id: str) -> Optional[Dict[str, Any]]:
+    """Versão async de obter_parlamentar_por_id."""
+    servico = ParlamentarService()
+    await servico.carregar_todos()
+    profile = await servico.obter_por_id(parlamentar_id)
+    if profile:
+        adapter = ParlamentarAgentAdapter(profile)
+        return adapter.to_agent_dict()
+    return None
+
+
+# ============================================
+# VERSÕES SYNC (para CLIs, scripts, contextos sync)
+# ============================================
+
 def obter_parlamentares_por_ids(ids: List[str]) -> List[Dict[str, Any]]:
     """
     Obtém parlamentares por IDs e converte para formato de agente.

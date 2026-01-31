@@ -20,7 +20,7 @@ from app.esquemas.entrevista import (
 )
 from app.servicos.claude_servico import obter_claude_servico
 from app.servicos.eleitor_helper import obter_eleitores_por_ids, obter_eleitores_por_ids_async
-from app.servicos.parlamentar_helper import obter_parlamentares_por_ids
+from app.servicos.parlamentar_helper import obter_parlamentares_por_ids, obter_parlamentares_por_ids_async
 from app.db.session import get_db_context
 from app.servicos.memoria_servico import criar_memoria_servico
 
@@ -239,7 +239,7 @@ class EntrevistaServico:
         respondentes_ids = entrevista.get("respondentes_ids") or entrevista.get("eleitores_ids") or []
 
         if tipo_respondente == "parlamentar":
-            respondentes = obter_parlamentares_por_ids(respondentes_ids)
+            respondentes = await obter_parlamentares_por_ids_async(respondentes_ids)
         else:
             respondentes = await obter_eleitores_por_ids_async(respondentes_ids)
 

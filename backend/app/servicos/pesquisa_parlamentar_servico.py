@@ -15,7 +15,7 @@ from typing import Any, Dict, List, Optional
 
 from app.esquemas.entrevista import StatusEntrevista
 from app.servicos.claude_servico import obter_claude_servico
-from app.servicos.parlamentar_helper import obter_parlamentares_por_ids
+from app.servicos.parlamentar_helper import obter_parlamentares_por_ids, obter_parlamentares_por_ids_async
 
 
 class PesquisaParlamentarServico:
@@ -243,10 +243,16 @@ class PesquisaParlamentarServico:
         # Obter parlamentares e serviços
         claude = obter_claude_servico()
 
-        parlamentares = obter_parlamentares_por_ids(pesquisa["parlamentares_ids"])
+        parlamentares = await obter_parlamentares_por_ids_async(pesquisa["parlamentares_ids"])
+        if not parlamentares:
+            raise ValueError(
+                f"Nenhum parlamentar encontrado para {len(pesquisa['parlamentares_ids'])} IDs fornecidos"
+            )
         perguntas = pesquisa["perguntas"]
 
         total_chamadas = len(parlamentares) * len(perguntas)
+        if total_chamadas == 0:
+            raise ValueError("Nenhuma chamada a processar (perguntas vazias)")
         chamadas_feitas = 0
         custo_total = 0.0
         tokens_entrada = 0
