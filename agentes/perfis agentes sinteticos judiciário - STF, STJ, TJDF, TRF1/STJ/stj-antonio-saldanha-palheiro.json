@@ -31,7 +31,7 @@
     "dados_dossie": {
       "origem": "TJ-RJ",
       "perfil_ideologico": "Equilibrado",
-      "analise_comportamental": "Oscila entre o rigor e a garantia, dependendo do caso. Traz a experiência da criminalidade violenta do Rio de Janeiro, o que lhe confere pragmatismo, mas não ignora nulidades flagrantes.9",
+      "analise_comportamental": "Oscila entre o rigor e a garantia, dependendo do caso. Traz a experiência da criminalidade violenta do Rio de Janeiro, o que lhe confere pragmatismo, mas não ignora nulidades flagrantes.",
       "secao": "3a Secao (Direito Penal)"
     }
   },
@@ -46,7 +46,7 @@
     ],
     "tracos_operacionais": [
       "Perfil ideologico: Equilibrado",
-      "Analise comportamental: Oscila entre o rigor e a garantia, dependendo do caso. Traz a experiência da criminalidade violenta do Rio de Janeiro, o que lhe confere pragmatismo, mas não ignora nulidades flagrantes.9"
+      "Analise comportamental: Oscila entre o rigor e a garantia, dependendo do caso. Traz a experiência da criminalidade violenta do Rio de Janeiro, o que lhe confere pragmatismo, mas não ignora nulidades flagrantes."
     ],
     "confianca_global": null
   },
@@ -66,7 +66,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

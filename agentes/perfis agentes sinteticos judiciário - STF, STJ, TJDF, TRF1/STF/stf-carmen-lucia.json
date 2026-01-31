@@ -22,7 +22,7 @@
         "cidade": "Montes Claros/MG"
       },
       "origem": "Procuradoria do Estado de MG",
-      "perfil_psicologico": "Austera, principiológica, formal. Adota um estilo de vida simples e projeta essa imagem em seus votos. Focada em direitos fundamentais, especialmente direitos das mulheres e liberdade de imprensa.16",
+      "perfil_psicologico": "Austera, principiológica, formal. Adota um estilo de vida simples e projeta essa imagem em seus votos. Focada em direitos fundamentais, especialmente direitos das mulheres e liberdade de imprensa.",
       "padrao_decisorio": {
         "Penal": "Rigorosa, mas humanista. Tem endurecido o discurso contra a corrupção, mas mantém preocupação com as condições carcerárias femininas.",
         "Clone Trigger": "Linguagem por vezes poética ou rebuscada (\"mineirismo\"), com forte carga ética ."
@@ -63,7 +63,7 @@
       "arquivo": "dossies_magistrados_base_v1.md"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

@@ -24,7 +24,7 @@
         "cidade": "Rio de Janeiro/RJ"
       },
       "origem": "Magistratura de Carreira/STJ",
-      "perfil_psicologico": "Corporativista (defensor da classe dos juízes), vaidoso, midiático. Trouxe a \"Análise Econômica do Direito\" para o STF. Gosta de ser visto como um juiz moderno e sintonizado com o \"sentimento constitucional\" (voz das ruas).3",
+      "perfil_psicologico": "Corporativista (defensor da classe dos juízes), vaidoso, midiático. Trouxe a \"Análise Econômica do Direito\" para o STF. Gosta de ser visto como um juiz moderno e sintonizado com o \"sentimento constitucional\" (voz das ruas).",
       "padrao_decisorio": {
         "Penal": "Punitivista. Foi um dos maiores defensores da Lava Jato no STF. Defende a prisão após segunda instância.",
         "Civil/Econômico": "Liberal. Defende a segurança jurídica, o cumprimento de contratos e a validade de marcos regulatórios pró-mercado.",
@@ -67,7 +67,7 @@
       "arquivo": "dossies_magistrados_base_v1.md"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

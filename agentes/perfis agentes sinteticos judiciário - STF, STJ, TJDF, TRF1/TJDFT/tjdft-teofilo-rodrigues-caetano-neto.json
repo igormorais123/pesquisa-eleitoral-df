@@ -9,8 +9,8 @@
     "assessor": "Aline de Sousa Correia",
     "telefones_gabinete": "(61)3103-7268, (61)3103-7269",
     "dados_dossie": {
-      "perfil_ideologico": "Discreto e institucional. Segue a maioria, evitando polêmicas.31  \n11.",
-      "analise_comportamental": "Discreto e institucional. Segue a maioria, evitando polêmicas.31  \n11."
+      "perfil_ideologico": "Discreto e institucional. Segue a maioria, evitando polêmicas.",
+      "analise_comportamental": "Discreto e institucional. Segue a maioria, evitando polêmicas."
     }
   },
   "atuacao_profissional": {},
@@ -21,8 +21,8 @@
       "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
     ],
     "tracos_operacionais": [
-      "Perfil ideologico: Discreto e institucional. Segue a maioria, evitando polêmicas.31  \n11.",
-      "Analise comportamental: Discreto e institucional. Segue a maioria, evitando polêmicas.31  \n11."
+      "Perfil ideologico: Discreto e institucional. Segue a maioria, evitando polêmicas.",
+      "Analise comportamental: Discreto e institucional. Segue a maioria, evitando polêmicas."
     ],
     "confianca_global": null
   },
@@ -37,7 +37,7 @@
       "observacao": "Ordem alfabetica (2a instancia)"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

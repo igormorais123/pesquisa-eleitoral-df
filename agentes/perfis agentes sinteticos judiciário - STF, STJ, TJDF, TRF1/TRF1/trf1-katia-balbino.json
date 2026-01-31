@@ -10,8 +10,8 @@
     "funcao_administrativa": null,
     "pagina_trf1": "https://www.trf1.jus.br/trf1/em-atividade/katiabalbino",
     "dados_dossie": {
-      "perfil_ideologico": "Progressista/Direitos Humanos**. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justi",
-      "analise_comportamental": "Progressista/Direitos Humanos**. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justiça. É uma gestora inovadora.19"
+      "perfil_ideologico": "Progressista/Direitos Humanos. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justi",
+      "analise_comportamental": "Progressista/Direitos Humanos. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justiça. É uma gestora inovadora."
     }
   },
   "atuacao_profissional": {},
@@ -22,8 +22,8 @@
       "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
     ],
     "tracos_operacionais": [
-      "Perfil ideologico: Progressista/Direitos Humanos**. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justi",
-      "Analise comportamental: Progressista/Direitos Humanos**. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justi"
+      "Perfil ideologico: Progressista/Direitos Humanos. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justi",
+      "Analise comportamental: Progressista/Direitos Humanos. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justi"
     ],
     "confianca_global": null
   },
@@ -43,7 +43,7 @@
       "observacao": "Pagina individual"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

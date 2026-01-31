@@ -19,7 +19,7 @@
     "dados_dossie": {
       "origem": "MP-PR",
       "perfil_ideologico": "Estatalista/Conservador",
-      "analise_comportamental": "Adota uma postura austera e formalista. Psicologicamente, demonstra uma forte deferência aos atos administrativos e à proteção do patrimônio público. Seus votos são curtos, diretos e raramente flexibilizam regras processuais em favor do particular.5",
+      "analise_comportamental": "Adota uma postura austera e formalista. Psicologicamente, demonstra uma forte deferência aos atos administrativos e à proteção do patrimônio público. Seus votos são curtos, diretos e raramente flexibilizam regras processuais em favor do particular.",
       "secao": "2a Secao (Direito Privado)"
     }
   },
@@ -54,7 +54,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

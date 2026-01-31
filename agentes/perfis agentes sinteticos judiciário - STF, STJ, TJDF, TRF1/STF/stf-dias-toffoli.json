@@ -17,7 +17,7 @@
     "dados_dossie": {
       "perfil_ideologico": "busca de acomodação institucional e soluções de estabilidade (especialmente em conflitos interinstitucionais).",
       "origem": "Advocacia-Geral da União",
-      "perfil_psicologico": "Pragmático, conciliador, operador político. Possui menor densidade teórica acadêmica comparado aos pares, mas supre isso com imensa habilidade de articulação entre os Três Poderes. Busca sempre o \"caminho do meio\" que preserve a governabilidade.16",
+      "perfil_psicologico": "Pragmático, conciliador, operador político. Possui menor densidade teórica acadêmica comparado aos pares, mas supre isso com imensa habilidade de articulação entre os Três Poderes. Busca sempre o \"caminho do meio\" que preserve a governabilidade.",
       "padrao_decisorio": {
         "Penal": "Migrou para o Garantismo.",
         "Reviu suas posições anteriores (era favorável à prisão em 2ª instância) e hoje alinha-se a Gilmar Mendes na anulação de processos da Lava Jato e críticas ao \"Estado Policial\".": "Econômico: Governista. Tende a votar validando medidas do Executivo federal em matéria tributária e fiscal para evitar colapso orçamentário.",
@@ -63,7 +63,7 @@
       "arquivo": "dossies_magistrados_base_v1.md"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

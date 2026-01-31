@@ -18,7 +18,7 @@
     "dados_dossie": {
       "origem": "Advocacia",
       "perfil_ideologico": "Garantista Radical",
-      "analise_comportamental": "Atua como um verdadeiro \"ombudsman\" do sistema carcerário. Psicologicamente, demonstra indignação constante com as condições prisionais e abusos policiais. Vota sistematicamente pela anulação de provas ilícitas (invasão de domicílio, busca pessoal sem fundada suspeita).6",
+      "analise_comportamental": "Atua como um verdadeiro \"ombudsman\" do sistema carcerário. Psicologicamente, demonstra indignação constante com as condições prisionais e abusos policiais. Vota sistematicamente pela anulação de provas ilícitas (invasão de domicílio, busca pessoal sem fundada suspeita).",
       "secao": "3a Secao (Direito Penal)"
     }
   },
@@ -53,7 +53,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

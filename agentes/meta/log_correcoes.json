@@ -1,0 +1,2992 @@
+{
+  "metadata": {
+    "data_correcao": "2026-01-31 17:39:17",
+    "diretorio_base": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1",
+    "backup_dir": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\meta\\backup_pre_correcao",
+    "total_processados": 132,
+    "total_modificados": 119
+  },
+  "estatisticas": {
+    "lixo_numerico": 67,
+    "fonte_url_vazia": 119,
+    "asteriscos_residuais": 33,
+    "perfil_duplicado": 1,
+    "dados_dossie_vazio": 0,
+    "cargo_inconsistente": 0
+  },
+  "correcoes": [
+    {
+      "id": "stf-alexandre-de-moraes",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STF\\stf-alexandre-de-moraes.json",
+      "pasta": "STF",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "antes": "Perfil \"Sheriff\". Enérgico, centralizador, autoritário e pragmático. Assumiu a missão de blindar as instituições democráticas contra ataques extremistas, acumulando um poder monocrático sem precedentes (Inquérito das Fake News). Retórica direta, assertiva e intimidatória quando necessário.14",
+          "depois": "Perfil \"Sheriff\". Enérgico, centralizador, autoritário e pragmático. Assumiu a missão de blindar as instituições democráticas contra ataques extremistas, acumulando um poder monocrático sem precedentes (Inquérito das Fake News). Retórica direta, assertiva e intimidatória quando necessário."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stf-andre-mendonca",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STF\\stf-andre-mendonca.json",
+      "pasta": "STF",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "antes": "Conservador religioso, técnico (carreira sólida na AGU), polido. Busca legitimação acadêmica e técnica para não ser estigmatizado apenas pelo viés religioso.17",
+          "depois": "Conservador religioso, técnico (carreira sólida na AGU), polido. Busca legitimação acadêmica e técnica para não ser estigmatizado apenas pelo viés religioso."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stf-carmen-lucia",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STF\\stf-carmen-lucia.json",
+      "pasta": "STF",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "antes": "Austera, principiológica, formal. Adota um estilo de vida simples e projeta essa imagem em seus votos. Focada em direitos fundamentais, especialmente direitos das mulheres e liberdade de imprensa.16",
+          "depois": "Austera, principiológica, formal. Adota um estilo de vida simples e projeta essa imagem em seus votos. Focada em direitos fundamentais, especialmente direitos das mulheres e liberdade de imprensa."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stf-cristiano-zanin",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STF\\stf-cristiano-zanin.json",
+      "pasta": "STF",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "antes": "Técnico, processualista obsessivo, perfil de advogado de defesa. Ficou famoso pelo \"lawfare\" na defesa de Lula. Como ministro, revelou-se um conservador em pautas sociais, surpreendendo sua base de indicação.19",
+          "depois": "Técnico, processualista obsessivo, perfil de advogado de defesa. Ficou famoso pelo \"lawfare\" na defesa de Lula. Como ministro, revelou-se um conservador em pautas sociais, surpreendendo sua base de indicação."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stf-dias-toffoli",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STF\\stf-dias-toffoli.json",
+      "pasta": "STF",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "antes": "Pragmático, conciliador, operador político. Possui menor densidade teórica acadêmica comparado aos pares, mas supre isso com imensa habilidade de articulação entre os Três Poderes. Busca sempre o \"caminho do meio\" que preserve a governabilidade.16",
+          "depois": "Pragmático, conciliador, operador político. Possui menor densidade teórica acadêmica comparado aos pares, mas supre isso com imensa habilidade de articulação entre os Três Poderes. Busca sempre o \"caminho do meio\" que preserve a governabilidade."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stf-edson-fachin",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STF\\stf-edson-fachin.json",
+      "pasta": "STF",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[3].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stf-flavio-dino",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STF\\stf-flavio-dino.json",
+      "pasta": "STF",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[5].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stf-gilmar-mendes",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STF\\stf-gilmar-mendes.json",
+      "pasta": "STF",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stf-luis-roberto-barroso",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STF\\stf-luis-roberto-barroso.json",
+      "pasta": "STF",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "antes": "Perfil \"Iluminista\". Acredita no papel do Judiciário como vanguarda iluminista que empurra a história. Estilo didático, professoral, estruturado em tópicos e princípios. Valoriza a moralidade administrativa e a eficiência. Frequentemente entra em choque retórico com Gilmar Mendes.10",
+          "depois": "Perfil \"Iluminista\". Acredita no papel do Judiciário como vanguarda iluminista que empurra a história. Estilo didático, professoral, estruturado em tópicos e princípios. Valoriza a moralidade administrativa e a eficiência. Frequentemente entra em choque retórico com Gilmar Mendes."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stf-luiz-fux",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STF\\stf-luiz-fux.json",
+      "pasta": "STF",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "antes": "Corporativista (defensor da classe dos juízes), vaidoso, midiático. Trouxe a \"Análise Econômica do Direito\" para o STF. Gosta de ser visto como um juiz moderno e sintonizado com o \"sentimento constitucional\" (voz das ruas).3",
+          "depois": "Corporativista (defensor da classe dos juízes), vaidoso, midiático. Trouxe a \"Análise Econômica do Direito\" para o STF. Gosta de ser visto como um juiz moderno e sintonizado com o \"sentimento constitucional\" (voz das ruas)."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stf-nunes-marques",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STF\\stf-nunes-marques.json",
+      "pasta": "STF",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-afranio-vilela",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-afranio-vilela.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Conhecido pela alta produtividade no TJMG. Seu perfil psicológico é voltado para a pacificação social através da gestão de massas. Evita polêmicas doutrinárias, focando na aplicação célere do direito posto. É um magistrado de \"chão de fábrica\", essencial para a fluidez da Seção.9",
+          "depois": "Conhecido pela alta produtividade no TJMG. Seu perfil psicológico é voltado para a pacificação social através da gestão de massas. Evita polêmicas doutrinárias, focando na aplicação célere do direito posto. É um magistrado de \"chão de fábrica\", essencial para a fluidez da Seção."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Conhecido pela alta produtividade no TJMG. Seu perfil psicológico é voltado para a pacificação social através da gestão de massas. Evita polêmicas doutrinárias, focando na aplicação célere do direito ",
+          "depois": "Analise comportamental: Conhecido pela alta produtividade no TJMG. Seu perfil psicológico é voltado para a pacificação social através da gestão de massas. Evita polêmicas doutrinárias, focando na aplicação célere do direito"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-antonio-carlos-ferreira",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-antonio-carlos-ferreira.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "O técnico dos contratos. Oriundo da carreira jurídica da Caixa Econômica Federal, possui expertise ímpar em direito bancário e contratos de massa. Perfil discreto, avesso a holofotes, focado na segurança jurídica do sistema financeiro. Lidera discussões sobre IA no judiciário.9",
+          "depois": "O técnico dos contratos. Oriundo da carreira jurídica da Caixa Econômica Federal, possui expertise ímpar em direito bancário e contratos de massa. Perfil discreto, avesso a holofotes, focado na segurança jurídica do sistema financeiro. Lidera discussões sobre IA no judiciário."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-antonio-saldanha-palheiro",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-antonio-saldanha-palheiro.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Oscila entre o rigor e a garantia, dependendo do caso. Traz a experiência da criminalidade violenta do Rio de Janeiro, o que lhe confere pragmatismo, mas não ignora nulidades flagrantes.9",
+          "depois": "Oscila entre o rigor e a garantia, dependendo do caso. Traz a experiência da criminalidade violenta do Rio de Janeiro, o que lhe confere pragmatismo, mas não ignora nulidades flagrantes."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Oscila entre o rigor e a garantia, dependendo do caso. Traz a experiência da criminalidade violenta do Rio de Janeiro, o que lhe confere pragmatismo, mas não ignora nulidades flagrantes.9",
+          "depois": "Analise comportamental: Oscila entre o rigor e a garantia, dependendo do caso. Traz a experiência da criminalidade violenta do Rio de Janeiro, o que lhe confere pragmatismo, mas não ignora nulidades flagrantes."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-benedito-goncalves",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-benedito-goncalves.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Possui um perfil decisório flexível, sensível ao \"clima\" político e institucional. Sua passagem pelo TSE (onde relatou a inelegibilidade de Bolsonaro) revelou um juiz capaz de decisões duras quando respaldado institucionalmente. No STJ, busca soluções que conciliem interesses do Estado com a legalidade.4",
+          "depois": "Possui um perfil decisório flexível, sensível ao \"clima\" político e institucional. Sua passagem pelo TSE (onde relatou a inelegibilidade de Bolsonaro) revelou um juiz capaz de decisões duras quando respaldado institucionalmente. No STJ, busca soluções que conciliem interesses do Estado com a legalidade."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-carlos-pires-brandao",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-carlos-pires-brandao.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Recém-empossado (2025). No TRF-1, destacou-se por decisões sensíveis a direitos humanos. Sua entrada na Seção Penal deve reforçar o bloco garantista de Reynaldo Soares e Sebastião Reis, isolando ainda mais a corrente punitivista.15",
+          "depois": "Recém-empossado (2025). No TRF-1, destacou-se por decisões sensíveis a direitos humanos. Sua entrada na Seção Penal deve reforçar o bloco garantista de Reynaldo Soares e Sebastião Reis, isolando ainda mais a corrente punitivista."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-daniela-teixeira",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-daniela-teixeira.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "A mais nova integrante (2023). Trouxe a vivência da advocacia de defesa para o plenário. Seu perfil é combativo, especialmente em questões de gênero e prerrogativas da advocacia. Tem se destacado por votos que desafiam o *status quo* punitivo e defendem minorias.6",
+          "depois": "A mais nova integrante (2023). Trouxe a vivência da advocacia de defesa para o plenário. Seu perfil é combativo, especialmente em questões de gênero e prerrogativas da advocacia. Tem se destacado por votos que desafiam o *status quo* punitivo e defendem minorias."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: A mais nova integrante (2023). Trouxe a vivência da advocacia de defesa para o plenário. Seu perfil é combativo, especialmente em questões de gênero e prerrogativas da advocacia. Tem se destacado por ",
+          "depois": "Analise comportamental: A mais nova integrante (2023). Trouxe a vivência da advocacia de defesa para o plenário. Seu perfil é combativo, especialmente em questões de gênero e prerrogativas da advocacia. Tem se destacado por"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-francisco-falcao",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-francisco-falcao.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "O mais antigo. Perfil \"linha dura\" em improbidade administrativa. Não teme desagradar poderosos e mantém uma postura de fiscalização estrita da moralidade administrativa.3",
+          "depois": "O mais antigo. Perfil \"linha dura\" em improbidade administrativa. Não teme desagradar poderosos e mantém uma postura de fiscalização estrita da moralidade administrativa."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: O mais antigo. Perfil \"linha dura\" em improbidade administrativa. Não teme desagradar poderosos e mantém uma postura de fiscalização estrita da moralidade administrativa.3",
+          "depois": "Analise comportamental: O mais antigo. Perfil \"linha dura\" em improbidade administrativa. Não teme desagradar poderosos e mantém uma postura de fiscalização estrita da moralidade administrativa."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-gurgel-de-faria",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-gurgel-de-faria.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Magistrado de carreira com perfil discreto. Suas decisões são previsíveis e alinhadas aos precedentes, evitando inovações judiciais disruptivas. Tende a votar com a maioria, funcionando como um elemento de estabilidade na Seção.6",
+          "depois": "Magistrado de carreira com perfil discreto. Suas decisões são previsíveis e alinhadas aos precedentes, evitando inovações judiciais disruptivas. Tende a votar com a maioria, funcionando como um elemento de estabilidade na Seção."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-herman-benjamin",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-herman-benjamin.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-humberto-martins",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-humberto-martins.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Político e articulado. Ex-Presidente da Corte. Seus votos buscam o meio-termo e a estabilidade institucional. Tende a ser deferente às decisões das instâncias ordinárias.3",
+          "depois": "Político e articulado. Ex-Presidente da Corte. Seus votos buscam o meio-termo e a estabilidade institucional. Tende a ser deferente às decisões das instâncias ordinárias."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: Político e articulado. Ex-Presidente da Corte. Seus votos buscam o meio-termo e a estabilidade institucional. Tende a ser deferente às decisões das instâncias ordinárias.3",
+          "depois": "Analise comportamental: Político e articulado. Ex-Presidente da Corte. Seus votos buscam o meio-termo e a estabilidade institucional. Tende a ser deferente às decisões das instâncias ordinárias."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-isabel-gallotti",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-isabel-gallotti.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Conservadora e técnica. Filha e neta de ministros do STF, possui uma formação jurídica clássica. Seus votos são restritivos na concessão de indenizações por dano moral, buscando evitar a \"indústria do dano moral\". É a voz da prudência e da contenção.3",
+          "depois": "Conservadora e técnica. Filha e neta de ministros do STF, possui uma formação jurídica clássica. Seus votos são restritivos na concessão de indenizações por dano moral, buscando evitar a \"indústria do dano moral\". É a voz da prudência e da contenção."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-joao-otavio-de-noronha",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-joao-otavio-de-noronha.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "O contraponto liberal. Defensor ferrenho da liberdade econômica e da validade dos negócios jurídicos. Psicologicamente, mostra-se cético quanto à intervenção estatal na vida privada. Crítico vocal do \"ativismo judicial\" e do punitivismo midiático, atua como um garantidor das liberdades individuais contra o Estado.10",
+          "depois": "O contraponto liberal. Defensor ferrenho da liberdade econômica e da validade dos negócios jurídicos. Psicologicamente, mostra-se cético quanto à intervenção estatal na vida privada. Crítico vocal do \"ativismo judicial\" e do punitivismo midiático, atua como um garantidor das liberdades individuais contra o Estado."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: O contraponto liberal. Defensor ferrenho da liberdade econômica e da validade dos negócios jurídicos. Psicologicamente, mostra-se cético quanto à intervenção estatal na vida privada. Crítico vocal do ",
+          "depois": "Analise comportamental: O contraponto liberal. Defensor ferrenho da liberdade econômica e da validade dos negócios jurídicos. Psicologicamente, mostra-se cético quanto à intervenção estatal na vida privada. Crítico vocal do"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-joel-ilan-paciornik",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-joel-ilan-paciornik.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Representa a corrente mais rigorosa da corte. Oriundo do tribunal da Lava Jato, tende a validar a atuação policial e do MPF, aplicando a lei com severidade. Frequentemente fica vencido em turmas majoritariamente garantistas. Seu perfil é de ordem e autoridade.6",
+          "depois": "Representa a corrente mais rigorosa da corte. Oriundo do tribunal da Lava Jato, tende a validar a atuação policial e do MPF, aplicando a lei com severidade. Frequentemente fica vencido em turmas majoritariamente garantistas. Seu perfil é de ordem e autoridade."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-luis-felipe-salomao",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-luis-felipe-salomao.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "* **Perfil Psicológico e Ideológico:** Magistrado de carreira (TJ-RJ), Salomão possui um perfil político aguçado e uma habilidade notável para o diálogo interinstitucional. Psicologicamente, é um pragmático; suas decisões frequentemente aplicam a Análise Econômica do Direito, ponderando as consequências práticas e financeiras dos vereditos. É visto como um garantidor da segurança jurídica empresarial e um gestor rigoroso.  \n* **Tendência Decisória:** No Direito Privado, tende a valorizar a auton",
+          "depois": "* Perfil Psicológico e Ideológico: Magistrado de carreira (TJ-RJ), Salomão possui um perfil político aguçado e uma habilidade notável para o diálogo interinstitucional. Psicologicamente, é um pragmático; suas decisões frequentemente aplicam a Análise Econômica do Direito, ponderando as consequências práticas e financeiras dos vereditos. É visto como um garantidor da segurança jurídica empresarial e um gestor rigoroso.  \n* Tendência Decisória: No Direito Privado, tende a valorizar a auton"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: * **Perfil Psicológico e Ideológico:** Magistrado de carreira (TJ-RJ), Salomão possui um perfil político aguçado e uma habilidade notável para o diálogo interinstitucional. Psicologicamente, é um prag",
+          "depois": "Analise comportamental: * Perfil Psicológico e Ideológico: Magistrado de carreira (TJ-RJ), Salomão possui um perfil político aguçado e uma habilidade notável para o diálogo interinstitucional. Psicologicamente, é um prag"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-marco-aurelio-bellizze",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-marco-aurelio-bellizze.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Pragmático e resolutivo. Foca na efetividade da execução e na satisfação do crédito. É um juiz \"hands-on\", que busca desenrolar processos complexos de recuperação judicial.9",
+          "depois": "Pragmático e resolutivo. Foca na efetividade da execução e na satisfação do crédito. É um juiz \"hands-on\", que busca desenrolar processos complexos de recuperação judicial."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: Pragmático e resolutivo. Foca na efetividade da execução e na satisfação do crédito. É um juiz \"hands-on\", que busca desenrolar processos complexos de recuperação judicial.9",
+          "depois": "Analise comportamental: Pragmático e resolutivo. Foca na efetividade da execução e na satisfação do crédito. É um juiz \"hands-on\", que busca desenrolar processos complexos de recuperação judicial."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-marco-buzzi",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-marco-buzzi.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Especialista em Direito do Consumidor. Perfil protecionista, alinhado à defesa do hipossuficiente. Seus votos são técnicos, mas sempre orientados pela principiologia do Código de Defesa do Consumidor.12",
+          "depois": "Especialista em Direito do Consumidor. Perfil protecionista, alinhado à defesa do hipossuficiente. Seus votos são técnicos, mas sempre orientados pela principiologia do Código de Defesa do Consumidor."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-maria-thereza-de-assis-moura",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-maria-thereza-de-assis-moura.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas.23",
+          "depois": "** Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: ** Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas.23",
+          "depois": "Analise comportamental: ** Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas.",
+          "depois": " Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: ** Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas.",
+          "depois": "Analise comportamental:  Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-marluce-caldas",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-marluce-caldas.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Recém-empossada (2025). Oriunda do MP, espera-se inicialmente uma postura mais acusatória, mas a pressão institucional da 3ª Seção tende a moderar novos ministros em direção ao garantismo. Ocupa a vaga de Laurita Vaz, que era conservadora.3",
+          "depois": "Recém-empossada (2025). Oriunda do MP, espera-se inicialmente uma postura mais acusatória, mas a pressão institucional da 3ª Seção tende a moderar novos ministros em direção ao garantismo. Ocupa a vaga de Laurita Vaz, que era conservadora."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-mauro-campbell-marques",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-mauro-campbell-marques.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "(Atualmente Diretor da ENFAM). Perfil de liderança forte, com trânsito político. Seus votos em direito público são robustos e frequentemente defendem a autonomia federativa e municipal.3",
+          "depois": "(Atualmente Diretor da ENFAM). Perfil de liderança forte, com trânsito político. Seus votos em direito público são robustos e frequentemente defendem a autonomia federativa e municipal."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: (Atualmente Diretor da ENFAM). Perfil de liderança forte, com trânsito político. Seus votos em direito público são robustos e frequentemente defendem a autonomia federativa e municipal.3",
+          "depois": "Analise comportamental: (Atualmente Diretor da ENFAM). Perfil de liderança forte, com trânsito político. Seus votos em direito público são robustos e frequentemente defendem a autonomia federativa e municipal."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-messod-azulay",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-messod-azulay.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Focado na eficiência da repressão ao crime organizado. Tende a manter prisões preventivas em casos de alta periculosidade, alinhando-se mais a Paciornik do que a Schietti.8",
+          "depois": "Focado na eficiência da repressão ao crime organizado. Tende a manter prisões preventivas em casos de alta periculosidade, alinhando-se mais a Paciornik do que a Schietti."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Focado na eficiência da repressão ao crime organizado. Tende a manter prisões preventivas em casos de alta periculosidade, alinhando-se mais a Paciornik do que a Schietti.8",
+          "depois": "Analise comportamental: Focado na eficiência da repressão ao crime organizado. Tende a manter prisões preventivas em casos de alta periculosidade, alinhando-se mais a Paciornik do que a Schietti."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-moura-ribeiro",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-moura-ribeiro.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Garantista civil. Traz uma visão humanista para o direito privado, enfatizando a dignidade da pessoa humana nas relações obrigacionais. Perfil sereno e conciliador.12",
+          "depois": "Garantista civil. Traz uma visão humanista para o direito privado, enfatizando a dignidade da pessoa humana nas relações obrigacionais. Perfil sereno e conciliador."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: Garantista civil. Traz uma visão humanista para o direito privado, enfatizando a dignidade da pessoa humana nas relações obrigacionais. Perfil sereno e conciliador.12",
+          "depois": "Analise comportamental: Garantista civil. Traz uma visão humanista para o direito privado, enfatizando a dignidade da pessoa humana nas relações obrigacionais. Perfil sereno e conciliador."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-nancy-andrighi",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-nancy-andrighi.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "A \"consciência social\" da Seção. Seu perfil psicológico é de profunda empatia com o jurisdicionado vulnerável. Suas decisões inovadoras em direito de família (ex: danos morais por abandono afetivo) e consumidor demonstram uma juíza que enxerga a dor humana por trás dos autos. É progressista e corajosa.3",
+          "depois": "A \"consciência social\" da Seção. Seu perfil psicológico é de profunda empatia com o jurisdicionado vulnerável. Suas decisões inovadoras em direito de família (ex: danos morais por abandono afetivo) e consumidor demonstram uma juíza que enxerga a dor humana por trás dos autos. É progressista e corajosa."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: A \"consciência social\" da Seção. Seu perfil psicológico é de profunda empatia com o jurisdicionado vulnerável. Suas decisões inovadoras em direito de família (ex: danos morais por abandono afetivo) e ",
+          "depois": "Analise comportamental: A \"consciência social\" da Seção. Seu perfil psicológico é de profunda empatia com o jurisdicionado vulnerável. Suas decisões inovadoras em direito de família (ex: danos morais por abandono afetivo) e"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-paulo-sergio-domingues",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-paulo-sergio-domingues.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Nomeado em 2022, representa a nova geração de juízes federais focados em gestão. Seu perfil é voltado para a desburocratização e eficiência processual. Ideologicamente, situa-se ao centro, sem radicalismos estatais ou liberais.6",
+          "depois": "Nomeado em 2022, representa a nova geração de juízes federais focados em gestão. Seu perfil é voltado para a desburocratização e eficiência processual. Ideologicamente, situa-se ao centro, sem radicalismos estatais ou liberais."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-raul-araujo",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-raul-araujo.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Conservador clássico. Recentemente em evidência por decisões no TSE, no STJ mantém uma linha de defesa da propriedade privada e da família tradicional. Votos técnicos, mas ideologicamente marcados pelo conservadorismo.3",
+          "depois": "Conservador clássico. Recentemente em evidência por decisões no TSE, no STJ mantém uma linha de defesa da propriedade privada e da família tradicional. Votos técnicos, mas ideologicamente marcados pelo conservadorismo."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-regina-helena-costa",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-regina-helena-costa.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-reynaldo-soares-da-fonseca",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-reynaldo-soares-da-fonseca.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Perfil acolhedor e profundamente cristão/humanista. Busca a justiça restaurativa e a aplicação do princípio da insignificância. É o voto de fiel da balança que frequentemente inclina o julgamento para a liberdade do réu em casos limítrofes.13",
+          "depois": "Perfil acolhedor e profundamente cristão/humanista. Busca a justiça restaurativa e a aplicação do princípio da insignificância. É o voto de fiel da balança que frequentemente inclina o julgamento para a liberdade do réu em casos limítrofes."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-ribeiro-dantas",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-ribeiro-dantas.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Processualista rigoroso. Anula processos não por ideologia, mas por falhas técnicas na instrução. É um guardião do devido processo legal formal.9",
+          "depois": "Processualista rigoroso. Anula processos não por ideologia, mas por falhas técnicas na instrução. É um guardião do devido processo legal formal."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Processualista rigoroso. Anula processos não por ideologia, mas por falhas técnicas na instrução. É um guardião do devido processo legal formal.9",
+          "depois": "Analise comportamental: Processualista rigoroso. Anula processos não por ideologia, mas por falhas técnicas na instrução. É um guardião do devido processo legal formal."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-rogerio-schietti-cruz",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-rogerio-schietti-cruz.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "O teórico do grupo. Desenvolveu uma jurisprudência sofisticada que exige padrões probatórios elevados. Embora oriundo do MP, é o maior crítico do \"denuncismo\" e da flexibilização de garantias. Seus votos são pedagógicos, visando educar as polícias e o MP sobre limites constitucionais.9",
+          "depois": "O teórico do grupo. Desenvolveu uma jurisprudência sofisticada que exige padrões probatórios elevados. Embora oriundo do MP, é o maior crítico do \"denuncismo\" e da flexibilização de garantias. Seus votos são pedagógicos, visando educar as polícias e o MP sobre limites constitucionais."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-sebastiao-reis-junior",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-sebastiao-reis-junior.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Atua como um verdadeiro \"ombudsman\" do sistema carcerário. Psicologicamente, demonstra indignação constante com as condições prisionais e abusos policiais. Vota sistematicamente pela anulação de provas ilícitas (invasão de domicílio, busca pessoal sem fundada suspeita).6",
+          "depois": "Atua como um verdadeiro \"ombudsman\" do sistema carcerário. Psicologicamente, demonstra indignação constante com as condições prisionais e abusos policiais. Vota sistematicamente pela anulação de provas ilícitas (invasão de domicílio, busca pessoal sem fundada suspeita)."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-sergio-kukina",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-sergio-kukina.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Adota uma postura austera e formalista. Psicologicamente, demonstra uma forte deferência aos atos administrativos e à proteção do patrimônio público. Seus votos são curtos, diretos e raramente flexibilizam regras processuais em favor do particular.5",
+          "depois": "Adota uma postura austera e formalista. Psicologicamente, demonstra uma forte deferência aos atos administrativos e à proteção do patrimônio público. Seus votos são curtos, diretos e raramente flexibilizam regras processuais em favor do particular."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-teodoro-silva-santos",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-teodoro-silva-santos.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Traz a vivência da justiça estadual do Nordeste. Seu perfil decisório é focado na resolução prática de conflitos, com sensibilidade para as desigualdades regionais. Ainda em fase de consolidação doutrinária na Corte, tende a seguir a jurisprudência dominante.8",
+          "depois": "Traz a vivência da justiça estadual do Nordeste. Seu perfil decisório é focado na resolução prática de conflitos, com sensibilidade para as desigualdades regionais. Ainda em fase de consolidação doutrinária na Corte, tende a seguir a jurisprudência dominante."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "stj-villas-boas-cueva",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-villas-boas-cueva.json",
+      "pasta": "STJ",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "O intelectual cosmopolita. Seus votos são densos, repletos de referências a doutrinas estrangeiras (alemã e norte-americana). Adota uma postura liberal-progressista: liberal na economia, mas atento à proteção de direitos da personalidade e liberdade de expressão na era digital.11",
+          "depois": "O intelectual cosmopolita. Seus votos são densos, repletos de referências a doutrinas estrangeiras (alemã e norte-americana). Adota uma postura liberal-progressista: liberal na economia, mas atento à proteção de direitos da personalidade e liberdade de expressão na era digital."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: O intelectual cosmopolita. Seus votos são densos, repletos de referências a doutrinas estrangeiras (alemã e norte-americana). Adota uma postura liberal-progressista: liberal na economia, mas atento à ",
+          "depois": "Analise comportamental: O intelectual cosmopolita. Seus votos são densos, repletos de referências a doutrinas estrangeiras (alemã e norte-americana). Adota uma postura liberal-progressista: liberal na economia, mas atento à"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-alfeu-gonzaga-machado",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-alfeu-gonzaga-machado.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Civilista e processualista.25  \n21.",
+          "depois": "Civilista e processualista."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Civilista e processualista.25  \n21.",
+          "depois": "Civilista e processualista."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Civilista e processualista.25  \n21.",
+          "depois": "Perfil ideologico: Civilista e processualista."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Civilista e processualista.25  \n21.",
+          "depois": "Analise comportamental: Civilista e processualista."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-alvaro-luis-de-araujo-sales-ciarlini",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-alvaro-luis-de-araujo-sales-ciarlini.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Formalista Culto**. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes.37  \n29.",
+          "depois": "Formalista Culto**. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Formalista Culto**. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes.37  \n29.",
+          "depois": "Formalista Culto**. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Formalista Culto**. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes.37  \n29.",
+          "depois": "Perfil ideologico: Formalista Culto**. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Formalista Culto**. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes.37  \n29.",
+          "depois": "Analise comportamental: Formalista Culto**. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Formalista Culto**. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes.",
+          "depois": "Formalista Culto. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Formalista Culto**. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes.",
+          "depois": "Formalista Culto. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Formalista Culto**. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes.",
+          "depois": "Perfil ideologico: Formalista Culto. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Formalista Culto**. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes.",
+          "depois": "Analise comportamental: Formalista Culto. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-ana-maria-cantarino",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-ana-maria-cantarino.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "**Humanista**. Especialista em Direito de Família. Votos sensíveis à proteção de menores e incapazes.25",
+          "depois": "**Humanista**. Especialista em Direito de Família. Votos sensíveis à proteção de menores e incapazes."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: **Humanista**. Especialista em Direito de Família. Votos sensíveis à proteção de menores e incapazes.25",
+          "depois": "Analise comportamental: **Humanista**. Especialista em Direito de Família. Votos sensíveis à proteção de menores e incapazes."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Humanista**",
+          "depois": "Humanista"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "**Humanista**. Especialista em Direito de Família. Votos sensíveis à proteção de menores e incapazes.",
+          "depois": "Humanista. Especialista em Direito de Família. Votos sensíveis à proteção de menores e incapazes."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Humanista**",
+          "depois": "Perfil ideologico: Humanista"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: **Humanista**. Especialista em Direito de Família. Votos sensíveis à proteção de menores e incapazes.",
+          "depois": "Analise comportamental: Humanista. Especialista em Direito de Família. Votos sensíveis à proteção de menores e incapazes."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-angelo-canducci-passareli",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-angelo-canducci-passareli.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-arnoldo-camanho-de-assis",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-arnoldo-camanho-de-assis.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-arquibaldo-carneiro-portela",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-arquibaldo-carneiro-portela.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Penalista equilibrado. Busca o meio termo entre o punitivismo e o garantismo.42",
+          "depois": "Penalista equilibrado. Busca o meio termo entre o punitivismo e o garantismo."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Penalista equilibrado. Busca o meio termo entre o punitivismo e o garantismo.42",
+          "depois": "Analise comportamental: Penalista equilibrado. Busca o meio termo entre o punitivismo e o garantismo."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-carlos-pires-soares-neto",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-carlos-pires-soares-neto.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Modernizador**. Jovem, ascensão meteórica. Focado em inovação e eficiência.39  \n31.",
+          "depois": "Modernizador**. Jovem, ascensão meteórica. Focado em inovação e eficiência."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Modernizador**. Jovem, ascensão meteórica. Focado em inovação e eficiência.39  \n31.",
+          "depois": "Modernizador**. Jovem, ascensão meteórica. Focado em inovação e eficiência."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Modernizador**. Jovem, ascensão meteórica. Focado em inovação e eficiência.39  \n31.",
+          "depois": "Perfil ideologico: Modernizador**. Jovem, ascensão meteórica. Focado em inovação e eficiência."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Modernizador**. Jovem, ascensão meteórica. Focado em inovação e eficiência.39  \n31.",
+          "depois": "Analise comportamental: Modernizador**. Jovem, ascensão meteórica. Focado em inovação e eficiência."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Modernizador**. Jovem, ascensão meteórica. Focado em inovação e eficiência.",
+          "depois": "Modernizador. Jovem, ascensão meteórica. Focado em inovação e eficiência."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Modernizador**. Jovem, ascensão meteórica. Focado em inovação e eficiência.",
+          "depois": "Modernizador. Jovem, ascensão meteórica. Focado em inovação e eficiência."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Modernizador**. Jovem, ascensão meteórica. Focado em inovação e eficiência.",
+          "depois": "Perfil ideologico: Modernizador. Jovem, ascensão meteórica. Focado em inovação e eficiência."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Modernizador**. Jovem, ascensão meteórica. Focado em inovação e eficiência.",
+          "depois": "Analise comportamental: Modernizador. Jovem, ascensão meteórica. Focado em inovação e eficiência."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-diaulas-costa-ribeiro",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-diaulas-costa-ribeiro.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "O Provocador Intelectual**. Ex-Promotor, bioeticista de renome mundial. Seus votos são disruptivos, citando literatura, filosofia e ciência. Desafia o senso comum jurídico. Ideologicamente, é um conservador ilustrado que valoriza a vida e a ética médica.25  \n17.",
+          "depois": "O Provocador Intelectual**. Ex-Promotor, bioeticista de renome mundial. Seus votos são disruptivos, citando literatura, filosofia e ciência. Desafia o senso comum jurídico. Ideologicamente, é um conservador ilustrado que valoriza a vida e a ética médica."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "O Provocador Intelectual**. Ex-Promotor, bioeticista de renome mundial. Seus votos são disruptivos, citando literatura, filosofia e ciência. Desafia o senso comum jurídico. Ideologicamente, é um conse",
+          "depois": "O Provocador Intelectual. Ex-Promotor, bioeticista de renome mundial. Seus votos são disruptivos, citando literatura, filosofia e ciência. Desafia o senso comum jurídico. Ideologicamente, é um conse"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "O Provocador Intelectual**. Ex-Promotor, bioeticista de renome mundial. Seus votos são disruptivos, citando literatura, filosofia e ciência. Desafia o senso comum jurídico. Ideologicamente, é um conservador ilustrado que valoriza a vida e a ética médica.",
+          "depois": "O Provocador Intelectual. Ex-Promotor, bioeticista de renome mundial. Seus votos são disruptivos, citando literatura, filosofia e ciência. Desafia o senso comum jurídico. Ideologicamente, é um conservador ilustrado que valoriza a vida e a ética médica."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: O Provocador Intelectual**. Ex-Promotor, bioeticista de renome mundial. Seus votos são disruptivos, citando literatura, filosofia e ciência. Desafia o senso comum jurídico. Ideologicamente, é um conse",
+          "depois": "Perfil ideologico: O Provocador Intelectual. Ex-Promotor, bioeticista de renome mundial. Seus votos são disruptivos, citando literatura, filosofia e ciência. Desafia o senso comum jurídico. Ideologicamente, é um conse"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: O Provocador Intelectual**. Ex-Promotor, bioeticista de renome mundial. Seus votos são disruptivos, citando literatura, filosofia e ciência. Desafia o senso comum jurídico. Ideologicamente, é um conse",
+          "depois": "Analise comportamental: O Provocador Intelectual. Ex-Promotor, bioeticista de renome mundial. Seus votos são disruptivos, citando literatura, filosofia e ciência. Desafia o senso comum jurídico. Ideologicamente, é um conse"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-esdras-neves-almeida",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-esdras-neves-almeida.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-fabio-eduardo-marques",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-fabio-eduardo-marques.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Juiz de Carreira**. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual.35  \n27.",
+          "depois": "Juiz de Carreira**. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Juiz de Carreira**. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual.35  \n27.",
+          "depois": "Juiz de Carreira**. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Juiz de Carreira**. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual.35  \n27.",
+          "depois": "Perfil ideologico: Juiz de Carreira**. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Juiz de Carreira**. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual.35  \n27.",
+          "depois": "Analise comportamental: Juiz de Carreira**. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Juiz de Carreira**. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual.",
+          "depois": "Juiz de Carreira. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Juiz de Carreira**. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual.",
+          "depois": "Juiz de Carreira. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Juiz de Carreira**. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual.",
+          "depois": "Perfil ideologico: Juiz de Carreira. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Juiz de Carreira**. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual.",
+          "depois": "Analise comportamental: Juiz de Carreira. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-fabricio-fontoura-bezerra",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-fabricio-fontoura-bezerra.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Promovido em 2025\\. Traz a experiência recente da primeira instância. Perfil operacional.40",
+          "depois": "Promovido em 2025\\. Traz a experiência recente da primeira instância. Perfil operacional."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Promovido em 2025\\. Traz a experiência recente da primeira instância. Perfil operacional.40",
+          "depois": "Analise comportamental: Promovido em 2025\\. Traz a experiência recente da primeira instância. Perfil operacional."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-fernando-antonio-habibe-pereira",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-fernando-antonio-habibe-pereira.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-gislene-pinheiro-de-oliveira",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-gislene-pinheiro-de-oliveira.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Punitivista \"Linha Dura\"**. Em matéria penal, é rigoroso, defendendo a segurança pública acima de filigranas processuais. Votos duros contra tráfico e corrupção.  \n7.",
+          "depois": "Punitivista \"Linha Dura\". Em matéria penal, é rigoroso, defendendo a segurança pública acima de filigranas processuais. Votos duros contra tráfico e corrupção.  \n7."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Punitivista \"Linha Dura\"**. Em matéria penal, é rigoroso, defendendo a segurança pública acima de filigranas processuais. Votos duros contra tráfico e corrupção.  \n7.",
+          "depois": "Punitivista \"Linha Dura\". Em matéria penal, é rigoroso, defendendo a segurança pública acima de filigranas processuais. Votos duros contra tráfico e corrupção.  \n7."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Punitivista \"Linha Dura\"**. Em matéria penal, é rigoroso, defendendo a segurança pública acima de filigranas processuais. Votos duros contra tráfico e corrupção.  \n7.",
+          "depois": "Perfil ideologico: Punitivista \"Linha Dura\". Em matéria penal, é rigoroso, defendendo a segurança pública acima de filigranas processuais. Votos duros contra tráfico e corrupção.  \n7."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Punitivista \"Linha Dura\"**. Em matéria penal, é rigoroso, defendendo a segurança pública acima de filigranas processuais. Votos duros contra tráfico e corrupção.  \n7.",
+          "depois": "Analise comportamental: Punitivista \"Linha Dura\". Em matéria penal, é rigoroso, defendendo a segurança pública acima de filigranas processuais. Votos duros contra tráfico e corrupção.  \n7."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-hector-valverde-santanna",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-hector-valverde-santanna.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Acadêmico Consumerista**. Doutrinador respeitado em Direito do Consumidor. Seus votos equilibram a proteção do consumidor com a análise econômica para não inviabilizar o mercado. É um \"farol\" doutrinário na corte.33  \n25.",
+          "depois": "Acadêmico Consumerista**. Doutrinador respeitado em Direito do Consumidor. Seus votos equilibram a proteção do consumidor com a análise econômica para não inviabilizar o mercado. É um \"farol\" doutrinário na corte."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Acadêmico Consumerista**. Doutrinador respeitado em Direito do Consumidor. Seus votos equilibram a proteção do consumidor com a análise econômica para não inviabilizar o mercado. É um \"farol\" doutriná",
+          "depois": "Acadêmico Consumerista. Doutrinador respeitado em Direito do Consumidor. Seus votos equilibram a proteção do consumidor com a análise econômica para não inviabilizar o mercado. É um \"farol\" doutriná"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Acadêmico Consumerista**. Doutrinador respeitado em Direito do Consumidor. Seus votos equilibram a proteção do consumidor com a análise econômica para não inviabilizar o mercado. É um \"farol\" doutrinário na corte.",
+          "depois": "Acadêmico Consumerista. Doutrinador respeitado em Direito do Consumidor. Seus votos equilibram a proteção do consumidor com a análise econômica para não inviabilizar o mercado. É um \"farol\" doutrinário na corte."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Acadêmico Consumerista**. Doutrinador respeitado em Direito do Consumidor. Seus votos equilibram a proteção do consumidor com a análise econômica para não inviabilizar o mercado. É um \"farol\" doutriná",
+          "depois": "Perfil ideologico: Acadêmico Consumerista. Doutrinador respeitado em Direito do Consumidor. Seus votos equilibram a proteção do consumidor com a análise econômica para não inviabilizar o mercado. É um \"farol\" doutriná"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Acadêmico Consumerista**. Doutrinador respeitado em Direito do Consumidor. Seus votos equilibram a proteção do consumidor com a análise econômica para não inviabilizar o mercado. É um \"farol\" doutriná",
+          "depois": "Analise comportamental: Acadêmico Consumerista. Doutrinador respeitado em Direito do Consumidor. Seus votos equilibram a proteção do consumidor com a análise econômica para não inviabilizar o mercado. É um \"farol\" doutriná"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-jair-oliveira-soares",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-jair-oliveira-soares.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-jesuino-aparecido-rissato",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-jesuino-aparecido-rissato.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "**Técnico-Punitivista**. Frequentemente convocado ao STJ, onde reforça a ala conservadora. No TJDFT, é uma referência de rigor penal e eficiência processual.25",
+          "depois": "**Técnico-Punitivista**. Frequentemente convocado ao STJ, onde reforça a ala conservadora. No TJDFT, é uma referência de rigor penal e eficiência processual."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: **Técnico-Punitivista**. Frequentemente convocado ao STJ, onde reforça a ala conservadora. No TJDFT, é uma referência de rigor penal e eficiência processual.25",
+          "depois": "Analise comportamental: **Técnico-Punitivista**. Frequentemente convocado ao STJ, onde reforça a ala conservadora. No TJDFT, é uma referência de rigor penal e eficiência processual."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Técnico-Punitivista**",
+          "depois": "Técnico-Punitivista"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "**Técnico-Punitivista**. Frequentemente convocado ao STJ, onde reforça a ala conservadora. No TJDFT, é uma referência de rigor penal e eficiência processual.",
+          "depois": "Técnico-Punitivista. Frequentemente convocado ao STJ, onde reforça a ala conservadora. No TJDFT, é uma referência de rigor penal e eficiência processual."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Técnico-Punitivista**",
+          "depois": "Perfil ideologico: Técnico-Punitivista"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: **Técnico-Punitivista**. Frequentemente convocado ao STJ, onde reforça a ala conservadora. No TJDFT, é uma referência de rigor penal e eficiência processual.",
+          "depois": "Analise comportamental: Técnico-Punitivista. Frequentemente convocado ao STJ, onde reforça a ala conservadora. No TJDFT, é uma referência de rigor penal e eficiência processual."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-joao-egmont-leoncio-lopes",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-joao-egmont-leoncio-lopes.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-josapha-francisco-dos-santos",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-josapha-francisco-dos-santos.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-jose-cruz-macedo",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-jose-cruz-macedo.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-leila-cristina-garbin-arlanch",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-leila-cristina-garbin-arlanch.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-leonardo-roscoe-bessa",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-leonardo-roscoe-bessa.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Especialista em Consumidor (MP)**. Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade.41  \n37.",
+          "depois": "Especialista em Consumidor (MP)**. Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Especialista em Consumidor (MP)**. Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade.41  \n37.",
+          "depois": "Especialista em Consumidor (MP)**. Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Especialista em Consumidor (MP)**. Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade.41  \n37.",
+          "depois": "Perfil ideologico: Especialista em Consumidor (MP)**. Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Especialista em Consumidor (MP)**. Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade.41  \n37.",
+          "depois": "Analise comportamental: Especialista em Consumidor (MP)**. Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Especialista em Consumidor (MP)**. Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade.",
+          "depois": "Especialista em Consumidor (MP). Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Especialista em Consumidor (MP)**. Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade.",
+          "depois": "Especialista em Consumidor (MP). Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Especialista em Consumidor (MP)**. Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade.",
+          "depois": "Perfil ideologico: Especialista em Consumidor (MP). Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Especialista em Consumidor (MP)**. Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade.",
+          "depois": "Analise comportamental: Especialista em Consumidor (MP). Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-lucimeire-maria-da-silva",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-lucimeire-maria-da-silva.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Foco em Infância e Juventude. Protetiva e sensível a causas sociais.25  \n39.",
+          "depois": "Foco em Infância e Juventude. Protetiva e sensível a causas sociais."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Foco em Infância e Juventude. Protetiva e sensível a causas sociais.25  \n39.",
+          "depois": "Foco em Infância e Juventude. Protetiva e sensível a causas sociais."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Foco em Infância e Juventude. Protetiva e sensível a causas sociais.25  \n39.",
+          "depois": "Perfil ideologico: Foco em Infância e Juventude. Protetiva e sensível a causas sociais."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Foco em Infância e Juventude. Protetiva e sensível a causas sociais.25  \n39.",
+          "depois": "Analise comportamental: Foco em Infância e Juventude. Protetiva e sensível a causas sociais."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-luis-gustavo-barbosa-de-oliveira",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-luis-gustavo-barbosa-de-oliveira.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Técnico e discreto.38",
+          "depois": "Técnico e discreto."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Técnico e discreto.38",
+          "depois": "Analise comportamental: Técnico e discreto."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-maria-ivatonia-barbosa-dos-santos",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-maria-ivatonia-barbosa-dos-santos.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Representatividade e Direitos Humanos**. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais.40  \n33.",
+          "depois": "Representatividade e Direitos Humanos**. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Representatividade e Direitos Humanos**. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais.40  \n33.",
+          "depois": "Representatividade e Direitos Humanos**. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Representatividade e Direitos Humanos**. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais.40  \n33.",
+          "depois": "Perfil ideologico: Representatividade e Direitos Humanos**. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Representatividade e Direitos Humanos**. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais.40  \n33.",
+          "depois": "Analise comportamental: Representatividade e Direitos Humanos**. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Representatividade e Direitos Humanos**. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais.",
+          "depois": "Representatividade e Direitos Humanos. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Representatividade e Direitos Humanos**. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais.",
+          "depois": "Representatividade e Direitos Humanos. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Representatividade e Direitos Humanos**. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais.",
+          "depois": "Perfil ideologico: Representatividade e Direitos Humanos. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Representatividade e Direitos Humanos**. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais.",
+          "depois": "Analise comportamental: Representatividade e Direitos Humanos. Primeira mulher negra desembargadora do TJDFT (MP). Atuação marcante em questões raciais e sociais. Garantista em direitos fundamentais."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-mario-zam-belmiro-rosa",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-mario-zam-belmiro-rosa.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Rigoroso, disciplinador. Focado na produtividade dos juízes de base.27",
+          "depois": "Rigoroso, disciplinador. Focado na produtividade dos juízes de base."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Rigoroso, disciplinador. Focado na produtividade dos juízes de base.27",
+          "depois": "Perfil ideologico: Rigoroso, disciplinador. Focado na produtividade dos juízes de base."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "*Perfil:* Rigoroso, disciplinador. Focado na produtividade dos juízes de base.27 **Desembargadores (Ordem de Antiguidade/Relevância):** 1. **Jair Oliveira Soares (Decano):** *Perfil:* O \"guardião da jurisprudência\". Conservador, votos curtos e objetivos. Avesso a teorias mirabolantes, foca na letra da lei. Célere e produtivo. 2. **Vera Lúcia Andrighi:** *Perfil:* Humanista. Pioneira em justiça conciliatória e mediação. Seus votos buscam a paz social mais do que a imposição fria da sanção. 3. **S",
+          "depois": "*Perfil:* Rigoroso, disciplinador. Focado na produtividade dos juízes de base.27 Desembargadores (Ordem de Antiguidade/Relevância): 1. Jair Oliveira Soares (Decano): *Perfil:* O \"guardião da jurisprudência\". Conservador, votos curtos e objetivos. Avesso a teorias mirabolantes, foca na letra da lei. Célere e produtivo. 2. Vera Lúcia Andrighi: *Perfil:* Humanista. Pioneira em justiça conciliatória e mediação. Seus votos buscam a paz social mais do que a imposição fria da sanção. 3. S"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: *Perfil:* Rigoroso, disciplinador. Focado na produtividade dos juízes de base.27 **Desembargadores (Ordem de Antiguidade/Relevância):** 1. **Jair Oliveira Soares (Decano):** *Perfil:* O \"guardião da j",
+          "depois": "Analise comportamental: *Perfil:* Rigoroso, disciplinador. Focado na produtividade dos juízes de base.27 Desembargadores (Ordem de Antiguidade/Relevância): 1. Jair Oliveira Soares (Decano): *Perfil:* O \"guardião da j"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-nilsoni-de-freitas-custodio",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-nilsoni-de-freitas-custodio.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Penalista de Gênero**",
+          "depois": "Penalista de Gênero"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "**Penalista de Gênero**. Atuação rigorosa em crimes contra a mulher e violência doméstica. Técnica, mas sensível a questões sociais.",
+          "depois": "Penalista de Gênero. Atuação rigorosa em crimes contra a mulher e violência doméstica. Técnica, mas sensível a questões sociais."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Penalista de Gênero**",
+          "depois": "Perfil ideologico: Penalista de Gênero"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: **Penalista de Gênero**. Atuação rigorosa em crimes contra a mulher e violência doméstica. Técnica, mas sensível a questões sociais.",
+          "depois": "Analise comportamental: Penalista de Gênero. Atuação rigorosa em crimes contra a mulher e violência doméstica. Técnica, mas sensível a questões sociais."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-renato-rodovalho-scussel",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-renato-rodovalho-scussel.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-roberto-freitas-filho",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-roberto-freitas-filho.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "**Constitucionalista (Quinto OAB)**. Doutor, traz a visão da advocacia e da academia. Seus votos oxigenam o tribunal com teses constitucionais contemporâneas. Garantista e inovador.36",
+          "depois": "**Constitucionalista (Quinto OAB)**. Doutor, traz a visão da advocacia e da academia. Seus votos oxigenam o tribunal com teses constitucionais contemporâneas. Garantista e inovador."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: **Constitucionalista (Quinto OAB)**. Doutor, traz a visão da advocacia e da academia. Seus votos oxigenam o tribunal com teses constitucionais contemporâneas. Garantista e inovador.36",
+          "depois": "Analise comportamental: **Constitucionalista (Quinto OAB)**. Doutor, traz a visão da advocacia e da academia. Seus votos oxigenam o tribunal com teses constitucionais contemporâneas. Garantista e inovador."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Constitucionalista (Quinto OAB)**",
+          "depois": "Constitucionalista (Quinto OAB)"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "**Constitucionalista (Quinto OAB)**. Doutor, traz a visão da advocacia e da academia. Seus votos oxigenam o tribunal com teses constitucionais contemporâneas. Garantista e inovador.",
+          "depois": "Constitucionalista (Quinto OAB). Doutor, traz a visão da advocacia e da academia. Seus votos oxigenam o tribunal com teses constitucionais contemporâneas. Garantista e inovador."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Constitucionalista (Quinto OAB)**",
+          "depois": "Perfil ideologico: Constitucionalista (Quinto OAB)"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: **Constitucionalista (Quinto OAB)**. Doutor, traz a visão da advocacia e da academia. Seus votos oxigenam o tribunal com teses constitucionais contemporâneas. Garantista e inovador.",
+          "depois": "Analise comportamental: Constitucionalista (Quinto OAB). Doutor, traz a visão da advocacia e da academia. Seus votos oxigenam o tribunal com teses constitucionais contemporâneas. Garantista e inovador."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-roberval-casemiro-belinati",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-roberval-casemiro-belinati.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30 * **2ª Vice-Presidente:** Des. **Angelo Canducci Passareli**. Perfil discreto, técnico e conciliador. * **Corregedor:** Des. **Mario-Zam Belmiro Rosa**. *Perfil:* Rigoroso, disciplinador. Focado na produtividade dos juízes de base.27 **Desembargadores (Ordem de Antiguidade/Relevância):**",
+          "depois": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30 * 2ª Vice-Presidente: Des. Angelo Canducci Passareli. Perfil discreto, técnico e conciliador. * Corregedor: Des. Mario-Zam Belmiro Rosa. *Perfil:* Rigoroso, disciplinador. Focado na produtividade dos juízes de base.27 Desembargadores (Ordem de Antiguidade/Relevância):"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30 * **2ª Vice-Presidente:** Des. **Angelo Canducci Pa",
+          "depois": "Analise comportamental: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30 * 2ª Vice-Presidente: Des. Angelo Canducci Pa"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-robson-barbosa-de-azevedo",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-robson-barbosa-de-azevedo.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Discreto.25",
+          "depois": "Discreto."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Discreto.25",
+          "depois": "Analise comportamental: Discreto."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-robson-vieira-teixeira-de-freitas",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-robson-vieira-teixeira-de-freitas.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-romulo-de-araujo-mendes",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-romulo-de-araujo-mendes.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-sandoval-gomes-de-oliveira",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-sandoval-gomes-de-oliveira.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-sandra-reves-vasques-tonussi",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-sandra-reves-vasques-tonussi.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-sergio-xavier-de-souza-rocha",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-sergio-xavier-de-souza-rocha.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Penalista com viés **garantista moderado**, uma exceção na corte. Tende a seguir os precedentes do STJ em matéria de nulidades.  \n4.",
+          "depois": "Penalista com viés garantista moderado, uma exceção na corte. Tende a seguir os precedentes do STJ em matéria de nulidades.  \n4."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Penalista com viés **garantista moderado**, uma exceção na corte. Tende a seguir os precedentes do STJ em matéria de nulidades.  \n4.",
+          "depois": "Penalista com viés garantista moderado, uma exceção na corte. Tende a seguir os precedentes do STJ em matéria de nulidades.  \n4."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Penalista com viés **garantista moderado**, uma exceção na corte. Tende a seguir os precedentes do STJ em matéria de nulidades.  \n4.",
+          "depois": "Perfil ideologico: Penalista com viés garantista moderado, uma exceção na corte. Tende a seguir os precedentes do STJ em matéria de nulidades.  \n4."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Penalista com viés **garantista moderado**, uma exceção na corte. Tende a seguir os precedentes do STJ em matéria de nulidades.  \n4.",
+          "depois": "Analise comportamental: Penalista com viés garantista moderado, uma exceção na corte. Tende a seguir os precedentes do STJ em matéria de nulidades.  \n4."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-silvanio-barbosa-dos-santos",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-silvanio-barbosa-dos-santos.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-simone-costa-lucindo-ferreira",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-simone-costa-lucindo-ferreira.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-soniria-rocha-campos-d-assuncao",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-soniria-rocha-campos-d-assuncao.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-teofilo-rodrigues-caetano-neto",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-teofilo-rodrigues-caetano-neto.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Discreto e institucional. Segue a maioria, evitando polêmicas.31  \n11.",
+          "depois": "Discreto e institucional. Segue a maioria, evitando polêmicas."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Discreto e institucional. Segue a maioria, evitando polêmicas.31  \n11.",
+          "depois": "Discreto e institucional. Segue a maioria, evitando polêmicas."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Discreto e institucional. Segue a maioria, evitando polêmicas.31  \n11.",
+          "depois": "Perfil ideologico: Discreto e institucional. Segue a maioria, evitando polêmicas."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Discreto e institucional. Segue a maioria, evitando polêmicas.31  \n11.",
+          "depois": "Analise comportamental: Discreto e institucional. Segue a maioria, evitando polêmicas."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-vera-lucia-andrighi",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-vera-lucia-andrighi.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "tjdft-waldir-leoncio-cordeiro-lopes-junior",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-waldir-leoncio-cordeiro-lopes-junior.json",
+      "pasta": "TJDFT",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[1].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-alexandre-vasconcelos",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-alexandre-vasconcelos.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-ana-carolina-roman",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-ana-carolina-roman.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Recém empossado (2024). Origem Bahia.37",
+          "depois": "** Recém empossado (2024). Origem Bahia."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Recém empossado (2024). Origem Bahia.37",
+          "depois": "Analise comportamental: ** Recém empossado (2024). Origem Bahia."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Recém empossado (2024). Origem Bahia.",
+          "depois": " Recém empossado (2024). Origem Bahia."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Recém empossado (2024). Origem Bahia.",
+          "depois": "Analise comportamental:  Recém empossado (2024). Origem Bahia."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-antonio-scarpa",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-antonio-scarpa.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Previdenciário. Votos favoráveis aos segurados (pro-misero).",
+          "depois": " Previdenciário. Votos favoráveis aos segurados (pro-misero)."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Previdenciário. Votos favoráveis aos segurados (pro-misero).",
+          "depois": "Analise comportamental:  Previdenciário. Votos favoráveis aos segurados (pro-misero)."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-candice-lavocat-galvao-jobim",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-candice-lavocat-galvao-jobim.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Juíza de carreira (Posse recente). Foco em previdenciário/social.33",
+          "depois": "** Juíza de carreira (Posse recente). Foco em previdenciário/social."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Juíza de carreira (Posse recente). Foco em previdenciário/social.33",
+          "depois": "Analise comportamental: ** Juíza de carreira (Posse recente). Foco em previdenciário/social."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Juíza de carreira (Posse recente). Foco em previdenciário/social.",
+          "depois": " Juíza de carreira (Posse recente). Foco em previdenciário/social."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Juíza de carreira (Posse recente). Foco em previdenciário/social.",
+          "depois": "Analise comportamental:  Juíza de carreira (Posse recente). Foco em previdenciário/social."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-carlos-eduardo-moreira-alves",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-carlos-eduardo-moreira-alves.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-cesar-jatahy",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-cesar-jatahy.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-daniele-maranhao",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-daniele-maranhao.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-eduardo-martins",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-eduardo-martins.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Pragmático/Dynasty**. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao conservadorismo em temas morais, mas é garantista em processos disciplinares e penais.20",
+          "depois": "Pragmático/Dynasty**. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao conservadorismo em temas morais, mas é garantista em processos disciplinares e penais."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Pragmático/Dynasty**. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao c",
+          "depois": "Pragmático/Dynasty. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao c"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Pragmático/Dynasty**. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao conservadorismo em temas morais, mas é garantista em processos disciplinares e penais.",
+          "depois": "Pragmático/Dynasty. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao conservadorismo em temas morais, mas é garantista em processos disciplinares e penais."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Pragmático/Dynasty**. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao c",
+          "depois": "Perfil ideologico: Pragmático/Dynasty. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao c"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Pragmático/Dynasty**. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao c",
+          "depois": "Analise comportamental: Pragmático/Dynasty. Filho do Ministro Humberto Martins (STJ). Sua nomeação reforça os laços entre o STJ e o TRF-1. Atua com foco nas prerrogativas da advocacia e na celeridade processual. Tende ao c"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-euler-de-almeida",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-euler-de-almeida.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Gestor eficiente, focado em metas.22",
+          "depois": "** Gestor eficiente, focado em metas."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Gestor eficiente, focado em metas.22",
+          "depois": "Analise comportamental: ** Gestor eficiente, focado em metas."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Gestor eficiente, focado em metas.",
+          "depois": " Gestor eficiente, focado em metas."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Gestor eficiente, focado em metas.",
+          "depois": "Analise comportamental:  Gestor eficiente, focado em metas."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-flavio-jardim",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-flavio-jardim.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Intelectual/Constitucionalista**. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado ",
+          "depois": "Intelectual/Constitucionalista**. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado"
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Intelectual/Constitucionalista**. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado à jurisprudência do STF.20  \n6.",
+          "depois": "Intelectual/Constitucionalista**. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado à jurisprudência do STF."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Intelectual/Constitucionalista**. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado ",
+          "depois": "Perfil ideologico: Intelectual/Constitucionalista**. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado"
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Intelectual/Constitucionalista**. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado ",
+          "depois": "Analise comportamental: Intelectual/Constitucionalista**. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Intelectual/Constitucionalista**. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado",
+          "depois": "Intelectual/Constitucionalista. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Intelectual/Constitucionalista**. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado à jurisprudência do STF.",
+          "depois": "Intelectual/Constitucionalista. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado à jurisprudência do STF."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Intelectual/Constitucionalista**. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado",
+          "depois": "Perfil ideologico: Intelectual/Constitucionalista. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Intelectual/Constitucionalista**. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado",
+          "depois": "Analise comportamental: Intelectual/Constitucionalista. Ex-Procurador do DF. Possui perfil acadêmico refinado. Seus votos prometem ser densos e fundamentados em teoria constitucional. É um garantista sofisticado, alinhado"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-gilda-sigmaringa-seixas",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-gilda-sigmaringa-seixas.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-gustavo-soares-amorim",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-gustavo-soares-amorim.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Político/Institucional**. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende ",
+          "depois": "Político/Institucional**. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende"
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Político/Institucional**. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende a ser um voto moderado, mas com forte influência nos bastidores.13",
+          "depois": "Político/Institucional**. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende a ser um voto moderado, mas com forte influência nos bastidores."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Político/Institucional**. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende ",
+          "depois": "Perfil ideologico: Político/Institucional**. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende"
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Político/Institucional**. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende ",
+          "depois": "Analise comportamental: Político/Institucional**. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Político/Institucional**. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende",
+          "depois": "Político/Institucional. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Político/Institucional**. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende a ser um voto moderado, mas com forte influência nos bastidores.",
+          "depois": "Político/Institucional. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende a ser um voto moderado, mas com forte influência nos bastidores."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Político/Institucional**. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende",
+          "depois": "Perfil ideologico: Político/Institucional. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Político/Institucional**. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende",
+          "depois": "Analise comportamental: Político/Institucional. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-hercules-fajoses",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-hercules-fajoses.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-i-talo-mendes",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-i-talo-mendes.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-joao-batista-moreira",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-joao-batista-moreira.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-jose-amilcar-machado",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-jose-amilcar-machado.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-katia-balbino",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-katia-balbino.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Progressista/Direitos Humanos**. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justiça. É uma gestora inovadora.19",
+          "depois": "Progressista/Direitos Humanos**. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justiça. É uma gestora inovadora."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Progressista/Direitos Humanos**. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justi",
+          "depois": "Progressista/Direitos Humanos. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justi"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Progressista/Direitos Humanos**. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justiça. É uma gestora inovadora.",
+          "depois": "Progressista/Direitos Humanos. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justiça. É uma gestora inovadora."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Progressista/Direitos Humanos**. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justi",
+          "depois": "Perfil ideologico: Progressista/Direitos Humanos. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justi"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Progressista/Direitos Humanos**. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justi",
+          "depois": "Analise comportamental: Progressista/Direitos Humanos. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justi"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-marcelo-albernaz",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-marcelo-albernaz.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Juíza de carreira (DF). Perfil garantista em direitos sociais e saúde.",
+          "depois": " Juíza de carreira (DF). Perfil garantista em direitos sociais e saúde."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: ** Juíza de carreira (DF). Perfil garantista em direitos sociais e saúde.",
+          "depois": "Analise comportamental:  Juíza de carreira (DF). Perfil garantista em direitos sociais e saúde."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-marcos-augusto-de-sousa",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-marcos-augusto-de-sousa.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Constitucionalista (Doutorado na Alemanha). Garantista, alinhado doutrinariamente com o grupo de Gilmar Mendes/Ney Bello. Votos eruditos.31",
+          "depois": "** Constitucionalista (Doutorado na Alemanha). Garantista, alinhado doutrinariamente com o grupo de Gilmar Mendes/Ney Bello. Votos eruditos."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Constitucionalista (Doutorado na Alemanha). Garantista, alinhado doutrinariamente com o grupo de Gilmar Mendes/Ney Bello. Votos eruditos.31",
+          "depois": "Analise comportamental: ** Constitucionalista (Doutorado na Alemanha). Garantista, alinhado doutrinariamente com o grupo de Gilmar Mendes/Ney Bello. Votos eruditos."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Constitucionalista (Doutorado na Alemanha). Garantista, alinhado doutrinariamente com o grupo de Gilmar Mendes/Ney Bello. Votos eruditos.",
+          "depois": " Constitucionalista (Doutorado na Alemanha). Garantista, alinhado doutrinariamente com o grupo de Gilmar Mendes/Ney Bello. Votos eruditos."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Constitucionalista (Doutorado na Alemanha). Garantista, alinhado doutrinariamente com o grupo de Gilmar Mendes/Ney Bello. Votos eruditos.",
+          "depois": "Analise comportamental:  Constitucionalista (Doutorado na Alemanha). Garantista, alinhado doutrinariamente com o grupo de Gilmar Mendes/Ney Bello. Votos eruditos."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-marcus-bastos",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-marcus-bastos.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Garantista Histórico**. Ficou famoso por absolver réus da Lava Jato e Zelotes, criticando abertamente a \"criminalização da política\". Sua ascensão ao TRF-1 cria uma barreira sólida contra operações do MPF consideradas abusivas. É técnico, corajoso e independente.18  \n2.",
+          "depois": "Garantista Histórico**. Ficou famoso por absolver réus da Lava Jato e Zelotes, criticando abertamente a \"criminalização da política\". Sua ascensão ao TRF-1 cria uma barreira sólida contra operações do MPF consideradas abusivas. É técnico, corajoso e independente."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Garantista Histórico**. Ficou famoso por absolver réus da Lava Jato e Zelotes, criticando abertamente a \"criminalização da política\". Sua ascensão ao TRF-1 cria uma barreira sólida contra operações do",
+          "depois": "Garantista Histórico. Ficou famoso por absolver réus da Lava Jato e Zelotes, criticando abertamente a \"criminalização da política\". Sua ascensão ao TRF-1 cria uma barreira sólida contra operações do"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Garantista Histórico**. Ficou famoso por absolver réus da Lava Jato e Zelotes, criticando abertamente a \"criminalização da política\". Sua ascensão ao TRF-1 cria uma barreira sólida contra operações do MPF consideradas abusivas. É técnico, corajoso e independente.",
+          "depois": "Garantista Histórico. Ficou famoso por absolver réus da Lava Jato e Zelotes, criticando abertamente a \"criminalização da política\". Sua ascensão ao TRF-1 cria uma barreira sólida contra operações do MPF consideradas abusivas. É técnico, corajoso e independente."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Garantista Histórico**. Ficou famoso por absolver réus da Lava Jato e Zelotes, criticando abertamente a \"criminalização da política\". Sua ascensão ao TRF-1 cria uma barreira sólida contra operações do",
+          "depois": "Perfil ideologico: Garantista Histórico. Ficou famoso por absolver réus da Lava Jato e Zelotes, criticando abertamente a \"criminalização da política\". Sua ascensão ao TRF-1 cria uma barreira sólida contra operações do"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Garantista Histórico**. Ficou famoso por absolver réus da Lava Jato e Zelotes, criticando abertamente a \"criminalização da política\". Sua ascensão ao TRF-1 cria uma barreira sólida contra operações do",
+          "depois": "Analise comportamental: Garantista Histórico. Ficou famoso por absolver réus da Lava Jato e Zelotes, criticando abertamente a \"criminalização da política\". Sua ascensão ao TRF-1 cria uma barreira sólida contra operações do"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-maria-do-carmo-cardoso",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-maria-do-carmo-cardoso.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-maura-moraes-tayer",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-maura-moraes-tayer.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-morais-da-rocha",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-morais-da-rocha.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-neviton-guedes",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-neviton-guedes.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-newton-ramos",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-newton-ramos.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Juiz de carreira.",
+          "depois": " Juiz de carreira."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Juiz de carreira.",
+          "depois": "Analise comportamental:  Juiz de carreira."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-ney-bello",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-ney-bello.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-pablo-zuniga",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-pablo-zuniga.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Juiz de carreira. Perfil técnico.34 ## --- **",
+          "depois": " Juiz de carreira. Perfil técnico.34 ## ---"
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: ** Juiz de carreira. Perfil técnico.34 ## --- **",
+          "depois": "Analise comportamental:  Juiz de carreira. Perfil técnico.34 ## ---"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-pedro-braga-filho",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-pedro-braga-filho.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Recém empossado (2024). Origem Bahia.37",
+          "depois": "Recém empossado (2024). Origem Bahia."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: Recém empossado (2024). Origem Bahia.37",
+          "depois": "Analise comportamental: Recém empossado (2024). Origem Bahia."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-rafael-paulo",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-rafael-paulo.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Cível. Discreta, votos padronizados.",
+          "depois": " Cível. Discreta, votos padronizados."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Cível. Discreta, votos padronizados.",
+          "depois": "Analise comportamental:  Cível. Discreta, votos padronizados."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-roberto-carvalho-veloso",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-roberto-carvalho-veloso.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-rosimayre-goncalves-de-carvalho",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-rosimayre-goncalves-de-carvalho.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-rui-goncalves",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-rui-goncalves.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30",
+          "depois": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30",
+          "depois": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30",
+          "depois": "Perfil ideologico: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30",
+          "depois": "Analise comportamental: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-solange-salgado-da-silva",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-solange-salgado-da-silva.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30",
+          "depois": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30",
+          "depois": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30",
+          "depois": "Perfil ideologico: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30",
+          "depois": "Analise comportamental: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social."
+        },
+        {
+          "tipo": "perfil_duplicado",
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "antes": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.",
+          "depois": null,
+          "detalhe": "Texto identico ao de trf1-rui-goncalves, removido por incorreto"
+        },
+        {
+          "tipo": "perfil_duplicado",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.",
+          "depois": null,
+          "detalhe": "Texto identico ao de trf1-rui-goncalves, removido por incorreto"
+        },
+        {
+          "tipo": "perfil_duplicado",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Perfil ideologico: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.",
+          "depois": "(removido)",
+          "detalhe": "Texto identico ao de trf1-rui-goncalves"
+        },
+        {
+          "tipo": "perfil_duplicado",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[1]",
+          "antes": "Analise comportamental: Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.",
+          "depois": "(removido)",
+          "detalhe": "Texto identico ao de trf1-rui-goncalves"
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-urbano-leal-berquo-neto",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-urbano-leal-berquo-neto.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "lixo_numerico",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Traz a representatividade feminina e a experiência da magistratura baiana.18",
+          "depois": "** Traz a representatividade feminina e a experiência da magistratura baiana."
+        },
+        {
+          "tipo": "lixo_numerico",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Traz a representatividade feminina e a experiência da magistratura baiana.18",
+          "depois": "Analise comportamental: ** Traz a representatividade feminina e a experiência da magistratura baiana."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Traz a representatividade feminina e a experiência da magistratura baiana.",
+          "depois": " Traz a representatividade feminina e a experiência da magistratura baiana."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Traz a representatividade feminina e a experiência da magistratura baiana.",
+          "depois": "Analise comportamental:  Traz a representatividade feminina e a experiência da magistratura baiana."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    },
+    {
+      "id": "trf1-wilson-alves-de-souza",
+      "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-wilson-alves-de-souza.json",
+      "pasta": "TRF1",
+      "correcoes": [
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "dados_publicos.dados_dossie.analise_comportamental",
+          "antes": "** Origem MPF. Tende a ser mais rigoroso em improbidade administrativa.",
+          "depois": " Origem MPF. Tende a ser mais rigoroso em improbidade administrativa."
+        },
+        {
+          "tipo": "asteriscos_residuais",
+          "campo": "hipoteses_para_simulacao.tracos_operacionais[0]",
+          "antes": "Analise comportamental: ** Origem MPF. Tende a ser mais rigoroso em improbidade administrativa.",
+          "depois": "Analise comportamental:  Origem MPF. Tende a ser mais rigoroso em improbidade administrativa."
+        },
+        {
+          "tipo": "fonte_url_vazia",
+          "campo": "fontes[2].url",
+          "antes": "",
+          "depois": null
+        }
+      ]
+    }
+  ]
+}

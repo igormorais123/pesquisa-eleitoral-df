@@ -36,7 +36,7 @@
     "dados_dossie": {
       "origem": "TRF-1",
       "perfil_ideologico": "Humanista/Pacificador",
-      "analise_comportamental": "Perfil acolhedor e profundamente cristão/humanista. Busca a justiça restaurativa e a aplicação do princípio da insignificância. É o voto de fiel da balança que frequentemente inclina o julgamento para a liberdade do réu em casos limítrofes.13",
+      "analise_comportamental": "Perfil acolhedor e profundamente cristão/humanista. Busca a justiça restaurativa e a aplicação do princípio da insignificância. É o voto de fiel da balança que frequentemente inclina o julgamento para a liberdade do réu em casos limítrofes.",
       "secao": "3a Secao (Direito Penal)"
     }
   },
@@ -71,7 +71,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

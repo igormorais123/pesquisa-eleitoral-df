@@ -10,7 +10,7 @@
     "telefones_gabinete": "(61)3103-6191, (61)3103-6192, (61)3103-6193",
     "dados_dossie": {
       "perfil_ideologico": "Promovido em 2025\\",
-      "analise_comportamental": "Promovido em 2025\\. Traz a experiência recente da primeira instância. Perfil operacional.40"
+      "analise_comportamental": "Promovido em 2025\\. Traz a experiência recente da primeira instância. Perfil operacional."
     }
   },
   "atuacao_profissional": {},
@@ -22,7 +22,7 @@
     ],
     "tracos_operacionais": [
       "Perfil ideologico: Promovido em 2025\\",
-      "Analise comportamental: Promovido em 2025\\. Traz a experiência recente da primeira instância. Perfil operacional.40"
+      "Analise comportamental: Promovido em 2025\\. Traz a experiência recente da primeira instância. Perfil operacional."
     ],
     "confianca_global": null
   },
@@ -37,7 +37,7 @@
       "observacao": "Ordem alfabetica (2a instancia)"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

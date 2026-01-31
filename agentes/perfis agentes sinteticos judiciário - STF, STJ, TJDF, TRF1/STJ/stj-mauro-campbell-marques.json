@@ -32,7 +32,7 @@
     "dados_dossie": {
       "origem": "MP-AM",
       "perfil_ideologico": "Institucionalista",
-      "analise_comportamental": "(Atualmente Diretor da ENFAM). Perfil de liderança forte, com trânsito político. Seus votos em direito público são robustos e frequentemente defendem a autonomia federativa e municipal.3"
+      "analise_comportamental": "(Atualmente Diretor da ENFAM). Perfil de liderança forte, com trânsito político. Seus votos em direito público são robustos e frequentemente defendem a autonomia federativa e municipal."
     }
   },
   "atuacao_profissional": {
@@ -46,7 +46,7 @@
     ],
     "tracos_operacionais": [
       "Perfil ideologico: Institucionalista",
-      "Analise comportamental: (Atualmente Diretor da ENFAM). Perfil de liderança forte, com trânsito político. Seus votos em direito público são robustos e frequentemente defendem a autonomia federativa e municipal.3"
+      "Analise comportamental: (Atualmente Diretor da ENFAM). Perfil de liderança forte, com trânsito político. Seus votos em direito público são robustos e frequentemente defendem a autonomia federativa e municipal."
     ],
     "confianca_global": null
   },
@@ -66,7 +66,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

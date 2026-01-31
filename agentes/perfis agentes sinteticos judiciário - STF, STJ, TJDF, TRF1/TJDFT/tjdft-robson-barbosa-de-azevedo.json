@@ -13,7 +13,7 @@
     "biografia_tjdft_resumo": "143 \nBIOGRAFIA \nDESEMBARGADOR \nROBSON BARBOSA \n \nDADOS PESSOAIS \nNOME: Robson Barbosa de Azevedo \nFILIAÇÃO Zenilto de Azevedo e Marinete Barbosa de Azevedo \nDATA DE NASCIMENTO: 15/11/1965 \nLOCAL DE NASCIMENTO: Rio de Janeiro - RJ \nNACIONALIDADE: brasileira \n \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Primário: \n» Escola Rosa da Fonseca - Vila Militar – Rio de Janeiro/RJ – 1978. \nCurso Ginasial: \n» Centro de Educação Profissional e Tecnológica de Jovens e Adultos da Asa Sul – CESAS – 1986. \nCurso Superior: \n» Bacharel em Direito pela Associação de Ensino Unificado do Distrito Federal (AEUDF) – 1991. \nPós-graduação: \n» Especialista em Direito Público pela Universidade de Brasília (UnB) – 1995. \n» Mestre em Direito pela Universidade Federal de Pernambuco (UFPE) – 2002. \n \nEMPREGOS E CARGOS OCUPADOS \n \n» Sargento da Aeronáutica (controlador de voo) – 1992; \n» Juiz de Direito Substituto do Trib...",
     "dados_dossie": {
       "perfil_ideologico": "Discreto",
-      "analise_comportamental": "Discreto.25"
+      "analise_comportamental": "Discreto."
     }
   },
   "atuacao_profissional": {},
@@ -25,7 +25,7 @@
     ],
     "tracos_operacionais": [
       "Perfil ideologico: Discreto",
-      "Analise comportamental: Discreto.25"
+      "Analise comportamental: Discreto."
     ],
     "confianca_global": null
   },
@@ -40,7 +40,7 @@
       "observacao": "Ordem alfabetica (2a instancia)"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

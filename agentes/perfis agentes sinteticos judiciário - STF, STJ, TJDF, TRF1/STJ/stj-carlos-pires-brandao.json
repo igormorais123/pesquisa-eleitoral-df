@@ -14,7 +14,7 @@
     "dados_dossie": {
       "origem": "TRF-1",
       "perfil_ideologico": "Humanista/Social",
-      "analise_comportamental": "Recém-empossado (2025). No TRF-1, destacou-se por decisões sensíveis a direitos humanos. Sua entrada na Seção Penal deve reforçar o bloco garantista de Reynaldo Soares e Sebastião Reis, isolando ainda mais a corrente punitivista.15"
+      "analise_comportamental": "Recém-empossado (2025). No TRF-1, destacou-se por decisões sensíveis a direitos humanos. Sua entrada na Seção Penal deve reforçar o bloco garantista de Reynaldo Soares e Sebastião Reis, isolando ainda mais a corrente punitivista."
     }
   },
   "atuacao_profissional": {
@@ -48,7 +48,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

@@ -31,7 +31,7 @@
     },
     "dados_dossie": {
       "perfil_ideologico": "equilibrado, origem no jornalismo",
-      "analise_comportamental": "** Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas.23"
+      "analise_comportamental": " Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas."
     }
   },
   "atuacao_profissional": {},
@@ -43,7 +43,7 @@
     ],
     "tracos_operacionais": [
       "Perfil ideologico: equilibrado, origem no jornalismo",
-      "Analise comportamental: ** Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas.23"
+      "Analise comportamental:  Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas."
     ],
     "confianca_global": null
   },
@@ -63,7 +63,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

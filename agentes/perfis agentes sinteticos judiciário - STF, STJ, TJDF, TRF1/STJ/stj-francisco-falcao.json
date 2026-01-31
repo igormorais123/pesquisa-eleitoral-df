@@ -19,7 +19,7 @@
     "dados_dossie": {
       "origem": "TRF-5",
       "perfil_ideologico": "Decano/Rigoroso",
-      "analise_comportamental": "O mais antigo. Perfil \"linha dura\" em improbidade administrativa. Não teme desagradar poderosos e mantém uma postura de fiscalização estrita da moralidade administrativa.3"
+      "analise_comportamental": "O mais antigo. Perfil \"linha dura\" em improbidade administrativa. Não teme desagradar poderosos e mantém uma postura de fiscalização estrita da moralidade administrativa."
     }
   },
   "atuacao_profissional": {
@@ -33,7 +33,7 @@
     ],
     "tracos_operacionais": [
       "Perfil ideologico: Decano/Rigoroso",
-      "Analise comportamental: O mais antigo. Perfil \"linha dura\" em improbidade administrativa. Não teme desagradar poderosos e mantém uma postura de fiscalização estrita da moralidade administrativa.3"
+      "Analise comportamental: O mais antigo. Perfil \"linha dura\" em improbidade administrativa. Não teme desagradar poderosos e mantém uma postura de fiscalização estrita da moralidade administrativa."
     ],
     "confianca_global": null
   },
@@ -53,7 +53,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

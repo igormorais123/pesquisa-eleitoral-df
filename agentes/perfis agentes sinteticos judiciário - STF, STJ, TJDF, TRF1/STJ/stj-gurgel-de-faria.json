@@ -30,7 +30,7 @@
     "dados_dossie": {
       "origem": "TRF-5",
       "perfil_ideologico": "Técnico/Legalista",
-      "analise_comportamental": "Magistrado de carreira com perfil discreto. Suas decisões são previsíveis e alinhadas aos precedentes, evitando inovações judiciais disruptivas. Tende a votar com a maioria, funcionando como um elemento de estabilidade na Seção.6",
+      "analise_comportamental": "Magistrado de carreira com perfil discreto. Suas decisões são previsíveis e alinhadas aos precedentes, evitando inovações judiciais disruptivas. Tende a votar com a maioria, funcionando como um elemento de estabilidade na Seção.",
       "secao": "2a Secao (Direito Privado)"
     }
   },
@@ -65,7 +65,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

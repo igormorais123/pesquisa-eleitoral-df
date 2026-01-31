@@ -33,7 +33,7 @@
     "dados_dossie": {
       "origem": "TRF-4",
       "perfil_ideologico": "Punitivista/Lava Jato",
-      "analise_comportamental": "Representa a corrente mais rigorosa da corte. Oriundo do tribunal da Lava Jato, tende a validar a atuação policial e do MPF, aplicando a lei com severidade. Frequentemente fica vencido em turmas majoritariamente garantistas. Seu perfil é de ordem e autoridade.6",
+      "analise_comportamental": "Representa a corrente mais rigorosa da corte. Oriundo do tribunal da Lava Jato, tende a validar a atuação policial e do MPF, aplicando a lei com severidade. Frequentemente fica vencido em turmas majoritariamente garantistas. Seu perfil é de ordem e autoridade.",
       "secao": "3a Secao (Direito Penal)"
     }
   },
@@ -68,7 +68,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

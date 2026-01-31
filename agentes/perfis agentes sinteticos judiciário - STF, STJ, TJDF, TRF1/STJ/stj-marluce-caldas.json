@@ -27,7 +27,7 @@
     "dados_dossie": {
       "origem": "MP-AL",
       "perfil_ideologico": "Incógnita (Em construção)",
-      "analise_comportamental": "Recém-empossada (2025). Oriunda do MP, espera-se inicialmente uma postura mais acusatória, mas a pressão institucional da 3ª Seção tende a moderar novos ministros em direção ao garantismo. Ocupa a vaga de Laurita Vaz, que era conservadora.3"
+      "analise_comportamental": "Recém-empossada (2025). Oriunda do MP, espera-se inicialmente uma postura mais acusatória, mas a pressão institucional da 3ª Seção tende a moderar novos ministros em direção ao garantismo. Ocupa a vaga de Laurita Vaz, que era conservadora."
     }
   },
   "atuacao_profissional": {
@@ -61,7 +61,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

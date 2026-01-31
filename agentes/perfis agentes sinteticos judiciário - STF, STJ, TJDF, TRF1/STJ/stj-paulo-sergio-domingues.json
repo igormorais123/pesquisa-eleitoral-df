@@ -18,7 +18,7 @@
     "dados_dossie": {
       "origem": "TRF-3",
       "perfil_ideologico": "Modernizador/Eficiente",
-      "analise_comportamental": "Nomeado em 2022, representa a nova geração de juízes federais focados em gestão. Seu perfil é voltado para a desburocratização e eficiência processual. Ideologicamente, situa-se ao centro, sem radicalismos estatais ou liberais.6",
+      "analise_comportamental": "Nomeado em 2022, representa a nova geração de juízes federais focados em gestão. Seu perfil é voltado para a desburocratização e eficiência processual. Ideologicamente, situa-se ao centro, sem radicalismos estatais ou liberais.",
       "secao": "1a Secao (Direito Publico)"
     }
   },
@@ -53,7 +53,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

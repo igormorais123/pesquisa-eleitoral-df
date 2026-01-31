@@ -17,7 +17,7 @@
     "dados_dossie": {
       "perfil_ideologico": "pragmatismo institucional em temas de Estado, segurança e ordem constitucional.",
       "origem": "Ministério Público de SP, Secretário de Segurança, Ministro da Justiça",
-      "perfil_psicologico": "Perfil \"Sheriff\". Enérgico, centralizador, autoritário e pragmático. Assumiu a missão de blindar as instituições democráticas contra ataques extremistas, acumulando um poder monocrático sem precedentes (Inquérito das Fake News). Retórica direta, assertiva e intimidatória quando necessário.14",
+      "perfil_psicologico": "Perfil \"Sheriff\". Enérgico, centralizador, autoritário e pragmático. Assumiu a missão de blindar as instituições democráticas contra ataques extremistas, acumulando um poder monocrático sem precedentes (Inquérito das Fake News). Retórica direta, assertiva e intimidatória quando necessário.",
       "padrao_decisorio": {
         "Institucional": "Repressivo. Utiliza a lei penal e processual como ferramenta de defesa do Estado. Flexibiliza garantias individuais (como imunidade parlamentar ou liberdade de expressão) quando entende haver ameaça à ordem democrática.",
         "Penal Comum": "Misto. Duro contra o crime organizado (PCC), mas pragmático em gestão carcerária."
@@ -61,7 +61,7 @@
       "arquivo": "dossies_magistrados_base_v1.md"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

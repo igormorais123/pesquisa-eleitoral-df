@@ -18,7 +18,7 @@
     },
     "dados_dossie": {
       "perfil_ideologico": "Magistrado de carreira (TJ-RJ), Salomão possui um perfil político aguçado e uma habilidade notável para o diálogo interinstitucional",
-      "analise_comportamental": "* **Perfil Psicológico e Ideológico:** Magistrado de carreira (TJ-RJ), Salomão possui um perfil político aguçado e uma habilidade notável para o diálogo interinstitucional. Psicologicamente, é um pragmático; suas decisões frequentemente aplicam a Análise Econômica do Direito, ponderando as consequências práticas e financeiras dos vereditos. É visto como um garantidor da segurança jurídica empresarial e um gestor rigoroso.  \n* **Tendência Decisória:** No Direito Privado, tende a valorizar a auton"
+      "analise_comportamental": "* Perfil Psicológico e Ideológico: Magistrado de carreira (TJ-RJ), Salomão possui um perfil político aguçado e uma habilidade notável para o diálogo interinstitucional. Psicologicamente, é um pragmático; suas decisões frequentemente aplicam a Análise Econômica do Direito, ponderando as consequências práticas e financeiras dos vereditos. É visto como um garantidor da segurança jurídica empresarial e um gestor rigoroso.  \n* Tendência Decisória: No Direito Privado, tende a valorizar a auton"
     }
   },
   "atuacao_profissional": {},
@@ -30,7 +30,7 @@
     ],
     "tracos_operacionais": [
       "Perfil ideologico: Magistrado de carreira (TJ-RJ), Salomão possui um perfil político aguçado e uma habilidade notável para o diálogo interinstitucional",
-      "Analise comportamental: * **Perfil Psicológico e Ideológico:** Magistrado de carreira (TJ-RJ), Salomão possui um perfil político aguçado e uma habilidade notável para o diálogo interinstitucional. Psicologicamente, é um prag"
+      "Analise comportamental: * Perfil Psicológico e Ideológico: Magistrado de carreira (TJ-RJ), Salomão possui um perfil político aguçado e uma habilidade notável para o diálogo interinstitucional. Psicologicamente, é um prag"
     ],
     "confianca_global": null
   },
@@ -50,7 +50,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

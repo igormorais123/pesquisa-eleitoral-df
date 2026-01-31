@@ -20,7 +20,7 @@
     "dados_dossie": {
       "origem": "TJ-MG",
       "perfil_ideologico": "Conciliador/Gestor",
-      "analise_comportamental": "Conhecido pela alta produtividade no TJMG. Seu perfil psicológico é voltado para a pacificação social através da gestão de massas. Evita polêmicas doutrinárias, focando na aplicação célere do direito posto. É um magistrado de \"chão de fábrica\", essencial para a fluidez da Seção.9"
+      "analise_comportamental": "Conhecido pela alta produtividade no TJMG. Seu perfil psicológico é voltado para a pacificação social através da gestão de massas. Evita polêmicas doutrinárias, focando na aplicação célere do direito posto. É um magistrado de \"chão de fábrica\", essencial para a fluidez da Seção."
     }
   },
   "atuacao_profissional": {
@@ -34,7 +34,7 @@
     ],
     "tracos_operacionais": [
       "Perfil ideologico: Conciliador/Gestor",
-      "Analise comportamental: Conhecido pela alta produtividade no TJMG. Seu perfil psicológico é voltado para a pacificação social através da gestão de massas. Evita polêmicas doutrinárias, focando na aplicação célere do direito "
+      "Analise comportamental: Conhecido pela alta produtividade no TJMG. Seu perfil psicológico é voltado para a pacificação social através da gestão de massas. Evita polêmicas doutrinárias, focando na aplicação célere do direito"
     ],
     "confianca_global": null
   },
@@ -54,7 +54,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

@@ -24,7 +24,7 @@
         "cidade": "Piracicaba/SP"
       },
       "origem": "Advocacia Privada",
-      "perfil_psicologico": "Técnico, processualista obsessivo, perfil de advogado de defesa. Ficou famoso pelo \"lawfare\" na defesa de Lula. Como ministro, revelou-se um conservador em pautas sociais, surpreendendo sua base de indicação.19",
+      "perfil_psicologico": "Técnico, processualista obsessivo, perfil de advogado de defesa. Ficou famoso pelo \"lawfare\" na defesa de Lula. Como ministro, revelou-se um conservador em pautas sociais, surpreendendo sua base de indicação.",
       "padrao_decisorio": {
         "Penal": "Garantista Puro. Foco total no devido processo legal, cadeia de custódia e nulidades. Vê o processo penal como um sistema de freios ao poder punitivo.",
         "Social": "Conservador. Votou contra a descriminalização da maconha e tem posições reservadas em pautas de costumes, mostrando independência ideológica em relação ao PT."
@@ -65,7 +65,7 @@
       "arquivo": "dossies_magistrados_base_v1.md"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

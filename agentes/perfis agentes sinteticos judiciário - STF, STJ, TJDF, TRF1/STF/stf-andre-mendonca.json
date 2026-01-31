@@ -22,7 +22,7 @@
         "cidade": "Santos/SP"
       },
       "origem": "Advocacia-Geral da União/Ministro da Justiça",
-      "perfil_psicologico": "Conservador religioso, técnico (carreira sólida na AGU), polido. Busca legitimação acadêmica e técnica para não ser estigmatizado apenas pelo viés religioso.17",
+      "perfil_psicologico": "Conservador religioso, técnico (carreira sólida na AGU), polido. Busca legitimação acadêmica e técnica para não ser estigmatizado apenas pelo viés religioso.",
       "padrao_decisorio": {
         "Penal": "Punitivista em crimes comuns, mas variável em crimes políticos. No 8 de janeiro, também divergiu da maioria condenatória em diversos pontos, buscando individualizar condutas para absolver ou reduzir penas.",
         "Conservador.": "Defensor ferrenho da liberdade religiosa e pautas morais conservadoras."
@@ -63,7 +63,7 @@
       "arquivo": "dossies_magistrados_base_v1.md"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

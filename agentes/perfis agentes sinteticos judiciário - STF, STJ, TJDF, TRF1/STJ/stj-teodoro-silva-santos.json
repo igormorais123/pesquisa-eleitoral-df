@@ -31,7 +31,7 @@
     "dados_dossie": {
       "origem": "TJ-CE",
       "perfil_ideologico": "Regionalista/Pragmático",
-      "analise_comportamental": "Traz a vivência da justiça estadual do Nordeste. Seu perfil decisório é focado na resolução prática de conflitos, com sensibilidade para as desigualdades regionais. Ainda em fase de consolidação doutrinária na Corte, tende a seguir a jurisprudência dominante.8"
+      "analise_comportamental": "Traz a vivência da justiça estadual do Nordeste. Seu perfil decisório é focado na resolução prática de conflitos, com sensibilidade para as desigualdades regionais. Ainda em fase de consolidação doutrinária na Corte, tende a seguir a jurisprudência dominante."
     }
   },
   "atuacao_profissional": {
@@ -65,7 +65,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

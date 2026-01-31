@@ -30,7 +30,7 @@
     "dados_dossie": {
       "origem": "Advocacia",
       "perfil_ideologico": "Garantista Combativa",
-      "analise_comportamental": "A mais nova integrante (2023). Trouxe a vivência da advocacia de defesa para o plenário. Seu perfil é combativo, especialmente em questões de gênero e prerrogativas da advocacia. Tem se destacado por votos que desafiam o *status quo* punitivo e defendem minorias.6"
+      "analise_comportamental": "A mais nova integrante (2023). Trouxe a vivência da advocacia de defesa para o plenário. Seu perfil é combativo, especialmente em questões de gênero e prerrogativas da advocacia. Tem se destacado por votos que desafiam o *status quo* punitivo e defendem minorias."
     }
   },
   "atuacao_profissional": {
@@ -44,7 +44,7 @@
     ],
     "tracos_operacionais": [
       "Perfil ideologico: Garantista Combativa",
-      "Analise comportamental: A mais nova integrante (2023). Trouxe a vivência da advocacia de defesa para o plenário. Seu perfil é combativo, especialmente em questões de gênero e prerrogativas da advocacia. Tem se destacado por "
+      "Analise comportamental: A mais nova integrante (2023). Trouxe a vivência da advocacia de defesa para o plenário. Seu perfil é combativo, especialmente em questões de gênero e prerrogativas da advocacia. Tem se destacado por"
     ],
     "confianca_global": null
   },
@@ -64,7 +64,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }

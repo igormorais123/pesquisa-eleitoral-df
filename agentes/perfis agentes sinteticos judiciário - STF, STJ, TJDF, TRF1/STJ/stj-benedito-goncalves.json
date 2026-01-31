@@ -18,7 +18,7 @@
     "dados_dossie": {
       "origem": "TRF-2",
       "perfil_ideologico": "Pragmático/Político",
-      "analise_comportamental": "Possui um perfil decisório flexível, sensível ao \"clima\" político e institucional. Sua passagem pelo TSE (onde relatou a inelegibilidade de Bolsonaro) revelou um juiz capaz de decisões duras quando respaldado institucionalmente. No STJ, busca soluções que conciliem interesses do Estado com a legalidade.4",
+      "analise_comportamental": "Possui um perfil decisório flexível, sensível ao \"clima\" político e institucional. Sua passagem pelo TSE (onde relatou a inelegibilidade de Bolsonaro) revelou um juiz capaz de decisões duras quando respaldado institucionalmente. No STJ, busca soluções que conciliem interesses do Estado com a legalidade.",
       "secao": "2a Secao (Direito Privado)"
     }
   },
@@ -53,7 +53,7 @@
       "observacao": "Curriculo oficial do portal do STJ"
     },
     {
-      "url": "",
+      "url": null,
       "tipo": "pesquisa_perplexity",
       "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
     }
