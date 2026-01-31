@@ -58,7 +58,8 @@ celery[redis]>=5.4.0
 redis>=5.0.0
 flower>=2.0.0
 
-# Audio
+# Audio (Whisper local + pydub para conversão)
+openai-whisper>=20250625
 pydub>=0.25.1
 
 # PDF Premium
