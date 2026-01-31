@@ -232,16 +232,24 @@ class EntrevistaServico:
         self._execucao_ativa[entrevista_id] = {"pausado": False, "cancelado": False}
 
         # Obter respondentes e serviços
+        import logging
+        logger = logging.getLogger("entrevista_servico")
+        logger.info(f"[EXEC] Iniciando execução {entrevista_id}")
+
         claude = obter_claude_servico()
+        logger.info(f"[EXEC] Claude service: provider={claude.provider}, client={claude.client is not None}, async_client={claude.async_client is not None}")
 
         # Resolver respondentes (async direto — evita bug sync/async no BackgroundTask)
         tipo_respondente = entrevista.get("tipo_respondente") or "eleitor"
         respondentes_ids = entrevista.get("respondentes_ids") or entrevista.get("eleitores_ids") or []
+        logger.info(f"[EXEC] Tipo={tipo_respondente}, IDs={respondentes_ids[:5]}")
 
         if tipo_respondente == "parlamentar":
             respondentes = await obter_parlamentares_por_ids_async(respondentes_ids)
         else:
             respondentes = await obter_eleitores_por_ids_async(respondentes_ids)
+
+        logger.info(f"[EXEC] Respondentes encontrados: {len(respondentes)}")
 
         if not respondentes:
             raise ValueError(
@@ -293,6 +301,7 @@ class EntrevistaServico:
                     # Processar batch
                     batch = respondentes[i : i + batch_size]
                     batch_tasks = []
+                    logger.info(f"[EXEC] Batch {i//batch_size+1}: {len(batch)} respondentes, pergunta={pergunta.get('texto','?')[:50]}")
 
                     for sujeito in batch:
                         if tipo_respondente == "parlamentar":
@@ -312,11 +321,13 @@ class EntrevistaServico:
                         batch_tasks.append(task)
 
                     # Executar batch em paralelo
+                    logger.info(f"[EXEC] Chamando asyncio.gather para {len(batch_tasks)} tasks...")
                     resultados = await asyncio.gather(*batch_tasks, return_exceptions=True)
+                    logger.info(f"[EXEC] asyncio.gather retornou {len(resultados)} resultados")
 
                     for idx, resultado in enumerate(resultados):
                         if isinstance(resultado, BaseException):
-                            print(f"Erro: {resultado}")
+                            logger.error(f"[EXEC] Erro no resultado {idx}: {type(resultado).__name__}: {resultado}")
                             continue
 
                         # resultado é Dict[str, Any] aqui
