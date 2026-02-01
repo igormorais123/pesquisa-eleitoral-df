@@ -1,7 +1,7 @@
 {
   "id": "tjdft-arquibaldo-carneiro-portela",
   "nome": "Des. Arquibaldo Carneiro Portela",
-  "nome_completo": null,
+  "nome_completo": "Arquibaldo Carneiro Portela",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,17 @@
     "biografia_tjdft_resumo": "137 \n \n \nBIOGRAFIA \nDESEMBARGADOR \nARQUIBALDO CARNEIRO \n \nDADOS PESSOAIS \nNOME: Arquibaldo Carneiro Portela \nDATA DE NASCIMENTO: 1º/4/1964 \nLOCAL DE NASCIMENTO: Brasília (DF) \nNACIONALIDADE: Brasileira \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Superior: Bacharel em Direito pelo UniCeub, em . \n \n \nCARGOS OCUPADOS \n \n» Foi servidor do TSE; \n» TRF da 1ª Região Analista Judiciário e Oficial de Gabinete do Desembargador Federal Nelson Gomes da \nSilva; \n» STJ foi Assessor do Ministro do Superior Tribunal de Justiça Antônio torreão Braz. \n» Ingressou na magistratura do Distrito Federal e dos Territórios no cargo de Juiz de Direito Substituto, em \n15/4/1994. \n» Promovido ao cargo de Juiz de Direito do TJDFT, em 2/2/1996. \n» Juiz de Direito Titular da vara do tribunal do Júri e dos Delitos de Trânsito do Gama/DF de 2/2/1996 a \n1º/2/2004; \n» Juiz de Direito Titular da 1ª Vara Criminal do Gama/DF de...",
     "dados_dossie": {
       "perfil_ideologico": "Penalista equilibrado",
-      "analise_comportamental": "Penalista equilibrado. Busca o meio termo entre o punitivismo e o garantismo."
+      "analise_comportamental": "Penalista equilibrado. Busca o meio termo entre o punitivismo e o garantismo.",
+      "nascimento": {
+        "cidade": "Brasilia/DF"
+      },
+      "origem": "magistratura",
+      "perfil_psicologico": "Brasiliense nato. Projeto Cidadania e Justica na Escola.",
+      "turma": "6a Turma Civel e 2a Camara Civel",
+      "formacao": "Graduado em Direito pelo UniCeub.",
+      "carreira_previa": "Servidor do TSE e TRF-1. Assessor de Ministro no STJ. Magistratura do DF desde 1994. Area penal (Juri, Vara Criminal, Entorpecentes).",
+      "especialidade": "Direito Penal (carreira) transitando para Civel",
+      "curiosidades": "Desembargador desde 19/10/2021 por antiguidade."
     }
   },
   "atuacao_profissional": {},

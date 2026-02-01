@@ -1,7 +1,7 @@
 {
   "id": "tjdft-gislene-pinheiro-de-oliveira",
   "nome": "Desa. Gislene Pinheiro de Oliveira",
-  "nome_completo": null,
+  "nome_completo": "Gislene Pinheiro de Oliveira",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,17 @@
     "biografia_tjdft_resumo": "123 \nBIOGRAFIA \nDESEMBARGADORA \nGISLENE PINHEIRO \n \nDADOS PESSOAIS \nNOME: Gislene Pinheiro de Oliveira \nLOCAL DE NASCIMENTO: São Domingos – GO \nNACIONALIDADE: Brasileira \n \n \n \n \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nPrimeiro Grau: Colégio São José – Formosa – Goiás, 1977. \nSegundo Grau: Curso Técnico em Magistério - Colégio São José – Formosa – Goiás, 1980. \nCurso Superior: Bacharel em Direito pelo Centro de Ensino Unificado de Brasília – UniCEUB, em 11 de \nagosto de 1986. \nPós-graduação: \n» Mestrado em Direito pela Universidade Católica de Brasília (UCB), em 2006. \n» Pós-graduação lato sensu, com especialização em Direito Penal, pela Universidade Católica de Brasília, em \n2000. \n» Pós-graduação lato sensu – aperfeiçoamento para carreiras jurídicas, pela Escola Superior do Ministério \nPúblico, em 1992. \n» Pós-graduação lato sensu, com especialização em Direito do Trabalho, pelo UniCEUB, em ...",
     "dados_dossie": {
       "perfil_ideologico": "Punitivista \"Linha Dura\". Em matéria penal, é rigoroso, defendendo a segurança pública acima de filigranas processuais. Votos duros contra tráfico e corrupção.  \n7.",
-      "analise_comportamental": "Punitivista \"Linha Dura\". Em matéria penal, é rigoroso, defendendo a segurança pública acima de filigranas processuais. Votos duros contra tráfico e corrupção.  \n7."
+      "analise_comportamental": "Punitivista \"Linha Dura\". Em matéria penal, é rigoroso, defendendo a segurança pública acima de filigranas processuais. Votos duros contra tráfico e corrupção.  \n7.",
+      "nascimento": {
+        "cidade": "Sao Domingos/GO"
+      },
+      "origem": "magistratura (ex-promotora MPDFT)",
+      "perfil_psicologico": "Familia simples. Casada com Juiz Francisco Antonio Alves de Oliveira.",
+      "turma": "Turma Civel",
+      "formacao": "Direito pelo UniCEUB (1986). Mestrado pela UCB (2006). Especializacoes em Penal, Trabalho e Carreiras Juridicas.",
+      "carreira_previa": "Advogada (1986-1992). Promotora do MPDFT. Juiza desde 1993. Professora de Direito Civil e Penal.",
+      "especialidade": "Direito de Familia, Direito Penal, Direito Civil",
+      "curiosidades": "Desembargadora desde 29/07/2016 por antiguidade."
     }
   },
   "atuacao_profissional": {},

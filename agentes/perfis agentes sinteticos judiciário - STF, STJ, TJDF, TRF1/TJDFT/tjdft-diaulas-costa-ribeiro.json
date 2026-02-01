@@ -1,7 +1,7 @@
 {
   "id": "tjdft-diaulas-costa-ribeiro",
   "nome": "Des. Diaulas Costa Ribeiro",
-  "nome_completo": null,
+  "nome_completo": "Diaulas Costa Ribeiro",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,18 @@
     "biografia_tjdft_resumo": "125 \nBIOGRAFIA \nDESEMBARGADOR \nDIAULAS COSTA RIBEIRO \n \nDADOS PESSOAIS \nNOME: Diaulas Costa Ribeiro \nDATA DE NASCIMENTO: 2/12/1962 \nLOCAL DE NASCIMENTO: Monte Carmelo - MG \nNACIONALIDADE: brasileira \n \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nEnsino Fundamental: Centro Educacional Champagnat, 1973-1977. \nEnsino Médio: Centro Educacional Compacto Taguatinga, DF, 1978-1980. \nBacharel em Direito pelo Centro Universitário de Brasília – UniCEUB, 1985. \nDoutor em Ciências Jurídico -Criminais pela Universidade Católica Portuguesa, UCP, Faculdade de \nDireito de Lisboa, 2002. \nPós-Doutor em Direito e Bioética Médica pela Universidad Complutense de Madrid, UCM, Espanha, \n2003-2004. \n \nEMPREGOS E CARGOS OCUPADOS \n \n» Nomeado pela Presidência da República para ocupar o cargo de Desembargador do TJDFT – em vaga \ndestinada a membro do Ministério Público do Distrito Federal e Territórios, conforme publicação ...",
     "dados_dossie": {
       "perfil_ideologico": "O Provocador Intelectual. Ex-Promotor, bioeticista de renome mundial. Seus votos são disruptivos, citando literatura, filosofia e ciência. Desafia o senso comum jurídico. Ideologicamente, é um conse",
-      "analise_comportamental": "O Provocador Intelectual. Ex-Promotor, bioeticista de renome mundial. Seus votos são disruptivos, citando literatura, filosofia e ciência. Desafia o senso comum jurídico. Ideologicamente, é um conservador ilustrado que valoriza a vida e a ética médica."
+      "analise_comportamental": "O Provocador Intelectual. Ex-Promotor, bioeticista de renome mundial. Seus votos são disruptivos, citando literatura, filosofia e ciência. Desafia o senso comum jurídico. Ideologicamente, é um conservador ilustrado que valoriza a vida e a ética médica.",
+      "nascimento": {
+        "data": "02/12/1962",
+        "cidade": "Monte Carmelo/MG"
+      },
+      "origem": "quinto constitucional (MP - MPDFT)",
+      "perfil_psicologico": "Forte perfil academico internacional.",
+      "turma": "Turma Civel",
+      "formacao": "Direito pelo UniCEUB (1985). Doutor em Direito Penal pela Univ. Catolica Portuguesa (Lisboa). Pos-doutor em Bioetica Medica pela Univ. Complutense (Madri).",
+      "carreira_previa": "Ingressou no MPDFT em 1991. Procurador de Justica.",
+      "especialidade": "Direito Penal, Direito Medico, Bioetica",
+      "curiosidades": "Cidadao Honorario de Brasilia (2024)."
     }
   },
   "atuacao_profissional": {},

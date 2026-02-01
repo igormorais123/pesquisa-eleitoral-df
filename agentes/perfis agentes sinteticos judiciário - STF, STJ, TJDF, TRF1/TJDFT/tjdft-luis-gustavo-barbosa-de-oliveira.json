@@ -1,7 +1,7 @@
 {
   "id": "tjdft-luis-gustavo-barbosa-de-oliveira",
   "nome": "Des. Luís Gustavo Barbosa De Oliveira",
-  "nome_completo": null,
+  "nome_completo": "Luis Gustavo Barbosa de Oliveira",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,17 @@
     "biografia_tjdft_resumo": "133 \n \n \nBIOGRAFIA \nDESEMBARGADOR \nLUÍS GUSTAVO B. DE OLIVEIRA \n \nDADOS PESSOAIS \nNOME: Luís Gustavo Barbosa de Oliveira \nDATA DE NASCIMENTO: 18/10/1965 \nLOCAL DE NASCIMENTO: Brasília – DF \nNACIONALIDADE: brasileira \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Superior: Bacharel em Direito pela Associação de Ensino Unificado do Distrito Federal (AEUDF), \nem 1989; \nPós-Graduação: Lato Sensu pela Escola Superior do Ministério Público do DF e Territórios \n \n \nCARGOS OCUPADOS \n \n» Integrou Carreira Policial no Departamento de Polícia Federal; \n» Promotor Adjunto do MPDFT; - Posse como Juiz de Direito Substituto do TJDFT em 15/4/1994; \n» Promovido para o cargo de Juiz de Direito em 2/2/1996. \n» Juiz de Direito da 2ª VARA CÍVEL DO GAMA de 2/2/1996 até 30/5/2001; \n» Juiz de direito da 3ª Vara de Entorpecentes do DF e Territórios de 30/5/2001 a 25/2/2015; \n» Juiz de Direito da 1ª Turma Recursal do J...",
     "dados_dossie": {
       "perfil_ideologico": "Técnico e discreto",
-      "analise_comportamental": "Técnico e discreto."
+      "analise_comportamental": "Técnico e discreto.",
+      "nascimento": {
+        "cidade": "Brasilia/DF"
+      },
+      "origem": "magistratura (ex-policial federal, ex-promotor adjunto)",
+      "perfil_psicologico": "Brasiliense. Carreira diversificada.",
+      "turma": "3a Turma Civel",
+      "formacao": "Direito pela AEUDF (1989).",
+      "carreira_previa": "Policial federal. Promotor de Justica Adjunto. Juiz Substituto desde 1994.",
+      "especialidade": "Direito Civel",
+      "curiosidades": "Desembargador desde maio de 2021. Vaga do Des. George Lopes Leite."
     }
   },
   "atuacao_profissional": {},

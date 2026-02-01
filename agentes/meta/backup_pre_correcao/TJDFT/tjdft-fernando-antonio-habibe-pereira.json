@@ -1,0 +1,46 @@
+{
+  "id": "tjdft-fernando-antonio-habibe-pereira",
+  "nome": "Des. Fernando Antonio Habibe Pereira",
+  "nome_completo": null,
+  "orgao": "TJDFT",
+  "cargo": "Desembargador",
+  "situacao": "titular",
+  "dados_publicos": {
+    "assessor": "Eduardo Tavares Maciel Aquino",
+    "telefones_gabinete": "(61)3103-6890",
+    "dados_dossie": {
+      "perfil_ideologico": "Intelectual e filósofo do direito. Seus votos discutem a",
+      "analise_comportamental": "Intelectual e filósofo do direito. Seus votos discutem a"
+    }
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [
+      "Perfil ideologico: Intelectual e filósofo do direito. Seus votos discutem a",
+      "Analise comportamental: Intelectual e filósofo do direito. Seus votos discutem a"
+    ],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://www.tjdft.jus.br/institucional/composicao/2a-instancia/desembargadores/ordem-alfabetica",
+      "tipo": "site-oficial",
+      "observacao": "Ordem alfabetica (2a instancia)"
+    },
+    {
+      "url": "",
+      "tipo": "pesquisa_perplexity",
+      "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
+    }
+  ],
+  "atualizado_em": "2026-01-31"
+}

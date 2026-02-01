@@ -23,7 +23,17 @@
       "secao": "2ª Seção",
       "turma": "4ª Turma",
       "indicado_por": "Presidente Dilma",
-      "origem": "Magistratura estadual (TJ-AL)"
+      "origem": "Magistratura estadual (TJ-AL)",
+      "nascimento": {
+        "data": "10/05/1959",
+        "cidade": "Fortaleza, CE"
+      },
+      "perfil_ideologico": "Conservador moderado. Formalista com enfase em seguranca juridica. Longa experiencia como Procurador-Geral do Estado (18 anos) confere visao pragmatica.",
+      "perfil_psicologico": "Carreira diversificada (advocacia, MP, procuradoria estadual, magistratura, academia). Perfil conciliador e tecnico. Professor universitario com forte inclinacao academica.",
+      "formacao": "Direito pela UFC (1981). Economia pela Universidade de Fortaleza (1985). Mestrado em Direito Publico pela UFC. Especialista em Ordem Juridica Constitucional pela UFC.",
+      "carreira_previa": "Advogado (1981-1983). Promotor de Justica (1983-1989). Procurador-Geral do Estado do Ceara (1989-2007). Desembargador do TJCE (2007-2010) pelo quinto constitucional. Professor da Universidade de Fortaleza (desde 1986).",
+      "especialidade": "Direito Privado, Direito Civil, Direito Constitucional, Direito Tributario",
+      "curiosidades": "Foi Procurador-Geral do Ceara por 18 anos. Formado tambem em Economia. Corregedor-Geral da Justica Federal. Corregedor-Geral Eleitoral no TSE (2023-2024). Professor licenciado da Unifor."
     }
   },
   "atuacao_profissional": {},

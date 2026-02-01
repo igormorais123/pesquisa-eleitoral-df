@@ -1,0 +1,54 @@
+{
+  "id": "trf1-pablo-zuniga",
+  "nome": "Pablo Zuniga",
+  "nome_completo": null,
+  "orgao": "TRF1",
+  "cargo": "Desembargador Federal",
+  "situacao": "titular",
+  "dados_publicos": {
+    "gabinete_texto": "Ed. Sede II - 7º andar",
+    "funcao_administrativa": null,
+    "pagina_trf1": "https://www.trf1.jus.br/trf1/em-atividade/pablo-zunigas",
+    "telefone": "(61) 3314-5225",
+    "biografia_trf1_texto": "PABLO ZUNINGA DOURADO\n\nDesembargador Federal do TRF da 1º Região. Vice-Diretor do Sistema de conciliação do TRF da 1º Região. Coordenador da Comissão de Soluções Fundiárias e Presidente da Comissão de Saúde Funcional do TRF da 1º Região. Mestre em Direito pelo Centro Universitário de Brasília ­– CEUB. Graduado pela Universidade Federal do Maranhão – UFMA. Especialista em Direito Constitucional Eleitoral pela Universidade de Brasília UNB e processo civil pelo UNICEUMA. Exerce o magistério na Universidade Dom–Bosco- UNDB. Exerceu magistério no âmbito de graduação e pós-graduação em diversas Instituições de Ensino Superior, bem como em cursos jurídicos no Distrito Federal. Experiência em diversos cargos públicos, da área jurídica, com aprovação em concurso e exercício dos cargos de Defensor Público, Promotor de Justiça e Juiz de Direito. Autor de diversos artigos em revistas jurídicas e acadêmicas especializadas.",
+    "dados_dossie": {
+      "perfil_ideologico": "técnico",
+      "analise_comportamental": "** Juiz de carreira. Perfil técnico.34 ## --- **"
+    }
+  },
+  "atuacao_profissional": {},
+  "padroes_decisao": {},
+  "hipoteses_para_simulacao": {
+    "instrucoes": [
+      "Inferencias aqui sao aproximacoes para simulacao; nao tratar como fato.",
+      "Sempre rotular o agente como simulacao e evitar qualquer uso para enganar terceiros."
+    ],
+    "tracos_operacionais": [
+      "Perfil ideologico: técnico",
+      "Analise comportamental: ** Juiz de carreira. Perfil técnico.34 ## --- **"
+    ],
+    "confianca_global": null
+  },
+  "riscos_e_cuidados": [
+    "Nao usar para impersonacao (nao assinar como a pessoa real).",
+    "Nao incluir dados pessoais nao-publicos."
+  ],
+  "fontes": [
+    {
+      "url": "https://www.trf1.jus.br/trf1/desembargadores-federais/em-atividade",
+      "tipo": "site-oficial",
+      "observacao": "Lista (Em atividade)"
+    },
+    {
+      "url": "https://www.trf1.jus.br/trf1/em-atividade/pablo-zunigas",
+      "tipo": "site-oficial",
+      "observacao": "Pagina individual"
+    },
+    {
+      "url": "",
+      "tipo": "pesquisa_perplexity",
+      "observacao": "Dados extraidos de pesquisa Perplexity AI (2026-01-30)"
+    }
+  ],
+  "atualizado_em": "2026-01-31"
+}

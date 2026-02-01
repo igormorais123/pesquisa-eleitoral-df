@@ -33,7 +33,16 @@
       "analise_comportamental": "Magistrado de carreira com perfil discreto. Suas decisões são previsíveis e alinhadas aos precedentes, evitando inovações judiciais disruptivas. Tende a votar com a maioria, funcionando como um elemento de estabilidade na Seção.",
       "secao": "2a Secao (Direito Privado)",
       "turma": "1ª Turma",
-      "indicado_por": "Presidente Dilma"
+      "indicado_por": "Presidente Dilma",
+      "nascimento": {
+        "data": "circa 1968",
+        "cidade": "Pernambuco (natural do RN)"
+      },
+      "perfil_psicologico": "Precoce e brilhante (magistrado aos 23, desembargador mais jovem aos 30). Forte vinculo academico. Professor e pesquisador.",
+      "formacao": "Direito pela UFRN (1991). Mestrado pela UFPE (1999). Doutorado pela UFPE (2009).",
+      "carreira_previa": "Juiz Trabalhista da 21a Regiao. Juiz Federal. Desembargador Federal do TRF5. Ingressou na magistratura aos 23 anos. Tornou-se o desembargador federal mais jovem do pais aos 30 anos. Professor da UFRN (desde 1997).",
+      "especialidade": "Direito Publico, Direito Tributario, Direito Penal Economico",
+      "curiosidades": "Magistrado mais jovem do pais quando se tornou desembargador (30 anos). Ingressou na magistratura aos 23 anos. Relator do primeiro caso de insider trading no STJ (2016). Ouvidor do STJ (desde 2024). Professor da UFRN, UnB, IDP e Uninove."
     }
   },
   "atuacao_profissional": {

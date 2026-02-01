@@ -33,7 +33,17 @@
       "secao": "2ª Seção",
       "turma": "4ª Turma",
       "indicado_por": "Presidente Dilma",
-      "origem": "Magistratura federal (TRF-1)"
+      "origem": "Magistratura federal (TRF-1)",
+      "nascimento": {
+        "data": "28/07/1963",
+        "cidade": "Rio de Janeiro, RJ"
+      },
+      "perfil_ideologico": "Tecnica e formalista. Perfil conservador moderado em direito privado. Rigor juridico com base em solida formacao academica.",
+      "perfil_psicologico": "Alto desempenho academico (media 4,9 na UnB). Familia de juristas (pai Luiz Gallotti foi ministro do STF). Casada com Walton Alencar Rodrigues (ministro do TCU).",
+      "formacao": "Direito pela UnB (1985, media 4,9/5,0). Mestrado em Direito e Estado pela UnB (1988). Cursos complementares pelo Banco Central, IBMEC e Instituto Brasileiro de Direito Publico.",
+      "carreira_previa": "Advogada (1985-1989). Curadora especial em sentencas estrangeiras por designacao do Presidente do STF (1987-1989). Procuradora da Republica (1989). Procuradora Regional da Republica (1996). Procuradora-Chefe da PRR da 1a Regiao. Juiza do TRF1 (2001).",
+      "especialidade": "Direito Privado, Direito Civil, Direito Processual Civil, Direito Financeiro",
+      "curiosidades": "Primeira brasiliense a ser ministra do STJ. Pai foi ministro do STF. Marido e ministro do TCU. Corregedora-Geral da Justica Eleitoral (2024). Media 4,9 na graduacao em Direito na UnB."
     }
   },
   "atuacao_profissional": {},

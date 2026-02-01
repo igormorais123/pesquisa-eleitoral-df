@@ -1,7 +1,7 @@
 {
   "id": "trf1-ney-bello",
   "nome": "Ney Bello",
-  "nome_completo": null,
+  "nome_completo": "Ney de Barros Bello Filho",
   "orgao": "TRF1",
   "cargo": "Desembargador Federal",
   "situacao": "titular",
@@ -20,7 +20,19 @@
     },
     "dados_dossie": {
       "perfil_ideologico": "É uma liderança intelectual na corte, com forte interlocução em Brasília",
-      "analise_comportamental": "(Frequentemente cotado para o STJ). Perfil garantista, culto e literato. É uma liderança intelectual na corte, com forte interlocução em Brasília."
+      "analise_comportamental": "(Frequentemente cotado para o STJ). Perfil garantista, culto e literato. É uma liderança intelectual na corte, com forte interlocução em Brasília.",
+      "nascimento": {
+        "data": "23/03/1969",
+        "cidade": "Sao Luis/MA"
+      },
+      "origem": "magistratura",
+      "perfil_psicologico": "Perfil intelectual e academico destacado. Membro da Academia Maranhense de Letras.",
+      "secao": "2a",
+      "turma": "2a Secao (3a, 4a e 10a Turmas)",
+      "formacao": "Graduacao em Direito pela UFMA (1990). Mestrado em Direito pela UFPE (2000). Doutorado em Direito Ambiental pela UFSC (2006, pesquisa em Coimbra e Universita Degli Studi di Lecce/Italia). Pos-doutorado em Direito Constitucional pela PUC-RS (2010). Pos-graduacao em Direito Processual Civil pela UDF.",
+      "carreira_previa": "Promotor de Justica do MP/MA. Procurador da Republica do MPF. Juiz federal substituto SJMA desde 11/1995. Titular da 1a Vara SJMA desde 1998. Juiz do TRE/MA (1996-1998). Professor adjunto UFMA. Professor e diretor da Faculdade de Direito UNBD. Membro da Academia Maranhense de Letras (cadeira 40).",
+      "especialidade": "Direito Ambiental, Constitucional, Penal, improbidade",
+      "curiosidades": "No TRF1 desde 11/06/2013 por merecimento (nomeado por Dilma). Vaga de Assusete Magalhaes (nomeada ao STJ). CORREGEDOR REGIONAL (bienio 2024-2026). Professor IDP. Integrante do Conselho Editorial de revistas de Direito Ambiental."
     }
   },
   "atuacao_profissional": {},

@@ -34,7 +34,17 @@
       "secao": "2ª Seção",
       "turma": "4ª Turma",
       "indicado_por": "Presidente Dilma",
-      "origem": "Advocacia (OAB)"
+      "origem": "Advocacia (OAB)",
+      "nascimento": {
+        "data": "10/03/1957",
+        "cidade": "Sao Paulo, SP"
+      },
+      "perfil_ideologico": "Conservador moderado. Tecnico com profundo conhecimento do sistema financeiro. Formalista em questoes processuais.",
+      "perfil_psicologico": "Perfil tecnico e discreto. Longa carreira institucional na CEF confere visao pragmatica sobre direito bancario e financeiro.",
+      "formacao": "Direito pelo Centro Universitario das Faculdades Metropolitanas Unidas - FMU (1981).",
+      "carreira_previa": "Advogado de carreira da Caixa Economica Federal (1982-2010, mais de 27 anos). Diretor Juridico da CEF (2003-2010).",
+      "especialidade": "Direito Privado, Direito Bancario, Direito Civil, Direito Empresarial",
+      "curiosidades": "Mais de 27 anos na CEF antes do STJ. Ingressou pelo quinto constitucional (vaga da OAB). Ministro do TSE desde 2023. Corregedor-Geral Eleitoral (2024). Cidadao Honorario de Brasilia e do Piaui."
     }
   },
   "atuacao_profissional": {},

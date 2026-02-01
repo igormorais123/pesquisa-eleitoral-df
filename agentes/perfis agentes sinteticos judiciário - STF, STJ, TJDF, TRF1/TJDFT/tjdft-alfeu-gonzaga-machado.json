@@ -1,7 +1,7 @@
 {
   "id": "tjdft-alfeu-gonzaga-machado",
   "nome": "Des. Alfeu Gonzaga Machado",
-  "nome_completo": null,
+  "nome_completo": "Alfeu Gonzaga Machado",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,17 @@
     "biografia_tjdft_resumo": "111 \nBIOGRAFIA \nDESEMBARGADOR \nALFEU GONZAGA MACHADO \n \nDADOS PESSOAIS \nNOME: Alfeu Gonzaga Machado \nDATA DE NASCIMENTO: 6/8/1958 \nLOCAL DE NASCIMENTO: Itutinga – MG \nNACIONALIDADE: Brasileira \n \n \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nEnsino Fundamental: Escola Estadual Azarias Ribeiro, Lavras (MG). \nEnsino Médio: Instituto Presbiteriano Gammon, Lavras (MG). \nEnsino Superior: Bacharel em Direito pela Universidade Federal de Uberlândia, 18/7/1986. \nPós-graduação: Mestrado em Direito Comercial pela Pontifícia Universidade Católica de São Paulo \n(PUC/SP), agosto de 1987 a dezembro de 1989. \n \nCARGOS OCUPADOS \n \n» Exerceu a Advocacia na Comarca de Uberlândia (MG), de 1986 a 1990. \n» Consultor Legislativo da Câmara de Vereadores de Uberlândia (MG). \n» Consultor da Associação dos Vereadores do Triângulo Mineiro AVETRIM. \n» Aprovado no Exame de Ordem do Estado de São Paulo, exercendo a atividade d...",
     "dados_dossie": {
       "perfil_ideologico": "Civilista e processualista.",
-      "analise_comportamental": "Civilista e processualista."
+      "analise_comportamental": "Civilista e processualista.",
+      "nascimento": {
+        "cidade": "Itutinga/MG"
+      },
+      "origem": "magistratura",
+      "perfil_psicologico": "Versatil - atuou em Turmas Criminais e Civeis.",
+      "turma": "1a Turma Civel",
+      "formacao": "Graduado em Direito. Mestre em Direito Comercial.",
+      "carreira_previa": "Advogado, consultor legislativo, escrevente do TJMG. Magistratura do DF desde outubro de 1991. Diretor do Forum de Brasilia.",
+      "especialidade": "Direito Civel, Direito Comercial, Direito de Familia, Fazenda Publica",
+      "curiosidades": "Membro suplente do TRE-DF. Medalhas do Merito Eleitoral e Ordem do Merito Judiciario."
     }
   },
   "atuacao_profissional": {},

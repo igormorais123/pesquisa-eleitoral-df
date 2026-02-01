@@ -20,7 +20,17 @@
       "secao": "2ª Seção",
       "turma": "3ª Turma",
       "indicado_por": "Presidente Dilma",
-      "origem": "Advocacia (OAB)"
+      "origem": "Advocacia (OAB)",
+      "nascimento": {
+        "data": "28/05/1962",
+        "cidade": "Sao Paulo, SP"
+      },
+      "perfil_ideologico": "Tecnico com formacao internacionalista. Especialista em direito economico e concorrencial. Perfil modernizador e academico.",
+      "perfil_psicologico": "Intelectual de formacao internacionalista (Harvard, Frankfurt). Carreira diversificada entre setor publico, regulacao e advocacia. Vies academico forte.",
+      "formacao": "Direito pela USP (1985). Mestrado pela Harvard Law School (1990). Doutorado pela Universidade de Frankfurt (1998).",
+      "carreira_previa": "Procurador do Estado de SP (1985-1987). Advogado (1987-1988). Procurador da Fazenda Nacional (1987-2009). Conselheiro do CADE (2004-2008). Vice-presidente do Conselho Federal do Fundo de Defesa de Direitos Difusos (2005-2008). Socio no escritorio Rodrigues Alves e Villas Boas Cueva (2009-2011). Professor de Direito Empresarial no IBMEC (2002-2004).",
+      "especialidade": "Direito Empresarial, Direito Concorrencial, Direito Regulatorio, Direito e Tecnologia, Protecao de Dados",
+      "curiosidades": "Mestrado em Harvard e doutorado em Frankfurt. Conselheiro do CADE por 4 anos. Ministro do TSE (substituto desde 2024, efetivo desde 2025). Homenageado com o livro Liber Amicorum pelos 13 anos no STJ. Referencia em Direito e Tecnologia."
     }
   },
   "atuacao_profissional": {},

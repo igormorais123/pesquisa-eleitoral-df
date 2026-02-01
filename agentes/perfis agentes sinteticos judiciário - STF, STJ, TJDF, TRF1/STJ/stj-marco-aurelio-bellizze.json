@@ -21,7 +21,17 @@
       "secao": "2ª Seção",
       "turma": "3ª Turma",
       "indicado_por": "Presidente Dilma",
-      "origem": "Magistratura estadual (TJ-RJ)"
+      "origem": "Magistratura estadual (TJ-RJ)",
+      "nascimento": {
+        "data": "04/01/1964",
+        "cidade": "Rio de Janeiro, RJ"
+      },
+      "perfil_ideologico": "Tecnico e moderado. Perfil equilibrado em direito privado. Vice-presidente da comissao de revisao do Codigo Civil.",
+      "perfil_psicologico": "Competitivo e excelente (1o lugar em concurso). Formacao complementar em gestao e estrategia demonstra visao ampla. Professor e autor.",
+      "formacao": "Direito pela Universidade Estacio de Sa (1985). Mestrado pela Universidade Estacio de Sa (2003). Especializacao em Gestao e Planejamento Estrategico pela FGV. Altos Estudos de Politica e Estrategia pela ESG.",
+      "carreira_previa": "Advogado e Procurador do Municipio do RJ (1987-1990). Aprovado em 1o lugar na magistratura do TJRJ (1990). Aprovado tambem para Promotor de Justica do MPRJ (optou pela magistratura). Desembargador do TJRJ (2004). Professor da FGV.",
+      "especialidade": "Direito Privado, Direito Civil, Direito Processual Civil",
+      "curiosidades": "Aprovado em 1o lugar na magistratura do TJRJ e simultaneamente para Promotor do MPRJ. Nomeado para a vaga de Luiz Fux (que foi ao STF). Relator do primeiro IAC do STJ (2017). Vice-presidente da comissao de revisao do Codigo Civil."
     }
   },
   "atuacao_profissional": {},

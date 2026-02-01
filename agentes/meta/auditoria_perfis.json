@@ -1,24 +1,24 @@
 {
   "metadata": {
-    "data_auditoria": "2026-01-31 21:24:30",
+    "data_auditoria": "2026-01-31 22:11:18",
     "diretorio_base": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1",
     "total_arquivos": 132,
     "total_carregados": 132,
     "erros_carregamento": 0
   },
   "resumo": {
-    "total_problemas": 501,
+    "total_problemas": 473,
     "perfis_com_problema": 132,
     "perfis_sem_problema": 0,
     "por_severidade": {
-      "BAIXO": 457,
-      "MEDIO": 44
+      "BAIXO": 440,
+      "MEDIO": 33
     },
     "por_tipo": {
-      "campo_vazio": 233,
+      "campo_vazio": 261,
       "fonte_sem_url": 119,
-      "nome_completo_ausente": 75,
-      "dossie_incompleto": 32,
+      "nome_completo_ausente": 30,
+      "dossie_incompleto": 21,
       "tracos_operacionais_vazio": 18,
       "wikipedia_resumo_ausente": 12,
       "biografia_ausente": 12
@@ -30,15 +30,15 @@
       },
       "STJ": {
         "perfis": 33,
-        "problemas": 99
+        "problemas": 93
       },
       "TJDFT": {
         "perfis": 47,
-        "problemas": 188
+        "problemas": 169
       },
       "TRF1": {
         "perfis": 41,
-        "problemas": 178
+        "problemas": 175
       }
     },
     "perfis_sem_dossie_count": 0,
@@ -51,99 +51,99 @@
       "pasta": "TRF1"
     },
     {
+      "id": "tjdft-waldir-leoncio-cordeiro-lopes-junior",
+      "total": 7,
+      "pasta": "TJDFT"
+    },
+    {
       "id": "stf-luis-roberto-barroso",
       "total": 6,
       "pasta": "STF"
     },
     {
-      "id": "tjdft-waldir-leoncio-cordeiro-lopes-junior",
+      "id": "tjdft-angelo-canducci-passareli",
       "total": 6,
       "pasta": "TJDFT"
     },
     {
-      "id": "tjdft-angelo-canducci-passareli",
-      "total": 5,
-      "pasta": "TJDFT"
-    },
-    {
-      "id": "tjdft-fabricio-fontoura-bezerra",
-      "total": 5,
-      "pasta": "TJDFT"
-    },
-    {
-      "id": "tjdft-fernando-antonio-habibe-pereira",
-      "total": 5,
-      "pasta": "TJDFT"
-    },
-    {
       "id": "tjdft-robson-vieira-teixeira-de-freitas",
-      "total": 5,
-      "pasta": "TJDFT"
-    },
-    {
-      "id": "tjdft-romulo-de-araujo-mendes",
-      "total": 5,
+      "total": 6,
       "pasta": "TJDFT"
     },
     {
       "id": "tjdft-sandra-reves-vasques-tonussi",
-      "total": 5,
+      "total": 6,
       "pasta": "TJDFT"
     },
     {
       "id": "tjdft-simone-costa-lucindo-ferreira",
-      "total": 5,
+      "total": 6,
       "pasta": "TJDFT"
     },
     {
       "id": "tjdft-soniria-rocha-campos-d-assuncao",
-      "total": 5,
+      "total": 6,
       "pasta": "TJDFT"
-    },
-    {
-      "id": "tjdft-teofilo-rodrigues-caetano-neto",
-      "total": 5,
-      "pasta": "TJDFT"
-    },
-    {
-      "id": "trf1-ana-carolina-roman",
-      "total": 5,
-      "pasta": "TRF1"
     },
     {
       "id": "trf1-antonio-scarpa",
-      "total": 5,
-      "pasta": "TRF1"
-    },
-    {
-      "id": "trf1-candice-lavocat-galvao-jobim",
-      "total": 5,
+      "total": 6,
       "pasta": "TRF1"
     },
     {
       "id": "trf1-carlos-eduardo-moreira-alves",
-      "total": 5,
-      "pasta": "TRF1"
-    },
-    {
-      "id": "trf1-cesar-jatahy",
-      "total": 5,
+      "total": 6,
       "pasta": "TRF1"
     },
     {
       "id": "trf1-euler-de-almeida",
-      "total": 5,
-      "pasta": "TRF1"
-    },
-    {
-      "id": "trf1-gilda-sigmaringa-seixas",
-      "total": 5,
+      "total": 6,
       "pasta": "TRF1"
     },
     {
       "id": "trf1-i-talo-mendes",
-      "total": 5,
+      "total": 6,
       "pasta": "TRF1"
+    },
+    {
+      "id": "trf1-jose-amilcar-machado",
+      "total": 6,
+      "pasta": "TRF1"
+    },
+    {
+      "id": "trf1-pedro-braga-filho",
+      "total": 6,
+      "pasta": "TRF1"
+    },
+    {
+      "id": "trf1-rafael-paulo",
+      "total": 6,
+      "pasta": "TRF1"
+    },
+    {
+      "id": "trf1-roberto-carvalho-veloso",
+      "total": 6,
+      "pasta": "TRF1"
+    },
+    {
+      "id": "stj-joao-otavio-de-noronha",
+      "total": 5,
+      "pasta": "STJ"
+    },
+    {
+      "id": "stj-messod-azulay",
+      "total": 5,
+      "pasta": "STJ"
+    },
+    {
+      "id": "tjdft-alvaro-luis-de-araujo-sales-ciarlini",
+      "total": 5,
+      "pasta": "TJDFT"
+    },
+    {
+      "id": "tjdft-esdras-neves-almeida",
+      "total": 5,
+      "pasta": "TJDFT"
     }
   ],
   "erros_carregamento": [],
@@ -469,7 +469,7 @@
     "stj-antonio-carlos-ferreira": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-antonio-carlos-ferreira.json",
       "pasta": "STJ",
-      "total_problemas": 4,
+      "total_problemas": 3,
       "problemas": [
         {
           "tipo": "campo_vazio",
@@ -482,12 +482,6 @@
           "severidade": "BAIXO",
           "campo": "fontes[2].url",
           "detalhe": "Campo 'fontes[2].url' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
-        {
-          "tipo": "dossie_incompleto",
-          "severidade": "MEDIO",
-          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
-          "detalhe": "Campo 'perfil_ideologico' ausente ou vazio dentro de dados_dossie"
         },
         {
           "tipo": "fonte_sem_url",
@@ -663,19 +657,13 @@
     "stj-humberto-martins": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-humberto-martins.json",
       "pasta": "STJ",
-      "total_problemas": 3,
+      "total_problemas": 2,
       "problemas": [
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
           "campo": "fontes[2].url",
           "detalhe": "Campo 'fontes[2].url' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
-        {
-          "tipo": "dossie_incompleto",
-          "severidade": "MEDIO",
-          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
-          "detalhe": "Campo 'perfil_ideologico' ausente ou vazio dentro de dados_dossie"
         },
         {
           "tipo": "fonte_sem_url",
@@ -688,19 +676,13 @@
     "stj-isabel-gallotti": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-isabel-gallotti.json",
       "pasta": "STJ",
-      "total_problemas": 3,
+      "total_problemas": 2,
       "problemas": [
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
           "campo": "fontes[2].url",
           "detalhe": "Campo 'fontes[2].url' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
-        {
-          "tipo": "dossie_incompleto",
-          "severidade": "MEDIO",
-          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
-          "detalhe": "Campo 'perfil_ideologico' ausente ou vazio dentro de dados_dossie"
         },
         {
           "tipo": "fonte_sem_url",
@@ -713,8 +695,14 @@
     "stj-joao-otavio-de-noronha": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-joao-otavio-de-noronha.json",
       "pasta": "STJ",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -788,19 +776,13 @@
     "stj-marco-aurelio-bellizze": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-marco-aurelio-bellizze.json",
       "pasta": "STJ",
-      "total_problemas": 4,
+      "total_problemas": 3,
       "problemas": [
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
           "campo": "fontes[2].url",
           "detalhe": "Campo 'fontes[2].url' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
-        {
-          "tipo": "dossie_incompleto",
-          "severidade": "MEDIO",
-          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
-          "detalhe": "Campo 'perfil_ideologico' ausente ou vazio dentro de dados_dossie"
         },
         {
           "tipo": "fonte_sem_url",
@@ -819,7 +801,7 @@
     "stj-marco-buzzi": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-marco-buzzi.json",
       "pasta": "STJ",
-      "total_problemas": 4,
+      "total_problemas": 3,
       "problemas": [
         {
           "tipo": "campo_vazio",
@@ -834,12 +816,6 @@
           "detalhe": "Campo 'fontes[2].url' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
-          "tipo": "dossie_incompleto",
-          "severidade": "MEDIO",
-          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
-          "detalhe": "Campo 'perfil_ideologico' ausente ou vazio dentro de dados_dossie"
-        },
-        {
           "tipo": "fonte_sem_url",
           "severidade": "BAIXO",
           "campo": "fontes",
@@ -850,8 +826,14 @@
     "stj-maria-thereza-de-assis-moura": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-maria-thereza-de-assis-moura.json",
       "pasta": "STJ",
-      "total_problemas": 2,
+      "total_problemas": 3,
       "problemas": [
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -907,7 +889,7 @@
     "stj-messod-azulay": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-messod-azulay.json",
       "pasta": "STJ",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -920,6 +902,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -938,7 +926,7 @@
     "stj-moura-ribeiro": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-moura-ribeiro.json",
       "pasta": "STJ",
-      "total_problemas": 4,
+      "total_problemas": 3,
       "problemas": [
         {
           "tipo": "campo_vazio",
@@ -951,12 +939,6 @@
           "severidade": "BAIXO",
           "campo": "fontes[2].url",
           "detalhe": "Campo 'fontes[2].url' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
-        {
-          "tipo": "dossie_incompleto",
-          "severidade": "MEDIO",
-          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
-          "detalhe": "Campo 'perfil_ideologico' ausente ou vazio dentro de dados_dossie"
         },
         {
           "tipo": "fonte_sem_url",
@@ -1032,19 +1014,13 @@
     "stj-raul-araujo": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-raul-araujo.json",
       "pasta": "STJ",
-      "total_problemas": 4,
+      "total_problemas": 3,
       "problemas": [
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
           "campo": "fontes[2].url",
           "detalhe": "Campo 'fontes[2].url' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
-        {
-          "tipo": "dossie_incompleto",
-          "severidade": "MEDIO",
-          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
-          "detalhe": "Campo 'perfil_ideologico' ausente ou vazio dentro de dados_dossie"
         },
         {
           "tipo": "fonte_sem_url",
@@ -1088,13 +1064,19 @@
     "stj-reynaldo-soares-da-fonseca": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-reynaldo-soares-da-fonseca.json",
       "pasta": "STJ",
-      "total_problemas": 3,
+      "total_problemas": 4,
       "problemas": [
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
           "campo": "dados_publicos.wikipedia_resumo.descricao",
           "detalhe": "Campo 'dados_publicos.wikipedia_resumo.descricao' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -1138,20 +1120,8 @@
     "stj-rogerio-schietti-cruz": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-rogerio-schietti-cruz.json",
       "pasta": "STJ",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -1238,19 +1208,13 @@
     "stj-villas-boas-cueva": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\STJ\\stj-villas-boas-cueva.json",
       "pasta": "STJ",
-      "total_problemas": 4,
+      "total_problemas": 3,
       "problemas": [
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
           "campo": "fontes[2].url",
           "detalhe": "Campo 'fontes[2].url' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
-        {
-          "tipo": "dossie_incompleto",
-          "severidade": "MEDIO",
-          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
-          "detalhe": "Campo 'perfil_ideologico' ausente ou vazio dentro de dados_dossie"
         },
         {
           "tipo": "fonte_sem_url",
@@ -1269,20 +1233,8 @@
     "tjdft-alfeu-gonzaga-machado": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-alfeu-gonzaga-machado.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -1300,7 +1252,7 @@
     "tjdft-alvaro-luis-de-araujo-sales-ciarlini": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-alvaro-luis-de-araujo-sales-ciarlini.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -1313,6 +1265,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -1331,20 +1289,8 @@
     "tjdft-ana-maria-cantarino": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-ana-maria-cantarino.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -1362,7 +1308,7 @@
     "tjdft-angelo-canducci-passareli": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-angelo-canducci-passareli.json",
       "pasta": "TJDFT",
-      "total_problemas": 5,
+      "total_problemas": 6,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -1375,6 +1321,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -1399,20 +1351,8 @@
     "tjdft-arnoldo-camanho-de-assis": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-arnoldo-camanho-de-assis.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -1430,20 +1370,8 @@
     "tjdft-arquibaldo-carneiro-portela": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-arquibaldo-carneiro-portela.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -1461,20 +1389,8 @@
     "tjdft-carlos-pires-soares-neto": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-carlos-pires-soares-neto.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -1517,20 +1433,8 @@
     "tjdft-diaulas-costa-ribeiro": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-diaulas-costa-ribeiro.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -1567,7 +1471,7 @@
     "tjdft-esdras-neves-almeida": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-esdras-neves-almeida.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -1580,6 +1484,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -1598,20 +1508,8 @@
     "tjdft-fabio-eduardo-marques": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-fabio-eduardo-marques.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -1629,20 +1527,8 @@
     "tjdft-fabricio-fontoura-bezerra": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-fabricio-fontoura-bezerra.json",
       "pasta": "TJDFT",
-      "total_problemas": 5,
+      "total_problemas": 3,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -1666,20 +1552,8 @@
     "tjdft-fernando-antonio-habibe-pereira": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-fernando-antonio-habibe-pereira.json",
       "pasta": "TJDFT",
-      "total_problemas": 5,
+      "total_problemas": 3,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -1703,20 +1577,8 @@
     "tjdft-gislene-pinheiro-de-oliveira": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-gislene-pinheiro-de-oliveira.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -1734,7 +1596,7 @@
     "tjdft-hector-valverde-santanna": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-hector-valverde-santanna.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -1747,6 +1609,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -1765,7 +1633,7 @@
     "tjdft-jair-oliveira-soares": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-jair-oliveira-soares.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -1778,6 +1646,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -1815,7 +1689,7 @@
     "tjdft-jesuino-aparecido-rissato": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-jesuino-aparecido-rissato.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -1828,6 +1702,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -1846,7 +1726,7 @@
     "tjdft-joao-egmont-leoncio-lopes": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-joao-egmont-leoncio-lopes.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -1859,6 +1739,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -1877,7 +1763,7 @@
     "tjdft-josapha-francisco-dos-santos": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-josapha-francisco-dos-santos.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -1890,6 +1776,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -1908,7 +1800,7 @@
     "tjdft-jose-cruz-macedo": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-jose-cruz-macedo.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -1921,6 +1813,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -1958,7 +1856,7 @@
     "tjdft-leila-cristina-garbin-arlanch": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-leila-cristina-garbin-arlanch.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -1971,6 +1869,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -1989,7 +1893,7 @@
     "tjdft-leonardo-roscoe-bessa": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-leonardo-roscoe-bessa.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -2002,6 +1906,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2020,20 +1930,8 @@
     "tjdft-lucimeire-maria-da-silva": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-lucimeire-maria-da-silva.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -2051,20 +1949,8 @@
     "tjdft-luis-gustavo-barbosa-de-oliveira": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-luis-gustavo-barbosa-de-oliveira.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -2120,7 +2006,7 @@
     "tjdft-maria-ivatonia-barbosa-dos-santos": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-maria-ivatonia-barbosa-dos-santos.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -2133,6 +2019,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2151,20 +2043,8 @@
     "tjdft-mario-zam-belmiro-rosa": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-mario-zam-belmiro-rosa.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -2182,7 +2062,7 @@
     "tjdft-nilsoni-de-freitas-custodio": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-nilsoni-de-freitas-custodio.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -2195,6 +2075,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2213,20 +2099,8 @@
     "tjdft-renato-rodovalho-scussel": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-renato-rodovalho-scussel.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -2244,20 +2118,8 @@
     "tjdft-roberto-freitas-filho": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-roberto-freitas-filho.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -2275,20 +2137,8 @@
     "tjdft-roberval-casemiro-belinati": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-roberval-casemiro-belinati.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -2306,20 +2156,8 @@
     "tjdft-robson-barbosa-de-azevedo": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-robson-barbosa-de-azevedo.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -2337,7 +2175,7 @@
     "tjdft-robson-vieira-teixeira-de-freitas": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-robson-vieira-teixeira-de-freitas.json",
       "pasta": "TJDFT",
-      "total_problemas": 5,
+      "total_problemas": 6,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -2350,6 +2188,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2374,20 +2218,8 @@
     "tjdft-romulo-de-araujo-mendes": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-romulo-de-araujo-mendes.json",
       "pasta": "TJDFT",
-      "total_problemas": 5,
+      "total_problemas": 3,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -2411,7 +2243,7 @@
     "tjdft-sandoval-gomes-de-oliveira": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-sandoval-gomes-de-oliveira.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -2424,6 +2256,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2442,7 +2280,7 @@
     "tjdft-sandra-reves-vasques-tonussi": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-sandra-reves-vasques-tonussi.json",
       "pasta": "TJDFT",
-      "total_problemas": 5,
+      "total_problemas": 6,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -2455,6 +2293,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2479,7 +2323,7 @@
     "tjdft-sergio-xavier-de-souza-rocha": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-sergio-xavier-de-souza-rocha.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -2492,6 +2336,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2510,20 +2360,8 @@
     "tjdft-silvanio-barbosa-dos-santos": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-silvanio-barbosa-dos-santos.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -2541,7 +2379,7 @@
     "tjdft-simone-costa-lucindo-ferreira": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-simone-costa-lucindo-ferreira.json",
       "pasta": "TJDFT",
-      "total_problemas": 5,
+      "total_problemas": 6,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -2554,6 +2392,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2578,7 +2422,7 @@
     "tjdft-soniria-rocha-campos-d-assuncao": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-soniria-rocha-campos-d-assuncao.json",
       "pasta": "TJDFT",
-      "total_problemas": 5,
+      "total_problemas": 6,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -2591,6 +2435,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2615,20 +2465,8 @@
     "tjdft-teofilo-rodrigues-caetano-neto": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-teofilo-rodrigues-caetano-neto.json",
       "pasta": "TJDFT",
-      "total_problemas": 5,
+      "total_problemas": 3,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -2652,7 +2490,7 @@
     "tjdft-vera-lucia-andrighi": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-vera-lucia-andrighi.json",
       "pasta": "TJDFT",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -2665,6 +2503,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2683,7 +2527,7 @@
     "tjdft-waldir-leoncio-cordeiro-lopes-junior": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TJDFT\\tjdft-waldir-leoncio-cordeiro-lopes-junior.json",
       "pasta": "TJDFT",
-      "total_problemas": 6,
+      "total_problemas": 7,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -2696,6 +2540,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2726,8 +2576,14 @@
     "trf1-alexandre-laranjeira": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-alexandre-laranjeira.json",
       "pasta": "TRF1",
-      "total_problemas": 2,
+      "total_problemas": 3,
       "problemas": [
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -2776,31 +2632,19 @@
     "trf1-ana-carolina-roman": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-ana-carolina-roman.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 3,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.nascimento.data",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento.data' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
           "campo": "fontes[2].url",
           "detalhe": "Campo 'fontes[2].url' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
-        {
-          "tipo": "dossie_incompleto",
-          "severidade": "MEDIO",
-          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
-          "detalhe": "Campo 'perfil_ideologico' ausente ou vazio dentro de dados_dossie"
         },
         {
           "tipo": "fonte_sem_url",
@@ -2813,19 +2657,25 @@
     "trf1-antonio-scarpa": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-antonio-scarpa.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 6,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
+          "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_ideologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_psicologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2853,16 +2703,16 @@
       "total_problemas": 5,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
+          "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_ideologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2887,7 +2737,7 @@
     "trf1-carlos-eduardo-moreira-alves": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-carlos-eduardo-moreira-alves.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 6,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -2900,6 +2750,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2927,16 +2783,16 @@
       "total_problemas": 5,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
+          "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_ideologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_psicologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -2995,16 +2851,16 @@
       "total_problemas": 4,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
+          "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_psicologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3023,19 +2879,25 @@
     "trf1-euler-de-almeida": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-euler-de-almeida.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 6,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
+          "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_ideologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_psicologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3063,16 +2925,16 @@
       "total_problemas": 4,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
+          "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
+          "campo": "dados_publicos.dados_dossie.nascimento.data",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento.data' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_psicologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3094,16 +2956,16 @@
       "total_problemas": 5,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
+          "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
+          "campo": "dados_publicos.dados_dossie.nascimento.data",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento.data' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_ideologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3128,7 +2990,7 @@
     "trf1-gustavo-soares-amorim": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-gustavo-soares-amorim.json",
       "pasta": "TRF1",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -3141,6 +3003,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3190,7 +3058,7 @@
     "trf1-i-talo-mendes": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-i-talo-mendes.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 6,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -3203,6 +3071,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3246,19 +3120,13 @@
     "trf1-joao-batista-moreira": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-joao-batista-moreira.json",
       "pasta": "TRF1",
-      "total_problemas": 4,
+      "total_problemas": 3,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.nascimento.data",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento.data' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3296,7 +3164,7 @@
     "trf1-jose-amilcar-machado": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-jose-amilcar-machado.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 6,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -3309,6 +3177,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3333,19 +3207,13 @@
     "trf1-katia-balbino": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-katia-balbino.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 4,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.nascimento.data",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento.data' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3370,8 +3238,14 @@
     "trf1-leao-alves": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-leao-alves.json",
       "pasta": "TRF1",
-      "total_problemas": 2,
+      "total_problemas": 3,
       "problemas": [
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -3389,20 +3263,8 @@
     "trf1-marcelo-albernaz": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-marcelo-albernaz.json",
       "pasta": "TRF1",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -3423,16 +3285,16 @@
       "total_problemas": 5,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
+          "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_ideologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_psicologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3457,19 +3319,13 @@
     "trf1-marcus-bastos": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-marcus-bastos.json",
       "pasta": "TRF1",
-      "total_problemas": 4,
+      "total_problemas": 3,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3488,31 +3344,25 @@
     "trf1-maria-do-carmo-cardoso": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-maria-do-carmo-cardoso.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 4,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
+          "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
+          "campo": "dados_publicos.dados_dossie.nascimento.data",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento.data' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_psicologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
           "campo": "fontes[2].url",
           "detalhe": "Campo 'fontes[2].url' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
-        {
-          "tipo": "dossie_incompleto",
-          "severidade": "MEDIO",
-          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
-          "detalhe": "Campo 'perfil_ideologico' ausente ou vazio dentro de dados_dossie"
         },
         {
           "tipo": "fonte_sem_url",
@@ -3528,16 +3378,16 @@
       "total_problemas": 5,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
+          "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
+          "campo": "dados_publicos.dados_dossie.nascimento.data",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento.data' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_ideologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3593,31 +3443,13 @@
     "trf1-neviton-guedes": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-neviton-guedes.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
           "campo": "fontes[2].url",
           "detalhe": "Campo 'fontes[2].url' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
-        {
-          "tipo": "dossie_incompleto",
-          "severidade": "MEDIO",
-          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
-          "detalhe": "Campo 'perfil_ideologico' ausente ou vazio dentro de dados_dossie"
         },
         {
           "tipo": "fonte_sem_url",
@@ -3630,19 +3462,13 @@
     "trf1-newton-ramos": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-newton-ramos.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 4,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_ideologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3667,20 +3493,8 @@
     "trf1-ney-bello": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-ney-bello.json",
       "pasta": "TRF1",
-      "total_problemas": 4,
+      "total_problemas": 2,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -3720,16 +3534,16 @@
       "total_problemas": 4,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
+          "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
+          "campo": "dados_publicos.dados_dossie.nascimento.data",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento.data' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_psicologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3748,7 +3562,7 @@
     "trf1-pedro-braga-filho": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-pedro-braga-filho.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 6,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -3761,6 +3575,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3785,19 +3605,25 @@
     "trf1-rafael-paulo": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-rafael-paulo.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 6,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
+          "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
+          "campo": "dados_publicos.dados_dossie.nascimento.data",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento.data' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_ideologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_psicologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3822,7 +3648,7 @@
     "trf1-roberto-carvalho-veloso": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-roberto-carvalho-veloso.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 6,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -3835,6 +3661,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3859,8 +3691,14 @@
     "trf1-rosana-noya-alves-weibel-kaufmann": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-rosana-noya-alves-weibel-kaufmann.json",
       "pasta": "TRF1",
-      "total_problemas": 3,
+      "total_problemas": 4,
       "problemas": [
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
@@ -3884,7 +3722,7 @@
     "trf1-rosimayre-goncalves-de-carvalho": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-rosimayre-goncalves-de-carvalho.json",
       "pasta": "TRF1",
-      "total_problemas": 4,
+      "total_problemas": 5,
       "problemas": [
         {
           "tipo": "nome_completo_ausente",
@@ -3897,6 +3735,12 @@
           "severidade": "BAIXO",
           "campo": "nome_completo",
           "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3915,19 +3759,13 @@
     "trf1-rui-goncalves": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-rui-goncalves.json",
       "pasta": "TRF1",
-      "total_problemas": 4,
+      "total_problemas": 3,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_psicologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -3949,18 +3787,6 @@
       "total_problemas": 9,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
-        {
-          "tipo": "campo_vazio",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
-        },
-        {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
           "campo": "dados_publicos.dados_dossie.perfil_ideologico",
@@ -3971,6 +3797,18 @@
           "severidade": "BAIXO",
           "campo": "dados_publicos.dados_dossie.analise_comportamental",
           "detalhe": "Campo 'dados_publicos.dados_dossie.analise_comportamental' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.nascimento",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+        },
+        {
+          "tipo": "campo_vazio",
+          "severidade": "BAIXO",
+          "campo": "dados_publicos.dados_dossie.perfil_psicologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_psicologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -4010,16 +3848,16 @@
       "total_problemas": 5,
       "problemas": [
         {
-          "tipo": "nome_completo_ausente",
+          "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
+          "campo": "dados_publicos.dados_dossie.nascimento.data",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.nascimento.data' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_ideologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",
@@ -4044,19 +3882,13 @@
     "trf1-wilson-alves-de-souza": {
       "arquivo": "C:\\Users\\igorm\\pesquisa-eleitoral-df\\agentes\\perfis agentes sinteticos judiciário - STF, STJ, TJDF, TRF1\\TRF1\\trf1-wilson-alves-de-souza.json",
       "pasta": "TRF1",
-      "total_problemas": 5,
+      "total_problemas": 4,
       "problemas": [
-        {
-          "tipo": "nome_completo_ausente",
-          "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' e null"
-        },
         {
           "tipo": "campo_vazio",
           "severidade": "BAIXO",
-          "campo": "nome_completo",
-          "detalhe": "Campo 'nome_completo' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
+          "campo": "dados_publicos.dados_dossie.perfil_ideologico",
+          "detalhe": "Campo 'dados_publicos.dados_dossie.perfil_ideologico' esta vazio (string vazia, lista vazia, objeto vazio ou null)"
         },
         {
           "tipo": "campo_vazio",

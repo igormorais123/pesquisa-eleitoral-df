@@ -1,7 +1,7 @@
 {
   "id": "trf1-gilda-sigmaringa-seixas",
   "nome": "Gilda Sigmaringa Seixas",
-  "nome_completo": null,
+  "nome_completo": "Gilda Maria Carneiro Sigmaringa Seixas",
   "orgao": "TRF1",
   "cargo": "Desembargador Federal",
   "situacao": "titular",
@@ -18,7 +18,20 @@
       "Condecorações": "Condecorada com a Comenda Militar “Amiga do Exército de Rondônia”, em 1996.\n\nCondecorada com a Comenda do Superior Tribunal Militar “Ordem do Mérito Judiciário Militar”, em 2004.\n\nCondecorada com a Medalha “Mérito Santos Dumont”, em 2013\n\nCertificado de reconhecimento às Importantes Contribuições à Subsecretaria de Modernização do Atendimento Imediato ao Cidadão – Na Hora, GDF, pelos serviços prestados nesses onze anos de excelência – 06/13"
     },
     "dados_dossie": {
-      "analise_comportamental": "Perfil conciliador, com foco em direito previdenciário."
+      "analise_comportamental": "Perfil conciliador, com foco em direito previdenciário.",
+      "nascimento": {
+        "data": null,
+        "cidade": "Rio de Janeiro/RJ (cresceu em Brasilia)"
+      },
+      "origem": "magistratura",
+      "perfil_ideologico": null,
+      "perfil_psicologico": "Perfil de gestora e inovadora. Foco em modernizacao, area social e eficiencia.",
+      "secao": "4a",
+      "turma": "4a Secao (7a, 8a e 13a Turmas)",
+      "formacao": "Graduacao em Direito pelo UniCEUB. Pos-graduacao pela ESMPU e pela UnB. Cursando mestrado na UnB.",
+      "carreira_previa": "Juiza federal desde 1995. Atuou em BH (26a Vara, 2a Vara Civel). Removida para SJDF (26a Vara JEF, 2005-2009). Coordenadora dos JEFs. Diretora do Foro da SJDF (2012). Inaugurou Central de Conciliacao da SJDF (2012) e Central de Descarte e Video Conferencia (2014).",
+      "especialidade": "Juizados Especiais Federais, conciliacao, gestao judicial",
+      "curiosidades": "Posse em 16/12/2014 por merecimento. Vice-presidente do TRF1 (bienio 2024-2026). 2a mulher a dirigir a ESMAF. Representante regional da Ouvidoria Nacional da Mulher (Regiao Norte). Pai: deputado federal Janduhy Carneiro (PB). Marido: Antonio Carlos Sigmaringa Seixas Junior (pai advogado, ex-presidente OAB-DF 1973-1975). Filhos: Cristiana, Bruno, Rafaella. Neto: Gabriel. Implementou Curso Gestao Judicial 360."
     }
   },
   "atuacao_profissional": {},

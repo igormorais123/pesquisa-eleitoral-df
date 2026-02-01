@@ -1,7 +1,7 @@
 {
   "id": "tjdft-ana-maria-cantarino",
   "nome": "Desa. Ana Maria Cantarino",
-  "nome_completo": null,
+  "nome_completo": "Ana Maria Cantarino",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,18 @@
     "biografia_tjdft_resumo": "124 \nBIOGRAFIA \nDESEMBARGADORA \nANA MARIA CANTARINO \n \nDADOS PESSOAIS \nNOME: Ana Maria Cantarino \nDATA DE NASCIMENTO: 24/3/1963 \nLOCAL DE NASCIMENTO: Vila Matias – MG \nNACIONALIDADE: Brasileira \n \n \n \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Primário: Grupo Escolar Theolinda de Sousa Carmo – Governador Valadares (MG) - 1971 a 1974. \nCurso Ginasial: Escola Polivalente de Governador Valadares (MG) - 1975 a 1978. \nCurso Colegial: Fundação Educacional do Distrito Federal/DF - 1979 a 1981. \nCurso Superior: Bacharelado em Direito pelo CEUB – Centro de Ensino Unificado de Brasília - 1988. \n \nCARGOS OCUPADOS \n \n» Secretária no Escritório de Advocacia Carlos Gomes Sanromã, no período de 1982 a 1984. \n» Estagiária de Direito no Escritório de Advocacia Carlos Gomes Sanromã, no período de 1984 a 1988. \n» Advogada no Escritório de Advocacia Carlos Gomes Sanromã, no período de 1988 a 1993. \n» Posse com...",
     "dados_dossie": {
       "perfil_ideologico": "Humanista",
-      "analise_comportamental": "Humanista. Especialista em Direito de Família. Votos sensíveis à proteção de menores e incapazes."
+      "analise_comportamental": "Humanista. Especialista em Direito de Família. Votos sensíveis à proteção de menores e incapazes.",
+      "nascimento": {
+        "data": "24/03/1963",
+        "cidade": "Vila Matias/MG"
+      },
+      "origem": "magistratura",
+      "perfil_psicologico": "Origem humilde - infancia na zona rural, caminhava 2 horas ate a escola.",
+      "turma": "Turma Civel",
+      "formacao": "Bacharel em Direito pelo CEUB (1988).",
+      "carreira_previa": "Secretaria e estagiaria em escritorio (1982-1988). Advogada (1988-1993). Juiza Substituta de 2o Grau desde 08/09/2014.",
+      "especialidade": "Direito Civel",
+      "curiosidades": "Desembargadora desde 29/07/2016."
     }
   },
   "atuacao_profissional": {},

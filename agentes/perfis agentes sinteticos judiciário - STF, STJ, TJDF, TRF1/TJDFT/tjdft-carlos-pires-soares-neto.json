@@ -1,7 +1,7 @@
 {
   "id": "tjdft-carlos-pires-soares-neto",
   "nome": "Des. Carlos Pires Soares Neto",
-  "nome_completo": null,
+  "nome_completo": "Carlos Pires Soares Neto",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,17 @@
     "biografia_tjdft_resumo": "138 \n \n \nBIOGRAFIA \nDESEMBARGADOR \nCARLOS PIRES \n \nDADOS PESSOAIS \nNOME: Carlos Pires Soares Neto \nDATA DE NASCIMENTO: 18/7/1963 \nLOCAL DE NASCIMENTO: Pariquera-Açu/SP \nNACIONALIDADE: Brasileira \n \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Superior: Graduado em Direito pela Universidade Mackenzie de São Paulo/SP, em 1988. \n \nEMPREGOS E CARGOS OCUPADOS \n \n» Juiz de Direito Substituto do Tribunal de Justiça do Distrito Federal e dos Territórios em 15/4/1994. \n» Juiz de Direito deste TJDFT em 3/12/1996, tendo sido lotado no Tribunal do Júri de Taguatinga. Em \n14.2.2002 foi removido para a 4ª Vara de Entorpecentes e Contravenções Penais do DF, e, posteriormente, \nem 17.12.2009, para a 4ª Vara Criminal de Brasília. \n» Removido pelo critério de antiguidade ao cargo de Juiz de Direito Substituto de Segundo Grau, conforme \nPortaria GPR 1.540 de 25/5/2016, com posse em 9/9/2016. \n» Designado pela P...",
     "dados_dossie": {
       "perfil_ideologico": "Modernizador. Jovem, ascensão meteórica. Focado em inovação e eficiência.",
-      "analise_comportamental": "Modernizador. Jovem, ascensão meteórica. Focado em inovação e eficiência."
+      "analise_comportamental": "Modernizador. Jovem, ascensão meteórica. Focado em inovação e eficiência.",
+      "nascimento": {
+        "cidade": "Pariquera-Acu/SP"
+      },
+      "origem": "magistratura",
+      "perfil_psicologico": "Pretende ficar ate a compulsoria (75 anos).",
+      "turma": "Turma Criminal/Civel",
+      "formacao": "Formado em Direito pela Universidade Mackenzie (SP).",
+      "carreira_previa": "Juiz Substituto desde 15/04/1994. Titular no Tribunal do Juri de Taguatinga por 4 anos.",
+      "especialidade": "Direito Penal, Tribunal do Juri",
+      "curiosidades": "Desembargador desde 08/07/2022 por merecimento."
     }
   },
   "atuacao_profissional": {},

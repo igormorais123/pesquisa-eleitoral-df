@@ -1,7 +1,7 @@
 {
   "id": "tjdft-roberval-casemiro-belinati",
   "nome": "Des. Roberval Casemiro Belinati",
-  "nome_completo": null,
+  "nome_completo": "Roberval Casemiro Belinati",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,18 @@
     "biografia_tjdft_resumo": "96 \nBIOGRAFIA \nDESEMBARGADOR \nROBERVAL BELINATI \n \nDADOS PESSOAIS \nNOME: Roberval Casemiro Belinati \nDATA DE NASCIMENTO: 17/2/1956 \nLOCAL DE NASCIMENTO: Cornélio Procópio - Paraná \nNACIONALIDADE: brasileira \n \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Primário: \n» Grupo Escolar Benjamin Constant e Escola Presbiteriana Independente – Londrina (PR). \nCurso Ginasial: \n» Colégio Estadual Marcelino Champagnat e Colégio Estadual Professor Vicente Rijo – Londrina (PR). \nSegundo Grau: \n» Colégio Estadual Professor Vicente Rijo, Colégio Canadá e Colégio Comercial do Paraná – Londrina \n(PR). \nCurso Superior: \n» Bacharel em Direito, pelo Centro Universitário de Brasília - CEUB, em 1978, Brasília (DF). \nPós-Graduação: \n» Curso de Preparação para a Magistratura pela Escola da Magistratura do Paraná; \n» Curso de Mestrado em Direito Processual Civil (parcial) pela Fundação Universidade Estadual de \nLondr...",
     "dados_dossie": {
       "perfil_ideologico": "Político, extremamente popular, comunicativo",
-      "analise_comportamental": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30 * 2ª Vice-Presidente: Des. Angelo Canducci Passareli. Perfil discreto, técnico e conciliador. * Corregedor: Des. Mario-Zam Belmiro Rosa. *Perfil:* Rigoroso, disciplinador. Focado na produtividade dos juízes de base.27 Desembargadores (Ordem de Antiguidade/Relevância):"
+      "analise_comportamental": "Político, extremamente popular, comunicativo. Suas decisões são pragmáticas e ele atua como o \"rosto humano\" da corte, com grande trânsito social.30 * 2ª Vice-Presidente: Des. Angelo Canducci Passareli. Perfil discreto, técnico e conciliador. * Corregedor: Des. Mario-Zam Belmiro Rosa. *Perfil:* Rigoroso, disciplinador. Focado na produtividade dos juízes de base.27 Desembargadores (Ordem de Antiguidade/Relevância):",
+      "nascimento": {
+        "data": "17/02/1956",
+        "cidade": "Cornelio Procopio/PR"
+      },
+      "origem": "magistratura",
+      "perfil_psicologico": "Ex-jornalista. 6 filhos, 5 netos. Professor de Ibaneis Rocha (governador).",
+      "turma": "1o Vice-Presidente do TJDFT (2024-2026)",
+      "formacao": "Direito pelo CEUB (1978). Mestrado parcial em Processual Civil pela UEL/PR. Especializacao em Direito Privado pela UCB.",
+      "carreira_previa": "Jornalista (reporter e redator). Magistrado em MS. Juiz Substituto do TJDFT desde julho de 1989.",
+      "especialidade": "Direito Penal, Direito Civil",
+      "curiosidades": "Desembargador desde marco de 2008. Ex-presidente do TRE-DF (2022). Condutor do programa Historia Oral."
     }
   },
   "atuacao_profissional": {},

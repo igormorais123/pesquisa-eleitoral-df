@@ -34,7 +34,17 @@
       "secao": "1ª Seção",
       "turma": "2ª Turma",
       "indicado_por": "Presidente Lula",
-      "origem": "Magistratura estadual (TJ-AL)"
+      "origem": "Magistratura estadual (TJ-AL)",
+      "nascimento": {
+        "data": "N/D (circa 1956)",
+        "cidade": "Maceio, AL"
+      },
+      "perfil_ideologico": "Conservador moderado. Formalista com enfase em seguranca juridica. Gestao administrativa voltada a eficiencia. Membro da Igreja Adventista do Setimo Dia.",
+      "perfil_psicologico": "Perfil administrativo e gestor. Vocacao juridica combinada com larga experiencia administrativa. Professor universitario por 14 anos na UFAL.",
+      "formacao": "Direito pela UFAL (1979). Administracao pelo CESMAC (1980). Especialista em Direito Civil e Constitucional.",
+      "carreira_previa": "Promotor de Justica adjunto em Uniao dos Palmares/AL (1979-1982). Procurador do Estado de Alagoas (1982-2002). Advogado privado por duas decadas. Presidente da OAB-AL por dois mandatos. Desembargador do TJAL (2002-2006) pelo Quinto Constitucional. Vice-presidente do TRE-AL, Corregedor Regional Eleitoral.",
+      "especialidade": "Direito Publico, Direito Administrativo, Direito Constitucional",
+      "curiosidades": "Membro da Igreja Adventista do Setimo Dia. Presidente do STJ (2020-2022). Reduziu em 15% o acervo processual durante a gestao. Titulo de doutor honoris causa em direito."
     }
   },
   "atuacao_profissional": {},

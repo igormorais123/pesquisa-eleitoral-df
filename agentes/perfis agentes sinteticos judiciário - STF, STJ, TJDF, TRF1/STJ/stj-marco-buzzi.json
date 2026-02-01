@@ -33,7 +33,17 @@
       "secao": "2ª Seção",
       "turma": "4ª Turma",
       "indicado_por": "Presidente Dilma",
-      "origem": "Magistratura estadual (TJ-SC)"
+      "origem": "Magistratura estadual (TJ-SC)",
+      "nascimento": {
+        "data": "04/02/1958",
+        "cidade": "Timbo, SC"
+      },
+      "perfil_ideologico": "Moderado com forte vies conciliador. Defensor da conciliacao e mediacao como meios alternativos de resolucao de conflitos. Perfil pragmatico e eficiente.",
+      "perfil_psicologico": "Altamente produtivo (reduziu estoque processual em 53% entre 2018-2020). Origem humilde - filho de professores, comecou como jornalista. Perfil empreendedor e inovador.",
+      "formacao": "Direito pela Universidade do Vale do Itajai - UNIVALI (1980). Mestrado em Ciencia Juridica pela UNIVALI (2001). Especializacao em Direito do Consumidor pela Universidade de Coimbra (2002).",
+      "carreira_previa": "Jornalista e reporter fotografico. Fundador do periodico A Tribuna (Timbo). Assessor Municipal de Imprensa em Itajai (1979). Advogado (1980-1981). Aprovado em 1o lugar na magistratura catarinense (1982). Juiz de Direito em SC. Desembargador do TJSC (2002). Coordenador Nacional do Movimento pela Conciliacao no CNJ (2006-2009). Presidente da Associacao dos Magistrados Catarinenses.",
+      "especialidade": "Direito Privado, Direito Civil, Direito do Consumidor, Conciliacao e Mediacao",
+      "curiosidades": "Aprovado em 1o lugar no concurso da magistratura catarinense. Fundador da Uniao dos Magistrados do MERCOSUL. Ex-jornalista e fotografo. Coordenador Nacional do Movimento pela Conciliacao (CNJ). Reduziu acervo processual em 53%."
     }
   },
   "atuacao_profissional": {},

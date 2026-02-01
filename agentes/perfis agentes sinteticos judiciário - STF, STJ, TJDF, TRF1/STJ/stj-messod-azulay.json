@@ -31,7 +31,8 @@
     "dados_dossie": {
       "origem": "TRF-2",
       "perfil_ideologico": "Conservador/Eficientista",
-      "analise_comportamental": "Focado na eficiência da repressão ao crime organizado. Tende a manter prisões preventivas em casos de alta periculosidade, alinhando-se mais a Paciornik do que a Schietti."
+      "analise_comportamental": "Focado na eficiência da repressão ao crime organizado. Tende a manter prisões preventivas em casos de alta periculosidade, alinhando-se mais a Paciornik do que a Schietti.",
+      "nascimento": null
     }
   },
   "atuacao_profissional": {

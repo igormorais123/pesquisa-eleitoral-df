@@ -1,7 +1,7 @@
 {
   "id": "tjdft-robson-barbosa-de-azevedo",
   "nome": "Des. Robson Barbosa de Azevedo",
-  "nome_completo": null,
+  "nome_completo": "Robson Barbosa de Azevedo",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,17 @@
     "biografia_tjdft_resumo": "143 \nBIOGRAFIA \nDESEMBARGADOR \nROBSON BARBOSA \n \nDADOS PESSOAIS \nNOME: Robson Barbosa de Azevedo \nFILIAÇÃO Zenilto de Azevedo e Marinete Barbosa de Azevedo \nDATA DE NASCIMENTO: 15/11/1965 \nLOCAL DE NASCIMENTO: Rio de Janeiro - RJ \nNACIONALIDADE: brasileira \n \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Primário: \n» Escola Rosa da Fonseca - Vila Militar – Rio de Janeiro/RJ – 1978. \nCurso Ginasial: \n» Centro de Educação Profissional e Tecnológica de Jovens e Adultos da Asa Sul – CESAS – 1986. \nCurso Superior: \n» Bacharel em Direito pela Associação de Ensino Unificado do Distrito Federal (AEUDF) – 1991. \nPós-graduação: \n» Especialista em Direito Público pela Universidade de Brasília (UnB) – 1995. \n» Mestre em Direito pela Universidade Federal de Pernambuco (UFPE) – 2002. \n \nEMPREGOS E CARGOS OCUPADOS \n \n» Sargento da Aeronáutica (controlador de voo) – 1992; \n» Juiz de Direito Substituto do Trib...",
     "dados_dossie": {
       "perfil_ideologico": "Discreto",
-      "analise_comportamental": "Discreto."
+      "analise_comportamental": "Discreto.",
+      "nascimento": {
+        "cidade": "Rio de Janeiro/RJ"
+      },
+      "origem": "magistratura",
+      "perfil_psicologico": "Ex-controlador de voo da Aeronautica. Escritor juridico.",
+      "turma": "1a Turma Civel e 5a Turma Civel",
+      "formacao": "Mestre em Direito pela UFPE. Especializacao em Direito Publico.",
+      "carreira_previa": "Controlador de voo na Aeronautica. Advogado. Juiz Substituto desde 03/02/1995. Professor por quase 30 anos. Autor de livros juridicos.",
+      "especialidade": "Direito Civil, Direito Processual Civil",
+      "curiosidades": "Desembargador desde 28/04/2023 por merecimento."
     }
   },
   "atuacao_profissional": {},

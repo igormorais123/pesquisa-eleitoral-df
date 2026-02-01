@@ -22,7 +22,16 @@
       "secao": "Vice-Presidência",
       "turma": "Vice-Presidente do STJ",
       "indicado_por": "Presidente Lula",
-      "origem": "Magistratura estadual (TJ-RJ)"
+      "origem": "Magistratura estadual (TJ-RJ)",
+      "nascimento": {
+        "data": "18/03/1963",
+        "cidade": "Salvador, BA"
+      },
+      "perfil_psicologico": "Lideranca institucional forte. Perfil conciliador e inovador. Experiencia em gestao associativa e judiciaria. Autor de livros e artigos sobre acesso a Justica.",
+      "formacao": "Direito pela UFRJ. Pos-graduacao lato sensu em Direito Comercial. Doutor honoris causa em Ciencias Sociais e Humanas pela Universidade Candido Mendes.",
+      "carreira_previa": "Advogado. Promotor de Justica do MPSP. Juiz de Direito no TJRJ (juiz titular da 2a Vara Empresarial do RJ). Desembargador do TJRJ (18a Camara Civel). Presidente da Associacao dos Magistrados do RJ. Secretario Geral da AMB.",
+      "especialidade": "Direito Privado, Direito Empresarial, Direito Civil, Arbitragem",
+      "curiosidades": "Atual vice-presidente do STJ. Foi Corregedor Nacional de Justica (2022-2024). Corregedor-Geral Eleitoral (2020-2021). Presidiu a comissao de atualizacao do Codigo Civil. Coordena o Centro de Inovacao da FGV para o Judiciario."
     }
   },
   "atuacao_profissional": {},

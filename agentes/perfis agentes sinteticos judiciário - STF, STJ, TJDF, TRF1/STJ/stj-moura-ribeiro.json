@@ -33,7 +33,17 @@
       "secao": "2ª Seção",
       "turma": "3ª Turma",
       "indicado_por": "Presidente Dilma",
-      "origem": "Magistratura estadual (TJ-SP)"
+      "origem": "Magistratura estadual (TJ-SP)",
+      "nascimento": {
+        "data": "circa 1953",
+        "cidade": "Santos, SP"
+      },
+      "perfil_ideologico": "Progressista humanista. Defensor do capitalismo humanista. Indicado ao Premio Nobel da Paz (2020).",
+      "perfil_psicologico": "Academico e humanista. Pos-doutor em Lisboa. Autor de obras sobre negocios juridicos e direito a personalidade. Vies social forte.",
+      "formacao": "Direito pela Universidade Catolica de Santos (1976). Mestrado pela PUC-SP (2000). Doutorado em Direito das Relacoes Sociais pela PUC-SP (2003). Pos-doutorado pela Universidade de Lisboa.",
+      "carreira_previa": "Juiz da magistratura paulista (1983). Desembargador do TJSP. Mais de 30 anos no Judiciario de SP. Professor de graduacao e pos-graduacao em Direito Civil e Processual Civil.",
+      "especialidade": "Direito Privado, Direito Civil, Direito Processual Civil, Capitalismo Humanista",
+      "curiosidades": "Indicado ao Premio Nobel da Paz em 2020 por defesa do capitalismo humanista. Pos-doutor pela Universidade de Lisboa. Presidente da TNU. Conselheiro do CJF. Natural de Santos/SP."
     }
   },
   "atuacao_profissional": {},

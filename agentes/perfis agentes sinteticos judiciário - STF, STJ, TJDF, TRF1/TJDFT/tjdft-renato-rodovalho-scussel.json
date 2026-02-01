@@ -1,7 +1,7 @@
 {
   "id": "tjdft-renato-rodovalho-scussel",
   "nome": "Des. Renato Rodovalho Scussel",
-  "nome_completo": null,
+  "nome_completo": "Renato Rodovalho Scussel",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,17 @@
     "biografia_tjdft_resumo": "140 \nBIOGRAFIA \nDESEMBARGADOR \nRENATO SCUSSEL \n \nDADOS PESSOAIS \nNOME: Renato Rodovalho Scussel \nDATA DE NASCIMENTO: 10/5/1963 \nLOCAL DE NASCIMENTO: Uberaba/MG \nNACIONALIDADE: brasileira \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \n» Graduação em Direito, pela Universidade de Uberaba (UNIUBE), Uberaba/MG, 1981 – 1986. \n» Mestrado profissional em Administração Pública, pelo Instituto Brasiliense de Direito Público - IDP, \nBrasília/DF, 2018 - 2020. \n \nEMPREGOS E CARGOS OCUPADOS \n \n» Atuou como Advogado na Comarca de Uberaba-MG no período de 1985 a 1994; \n» Tomou posse como Juiz de Direito Substituto do TJDFT, em 15/4/1994; \n» Foi promovido a Juiz de Direito do TJDFT em 2/2/1996; \n» Atuou como Juiz de Direito Titular da 2ª Vara Criminal do Gama, no período de 2/2/1996 a 5/3/1997; \n» Atuou como Juiz de Direito Titular da 2ª Vara Cível de Sobradinho, no período de 5/3/1997 a \n23/12/2002; \n» Atuou como ...",
     "dados_dossie": {
       "perfil_ideologico": "Especialista em Infância e Juventude",
-      "analise_comportamental": "Especialista em Infância e Juventude. Conservador, defensor da família tradicional e da proteção integral da criança."
+      "analise_comportamental": "Especialista em Infância e Juventude. Conservador, defensor da família tradicional e da proteção integral da criança.",
+      "nascimento": {
+        "cidade": "Uberaba/MG"
+      },
+      "origem": "magistratura",
+      "perfil_psicologico": "Dedicou 20 anos a Infancia e Juventude. Sonhava ser juiz em Brasilia.",
+      "turma": "2a Turma Civel e 2a Camara Civel",
+      "formacao": "Direito pela Universidade de Uberaba. Mestre em Administracao Publica pelo IDP.",
+      "carreira_previa": "Juiz Substituto desde 1994. Titular da Vara da Infancia e Juventude por 20 anos. Presidente da Abraminj (2012-2018).",
+      "especialidade": "Direito da Infancia e Juventude (20 anos)",
+      "curiosidades": "Desembargador desde outubro de 2022. Diversas condecoracoes nacionais."
     }
   },
   "atuacao_profissional": {},

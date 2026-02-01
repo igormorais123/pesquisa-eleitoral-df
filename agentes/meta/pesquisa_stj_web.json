@@ -1,0 +1,567 @@
+{
+  "data_pesquisa": "2026-01-31",
+  "fonte": "Pesquisa web consolidada - Wikipedia, STJ, TSE, CJF e outras fontes oficiais",
+  "ministros": {
+    "stj-nancy-andrighi": {
+      "nome_completo": "Fatima Nancy Andrighi",
+      "nascimento": {
+        "data": "27/10/1952",
+        "cidade": "Soledade, RS"
+      },
+      "formacao": "Direito pela PUCRS (1975). Pos-graduacao lato sensu pela UNISINOS (1976). Pos-graduacao e especializacao pelo CEUB (1983). Pos-graduacao em Direito Privado pela UCB (1998). Mestrado em Mediacao pelo Instituto Kurt Bosch (Suica). Doutoranda em Direito Civil pela Universidade de Buenos Aires.",
+      "carreira_previa": "Datilografa no TJRS (1970-1974). Funcionaria do TRE-RS (1974). Juiza de Direito no TJRS (1976-1980). Juiza de Direito no TJDFT (1980-1992). Desembargadora do TJDFT.",
+      "indicado_por": "Fernando Henrique Cardoso",
+      "posse": "27/10/1999",
+      "secao": "2a Secao",
+      "turma": "3a Turma",
+      "especialidade": "Direito Privado, Direito Civil, Direito do Consumidor, Direito Digital",
+      "perfil_ideologico": "Progressista e vanguardista. Conhecida pela preocupacao social e abordagem humanista. Pioneira em decisoes sobre direito digital e relacoes familiares. Ativista judicial moderada com forte vies garantista em direito privado.",
+      "perfil_psicologico": "Personalidade forte e determinada. Segunda mulher a compor um tribunal superior no Brasil. Reconhecida por profundo conhecimento do Direito Privado e sensibilidade social.",
+      "curiosidades": "Tomou posse no dia de seu 47o aniversario. Foi a primeira ministra proveniente do terco destinado aos Tribunais de Justica. Foi a primeira mulher corregedora-geral eleitoral. Admitida a Ordem do Merito Militar."
+    },
+    "stj-humberto-martins": {
+      "nome_completo": "Humberto Eustaquio Soares Martins",
+      "nascimento": {
+        "data": "N/D (circa 1956)",
+        "cidade": "Maceio, AL"
+      },
+      "formacao": "Direito pela UFAL (1979). Administracao pelo CESMAC (1980). Especialista em Direito Civil e Constitucional.",
+      "carreira_previa": "Promotor de Justica adjunto em Uniao dos Palmares/AL (1979-1982). Procurador do Estado de Alagoas (1982-2002). Advogado privado por duas decadas. Presidente da OAB-AL por dois mandatos. Desembargador do TJAL (2002-2006) pelo Quinto Constitucional. Vice-presidente do TRE-AL, Corregedor Regional Eleitoral.",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "13/06/2006",
+      "secao": "1a Secao",
+      "turma": "2a Turma",
+      "especialidade": "Direito Publico, Direito Administrativo, Direito Constitucional",
+      "perfil_ideologico": "Conservador moderado. Formalista com enfase em seguranca juridica. Gestao administrativa voltada a eficiencia. Membro da Igreja Adventista do Setimo Dia.",
+      "perfil_psicologico": "Perfil administrativo e gestor. Vocacao juridica combinada com larga experiencia administrativa. Professor universitario por 14 anos na UFAL.",
+      "curiosidades": "Membro da Igreja Adventista do Setimo Dia. Presidente do STJ (2020-2022). Reduziu em 15% o acervo processual durante a gestao. Titulo de doutor honoris causa em direito."
+    },
+    "stj-herman-benjamin": {
+      "nome_completo": "Antonio Herman de Vasconcellos e Benjamin",
+      "nascimento": {
+        "data": "13/11/1957",
+        "cidade": "Catole do Rocha, PB"
+      },
+      "formacao": "Direito pela UFRJ (1980). Mestrado em Direito pela Universidade de Illinois, EUA. Doutorado pela UFRGS.",
+      "carreira_previa": "Promotor de Justica do MPSP (1982-2006, 24 anos). Um dos elaboradores do Codigo de Defesa do Consumidor e da Lei dos Crimes contra o Meio Ambiente. Professor visitante na Universidade do Texas (desde 1995). Diretor da Comissao de Direito Ambiental da IUCN.",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "06/09/2006",
+      "secao": "1a Secao",
+      "turma": "2a Turma",
+      "especialidade": "Direito Ambiental, Direito do Consumidor, Direito Publico, Direito Eleitoral",
+      "perfil_ideologico": "Progressista e ativista judicial. Forte vies ambientalista e consumerista. Defensor de causas sociais. Relator no TSE do caso da cassacao da chapa Dilma-Temer (voto favoravel a cassacao, vencido 4x3).",
+      "perfil_psicologico": "Intelectual combativo, perfil academico internacionalista. Otimismo realista (em suas proprias palavras). Comprometido com causas ambientais e de defesa do consumidor.",
+      "curiosidades": "Atual presidente do STJ (bienio 2024-2026). Filho de medico do sertao paraibano. Fundador da Revista de Direito Ambiental (desde 1995). Um dos juristas ambientalistas mais reconhecidos internacionalmente no Brasil."
+    },
+    "stj-og-fernandes": {
+      "nome_completo": "Geraldo Og Niceas Marques Fernandes",
+      "nascimento": {
+        "data": "26/11/1951",
+        "cidade": "Recife, PE"
+      },
+      "formacao": "Direito pela UFPE. Jornalismo pela UNICAP (1974).",
+      "carreira_previa": "Reporter do Diario de Pernambuco (1973-1981). Professor auxiliar de Historia no Colegio Militar do Recife (1975). Professor auxiliar de Direito Processual Penal na UNICAP. Advogado criminal (1977-1981). Assessor de gabinete do Secretario da Justica de PE (1978). Assessor juridico do Sistema Penitenciario de PE (1978-1981). Juiz de Direito substituto (1981). Desembargador do TJPE (1997). Presidente do TJPE (2008).",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "17/06/2008",
+      "secao": "3a Secao",
+      "turma": "6a Turma",
+      "especialidade": "Direito Penal, Direito Publico, Direito Ambiental",
+      "perfil_ideologico": "Moderado com tendencia progressista. Atuacao diversificada - ja integrou colegiados de direito publico e penal. Sensibilidade para questoes sociais (ex: aplicacao da Lei Maria da Penha).",
+      "perfil_psicologico": "Polivalente e experiente. Formacao dupla (Direito e Jornalismo) confere visao ampla. 44 anos de dedicacao a Justica. Defensor da democracia.",
+      "curiosidades": "Formado tambem em Jornalismo. Foi reporter antes de ser magistrado. Vice-presidente do STJ (2022-2024). Presidente da 6a Turma (2012-2014). Mencao honrosa no Premio Innovare (2004). Autor de Jurisprudencia Ambiental do STJ."
+    },
+    "stj-luis-felipe-salomao": {
+      "nome_completo": "Luis Felipe Salomao",
+      "nascimento": {
+        "data": "18/03/1963",
+        "cidade": "Salvador, BA"
+      },
+      "formacao": "Direito pela UFRJ. Pos-graduacao lato sensu em Direito Comercial. Doutor honoris causa em Ciencias Sociais e Humanas pela Universidade Candido Mendes.",
+      "carreira_previa": "Advogado. Promotor de Justica do MPSP. Juiz de Direito no TJRJ (juiz titular da 2a Vara Empresarial do RJ). Desembargador do TJRJ (18a Camara Civel). Presidente da Associacao dos Magistrados do RJ. Secretario Geral da AMB.",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "17/06/2008",
+      "secao": "2a Secao",
+      "turma": "4a Turma",
+      "especialidade": "Direito Privado, Direito Empresarial, Direito Civil, Arbitragem",
+      "perfil_ideologico": "Moderado pragmatico. Forte atuacao em direito privado com vies de modernizacao. Presidiu comissao de juristas para atualizar o Codigo Civil. Pioneiro em temas como direito digital e protecao de dados.",
+      "perfil_psicologico": "Lideranca institucional forte. Perfil conciliador e inovador. Experiencia em gestao associativa e judiciaria. Autor de livros e artigos sobre acesso a Justica.",
+      "curiosidades": "Atual vice-presidente do STJ. Foi Corregedor Nacional de Justica (2022-2024). Corregedor-Geral Eleitoral (2020-2021). Presidiu a comissao de atualizacao do Codigo Civil. Coordena o Centro de Inovacao da FGV para o Judiciario."
+    },
+    "stj-mauro-campbell-marques": {
+      "nome_completo": "Mauro Luiz Campbell Marques",
+      "nascimento": {
+        "data": "09/10/1963",
+        "cidade": "Manaus, AM"
+      },
+      "formacao": "Direito pelo Centro Universitario Metodista Bennett (1985). Lingua Inglesa pelo Instituto Cultural Brasil-EUA no RJ (1985). Graduado pela ESG.",
+      "carreira_previa": "Advogado no RJ (1985-1986). Assessor juridico da Companhia Energetica do Amazonas (1986-1987). Assessor no TCM do Amazonas (1987). Promotor de Justica do MP-AM (1987). Procurador-Geral de Justica do AM (1999-2003 e 2007-2008). Secretario de Seguranca Publica do AM. Secretario de Controle Interno do AM (2004).",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "17/06/2008",
+      "secao": "1a Secao",
+      "turma": "2a Turma",
+      "especialidade": "Direito Publico, Direito Tributario, Direito Administrativo",
+      "perfil_ideologico": "Tecnico e rigoroso. Perfil institucionalista com enfase em direito publico. Forte atuacao em gestao administrativa do Judiciario.",
+      "perfil_psicologico": "Gestor nato com trajetoria diversificada entre MP, executivo e judiciario. Primeiro amazonense ministro do STJ. Lideranca reconhecida.",
+      "curiosidades": "Primeiro amazonense a ser ministro do STJ. Tomou posse aos 44 anos. Atualmente Corregedor Nacional de Justica (bienio 2024-2026). Tres vezes Procurador-Geral de Justica do AM. Membro da Academia Brasileira de Direito Tributario."
+    },
+    "stj-benedito-goncalves": {
+      "nome_completo": "Benedito Goncalves",
+      "nascimento": {
+        "data": "30/01/1954",
+        "cidade": "Rio de Janeiro, RJ"
+      },
+      "formacao": "Direito pela UFRJ (1978). Especialista em Direito Processual Civil pela UnB/CJF. Mestre em Direito pela Universidade Estacio de Sa.",
+      "carreira_previa": "Juiz Federal titular da Vara Unica de Santa Maria/RS (1988). Juiz do TRF2 (1998). Desembargador Federal do TRF2. Diretor da Escola da Magistratura Federal do TRF2.",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "17/09/2008",
+      "secao": "1a Secao",
+      "turma": "1a Turma",
+      "especialidade": "Direito Publico, Direito Tributario, Direito Eleitoral",
+      "perfil_ideologico": "Progressista. Forte atuacao em combate ao racismo e igualdade racial. Proferiu votos decisivos no TSE para condenacoes por abuso de poder e fraude a cota de genero.",
+      "perfil_psicologico": "Combativo e engajado em causas sociais. Unico ministro negro do STJ. Liderou iniciativas de combate ao racismo institucional. Presidiu comissao de juristas da Camara dos Deputados para mudancas na legislacao antirracismo.",
+      "curiosidades": "Unico ministro negro do STJ. Diretor-Geral da ENFAM. Ministro e Corregedor do TSE. Presidiu comissao de combate ao racismo na Camara dos Deputados (2021)."
+    },
+    "stj-raul-araujo": {
+      "nome_completo": "Raul Araujo Filho",
+      "nascimento": {
+        "data": "10/05/1959",
+        "cidade": "Fortaleza, CE"
+      },
+      "formacao": "Direito pela UFC (1981). Economia pela Universidade de Fortaleza (1985). Mestrado em Direito Publico pela UFC. Especialista em Ordem Juridica Constitucional pela UFC.",
+      "carreira_previa": "Advogado (1981-1983). Promotor de Justica (1983-1989). Procurador-Geral do Estado do Ceara (1989-2007). Desembargador do TJCE (2007-2010) pelo quinto constitucional. Professor da Universidade de Fortaleza (desde 1986).",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "05/2010",
+      "secao": "2a Secao",
+      "turma": "4a Turma",
+      "especialidade": "Direito Privado, Direito Civil, Direito Constitucional, Direito Tributario",
+      "perfil_ideologico": "Conservador moderado. Formalista com enfase em seguranca juridica. Longa experiencia como Procurador-Geral do Estado (18 anos) confere visao pragmatica.",
+      "perfil_psicologico": "Carreira diversificada (advocacia, MP, procuradoria estadual, magistratura, academia). Perfil conciliador e tecnico. Professor universitario com forte inclinacao academica.",
+      "curiosidades": "Foi Procurador-Geral do Ceara por 18 anos. Formado tambem em Economia. Corregedor-Geral da Justica Federal. Corregedor-Geral Eleitoral no TSE (2023-2024). Professor licenciado da Unifor."
+    },
+    "stj-maria-thereza-assis-moura": {
+      "nome_completo": "Maria Thereza Rocha de Assis Moura",
+      "nascimento": {
+        "data": "14/10/1956",
+        "cidade": "Sao Paulo, SP"
+      },
+      "formacao": "Direito pela USP (1979). Mestrado em Direito Processual Penal pela USP (1991). Doutorado em Direito Processual Penal pela USP (1997). Especializacao em Direito Penal Economico pela Universidade de Coimbra, Portugal.",
+      "carreira_previa": "Advogada da FUNAP (1983-1987). Advogada criminal no escritorio Dr. Mario Simas (1980-2001). Advogada no escritorio Zanoide de Moraes (2002-2006). Professora de Direito Processual Penal na USP (desde 1998).",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "09/08/2006",
+      "secao": "3a Secao",
+      "turma": "6a Turma",
+      "especialidade": "Direito Penal, Direito Processual Penal, Direito Internacional",
+      "perfil_ideologico": "Garantista com vies academico. Rigorosa na aplicacao do devido processo legal. Perfil internacionalista (membro do Conselho da Rede Mundial de Integridade Judicial da ONU).",
+      "perfil_psicologico": "Rigorosa e competente. Apelidada carinhosamente pelos alunos da USP de Delegada ou Dele. Primeira mulher a assumir o STJ na vaga da OAB. Perfil academico forte.",
+      "curiosidades": "Presidente do STJ (2022-2024). Quinta mulher a ingressar no tribunal. Primeira a assumir vaga da OAB. Apelidada de Delegada pelos alunos. Membro do Conselho Consultivo da Rede Mundial de Integridade Judicial da ONU. Membro da Comissao de Etica da Cupula Judicial Ibero-Americana."
+    },
+    "stj-antonio-carlos-ferreira": {
+      "nome_completo": "Antonio Carlos Ferreira",
+      "nascimento": {
+        "data": "10/03/1957",
+        "cidade": "Sao Paulo, SP"
+      },
+      "formacao": "Direito pelo Centro Universitario das Faculdades Metropolitanas Unidas - FMU (1981).",
+      "carreira_previa": "Advogado de carreira da Caixa Economica Federal (1982-2010, mais de 27 anos). Diretor Juridico da CEF (2003-2010).",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "13/06/2011",
+      "secao": "2a Secao",
+      "turma": "4a Turma",
+      "especialidade": "Direito Privado, Direito Bancario, Direito Civil, Direito Empresarial",
+      "perfil_ideologico": "Conservador moderado. Tecnico com profundo conhecimento do sistema financeiro. Formalista em questoes processuais.",
+      "perfil_psicologico": "Perfil tecnico e discreto. Longa carreira institucional na CEF confere visao pragmatica sobre direito bancario e financeiro.",
+      "curiosidades": "Mais de 27 anos na CEF antes do STJ. Ingressou pelo quinto constitucional (vaga da OAB). Ministro do TSE desde 2023. Corregedor-Geral Eleitoral (2024). Cidadao Honorario de Brasilia e do Piaui."
+    },
+    "stj-isabel-gallotti": {
+      "nome_completo": "Maria Isabel Diniz Gallotti Rodrigues",
+      "nascimento": {
+        "data": "28/07/1963",
+        "cidade": "Rio de Janeiro, RJ"
+      },
+      "formacao": "Direito pela UnB (1985, media 4,9/5,0). Mestrado em Direito e Estado pela UnB (1988). Cursos complementares pelo Banco Central, IBMEC e Instituto Brasileiro de Direito Publico.",
+      "carreira_previa": "Advogada (1985-1989). Curadora especial em sentencas estrangeiras por designacao do Presidente do STF (1987-1989). Procuradora da Republica (1989). Procuradora Regional da Republica (1996). Procuradora-Chefe da PRR da 1a Regiao. Juiza do TRF1 (2001).",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "10/08/2010",
+      "secao": "2a Secao",
+      "turma": "4a Turma",
+      "especialidade": "Direito Privado, Direito Civil, Direito Processual Civil, Direito Financeiro",
+      "perfil_ideologico": "Tecnica e formalista. Perfil conservador moderado em direito privado. Rigor juridico com base em solida formacao academica.",
+      "perfil_psicologico": "Alto desempenho academico (media 4,9 na UnB). Familia de juristas (pai Luiz Gallotti foi ministro do STF). Casada com Walton Alencar Rodrigues (ministro do TCU).",
+      "curiosidades": "Primeira brasiliense a ser ministra do STJ. Pai foi ministro do STF. Marido e ministro do TCU. Corregedora-Geral da Justica Eleitoral (2024). Media 4,9 na graduacao em Direito na UnB."
+    },
+    "stj-marco-buzzi": {
+      "nome_completo": "Marco Aurelio Gastaldi Buzzi",
+      "nascimento": {
+        "data": "04/02/1958",
+        "cidade": "Timbo, SC"
+      },
+      "formacao": "Direito pela Universidade do Vale do Itajai - UNIVALI (1980). Mestrado em Ciencia Juridica pela UNIVALI (2001). Especializacao em Direito do Consumidor pela Universidade de Coimbra (2002).",
+      "carreira_previa": "Jornalista e reporter fotografico. Fundador do periodico A Tribuna (Timbo). Assessor Municipal de Imprensa em Itajai (1979). Advogado (1980-1981). Aprovado em 1o lugar na magistratura catarinense (1982). Juiz de Direito em SC. Desembargador do TJSC (2002). Coordenador Nacional do Movimento pela Conciliacao no CNJ (2006-2009). Presidente da Associacao dos Magistrados Catarinenses.",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "05/09/2011",
+      "secao": "2a Secao",
+      "turma": "4a Turma",
+      "especialidade": "Direito Privado, Direito Civil, Direito do Consumidor, Conciliacao e Mediacao",
+      "perfil_ideologico": "Moderado com forte vies conciliador. Defensor da conciliacao e mediacao como meios alternativos de resolucao de conflitos. Perfil pragmatico e eficiente.",
+      "perfil_psicologico": "Altamente produtivo (reduziu estoque processual em 53% entre 2018-2020). Origem humilde - filho de professores, comecou como jornalista. Perfil empreendedor e inovador.",
+      "curiosidades": "Aprovado em 1o lugar no concurso da magistratura catarinense. Fundador da Uniao dos Magistrados do MERCOSUL. Ex-jornalista e fotografo. Coordenador Nacional do Movimento pela Conciliacao (CNJ). Reduziu acervo processual em 53%."
+    },
+    "stj-marco-aurelio-bellizze": {
+      "nome_completo": "Marco Aurelio Bellizze Oliveira",
+      "nascimento": {
+        "data": "04/01/1964",
+        "cidade": "Rio de Janeiro, RJ"
+      },
+      "formacao": "Direito pela Universidade Estacio de Sa (1985). Mestrado pela Universidade Estacio de Sa (2003). Especializacao em Gestao e Planejamento Estrategico pela FGV. Altos Estudos de Politica e Estrategia pela ESG.",
+      "carreira_previa": "Advogado e Procurador do Municipio do RJ (1987-1990). Aprovado em 1o lugar na magistratura do TJRJ (1990). Aprovado tambem para Promotor de Justica do MPRJ (optou pela magistratura). Desembargador do TJRJ (2004). Professor da FGV.",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "05/09/2011",
+      "secao": "2a Secao",
+      "turma": "3a Turma",
+      "especialidade": "Direito Privado, Direito Civil, Direito Processual Civil",
+      "perfil_ideologico": "Tecnico e moderado. Perfil equilibrado em direito privado. Vice-presidente da comissao de revisao do Codigo Civil.",
+      "perfil_psicologico": "Competitivo e excelente (1o lugar em concurso). Formacao complementar em gestao e estrategia demonstra visao ampla. Professor e autor.",
+      "curiosidades": "Aprovado em 1o lugar na magistratura do TJRJ e simultaneamente para Promotor do MPRJ. Nomeado para a vaga de Luiz Fux (que foi ao STF). Relator do primeiro IAC do STJ (2017). Vice-presidente da comissao de revisao do Codigo Civil."
+    },
+    "stj-francisco-falcao": {
+      "nome_completo": "Francisco Candido de Melo Falcao Neto",
+      "nascimento": {
+        "data": "30/05/1952",
+        "cidade": "Recife, PE"
+      },
+      "formacao": "Direito pela UFPE (1976).",
+      "carreira_previa": "Advogado em PE, PA, RJ e Brasilia (1976-1989). Oficial de Gabinete da Prefeitura do Recife. Assessor de Educacao e Cultura da Prefeitura do Recife. Procurador Judicial de PE. Assessor do Governador de PE (governos Marco Maciel e Roberto Magalhaes). Desembargador do TRF5 (1989). Vice-Presidente e Corregedor do TRF5 (1996-1997). Presidente do TRF5 (1997-1999).",
+      "indicado_por": "Fernando Henrique Cardoso",
+      "posse": "30/06/1999",
+      "secao": "1a Secao",
+      "turma": "2a Turma",
+      "especialidade": "Direito Publico, Direito Administrativo",
+      "perfil_ideologico": "Conservador moderado. Formalista com enfase em celeridade e eficiencia processual. Longa experiencia em gestao judiciaria.",
+      "perfil_psicologico": "Gestor experiente e discreto. Decano do STJ (ministro mais antigo em atividade). Perfil institucionalista e administrativo.",
+      "curiosidades": "Decano do STJ (25+ anos). Pai Djaci Alves Falcao foi ministro do STF (1967-1989). Presidente do STJ (2014-2016). Corregedor Nacional do CNJ (2012-2014). Mais de 25 anos de atuacao no tribunal."
+    },
+    "stj-reynaldo-soares-fonseca": {
+      "nome_completo": "Reynaldo Soares da Fonseca",
+      "nascimento": {
+        "data": "28/11/1963",
+        "cidade": "Sao Luis, MA"
+      },
+      "formacao": "Direito pela UFMA (1985). Especializacao em Direito Constitucional pela UFMA/UFSC. Especializacao em Direito Penal e Processo Penal pela UnB. Mestrado em Direito Publico pela PUC-SP. Doutorado em Direito Constitucional pela FADISP. Pos-doutorado em Democracia e Direitos Humanos pela Universidade de Coimbra.",
+      "carreira_previa": "Servidor do TJMA (1982-1985). Servidor da Justica Federal no MA (1985-1986). Procurador do Estado do Maranhao. Juiz de Direito substituto do TJDFT (1992). Juiz Federal Substituto na 4a Vara do DF (1993). Desembargador do TRF1 (2009).",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "26/05/2015",
+      "secao": "3a Secao",
+      "turma": "5a Turma",
+      "especialidade": "Direito Penal, Direito Constitucional, Direitos Humanos, Direito Desportivo",
+      "perfil_ideologico": "Moderado com forte base academica. Defensor do principio da fraternidade como principio juridico. Vies humanista e garantista.",
+      "perfil_psicologico": "Intelectual e academico. Extenso curriculo de formacao (graduacao, duas especializacoes, mestrado, doutorado e pos-doutorado). Membro de varias academias de letras.",
+      "curiosidades": "Membro da Academia Maranhense de Letras. Membro da Academia Paulista de Letras Juridicas. Membro da Academia Nacional de Direito Desportivo. Professor da UnB. Ingressou na magistratura aos 28 anos."
+    },
+    "stj-joao-otavio-noronha": {
+      "nome_completo": "Joao Otavio de Noronha",
+      "nascimento": {
+        "data": "30/08/1956",
+        "cidade": "Tres Coracoes, MG"
+      },
+      "formacao": "Direito pela Faculdade de Direito do Sul de Minas (1981). Especializacao em Direito do Trabalho, Direito Processual do Trabalho e Direito Processual Civil pela mesma instituicao.",
+      "carreira_previa": "Funcionario do Banco do Brasil. Advogado do Banco do Brasil (chefia de nucleos juridicos). Diretor Juridico do Banco do Brasil (2001-2002). Professor de Direito Processual Civil na Universidade de Itauna. Professor na OAB/MG e Faculdade de Varginha. Conselheiro da OAB/MG (1993-1994). Conselheiro Federal da OAB (1998-2002).",
+      "indicado_por": "Fernando Henrique Cardoso",
+      "posse": "03/12/2002",
+      "secao": "2a Secao",
+      "turma": "3a Turma",
+      "especialidade": "Direito Privado, Direito Processual Civil, Direito Civil, Direito Bancario",
+      "perfil_ideologico": "Conservador. Pragmatico e eficiente. Voltado a modernizacao e reducao de acervo processual. Perfil tecnico-administrativo.",
+      "perfil_psicologico": "Gestor forte e pragmatico. Carreira construida no meio bancario-juridico. Perfil direto e objetivo.",
+      "curiosidades": "Presidente do STJ (2018-2020). Reduziu 15% do acervo processual (50 mil processos). Liderou as primeiras medidas de enfrentamento da pandemia no STJ (2020). Corregedor Nacional do CNJ (2016-2018). Filhos sao advogados com escritorio que atua no STJ."
+    },
+    "stj-sergio-kukina": {
+      "nome_completo": "Sergio Luiz Kukina",
+      "nascimento": {
+        "data": "circa 1959/1960",
+        "cidade": "Curitiba, PR"
+      },
+      "formacao": "Direito pela PUC-PR (1982). Mestrado em Direito pela PUC-PR. Especializacoes em Ciencias Penais e Direito Contemporaneo.",
+      "carreira_previa": "Promotor de Justica do MP-PR (1984). Atuou em Francisco Beltrao, Dois Vizinhos, Faxinal, Pitanga, Guarapuava, Foz do Iguacu e Curitiba. Procurador de Justica (2002). Chefe da Coordenadoria de Recursos Civeis do MP-PR. Professor na Escola do MP e da Magistratura do PR.",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "06/02/2013",
+      "secao": "1a Secao",
+      "turma": "1a Turma",
+      "especialidade": "Direito Publico, Direito Administrativo, Direito Constitucional, ECA",
+      "perfil_ideologico": "Moderado garantista. Formacao no MP confere vies de defesa da legalidade. Dissertacao sobre ECA e direitos humanos indica sensibilidade social.",
+      "perfil_psicologico": "Discreto e tecnico. Filho de imigrante croata. Longa carreira no MP do Parana (28 anos). Dedicado ao magisterio juridico.",
+      "curiosidades": "Filho de imigrante croata que chegou ao Brasil pos-Segunda Guerra. Vaga do quinto constitucional do MP. Concorreu entre 51 candidatos. Ouvidor do STJ (2020-2021). Presidente da 1a Secao (2021-2023)."
+    },
+    "stj-regina-helena-costa": {
+      "nome_completo": "Regina Helena Costa",
+      "nascimento": {
+        "data": "circa 1962",
+        "cidade": "Sao Paulo, SP"
+      },
+      "formacao": "Direito pelas Faculdades Metropolitanas Unidas (1983). Mestrado em Direito do Estado pela PUC-SP (1992). Doutorado em Direito do Estado pela PUC-SP (2000). Livre-docencia em Direito Tributario pela PUC-SP (2006).",
+      "carreira_previa": "Procuradora do Estado de SP (a partir dos 22 anos). Procuradora da Republica. Juiza Federal (1991). Titular da 14a Vara Federal em SP. Desembargadora do TRF3 (2003). Professora da PUC-SP.",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "28/08/2013",
+      "secao": "1a Secao",
+      "turma": "1a Turma",
+      "especialidade": "Direito Tributario, Direito Publico, Direito Administrativo",
+      "perfil_ideologico": "Tecnica e academica. Referencia nacional em Direito Tributario. Perfil moderado com forte embasamento doutrinario.",
+      "perfil_psicologico": "Intelectual e rigorosa. Livre-docente e professora da PUC-SP. Autora premiada (Premio Jabuti). Uma das maiores autoridades em Direito Tributario do pais.",
+      "curiosidades": "Vencedora do Premio Jabuti na categoria Direito. Autora do Curso de Direito Tributario (13+ edicoes). Livre-docente pela PUC-SP. Presidente da 1a Secao (2024). Ocupa a cadeira antes ocupada por Teori Zavascki."
+    },
+    "stj-sebastiao-reis-junior": {
+      "nome_completo": "Sebastiao Alves dos Reis Junior",
+      "nascimento": {
+        "data": "04/01/1965",
+        "cidade": "Belo Horizonte, MG"
+      },
+      "formacao": "Direito pela UnB (1986). Especialista em Direito Publico pela PUC Minas (2004).",
+      "carreira_previa": "Advogado da Eletronorte. Advogado da Companhia Nacional de Saude Mental. Consultor juridico do Ministerio da Integracao Nacional. Chefe da Assessoria Juridica da Radiobras (1998-2003). Coordenador-Geral da SECOM da Presidencia da Republica (1998-1999).",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "13/06/2011",
+      "secao": "3a Secao",
+      "turma": "6a Turma",
+      "especialidade": "Direito Penal, Direito Publico",
+      "perfil_ideologico": "Moderado. Experiencia diversificada entre setor publico e privado. Perfil tecnico e pragmatico.",
+      "perfil_psicologico": "Discreto e tecnico. Carreira construida na advocacia publica e consultoria juridica governamental.",
+      "curiosidades": "Filho do ex-ministro do TFR Sebastiao Alves dos Reis. Ingressou pelo quinto constitucional (vaga da advocacia). Presidente da 6a Turma. Tomou posse como ministro substituto do TSE em 2025. Integrante honorario do IAB."
+    },
+    "stj-gurgel-de-faria": {
+      "nome_completo": "Luiz Alberto Gurgel de Faria",
+      "nascimento": {
+        "data": "circa 1968",
+        "cidade": "Pernambuco (natural do RN)"
+      },
+      "formacao": "Direito pela UFRN (1991). Mestrado pela UFPE (1999). Doutorado pela UFPE (2009).",
+      "carreira_previa": "Juiz Trabalhista da 21a Regiao. Juiz Federal. Desembargador Federal do TRF5. Ingressou na magistratura aos 23 anos. Tornou-se o desembargador federal mais jovem do pais aos 30 anos. Professor da UFRN (desde 1997).",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "09/09/2014",
+      "secao": "1a Secao",
+      "turma": "1a Turma",
+      "especialidade": "Direito Publico, Direito Tributario, Direito Penal Economico",
+      "perfil_ideologico": "Tecnico e academico. Especialista em seguranca juridica e tributacao. Perfil moderado com base doutrinaria solida.",
+      "perfil_psicologico": "Precoce e brilhante (magistrado aos 23, desembargador mais jovem aos 30). Forte vinculo academico. Professor e pesquisador.",
+      "curiosidades": "Magistrado mais jovem do pais quando se tornou desembargador (30 anos). Ingressou na magistratura aos 23 anos. Relator do primeiro caso de insider trading no STJ (2016). Ouvidor do STJ (desde 2024). Professor da UFRN, UnB, IDP e Uninove."
+    },
+    "stj-joel-ilan-paciornik": {
+      "nome_completo": "Joel Ilan Paciornik",
+      "nascimento": {
+        "data": "31/01/1965",
+        "cidade": "Curitiba, PR"
+      },
+      "formacao": "Direito pela Faculdade de Direito de Curitiba (atual Centro Universitario Curitiba, 1987). Mestrado em Direito pela UFRGS (2013). Doutorando pela UNINOVE.",
+      "carreira_previa": "Advogado (1987-1989). Juiz de Direito no PR (1989). Advogado novamente (1990-1992). Procurador do Municipio de Curitiba (1992). Juiz Federal (1992). Atuou em Foz do Iguacu e Curitiba. Diretor do Foro do PR (1998-1999). Juiz do TRE-PR (2000-2002). Desembargador do TRF4 (2006).",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "06/04/2016",
+      "secao": "3a Secao",
+      "turma": "5a Turma",
+      "especialidade": "Direito Penal, Direito Processual Penal",
+      "perfil_ideologico": "Moderado tecnicista. Perfil equilibrado em materia penal. Formacao academica continua (doutorando).",
+      "perfil_psicologico": "Persistente (indicado pela 3a vez na lista triplice quando foi escolhido). Carreira diversificada entre advocacia, procuradoria e magistratura.",
+      "curiosidades": "Indicado na lista triplice 3 vezes antes de ser escolhido. Ocupou a vaga do ministro Gilson Dipp. Aprovado com 58 votos favoraveis no Senado. Presidente da 5a Turma (2021). Doutorando pela UNINOVE."
+    },
+    "stj-ribeiro-dantas": {
+      "nome_completo": "Marcelo Navarro Ribeiro Dantas",
+      "nascimento": {
+        "data": "20/01/1963",
+        "cidade": "Natal, RN"
+      },
+      "formacao": "Direito pela UFRN (1985). Mestrado pela PUC-SP (1992). Doutorado pela PUC-SP (1999).",
+      "carreira_previa": "Promotor de Justica do MP-RN (1986-1987). Procurador do SESI-RN (1987-1991). Procurador-Geral da Assembleia Legislativa do RN (1989-1991). Procurador da Republica do MPF (1991). Desembargador do TRF5. Professor associado da UFRN (desde 1993). Professor da UnP (1993-2003).",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "30/09/2015",
+      "secao": "3a Secao",
+      "turma": "5a Turma",
+      "especialidade": "Direito Penal, Direito Processual Penal, Garantismo Judicial, Direitos Fundamentais",
+      "perfil_ideologico": "Garantista e progressista em materia penal. Forte defesa de direitos fundamentais e limites ao poder punitivo do Estado.",
+      "perfil_psicologico": "Academico e articulado. Aprovado em 1o lugar em diversos concursos. Perfil intelectual com forte producao doutrinaria.",
+      "curiosidades": "Aprovado em 1o lugar em varios concursos, incluindo o do MPF. Completou 10 anos no STJ em 2025 (homenageado com livro). Presidente da 5a Turma (2019-2021). Professor colaborador na UnB."
+    },
+    "stj-rogerio-schietti-cruz": {
+      "nome_completo": "Rogerio Schietti Machado Cruz",
+      "nascimento": {
+        "data": "26/06/1962",
+        "cidade": "Juiz de Fora, MG"
+      },
+      "formacao": "Direito pelo Centro de Ensino Unificado de Brasilia (1984). Especializacao pela Universidade de Roma La Sapienza (1991). Mestrado pela USP (2002). Doutorado pela USP (2007).",
+      "carreira_previa": "Escriturario do Banco do Brasil (1980-1982). Caixa executivo do BB (1982-1984). Advogado (1985-1987). Promotor de Justica do MPDFT (1987). Procurador de Justica (2003). Procurador-Geral de Justica do MPDFT (2004-2006).",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "28/08/2013",
+      "secao": "3a Secao",
+      "turma": "6a Turma",
+      "especialidade": "Direito Penal, Direito Processual Penal, Direitos Humanos",
+      "perfil_ideologico": "Progressista e garantista. Defensor dos direitos humanos em materia penal. Relator de decisoes emblematicas sobre limites do poder policial e protecao de vulneraveis.",
+      "perfil_psicologico": "Pensador complexo e articulado, para alem do senso comum (conforme descrito por pares). Sensibilidade social especialmente em questoes penais.",
+      "curiosidades": "Trabalhou no Banco do Brasil antes de ser jurista. Relator de caso que firmou crime de relacao sexual com menor de 14 anos independentemente de contexto (2015). Relator de decisao sobre necessidade de prova de consentimento para entrada policial em domicilio (HC 598.051, 2021). Ouvidor do STJ (2023-2024)."
+    },
+    "stj-antonio-saldanha-palheiro": {
+      "nome_completo": "Antonio Saldanha Palheiro",
+      "nascimento": {
+        "data": "24/04/1951",
+        "cidade": "N/D (carreira no Rio de Janeiro)"
+      },
+      "formacao": "Direito pela PUC-Rio (1975). Mestrado em Direito pela PUC-Rio (1981).",
+      "carreira_previa": "Advogado no Escritorio Delio dos Santos (1973). Assessor juridico da Shell do Brasil (1975-1988). Juiz de Direito do TJRJ (1988). Desembargador do TJRJ na 5a Camara Civel (2003). Professor na EMERJ, FGV, UFRJ, PUC-Rio e Escola do MP.",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "06/04/2016",
+      "secao": "3a Secao",
+      "turma": "6a Turma",
+      "especialidade": "Direito Penal, Direito Civil",
+      "perfil_ideologico": "Moderado. Experiencia diversificada entre advocacia corporativa e magistratura. Perfil equilibrado.",
+      "perfil_psicologico": "Experiencia pratica longa (13 anos na Shell antes da magistratura). Forte atuacao docente em varias instituicoes. Perfil maduro e ponderado.",
+      "curiosidades": "Trabalhou 13 anos na Shell do Brasil antes da magistratura. Professor em multiplas instituicoes (EMERJ, FGV, UFRJ, PUC-Rio). Aprovado no Senado com 60 votos favoraveis. Ocupa a vaga de Sidnei Beneti."
+    },
+    "stj-villas-boas-cueva": {
+      "nome_completo": "Ricardo Villas Boas Cueva",
+      "nascimento": {
+        "data": "28/05/1962",
+        "cidade": "Sao Paulo, SP"
+      },
+      "formacao": "Direito pela USP (1985). Mestrado pela Harvard Law School (1990). Doutorado pela Universidade de Frankfurt (1998).",
+      "carreira_previa": "Procurador do Estado de SP (1985-1987). Advogado (1987-1988). Procurador da Fazenda Nacional (1987-2009). Conselheiro do CADE (2004-2008). Vice-presidente do Conselho Federal do Fundo de Defesa de Direitos Difusos (2005-2008). Socio no escritorio Rodrigues Alves e Villas Boas Cueva (2009-2011). Professor de Direito Empresarial no IBMEC (2002-2004).",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "13/06/2011",
+      "secao": "2a Secao",
+      "turma": "3a Turma",
+      "especialidade": "Direito Empresarial, Direito Concorrencial, Direito Regulatorio, Direito e Tecnologia, Protecao de Dados",
+      "perfil_ideologico": "Tecnico com formacao internacionalista. Especialista em direito economico e concorrencial. Perfil modernizador e academico.",
+      "perfil_psicologico": "Intelectual de formacao internacionalista (Harvard, Frankfurt). Carreira diversificada entre setor publico, regulacao e advocacia. Vies academico forte.",
+      "curiosidades": "Mestrado em Harvard e doutorado em Frankfurt. Conselheiro do CADE por 4 anos. Ministro do TSE (substituto desde 2024, efetivo desde 2025). Homenageado com o livro Liber Amicorum pelos 13 anos no STJ. Referencia em Direito e Tecnologia."
+    },
+    "stj-moura-ribeiro": {
+      "nome_completo": "Paulo Dias de Moura Ribeiro",
+      "nascimento": {
+        "data": "circa 1953",
+        "cidade": "Santos, SP"
+      },
+      "formacao": "Direito pela Universidade Catolica de Santos (1976). Mestrado pela PUC-SP (2000). Doutorado em Direito das Relacoes Sociais pela PUC-SP (2003). Pos-doutorado pela Universidade de Lisboa.",
+      "carreira_previa": "Juiz da magistratura paulista (1983). Desembargador do TJSP. Mais de 30 anos no Judiciario de SP. Professor de graduacao e pos-graduacao em Direito Civil e Processual Civil.",
+      "indicado_por": "Dilma Rousseff",
+      "posse": "28/08/2013",
+      "secao": "2a Secao",
+      "turma": "3a Turma",
+      "especialidade": "Direito Privado, Direito Civil, Direito Processual Civil, Capitalismo Humanista",
+      "perfil_ideologico": "Progressista humanista. Defensor do capitalismo humanista. Indicado ao Premio Nobel da Paz (2020).",
+      "perfil_psicologico": "Academico e humanista. Pos-doutor em Lisboa. Autor de obras sobre negocios juridicos e direito a personalidade. Vies social forte.",
+      "curiosidades": "Indicado ao Premio Nobel da Paz em 2020 por defesa do capitalismo humanista. Pos-doutor pela Universidade de Lisboa. Presidente da TNU. Conselheiro do CJF. Natural de Santos/SP."
+    },
+    "stj-daniela-teixeira": {
+      "nome_completo": "Daniela Teixeira",
+      "nascimento": {
+        "data": "circa 1972",
+        "cidade": "Brasilia, DF"
+      },
+      "formacao": "Direito pela UnB. Pos-graduacao em Direito Economico pela FGV. Mestrado em Direito Penal pelo IDP.",
+      "carreira_previa": "Advogada desde 1996, atuacao exclusiva perante STJ, STF e TSE por quase 3 decadas. Conselheira Federal da OAB Nacional (2010-2013 e 2019-2022). Vice-presidente da OAB/DF. Indicada ao TSE como jurista pela OAB (2019).",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "22/11/2023",
+      "secao": "3a Secao",
+      "turma": "5a Turma",
+      "especialidade": "Direito Penal, Direito Processual Penal, Direito Constitucional",
+      "perfil_ideologico": "Progressista. Forte defensora da equidade de genero no Judiciario. Atuacao engajada na OAB.",
+      "perfil_psicologico": "Determinada e resiliente. Enfrentou adversidades (caso da Lei Julia Matos). Proferiu mais de 25 mil decisoes no primeiro ano. Defensora da diversidade no Judiciario.",
+      "curiosidades": "A experiencia pessoal de discriminacao durante gravidez originou a Lei Julia Matos. Filha Julia nasceu prematura e ficou 61 dias em UTI. Proferiu 25 mil decisoes em 1 ano. Primeira nomeacao feminina em 10 anos no STJ. 10a mulher no STJ. Relatora de processos remanescentes da Lava Jato (apos redistribuicao)."
+    },
+    "stj-messod-azulay-neto": {
+      "nome_completo": "Messod Azulay Neto",
+      "nascimento": {
+        "data": "26/10/1963",
+        "cidade": "Rio de Janeiro, RJ"
+      },
+      "formacao": "Direito pela UFRJ (1986). Cursos de extensao em areas administrativa e empresarial pela FGV.",
+      "carreira_previa": "Advogado (1986-2005). Advogado da Telerj (1993). Chefe do departamento juridico da Telerj (1998). Juiz Federal do TRF2 pelo quinto constitucional (vaga OAB). Vice-presidente do TRF2 (2019-2021). Presidente do TRF2 (2021-2022). Diretor do Centro Cultural Justica Federal do RJ. Professor de Direito Penal e Processual Penal na ASSESPA (2006-2009).",
+      "indicado_por": "Jair Bolsonaro",
+      "posse": "06/12/2022",
+      "secao": "3a Secao",
+      "turma": "5a Turma",
+      "especialidade": "Direito Penal, Direito Processual Penal, Direito Administrativo",
+      "perfil_ideologico": "Conservador moderado. Perfil tecnico com enfase em direito penal. Interesse em inteligencia artificial no Judiciario.",
+      "perfil_psicologico": "Pratico e institucional. Longa carreira na advocacia e na magistratura federal. Judeu ortodoxo, filho de imigrantes marroquinos.",
+      "curiosidades": "Judeu ortodoxo, filho de judeus marroquinos. Presidente do TRF2 quando indicado ao STJ. Autor de 7 livros. Artigo sobre IA nos tribunais (2021). Membro do Instituto Ibero-Americano de Direito Publico."
+    },
+    "stj-paulo-sergio-domingues": {
+      "nome_completo": "Paulo Sergio Domingues",
+      "nascimento": {
+        "data": "circa 1966",
+        "cidade": "Sao Paulo, SP"
+      },
+      "formacao": "Direito pela USP. Mestrado pela Johann Wolfgang Goethe Universitat (Frankfurt, Alemanha). Cursos de pos-graduacao em Portugal e direito ambiental nos EUA.",
+      "carreira_previa": "Procurador do Municipio de SP (1987-1995). Juiz Federal (desde 1995). Desembargador Federal do TRF3 (2014). Coordenador do Gabinete de Conciliacao do TRF3 (2020-2022). Presidente da AJUFE (2002-2004). Delegado brasileiro na Conferencia da ONU contra Crime Organizado (2010). Professor na FADI Sorocaba.",
+      "indicado_por": "Jair Bolsonaro",
+      "posse": "06/12/2022",
+      "secao": "1a Secao",
+      "turma": "1a Turma",
+      "especialidade": "Direito Publico, Direito Processual Civil, Direito Ambiental",
+      "perfil_ideologico": "Moderado tecnico. Formacao internacionalista (mestrado na Alemanha). Preocupacao com conciliacao e resolucao consensual de conflitos.",
+      "perfil_psicologico": "Internacionalista e conciliador. Experiencia em organizacoes internacionais (ONU). Lideranca associativa (presidente da AJUFE).",
+      "curiosidades": "Mestrado na Alemanha (Frankfurt). Presidente da AJUFE (2002-2004). Delegado do Brasil na Conferencia da ONU contra Crime Organizado. Presidente da 1a Turma do STJ."
+    },
+    "stj-teodoro-silva-santos": {
+      "nome_completo": "Teodoro Silva Santos",
+      "nascimento": {
+        "data": "02/05/1958",
+        "cidade": "Juazeiro do Norte, CE"
+      },
+      "formacao": "Direito pela Unifor (1987). Especializacao pela Unifor (1997). Especializacao em Direito Penal pela UFC (2002). Mestrado pela Unifor (2007). Doutorado em Direito Constitucional pela Unifor (2020). Pos-doutorado pela Universidade do Minho, Braga, Portugal (2024).",
+      "carreira_previa": "Delegado de policia de Rondonia (1988-1993). Promotor de Justica do MP-CE (1993-2011). Desembargador do TJCE pelo quinto constitucional do MP (2011). Professor da Unifor (desde 2003).",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "22/11/2023",
+      "secao": "1a Secao",
+      "turma": "2a Turma",
+      "especialidade": "Direito Penal, Direito Constitucional, Direitos Humanos, Tribunal do Juri",
+      "perfil_ideologico": "Progressista garantista. Defensor de olhar social para evitar arbitrios em comunidades. Especialista em direitos humanos e garantias.",
+      "perfil_psicologico": "Academico e humanista. Trajetoria de ascensao social (Juazeiro do Norte). Dedicacao continua a formacao (pos-doutorado em 2024). Professor universitario.",
+      "curiosidades": "Natural de Juazeiro do Norte/CE. Comecou como delegado de policia em Rondonia. Pos-doutor pela Universidade do Minho (2024). Autor de obras sobre Tribunal do Juri e Juiz de Garantias. Professor da Unifor."
+    },
+    "stj-afranio-vilela": {
+      "nome_completo": "Jose Afranio Vilela",
+      "nascimento": {
+        "data": "07/03/1961",
+        "cidade": "Ibia, MG"
+      },
+      "formacao": "Direito pela Universidade Federal de Uberlandia (1985). Pos-graduacao em Gestao Judiciaria pela UnB.",
+      "carreira_previa": "Advogado (1985-1989) em Ibia, area penal. Advogado do BEMGE, CREDIREAL e MINASCAIXA. Procurador juridico do municipio de Ibia. Juiz de Direito do TJMG (1989). Comarcas de Resende Costa, Bom Sucesso, Contagem e BH. Juiz do Tribunal de Alcada de MG (2004, 3a Camara Civel). Desembargador do TJMG (2005). 1o Vice-presidente do TJMG (2018-2020).",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "22/11/2023",
+      "secao": "1a Secao",
+      "turma": "2a Turma",
+      "especialidade": "Direito Publico, Direito Administrativo, Conciliacao e Tecnologia",
+      "perfil_ideologico": "Moderado pragmatico. Defensor da conciliacao e da tecnologia para melhorar a Justica.",
+      "perfil_psicologico": "Pratico e gestor. Experiencia em gestao judiciaria (1o Vice-presidente do TJMG). Origem no interior de Minas confere vies humanista.",
+      "curiosidades": "Cidadao honorario de Uberlandia (2008). Filho de Jose Vilella e Erotildes Antonia Vilela. Com sua posse, STJ passou a ter 5 integrantes mineiros. 18 anos como desembargador antes do STJ. Presidente da 2a Turma (desde 2024)."
+    },
+    "stj-carlos-pires-brandao": {
+      "nome_completo": "Carlos Augusto Pires Brandao",
+      "nascimento": {
+        "data": "28/07/1964",
+        "cidade": "Teresina, PI"
+      },
+      "formacao": "Engenharia Eletrica pela UFMG (1986). Direito pela UFPI (1993). Especializacao em Direito Constitucional pela UFPI (1999). Mestrado em Direito pela UFPE (2001). Doutorado em Direito pela UFPB (2018). Cursos na Universita degli Studi di Roma La Sapienza (Italia) e Universidade de Lisboa (Portugal).",
+      "carreira_previa": "Promotor de Justica. Procurador da Republica. Juiz Federal (1997). Professor da UFPI (desde 1999). Diretor do Foro da Secao Judiciaria do PI. Desembargador Federal do TRF1 (2015-2025).",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "04/09/2025",
+      "secao": "3a Secao",
+      "turma": "6a Turma",
+      "especialidade": "Direito Penal, Direito Constitucional, Direito Internacional",
+      "perfil_ideologico": "Moderado academico. Dupla formacao (Engenharia e Direito) confere perfil analitico. Forte vies academico e internacionalista.",
+      "perfil_psicologico": "Intelectual e versatil. Dupla graduacao (Engenharia e Direito). Doutorado e cursos no exterior (Italia, Portugal). Professor universitario.",
+      "curiosidades": "Formado em Engenharia Eletrica pela UFMG antes de cursar Direito. Primeiro piauiense a integrar o STJ. Professor da UFPI. Aprovado com 63 votos no Senado. Casado com medica. Cursos em Roma e Lisboa."
+    },
+    "stj-marluce-caldas": {
+      "nome_completo": "Maria Marluce Caldas Bezerra",
+      "nascimento": {
+        "data": "24/05/1959",
+        "cidade": "Rio de Janeiro, RJ (criada em Ibateguara, AL)"
+      },
+      "formacao": "Pos-graduacao em Direito Constitucional e Processual. (Graduacao em Direito - instituicao nao identificada nas fontes pesquisadas).",
+      "carreira_previa": "Advogada civel e criminal no interior de Alagoas. Agente administrativo e advogada da Cohab/AL (1982-1986). Promotora de Justica do MP-AL (1986). Atuou em Maceio, Uniao dos Palmares, Maravilha, Major Izidoro e Flexeiras. Primeira promotora mulher em juri popular em Maceio. Secretaria de Emprego e Renda de AL (2001). Secretaria da Mulher, Cidadania e Direitos Humanos de AL (2010). Procuradora de Justica (2021). Primeira mulher em sessao da Camara Criminal do TJAL.",
+      "indicado_por": "Luiz Inacio Lula da Silva",
+      "posse": "04/09/2025",
+      "secao": "3a Secao",
+      "turma": "5a Turma",
+      "especialidade": "Direito Penal, Direitos Humanos, Direito da Mulher",
+      "perfil_ideologico": "Progressista. Forte atuacao em direitos humanos e direitos da mulher. Engajada em causas sociais. Participou das discussoes da Lei Seca.",
+      "perfil_psicologico": "Pioneira e combativa. Origem humilde (pais retirantes nordestinos). Primeira mulher em diversas posicoes no MP de AL. Carreira na area criminal e de direitos humanos.",
+      "curiosidades": "Nasceu no RJ de pais retirantes alagoanos, voltou para AL meses depois. Tia do politico JHC (prefeito de Maceio). Irma do ex-deputado Joao Caldas. Primeira promotora em juri em Maceio. 10a mulher ministra do STJ. Primeira vinda do MP Estadual. Relatora dos processos da Lava Jato remanescentes. Medalha de Merito do MP-AL (2021)."
+    }
+  }
+}

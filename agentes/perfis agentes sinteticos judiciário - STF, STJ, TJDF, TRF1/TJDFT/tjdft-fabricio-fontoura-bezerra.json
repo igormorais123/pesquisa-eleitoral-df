@@ -1,7 +1,7 @@
 {
   "id": "tjdft-fabricio-fontoura-bezerra",
   "nome": "Des. Fabrício Fontoura Bezerra",
-  "nome_completo": null,
+  "nome_completo": "Fabricio Fontoura Bezerra",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -10,7 +10,17 @@
     "telefones_gabinete": "(61)3103-6191, (61)3103-6192, (61)3103-6193",
     "dados_dossie": {
       "perfil_ideologico": "Promovido em 2025\\",
-      "analise_comportamental": "Promovido em 2025\\. Traz a experiência recente da primeira instância. Perfil operacional."
+      "analise_comportamental": "Promovido em 2025\\. Traz a experiência recente da primeira instância. Perfil operacional.",
+      "nascimento": {
+        "cidade": "Brasilia/DF"
+      },
+      "origem": "magistratura (ex-promotor MPDFT)",
+      "perfil_psicologico": "Filho de pioneiros de Brasilia. Pai trabalhou na Novacap a convite de JK. Ciclista.",
+      "turma": "1a Camara Civel (desde 22/09/2025)",
+      "formacao": "UniCeub. Pos-graduacao em Direito Privado e Processual Civil.",
+      "carreira_previa": "Advogado, professor, promotor do MPDFT. Juiz Substituto desde 03/02/1995.",
+      "especialidade": "Direito Privado, Direito Processual Civil",
+      "curiosidades": "Desembargador desde 19/09/2025. 30 anos de magistratura."
     }
   },
   "atuacao_profissional": {},

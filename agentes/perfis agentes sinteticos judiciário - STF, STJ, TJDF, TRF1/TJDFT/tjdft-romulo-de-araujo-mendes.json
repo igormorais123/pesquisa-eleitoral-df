@@ -1,7 +1,7 @@
 {
   "id": "tjdft-romulo-de-araujo-mendes",
   "nome": "Des. Rômulo de Araújo Mendes",
-  "nome_completo": null,
+  "nome_completo": "Romulo de Araujo Mendes",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -10,7 +10,17 @@
     "telefones_gabinete": "(61)3103-5068",
     "dados_dossie": {
       "perfil_ideologico": "Jovem e dinâmico",
-      "analise_comportamental": "Jovem e dinâmico. Traz agilidade aos julgamentos cíveis."
+      "analise_comportamental": "Jovem e dinâmico. Traz agilidade aos julgamentos cíveis.",
+      "nascimento": {
+        "cidade": "Patrocinio/MG"
+      },
+      "origem": "magistratura",
+      "perfil_psicologico": "Sonhava ser engenheiro de foguetes. Comecou como office boy. Paixao por arte e historia.",
+      "turma": "1a Turma Civel e 1a Camara Civel",
+      "formacao": "Direito pela UFU (1986). Especializacao em Processual Civil pela UFU (1988).",
+      "carreira_previa": "Advogado em Uberlandia e BH. Juiz Substituto desde 1993. Atuou em diversas varas civeis e de familia.",
+      "especialidade": "Direito Civel, Direito de Familia, Processual Civil",
+      "curiosidades": "Desembargador desde janeiro de 2017. Posse marcada pelo luto do min. Teori Zavascki."
     }
   },
   "atuacao_profissional": {},

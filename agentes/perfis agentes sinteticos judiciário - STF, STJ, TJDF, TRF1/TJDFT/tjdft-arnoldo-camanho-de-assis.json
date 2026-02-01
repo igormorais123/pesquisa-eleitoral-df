@@ -1,7 +1,7 @@
 {
   "id": "tjdft-arnoldo-camanho-de-assis",
   "nome": "Des. Arnoldo Camanho de Assis",
-  "nome_completo": null,
+  "nome_completo": "Arnoldo Camanho de Assis",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,17 @@
     "biografia_tjdft_resumo": "99 \nBIOGRAFIA \nDESEMBARGADOR \nARNOLDO CAMANHO \n \nDADOS PESSOAIS \nNOME: Arnoldo Camanho de Assis \nDATA DE NASCIMENTO: 7/5/1963 \nLOCAL DE NASCIMENTO: Rio de Janeiro - RJ \nNACIONALIDADE: brasileira \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Superior: Bacharel em Direito na Universidade de Brasília (UnB), 1982-1986; \nPós-graduação: Especialização em Direito Internacional Público e Privado, The Hague Academy of \nInternational Law – Holanda, 1988. - Mestrado na Universidade de Brasília, UnB, 1995/1996. \n» Especialização em Direito pela Universidade de Brasília, UnB, 2000. \n» Direito do Consumo, Universidade de Coimbra, Portugal, 2003/2004. \n \nCARGOS OCUPADOS \n \nSERVIÇO PÚBLICO \n» Agente Administrativo do Ministério da Fazenda, com lotação na Procuradoria -Geral da Fazenda \nNacional, 1984. - Assessor do Procurador-Geral da Fazenda Nacional, 1986-1987. \n» Chefe da Consultoria Jurídica da Radiobrás...",
     "dados_dossie": {
       "perfil_ideologico": "Civilista clássico, erudito",
-      "analise_comportamental": "Civilista clássico, erudito. Seus votos são doutrinários. Conservador em responsabilidade civil."
+      "analise_comportamental": "Civilista clássico, erudito. Seus votos são doutrinários. Conservador em responsabilidade civil.",
+      "nascimento": {
+        "cidade": "Rio de Janeiro/RJ"
+      },
+      "origem": "magistratura",
+      "perfil_psicologico": "Carioca, brasiliense de coracao. Musico (bateria, violao, flauta). Irmao do comediante Adriano Camanho (Os melhores do mundo).",
+      "turma": "Turma Civel",
+      "formacao": "Direito pela UnB. Mestrado em Direito e Estado. Especializacao em Direito Internacional (Haia). Pos-graduacao em Direito do Consumidor (Coimbra). Mestre em Direito Constitucional pelo IDP (2020).",
+      "carreira_previa": "Agente Administrativo do MF/PGFN. Assessor do PGF Nacional. Chefe da Consultoria da Radiobras. Juiz desde 1990. Diretor-Geral da Escola de Formacao Judiciaria (2021).",
+      "especialidade": "Direito Processual Civil, Direito do Consumidor, Direito Internacional, Familia",
+      "curiosidades": "Cidadao Honorario de Brasilia (2015). Academico de Artes, Ciencias, Historia e Literatura."
     }
   },
   "atuacao_profissional": {},

@@ -1,7 +1,7 @@
 {
   "id": "tjdft-roberto-freitas-filho",
   "nome": "Des. Roberto Freitas Filho",
-  "nome_completo": null,
+  "nome_completo": "Roberto Freitas Filho",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,17 @@
     "biografia_tjdft_resumo": "127 \n \nBIOGRAFIA \nDESEMBARGADOR \nROBERTO FREITAS \n \nDADOS PESSOAIS \nNOME: Roberto Freitas Filho \nDATA DE NASCIMENTO: 3/9/1969 \nLOCAL DE NASCIMENTO: Santos – SP \nNACIONALIDADE: Brasileira \n \n \n \n \n \n \n \nESCOLARIDADE \n \nBacharel em Direito pela Universidade Católica de Santos - SP, 1993. \nMestrado em Direito pela Universidade de São Paulo - USP, 2002. \nDoutorado em Direito pela Universidade de São Paulo - USP, 2006. \nPós-doutorado pela Universidade de Wisconsin, em Madison, nos Estados Unidos - EUA, 2006. \n \nEMPREGOS E CARGOS OCUPADOS \n \n» Exerceu a Advocacia entre 1994 - 2017. \n» Colaborador no Instituto Brasileiro de Política e Direito do Consumidor, 1997- 1999. \n» Diretor do Departamento de Proteção e Defesa do Consumidor da SDE, Ministério da Justiça, 2000 - \n2002. \n» Servidor (Assessor Jurídico) no Senado Federal, 2007 – 2009. \n» Colaborador na Fundação Nacional de Desenvolvimento do ...",
     "dados_dossie": {
       "perfil_ideologico": "Constitucionalista (Quinto OAB)",
-      "analise_comportamental": "Constitucionalista (Quinto OAB). Doutor, traz a visão da advocacia e da academia. Seus votos oxigenam o tribunal com teses constitucionais contemporâneas. Garantista e inovador."
+      "analise_comportamental": "Constitucionalista (Quinto OAB). Doutor, traz a visão da advocacia e da academia. Seus votos oxigenam o tribunal com teses constitucionais contemporâneas. Garantista e inovador.",
+      "nascimento": {
+        "cidade": "Santos/SP"
+      },
+      "origem": "quinto constitucional (OAB)",
+      "perfil_psicologico": "Forte perfil academico com pos-doutorado nos EUA. Paixao por esporte.",
+      "turma": "3a Turma Civel",
+      "formacao": "Direito pela UNISANTOS. Mestre e Doutor em Direito. Pos-doutor pela Universidade de Wisconsin (EUA).",
+      "carreira_previa": "Advogado por 23 anos. Diretor do Dept. de Protecao ao Consumidor do MJ. Professor e Coordenador do Direito no UniCeub e IDP.",
+      "especialidade": "Direito do Consumidor, Direito Constitucional",
+      "curiosidades": "Desembargador desde maio de 2017. Quinto constitucional da OAB."
     }
   },
   "atuacao_profissional": {},

@@ -1,7 +1,7 @@
 {
   "id": "trf1-katia-balbino",
   "nome": "Kátia Balbino",
-  "nome_completo": null,
+  "nome_completo": "Katia Balbino de Carvalho Ferreira",
   "orgao": "TRF1",
   "cargo": "Desembargador Federal",
   "situacao": "titular",
@@ -11,7 +11,19 @@
     "pagina_trf1": "https://www.trf1.jus.br/trf1/em-atividade/katiabalbino",
     "dados_dossie": {
       "perfil_ideologico": "Progressista/Direitos Humanos. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justi",
-      "analise_comportamental": "Progressista/Direitos Humanos. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justiça. É uma gestora inovadora."
+      "analise_comportamental": "Progressista/Direitos Humanos. Reconhecida internacionalmente por sua atuação em pautas de gênero e diversidade. Traz uma visão moderna e humanizada para a corte, focada em inclusão e acesso à justiça. É uma gestora inovadora.",
+      "nascimento": {
+        "data": null,
+        "cidade": "Salvador/BA"
+      },
+      "origem": "magistratura",
+      "perfil_psicologico": "Sensibilidade social destacada. Instrumental na Resolucao 343/2020 do CNJ sobre condicoes especiais para deficientes.",
+      "secao": "3a",
+      "turma": "6a Turma (3a Secao)",
+      "formacao": "Bacharelado em Direito pela UnB (1994). Pos-graduacao lato sensu em Direito Processual Civil pelo IBDP/Instituto Brasiliense de Ensino.",
+      "carreira_previa": "Juiza federal desde 1995. Atuou em Goiania (vara civel e execucao fiscal), mutirao no TRF1, vara criminal em Salvador (1998). Juiza Federal Titular da 9a Vara SJBA (1999-2006). Titular da 25a Vara/JEFs SJDF (2006-2010). Juiza convocada para auxilio a desembargadora Neuza Alves (2006-2010). Auxiliar da COJEF (2008-2010).",
+      "especialidade": "Acessibilidade e inclusao, direito previdenciario, JEFs, processo civil",
+      "curiosidades": "Posse em 10/05/2023 por merecimento. Coautora da Resolucao CJF 570/2019 (teletrabalho para magistrados com deficiencia). Peca fundamental para a Resolucao 343/2020 do CNJ. Lei 14.253/2021."
     }
   },
   "atuacao_profissional": {},

@@ -1,7 +1,7 @@
 {
   "id": "tjdft-fabio-eduardo-marques",
   "nome": "Des. Fábio Eduardo Marques",
-  "nome_completo": null,
+  "nome_completo": "Fabio Eduardo Marques",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,18 @@
     "biografia_tjdft_resumo": "135 \n \n \nBIOGRAFIA \nDESEMBARGADOR \nFÁBIO EDUARDO \n \nDADOS PESSOAIS \nNOME: Fábio Eduardo Marques \nDATA DE NASCIMENTO: 5/1/1968 \nLOCAL DE NASCIMENTO: Brasília – DF \nNACIONALIDADE: Brasileira \n \n \n \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Superior: Bacharel em Direito pelo Centro de Ensino Unificado de Brasília – CEUB, em 1989. \nPós-graduação: Pós-graduado em Direito Público pela Universidade de Brasília – UnB, no ano de 1995 e \nem Direito Penal pela Universidade Católica de Brasília – UCB, no ano de 2001. \n \nEMPREGOS E CARGOS OCUPADOS \n \n» Advogado, de janeiro de 1990 a 14 de abril de 1994. \n» Ingressou na magistratura do Distrito Federal e dos Territórios no cargo de Juiz de Direito Substituto, com \nposse em 15/4/1994. \n» Promovido, pelo critério de antiguidade, ao cargo de Juiz de Direito do Distrito Federal, em 2/2/1996, tendo \nexercido a titularidade da 2ª Vara Criminal de Ceilândia de 2/2/1...",
     "dados_dossie": {
       "perfil_ideologico": "Juiz de Carreira. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual.",
-      "analise_comportamental": "Juiz de Carreira. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual."
+      "analise_comportamental": "Juiz de Carreira. Promovido por merecimento. Conhece a \"máquina\" do judiciário como poucos. Perfil de alta produtividade e tecnicismo processual.",
+      "nascimento": {
+        "cidade": "Brasilia/DF",
+        "ano_aproximado": "1968"
+      },
+      "origem": "magistratura",
+      "perfil_psicologico": "Brasiliense. Posse virtual durante pandemia.",
+      "turma": "5a Turma Civel (presidente)",
+      "formacao": "Especializacao em Direito Publico e Direito Penal.",
+      "carreira_previa": "Juiz Substituto desde 15/04/1994. Juiz de Direito desde 02/02/1996.",
+      "especialidade": "Direito Civel, Direito Publico, Direito Penal",
+      "curiosidades": "Desembargador desde 25/06/2021. Posse por Zoom."
     }
   },
   "atuacao_profissional": {},
