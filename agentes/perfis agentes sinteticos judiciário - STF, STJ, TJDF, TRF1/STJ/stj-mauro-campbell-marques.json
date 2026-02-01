@@ -1,7 +1,7 @@
 {
   "id": "stj-mauro-campbell-marques",
   "nome": "Mauro Campbell Marques",
-  "nome_completo": null,
+  "nome_completo": "Mauro Luiz Campbell Marques",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -32,7 +32,10 @@
     "dados_dossie": {
       "origem": "MP-AM",
       "perfil_ideologico": "Institucionalista",
-      "analise_comportamental": "(Atualmente Diretor da ENFAM). Perfil de liderança forte, com trânsito político. Seus votos em direito público são robustos e frequentemente defendem a autonomia federativa e municipal."
+      "analise_comportamental": "(Atualmente Diretor da ENFAM). Perfil de liderança forte, com trânsito político. Seus votos em direito público são robustos e frequentemente defendem a autonomia federativa e municipal.",
+      "secao": "1ª Seção",
+      "turma": "2ª Turma",
+      "indicado_por": "Presidente Lula"
     }
   },
   "atuacao_profissional": {

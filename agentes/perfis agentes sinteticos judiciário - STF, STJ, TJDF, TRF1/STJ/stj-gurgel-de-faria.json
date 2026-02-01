@@ -1,7 +1,7 @@
 {
   "id": "stj-gurgel-de-faria",
   "nome": "Gurgel de Faria",
-  "nome_completo": null,
+  "nome_completo": "Gurgel de Faria",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -31,7 +31,9 @@
       "origem": "TRF-5",
       "perfil_ideologico": "Técnico/Legalista",
       "analise_comportamental": "Magistrado de carreira com perfil discreto. Suas decisões são previsíveis e alinhadas aos precedentes, evitando inovações judiciais disruptivas. Tende a votar com a maioria, funcionando como um elemento de estabilidade na Seção.",
-      "secao": "2a Secao (Direito Privado)"
+      "secao": "2a Secao (Direito Privado)",
+      "turma": "1ª Turma",
+      "indicado_por": "Presidente Dilma"
     }
   },
   "atuacao_profissional": {

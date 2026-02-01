@@ -1,7 +1,7 @@
 {
   "id": "stj-marluce-caldas",
   "nome": "Marluce Caldas",
-  "nome_completo": null,
+  "nome_completo": "Maria Marluce Caldas Bezerra",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -27,7 +27,15 @@
     "dados_dossie": {
       "origem": "MP-AL",
       "perfil_ideologico": "Incógnita (Em construção)",
-      "analise_comportamental": "Recém-empossada (2025). Oriunda do MP, espera-se inicialmente uma postura mais acusatória, mas a pressão institucional da 3ª Seção tende a moderar novos ministros em direção ao garantismo. Ocupa a vaga de Laurita Vaz, que era conservadora."
+      "analise_comportamental": "Recém-empossada (2025). Oriunda do MP, espera-se inicialmente uma postura mais acusatória, mas a pressão institucional da 3ª Seção tende a moderar novos ministros em direção ao garantismo. Ocupa a vaga de Laurita Vaz, que era conservadora.",
+      "nascimento": {
+        "data": "1960",
+        "cidade": "Rio de Janeiro/RJ"
+      },
+      "secao": "3ª Seção",
+      "turma": "5ª Turma",
+      "indicado_por": "Presidente Lula",
+      "posse_stj": "04/09/2025"
     }
   },
   "atuacao_profissional": {

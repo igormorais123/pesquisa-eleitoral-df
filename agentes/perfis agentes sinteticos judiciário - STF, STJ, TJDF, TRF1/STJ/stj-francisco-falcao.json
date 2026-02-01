@@ -1,7 +1,7 @@
 {
   "id": "stj-francisco-falcao",
   "nome": "Francisco Falcão",
-  "nome_completo": null,
+  "nome_completo": "Francisco Cavalcanti de Albuquerque Falcão",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -19,7 +19,10 @@
     "dados_dossie": {
       "origem": "TRF-5",
       "perfil_ideologico": "Decano/Rigoroso",
-      "analise_comportamental": "O mais antigo. Perfil \"linha dura\" em improbidade administrativa. Não teme desagradar poderosos e mantém uma postura de fiscalização estrita da moralidade administrativa."
+      "analise_comportamental": "O mais antigo. Perfil \"linha dura\" em improbidade administrativa. Não teme desagradar poderosos e mantém uma postura de fiscalização estrita da moralidade administrativa.",
+      "secao": "1ª Seção",
+      "turma": "Decano - 2ª Turma",
+      "indicado_por": "Presidente FHC"
     }
   },
   "atuacao_profissional": {

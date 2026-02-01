@@ -1,13 +1,25 @@
 {
   "id": "tjdft-carmen-nicea-nogueira-bittencourt",
   "nome": "Desa. Carmen Nícea Nogueira Bittencourt",
-  "nome_completo": null,
+  "nome_completo": "Carmen Nícea Nogueira Bittencourt",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
   "dados_publicos": {
     "assessor": "Cristina Moura Velho dos Reis",
-    "telefones_gabinete": "(61)3103-5639, (61)3103-5640"
+    "telefones_gabinete": "(61)3103-5639, (61)3103-5640",
+    "dados_dossie": {
+      "nascimento": {
+        "cidade": "Araguari/MG"
+      },
+      "origem": "Magistratura (carreira). Filha do Des. Mauro Renan Bittencourt e sobrinha do Des. aposentado Sérgio Bittencourt, ambos do TJDFT. Vocação familiar para a magistratura.",
+      "perfil_ideologico": "Familiarista e humanista. Atuação focada em direito de família (2ª Vara de Família de Taguatinga, 2ª Vara de Família do Paranoá). Pilar de atuação é a dignidade da pessoa humana.",
+      "perfil_psicologico": "Comprometida com eficiência jurisdicional, tradição familiar na magistratura. Discreta mas firme em suas convicções. Valoriza a dignidade humana como princípio orientador.",
+      "estilo_decisorio": "Especialista em direito de família e fazenda pública. Decisões pautadas pela proteção da dignidade humana.",
+      "turma": "8ª Turma Cível",
+      "formacao": "Pós-graduada University of North Carolina (EUA), CEUB, Escola Superior MPDFT",
+      "carreira_previa": "Juíza substituta TJDFT (1995), juíza titular (1997), 2ª Vara Família Taguatinga, 2ª Vara Família Paranoá, 2º Juizado Fazenda Pública DF"
+    }
   },
   "atuacao_profissional": {},
   "padroes_decisao": {},
@@ -30,5 +42,5 @@
       "observacao": "Ordem alfabetica (2a instancia)"
     }
   ],
-  "atualizado_em": "2026-01-30"
+  "atualizado_em": "2026-01-31"
 }

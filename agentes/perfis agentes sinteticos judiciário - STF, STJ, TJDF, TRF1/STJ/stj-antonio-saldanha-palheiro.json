@@ -1,7 +1,7 @@
 {
   "id": "stj-antonio-saldanha-palheiro",
   "nome": "Antonio Saldanha Palheiro",
-  "nome_completo": null,
+  "nome_completo": "Antônio Saldanha Palheiro",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -32,7 +32,9 @@
       "origem": "TJ-RJ",
       "perfil_ideologico": "Equilibrado",
       "analise_comportamental": "Oscila entre o rigor e a garantia, dependendo do caso. Traz a experiência da criminalidade violenta do Rio de Janeiro, o que lhe confere pragmatismo, mas não ignora nulidades flagrantes.",
-      "secao": "3a Secao (Direito Penal)"
+      "secao": "3a Secao (Direito Penal)",
+      "turma": "6ª Turma",
+      "indicado_por": "Presidente Dilma"
     }
   },
   "atuacao_profissional": {

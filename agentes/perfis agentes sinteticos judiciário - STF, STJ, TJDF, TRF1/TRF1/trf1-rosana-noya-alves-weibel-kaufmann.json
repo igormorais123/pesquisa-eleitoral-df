@@ -1,14 +1,24 @@
 {
   "id": "trf1-rosana-noya-alves-weibel-kaufmann",
   "nome": "Rosana Noya Alves Weibel Kaufmann",
-  "nome_completo": null,
+  "nome_completo": "Rosana Noya Alves Weibel Kaufmann",
   "orgao": "TRF1",
   "cargo": "Desembargador Federal",
   "situacao": "titular",
   "dados_publicos": {
     "gabinete_texto": "Ed. Sede II - 7º andar. Ramal: 5680",
     "funcao_administrativa": null,
-    "pagina_trf1": "https://www.trf1.jus.br/trf1/em-atividade/rosana-noya-alves-weibel-kaufmann"
+    "pagina_trf1": "https://www.trf1.jus.br/trf1/em-atividade/rosana-noya-alves-weibel-kaufmann",
+    "dados_dossie": {
+      "origem": "Magistratura federal. Ex-procuradora Fazenda BA. Juíza federal com passagem pelo TRE-BA. Promovida por antiguidade em mai/2023.",
+      "perfil_ideologico": "Justiça social e acesso ao ensino superior. Especialista em questões do FIES. Formação em Administração além de Direito. Mestrado em Direito Econômico (UFBA).",
+      "perfil_psicologico": "Comprometida com justiça social. Trajetória diversificada (Administração, Fazenda estadual, TRE, magistratura federal). Foco em acesso à educação e financiamento estudantil.",
+      "estilo_decisorio": "Especialista em direito econômico e educacional. Atuação em questões de FIES, contratos administrativos e meio ambiente (3ª Seção).",
+      "secao": "3ª Seção",
+      "turma": "12ª Turma",
+      "formacao": "Administração de Empresas (UC Salvador), Mestrado Direito Econômico (UFBA)",
+      "carreira_previa": "Procuradora Fazenda BA, analista TRE-BA, juíza federal 6ª Vara SJDF, 6ª e 7ª Varas SJBA, Vara Única Ilhéus/BA, diretora foro SJBA (1999-2001)"
+    }
   },
   "atuacao_profissional": {},
   "padroes_decisao": {},
@@ -36,5 +46,5 @@
       "observacao": "Pagina individual"
     }
   ],
-  "atualizado_em": "2026-01-30"
+  "atualizado_em": "2026-01-31"
 }

@@ -1,7 +1,7 @@
 {
   "id": "stj-maria-thereza-de-assis-moura",
   "nome": "Maria Thereza de Assis Moura",
-  "nome_completo": null,
+  "nome_completo": "Maria Thereza Rocha de Assis Moura",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -31,7 +31,11 @@
     },
     "dados_dossie": {
       "perfil_ideologico": "equilibrado, origem no jornalismo",
-      "analise_comportamental": " Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas."
+      "analise_comportamental": " Perfil equilibrado, origem no jornalismo. Transita bem entre as alas, mas tende a manter condenações bem fundamentadas.",
+      "secao": "3ª Seção",
+      "turma": "6ª Turma",
+      "indicado_por": "Presidente Lula",
+      "origem": "Advocacia (OAB)"
     }
   },
   "atuacao_profissional": {},

@@ -1,7 +1,7 @@
 {
   "id": "stj-carlos-pires-brandao",
   "nome": "Carlos Pires Brandão",
-  "nome_completo": null,
+  "nome_completo": "Carlos Augusto Pires Brandão",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -14,7 +14,16 @@
     "dados_dossie": {
       "origem": "TRF-1",
       "perfil_ideologico": "Humanista/Social",
-      "analise_comportamental": "Recém-empossado (2025). No TRF-1, destacou-se por decisões sensíveis a direitos humanos. Sua entrada na Seção Penal deve reforçar o bloco garantista de Reynaldo Soares e Sebastião Reis, isolando ainda mais a corrente punitivista."
+      "analise_comportamental": "Recém-empossado (2025). No TRF-1, destacou-se por decisões sensíveis a direitos humanos. Sua entrada na Seção Penal deve reforçar o bloco garantista de Reynaldo Soares e Sebastião Reis, isolando ainda mais a corrente punitivista.",
+      "nascimento": {
+        "data": "1964",
+        "cidade": "Teresina/PI"
+      },
+      "secao": "1ª Seção",
+      "turma": "2ª Turma",
+      "indicado_por": "Presidente Lula",
+      "formacao": "Engenharia Elétrica (UFMG, 1986), Direito",
+      "posse_stj": "04/09/2025"
     }
   },
   "atuacao_profissional": {

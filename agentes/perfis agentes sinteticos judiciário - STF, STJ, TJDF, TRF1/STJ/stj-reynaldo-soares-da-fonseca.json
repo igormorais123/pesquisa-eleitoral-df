@@ -1,7 +1,7 @@
 {
   "id": "stj-reynaldo-soares-da-fonseca",
   "nome": "Reynaldo Soares da Fonseca",
-  "nome_completo": null,
+  "nome_completo": "Reynaldo Soares da Fonseca",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -37,7 +37,9 @@
       "origem": "TRF-1",
       "perfil_ideologico": "Humanista/Pacificador",
       "analise_comportamental": "Perfil acolhedor e profundamente cristão/humanista. Busca a justiça restaurativa e a aplicação do princípio da insignificância. É o voto de fiel da balança que frequentemente inclina o julgamento para a liberdade do réu em casos limítrofes.",
-      "secao": "3a Secao (Direito Penal)"
+      "secao": "3a Secao (Direito Penal)",
+      "turma": "5ª Turma",
+      "indicado_por": "Presidente Dilma"
     }
   },
   "atuacao_profissional": {

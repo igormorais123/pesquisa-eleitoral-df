@@ -1,0 +1,1020 @@
+{
+  "data_pesquisa": "2026-01-31",
+  "resumo_metodologico": "Pesquisa realizada via web em 31/01/2026, cobrindo estudos academicos, artigos cientificos e reportagens investigativas sobre comportamento judicial nos tribunais brasileiros (STF, STJ, TJDFT, TRF1). Dados extraidos de fontes academicas (SciELO, USP, UFMG, PUC-Rio), portais juridicos (Migalhas, Conjur) e sites oficiais dos tribunais.",
+  "fontes": [
+    {
+      "id": "fonte-001",
+      "titulo": "Pontos de Divergencia: Supremo Tribunal Federal e comportamento judicial",
+      "autor": "Rodrigo Martins",
+      "ano": 2018,
+      "url": "https://www.teses.usp.br/teses/disponiveis/8/8131/tde-06022019-131330/publico/2018_RodrigoMartins_VOrig.pdf",
+      "url_catalogo": "https://teses.usp.br/teses/disponiveis/8/8131/tde-06022019-131330/pt-br.php",
+      "tipo": "tese",
+      "instituicao": "USP - Faculdade de Filosofia, Letras e Ciencias Humanas",
+      "programa": "Pos-Graduacao em Ciencia Politica",
+      "tribunal": "STF",
+      "dados_extraidos": {
+        "metodo": "Estimacao de ponto ideal (ideal point estimation) a partir de votacoes em acoes de controle de constitucionalidade decididas de forma colegiada",
+        "periodo_analisado": "Votacoes colegiadas em ADIs no STF",
+        "hipotese_primaria": "Existe influencia da indicacao presidencial no comportamento dos ministros, havendo divisao da Corte entre ministros nomeados por diferentes partidos",
+        "hipotese_secundaria": "Trajetorias profissionais dos ministros tambem influenciam sua forma de decidir",
+        "resultado_principal": "Variaveis associadas aos modelos atitudinais (partidos dos presidentes que indicaram, ideologia e filosofia judicial) sao MAIS relevantes para explicar agrupamentos e dissensos no STF do que trajetorias profissionais",
+        "conclusao": "A indicacao presidencial e a ideologia sao fatores mais determinantes que a carreira profissional previa na explicacao do comportamento judicial no STF",
+        "paginas": 102,
+        "simulacoes": "Realizadas simulacoes para avaliar qual tecnica de estimacao de ponto ideal possui melhor desempenho para estudar o STF"
+      }
+    },
+    {
+      "id": "fonte-002",
+      "titulo": "Mapeando o Supremo: As posicoes dos ministros do STF na jurisdicao constitucional (2012-2017)",
+      "autor": "Jeferson Mariano Silva",
+      "ano": 2018,
+      "url": "https://www.scielo.br/j/nec/a/Dy8N3FjbdQnrBNQXhjMSn5t",
+      "url_abstract": "https://www.scielo.br/j/nec/a/Dy8N3FjbdQnrBNQXhjMSn5t/abstract/?lang=pt",
+      "tipo": "artigo",
+      "publicacao": "Novos Estudos CEBRAP, v. 37, n. 1, pp. 35-54",
+      "tribunal": "STF",
+      "dados_extraidos": {
+        "metodo": "Estimacao de pontos ideais para ministros do STF em julgamentos de acoes de inconstitucionalidade",
+        "periodo_analisado": "2012-2017",
+        "base_dados": "Jurisdicao constitucional no Brasil (1965-2017) - Harvard Dataverse",
+        "taxa_unanimidade": "82% das acoes de inconstitucionalidade julgadas no periodo foram unanimes ou monocraticas",
+        "tendencia_monocraticas": "Aumento acentuado de decisoes monocraticas no periodo",
+        "frequencia_divergencias": "Baixa frequencia de divergencias entre ministros no periodo analisado",
+        "ministros_singulares": {
+          "comportamento_muito_distinto": ["Marco Aurelio", "Joaquim Barbosa", "Edson Fachin", "Alexandre de Moraes"],
+          "descricao": "Estes quatro ministros se destacaram dos demais com comportamentos muito singulares nos pontos ideais estimados"
+        },
+        "blocos_identificados": {
+          "bloco_1": {
+            "ministros": ["Gilmar Mendes", "Dias Toffoli", "Teori Zavascki"],
+            "descricao": "Clivagem menos marcada, posicionados em um lado"
+          },
+          "bloco_2": {
+            "ministros": ["Rosa Weber", "Celso de Mello", "Luis Roberto Barroso", "Carmen Lucia", "Ricardo Lewandowski", "Luiz Fux"],
+            "descricao": "Clivagem menos marcada, posicionados no outro lado"
+          }
+        },
+        "alinhamento_partidario": "As divisoes entre os ministros NAO apresentaram relacao evidente com a origem politica de suas indicacoes",
+        "formacao_blocos": "A formacao de blocos, coalizoes ou agrupamentos orientados por nomeacoes e conjuntural - a probabilidade de alinhamento refletindo divisoes politicas mais amplas varia ao longo do tempo",
+        "conceito_maioria_silenciosa": "A ideia de uma 'maioria silenciosa' contra a qual posicoes ruidosas de minoria se chocam parece mais precisa - Gilmar sendo mais capaz de desafia-la que Marco Aurelio"
+      }
+    },
+    {
+      "id": "fonte-003",
+      "titulo": "How judges think in the Brazilian Supreme Court: Estimating ideal points and identifying dimensions",
+      "autores": ["Pedro Fernando Almeida Nery Ferreira", "Bernardo Mueller"],
+      "ano": 2013,
+      "url": "https://conteudo.imguol.com.br/blogs/52/files/2013/08/2013_PedroFernandoAlmeidaNeryFerreira.pdf",
+      "tipo": "artigo",
+      "tribunal": "STF",
+      "dados_extraidos": {
+        "metodo": "NOMINATE (Nominal Three Step Estimation) de Poole e Rosenthal (1983, 1997)",
+        "periodo_analisado": "2002-2012",
+        "precisao_preditiva": "Estimativas predizem corretamente mais de 95% dos votos em casos de revisao constitucional em cada composicao analisada",
+        "dimensao_principal": "A dimensao principal ao longo da qual as preferencias se alinham no STF e a favor e contra o interesse economico do Executivo",
+        "diferenca_eua": "Significativamente diferente da polarizacao conservador-liberal da Suprema Corte dos EUA",
+        "composicao_corte": "A composicao da Corte tem sido claramente favoravel aos interesses economicos do Executivo ao longo desta dimensao",
+        "contribuicao": "Identificacao de que o eixo principal de divergencia no STF nao e esquerda-direita, mas pro/contra interesses economicos do Executivo"
+      }
+    },
+    {
+      "id": "fonte-004",
+      "titulo": "O Supremo Tribunal Federal e as coalizoes presidenciais: uma analise do comportamento judicial no governo Bolsonaro",
+      "ano": 2024,
+      "url": "https://www.scielo.br/j/rsocp/a/DYvhBjtLWQXVYs5tjsz3Lxw/",
+      "tipo": "artigo",
+      "publicacao": "Revista de Sociologia e Politica",
+      "tribunal": "STF",
+      "dados_extraidos": {
+        "periodo_analisado": "Governo Bolsonaro (2019-2022)",
+        "achado_principal": "Durante o governo Bolsonaro, o STF apresentou comportamento contramajoritario em funcao da ausencia de uma coalizao majoritaria governante em parte do mandato",
+        "taxa_inconstitucionalidade": "Em media apenas 13% das normas questionadas sao invalidadas pelo STF (Pogrebinschi, 2012)",
+        "papel_moderado": "O STF raramente declara inconstitucionalidade - sugere papel mais moderado ao lidar com preferencias dos outros poderes",
+        "evita_questoes_economicas": "O tribunal evita se posicionar em questoes sensiveis para o Executivo, como politicas economicas, concentrando decisoes em materias administrativas (Oliveira, 2005; 2016)",
+        "constrangimento_informal": "Embora garantias institucionais indiquem forte independencia, um presidente com coalizao majoritaria no Congresso pode exercer constrangimento politico informal sobre o tribunal"
+      }
+    },
+    {
+      "id": "fonte-005",
+      "titulo": "Analise da trajetoria dos ministros do STF: insulamento ou presidencialismo de coalizao?",
+      "ano": 2022,
+      "url": "https://www.scielo.br/j/rdgv/a/Rs9gfTwvcMkY588ZrqbGkTK/",
+      "tipo": "artigo",
+      "publicacao": "Revista Direito GV",
+      "tribunal": "STF",
+      "dados_extraidos": {
+        "tema": "Relacao entre indicacao presidencial e comportamento dos ministros",
+        "achado": "Nao ha evidencias significativas de que a atuacao dos ministros seja determinada pela filiacao politica dos presidentes que os nomearam (Llanos & Lemos, 2013; Silva, 2017)",
+        "multiplas_dimensoes": "A indicacao pode servir a fins politicos internos (convergencia preferencias presidente-ministro) e externos (barganha politica e sinalizacao social)",
+        "citacao_arguelhes_ribeiro": "Os fins politicos externos podem, em diversos momentos, ser mais importantes do que a simples maximizacao do alinhamento entre preferencias politicas do presidente e decisoes futuras do STF"
+      }
+    },
+    {
+      "id": "fonte-006",
+      "titulo": "Uma analise do padrao de julgamento do STF sobre acoes diretas de inconstitucionalidade entre 2010 e 2019",
+      "url": "https://www.scielo.br/j/rdgv/a/NhZPjK34gfwBt833LPmLjsf/",
+      "tipo": "artigo",
+      "publicacao": "Revista Direito GV",
+      "tribunal": "STF",
+      "dados_extraidos": {
+        "periodo_analisado": "2010-2019",
+        "achado_silva_2018": "Ministros nao tem aumentado divergencias de votos entre si",
+        "divergencias_federativas": "As principais divergencias ocorrem sobre organizacao da federacao e poderes em nivel estadual",
+        "decisoes_monocraticas": "Apesar do aumento no numero de decisoes monocraticas, esta fragmentacao se baseia em consensos previos e estaveis que permitem delegacao de poderes de admissibilidade e merito aos relatores"
+      }
+    },
+    {
+      "id": "fonte-007",
+      "titulo": "Comportamento estrategico do STF nas questoes de interesse governista",
+      "url": "https://pos.direito.ufmg.br/rbep/index.php/rbep/article/download/734/622/2843",
+      "tipo": "artigo",
+      "publicacao": "Revista Brasileira de Estudos Politicos (UFMG)",
+      "tribunal": "STF",
+      "dados_extraidos": {
+        "periodo_analisado": "Crise politica 2013-2018",
+        "tema": "Analise da relacao entre membros dos Poderes Constituidos durante periodo de crise"
+      }
+    },
+    {
+      "id": "fonte-008",
+      "titulo": "Fora dos holofotes: estudo empirico sobre o controle da imparcialidade dos ministros do STF",
+      "url": "https://revistades.jur.puc-rio.br/index.php/revistades/article/view/1178",
+      "tipo": "artigo",
+      "publicacao": "Revista Direito, Estado e Sociedade (PUC-Rio)",
+      "tribunal": "STF",
+      "dados_extraidos": {
+        "tema": "Efetividade dos mecanismos de controle da imparcialidade no STF",
+        "achado_principal": "Nenhuma arguicao de impedimento ou suspeicao foi levada a julgamento pelo Plenario",
+        "instrumentos_analisados": "Arguicoes de impedimento e suspeicao"
+      }
+    },
+    {
+      "id": "fonte-009",
+      "titulo": "Repercussao Geral e Processo Decisorio no STF",
+      "autora": "Damares Medina Coelho",
+      "url": "https://estudogeral.uc.pt/bitstream/10316/100145/1/Damares%20Medina%20Coelho.pdf",
+      "tipo": "tese",
+      "instituicao": "Universidade Presbiteriana Mackenzie / Universidade de Coimbra",
+      "tribunal": "STF",
+      "dados_extraidos": {
+        "periodo_analisado": "Temas de repercussao geral julgados pelo STF ate 31/12/2013",
+        "achado_importante": "Inexistencia de uma dicotomia politica traduzivel no binomio liberal/conservador no ambiente politico-institucional brasileiro",
+        "metodo": "Pesquisa empirica exaustiva sobre universo de temas de repercussao geral"
+      }
+    },
+    {
+      "id": "fonte-010",
+      "titulo": "Veja qual presidente indicou cada ministro no STF",
+      "url": "https://www.migalhas.com.br/quentes/442064/veja-qual-presidente-indicou-cada-ministro-no-stf",
+      "tipo": "reportagem",
+      "publicacao": "Migalhas",
+      "tribunal": "STF",
+      "dados_extraidos": {
+        "composicao_por_indicacao": {
+          "Lula": {
+            "quantidade": 4,
+            "ministros": ["Carmen Lucia", "Dias Toffoli", "Cristiano Zanin", "Flavio Dino"]
+          },
+          "Dilma_Rousseff": {
+            "quantidade": 3,
+            "ministros": ["Luiz Fux", "Luis Roberto Barroso", "Edson Fachin"]
+          },
+          "Bolsonaro": {
+            "quantidade": 2,
+            "ministros": ["Kassio Nunes Marques", "Andre Mendonca"]
+          },
+          "Temer": {
+            "quantidade": 1,
+            "ministros": ["Alexandre de Moraes"]
+          },
+          "FHC": {
+            "quantidade": 1,
+            "ministros": ["Gilmar Mendes"]
+          }
+        },
+        "nota": "Lula indicou ao todo 10 ministros ao STF nos tres mandatos. Barroso aposentou-se antecipadamente, abrindo nova vaga. Jorge Messias (AGU) foi indicado por Lula para a vaga, pendente confirmacao pelo Senado.",
+        "proxima_aposentadoria_compulsoria": "Luiz Fux - 26/04/2028"
+      }
+    },
+    {
+      "id": "fonte-011",
+      "titulo": "Ministros do STF: Saiba quem os indicou e quando se aposentam",
+      "url": "https://www.migalhas.com.br/quentes/399657/ministros-do-stf-saiba-quem-os-indicou-e-quando-se-aposentam",
+      "tipo": "reportagem",
+      "publicacao": "Migalhas",
+      "tribunal": "STF",
+      "dados_extraidos": {
+        "aposentadorias_previstas": {
+          "Luiz_Fux": "26/04/2028",
+          "Carmen_Lucia": "19/04/2029",
+          "Edson_Fachin": "08/02/2033",
+          "Dias_Toffoli": "15/11/2042",
+          "Alexandre_de_Moraes": "13/12/2043",
+          "Kassio_Nunes_Marques": "16/05/2047"
+        },
+        "nota_barroso": "Barroso aposentou-se antecipadamente - poderia ficar ate 2033"
+      }
+    },
+    {
+      "id": "fonte-012",
+      "titulo": "STJ se destaca no relatorio Justica em Numeros 2025",
+      "url": "https://www.stj.jus.br/sites/portalp/Paginas/Comunicacao/Noticias/2025/26092025-STJ-se-destaca-em-relatorio-anual-que-mede-desempenho-do-Judiciario-brasileiro.aspx",
+      "tipo": "reportagem",
+      "publicacao": "Portal STJ",
+      "tribunal": "STJ",
+      "dados_extraidos": {
+        "ano_base": 2024,
+        "processos_recebidos": 501024,
+        "aumento_recebidos": "13% em relacao ao ano anterior",
+        "distribuidos_gabinetes": 287070,
+        "analise_presidencia": 207558,
+        "total_decisoes": 677255,
+        "equivale_a": "mais de uma decisao por minuto",
+        "decisoes_sem_recurso_interno": 493164,
+        "julgados_sessao": 153023,
+        "acordaos_publicados": 149402,
+        "processos_baixados": 457475,
+        "ministros_julgadores": 30,
+        "marca_historica": "Supera volume acumulado nos primeiros 11 anos de funcionamento do tribunal"
+      }
+    },
+    {
+      "id": "fonte-013",
+      "titulo": "Com Plenario virtual, STJ deu duas decisoes por minuto em fevereiro",
+      "url": "https://www.conjur.com.br/2025-mar-14/turbinado-pelo-plenario-virtual-stj-deu-duas-decisoes-por-minuto-em-fevereiro/",
+      "tipo": "reportagem",
+      "publicacao": "Consultor Juridico (ConJur)",
+      "tribunal": "STJ",
+      "dados_extraidos": {
+        "periodo": "Janeiro-Fevereiro 2025",
+        "total_decisoes_2025": 102458,
+        "aumento_vs_2024": "34,6% a mais que as 76.079 de 2024 no mesmo periodo",
+        "decisoes_agravos_embargos_2025": 23885,
+        "aumento_agravos_vs_2024": "67,80% (vs 9.617 em 2024)",
+        "decisoes_presidencia_fevereiro": 33250,
+        "presidente": "Herman Benjamin",
+        "impacto_plenario_virtual": "Ampliado em agosto 2024, com pautas virtuais de mais de 1000 processos"
+      }
+    },
+    {
+      "id": "fonte-014",
+      "titulo": "STJ bate marca inedita de 500 mil processos recebidos em 2024",
+      "url": "https://www.conjur.com.br/2024-dez-20/stj-bate-marca-de-500-mil-processos-recebidos-em-2024/",
+      "tipo": "reportagem",
+      "publicacao": "Consultor Juridico (ConJur)",
+      "tribunal": "STJ",
+      "dados_extraidos": {
+        "marca_historica": "500 mil processos recebidos em um unico ano",
+        "destaque_forca_tarefa": "Reducao de mais de 13% no acervo da 3a Secao com convocacao de 100 juizes",
+        "destaque_individual": {
+          "ministra": "Daniela Teixeira",
+          "acervo_anterior": 12000,
+          "acervo_apos_forca_tarefa": 4767
+        }
+      }
+    },
+    {
+      "id": "fonte-015",
+      "titulo": "Veja como fica composicao completa do STJ por genero e regionalidade",
+      "url": "https://www.migalhas.com.br/quentes/438720/veja-como-fica-composicao-completa-do-stj-por-genero-e-regionalidade",
+      "tipo": "reportagem",
+      "publicacao": "Migalhas",
+      "tribunal": "STJ",
+      "dados_extraidos": {
+        "total_ministros": 33,
+        "percentual_mulheres": "18%",
+        "representacao_feminina": "Ao menos uma mulher em cada uma das quatro categorias (TRF, TJ, Advocacia, MP)",
+        "composicao_regional": {
+          "Norte": 1,
+          "Nordeste": 11,
+          "Centro_Oeste": 1,
+          "Sudeste": 16,
+          "Sul": 4
+        },
+        "categorias": {
+          "TRFs": "1/3 dos ministros",
+          "TJs": "1/3 dos ministros",
+          "Advocacia_MP": "1/3 dos ministros (alternado)"
+        },
+        "novos_ministros_2025": {
+          "Marluce_Caldas": {
+            "origem": "Procuradora do MP/AL",
+            "vaga": "Laurita Vaz (aposentada out/2023)",
+            "turma": "5a Turma",
+            "observacao": "Primeira ministra do STJ vinda do Ministerio Publico Estadual"
+          },
+          "Carlos_Pires_Brandao": {
+            "origem": "Desembargador do TRF da 1a Regiao",
+            "vaga": "Assusete Magalhaes (aposentada jan/2024)",
+            "turma": "6a Turma"
+          }
+        }
+      }
+    },
+    {
+      "id": "fonte-016",
+      "titulo": "Veja quem indicou os ministros do STJ e quando devem deixar o cargo",
+      "url": "https://www.migalhas.com.br/quentes/399840/veja-quem-indicou-os-ministros-do-stj-e-quando-devem-deixar-o-cargo",
+      "tipo": "reportagem",
+      "publicacao": "Migalhas",
+      "tribunal": "STJ",
+      "dados_extraidos": {
+        "indicacoes_por_presidente": {
+          "Dilma_Rousseff": "46,9% dos ministros (antes das novas posses de 2025)",
+          "Lula": "14 ministros indicados no total (maior numero apos posses de 2025)",
+          "nota": "Lula pode superar Dilma com 4 vagas adicionais ate fim do mandato em 2026"
+        },
+        "decano": {
+          "nome": "Francisco Falcao",
+          "nomeado_por": "Fernando Henrique Cardoso",
+          "ano_posse": 1999
+        },
+        "mais_recentes": {
+          "ministros": ["Teodoro Silva Santos", "Afranio Vilela", "Daniela Teixeira"],
+          "nomeados_por": "Lula",
+          "ano": 2023
+        },
+        "proximas_aposentadorias": {
+          "2026": ["Antonio Saldanha Palheiro", "Og Fernandes"],
+          "2038": "Seis ministros devem deixar o STJ simultaneamente"
+        },
+        "tempo_substituicao": "Entre aposentadoria e posse do novo ministro, tempo minimo registrado foi de 7 meses (ultimas 10 nomeacoes)"
+      }
+    },
+    {
+      "id": "fonte-017",
+      "titulo": "Veja composicao dos colegiados do STJ com a entrada de novos ministros",
+      "url": "https://www.migalhas.com.br/quentes/438740/veja-composicao-dos-colegiados-do-stj-com-a-entrada-de-novos-ministros",
+      "tipo": "reportagem",
+      "publicacao": "Migalhas",
+      "tribunal": "STJ",
+      "dados_extraidos": {
+        "composicao_turmas_2025": {
+          "1a_turma": {
+            "secao": "1a Secao - Direito Publico",
+            "presidente": "Sergio Kukina",
+            "ministros": ["Sergio Kukina", "Regina Helena Costa", "Benedito Goncalves", "Gurgel de Faria", "Paulo Sergio Domingues"]
+          },
+          "2a_turma": {
+            "secao": "1a Secao - Direito Publico",
+            "ministros": ["Francisco Falcao", "Maria Thereza de Assis Moura", "Marco Aurelio Bellizze", "Teodoro Silva Santos", "Afranio Vilela"]
+          },
+          "3a_turma": {
+            "secao": "2a Secao - Direito Privado",
+            "presidente": "Humberto Martins",
+            "ministros": ["Humberto Martins", "Nancy Andrighi", "Ricardo Villas Boas Cueva", "Moura Ribeiro", "Daniela Teixeira"]
+          },
+          "4a_turma": {
+            "secao": "2a Secao - Direito Privado",
+            "presidente": "Joao Otavio de Noronha",
+            "ministros": ["Joao Otavio de Noronha", "Raul Araujo", "Isabel Gallotti", "Antonio Carlos Ferreira", "Marco Buzzi"]
+          },
+          "5a_turma": {
+            "secao": "3a Secao - Direito Penal",
+            "ministros": ["Reynaldo Soares da Fonseca", "Ribeiro Dantas", "Joel Ilan Paciornik", "Messod Azulay Neto", "Maria Marluce Caldas"]
+          },
+          "6a_turma": {
+            "secao": "3a Secao - Direito Penal",
+            "presidente": "Sebastiao Reis Junior",
+            "ministros": ["Sebastiao Reis Junior", "Og Fernandes", "Rogerio Schietti Cruz", "Antonio Saldanha Palheiro", "Carlos Pires Brandao"]
+          }
+        }
+      }
+    },
+    {
+      "id": "fonte-018",
+      "titulo": "TJDFT julgou mais de 550 mil processos em 2024",
+      "url": "https://www.tjdft.jus.br/institucional/imprensa/noticias/2025/abril/tjdft-julgou-mais-de-550-mil-processos-em-2024",
+      "tipo": "reportagem",
+      "publicacao": "Portal TJDFT",
+      "tribunal": "TJDFT",
+      "dados_extraidos": {
+        "total_processos_julgados_2024": 556012,
+        "distribuicao_por_instancia": {
+          "1o_grau": {
+            "quantidade": 256640,
+            "percentual": "46,2%"
+          },
+          "juizados_especiais": {
+            "quantidade": 169649
+          },
+          "2o_grau": {
+            "quantidade": 111666
+          },
+          "turmas_recursais": {
+            "quantidade": 18057
+          }
+        },
+        "comparacao_2023": "30.085 processos a mais que 2023",
+        "tendencia": "Crescimento continuo desde 2020 (364.387 em 2020)",
+        "novos_processos_2024": 404514,
+        "juizados_especiais_novos": {
+          "quantidade": 149515,
+          "percentual": "37% do total"
+        }
+      }
+    },
+    {
+      "id": "fonte-019",
+      "titulo": "Justica em Numeros: TJDFT atinge melhor indice de produtividade comparada entre tribunais de medio porte",
+      "url": "https://www.tjdft.jus.br/institucional/imprensa/noticias/2025/setembro/justica-em-numeros-tjdft-atinge-melhor-indice-de-produtividade-comparada-entre-tribunais-de-medio-porte",
+      "tipo": "reportagem",
+      "publicacao": "Portal TJDFT",
+      "tribunal": "TJDFT",
+      "dados_extraidos": {
+        "ipc_jus": "95% (melhor entre tribunais estaduais de medio porte)",
+        "taxa_congestionamento_liquida": "45,5% (menor entre tribunais de medio porte)",
+        "taxa_congestionamento_anterior": "49% em 2024",
+        "reducao_congestionamento": "Significativa queda de 49% para 45,5%",
+        "juizados_especiais": {
+          "indice_atendimento_demanda": "103,72% (baixaram mais processos do que receberam)",
+          "taxa_congestionamento_liquido": "29,78%"
+        },
+        "decisoes_juizados_2024": 376811,
+        "audiencias_juizados_2024": 63878
+      }
+    },
+    {
+      "id": "fonte-020",
+      "titulo": "Composicao da 2a Instancia do TJDFT",
+      "url": "https://www.tjdft.jus.br/institucional/composicao/2a-instancia",
+      "tipo": "reportagem",
+      "publicacao": "Portal TJDFT",
+      "tribunal": "TJDFT",
+      "dados_extraidos": {
+        "total_desembargadores": 48,
+        "juizes_substitutos": 11,
+        "total_historico": "145 desembargadores ja fizeram parte nos 64 anos do tribunal",
+        "estrutura": {
+          "camaras_civeis": 2,
+          "camara_criminal": 1,
+          "turmas_civeis": 8,
+          "turmas_criminais": 3
+        },
+        "administracao_2024_2026": {
+          "presidente": "Waldir Leoncio",
+          "1o_vice_presidente": "Roberval Belinati",
+          "2o_vice_presidente": "Angelo Passarelli",
+          "corregedor": "Mario-Zam Belmiro Rosa"
+        }
+      }
+    },
+    {
+      "id": "fonte-021",
+      "titulo": "TRF1 conta com 14 novos desembargadores na sua composicao",
+      "url": "https://portal.trf1.jus.br/portaltrf1/comunicacao-social/imprensa/noticias/noticias-detalhe-2569.htm",
+      "url_alternativa": "https://www.rotajuridica.com.br/trf-da-1a-regiao-conta-com-14-novos-desembargadores-na-sua-composicao-saiba-quem-sao/",
+      "tipo": "reportagem",
+      "publicacao": "Portal TRF1",
+      "tribunal": "TRF1",
+      "dados_extraidos": {
+        "lei_ampliacao": "Lei n. 14.253/2021",
+        "composicao_anterior": 27,
+        "composicao_atual": 43,
+        "turmas_anteriores": 8,
+        "turmas_atuais": 13,
+        "maior_ampliacao": "Maior ampliacao do numero de integrantes desde instalacao em marco de 1989",
+        "novos_desembargadores": {
+          "por_antiguidade": [
+            "Solange Salgado da Silva (SJDF)",
+            "Marcus Vinicius Reis Bastos (SJDF)",
+            "Rui Costa Goncalves (SJDF)",
+            "Urbano Leal Berquo Neto (SJGO)",
+            "Nilza Maria Costa dos Reis (SJBA)",
+            "Euler de Almeida Silva Junior (SJGO)",
+            "Rosana Noya Alves Weibel Kaufmann (vaga aposentadoria Angela Catao)"
+          ],
+          "por_merecimento": [
+            "Roberto Carvalho Veloso (ex-presidente Ajufe)",
+            "Marcelo Velasco Nascimento Albernaz",
+            "Katia Balbino de Carvalho Ferreira",
+            "Antonio Oswaldo Scarpa",
+            "Leao Aparecido Alves",
+            "Newton Pereira Ramos Neto",
+            "Candice Lavocat Galvao Jobim"
+          ],
+          "quinto_constitucional_oab": [
+            "Flavio Jaime de Moraes Jardim",
+            "Eduardo Felipe Alves Martins"
+          ]
+        }
+      }
+    },
+    {
+      "id": "fonte-022",
+      "titulo": "Composicao atual dos orgaos julgadores do TRF1",
+      "url": "https://trf1.jus.br/trf1/noticias/confira-a-composicao-atual-dos-orgaos-julgadores-do-tribunal-regional-federal-da-1-regiao",
+      "tipo": "reportagem",
+      "publicacao": "Portal TRF1",
+      "tribunal": "TRF1",
+      "dados_extraidos": {
+        "ato_normativo": "Ato Presi 300/2024",
+        "magistrados_ativos_plenario": 38,
+        "direcao": {
+          "presidente": "Jose Amilcar Machado",
+          "vice_presidente": "Marcos Augusto de Sousa",
+          "corregedor_regional": "Neviton Guedes"
+        },
+        "secoes_turmas": {
+          "1a_secao": {
+            "turmas": ["1a", "2a", "9a"],
+            "competencia": "Servidores publicos civis e militares, beneficios assistenciais, previdenciarios",
+            "desembargadores": ["Joao Luis de Sousa", "Rafael Paulo", "Gustavo Soares Amorim", "Morais da Rocha", "Marcelo Albernaz", "Rui Goncalves", "Urbano Leal Berquo Neto", "Antonio Scarpa", "Nilza Reis", "Euler de Almeida"]
+          },
+          "2a_secao": {
+            "turmas": ["3a", "4a", "10a"],
+            "competencia": "Materia penal, improbidade administrativa, desapropriacao",
+            "desembargadores": ["Ney Bello", "Maria do Carmo Cardoso", "Wilson Alves de Souza", "Cesar Jatahy", "Joao Batista Moreira", "Leao Alves", "Marcus Bastos"]
+          },
+          "3a_secao": {
+            "turmas": ["5a", "6a", "11a", "12a"],
+            "competencia": "Licitacao, contratos administrativos, concursos publicos, direito ambiental, registros publicos, responsabilidade civil, ensino, propriedade industrial, FGTS",
+            "desembargadores": ["Souza Prudente", "Daniel Paes Ribeiro", "Daniele Maranhao", "Carlos Pires Brandao", "Jamil de Jesus Oliveira", "Katia Balbino", "Newton Ramos", "Candice Lavocat Galvao Jobim", "Rosana Noya Alves Weibel Kaufmann"]
+          },
+          "4a_secao": {
+            "turmas": ["7a", "8a", "13a"],
+            "desembargadores": ["Novely Vilanova", "Hercules Fajoses", "Carlos Moreira Alves", "Gilda Sigmaringa Seixas", "Italo Fioravanti Sabo Mendes", "Maura Moraes Tayer", "Pedro Braga Filho"]
+          }
+        }
+      }
+    },
+    {
+      "id": "fonte-023",
+      "titulo": "Judiciario reduziu acervo e aumentou produtividade em 2024 - Relatorio Justica em Numeros 2025",
+      "url": "https://noticias.stf.jus.br/postsnoticias/judiciario-reduziu-acervo-e-aumentou-produtividade-em-2024/",
+      "tipo": "reportagem",
+      "publicacao": "Portal STF / CNJ",
+      "tribunal": "geral",
+      "dados_extraidos": {
+        "acervo_pendente": "80,6 milhoes de processos",
+        "reducao_acervo": "3,5 milhoes de casos (5,3%) - maior queda da serie historica",
+        "aumento_produtividade": "19,9%",
+        "processos_baixados": "44,8 milhoes (maior volume da serie historica)",
+        "processos_julgados": "44,6 milhoes (aumento de 28% vs ano anterior)",
+        "novos_processos": "39,4 milhoes (aumento de 6,7%)"
+      }
+    },
+    {
+      "id": "fonte-024",
+      "titulo": "As recentes alteracoes na composicao do Superior Tribunal de Justica",
+      "url": "https://www.mattosfilho.com.br/unico/composicao-superior-tribunal-justica/",
+      "tipo": "artigo",
+      "publicacao": "Mattos Filho Advogados",
+      "tribunal": "STJ",
+      "dados_extraidos": {
+        "nota": "Analise juridica das alteracoes recentes na composicao do STJ e seus impactos na jurisprudencia"
+      }
+    }
+  ],
+  "dados_por_magistrado": {
+    "stf-gilmar-mendes": {
+      "tribunal": "STF",
+      "nome_completo": "Gilmar Ferreira Mendes",
+      "cargo_anterior": "Chefe da AGU",
+      "indicado_por": "Fernando Henrique Cardoso (FHC)",
+      "ano_posse": 2002,
+      "aposentadoria_prevista": "Decano do STF - data nao informada nas fontes consultadas",
+      "turma_atual": "2a Turma (Presidente)",
+      "alinhamento": {
+        "silva_2018": "Bloco 1 - junto com Dias Toffoli e Teori Zavascki, em oposicao a maioria",
+        "observacao": "Descrito como mais capaz de desafiar a 'maioria silenciosa' que Marco Aurelio",
+        "ferreira_mueller_2013": "Posicao estimada via NOMINATE no eixo pro/contra interesses economicos do Executivo"
+      },
+      "taxas": {
+        "nota": "Dados individuais de taxa de concordancia nao disponiveis nas fontes consultadas"
+      },
+      "observacoes": "Ministro mais antigo do STF (decano). Pesquisas mostram que se posiciona frequentemente em bloco com Toffoli e, historicamente, com Teori Zavascki. Comportamento singular identificado em estudos de ponto ideal."
+    },
+    "stf-carmen-lucia": {
+      "tribunal": "STF",
+      "nome_completo": "Carmen Lucia Antunes Rocha",
+      "cargo_anterior": "Procuradora do Estado de Minas Gerais",
+      "indicado_por": "Lula (1o mandato)",
+      "ano_posse": 2006,
+      "aposentadoria_prevista": "19/04/2029",
+      "turma_atual": "1a Turma",
+      "alinhamento": {
+        "silva_2018": "Bloco 2 - junto com Rosa Weber, Celso de Mello, Barroso, Lewandowski, Fux"
+      },
+      "observacoes": "Posicionada no bloco majoritario nos estudos de ponto ideal (2012-2017)"
+    },
+    "stf-dias-toffoli": {
+      "tribunal": "STF",
+      "nome_completo": "Jose Antonio Dias Toffoli",
+      "cargo_anterior": "Chefe da AGU",
+      "indicado_por": "Lula (1o mandato)",
+      "ano_posse": 2009,
+      "aposentadoria_prevista": "15/11/2042",
+      "turma_atual": "2a Turma",
+      "alinhamento": {
+        "silva_2018": "Bloco 1 - junto com Gilmar Mendes e Teori Zavascki"
+      },
+      "observacoes": "Alinhamento consistente com Gilmar Mendes nos estudos de ponto ideal"
+    },
+    "stf-luiz-fux": {
+      "tribunal": "STF",
+      "nome_completo": "Luiz Fux",
+      "cargo_anterior": "Juiz, Desembargador TJ/RJ, Ministro do STJ",
+      "indicado_por": "Dilma Rousseff",
+      "ano_posse": 2011,
+      "aposentadoria_prevista": "26/04/2028",
+      "turma_atual": "2a Turma (mudou da 1a para a 2a Turma em outubro/2025)",
+      "alinhamento": {
+        "silva_2018": "Bloco 2 - junto com Rosa Weber, Celso de Mello, Barroso, Carmen Lucia, Lewandowski"
+      },
+      "observacoes": "Proximo a se aposentar. Mudou para a 2a Turma apos aposentadoria de Barroso, tornando-a mais 'garantista' segundo analistas."
+    },
+    "stf-luis-roberto-barroso": {
+      "tribunal": "STF",
+      "nome_completo": "Luis Roberto Barroso",
+      "cargo_anterior": "Advogado e Professor",
+      "indicado_por": "Dilma Rousseff",
+      "ano_posse": 2013,
+      "status": "APOSENTADO - anunciou aposentadoria antecipada (poderia ficar ate 2033)",
+      "turma_anterior": "1a Turma",
+      "foi_presidente_stf": true,
+      "alinhamento": {
+        "silva_2018": "Bloco 2 - junto com Rosa Weber, Celso de Mello, Carmen Lucia, Lewandowski, Fux"
+      },
+      "observacoes": "Aposentou-se antecipadamente do STF. Era presidente da Corte. Vaga indicada para Jorge Messias (AGU) por Lula."
+    },
+    "stf-edson-fachin": {
+      "tribunal": "STF",
+      "nome_completo": "Edson Fachin",
+      "cargo_anterior": "Advogado e Professor",
+      "indicado_por": "Dilma Rousseff",
+      "ano_posse": 2015,
+      "aposentadoria_prevista": "08/02/2033",
+      "turma_atual": "Presidente do STF (desde 29/09/2025) - nao integra turmas",
+      "alinhamento": {
+        "silva_2018": "Comportamento muito singular - destacou-se dos demais ministros nos pontos ideais"
+      },
+      "observacoes": "Um dos quatro ministros com comportamento mais distinto no mapeamento de Silva (2018), junto com Marco Aurelio, Joaquim Barbosa e Alexandre de Moraes."
+    },
+    "stf-alexandre-de-moraes": {
+      "tribunal": "STF",
+      "nome_completo": "Alexandre de Moraes",
+      "cargo_anterior": "Promotor de Justica, Secretario de Seguranca Publica de SP, Ministro da Justica",
+      "indicado_por": "Michel Temer",
+      "ano_posse": 2017,
+      "aposentadoria_prevista": "13/12/2043",
+      "turma_atual": "1a Turma",
+      "alinhamento": {
+        "silva_2018": "Comportamento muito singular - destacou-se dos demais ministros nos pontos ideais"
+      },
+      "observacoes": "Um dos quatro ministros com comportamento mais distinto. Ponto ideal extremo em relacao aos demais."
+    },
+    "stf-kassio-nunes-marques": {
+      "tribunal": "STF",
+      "nome_completo": "Kassio Nunes Marques",
+      "cargo_anterior": "Desembargador do TRF da 1a Regiao",
+      "indicado_por": "Jair Bolsonaro",
+      "ano_posse": 2020,
+      "aposentadoria_prevista": "16/05/2047",
+      "turma_atual": "2a Turma",
+      "alinhamento": {
+        "nota": "Nomeado apos periodo dos estudos academicos consultados (2012-2017)"
+      },
+      "observacoes": "Primeiro ministro indicado por Bolsonaro. Vindo do TRF1."
+    },
+    "stf-andre-mendonca": {
+      "tribunal": "STF",
+      "nome_completo": "Andre Luiz de Almeida Mendonca",
+      "cargo_anterior": "Advogado da Petrobras, Chefe da AGU, Ministro da Justica",
+      "indicado_por": "Jair Bolsonaro",
+      "ano_posse": 2021,
+      "turma_atual": "2a Turma",
+      "alinhamento": {
+        "nota": "Nomeado apos periodo dos estudos academicos consultados (2012-2017)"
+      },
+      "observacoes": "Segunda indicacao de Bolsonaro. Servidor de carreira."
+    },
+    "stf-cristiano-zanin": {
+      "tribunal": "STF",
+      "nome_completo": "Cristiano Zanin Martins",
+      "cargo_anterior": "Advogado",
+      "indicado_por": "Lula (3o mandato)",
+      "ano_posse": "05/07/2023",
+      "vaga": "Ricardo Lewandowski (aposentado)",
+      "turma_atual": "1a Turma",
+      "alinhamento": {
+        "nota": "Nomeado apos periodo dos estudos academicos consultados"
+      },
+      "observacoes": "Indicado por Lula no terceiro mandato."
+    },
+    "stf-flavio-dino": {
+      "tribunal": "STF",
+      "nome_completo": "Flavio Dino de Castro e Costa",
+      "cargo_anterior": "Ex-Governador do Maranhao, Ministro da Justica",
+      "indicado_por": "Lula (3o mandato)",
+      "ano_posse": "22/02/2024",
+      "vaga": "Rosa Weber (aposentada)",
+      "turma_atual": "1a Turma (Presidente)",
+      "alinhamento": {
+        "nota": "Nomeado apos periodo dos estudos academicos consultados"
+      },
+      "observacoes": "10o ministro indicado por Lula ao Supremo ao longo dos tres mandatos."
+    },
+    "stf-marco-aurelio": {
+      "tribunal": "STF",
+      "status": "APOSENTADO",
+      "alinhamento": {
+        "silva_2018": "Comportamento muito singular - destacou-se dos demais ministros nos pontos ideais",
+        "observacao": "Menos capaz de desafiar a 'maioria silenciosa' em comparacao com Gilmar Mendes"
+      },
+      "observacoes": "Aposentado. Um dos quatro ministros com comportamento mais distinto nos estudos de ponto ideal."
+    },
+    "stf-joaquim-barbosa": {
+      "tribunal": "STF",
+      "status": "APOSENTADO",
+      "alinhamento": {
+        "silva_2018": "Comportamento muito singular - destacou-se dos demais ministros nos pontos ideais"
+      },
+      "observacoes": "Aposentado. Comportamento extremamente singular nos pontos ideais."
+    },
+    "stj-herman-benjamin": {
+      "tribunal": "STJ",
+      "nome_completo": "Antonio Herman de Vasconcellos e Benjamin",
+      "cargo": "Presidente do STJ (biênio atual)",
+      "indicado_por": "informacao nao disponivel nas fontes consultadas",
+      "turma": "nao especificada (presidente nao integra turma ordinariamente)",
+      "observacoes": "Como presidente, proferiu 33.250 decisoes apenas em fevereiro/2025. Classificou recorde de 500 mil processos como reflexo preocupante da excessiva judicializacao."
+    },
+    "stj-nancy-andrighi": {
+      "tribunal": "STJ",
+      "nome_completo": "Nancy Andrighi",
+      "turma": "3a Turma (2a Secao - Direito Privado)",
+      "origem": "TJ",
+      "observacoes": "Uma das ministras mais antigas. Referencia em Direito Civil e do Consumidor."
+    },
+    "stj-francisco-falcao": {
+      "tribunal": "STJ",
+      "nome_completo": "Francisco Falcao",
+      "turma": "2a Turma (1a Secao - Direito Publico)",
+      "indicado_por": "Fernando Henrique Cardoso",
+      "ano_posse": 1999,
+      "origem": "TRF",
+      "observacoes": "Decano do STJ. Mais antigo ministro em atividade."
+    },
+    "stj-daniela-teixeira": {
+      "tribunal": "STJ",
+      "nome_completo": "Daniela Teixeira",
+      "turma": "3a Turma (2a Secao - Direito Privado)",
+      "indicado_por": "Lula",
+      "ano_posse": 2023,
+      "origem": "TJ",
+      "observacoes": "Uma das mais recentes. Com apoio de forca-tarefa e juizes auxiliares, reduziu acervo de mais de 12 mil para 4.767 processos."
+    },
+    "stj-marluce-caldas": {
+      "tribunal": "STJ",
+      "nome_completo": "Maria Marluce Caldas",
+      "turma": "5a Turma (3a Secao - Direito Penal)",
+      "indicado_por": "Lula",
+      "ano_posse": "04/09/2025",
+      "vaga": "Laurita Vaz (aposentada out/2023)",
+      "origem": "Ministerio Publico Estadual (AL)",
+      "observacoes": "Primeira ministra do STJ vinda do Ministerio Publico Estadual. Quase 39 anos de carreira no MP/AL. Area criminal e direitos humanos."
+    },
+    "stj-carlos-pires-brandao": {
+      "tribunal": "STJ",
+      "nome_completo": "Carlos Augusto Pires Brandao",
+      "turma": "6a Turma (3a Secao - Direito Penal)",
+      "indicado_por": "Lula",
+      "ano_posse": "04/09/2025",
+      "vaga": "Assusete Magalhaes (aposentada jan/2024)",
+      "origem": "TRF da 1a Regiao",
+      "observacoes": "Desembargador do TRF1 e professor da Universidade Federal do Piaui."
+    },
+    "stj-sergio-kukina": {
+      "tribunal": "STJ",
+      "turma": "1a Turma (Presidente) - 1a Secao - Direito Publico",
+      "observacoes": "Presidente da 1a Turma"
+    },
+    "stj-regina-helena-costa": {
+      "tribunal": "STJ",
+      "turma": "1a Turma - 1a Secao - Direito Publico",
+      "observacoes": "Uma das ministras do STJ"
+    },
+    "stj-benedito-goncalves": {
+      "tribunal": "STJ",
+      "turma": "1a Turma - 1a Secao - Direito Publico"
+    },
+    "stj-gurgel-de-faria": {
+      "tribunal": "STJ",
+      "turma": "1a Turma - 1a Secao - Direito Publico"
+    },
+    "stj-paulo-sergio-domingues": {
+      "tribunal": "STJ",
+      "turma": "1a Turma - 1a Secao - Direito Publico",
+      "origem": "TRF"
+    },
+    "stj-humberto-martins": {
+      "tribunal": "STJ",
+      "turma": "3a Turma (Presidente) - 2a Secao - Direito Privado",
+      "origem": "TJ"
+    },
+    "stj-ricardo-villas-boas-cueva": {
+      "tribunal": "STJ",
+      "turma": "3a Turma - 2a Secao - Direito Privado"
+    },
+    "stj-moura-ribeiro": {
+      "tribunal": "STJ",
+      "turma": "3a Turma - 2a Secao - Direito Privado",
+      "origem": "TJ"
+    },
+    "stj-joao-otavio-noronha": {
+      "tribunal": "STJ",
+      "turma": "4a Turma (Presidente) - 2a Secao - Direito Privado",
+      "origem": "TRF"
+    },
+    "stj-raul-araujo": {
+      "tribunal": "STJ",
+      "turma": "4a Turma - 2a Secao - Direito Privado",
+      "origem": "TJ"
+    },
+    "stj-isabel-gallotti": {
+      "tribunal": "STJ",
+      "turma": "4a Turma - 2a Secao - Direito Privado"
+    },
+    "stj-antonio-carlos-ferreira": {
+      "tribunal": "STJ",
+      "turma": "4a Turma - 2a Secao - Direito Privado",
+      "origem": "Advocacia"
+    },
+    "stj-marco-buzzi": {
+      "tribunal": "STJ",
+      "turma": "4a Turma - 2a Secao - Direito Privado",
+      "origem": "TJ"
+    },
+    "stj-reynaldo-soares-fonseca": {
+      "tribunal": "STJ",
+      "turma": "5a Turma - 3a Secao - Direito Penal"
+    },
+    "stj-ribeiro-dantas": {
+      "tribunal": "STJ",
+      "turma": "5a Turma - 3a Secao - Direito Penal"
+    },
+    "stj-joel-ilan-paciornik": {
+      "tribunal": "STJ",
+      "turma": "5a Turma - 3a Secao - Direito Penal"
+    },
+    "stj-messod-azulay-neto": {
+      "tribunal": "STJ",
+      "turma": "5a Turma - 3a Secao - Direito Penal",
+      "origem": "TRF"
+    },
+    "stj-sebastiao-reis-junior": {
+      "tribunal": "STJ",
+      "turma": "6a Turma (Presidente) - 3a Secao - Direito Penal",
+      "origem": "Advocacia/MP"
+    },
+    "stj-og-fernandes": {
+      "tribunal": "STJ",
+      "turma": "6a Turma - 3a Secao - Direito Penal",
+      "origem": "TJ",
+      "aposentadoria_prevista": "2026"
+    },
+    "stj-rogerio-schietti-cruz": {
+      "tribunal": "STJ",
+      "turma": "6a Turma - 3a Secao - Direito Penal",
+      "origem": "Advocacia/MP"
+    },
+    "stj-antonio-saldanha-palheiro": {
+      "tribunal": "STJ",
+      "turma": "6a Turma - 3a Secao - Direito Penal",
+      "origem": "TJ",
+      "aposentadoria_prevista": "2026"
+    },
+    "stj-maria-thereza-assis-moura": {
+      "tribunal": "STJ",
+      "turma": "2a Turma - 1a Secao - Direito Publico"
+    },
+    "stj-marco-aurelio-bellizze": {
+      "tribunal": "STJ",
+      "turma": "2a Turma - 1a Secao - Direito Publico",
+      "origem": "TJ"
+    },
+    "stj-teodoro-silva-santos": {
+      "tribunal": "STJ",
+      "turma": "2a Turma - 1a Secao - Direito Publico",
+      "indicado_por": "Lula",
+      "ano_posse": 2023,
+      "origem": "TJ"
+    },
+    "stj-afranio-vilela": {
+      "tribunal": "STJ",
+      "turma": "2a Turma - 1a Secao - Direito Publico",
+      "indicado_por": "Lula",
+      "ano_posse": 2023,
+      "origem": "TRF"
+    }
+  },
+  "dados_tjdft": {
+    "composicao_turmas_2025": {
+      "turmas_civeis": {
+        "1a_turma_civel": {
+          "desembargadores": ["Teofilo Caetano", "Romulo de Araujo Mendes", "Carlos Pires Soares Neto (Presidente)", "Fabricio Fontoura Bezerra", "Carlos Alberto Martins Filho"],
+          "substituta": "Juliane Balzani Rabelo Inserti",
+          "sessoes": "Quartas-feiras - salas 235, 222 e 223"
+        },
+        "2a_turma_civel": {
+          "desembargadores": ["Joao Egmont", "Hector Valverde Santanna (Presidente)", "Alvaro Ciarlini", "Renato Rodovalho Scussel", "Fernando Tavernard"],
+          "substituta": "Rosangela Scherer de Souza"
+        },
+        "3a_turma_civel": {
+          "desembargadores": ["Maria de Lourdes Abreu"],
+          "convocado": "Flavio Fernando Almeida da Fonseca (Port. GPR 311/2025)"
+        },
+        "4a_turma_civel": {
+          "desembargadores": ["Arnoldo Camanho de Assis", "James Eduardo Oliveira", "Sergio Rocha (Presidente)", "Aiston Henrique de Sousa"],
+          "convocada": "Edi Maria Coutinho Bizzi (Port. GPR 635/2025)",
+          "substituto": "Alberto Santana Gomes"
+        },
+        "5a_turma_civel": {
+          "desembargadores": ["Ana Cantarino", "Maria Ivatonia", "Fabio Eduardo Marques (Presidente)", "Lucimeire Maria da Silva", "Maria Leonor Leiko Aguena"],
+          "substituta": "Patricia Quida Salles",
+          "sessoes": "Quartas-feiras - salas 201, 211 e 209"
+        },
+        "6a_turma_civel": {
+          "desembargadores": ["Alfeu Gonzaga Machado", "Leonardo Bessa", "Arquibaldo Carneiro (Presidente)", "Antonio Fernandes da Luz", "Vera Andrighi"],
+          "substituto": "Antonio Celso Nassar de Oliveira"
+        }
+      },
+      "turmas_criminais": {
+        "1a_turma_criminal": {
+          "desembargadores": ["Esdras Neves", "Leila Arlanch (Presidente)", "Gislene Pinheiro", "Asiel Henrique de Sousa", "Simone Lucindo"],
+          "substituto": "Luis Carlos da Silveira Be",
+          "sessoes": "Quintas-feiras - salas 235, 222 e 223"
+        },
+        "2a_turma_criminal": {
+          "desembargadores": ["Silvanio Barbosa dos Santos", "Jair Soares (Presidente)", "Josaphat Francisco dos Santos", "Diaulas Costa Ribeiro"]
+        }
+      },
+      "camara_criminal": {
+        "desembargadores": ["Silvanio Barbosa dos Santos", "Nilsoni de Freitas Custodio", "Jesuino Rissato", "Jair Soares", "Josaphat Francisco dos Santos", "Simone Lucindo", "Sandoval Oliveira (Presidente)", "Esdras Neves", "Leila Arlanch", "Gislene Pinheiro", "Cruz Macedo", "Diaulas Costa Ribeiro", "Demetrius Gomes Cavalcanti", "Asiel Henrique de Sousa"]
+      },
+      "1a_camara_civel": {
+        "desembargadores": ["Teofilo Caetano", "Fatima Rafael", "Maria de Lourdes Abreu", "Getulio de Moraes Oliveira", "Romulo de Araujo Mendes", "Roberto Freitas Filho", "Ana Cantarino (Presidente)", "Maria Ivatonia", "Luis Gustavo Barbosa de Oliveira", "Fabio Eduardo Marques"]
+      }
+    }
+  },
+  "dados_trf1": {
+    "composicao_2025": {
+      "total_vagas": 43,
+      "lei_ampliacao": "Lei 14.253/2021",
+      "ampliacao_anterior": 27,
+      "turmas_atuais": 13,
+      "secoes": 4,
+      "magistrados_ativos_plenario": 38,
+      "nota": "Restam nomeacoes do quinto constitucional (MPF e OAB) para completar todas as 43 vagas"
+    }
+  },
+  "sintese_achados_academicos": {
+    "dimensao_principal_stf": {
+      "ferreira_mueller_2013": "O eixo principal de divergencia no STF NAO e esquerda-direita, mas pro/contra interesses economicos do Executivo",
+      "silva_2018": "Divisoes entre ministros NAO guardam relacao evidente com origem politica das indicacoes - blocos sao conjunturais",
+      "martins_2018": "Variaveis atitudinais (partidos, ideologia) sao mais relevantes que trajetorias profissionais, mas a relacao e complexa",
+      "medina_coelho": "Inexiste dicotomia traduzivel no binomio liberal/conservador no ambiente politico-institucional brasileiro"
+    },
+    "taxa_unanimidade_stf": "82% das ADIs sao unanimes ou monocraticas (2012-2017)",
+    "taxa_inconstitucionalidade_stf": "Apenas 13% das normas questionadas sao invalidadas",
+    "precisao_modelos": "Modelos de ponto ideal predizem corretamente mais de 95% dos votos em casos de revisao constitucional",
+    "blocos_stf_2012_2017": {
+      "bloco_gilmar": ["Gilmar Mendes", "Dias Toffoli", "Teori Zavascki"],
+      "bloco_majoritario": ["Rosa Weber", "Celso de Mello", "Barroso", "Carmen Lucia", "Lewandowski", "Fux"],
+      "comportamento_singular": ["Marco Aurelio", "Joaquim Barbosa", "Edson Fachin", "Alexandre de Moraes"]
+    },
+    "stj_produtividade_2024": {
+      "processos_recebidos": 501024,
+      "decisoes_totais": 677255,
+      "decisoes_por_minuto": "mais de 1",
+      "acervo_historico": "Supera volume dos primeiros 11 anos do tribunal"
+    },
+    "tjdft_produtividade_2024": {
+      "processos_julgados": 556012,
+      "ipc_jus": "95% (melhor entre medio porte)",
+      "taxa_congestionamento": "45,5% (menor entre medio porte)"
+    },
+    "trf1_ampliacao": {
+      "de": 27,
+      "para": 43,
+      "turmas_de": 8,
+      "turmas_para": 13,
+      "maior_ampliacao_desde": 1989
+    }
+  },
+  "composicao_stf_turmas_2025": {
+    "presidente": "Edson Fachin (desde 29/09/2025)",
+    "1a_turma": {
+      "presidente": "Flavio Dino",
+      "membros": ["Flavio Dino", "Carmen Lucia", "Alexandre de Moraes", "Cristiano Zanin"],
+      "nota": "Apenas 4 membros - 5a vaga sera preenchida apos nomeacao para vaga de Barroso"
+    },
+    "2a_turma": {
+      "presidente": "Gilmar Mendes",
+      "membros": ["Gilmar Mendes", "Dias Toffoli", "Luiz Fux", "Nunes Marques", "Andre Mendonca"],
+      "nota": "Fux mudou da 1a para a 2a Turma em outubro/2025"
+    }
+  }
+}

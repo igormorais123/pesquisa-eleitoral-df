@@ -1,7 +1,7 @@
 {
   "id": "stj-sergio-kukina",
   "nome": "Sérgio Kukina",
-  "nome_completo": null,
+  "nome_completo": "Sérgio Luíz Kukina",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -20,7 +20,9 @@
       "origem": "MP-PR",
       "perfil_ideologico": "Estatalista/Conservador",
       "analise_comportamental": "Adota uma postura austera e formalista. Psicologicamente, demonstra uma forte deferência aos atos administrativos e à proteção do patrimônio público. Seus votos são curtos, diretos e raramente flexibilizam regras processuais em favor do particular.",
-      "secao": "2a Secao (Direito Privado)"
+      "secao": "2a Secao (Direito Privado)",
+      "turma": "1ª Turma",
+      "indicado_por": "Presidente Dilma"
     }
   },
   "atuacao_profissional": {

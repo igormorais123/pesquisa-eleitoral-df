@@ -1,7 +1,7 @@
 {
   "id": "stj-luis-felipe-salomao",
   "nome": "Luis Felipe Salomão",
-  "nome_completo": null,
+  "nome_completo": "Luis Felipe Salomão",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -18,7 +18,11 @@
     },
     "dados_dossie": {
       "perfil_ideologico": "Magistrado de carreira (TJ-RJ), Salomão possui um perfil político aguçado e uma habilidade notável para o diálogo interinstitucional",
-      "analise_comportamental": "* Perfil Psicológico e Ideológico: Magistrado de carreira (TJ-RJ), Salomão possui um perfil político aguçado e uma habilidade notável para o diálogo interinstitucional. Psicologicamente, é um pragmático; suas decisões frequentemente aplicam a Análise Econômica do Direito, ponderando as consequências práticas e financeiras dos vereditos. É visto como um garantidor da segurança jurídica empresarial e um gestor rigoroso.  \n* Tendência Decisória: No Direito Privado, tende a valorizar a auton"
+      "analise_comportamental": "* Perfil Psicológico e Ideológico: Magistrado de carreira (TJ-RJ), Salomão possui um perfil político aguçado e uma habilidade notável para o diálogo interinstitucional. Psicologicamente, é um pragmático; suas decisões frequentemente aplicam a Análise Econômica do Direito, ponderando as consequências práticas e financeiras dos vereditos. É visto como um garantidor da segurança jurídica empresarial e um gestor rigoroso.  \n* Tendência Decisória: No Direito Privado, tende a valorizar a auton",
+      "secao": "Vice-Presidência",
+      "turma": "Vice-Presidente do STJ",
+      "indicado_por": "Presidente Lula",
+      "origem": "Magistratura estadual (TJ-RJ)"
     }
   },
   "atuacao_profissional": {},

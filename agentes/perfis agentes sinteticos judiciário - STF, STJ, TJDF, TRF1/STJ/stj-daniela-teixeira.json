@@ -1,7 +1,7 @@
 {
   "id": "stj-daniela-teixeira",
   "nome": "Daniela Teixeira",
-  "nome_completo": null,
+  "nome_completo": "Daniela Teixeira",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -30,7 +30,10 @@
     "dados_dossie": {
       "origem": "Advocacia",
       "perfil_ideologico": "Garantista Combativa",
-      "analise_comportamental": "A mais nova integrante (2023). Trouxe a vivência da advocacia de defesa para o plenário. Seu perfil é combativo, especialmente em questões de gênero e prerrogativas da advocacia. Tem se destacado por votos que desafiam o *status quo* punitivo e defendem minorias."
+      "analise_comportamental": "A mais nova integrante (2023). Trouxe a vivência da advocacia de defesa para o plenário. Seu perfil é combativo, especialmente em questões de gênero e prerrogativas da advocacia. Tem se destacado por votos que desafiam o *status quo* punitivo e defendem minorias.",
+      "secao": "2ª Seção",
+      "turma": "4ª Turma",
+      "indicado_por": "Presidente Lula"
     }
   },
   "atuacao_profissional": {

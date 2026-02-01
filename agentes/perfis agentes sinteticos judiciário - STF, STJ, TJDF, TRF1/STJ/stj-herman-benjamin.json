@@ -1,7 +1,7 @@
 {
   "id": "stj-herman-benjamin",
   "nome": "Herman Benjamin",
-  "nome_completo": null,
+  "nome_completo": "Antônio Herman de Vasconcellos e Benjamin",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -33,7 +33,10 @@
     "dados_dossie": {
       "origem": "MP-SP",
       "perfil_ideologico": "Ativista Ambiental",
-      "analise_comportamental": "(Vide Perfil Presidência). Na Seção, é a referência absoluta em Direito Ambiental, defendendo a tese *in dubio pro natura*."
+      "analise_comportamental": "(Vide Perfil Presidência). Na Seção, é a referência absoluta em Direito Ambiental, defendendo a tese *in dubio pro natura*.",
+      "secao": "Presidência",
+      "turma": "Presidente do STJ",
+      "indicado_por": "Presidente Lula"
     }
   },
   "atuacao_profissional": {

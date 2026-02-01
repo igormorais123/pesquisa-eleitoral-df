@@ -1,7 +1,7 @@
 {
   "id": "stj-paulo-sergio-domingues",
   "nome": "Paulo Sérgio Domingues",
-  "nome_completo": null,
+  "nome_completo": "Paulo Sérgio Domingues",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -19,7 +19,9 @@
       "origem": "TRF-3",
       "perfil_ideologico": "Modernizador/Eficiente",
       "analise_comportamental": "Nomeado em 2022, representa a nova geração de juízes federais focados em gestão. Seu perfil é voltado para a desburocratização e eficiência processual. Ideologicamente, situa-se ao centro, sem radicalismos estatais ou liberais.",
-      "secao": "1a Secao (Direito Publico)"
+      "secao": "1a Secao (Direito Publico)",
+      "turma": "1ª Turma",
+      "indicado_por": "Presidente Lula"
     }
   },
   "atuacao_profissional": {

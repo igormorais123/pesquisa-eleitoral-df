@@ -1,7 +1,7 @@
 {
   "id": "stj-benedito-goncalves",
   "nome": "Benedito Gonçalves",
-  "nome_completo": null,
+  "nome_completo": "Benedito Gonçalves",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -19,7 +19,9 @@
       "origem": "TRF-2",
       "perfil_ideologico": "Pragmático/Político",
       "analise_comportamental": "Possui um perfil decisório flexível, sensível ao \"clima\" político e institucional. Sua passagem pelo TSE (onde relatou a inelegibilidade de Bolsonaro) revelou um juiz capaz de decisões duras quando respaldado institucionalmente. No STJ, busca soluções que conciliem interesses do Estado com a legalidade.",
-      "secao": "2a Secao (Direito Privado)"
+      "secao": "2a Secao (Direito Privado)",
+      "turma": "1ª Turma",
+      "indicado_por": "Presidente Dilma"
     }
   },
   "atuacao_profissional": {

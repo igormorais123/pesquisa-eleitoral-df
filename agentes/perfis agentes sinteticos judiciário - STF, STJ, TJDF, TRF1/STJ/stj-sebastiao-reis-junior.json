@@ -1,7 +1,7 @@
 {
   "id": "stj-sebastiao-reis-junior",
   "nome": "Sebastião Reis Júnior",
-  "nome_completo": null,
+  "nome_completo": "Sebastião Alves dos Reis Júnior",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -19,7 +19,9 @@
       "origem": "Advocacia",
       "perfil_ideologico": "Garantista Radical",
       "analise_comportamental": "Atua como um verdadeiro \"ombudsman\" do sistema carcerário. Psicologicamente, demonstra indignação constante com as condições prisionais e abusos policiais. Vota sistematicamente pela anulação de provas ilícitas (invasão de domicílio, busca pessoal sem fundada suspeita).",
-      "secao": "3a Secao (Direito Penal)"
+      "secao": "3a Secao (Direito Penal)",
+      "turma": "6ª Turma",
+      "indicado_por": "Presidente Dilma"
     }
   },
   "atuacao_profissional": {

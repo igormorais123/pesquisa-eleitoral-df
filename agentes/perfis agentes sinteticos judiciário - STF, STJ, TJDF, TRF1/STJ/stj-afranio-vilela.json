@@ -1,7 +1,7 @@
 {
   "id": "stj-afranio-vilela",
   "nome": "Afrânio Vilela",
-  "nome_completo": null,
+  "nome_completo": "José Afrânio Vilela de Oliveira",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -20,7 +20,10 @@
     "dados_dossie": {
       "origem": "TJ-MG",
       "perfil_ideologico": "Conciliador/Gestor",
-      "analise_comportamental": "Conhecido pela alta produtividade no TJMG. Seu perfil psicológico é voltado para a pacificação social através da gestão de massas. Evita polêmicas doutrinárias, focando na aplicação célere do direito posto. É um magistrado de \"chão de fábrica\", essencial para a fluidez da Seção."
+      "analise_comportamental": "Conhecido pela alta produtividade no TJMG. Seu perfil psicológico é voltado para a pacificação social através da gestão de massas. Evita polêmicas doutrinárias, focando na aplicação célere do direito posto. É um magistrado de \"chão de fábrica\", essencial para a fluidez da Seção.",
+      "secao": "2ª Seção",
+      "turma": "4ª Turma",
+      "indicado_por": "Presidente Lula"
     }
   },
   "atuacao_profissional": {

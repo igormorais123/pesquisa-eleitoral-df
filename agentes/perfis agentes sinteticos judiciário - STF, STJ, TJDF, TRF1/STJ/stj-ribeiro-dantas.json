@@ -1,7 +1,7 @@
 {
   "id": "stj-ribeiro-dantas",
   "nome": "Ribeiro Dantas",
-  "nome_completo": null,
+  "nome_completo": "Ribeiro Dantas",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -34,7 +34,9 @@
       "origem": "TRF-5",
       "perfil_ideologico": "Garantista Técnico",
       "analise_comportamental": "Processualista rigoroso. Anula processos não por ideologia, mas por falhas técnicas na instrução. É um guardião do devido processo legal formal.",
-      "secao": "3a Secao (Direito Penal)"
+      "secao": "3a Secao (Direito Penal)",
+      "turma": "5ª Turma",
+      "indicado_por": "Presidente Dilma"
     }
   },
   "atuacao_profissional": {

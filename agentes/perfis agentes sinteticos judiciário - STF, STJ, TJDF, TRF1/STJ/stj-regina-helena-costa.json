@@ -1,7 +1,7 @@
 {
   "id": "stj-regina-helena-costa",
   "nome": "Regina Helena Costa",
-  "nome_completo": null,
+  "nome_completo": "Regina Helena Costa",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -32,7 +32,9 @@
       "origem": "Acadêmica",
       "perfil_ideologico": "Garantista Tributária",
       "analise_comportamental": "Traz a sofisticação da academia para a corte. Seu perfil é técnico-científico. Diferencia-se por uma visão humanista do direito tributário, defendendo que a eficiência arrecadatória não pode atropelar direitos fundamentais do contribuinte. É a voz da moderação contra o excesso fiscal.",
-      "secao": "2a Secao (Direito Privado)"
+      "secao": "2a Secao (Direito Privado)",
+      "turma": "1ª Turma",
+      "indicado_por": "Presidente Dilma"
     }
   },
   "atuacao_profissional": {
