@@ -1,7 +1,7 @@
 {
   "id": "tjdft-alvaro-luis-de-araujo-sales-ciarlini",
   "nome": "Des. Alvaro Luis De Araujo Sales Ciarlini",
-  "nome_completo": null,
+  "nome_completo": "Álvaro Luís de Araújo Sales Ciarlini",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -14,7 +14,11 @@
     "dados_dossie": {
       "perfil_ideologico": "Formalista Culto. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes.",
       "analise_comportamental": "Formalista Culto. Seus votos são longos, fundamentados em teoria geral do direito. Exige rigor técnico absoluto das partes.",
-      "nascimento": null
+      "nascimento": {
+        "cidade": "Rio de Janeiro/RJ"
+      },
+      "formacao": "Direito (AEUDF, 1987), Mestrado em Filosofia (UnB, 2001), Doutorado em Direito, Estado e Constituição (UnB, 2008), especialização em Direito Processual (AEUDF). Professor titular UniCEUB (1997-2018).",
+      "carreira_previa": "Juiz substituto TJDFT (1994), juiz de direito (1996), titular 1ª Vara Cível Planaltina e 2ª Vara Fazenda Pública DF, Secretário-Geral CNJ (2008-2009), membro titular TRE-DF, diretor Escola Judiciária Eleitoral TRE-DF (2004-2006)"
     }
   },
   "atuacao_profissional": {},

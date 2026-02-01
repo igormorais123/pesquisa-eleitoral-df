@@ -1,7 +1,7 @@
 {
   "id": "trf1-jose-amilcar-machado",
   "nome": "José Amilcar Machado",
-  "nome_completo": null,
+  "nome_completo": "José Amilcar de Queiroz Machado",
   "orgao": "TRF1",
   "cargo": "Desembargador Federal",
   "situacao": "titular",
@@ -16,7 +16,13 @@
     },
     "dados_dossie": {
       "analise_comportamental": "Focou na interiorização.",
-      "nascimento": null
+      "nascimento": {
+        "data": "01/01/1952",
+        "cidade": "Patrocínio/MG"
+      },
+      "perfil_ideologico": "Veterano institucionalista. Decano do TRF1 com mais de 25 anos como desembargador (posse em 1999). Ex-presidente do TRF1. Nomeado pelo extinto TFR em 1987. Experiência em tribunal de alçada e advocacia antes da magistratura.",
+      "formacao": "Direito (UFMG, 1980)",
+      "carreira_previa": "Auxiliar Judiciário e Oficial de Gabinete do Tribunal de Alçada de MG, advogado (sócio-fundador ADESP), juiz federal substituto 16ª Vara RJ (1987, nomeado por Sarney via TFR), juiz titular 5ª Vara Federal MG, 6x convocado para TRF1, presidente TRF1"
     }
   },
   "atuacao_profissional": {},

@@ -1,7 +1,7 @@
 {
   "id": "tjdft-angelo-canducci-passareli",
   "nome": "Des. Angelo Canducci Passareli",
-  "nome_completo": null,
+  "nome_completo": "Ângelo Canducci Passareli",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -13,7 +13,13 @@
     "biografia_tjdft_resumo": "94 \n \n \nBIOGRAFIA \nDESEMBARGADOR \nANGELO PASSARELI \n \nDADOS PESSOAIS \nNOME: Angelo Canducci Passareli \nDATA DE NASCIMENTO: 24/2/1954 \nLOCAL DE NASCIMENTO: Distrito de Coronel Goulart, Álvares \nMachado (SP) \nNACIONALIDADE: brasileira \n \n \n \n \n \n \nESCOLARIDADE \n \nCurso Primário: Grupo Escolar de Vila Charlotte, Presidente Prudente (SP) – 1964. \nCurso Ginasial: 4º Ginásio Estadual de Presidente Prudente (SP) – 1968. \nCurso Colegial: Instituto de Educação Estadual Fernando Costa, Presidente Prudente (SP) – 1971. \nCurso Superior: Faculdade Anhanguera de Ciências Humanas, Goiânia (GO) – 1981. \n \nCARGOS OCUPADOS \n \n» Brasaço S/A - Máquinas e Ferragens – 1969/1971. \n» Caixa Econômica do Estado de São Paulo S/A – 1973/1974. \n» Banco do Brasil S/A – 1974/1975. \n» Fiscal Arrecadador da Secretaria da Fazenda do Estado de Goiás – 1975/1983. \n» Promotor de Justiça do Estado de Minas Gerais – 1983/1985...",
     "dados_dossie": {
       "analise_comportamental": "Perfil discreto, técnico e conciliador.",
-      "nascimento": null
+      "nascimento": {
+        "data": "02/1954",
+        "cidade": "Coronel Goulart/SP"
+      },
+      "perfil_ideologico": "Veterano da magistratura do DF (desde 1989). Carreira diversificada: Promotor em MG, Procurador do Estado de SP. 2º Vice-Presidente do TJDFT (2024-2026). Presidente TRE-DF e Ouvidor-Geral da Justiça Eleitoral. Reconhecido pela discrição e técnica na elaboração de votos. Perfil institucionalista.",
+      "formacao": "Direito (Faculdade Anhanguera de Ciências Humanas, Goiânia/GO)",
+      "carreira_previa": "Promotor de Justiça MG (1983-1985), Procurador do Estado de SP (1985-1989), juiz TJDFT (1989), presidente TRE-DF, Ouvidor-Geral Justiça Eleitoral DF, 1º vice-presidente TJDFT (2022-2024), 2º vice-presidente TJDFT (2024-2026)"
     }
   },
   "atuacao_profissional": {},

@@ -1,7 +1,7 @@
 {
   "id": "tjdft-jesuino-aparecido-rissato",
   "nome": "Des. Jesuíno Aparecido Rissato",
-  "nome_completo": null,
+  "nome_completo": "Jesuino Aparecido Rissato",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -14,7 +14,9 @@
     "dados_dossie": {
       "perfil_ideologico": "Técnico-Punitivista",
       "analise_comportamental": "Técnico-Punitivista. Frequentemente convocado ao STJ, onde reforça a ala conservadora. No TJDFT, é uma referência de rigor penal e eficiência processual.",
-      "nascimento": null
+      "nascimento": "Data exata nao encontrada. Natural de Astorga/PR.",
+      "formacao": "Graduado em Direito pela Universidade Estadual de Londrina - UEL (1983).",
+      "carreira_previa": "Promotor de Justica do Estado de Rondonia (1986-1991). Juiz de Direito Substituto do TJDFT desde 1991. Promovido a Desembargador por merecimento em 2011. Integra a 3a Turma Criminal. Convocado para substituir Ministro Felix Fischer no STJ (2021), atuando na Terceira Secao, Quinta e Sexta Turma em materia penal."
     }
   },
   "atuacao_profissional": {},

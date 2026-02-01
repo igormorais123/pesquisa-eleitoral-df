@@ -1,7 +1,7 @@
 {
   "id": "trf1-carlos-eduardo-moreira-alves",
   "nome": "Carlos Eduardo Moreira Alves",
-  "nome_completo": null,
+  "nome_completo": "Carlos Eduardo Maul Moreira Alves",
   "orgao": "TRF1",
   "cargo": "Desembargador Federal",
   "situacao": "titular",
@@ -17,7 +17,13 @@
     },
     "dados_dossie": {
       "analise_comportamental": "Conservador tradicional. Filho de ex-ministro do STF. Votos curtos e legalistas.",
-      "nascimento": null
+      "nascimento": {
+        "cidade": "Rio de Janeiro/RJ"
+      },
+      "perfil_ideologico": "Institucionalista-moderado. Filho do ministro Moreira Alves (ex-presidente e decano do STF). Perfil gerencial focado em produtividade. Como presidente do TRF1 (2018-2020), ao lado do vice Kassio Nunes Marques. Oriundo do quinto constitucional.",
+      "formacao": "Direito (CEUB/Brasília, 1982), Pós-Graduação (UnB, 1985) em Direito Civil, Constitucional, Penal Especial e Teoria Geral do Direito Público",
+      "carreira_previa": "Nomeado desembargador em 1998 pelo quinto constitucional. Presidente TRF1 (2018-2020), presidente da 2ª e 6ª Turmas",
+      "indicado_por": "Presidente Fernando Henrique Cardoso (quinto constitucional)"
     }
   },
   "atuacao_profissional": {},

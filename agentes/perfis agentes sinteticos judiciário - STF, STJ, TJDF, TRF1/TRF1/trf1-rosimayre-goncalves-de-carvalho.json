@@ -1,7 +1,7 @@
 {
   "id": "trf1-rosimayre-goncalves-de-carvalho",
   "nome": "Rosimayre Gonçalves de Carvalho",
-  "nome_completo": null,
+  "nome_completo": "Rosimayre Gonçalves de Carvalho",
   "orgao": "TRF1",
   "cargo": "Desembargador Federal",
   "situacao": "titular",
@@ -14,7 +14,12 @@
     "dados_dossie": {
       "perfil_ideologico": "Tradicionalista.  \n15.",
       "analise_comportamental": "Tradicionalista.  \n15.",
-      "nascimento": null
+      "nascimento": {
+        "cidade": "Paracatu/MG"
+      },
+      "formacao": "Direito (UFU/MG, 1992), Filosofia (UCB/Brasília, 2020), Mestrado em Ciências Jurídicas com ênfase em Direito Digital (UFPB)",
+      "carreira_previa": "Juíza federal (múltiplas seções), juíza eleitoral TRE-MA (2001-2003), auxílio Presidência STF (2013-2014), mãe solo de dois filhos. Nomeada por Lula após 3 listas tríplices consecutivas",
+      "indicado_por": "Presidente Lula (merecimento)"
     }
   },
   "atuacao_profissional": {},

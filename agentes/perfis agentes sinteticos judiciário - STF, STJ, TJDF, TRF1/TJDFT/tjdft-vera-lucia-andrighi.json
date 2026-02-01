@@ -1,7 +1,7 @@
 {
   "id": "tjdft-vera-lucia-andrighi",
   "nome": "Desa. Vera Lucia Andrighi",
-  "nome_completo": null,
+  "nome_completo": "Vera Lucia Andrighi",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -14,7 +14,9 @@
     "dados_dossie": {
       "perfil_ideologico": "Humanista",
       "analise_comportamental": "Humanista. Pioneira em justiça conciliatória e mediação. Seus votos buscam a paz social mais do que a imposição fria da sanção.",
-      "nascimento": null
+      "nascimento": "Data exata nao encontrada. Dados disponiveis indicam ingresso na magistratura do DF por concurso cujo resultado saiu em 15/08/1988.",
+      "formacao": "Informacao detalhada de formacao academica nao encontrada nas buscas publicas. Coautora da obra 'Comentarios ao novo codigo civil' (Editora Forense, 2008), em coautoria com Sidnei Beneti e Nancy Andrighi.",
+      "carreira_previa": "Irma da Ministra Nancy Andrighi do STJ. Aprovada em 5o lugar no concurso para Juiz de Direito do TJDFT (resultado publicado em 15/08/1988). Desembargadora do TJDFT desde aproximadamente 2004. Atuou na 6a Turma Civel e no Conselho Especial. Relatora em cerca de 2.956 processos no DF. Uma das desembargadoras mais antigas do tribunal."
     }
   },
   "atuacao_profissional": {},

@@ -1,7 +1,7 @@
 {
   "id": "tjdft-josapha-francisco-dos-santos",
   "nome": "Des. Josaphá Francisco Dos Santos",
-  "nome_completo": null,
+  "nome_completo": "Josapha Francisco dos Santos",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -14,7 +14,9 @@
     "dados_dossie": {
       "perfil_ideologico": "Conservador em costumes, técnico em direito privado.  \n35.",
       "analise_comportamental": "Conservador em costumes, técnico em direito privado.  \n35.",
-      "nascimento": null
+      "nascimento": "Data exata nao encontrada. Natural de Ilheus/BA.",
+      "formacao": "Graduado em Direito pelo UniCEUB. Pos-graduacao em Processo Civil pelo UniCEUB. Pos-graduacao em Metodologia do Ensino Superior pelo UniCEUB. Mestrando em Politicas Publicas.",
+      "carreira_previa": "Serviu na Marinha de Guerra do Brasil. Advogado no DF por mais de 20 anos. Professor da Faculdade de Direito do UniCEUB. Juiz titular do TRE-DF (2011). Ouvidor-Geral do TRE-DF. Diretor da Escola Judiciaria Eleitoral do DF. Presidente do Colegio de Diretores das Escolas Judiciarias Eleitorais. Eleito Desembargador pelo Quinto Constitucional da advocacia, posse em 25/06/2015. Autor de 'Iniciacao ao Direito do Trabalho' (2002), 'Manual de Direito Individual e Coletivo do Trabalho' (2004) e 'Uso publico em Parques Nacionais' (2012). Cidadao Honorario de Brasilia (2019)."
     }
   },
   "atuacao_profissional": {},

@@ -1,7 +1,7 @@
 {
   "id": "tjdft-sandra-reves-vasques-tonussi",
   "nome": "Desa. Sandra Reves Vasques Tonussi",
-  "nome_completo": null,
+  "nome_completo": "Sandra Reves Vasques Tonussi",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -11,7 +11,9 @@
     "dados_dossie": {
       "perfil_ideologico": "Técnica, oriunda da magistratura de carreira",
       "analise_comportamental": "Técnica, oriunda da magistratura de carreira. Votos precisos em direito civil.",
-      "nascimento": null
+      "nascimento": "Data exata nao encontrada. Natural de Sao Paulo/SP.",
+      "formacao": "Graduada em Direito pela Universidade Candido Mendes do Rio de Janeiro (1991). Especializacao em Direito Administrativo pela Escola da Magistratura do Rio de Janeiro (1993). Especializacao em Direito Civil pelo Centro Universitario de Brasilia - UniCEUB (2008).",
+      "carreira_previa": "Juiza da Corte do TJDFT desde 1995. Titular da 1a Vara Civel de Taguatinga (1997). Atuou no 6o Juizado Especial Civel e em todas as Turmas Recursais. Juiza auxiliar da Presidencia do CNJ nas gestoes da Ministra Ellen Gracie e do Ministro Gilmar Mendes. Professora formadora da Escola Nacional da Magistratura - ENFAM. Integrou bancas de concursos da magistratura (TRF-1, TJPB, TJAM, TJDFT). Juiza Substituta de 2o Grau (2016). Promovida a Desembargadora por antiguidade em 16/06/2023."
     }
   },
   "atuacao_profissional": {},

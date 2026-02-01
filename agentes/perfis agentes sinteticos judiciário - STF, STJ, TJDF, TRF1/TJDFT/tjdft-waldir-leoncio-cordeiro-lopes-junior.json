@@ -1,7 +1,7 @@
 {
   "id": "tjdft-waldir-leoncio-cordeiro-lopes-junior",
   "nome": "Des. Waldir Leôncio Cordeiro Lopes Júnior",
-  "nome_completo": null,
+  "nome_completo": "Waldir Leôncio Cordeiro Lopes Júnior",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -10,7 +10,13 @@
     "telefones_gabinete": "(61)3103-7716, (61)3103-7776",
     "dados_dossie": {
       "analise_comportamental": "Perfil gestor, focado em tecnologia e metas. Penalista de origem, mas com visão administrativa moderna.",
-      "nascimento": null
+      "nascimento": {
+        "data": "04/09/1957",
+        "cidade": "Fortaleza/CE"
+      },
+      "perfil_ideologico": "Presidente do TJDFT (2024-2026). Carreira longa na magistratura do DF (desde 1984, 40 anos). Ex-Defensor Público do MPDFT. Presidiu comissão de alteração do Regimento Interno do TJDFT (2009). Atua na 3ª Turma Criminal, Câmara Criminal e Conselho Especial. Perfil institucionalista-conservador com ênfase em gestão.",
+      "formacao": "Direito (AEUDF), especialização em Direito Público Interno e Direito Privado (AEUDF e UCB), Mestrado em Direito Público (UFPE)",
+      "carreira_previa": "Defensor Público MPDFT (1981-1984), juiz substituto TJDFT (1984), juiz de direito (1991), desembargador (2003), 2º Vice-Presidente TJDFT (2014-2016), Vice-Presidente e Corregedor TRE-DF (2018-2020), Presidente TJDFT (2024-2026)"
     }
   },
   "atuacao_profissional": {},

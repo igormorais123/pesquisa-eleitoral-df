@@ -1,7 +1,7 @@
 {
   "id": "tjdft-sandoval-gomes-de-oliveira",
   "nome": "Des. Sandoval Gomes de Oliveira",
-  "nome_completo": null,
+  "nome_completo": "Sandoval Gomes de Oliveira",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -14,7 +14,11 @@
     "dados_dossie": {
       "perfil_ideologico": "Técnico e célere",
       "analise_comportamental": "Técnico e célere.",
-      "nascimento": null
+      "nascimento": {
+        "cidade": "Brasília/DF"
+      },
+      "formacao": "Direito (AEUDF, 1986), especialização em Direito Privado (UCB, 1999), especialização em Direito Civil e Novo Código (UniCEUB, 2008)",
+      "carreira_previa": "Auxiliar judiciário TJDFT (1981), técnico e analista judiciário (1981-1988), Promotor de Justiça MG (1988, Carmo do Paranaíba, Paracatu, Ituiutaba), juiz TJMG (1990), juiz substituto TJDFT (1993), presidente AMAGIS-DF (2012-2014), membro TRE-DF (2014-2016), professor PMDF e AEUDF"
     }
   },
   "atuacao_profissional": {},

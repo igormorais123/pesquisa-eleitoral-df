@@ -1,7 +1,7 @@
 {
   "id": "trf1-gustavo-soares-amorim",
   "nome": "Gustavo Soares Amorim",
-  "nome_completo": null,
+  "nome_completo": "Luis Gustavo Soares Amorim de Sousa",
   "orgao": "TRF1",
   "cargo": "Desembargador Federal",
   "situacao": "titular",
@@ -14,7 +14,12 @@
     "dados_dossie": {
       "perfil_ideologico": "Político/Institucional. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende",
       "analise_comportamental": "Político/Institucional. Sobrinho do Ministro Reynaldo Soares da Fonseca (STJ). Jovem (37 anos), possui trânsito livre nas cortes superiores. Seu perfil é de diálogo e construção de consensos. Tende a ser um voto moderado, mas com forte influência nos bastidores.",
-      "nascimento": null
+      "nascimento": {
+        "cidade": "São Luís/MA"
+      },
+      "formacao": "Direito (UniCEUB/Brasília), pós-graduação em Poder Judiciário e Atividade Meio, especialização em Direito Tributário, mestrando em Ciências Jurídico-Políticas (Universidade Portucalense/Portugal). Professor da Universidade Ceuma.",
+      "carreira_previa": "Assessor Departamento de Transformação Mineral do Ministério de Minas e Energia (2008-2009), sócio Soares Amorim Advogados (São Luís e Brasília), presidente Comissão de Direito Sindical OAB-MA (2019-2021)",
+      "indicado_por": "Presidente Jair Bolsonaro (quinto constitucional advocacia, 2022)"
     }
   },
   "atuacao_profissional": {},

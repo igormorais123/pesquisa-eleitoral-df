@@ -1,7 +1,7 @@
 {
   "id": "tjdft-soniria-rocha-campos-d-assuncao",
   "nome": "Desa. Soníria Rocha Campos D'Assunção",
-  "nome_completo": null,
+  "nome_completo": "Soníria Rocha Campos d\"Assunção",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -11,7 +11,11 @@
     "dados_dossie": {
       "perfil_ideologico": "Técnica, ascensão recente",
       "analise_comportamental": "Técnica, ascensão recente.",
-      "nascimento": null
+      "nascimento": {
+        "cidade": "Brasília/DF"
+      },
+      "formacao": "Direito (AEUDF), Escola Superior do Ministério Público",
+      "carreira_previa": "Câmara Legislativa DF (1ª Legislatura, participou da elaboração da Lei Orgânica do DF), juíza TJDFT (1995), 1ª Turma Recursal JEF, juíza auxiliar Corregedoria Nacional CNJ (2014-2015), coordenadora Programa Nacional Governança Execuções Fiscais, membro TRE-DF (2024), vencedora Prêmio CNJ Conciliar é Legal"
     }
   },
   "atuacao_profissional": {},

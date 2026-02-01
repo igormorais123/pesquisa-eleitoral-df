@@ -1,7 +1,7 @@
 {
   "id": "tjdft-simone-costa-lucindo-ferreira",
   "nome": "Desa. Simone Costa Lucindo Ferreira",
-  "nome_completo": null,
+  "nome_completo": "Simone Costa Lucindo Ferreira",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -11,7 +11,9 @@
     "dados_dossie": {
       "perfil_ideologico": "Técnica e detalhista. Especialista em Direito Administrativo. Votos longos e bem fundamentados.  \n9.",
       "analise_comportamental": "Técnica e detalhista. Especialista em Direito Administrativo. Votos longos e bem fundamentados.  \n9.",
-      "nascimento": null
+      "nascimento": "30 de julho de 1966, Manhuacu/MG.",
+      "formacao": "Graduada em Direito pelo CEUB - Centro de Ensino Unificado de Brasilia (1989).",
+      "carreira_previa": "Taquigrafa no Superior Tribunal de Justica. Delegada da Policia Civil do DF. Procuradora do Distrito Federal desde 1999. Procuradora-Geral Adjunta do DF (3 anos). Membro do Conselho Superior da Procuradoria (quase 4 anos). Atuou em processos de Direito Publico (administrativa, tributaria, financeira, ambiental, urbanistica e de pessoal). Nomeada Desembargadora pela Presidente Dilma Rousseff pelo Quinto Constitucional da advocacia, posse em 22/06/2012. Designada para 1a Camara Civel e Conselho Especial."
     }
   },
   "atuacao_profissional": {},

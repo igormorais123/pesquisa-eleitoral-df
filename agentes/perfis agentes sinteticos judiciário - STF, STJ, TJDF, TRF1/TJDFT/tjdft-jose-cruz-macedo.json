@@ -1,7 +1,7 @@
 {
   "id": "tjdft-jose-cruz-macedo",
   "nome": "Des. José Cruz Macedo",
-  "nome_completo": null,
+  "nome_completo": "Jose Cruz Macedo",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -14,7 +14,9 @@
     "dados_dossie": {
       "perfil_ideologico": "Gestor",
       "analise_comportamental": "Gestor. Sua presidência focou em modernização. Julgador equilibrado e previsível.",
-      "nascimento": null
+      "nascimento": "Aproximadamente abril de 1958 (completou 64 anos pouco apos a posse como presidente em 22/04/2022). Natural de Mauriti/CE.",
+      "formacao": "Iniciou o curso de Direito na Universidade Federal do Ceara. Concluiu na Associacao de Ensino Unificado do Distrito Federal - AEUDF (1981).",
+      "carreira_previa": "Advogou por 21 anos. Conselheiro da OAB-DF. Atuou na Defensoria Publica do DF. Trabalhou na Assembleia Nacional Constituinte com o deputado Sigmaringa Seixas, ajudando na elaboracao da Constituicao de 1988. Nomeado Desembargador do TJDFT pelo Quinto Constitucional da advocacia em 18/12/2002. Ouvidor substituto do TJDFT (2003). Vice-Presidente e Corregedor do TRE-DF (2014-2016). Integrou a 4a Turma Civel por 14 anos. Corregedor da Justica do DF (2016-2018). Presidente do TJDFT no bienio 2022-2024. Cidadao Honorario de Brasilia (2024)."
     }
   },
   "atuacao_profissional": {},

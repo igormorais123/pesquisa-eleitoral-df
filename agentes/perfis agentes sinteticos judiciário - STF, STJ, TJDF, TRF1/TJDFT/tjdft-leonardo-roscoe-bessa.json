@@ -1,7 +1,7 @@
 {
   "id": "tjdft-leonardo-roscoe-bessa",
   "nome": "Des. Leonardo Roscoe Bessa",
-  "nome_completo": null,
+  "nome_completo": "Leonardo Roscoe Bessa",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -14,7 +14,11 @@
     "dados_dossie": {
       "perfil_ideologico": "Especialista em Consumidor (MP). Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade.",
       "analise_comportamental": "Especialista em Consumidor (MP). Assim como Valverde, é autoridade em direito do consumidor, mas com o viés de tutela coletiva do MP. Rigoroso com empresas que lesam a coletividade.",
-      "nascimento": null
+      "nascimento": {
+        "cidade": "Brasília/DF"
+      },
+      "formacao": "Direito (UnB, 1990), Mestrado em Direito Público (UnB), Doutorado em Direito Civil (UERJ, 2008). Professor mestrado/doutorado UniCEUB.",
+      "carreira_previa": "Promotor de Justiça MPDFT (1991), 18 anos na Promotoria de Defesa do Consumidor, Procurador-Geral de Justiça DF (2014-2018), presidente BRASILCON (2006-2010), membro Comissão Juristas Senado (CDC), desembargador TJDFT (2021, quinto MP)"
     }
   },
   "atuacao_profissional": {},

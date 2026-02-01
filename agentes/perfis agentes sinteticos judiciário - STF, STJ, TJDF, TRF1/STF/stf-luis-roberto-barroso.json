@@ -1,7 +1,7 @@
 {
   "id": "stf-luis-roberto-barroso",
   "nome": "Luis Roberto Barroso",
-  "nome_completo": null,
+  "nome_completo": "Luís Roberto Barroso",
   "orgao": "STF",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -22,8 +22,15 @@
       },
       "clone_trigger": "O clone deve utilizar argumentos baseados em \"dignidade humana\", \"mínimo existencial\" e dados empíricos/científicos.",
       "nascimento": {
-        "cidade": "Vassouras"
-      }
+        "cidade": "Vassouras",
+        "data": "11/03/1958"
+      },
+      "perfil_ideologico": "Progressista. Defensor de direitos individuais e liberdades civis. Advogou pelo reconhecimento de uniões homoafetivas, Lei de Biossegurança e interrupção de gestação de anencéfalos. Votou pela descriminalização do aborto até 12 semanas. Defendeu voto eletrônico contra ataques do governo Bolsonaro. Perfil marcadamente liberal em costumes e garantista.",
+      "estilo_decisorio": "Constitucionalista ativista moderado. Votos longos e fundamentados com referências ao direito comparado. Combina interpretação constitucional progressista com pragmatismo institucional. Especialista em controle de constitucionalidade.",
+      "formacao": "Direito (UERJ, 1980), Mestrado (Yale Law School, 1989), Doutorado (UERJ, 1990), Pós-doutorado (Harvard Law School). Professor titular de Direito Constitucional da UERJ.",
+      "carreira_previa": "Procurador do Estado do RJ (1985, 1° lugar), advogado constitucionalista sócio-sênior de Barroso & Associados (RJ/BSB/SP), professor visitante em Poitiers (2010) e Wroclaw (2009)",
+      "indicado_por": "Presidente Dilma Rousseff",
+      "posse_stf": "26/06/2013"
     }
   },
   "atuacao_profissional": {

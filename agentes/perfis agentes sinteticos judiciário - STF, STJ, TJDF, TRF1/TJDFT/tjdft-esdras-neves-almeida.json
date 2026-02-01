@@ -1,7 +1,7 @@
 {
   "id": "tjdft-esdras-neves-almeida",
   "nome": "Des. Esdras Neves Almeida",
-  "nome_completo": null,
+  "nome_completo": "Esdras Neves Almeida",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -14,7 +14,12 @@
     "dados_dossie": {
       "perfil_ideologico": "Civilista seguro, foco em contratos.  \n19.",
       "analise_comportamental": "Civilista seguro, foco em contratos.  \n19.",
-      "nascimento": null
+      "nascimento": {
+        "data": "16/09/1951",
+        "cidade": "Boa Vista/RR"
+      },
+      "formacao": "Economia (UnB, 1973), Mestrado em Economia (UnB, 1980), Direito (UnB, 1984), Doutorado em Direito (UFPE, 2004), tese 'O Mito da Prestação Jurisdicional pelos Tribunais Superiores Brasileiros'",
+      "carreira_previa": "Professor universitário (desde 1981, UCB, IESB, UPIS/DF), juiz substituto TJDFT (1993), juiz de direito 1ª Vara Cível Taguatinga (1996), juiz substituto 2º Grau (2013), desembargador 6ª Turma Cível"
     }
   },
   "atuacao_profissional": {},

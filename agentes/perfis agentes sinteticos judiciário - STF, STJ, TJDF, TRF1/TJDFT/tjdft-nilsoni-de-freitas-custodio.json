@@ -1,7 +1,7 @@
 {
   "id": "tjdft-nilsoni-de-freitas-custodio",
   "nome": "Desa. Nilsoni de Freitas Custodio",
-  "nome_completo": null,
+  "nome_completo": "Nilsoni de Freitas Custodio",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -14,7 +14,9 @@
     "dados_dossie": {
       "perfil_ideologico": "Penalista de Gênero",
       "analise_comportamental": "Penalista de Gênero. Atuação rigorosa em crimes contra a mulher e violência doméstica. Técnica, mas sensível a questões sociais.",
-      "nascimento": null
+      "nascimento": "Data exata nao encontrada. Natural de Goiania/GO (cresceu na cidade de Goias).",
+      "formacao": "Graduada em Direito pela Faculdade de Direito de Anapolis/GO. Especialista em Direito Processual Penal. Especialista em Direito Civil e Novo Codigo Civil.",
+      "carreira_previa": "Promotora de Justica do Estado de Goias. Juiza Substituta do TJDFT desde outubro de 1991. Titular desde agosto de 1994. Juiza da 1a Vara Criminal de Taguatinga, 7a Vara Civel de Brasilia, 3a Vara de Familia de Brasilia. Integrante da 1a e 2a Turmas Recursais. Membro titular do TRE-DF. Ouvidora da Mulher na Justica Eleitoral pelo CNJ (2023). Integra a 3a Turma Criminal do TJDFT."
     }
   },
   "atuacao_profissional": {},

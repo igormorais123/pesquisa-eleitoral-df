@@ -1,7 +1,7 @@
 {
   "id": "tjdft-leila-cristina-garbin-arlanch",
   "nome": "Desa. Leila Cristina Garbin Arlanch",
-  "nome_completo": null,
+  "nome_completo": "Leila Cristina Garbin Arlanch",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -14,7 +14,9 @@
     "dados_dossie": {
       "perfil_ideologico": "Técnica",
       "analise_comportamental": "Técnica.",
-      "nascimento": null
+      "nascimento": "Data exata nao encontrada. Natural de Sao Paulo/SP.",
+      "formacao": "Graduada em Direito pela Faculdade Paulista de Direito da Pontificia Universidade Catolica de Sao Paulo - PUC-SP. Especializacao em Direito pelo Centro Universitario de Brasilia - UniCEUB (2008). Mestrado em Direito de Estado (em andamento, conforme dados de 2012).",
+      "carreira_previa": "Ingressou na magistratura do DF em 12/06/1992. Promovida a Juiza de Direito em 02/1996, titular da 3a Vara de Familia, Orfaos e Sucessoes de Taguatinga. Juiza Substituta de 2o Grau desde 05/2013. Membro Efetivo do TRE-DF. Empossada Desembargadora em 29/09/2014."
     }
   },
   "atuacao_profissional": {},

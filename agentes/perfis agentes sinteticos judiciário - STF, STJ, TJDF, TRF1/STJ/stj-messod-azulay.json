@@ -1,7 +1,7 @@
 {
   "id": "stj-messod-azulay",
   "nome": "Messod Azulay",
-  "nome_completo": null,
+  "nome_completo": "Messod Azulay Neto",
   "orgao": "STJ",
   "cargo": "Ministro",
   "situacao": "titular",
@@ -32,7 +32,16 @@
       "origem": "TRF-2",
       "perfil_ideologico": "Conservador/Eficientista",
       "analise_comportamental": "Focado na eficiência da repressão ao crime organizado. Tende a manter prisões preventivas em casos de alta periculosidade, alinhando-se mais a Paciornik do que a Schietti.",
-      "nascimento": null
+      "nascimento": {
+        "data": "26/10/1963",
+        "cidade": "Rio de Janeiro/RJ"
+      },
+      "perfil_psicologico": "Metódico e reservado. Formação multicultural (descendente de judeus marroquinos, judeu ortodoxo). Experiência diversificada entre advocacia corporativa e magistratura. Autor prolífico (7 livros). Interessado em inteligência artificial aplicada ao judiciário.",
+      "estilo_decisorio": "Técnico-processualista com experiência prática em direito empresarial e penal. Valoriza fundamentação detalhada e jurisprudência consolidada.",
+      "formacao": "Direito (UFRJ), extensão em Direito Administrativo e Empresarial (FGV)",
+      "carreira_previa": "Advogado (1986-2005), chefe jurídico Telerj (1993-1998), assessor jurídico Telemar (1998-2005), desembargador TRF-2 (2005-2022, indicado por Lula pelo quinto), diretor Centro Cultural Justiça Federal, professor direito penal Assespa (2006-2009)",
+      "indicado_por": "Presidente Jair Bolsonaro",
+      "posse_stj": "06/12/2022"
     }
   },
   "atuacao_profissional": {

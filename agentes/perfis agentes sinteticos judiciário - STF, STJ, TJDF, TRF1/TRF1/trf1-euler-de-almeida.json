@@ -13,9 +13,11 @@
     "biografia_trf1_texto": "* * *\n\n2211 visualizações\n\n**Informativos**\n\n[Avisos](https://www.trf1.jus.br/trf1/informativos/avisos)\n\n[Infojef](https://www.trf1.jus.br/trf1/informativos/infojef)\n\n[Notícias](https://www.trf1.jus.br/trf1/noticias)\n\n[Matérias Especiais](https://www.trf1.jus.br/trf1/noticias/?palavra=&categoria=Mat%C3%A9rias+Especiais)\n\n**[LGPD](https://www.trf1.jus.br/trf1/lgpd/lgpd)**\n\n**Magistrado**\n\n[Organização e Composição](https://www.trf1.jus.br/trf1/magistrado/organizacao-e-composicao)\n\n[Desembargadoras e Desembargadores Federais](https://www.trf1.jus.br/trf1/magistrado/desembargadoras-e-desembargadores-federais)\n\n[Juízes Federais](https://www.trf1.jus.br/trf1/magistrado/juizes-federais)\n\n[Sistemas](https://www.trf1.jus.br/trf1/magistrado/sistemas)\n\n**[Memória](https://www.trf1.jus.br/trf1/exposicoes/nasce-um-tribunal)**\n\n**Servidor**\n\n[Contracheque/DIRF](https://portal.trf1.jus.br/Consulta/ContraCheque/ContraCheque.php)\n\n[Imposto de Renda](https://portal.trf1.jus.br/Consulta/ContraCheque/ContraCheque.php)\n\n[Ambientação](https://www.trf1.jus.br/trf1/servidor/ambientacao)\n\n[Educação Corporativa](https://www.trf1.jus.br/trf1/servidor/educacao-corporativa)\n\n[Avaliação de Desempenho](https://sca.trf1.jus.br/auth/realms/JF1/protocol/openid-connect/auth?client_id=educador-judiciario&redirect_uri=https%3A%2F%2Fsistemas.trf1.jus.br%2Feducajud%2F&state=e225ff63-0490-4fdf-9f33-7cffd7774372&nonce=f6eca0a0-cc8a-4b2f-8c7f-ad4a513d1ecf&response_mode=fragment&response_type=code&scope=openid)\n\n[Sistema Integrado de Avaliação de Desempenho Funcional - Siades](https://www.trf1.jus.br/trf1/servidor/sistema-integrado-de-avaliacao-de-desempenho-funcional---siades)\n\n[Contatos](https://www.trf1.jus.br/trf1/servidor/contatos)\n\n**[Informativos](https://www.trf1.jus.br/trf1/informativos)**\n\n**[LGPD](https://www.trf1.jus.br/trf1/servicos/lgpd)**\n\n**[Magistrado](https://www.trf1.jus.br/trf1/magistrado)**\n\n**[Memória](https://www.trf1.jus.br/trf1/memoria-institucional/nasce-um-tribunal)**\n\n**[Servidor](https://www.trf1.jus.br/trf1/servidor)**",
     "dados_dossie": {
       "analise_comportamental": " Gestor eficiente, focado em metas.",
-      "nascimento": null,
+      "nascimento": {
+        "cidade": "Goiás"
+      },
       "origem": "magistratura",
-      "perfil_ideologico": null,
+      "perfil_ideologico": "Especialista em direito agrário e previdenciário. Mestre em Direito Agrário pela UFG. Atuou como juiz federal em Goiás antes da promoção. Relator na 9ª Turma (1ª Seção) com foco em servidores públicos e previdência social.",
       "perfil_psicologico": null,
       "secao": "1a",
       "turma": "1a Secao (1a, 2a e 9a Turmas)",

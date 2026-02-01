@@ -1,7 +1,7 @@
 {
   "id": "tjdft-robson-vieira-teixeira-de-freitas",
   "nome": "Des. Robson Vieira Teixeira de Freitas",
-  "nome_completo": null,
+  "nome_completo": "Robson Vieira Teixeira de Freitas",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -11,7 +11,9 @@
     "dados_dossie": {
       "perfil_ideologico": "Técnico",
       "analise_comportamental": "Técnico.",
-      "nascimento": null
+      "nascimento": "Aproximadamente 1970 (49 anos a epoca da posse em outubro de 2019). Natural de Brasilia/DF.",
+      "formacao": "Graduado em Direito pela Universidade Federal de Mato Grosso - UFMT (1999), com Laurea Universitaria por destaque academico.",
+      "carreira_previa": "Servidor de carreira da Justica do Trabalho: Secretario da Corregedoria Regional e Diretor-Geral do TRT 23a Regiao, Assessor de Desembargador do TRT 10a Regiao. Delegado de Policia Federal (2002). Procurador do Distrito Federal (2005). Procurador-Geral Adjunto do DF. Integrou o Conselho Superior da PGDF em 4 bienios. Nomeado Desembargador do TJDFT pelo Presidente Jair Bolsonaro, pelo Quinto Constitucional da OAB, posse em 29/10/2019."
     }
   },
   "atuacao_profissional": {},

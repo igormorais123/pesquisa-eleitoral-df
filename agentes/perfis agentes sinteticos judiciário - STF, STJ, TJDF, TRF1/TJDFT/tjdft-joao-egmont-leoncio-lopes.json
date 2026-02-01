@@ -1,7 +1,7 @@
 {
   "id": "tjdft-joao-egmont-leoncio-lopes",
   "nome": "Des. João Egmont Leoncio Lopes",
-  "nome_completo": null,
+  "nome_completo": "Joao Egmont Leoncio Lopes",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -14,7 +14,9 @@
     "dados_dossie": {
       "perfil_ideologico": "Pragmático",
       "analise_comportamental": "Pragmático. Focado em Direito Empresarial. Busca soluções que destravem a economia.",
-      "nascimento": null
+      "nascimento": "Data exata nao encontrada. Natural de Fortaleza/CE (veio para Brasilia em 1960).",
+      "formacao": "Graduado em Direito pela Associacao de Ensino Unificado do Distrito Federal - AEUDF.",
+      "carreira_previa": "Ingressou nos quadros do TJDFT em 1990. Atuou como juiz de familia e membro do Tribunal do Juri. Membro do TRE-DF. Promovido a Desembargador por merecimento em 2010. Irmao do Desembargador Waldir Leoncio Cordeiro Lopes Junior (presidente do TJDFT). Titulo de Cidadao Honorario de Brasilia."
     }
   },
   "atuacao_profissional": {},

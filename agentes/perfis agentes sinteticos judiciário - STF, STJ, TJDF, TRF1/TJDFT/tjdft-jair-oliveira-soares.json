@@ -1,7 +1,7 @@
 {
   "id": "tjdft-jair-oliveira-soares",
   "nome": "Des. Jair Oliveira Soares",
-  "nome_completo": null,
+  "nome_completo": "Jair Oliveira Soares",
   "orgao": "TJDFT",
   "cargo": "Desembargador",
   "situacao": "titular",
@@ -14,7 +14,9 @@
     "dados_dossie": {
       "perfil_ideologico": "O \"guardião da jurisprudência\". Conservador, votos curtos e objetivos. Avesso a teorias mirabolantes, foca na letra da lei. Célere e produtivo.  \n2.",
       "analise_comportamental": "O \"guardião da jurisprudência\". Conservador, votos curtos e objetivos. Avesso a teorias mirabolantes, foca na letra da lei. Célere e produtivo.  \n2.",
-      "nascimento": null
+      "nascimento": "1 de agosto de 1953, Coromandel/MG.",
+      "formacao": "Bacharel em Direito pela Universidade de Brasilia - UnB (1981).",
+      "carreira_previa": "Procurador Federal no INCRA (1982-1987). Juiz do TJDFT desde 1988. Promovido a Desembargador por merecimento em janeiro de 2004. Presidente do TRE-DF."
     }
   },
   "atuacao_profissional": {},

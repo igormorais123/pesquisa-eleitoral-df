@@ -1,7 +1,7 @@
 {
   "id": "trf1-i-talo-mendes",
   "nome": "I'talo Mendes",
-  "nome_completo": null,
+  "nome_completo": "Ítalo Fioravanti Sabo Mendes",
   "orgao": "TRF1",
   "cargo": "Desembargador Federal",
   "situacao": "titular",
@@ -20,7 +20,13 @@
     },
     "dados_dossie": {
       "analise_comportamental": "Ex-Presidente. Conservador, ligado a valores tradicionais e defesa da propriedade.",
-      "nascimento": null
+      "nascimento": {
+        "cidade": "Diamantino/MT"
+      },
+      "perfil_ideologico": "Garantista-moderado com viés constitucionalista. Acadêmico (doutor e pós-doutor), com forte base teórica. Primo do ministro Gilmar Mendes. Oriundo do MPF pelo quinto constitucional. Perfil institucionalista com ênfase em direitos fundamentais e processo civil.",
+      "formacao": "Direito (UnB, 1983), Mestrado em Direito e Estado (UnB, 1987), Doutorado em Direito, Estado e Constituição (UnB, 2008), Pós-Doutorado (Universidade de Salamanca/Espanha, 2020). Professor Adjunto de Direito Processual Civil na UnB desde 1995.",
+      "carreira_previa": "Advogado SERPRO (1983-1984), Procurador da República (1984-1998), Procurador-Chefe DF (1989-1994), Procurador Regional Eleitoral DF (1988-1993), negociador do Tratado de Extradição Brasil-Reino Unido (1994), procurador-chefe no caso PC Farias",
+      "indicado_por": "Presidente Fernando Henrique Cardoso (quinto constitucional MPF)"
     }
   },
   "atuacao_profissional": {},
